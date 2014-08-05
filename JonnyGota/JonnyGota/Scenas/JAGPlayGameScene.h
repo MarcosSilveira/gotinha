@@ -7,9 +7,12 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "JAGHud.h"
 
 @interface JAGPlayGameScene : SKScene
 
+@property (nonatomic) int vidasTotais;
 
+@property (nonatomic) JAGHud* hud;
 
 @end

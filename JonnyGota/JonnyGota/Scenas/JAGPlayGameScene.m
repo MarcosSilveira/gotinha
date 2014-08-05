@@ -33,16 +33,25 @@ CGPoint locations;
         
         
         //Logica da movimentacao
-        
+        //PathFinder
+        //
         
         
         //logica da divisao
-        
+        //Condicaos de diferenca dos pontos
         
         
         //Logica do invisivel
+        //Tempo de pressao
+        
         
     }
+}
+
+-(void)update:(NSTimeInterval)currentTime{
+    
+    //depois de um tempo? ou acao
+    [_hud update];
 }
 
 
