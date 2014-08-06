@@ -14,6 +14,8 @@ float timeTouch;
 
 CGPoint locations;
 
+float diferenca=80;
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
@@ -39,6 +41,25 @@ CGPoint locations;
         
         //logica da divisao
         //Condicaos de diferenca dos pontos
+        if(locations.x-location.x<diferenca*-1){
+                //Lado direito ?
+            break;
+        }else{
+            if(locations.x-location.x<diferenca){
+                //lado esquerdo ?
+                break;
+            }
+        }
+        if(locations.y-location.y<diferenca*-1){
+            //pra Cima ?
+            break;
+        }else{
+            if(locations.y-location.y<diferenca){
+                //pra baixo ?
+                
+                break;
+            }
+        }
         
         
         //Logica do invisivel

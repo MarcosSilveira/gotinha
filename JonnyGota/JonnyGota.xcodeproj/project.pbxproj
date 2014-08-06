@@ -119,6 +119,7 @@
 		0B3A04431991164A00C7C39E = {
 			isa = PBXGroup;
 			children = (
+				0B45FF5119929948001948F9 /* Actions */,
 				0B024D0C1991256300AE9588 /* Inimigos */,
 				0B3A04931991179000C7C39E /* Scenas */,
 				0B3A04911991171E00C7C39E /* Models */,
@@ -230,6 +231,13 @@
 			);
 			name = Scenas;
 			path = JonnyGota;
+			sourceTree = "<group>";
+		};
+		0B45FF5119929948001948F9 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Actions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
