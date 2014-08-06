@@ -16,6 +16,21 @@ CGPoint locations;
 
 float diferenca=80;
 
+
+-(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world{
+    if (self = [super initWithSize:size]) {
+        /* Setup your scene here */
+       // self.physicsWorld.contactDelegate = self;
+         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+        _gota= [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
+        
+        [self addChild:_gota];
+        //_boing = [SKAction playSoundFileNamed:@"boing.mp3" waitForCompletion:NO];
+    }
+    return self;
+}
+
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
@@ -43,20 +58,28 @@ float diferenca=80;
         //Condicaos de diferenca dos pontos
         if(locations.x-location.x<diferenca*-1){
                 //Lado direito ?
+            [_gota mover:location withInterval:1.0];
+            
             break;
         }else{
             if(locations.x-location.x<diferenca){
                 //lado esquerdo ?
+                
+                [_gota mover:location withInterval:1.0];
                 break;
             }
         }
         if(locations.y-location.y<diferenca*-1){
             //pra Cima ?
+            
+            [_gota mover:location withInterval:1.0];
             break;
         }else{
             if(locations.y-location.y<diferenca){
                 //pra baixo ?
                 
+                
+                [_gota mover:location withInterval:1.0];
                 break;
             }
         }

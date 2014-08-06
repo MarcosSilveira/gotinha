@@ -7,7 +7,7 @@
 //
 
 #import "JAGViewController.h"
-#import "JAGMyScene.h"
+#import "JAGPlayGameScene.h"
 
 @implementation JAGViewController
 
@@ -21,7 +21,8 @@
     skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [JAGMyScene sceneWithSize:skView.bounds.size];
+    SKScene *scene =[[JAGPlayGameScene alloc] initWithSize:skView.bounds.size level:@1 andWorld:@1];
+    //SKScene * scene = [JAGP sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
