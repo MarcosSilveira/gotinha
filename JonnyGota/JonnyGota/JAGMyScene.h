@@ -7,7 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "JAGCharacter.h"
 
 @interface JAGMyScene : SKScene
-
 @end

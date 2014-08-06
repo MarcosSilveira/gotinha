@@ -10,4 +10,7 @@
 
 @implementation JAGCharacter
 
+-(void)Animar{
+
+}
 @end

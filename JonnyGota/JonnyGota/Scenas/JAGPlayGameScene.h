@@ -7,9 +7,17 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "JAGGota.h"
 
 @interface JAGPlayGameScene : SKScene
-
-
-
+{
+    JAGGota *gota;
+    //Scenario----
+    SKSpriteNode *platform;
+    SKSpriteNode *platform2;
+    SKSpriteNode *fundo;
+    SKSpriteNode *fundo2;
+    SKNode *myWorld;
+    SKNode *camera;
+}
 @end

@@ -30,6 +30,12 @@
 		0B3A0495199117B700C7C39E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3A0494199117B700C7C39E /* AudioToolbox.framework */; };
 		0B3A0497199117C000C7C39E /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3A0496199117C000C7C39E /* OpenAL.framework */; };
 		0B3A049A1991184700C7C39E /* JAGCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3A04991991184700C7C39E /* JAGCharacter.m */; };
+		8D162795199293CC00AD9F12 /* JAGTrovaoEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D162794199293CC00AD9F12 /* JAGTrovaoEnemy.m */; };
+		8D1627981992941A00AD9F12 /* JAGMetalEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1627971992941A00AD9F12 /* JAGMetalEnemy.m */; };
+		8D16279B1992942C00AD9F12 /* JAGTAreiaEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D16279A1992942C00AD9F12 /* JAGTAreiaEnemy.m */; };
+		8D16279E1992943400AD9F12 /* JAGArEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D16279D1992943400AD9F12 /* JAGArEnemy.m */; };
+		8D1627A11992943B00AD9F12 /* JAGFogoEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1627A01992943B00AD9F12 /* JAGFogoEnemy.m */; };
+		8D1627A71992945E00AD9F12 /* JAGPedraEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1627A61992945E00AD9F12 /* JAGPedraEnemy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +83,18 @@
 		0B3A0496199117C000C7C39E /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		0B3A04981991184700C7C39E /* JAGCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGCharacter.h; path = JonnyGota/Models/JAGCharacter.h; sourceTree = "<group>"; };
 		0B3A04991991184700C7C39E /* JAGCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGCharacter.m; path = JonnyGota/Models/JAGCharacter.m; sourceTree = "<group>"; };
+		8D162793199293CC00AD9F12 /* JAGTrovaoEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGTrovaoEnemy.h; sourceTree = "<group>"; };
+		8D162794199293CC00AD9F12 /* JAGTrovaoEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGTrovaoEnemy.m; sourceTree = "<group>"; };
+		8D1627961992941A00AD9F12 /* JAGMetalEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGMetalEnemy.h; sourceTree = "<group>"; };
+		8D1627971992941A00AD9F12 /* JAGMetalEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGMetalEnemy.m; sourceTree = "<group>"; };
+		8D1627991992942C00AD9F12 /* JAGTAreiaEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGTAreiaEnemy.h; sourceTree = "<group>"; };
+		8D16279A1992942C00AD9F12 /* JAGTAreiaEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGTAreiaEnemy.m; sourceTree = "<group>"; };
+		8D16279C1992943400AD9F12 /* JAGArEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGArEnemy.h; sourceTree = "<group>"; };
+		8D16279D1992943400AD9F12 /* JAGArEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGArEnemy.m; sourceTree = "<group>"; };
+		8D16279F1992943B00AD9F12 /* JAGFogoEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGFogoEnemy.h; sourceTree = "<group>"; };
+		8D1627A01992943B00AD9F12 /* JAGFogoEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGFogoEnemy.m; sourceTree = "<group>"; };
+		8D1627A51992945E00AD9F12 /* JAGPedraEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGPedraEnemy.h; sourceTree = "<group>"; };
+		8D1627A61992945E00AD9F12 /* JAGPedraEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGPedraEnemy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +127,18 @@
 		0B024D0C1991256300AE9588 /* Inimigos */ = {
 			isa = PBXGroup;
 			children = (
+				8D162793199293CC00AD9F12 /* JAGTrovaoEnemy.h */,
+				8D162794199293CC00AD9F12 /* JAGTrovaoEnemy.m */,
+				8D1627A51992945E00AD9F12 /* JAGPedraEnemy.h */,
+				8D1627A61992945E00AD9F12 /* JAGPedraEnemy.m */,
+				8D1627961992941A00AD9F12 /* JAGMetalEnemy.h */,
+				8D1627971992941A00AD9F12 /* JAGMetalEnemy.m */,
+				8D1627991992942C00AD9F12 /* JAGTAreiaEnemy.h */,
+				8D16279A1992942C00AD9F12 /* JAGTAreiaEnemy.m */,
+				8D16279C1992943400AD9F12 /* JAGArEnemy.h */,
+				8D16279D1992943400AD9F12 /* JAGArEnemy.m */,
+				8D16279F1992943B00AD9F12 /* JAGFogoEnemy.h */,
+				8D1627A01992943B00AD9F12 /* JAGFogoEnemy.m */,
 			);
 			name = Inimigos;
 			sourceTree = "<group>";
@@ -326,13 +356,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B3A045E1991164A00C7C39E /* main.m in Sources */,
+				8D16279B1992942C00AD9F12 /* JAGTAreiaEnemy.m in Sources */,
 				0B024D0B1991255400AE9588 /* JAGGota.m in Sources */,
+				8D1627A71992945E00AD9F12 /* JAGPedraEnemy.m in Sources */,
 				0B024D081991252B00AE9588 /* JAGPlayGameScene.m in Sources */,
 				0B3A04901991168800C7C39E /* Musica.m in Sources */,
+				8D16279E1992943400AD9F12 /* JAGArEnemy.m in Sources */,
+				8D162795199293CC00AD9F12 /* JAGTrovaoEnemy.m in Sources */,
 				0B3A049A1991184700C7C39E /* JAGCharacter.m in Sources */,
+				8D1627981992941A00AD9F12 /* JAGMetalEnemy.m in Sources */,
 				0B3A046B1991164A00C7C39E /* JAGMyScene.m in Sources */,
 				0B024D0F1991257400AE9588 /* JAGInimigos.m in Sources */,
 				0B3A04681991164A00C7C39E /* JAGViewController.m in Sources */,
+				8D1627A11992943B00AD9F12 /* JAGFogoEnemy.m in Sources */,
 				0B3A04621991164A00C7C39E /* JAGAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

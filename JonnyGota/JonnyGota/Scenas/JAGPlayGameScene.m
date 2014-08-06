@@ -8,15 +8,47 @@
 
 #import "JAGPlayGameScene.h"
 
-@implementation JAGPlayGameScene
+@implementation JAGPlayGameScene{
+    int width;
+    int height;
+    float timeTouch;
 
-float timeTouch;
+    CGPoint locations;
+}
 
-CGPoint locations;
+#pragma mark - Move to View
+-(void)didMoveToView:(SKView *)view{
+
+    width = self.scene.size.width;
+    height = self.scene.size.height;
+    
+    gota = [[JAGGota alloc] init];
+    self.physicsWorld.contactDelegate = (id)self;
+    self.backgroundColor = [SKColor redColor];
+    self.scaleMode = SKSceneScaleModeAspectFit;
+    self.anchorPoint = CGPointMake (0.5,0.5);
+    self.physicsWorld.gravity = CGVectorMake(0.0f, -1.0f);
+    [self touchesEnded:nil withEvent:nil];
+    
+    myWorld = [SKNode node];
+    
+    [self addChild:myWorld];
+    
+    myWorld.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
+    myWorld.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(-width/2, -height/2) toPoint:CGPointMake(width/2, -height/2)];
+    
+    camera = [SKNode node];
+    camera.name = @"camera";
+    
+    [myWorld addChild:camera];
+
+    
+
+}
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-    
+
     for (UITouch *touch in touches) {
         locations = [touch locationInNode:self];
         

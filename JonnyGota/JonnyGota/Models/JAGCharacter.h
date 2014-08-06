@@ -9,9 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface JAGCharacter : SKNode
-
 @property (nonatomic) NSInteger* vida;
-
 @property (nonatomic) SKSpriteNode* sprite;
 
 -(void)Animar;
