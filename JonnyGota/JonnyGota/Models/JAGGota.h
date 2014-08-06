@@ -10,4 +10,10 @@
 
 @interface JAGGota : JAGCharacter
 
+-(void)dividir;
+
+-(void)esconder;
+
+
+
 @end

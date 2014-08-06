@@ -1,17 +1,13 @@
 //
-//  JAGInimigos.h
+//  JAGHud.m
 //  JonnyGota
 //
 //  Created by Henrique Manfroi da Silveira on 05/08/14.
 //  Copyright (c) 2014 Henrique Manfroi da Silveira. All rights reserved.
 //
 
-#import "JAGCharacter.h"
+#import "JAGHud.h"
 
-@interface JAGInimigos : JAGCharacter
-
-@property (nonatomic) int visao;
-
--(void)ataque;
+@implementation JAGHud
 
 @end

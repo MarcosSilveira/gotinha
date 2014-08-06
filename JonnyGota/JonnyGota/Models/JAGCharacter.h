@@ -12,8 +12,12 @@
 @property (nonatomic) NSInteger* vida;
 @property (nonatomic) SKSpriteNode* sprite;
 
--(void)Animar;
 
+
+-(void)animar;
+
+
+-(void)mover;
 
 
 @end
