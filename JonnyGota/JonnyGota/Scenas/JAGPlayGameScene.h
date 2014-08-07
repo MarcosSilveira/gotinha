@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "JAGGota.h"
+#import "JAGHud.h"
 
 @interface JAGPlayGameScene : SKScene
 {
@@ -20,4 +21,9 @@
     SKNode *myWorld;
     SKNode *camera;
 }
+
+@property (nonatomic) int vidasTotais;
+
+@property (nonatomic) JAGHud* hud;
+
 @end

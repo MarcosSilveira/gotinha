@@ -41,12 +41,11 @@
     camera.name = @"camera";
     
     [myWorld addChild:camera];
+float diferenca=80;
 
     
 
 }
-
-float diferenca=80;
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */

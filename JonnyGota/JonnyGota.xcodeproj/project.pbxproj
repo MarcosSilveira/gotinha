@@ -382,6 +382,7 @@
 				0B024D0F1991257400AE9588 /* JAGInimigos.m in Sources */,
 				0B3A04681991164A00C7C39E /* JAGViewController.m in Sources */,
 				8D1627A11992943B00AD9F12 /* JAGFogoEnemy.m in Sources */,
+				0B024D12199150D300AE9588 /* JAGHud.m in Sources */,
 				0B3A04621991164A00C7C39E /* JAGAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
