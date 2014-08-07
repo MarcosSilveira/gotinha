@@ -7,14 +7,43 @@
 //
 
 #import "JAGPlayGameScene.h"
+const uint32_t GOTA = 0x1 << 0;
+const uint32_t ENEMY = 0x1 << 1;
+const uint32_t ATTACK = 0x1 << 2;
 
-@implementation JAGPlayGameScene
+@implementation JAGPlayGameScene{
+    int width;
+    int height;
+    float timeTouch;
+    float diferenca;
+    CGPoint locations;
+}
 
-float timeTouch;
-
-CGPoint locations;
-
-float diferenca=80;
+#pragma mark - Move to View
+-(void)didMoveToView:(SKView *)view{
+    diferenca = 80;
+    width = self.scene.size.width;
+    height = self.scene.size.height;
+    
+    [myWorld addChild:[self createCharacter]];
+    self.physicsWorld.contactDelegate = (id)self;
+    self.backgroundColor = [SKColor redColor];
+    self.scaleMode = SKSceneScaleModeAspectFit;
+    self.anchorPoint = CGPointMake (0.5,0.5);
+    self.physicsWorld.gravity = CGVectorMake(0.0f, -1.0f);
+    [self touchesEnded:nil withEvent:nil];
+    
+    myWorld = [SKNode node];
+    
+    [self addChild:myWorld];
+    
+    myWorld.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
+    myWorld.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(-width/2, -height/2) toPoint:CGPointMake(width/2, -height/2)];
+    
+    camera = [SKNode node];
+    camera.name = @"camera";
+    
+    [myWorld addChild:camera];
 
 bool tocou;
 
@@ -34,10 +63,21 @@ bool tocou;
     return self;
 }
 
+-(JAGGota *)createCharacter{
+    gota = [[JAGGota alloc] init];
+    gota.position = CGPointMake(0, -height/2.15+(platform.size.height));
+    gota.name = @"spartan";
+    gota.zPosition = 1;
+    gota.physicsBody.categoryBitMask = GOTA;
+    gota.physicsBody.collisionBitMask = ATTACK | ENEMY;
+    gota.physicsBody.contactTestBitMask = ATTACK | ENEMY;
+    
+    return gota;
+}
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-    
+
     for (UITouch *touch in touches) {
         locations = [touch locationInNode:self];
         

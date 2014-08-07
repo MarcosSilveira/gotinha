@@ -7,12 +7,12 @@
 //
 
 #import "JAGMyScene.h"
+#import "JAGCharacter.h"
 
 @implementation JAGMyScene
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
-        /* Setup your scene here */
         
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         
