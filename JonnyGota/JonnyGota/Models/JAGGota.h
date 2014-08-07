@@ -14,6 +14,11 @@
 
 -(void)esconder;
 
+-(void)mover:(CGPoint)ponto
+withInterval:(NSTimeInterval) time;
+
+
+-(id)initWithPosition:(CGPoint) position;
 
 
 @end

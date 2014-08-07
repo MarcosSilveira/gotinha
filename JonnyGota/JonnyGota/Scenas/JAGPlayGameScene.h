@@ -9,6 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "JAGGota.h"
 #import "JAGHud.h"
+#import "JAGGota.h"
 
 @interface JAGPlayGameScene : SKScene
 {
@@ -24,6 +25,10 @@
 
 @property (nonatomic) int vidasTotais;
 
+@property (nonatomic) JAGGota* gota;
+
 @property (nonatomic) JAGHud* hud;
+
+- (id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world;
 
 @end

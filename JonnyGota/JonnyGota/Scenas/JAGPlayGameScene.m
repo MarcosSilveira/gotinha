@@ -74,20 +74,28 @@ float diferenca=80;
         //Condicaos de diferenca dos pontos
         if(locations.x-location.x<diferenca*-1){
                 //Lado direito ?
+            [_gota mover:location withInterval:1.0];
+            
             break;
         }else{
             if(locations.x-location.x<diferenca){
                 //lado esquerdo ?
+                
+                [_gota mover:location withInterval:1.0];
                 break;
             }
         }
         if(locations.y-location.y<diferenca*-1){
             //pra Cima ?
+            
+            [_gota mover:location withInterval:1.0];
             break;
         }else{
             if(locations.y-location.y<diferenca){
                 //pra baixo ?
                 
+                
+                [_gota mover:location withInterval:1.0];
                 break;
             }
         }
