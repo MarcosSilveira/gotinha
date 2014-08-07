@@ -16,6 +16,8 @@ CGPoint locations;
 
 float diferenca=80;
 
+bool tocou;
+
 
 -(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world{
     if (self = [super initWithSize:size]) {
@@ -25,6 +27,8 @@ float diferenca=80;
         _gota= [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
         
         [self addChild:_gota];
+        
+        tocou=false;
         //_boing = [SKAction playSoundFileNamed:@"boing.mp3" waitForCompletion:NO];
     }
     return self;
@@ -39,6 +43,12 @@ float diferenca=80;
         
         
         timeTouch=touch.timestamp;
+        
+        if ([_gota tocou:locations]) {
+            tocou=true;
+        }else{
+            tocou=false;
+        }
     }
 }
 
@@ -47,6 +57,9 @@ float diferenca=80;
         CGPoint location = [touch locationInNode:self];
         
         
+        if (tocou) {
+            NSLog(@"Tocou");
+        }
         
         
         //Logica da movimentacao

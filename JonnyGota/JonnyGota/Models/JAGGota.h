@@ -20,5 +20,7 @@ withInterval:(NSTimeInterval) time;
 
 -(id)initWithPosition:(CGPoint) position;
 
+-(BOOL)tocou:(CGPoint) ponto;
+
 
 @end

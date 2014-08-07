@@ -17,7 +17,11 @@
     
 //    desn.position=position;
     
-    [self addChild:desn];
+    //[self addChild:desn];
+    
+    self.sprite=desn;
+    
+    [self addChild:self.sprite];
     
     self.position=position;
     
@@ -51,6 +55,18 @@
 
     
     NSLog(@"Movendo?");
+}
+
+-(BOOL)tocou:(CGPoint) ponto{
+    if((ponto.x>self.position.x)&&(ponto.x<(self.position.x+self.sprite.size.width))){
+        if((ponto.y>self.position.y)&&(ponto.y<(self.position.y+self.sprite.size.height))){
+            
+          //  NSLog(@"Ponto %@",)
+            return true;
+        }
+    }
+    
+    return false;
 }
 
 @end
