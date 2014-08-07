@@ -27,7 +27,7 @@ const uint32_t ATTACK = 0x1 << 2;
     
     [myWorld addChild:[self createCharacter]];
     self.physicsWorld.contactDelegate = (id)self;
-    self.backgroundColor = [SKColor redColor];
+    //self.backgroundColor = [SKColor redColor];
     self.scaleMode = SKSceneScaleModeAspectFit;
     self.anchorPoint = CGPointMake (0.5,0.5);
     self.physicsWorld.gravity = CGVectorMake(0.0f, -1.0f);
@@ -45,6 +45,10 @@ const uint32_t ATTACK = 0x1 << 2;
     
     [myWorld addChild:camera];
 
+    
+
+}
+
 bool tocou;
 
 
@@ -61,7 +65,9 @@ bool tocou;
         //_boing = [SKAction playSoundFileNamed:@"boing.mp3" waitForCompletion:NO];
     }
     return self;
+    
 }
+
 
 -(JAGGota *)createCharacter{
     gota = [[JAGGota alloc] init];
@@ -97,8 +103,40 @@ bool tocou;
         CGPoint location = [touch locationInNode:self];
         
         
+        
+        //Se tocou na gota antes
         if (tocou) {
             NSLog(@"Tocou");
+            
+            
+            //Movimento
+            if(locations.x-location.x<diferenca*-1){
+                //Lado direito ?
+                [_gota mover:location withInterval:1.0];
+                
+                break;
+            }else{
+                if(locations.x-location.x<diferenca){
+                    //lado esquerdo ?
+                    
+                    [_gota mover:location withInterval:1.0];
+                    break;
+                }
+            }
+            if(locations.y-location.y<diferenca*-1){
+                //pra Cima ?
+                
+                [_gota mover:location withInterval:1.0];
+                break;
+            }else{
+                if(locations.y-location.y<diferenca){
+                    //pra baixo ?
+                    
+                    
+                    [_gota mover:location withInterval:1.0];
+                    break;
+                }
+            }
         }
         
         
@@ -109,33 +147,7 @@ bool tocou;
         
         //logica da divisao
         //Condicaos de diferenca dos pontos
-        if(locations.x-location.x<diferenca*-1){
-                //Lado direito ?
-            [_gota mover:location withInterval:1.0];
-            
-            break;
-        }else{
-            if(locations.x-location.x<diferenca){
-                //lado esquerdo ?
-                
-                [_gota mover:location withInterval:1.0];
-                break;
-            }
-        }
-        if(locations.y-location.y<diferenca*-1){
-            //pra Cima ?
-            
-            [_gota mover:location withInterval:1.0];
-            break;
-        }else{
-            if(locations.y-location.y<diferenca){
-                //pra baixo ?
-                
-                
-                [_gota mover:location withInterval:1.0];
-                break;
-            }
-        }
+        
         
         
         //Logica do invisivel

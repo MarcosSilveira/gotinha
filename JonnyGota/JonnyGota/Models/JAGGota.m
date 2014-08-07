@@ -58,13 +58,15 @@
 }
 
 -(BOOL)tocou:(CGPoint) ponto{
-    if((ponto.x>self.position.x)&&(ponto.x<(self.position.x+self.sprite.size.width))){
-        if((ponto.y>self.position.y)&&(ponto.y<(self.position.y+self.sprite.size.height))){
+    if((ponto.x>=(self.position.x-self.sprite.size.width/2))&&(ponto.x<(self.position.x+self.sprite.size.width/2))){
+        if((ponto.y>=(self.position.y-self.sprite.size.height/2))&&(ponto.y<(self.position.y+self.sprite.size.height/2))){
             
-          //  NSLog(@"Ponto %@",)
             return true;
         }
     }
+    
+    //NSLog(@"Ponto x:%f  y:%f Calc x: %f ",ponto.x,ponto.y,self.position.x+self.sprite.size.width);
+    //NSLog(@"Positions x: %f  y: %f  calc y: %f",self.position.x,self.position.y,self.position.y+self.sprite.size.height);
     
     return false;
 }
