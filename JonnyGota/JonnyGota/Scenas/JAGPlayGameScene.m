@@ -7,6 +7,9 @@
 //
 
 #import "JAGPlayGameScene.h"
+const uint32_t GOTA = 0x1 << 0;
+const uint32_t ENEMY = 0x1 << 1;
+const uint32_t ATTACK = 0x1 << 2;
 
 @implementation JAGPlayGameScene{
     int width;
@@ -22,7 +25,7 @@
     width = self.scene.size.width;
     height = self.scene.size.height;
     
-    gota = [[JAGGota alloc] init];
+    [myWorld addChild:[self createCharacter]];
     self.physicsWorld.contactDelegate = (id)self;
     self.backgroundColor = [SKColor redColor];
     self.scaleMode = SKSceneScaleModeAspectFit;
@@ -44,6 +47,18 @@
 
     
 
+}
+
+-(JAGGota *)createCharacter{
+    gota = [[JAGGota alloc] init];
+    gota.position = CGPointMake(0, -height/2.15+(platform.size.height));
+    gota.name = @"spartan";
+    gota.zPosition = 1;
+    gota.physicsBody.categoryBitMask = GOTA;
+    gota.physicsBody.collisionBitMask = ATTACK | ENEMY;
+    gota.physicsBody.contactTestBitMask = ATTACK | ENEMY;
+    
+    return gota;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

@@ -127,7 +127,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0B024D0C1991256300AE9588 /* Inimigos */ = {
+		0B024D0C1991256300AE9588 /* Enemies */ = {
 			isa = PBXGroup;
 			children = (
 				8D162793199293CC00AD9F12 /* JAGTrovaoEnemy.h */,
@@ -143,17 +143,17 @@
 				8D16279F1992943B00AD9F12 /* JAGFogoEnemy.h */,
 				8D1627A01992943B00AD9F12 /* JAGFogoEnemy.m */,
 			);
-			name = Inimigos;
+			name = Enemies;
 			sourceTree = "<group>";
 		};
 		0B3A04431991164A00C7C39E = {
 			isa = PBXGroup;
 			children = (
 				0B45FF5119929948001948F9 /* Actions */,
-				0B024D0C1991256300AE9588 /* Inimigos */,
-				0B3A04931991179000C7C39E /* Scenas */,
+				0B024D0C1991256300AE9588 /* Enemies */,
+				0B3A04931991179000C7C39E /* Scenes */,
 				0B3A04911991171E00C7C39E /* Models */,
-				0B3A04921991177500C7C39E /* Objetos */,
+				0B3A04921991177500C7C39E /* Objects */,
 				0B3A04571991164A00C7C39E /* JonnyGota */,
 				0B3A047B1991164A00C7C39E /* JonnyGotaTests */,
 				0B3A044E1991164A00C7C39E /* Frameworks */,
@@ -242,7 +242,7 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		0B3A04921991177500C7C39E /* Objetos */ = {
+		0B3A04921991177500C7C39E /* Objects */ = {
 			isa = PBXGroup;
 			children = (
 				0B3A048E1991168800C7C39E /* Musica.h */,
@@ -250,16 +250,16 @@
 				0B024D10199150D300AE9588 /* JAGHud.h */,
 				0B024D11199150D300AE9588 /* JAGHud.m */,
 			);
-			name = Objetos;
+			name = Objects;
 			sourceTree = "<group>";
 		};
-		0B3A04931991179000C7C39E /* Scenas */ = {
+		0B3A04931991179000C7C39E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				0B024D061991252B00AE9588 /* JAGPlayGameScene.h */,
 				0B024D071991252B00AE9588 /* JAGPlayGameScene.m */,
 			);
-			name = Scenas;
+			name = Scenes;
 			path = JonnyGota;
 			sourceTree = "<group>";
 		};
