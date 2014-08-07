@@ -25,7 +25,7 @@ const uint32_t ATTACK = 0x1 << 2;
     width = self.scene.size.width;
     height = self.scene.size.height;
     
-    [myWorld addChild:[self createCharacter]];
+    //[myWorld addChild:[self createCharacter]];
     self.physicsWorld.contactDelegate = (id)self;
     //self.backgroundColor = [SKColor redColor];
     self.scaleMode = SKSceneScaleModeAspectFit;
@@ -45,8 +45,6 @@ const uint32_t ATTACK = 0x1 << 2;
     
     [myWorld addChild:camera];
 
-    
-
 }
 
 bool tocou;
@@ -61,6 +59,7 @@ bool tocou;
         
         [self addChild:_gota];
         
+        diferenca=80.0f;
         tocou=false;
         //_boing = [SKAction playSoundFileNamed:@"boing.mp3" waitForCompletion:NO];
     }
@@ -106,37 +105,83 @@ bool tocou;
         
         //Se tocou na gota antes
         if (tocou) {
-            NSLog(@"Tocou");
             
             
+            float difx=locations.x-location.x;
+            
+            float dify=locations.y-location.y;
+            
+            BOOL negx=false;;
+            
+            bool negy=false;
+                       
+            if(difx<0){
+                negx=true;
+                difx*=-1;
+            }
+            if(dify<0){
+                negy=true;
+                dify*=-1;
+            }
+            
+            
+            
+            if (difx>dify) {
+                if(negx){
+                    [_gota mover:location withInterval:1.0 withTipe:3];
+
+                }else{
+                    [_gota mover:location withInterval:1.0 withTipe:4];
+                }
+                
+               
+                
+                
+            }else{
+                if(negy){
+                    [_gota mover:location withInterval:1.0 withTipe:2];
+                }else{
+                    [_gota mover:location withInterval:1.0 withTipe:1];
+                }
+            }
+            
+            
+            /*
             //Movimento
             if(locations.x-location.x<diferenca*-1){
                 //Lado direito ?
-                [_gota mover:location withInterval:1.0];
+                [_gota mover:location withInterval:1.0 withTipe:4];
+                
+                NSLog(@"Direito");
                 
                 break;
             }else{
                 if(locations.x-location.x<diferenca){
                     //lado esquerdo ?
                     
-                    [_gota mover:location withInterval:1.0];
+                     NSLog(@"Baixo");
+                    
+                    [_gota mover:location withInterval:1.0 withTipe:2];
                     break;
                 }
             }
             if(locations.y-location.y<diferenca*-1){
                 //pra Cima ?
                 
-                [_gota mover:location withInterval:1.0];
+                                NSLog(@"Cima");
+                [_gota mover:location withInterval:1.0 withTipe:1];
                 break;
             }else{
                 if(locations.y-location.y<diferenca){
                     //pra baixo ?
                     
-                    
-                    [_gota mover:location withInterval:1.0];
+                                    NSLog(@"Esquerdo");
+                    [_gota mover:location withInterval:1.0 withTipe:3];
                     break;
                 }
             }
+             */
+            
         }
         
         
