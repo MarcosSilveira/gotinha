@@ -7,9 +7,9 @@
 //
 
 #import "JAGPlayGameScene.h"
-const uint32_t GOTA = 0x1 << 0;
-const uint32_t ENEMY = 0x1 << 1;
-const uint32_t ATTACK = 0x1 << 2;
+//const uint32_t GOTA = 0x1 << 0;
+//const uint32_t ENEMY = 0x1 << 1;
+//const uint32_t ATTACK = 0x1 << 2;
 
 @implementation JAGPlayGameScene{
     int width;
@@ -25,12 +25,11 @@ const uint32_t ATTACK = 0x1 << 2;
     width = self.scene.size.width;
     height = self.scene.size.height;
     
-    [myWorld addChild:[self createCharacter]];
+  //  [myWorld addChild:[self createCharacter]];
     self.physicsWorld.contactDelegate = (id)self;
     //self.backgroundColor = [SKColor redColor];
     self.scaleMode = SKSceneScaleModeAspectFit;
-    self.anchorPoint = CGPointMake (0.5,0.5);
-    self.physicsWorld.gravity = CGVectorMake(0.0f, -1.0f);
+    self.physicsWorld.gravity = CGVectorMake(0.0f, 0.0f);
     [self touchesEnded:nil withEvent:nil];
     
     myWorld = [SKNode node];
@@ -58,6 +57,14 @@ bool tocou;
        // self.physicsWorld.contactDelegate = self;
          self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         _gota= [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
+        SKSpriteNode *obstaculo = [[SKSpriteNode alloc]initWithColor:([UIColor redColor]) size:(CGSizeMake(self.scene.size.width, 10)) ];
+        obstaculo.position = CGPointMake(self.scene.size.width/2, self.scene.size.width/2);
+        obstaculo.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:obstaculo.size];
+        obstaculo.physicsBody.dynamic = NO;
+        obstaculo.physicsBody.categoryBitMask = ENEMY;
+        obstaculo.physicsBody.collisionBitMask = GOTA;
+        obstaculo.physicsBody.contactTestBitMask = GOTA;
+        [self addChild:obstaculo];
         
         [self addChild:_gota];
         
@@ -72,11 +79,8 @@ bool tocou;
 -(JAGGota *)createCharacter{
     gota = [[JAGGota alloc] init];
     gota.position = CGPointMake(0, -height/2.15+(platform.size.height));
-    gota.name = @"spartan";
-    gota.zPosition = 1;
-    gota.physicsBody.categoryBitMask = GOTA;
-    gota.physicsBody.collisionBitMask = ATTACK | ENEMY;
-    gota.physicsBody.contactTestBitMask = ATTACK | ENEMY;
+    gota.name = @"gota";
+
     
     return gota;
 }

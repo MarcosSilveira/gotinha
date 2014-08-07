@@ -14,12 +14,17 @@
     self=[super init];
     
     SKSpriteNode *desn=[[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
-    
+    self.sprite=desn;
+    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
+  //  self.zPosition = 1;
+    self.physicsBody.categoryBitMask = GOTA;
+    self.physicsBody.collisionBitMask = ATTACK | ENEMY;
+    self.physicsBody.contactTestBitMask = ATTACK | ENEMY;
 //    desn.position=position;
     
     //[self addChild:desn];
     
-    self.sprite=desn;
+    
     
     [self addChild:self.sprite];
     

@@ -7,7 +7,11 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-
+typedef enum : uint32_t{
+ GOTA = 0x1 << 0,
+ ENEMY = 0x1 << 1,
+ ATTACK = 0x1 << 2
+}colisao;
 @interface JAGCharacter : SKNode
 @property (nonatomic) NSInteger* vida;
 @property (nonatomic) SKSpriteNode* sprite;
