@@ -12,13 +12,13 @@
     int width;
     int height;
     float timeTouch;
-
+    float diferenca;
     CGPoint locations;
 }
 
 #pragma mark - Move to View
 -(void)didMoveToView:(SKView *)view{
-
+    diferenca = 80;
     width = self.scene.size.width;
     height = self.scene.size.height;
     
@@ -41,7 +41,6 @@
     camera.name = @"camera";
     
     [myWorld addChild:camera];
-float diferenca=80;
 
     
 
