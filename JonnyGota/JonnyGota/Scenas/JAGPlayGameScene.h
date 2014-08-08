@@ -29,6 +29,12 @@
 
 @property (nonatomic) JAGHud* hud;
 
+@property (strong, nonatomic) SKSpriteNode *picToMask;
+
+@property (strong, nonatomic) SKSpriteNode *mask;
+
+@property (strong, nonatomic) SKCropNode *cropNode;
+
 - (id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world;
 
 @end

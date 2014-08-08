@@ -8,6 +8,8 @@
 
 #import "JAGInimigos.h"
 
+// Habilidade Especial: Ao caminhar, deixa rastro que queima, durante alguns segundos
+
 @interface JAGFogoEnemy : JAGInimigos
 
 @end

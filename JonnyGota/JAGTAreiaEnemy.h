@@ -8,6 +8,8 @@
 
 #import "JAGInimigos.h"
 
+// Habilidade Especial: Anda devagar e se passar sobre um rastro d'água do jogador, absorve-o
+
 @interface JAGTAreiaEnemy : JAGInimigos
 
 @end

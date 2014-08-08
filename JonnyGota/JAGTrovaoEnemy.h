@@ -8,6 +8,8 @@
 
 #import "JAGInimigos.h"
 
+// Habilidade Especial: Se teletransporta ao redor da fase
+
 @interface JAGTrovaoEnemy : JAGInimigos
 
 @end

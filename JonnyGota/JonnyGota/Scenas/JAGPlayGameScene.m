@@ -54,7 +54,7 @@ bool tocou;
         /* Setup your scene here */
        // self.physicsWorld.contactDelegate = self;
          self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
-        _gota= [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
+        _gota =  [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
         SKSpriteNode *obstaculo = [[SKSpriteNode alloc]initWithColor:([UIColor redColor]) size:(CGSizeMake(self.scene.size.width, 10)) ];
         obstaculo.position = CGPointMake(self.scene.size.width/2, self.scene.size.width/2);
         obstaculo.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:obstaculo.size];
@@ -66,20 +66,30 @@ bool tocou;
         
         [self addChild:_gota];
         
-        diferenca=80.0f;
-        tocou=false;
+        diferenca = 80.0f;
+        tocou = false;
         //_boing = [SKAction playSoundFileNamed:@"boing.mp3" waitForCompletion:NO];
+        
+       // _mask = [[SKSpriteNode init] initWithColor:[SKColor purpleColor]];
+        _picToMask = [SKSpriteNode spriteNodeWithImageNamed:@"mask"];
+        _mask = [SKSpriteNode spriteNodeWithColor:[SKColor blackColor] size:CGSizeMake(self.size.width, self.size.height)];
+        
+        _cropNode = [SKCropNode new];
+        _cropNode.maskNode = _mask;
+        _cropNode.position = CGPointMake(100, 100);
+        
+        [_cropNode addChild:_picToMask];
+        [self addChild:_cropNode];
     }
     return self;
     
 }
 
-
 -(JAGGota *)createCharacter{
+    
     gota = [[JAGGota alloc] init];
     gota.position = CGPointMake(0, -height/2.15+(platform.size.height));
     gota.name = @"gota";
-
     
     return gota;
 }
@@ -91,12 +101,12 @@ bool tocou;
         locations = [touch locationInNode:self];
         
         
-        timeTouch=touch.timestamp;
+        timeTouch = touch.timestamp;
         
         if ([_gota tocou:locations]) {
-            tocou=true;
+            tocou = true;
         }else{
-            tocou=false;
+            tocou = false;
         }
     }
 }
@@ -111,21 +121,21 @@ bool tocou;
         if (tocou) {
             
             
-            float difx=locations.x-location.x;
+            float difx = locations.x-location.x;
             
-            float dify=locations.y-location.y;
+            float dify = locations.y-location.y;
             
-            BOOL negx=false;;
+            BOOL negx = false;;
             
-            bool negy=false;
+            bool negy = false;
                        
             if(difx<0){
-                negx=true;
-                difx*=-1;
+                negx = true;
+                difx *= -1;
             }
             if(dify<0){
-                negy=true;
-                dify*=-1;
+                negy = true;
+                dify *= -1;
             }
             
             
