@@ -132,10 +132,10 @@ bool tocou;
             
             if (difx>dify) {
                 if(negx){
-                    [_gota mover:location withInterval:1.0 withTipe:3];
+                    [_gota mover:location withInterval:1.0 withTipe:4];
 
                 }else{
-                    [_gota mover:location withInterval:1.0 withTipe:4];
+                    [_gota mover:location withInterval:1.0 withTipe:3];
                 }
                 
                
@@ -143,9 +143,9 @@ bool tocou;
                 
             }else{
                 if(negy){
-                    [_gota mover:location withInterval:1.0 withTipe:2];
-                }else{
                     [_gota mover:location withInterval:1.0 withTipe:1];
+                }else{
+                    [_gota mover:location withInterval:1.0 withTipe:2];
                 }
             }
             

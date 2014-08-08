@@ -64,14 +64,14 @@
             action=[SKAction moveToY:ponto.y duration:time];
             //self.sprite.color=[UIColor greenColor];
             
-            actionChangeSprite=[SKAction colorizeWithColor:[SKColor whiteColor] colorBlendFactor:1.0 duration:0.15];
+            actionChangeSprite=[SKAction colorizeWithColor:[SKColor whiteColor] colorBlendFactor:1.0 duration:0.0];
            // self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor greenColor] size:CGSizeMake(50, 50)];
             break;
             
         case 2:
             action=[SKAction moveToY:ponto.y duration:time];
             
-            actionChangeSprite=[SKAction colorizeWithColor:[SKColor brownColor] colorBlendFactor:1.0 duration:0.15];
+            actionChangeSprite=[SKAction colorizeWithColor:[SKColor brownColor] colorBlendFactor:1.0 duration:0.0];
 
             //self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
             break;
@@ -79,12 +79,12 @@
         case 3:
             action=[SKAction moveToX:ponto.x duration:time];
             
-            self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor whiteColor] size:CGSizeMake(50, 50)];
+            actionChangeSprite=[SKAction colorizeWithColor:[SKColor blueColor] colorBlendFactor:1.0 duration:0.0];
             break;
             
         case 4:
             action=[SKAction moveToX:ponto.x duration:time];
-            self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor yellowColor] size:CGSizeMake(50, 50)];
+            actionChangeSprite=[SKAction colorizeWithColor:[SKColor yellowColor] colorBlendFactor:1.0 duration:0.0];
 
             break;
             
@@ -93,7 +93,7 @@
     }
     //Mover em 2 passos para diagonal?
     
-    [self runAction:actionChangeSprite];
+    [self.sprite runAction:actionChangeSprite];
     
     [self runAction:action];
 }
