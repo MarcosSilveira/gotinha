@@ -120,24 +120,37 @@ bool tocou;
         
         
         //Se tocou na gota antes
+        //Se tocou na gota antes
         if (tocou) {
             
             
-            float difx = locations.x-location.x;
             
-            float dify = locations.y-location.y;
             
-            BOOL negx = false;;
             
-            bool negy = false;
-                       
+            
+        }else{
+            
+            //SE tocou fora movimenta
+            //float difx=locations.x-location.x;
+            
+            float difx=_gota.position.x-location.x;
+            
+            //float dify=locations.y-location.y;
+            
+            float dify=_gota.position.y-location.y;
+            
+            
+            BOOL negx=false;;
+            
+            bool negy=false;
+            
             if(difx<0){
-                negx = true;
-                difx *= -1;
+                negx=true;
+                difx*=-1;
             }
             if(dify<0){
-                negy = true;
-                dify *= -1;
+                negy=true;
+                dify*=-1;
             }
             
             
