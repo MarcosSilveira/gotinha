@@ -13,18 +13,21 @@
 -(id)initWithPosition:(CGPoint)position{
     self=[super init];
     
-    SKSpriteNode *desn=[[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
-    self.sprite=desn;
+    self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
+   
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
   //  self.zPosition = 1;
     self.physicsBody.categoryBitMask = GOTA;
     self.physicsBody.collisionBitMask = ATTACK | ENEMY;
     self.physicsBody.contactTestBitMask = ATTACK | ENEMY;
+    
+    
+    self.physicsBody.restitution=0;
 //    desn.position=position;
     
     //[self addChild:desn];
     
-    
+    self.name=@"gota";
     
     [self addChild:self.sprite];
     
@@ -36,9 +39,22 @@
 -(id)init{
     self=[super init];
     
-    SKSpriteNode *desn=[[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(200, 200)];
+    self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
     
-    //desn.position=
+    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
+    //  self.zPosition = 1;
+    self.physicsBody.categoryBitMask = GOTA;
+    self.physicsBody.collisionBitMask = ATTACK | ENEMY;
+    self.physicsBody.contactTestBitMask = ATTACK | ENEMY;
+    //    desn.position=position;
+    
+    //[self addChild:desn];
+    
+    
+    
+    [self addChild:self.sprite];
+    
+    //self.position=position;
     
     return self;
 }
@@ -58,9 +74,26 @@
     
     SKAction *actionChangeSprite;
     
+   // =CGVectorMake(ponto.x, ponto.y);
     
+    //[self.physicsBody applyImpulse:CGVectorMake(0.3, 0.3) atPoint:ponto];
+    
+   // [self removeAllActions];
+    
+    self.physicsBody.velocity=CGVectorMake(0, 0);
+    
+    int multi=4;
+    
+
     switch (tipo) {
         case 1:
+            
+            //self.physicsBody.velocity=CGVectorMake(ponto.x, ponto.y);
+            
+            
+            
+            
+            [self.physicsBody applyForce:CGVectorMake(0,(ponto.y-self.position.y)*multi)];
             action=[SKAction moveToY:ponto.y duration:time];
             //self.sprite.color=[UIColor greenColor];
             
@@ -69,6 +102,8 @@
             break;
             
         case 2:
+            
+            [self.physicsBody applyForce:CGVectorMake(0,(ponto.y-self.position.y)*multi)];
             action=[SKAction moveToY:ponto.y duration:time];
             
             actionChangeSprite=[SKAction colorizeWithColor:[SKColor brownColor] colorBlendFactor:1.0 duration:0.0];
@@ -77,12 +112,17 @@
             break;
             
         case 3:
+            
+            [self.physicsBody applyForce:CGVectorMake((ponto.x-self.position.x)*multi,0)];
+
             action=[SKAction moveToX:ponto.x duration:time];
             
             actionChangeSprite=[SKAction colorizeWithColor:[SKColor blueColor] colorBlendFactor:1.0 duration:0.0];
             break;
             
         case 4:
+            [self.physicsBody applyForce:CGVectorMake((ponto.x-self.position.x)*multi,0)];
+
             action=[SKAction moveToX:ponto.x duration:time];
             actionChangeSprite=[SKAction colorizeWithColor:[SKColor yellowColor] colorBlendFactor:1.0 duration:0.0];
 
@@ -95,7 +135,9 @@
     
     [self.sprite runAction:actionChangeSprite];
     
-    [self runAction:action];
+    //[self runAction:action];
+    
+    
 }
 
 -(BOOL)tocou:(CGPoint) ponto{

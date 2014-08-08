@@ -62,6 +62,8 @@ bool tocou;
         obstaculo.physicsBody.categoryBitMask = ENEMY;
         obstaculo.physicsBody.collisionBitMask = GOTA;
         obstaculo.physicsBody.contactTestBitMask = GOTA;
+        
+        obstaculo.name=@"wall";
         [self addChild:obstaculo];
         
         [self addChild:_gota];
@@ -111,14 +113,26 @@ bool tocou;
         if (tocou) {
             
             
-            float difx=locations.x-location.x;
             
-            float dify=locations.y-location.y;
+            
+            
+            
+        }else{
+            
+            //SE tocou fora movimenta
+            //float difx=locations.x-location.x;
+
+            float difx=_gota.position.x-location.x;
+
+            //float dify=locations.y-location.y;
+            
+            float dify=_gota.position.y-location.y;
+            
             
             BOOL negx=false;;
             
             bool negy=false;
-                       
+            
             if(difx<0){
                 negx=true;
                 difx*=-1;
@@ -133,12 +147,12 @@ bool tocou;
             if (difx>dify) {
                 if(negx){
                     [_gota mover:location withInterval:1.0 withTipe:4];
-
+                    
                 }else{
                     [_gota mover:location withInterval:1.0 withTipe:3];
                 }
                 
-               
+                
                 
                 
             }else{
@@ -148,44 +162,6 @@ bool tocou;
                     [_gota mover:location withInterval:1.0 withTipe:2];
                 }
             }
-            
-            
-            /*
-            //Movimento
-            if(locations.x-location.x<diferenca*-1){
-                //Lado direito ?
-                [_gota mover:location withInterval:1.0 withTipe:4];
-                
-                NSLog(@"Direito");
-                
-                break;
-            }else{
-                if(locations.x-location.x<diferenca){
-                    //lado esquerdo ?
-                    
-                     NSLog(@"Baixo");
-                    
-                    [_gota mover:location withInterval:1.0 withTipe:2];
-                    break;
-                }
-            }
-            if(locations.y-location.y<diferenca*-1){
-                //pra Cima ?
-                
-                                NSLog(@"Cima");
-                [_gota mover:location withInterval:1.0 withTipe:1];
-                break;
-            }else{
-                if(locations.y-location.y<diferenca){
-                    //pra baixo ?
-                    
-                                    NSLog(@"Esquerdo");
-                    [_gota mover:location withInterval:1.0 withTipe:3];
-                    break;
-                }
-            }
-             */
-            
         }
         
         
@@ -210,6 +186,20 @@ bool tocou;
     
     //depois de um tempo? ou acao
     [_hud update];
+}
+
+-(void)didBeginContact:(SKPhysicsContact *)contact{
+    
+    //Colisao com a parede
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ){
+        
+        //_gota.physicsBody.velocity=CGVectorMake(0, 0);
+    
+        _gota.physicsBody.velocity=CGVectorMake(0, 0);
+        
+    }
+
 }
 
 

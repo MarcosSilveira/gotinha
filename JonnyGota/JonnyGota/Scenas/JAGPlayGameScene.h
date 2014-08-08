@@ -11,7 +11,7 @@
 #import "JAGHud.h"
 #import "JAGGota.h"
 
-@interface JAGPlayGameScene : SKScene
+@interface JAGPlayGameScene : SKScene<SKPhysicsContactDelegate>
 {
     JAGGota *gota;
     //Scenario----
