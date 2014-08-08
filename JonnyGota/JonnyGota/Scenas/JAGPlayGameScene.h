@@ -9,11 +9,11 @@
 #import <SpriteKit/SpriteKit.h>
 #import "JAGGota.h"
 #import "JAGHud.h"
-#import "JAGGota.h"
+#import "JAGFogoEnemy.h"
 
 @interface JAGPlayGameScene : SKScene
 {
-    JAGGota *gota;
+//    JAGGota *gota;
     //Scenario----
     SKSpriteNode *platform;
     SKSpriteNode *platform2;
@@ -28,6 +28,8 @@
 @property (nonatomic) JAGGota* gota;
 
 @property (nonatomic) JAGHud* hud;
+
+@property (nonatomic) JAGFogoEnemy *fogo;
 
 - (id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world;
 

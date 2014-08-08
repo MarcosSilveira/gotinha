@@ -27,7 +27,6 @@
     
   //  [myWorld addChild:[self createCharacter]];
     self.physicsWorld.contactDelegate = (id)self;
-    //self.backgroundColor = [SKColor redColor];
     self.scaleMode = SKSceneScaleModeAspectFit;
     self.physicsWorld.gravity = CGVectorMake(0.0f, 0.0f);
     [self touchesEnded:nil withEvent:nil];
@@ -55,6 +54,7 @@ bool tocou;
        // self.physicsWorld.contactDelegate = self;
          self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         _gota= [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
+        _fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(200, 100)];
         SKSpriteNode *obstaculo = [[SKSpriteNode alloc]initWithColor:([UIColor redColor]) size:(CGSizeMake(self.scene.size.width, 10)) ];
         obstaculo.position = CGPointMake(self.scene.size.width/2, self.scene.size.width/2);
         obstaculo.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:obstaculo.size];
@@ -65,6 +65,7 @@ bool tocou;
         [self addChild:obstaculo];
         
         [self addChild:_gota];
+        [self addChild:_fogo];
         
         diferenca=80.0f;
         tocou=false;
@@ -76,12 +77,12 @@ bool tocou;
 
 
 -(JAGGota *)createCharacter{
-    gota = [[JAGGota alloc] init];
-    gota.position = CGPointMake(0, -height/2.15+(platform.size.height));
-    gota.name = @"gota";
+    _gota = [[JAGGota alloc] init];
+    _gota.position = CGPointMake(0, -height/2.15+(platform.size.height));
+    _gota.name = @"gota";
 
     
-    return gota;
+    return _gota;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -207,10 +208,24 @@ bool tocou;
 }
 
 -(void)update:(NSTimeInterval)currentTime{
-    
-    //depois de um tempo? ou acao
+    //depois de um tempo ou acao
     [_hud update];
 }
+- (void)didSimulatePhysics{
+ //   [self centerOnNode: [self childNodeWithName: @"//"]];
+}
 
+-(void)didBeginContact:(SKPhysicsContact *)contact{
+    if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ENEMY)){
+        NSLog(@"hit");
+    }
+    
+    if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == ENEMY)){
+        NSLog(@"hit");
+    }
+    
+ //   return detected;
+
+}
 
 @end

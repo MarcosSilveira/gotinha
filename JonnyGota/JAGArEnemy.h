@@ -10,4 +10,6 @@
 
 @interface JAGArEnemy : JAGInimigos
 
+
+
 @end

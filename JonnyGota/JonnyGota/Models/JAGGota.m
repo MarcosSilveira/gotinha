@@ -29,7 +29,7 @@
     [self addChild:self.sprite];
     
     self.position=position;
-    
+
     return self;
 }
 
@@ -57,11 +57,12 @@
     SKAction *action;
     
     SKAction *actionChangeSprite;
-    
+
     
     switch (tipo) {
         case 1:
             action=[SKAction moveToY:ponto.y duration:time];
+          //  action = [SKAction followPath:(CGPathCreateWithRect(CGRectMake(ponto.x, ponto.y, 10, 10), nil)) duration:2];
             //self.sprite.color=[UIColor greenColor];
             
             actionChangeSprite=[SKAction colorizeWithColor:[SKColor whiteColor] colorBlendFactor:1.0 duration:0.15];
@@ -70,7 +71,7 @@
             
         case 2:
             action=[SKAction moveToY:ponto.y duration:time];
-            
+          //  action = [SKAction followPath:(CGPathCreateWithRect(CGRectMake(ponto.x, ponto.y, 10, 10), nil)) duration:2];
             actionChangeSprite=[SKAction colorizeWithColor:[SKColor brownColor] colorBlendFactor:1.0 duration:0.15];
 
             //self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
