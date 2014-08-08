@@ -62,19 +62,31 @@ bool tocou;
         obstaculo.physicsBody.categoryBitMask = ENEMY;
         obstaculo.physicsBody.collisionBitMask = GOTA;
         obstaculo.physicsBody.contactTestBitMask = GOTA;
+        
+        obstaculo.name=@"wall";
         [self addChild:obstaculo];
         
         [self addChild:_gota];
         [self addChild:_fogo];
         
-        diferenca=80.0f;
-        tocou=false;
+        diferenca = 80.0f;
+        tocou = false;
         //_boing = [SKAction playSoundFileNamed:@"boing.mp3" waitForCompletion:NO];
+        
+       // _mask = [[SKSpriteNode init] initWithColor:[SKColor purpleColor]];
+        _picToMask = [SKSpriteNode spriteNodeWithImageNamed:@"mask"];
+        _mask = [SKSpriteNode spriteNodeWithColor:[SKColor blackColor] size:CGSizeMake(self.size.width, self.size.height)];
+        
+        _cropNode = [SKCropNode new];
+        _cropNode.maskNode = _mask;
+        _cropNode.position = CGPointMake(100, 100);
+        
+        [_cropNode addChild:_picToMask];
+        [self addChild:_cropNode];
     }
     return self;
     
 }
-
 
 -(JAGGota *)createCharacter{
     _gota = [[JAGGota alloc] init];
@@ -92,12 +104,12 @@ bool tocou;
         locations = [touch locationInNode:self];
         
         
-        timeTouch=touch.timestamp;
+        timeTouch = touch.timestamp;
         
         if ([_gota tocou:locations]) {
-            tocou=true;
+            tocou = true;
         }else{
-            tocou=false;
+            tocou = false;
         }
     }
 }
@@ -112,81 +124,43 @@ bool tocou;
         if (tocou) {
             
             
-            float difx=locations.x-location.x;
+            float difx = locations.x-location.x;
             
-            float dify=locations.y-location.y;
+            float dify = locations.y-location.y;
             
-            BOOL negx=false;;
+            BOOL negx = false;;
             
-            bool negy=false;
+            bool negy = false;
                        
             if(difx<0){
-                negx=true;
-                difx*=-1;
+                negx = true;
+                difx *= -1;
             }
             if(dify<0){
-                negy=true;
-                dify*=-1;
+                negy = true;
+                dify *= -1;
             }
             
             
             
             if (difx>dify) {
                 if(negx){
-                    [_gota mover:location withInterval:1.0 withTipe:3];
-
-                }else{
                     [_gota mover:location withInterval:1.0 withTipe:4];
+                    
+                }else{
+                    [_gota mover:location withInterval:1.0 withTipe:3];
                 }
                 
-               
+                
                 
                 
             }else{
                 if(negy){
-                    [_gota mover:location withInterval:1.0 withTipe:2];
-                }else{
                     [_gota mover:location withInterval:1.0 withTipe:1];
-                }
-            }
-            
-            
-            /*
-            //Movimento
-            if(locations.x-location.x<diferenca*-1){
-                //Lado direito ?
-                [_gota mover:location withInterval:1.0 withTipe:4];
-                
-                NSLog(@"Direito");
-                
-                break;
-            }else{
-                if(locations.x-location.x<diferenca){
-                    //lado esquerdo ?
-                    
-                     NSLog(@"Baixo");
-                    
+                }else{
                     [_gota mover:location withInterval:1.0 withTipe:2];
-                    break;
                 }
             }
-            if(locations.y-location.y<diferenca*-1){
-                //pra Cima ?
-                
-                                NSLog(@"Cima");
-                [_gota mover:location withInterval:1.0 withTipe:1];
-                break;
-            }else{
-                if(locations.y-location.y<diferenca){
-                    //pra baixo ?
-                    
-                                    NSLog(@"Esquerdo");
-                    [_gota mover:location withInterval:1.0 withTipe:3];
-                    break;
-                }
-            }
-             */
-            
         }
         
         

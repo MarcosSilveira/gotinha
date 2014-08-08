@@ -8,6 +8,8 @@
 
 #import "JAGInimigos.h"
 
+// Habilidade Especial: Empurra a gota com a força do vento, junto com seus rastros
+
 @interface JAGArEnemy : JAGInimigos
 
 

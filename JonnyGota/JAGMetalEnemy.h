@@ -8,6 +8,8 @@
 
 #import "JAGInimigos.h"
 
+// Habilidade Especial: Realiza barulhos que atrapalham o jogador a chegar ao objetivo
+
 @interface JAGMetalEnemy : JAGInimigos
 
 @end
