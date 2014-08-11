@@ -18,6 +18,7 @@
     float diferenca;
     CGPoint locations;
     SKCropNode *cropNode;
+    SKShapeNode *circleMask;
 }
 
 #pragma mark - Move to View
@@ -149,13 +150,14 @@ bool tocou;
     
     int radius=70;
     
-    SKShapeNode *circleMask = [[SKShapeNode alloc ]init];
+    circleMask = [[SKShapeNode alloc ]init];
     CGMutablePathRef circle = CGPathCreateMutable();
     CGPathAddArc(circle, NULL, 0, 0, radius, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
     circleMask.path = circle;
-    //circleMask.lineWidth = 1; // replace 100 with DOUBLE the desired radius of the circle
+    circleMask.lineWidth = 100; // replace 100 with DOUBLE the desired radius of the circle
     //circleMask.strokeColor = [SKColor redColor];
     circleMask.name=@"circleMask";
+
     
     
     SKShapeNode *circleBorder = [[SKShapeNode alloc ]init];
@@ -295,11 +297,13 @@ bool tocou;
     //depois de um tempo ou acao
     float distance = hypotf(_fogo.position.x-_gota.position.x, _fogo.position.y-_fogo.position.y);
     NSLog(@"%f",distance);
+    circleMask.position = CGPointMake(_gota.position.x-100, _gota.position.y-50);
     if (distance <50) {
         
     [_fogo mover:(_gota.position) withInterval:2 withTipe:0];
     }
     [_hud update];
+    
 }
 - (void)didSimulatePhysics{
  //   [self centerOnNode: [self childNodeWithName: @"//"]];
