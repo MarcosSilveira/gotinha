@@ -31,6 +31,12 @@
 
 @property (nonatomic) JAGFogoEnemy *fogo;
 
+@property (strong, nonatomic) SKSpriteNode *picToMask;
+
+@property (strong, nonatomic) SKSpriteNode *mask;
+
+@property (strong, nonatomic) SKCropNode *cropNode;
+
 - (id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world;
 
 @end
