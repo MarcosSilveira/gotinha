@@ -20,7 +20,7 @@
     self.physicsBody.categoryBitMask = ENEMY;
     self.physicsBody.collisionBitMask = GOTA;
     self.physicsBody.contactTestBitMask = GOTA;
-    self.physicsBody.mass = 9000;
+//    self.physicsBody.mass = 9000;
     //    desn.position=position;
     
     //[self addChild:desn];
@@ -47,7 +47,15 @@
 }
 
 -(void)mover:(CGPoint)ponto withInterval:(NSTimeInterval)time withTipe:(int)tipo{
+self.physicsBody.velocity=CGVectorMake(0, 0);
+    [self.physicsBody applyForce:CGVectorMake((ponto.x-self.position.x)*0.5,(ponto.y-self.position.y)*0.5)];
+//    [self.physicsBody applyForce:CGVectorMake(0,(ponto.y-self.position.y)*4)];
+
     
+
+
+    
+
 }
 
 @end

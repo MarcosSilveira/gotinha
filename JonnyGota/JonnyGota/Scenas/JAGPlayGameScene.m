@@ -64,7 +64,7 @@ bool tocou;
         obstaculo.physicsBody.contactTestBitMask = GOTA;
         
         obstaculo.name=@"wall";
-        [self addChild:obstaculo];
+      //  [self addChild:obstaculo];
         
         [self addChild:_gota];
         [self addChild:_fogo];
@@ -183,6 +183,12 @@ bool tocou;
 
 -(void)update:(NSTimeInterval)currentTime{
     //depois de um tempo ou acao
+    float distance = hypotf(_fogo.position.x-_gota.position.x, _fogo.position.y-_fogo.position.y);
+    NSLog(@"%f",distance);
+    if (distance <50) {
+        
+    [_fogo mover:(_gota.position) withInterval:2 withTipe:0];
+    }
     [_hud update];
 }
 - (void)didSimulatePhysics{
@@ -195,11 +201,20 @@ bool tocou;
     }
     
     if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == ENEMY)){
-        NSLog(@"hit");
+        NSLog(@"hit");}
+    //Colisao com a parede
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ){
+        
+        //_gota.physicsBody.velocity=CGVectorMake(0, 0);
+    
+        _gota.physicsBody.velocity=CGVectorMake(0, 0);
+        
     }
     
  //   return detected;
 
 }
+
 
 @end
