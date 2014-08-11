@@ -28,7 +28,6 @@
     
   //  [myWorld addChild:[self createCharacter]];
     self.physicsWorld.contactDelegate = (id)self;
-    //self.backgroundColor = [SKColor redColor];
     self.scaleMode = SKSceneScaleModeAspectFit;
     self.physicsWorld.gravity = CGVectorMake(0.0f, 0.0f);
     [self touchesEnded:nil withEvent:nil];
@@ -186,12 +185,12 @@ bool tocou;
 
 
 -(JAGGota *)createCharacter{
+    _gota = [[JAGGota alloc] init];
+    _gota.position = CGPointMake(0, -height/2.15+(platform.size.height));
+    _gota.name = @"gota";
+
     
-    gota = [[JAGGota alloc] init];
-    gota.position = CGPointMake(0, -height/2.15+(platform.size.height));
-    gota.name = @"gota";
-    
-    return gota;
+    return _gota;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -292,24 +291,24 @@ bool tocou;
 }
 
 -(void)update:(NSTimeInterval)currentTime{
-    
-    //depois de um tempo? ou acao
+    //depois de um tempo ou acao
     [_hud update];
+}
+- (void)didSimulatePhysics{
+ //   [self centerOnNode: [self childNodeWithName: @"//"]];
 }
 
 -(void)didBeginContact:(SKPhysicsContact *)contact{
-    
-    //Colisao com a parede
-    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
-       ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ){
-        
-        //_gota.physicsBody.velocity=CGVectorMake(0, 0);
-    
-        _gota.physicsBody.velocity=CGVectorMake(0, 0);
-        
+    if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ENEMY)){
+        NSLog(@"hit");
     }
+    
+    if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == ENEMY)){
+        NSLog(@"hit");
+    }
+    
+ //   return detected;
 
 }
-
 
 @end

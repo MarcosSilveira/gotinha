@@ -32,7 +32,7 @@
     [self addChild:self.sprite];
     
     self.position=position;
-    
+
     return self;
 }
 
@@ -73,10 +73,7 @@
     SKAction *action;
     
     SKAction *actionChangeSprite;
-    
-   // =CGVectorMake(ponto.x, ponto.y);
-    
-    //[self.physicsBody applyImpulse:CGVectorMake(0.3, 0.3) atPoint:ponto];
+
     
    // [self removeAllActions];
     
@@ -95,6 +92,7 @@
             
             [self.physicsBody applyForce:CGVectorMake(0,(ponto.y-self.position.y)*multi)];
             action=[SKAction moveToY:ponto.y duration:time];
+          //  action = [SKAction followPath:(CGPathCreateWithRect(CGRectMake(ponto.x, ponto.y, 10, 10), nil)) duration:2];
             //self.sprite.color=[UIColor greenColor];
             
             actionChangeSprite=[SKAction colorizeWithColor:[SKColor whiteColor] colorBlendFactor:1.0 duration:0.0];
@@ -105,8 +103,8 @@
             
             [self.physicsBody applyForce:CGVectorMake(0,(ponto.y-self.position.y)*multi)];
             action=[SKAction moveToY:ponto.y duration:time];
-            
-            actionChangeSprite=[SKAction colorizeWithColor:[SKColor brownColor] colorBlendFactor:1.0 duration:0.0];
+          //  action = [SKAction followPath:(CGPathCreateWithRect(CGRectMake(ponto.x, ponto.y, 10, 10), nil)) duration:2];
+            actionChangeSprite=[SKAction colorizeWithColor:[SKColor brownColor] colorBlendFactor:1.0 duration:0.15];
 
             //self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
             break;
