@@ -17,6 +17,7 @@
     float timeTouch;
     float diferenca;
     CGPoint locations;
+    SKCropNode *cropNode;
 }
 
 #pragma mark - Move to View
@@ -53,39 +54,136 @@ bool tocou;
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
        // self.physicsWorld.contactDelegate = self;
-         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+         //self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         _gota =  [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
         SKSpriteNode *obstaculo = [[SKSpriteNode alloc]initWithColor:([UIColor redColor]) size:(CGSizeMake(self.scene.size.width, 10)) ];
-        obstaculo.position = CGPointMake(self.scene.size.width/2, self.scene.size.width/2);
+        obstaculo.position = CGPointMake(self.scene.size.width/2, 120);
         obstaculo.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:obstaculo.size];
         obstaculo.physicsBody.dynamic = NO;
         obstaculo.physicsBody.categoryBitMask = ENEMY;
         obstaculo.physicsBody.collisionBitMask = GOTA;
         obstaculo.physicsBody.contactTestBitMask = GOTA;
         
-        obstaculo.name=@"wall";
-        [self addChild:obstaculo];
+        obstaculo.zPosition=10;
         
-        [self addChild:_gota];
+        obstaculo.physicsBody.restitution=0;
+        obstaculo.name=@"wall";
+        
+        _gota.zPosition=100;
+        //[self addChild:obstaculo];
+        
+        //[self addChild:_gota];
         
         diferenca = 80.0f;
         tocou = false;
         //_boing = [SKAction playSoundFileNamed:@"boing.mp3" waitForCompletion:NO];
         
        // _mask = [[SKSpriteNode init] initWithColor:[SKColor purpleColor]];
-        _picToMask = [SKSpriteNode spriteNodeWithImageNamed:@"mask"];
-        _mask = [SKSpriteNode spriteNodeWithColor:[SKColor blackColor] size:CGSizeMake(self.size.width, self.size.height)];
         
-        _cropNode = [SKCropNode new];
-        _cropNode.maskNode = _mask;
-        _cropNode.position = CGPointMake(100, 100);
         
-        [_cropNode addChild:_picToMask];
-        [self addChild:_cropNode];
+        //SKSpriteNode *pictureToMask = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
+        
+        /*
+        SKSpriteNode *pictureToMask = [[SKSpriteNode alloc] initWithColor:[SKColor greenColor] size:CGSizeMake(100, 100)];
+
+        SKSpriteNode *mask = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size: CGSizeMake(100, 100)]; //100 by 100 is the size of the mask
+        SKCropNode *cropNode = [SKCropNode node];
+        cropNode.position = CGPointMake( 100,100);
+        
+        SKShapeNode* pathShape = [[SKShapeNode alloc] init];
+        pathShape.lineWidth = 1;
+        pathShape.fillColor = [SKColor clearColor];
+        pathShape.strokeColor = [SKColor greenColor];
+        pathShape.position=CGPointMake( 100,100);
+        
+        //[cropNode addChild:pathShape];
+        //[cropNode addChild: pictureToMask];
+        [cropNode setMaskNode: mask];
+        
+        */
+        
+        cropNode = [[SKCropNode alloc] init];
+        
+        
+        
+        //cropNode.zPosition=95;
+        
+       // cropNode.position=CGPointMake(100,100);
+      
+        
+        [self creteMask];
+        
+        
+        SKSpriteNode *cimas=[[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(1000,1000)];
+        
+        //cimas.zPosition=90;
+        
+        
+        //[cropNode addChild:cimas];
+        
+        [cropNode addChild:_gota];
+        
+        [cropNode addChild:obstaculo];
+        
+       
+        
+        
+        //[cropNode addChild:circleMask];
+        //[cropNode setMaskNode:circleMask];
+      
+        
+        //[self addChild:cimas];
+
+        
+        [self addChild: cropNode];
+        
+       // [self addChild:pathShape];
+
     }
     return self;
     
 }
+
+-(void)creteMask{
+    SKNode *area=[[SKNode alloc] init];
+    
+    int radius=70;
+    
+    SKShapeNode *circleMask = [[SKShapeNode alloc ]init];
+    CGMutablePathRef circle = CGPathCreateMutable();
+    CGPathAddArc(circle, NULL, 0, 0, radius, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
+    circleMask.path = circle;
+    //circleMask.lineWidth = 1; // replace 100 with DOUBLE the desired radius of the circle
+    //circleMask.strokeColor = [SKColor redColor];
+    circleMask.name=@"circleMask";
+    
+    
+    SKShapeNode *circleBorder = [[SKShapeNode alloc ]init];
+    CGMutablePathRef circleBor = CGPathCreateMutable();
+    CGPathAddArc(circleBor, NULL, 0, 0, radius, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
+    circleBorder.path = circleBor;
+    circleBorder.lineWidth = 1; // replace 100 with DOUBLE the desired radius of the circle
+    circleBorder.strokeColor = [SKColor redColor];
+    circleBorder.name=@"circleMask";
+
+    
+    
+    circleMask.userInteractionEnabled = NO;
+    //circleMask.zPosition=92;
+    
+    circleMask.fillColor = [SKColor clearColor];
+    
+    [area addChild:circleMask];
+    
+    area.position=CGPointMake(100,100);
+    
+    [cropNode setMaskNode:area];
+    
+    [cropNode addChild:area];
+    
+    //[cropNode addChild:circleBorder];
+}
+
 
 -(JAGGota *)createCharacter{
     
