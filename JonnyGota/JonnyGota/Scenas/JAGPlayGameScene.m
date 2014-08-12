@@ -53,8 +53,9 @@ bool tocou;
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
        // self.physicsWorld.contactDelegate = self;
-         //self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
-        _gota =  [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
+         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+        _gota= [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
+        _fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(200, 100)];
         SKSpriteNode *obstaculo = [[SKSpriteNode alloc]initWithColor:([UIColor redColor]) size:(CGSizeMake(self.scene.size.width, 10)) ];
         obstaculo.position = CGPointMake(self.scene.size.width/2, 120);
         obstaculo.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:obstaculo.size];
@@ -68,8 +69,8 @@ bool tocou;
         obstaculo.physicsBody.restitution=0;
         obstaculo.name=@"wall";
         
-        _gota.zPosition=100;
-        //[self addChild:obstaculo];
+        [self addChild:_gota];
+        [self addChild:_fogo];
         
         //[self addChild:_gota];
         
