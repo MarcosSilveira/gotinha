@@ -21,10 +21,11 @@
     self.physicsBody.collisionBitMask = ATTACK | ENEMY;
     self.physicsBody.contactTestBitMask = ATTACK | ENEMY;
     
+    [self configPhysics];
     
-    self.physicsBody.restitution=0;
     
-    self.physicsBody.allowsRotation=NO;
+    
+    
 //    desn.position=position;
     
     //[self addChild:desn];

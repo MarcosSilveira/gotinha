@@ -16,9 +16,11 @@
     int height;
     float timeTouch;
     float diferenca;
-    CGPoint locations;
+    CGPoint toqueInicio;
     SKCropNode *cropNode;
     SKShapeNode *circleMask;
+    CGPoint toqueFinal;
+    
 }
 
 #pragma mark - Move to View
@@ -127,7 +129,7 @@ bool tocou;
         
         [cropNode addChild:_fogo];
         
-        [cropNode addChild:obstaculo];
+     //   [cropNode addChild:obstaculo];
         
        
         
@@ -204,14 +206,11 @@ bool tocou;
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-
     for (UITouch *touch in touches) {
-        locations = [touch locationInNode:self];
-        
-        
+        toqueInicio = [touch locationInNode:self];
         timeTouch = touch.timestamp;
         
-        if ([_gota tocou:locations]) {
+        if ([_gota tocou:[touch locationInNode:self]]) {
             tocou = true;
         }else{
             tocou = false;
@@ -221,7 +220,7 @@ bool tocou;
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
+        toqueFinal = [touch locationInNode:self];
         
         
         
@@ -236,51 +235,23 @@ bool tocou;
             
         }else{
             
-            //SE tocou fora movimenta
-            //float difx=locations.x-location.x;
-            
-            float difx=_gota.position.x-location.x;
-            
-            //float dify=locations.y-location.y;
-            
-            float dify=_gota.position.y-location.y;
-            
-            
-            BOOL negx=false;;
-            
-            bool negy=false;
-            
-            if(difx<0){
-                negx=true;
-                difx*=-1;
-            }
-            if(dify<0){
-                negy=true;
-                dify*=-1;
-            }
-            
-            
-            
-            if (difx>dify) {
-                if(negx){
-                    [_gota mover:location withInterval:1.0 withTipe:4];
+            switch ([self verificaSentido:toqueFinal with:_gota.position]) {
+                case 1:
+                    [_gota mover:toqueFinal withInterval:1.0 withTipe:1];
                     
-                }else{
-                    [_gota mover:location withInterval:1.0 withTipe:3];
-                }
-                
-                
-                
-                
-            }else{
-                if(negy){
-                    [_gota mover:location withInterval:1.0 withTipe:1];
-                }else{
-                    [_gota mover:location withInterval:1.0 withTipe:2];
-                }
+                    break;
+                case 2:
+                    [_gota mover:toqueFinal withInterval:1.0 withTipe:2];
+                    break;
+                case 3:
+                    [_gota mover:toqueFinal withInterval:1.0 withTipe:3];
+                    break;
+                case 4:
+                    [_gota mover:toqueFinal withInterval:1.0 withTipe:4];
+                    
+                    break;
             }
         }
-        
         
         //Logica da movimentacao
         //PathFinder
@@ -301,14 +272,20 @@ bool tocou;
 
 -(void)update:(NSTimeInterval)currentTime{
     //depois de um tempo ou acao
-    float distance = hypotf(_fogo.position.x-_gota.position.x, _fogo.position.y-_fogo.position.y);
-    //NSLog(@"%f",distance);
+    float distance = hypotf(_fogo.position.x-_gota.position.x, _fogo.position.y-_gota.position.y);
+    float pararMovimentoCONTROL = hypotf(toqueFinal.x-_gota.position.x, toqueFinal.y-_gota.position.y);
+
     circleMask.position = CGPointMake(_gota.position.x-100, _gota.position.y-50);
-    if (distance <50) {
+    if (distance <100) {
         
-    [_fogo mover:(_gota.position) withInterval:2 withTipe:0];
+        [_fogo mover:(_gota.position) withInterval:2 withTipe:[self verificaSentido:_gota.position with:_fogo.position]];
     }
+    else _fogo.physicsBody.velocity = CGVectorMake(0, 0);
+
     [_hud update];
+    NSLog(@"%f",pararMovimentoCONTROL);
+    if (pararMovimentoCONTROL < 50)
+        _gota.physicsBody.velocity = CGVectorMake(0, 0);
     
 }
 - (void)didSimulatePhysics{
@@ -326,10 +303,8 @@ bool tocou;
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
        ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ){
         
-        //_gota.physicsBody.velocity=CGVectorMake(0, 0);
+//        _gota.physicsBody.velocity=CGVectorMake(0, 0);
     
-        _gota.physicsBody.velocity=CGVectorMake(0, 0);
-        
     }
     
  //   return detected;
