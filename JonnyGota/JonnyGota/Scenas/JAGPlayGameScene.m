@@ -311,6 +311,48 @@ bool tocou;
 
 }
 
+-(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto {
+    //  toqueFinal = pontoReferencia;
+    int tipo;
+    float difx=pontoObjeto.x-pontoReferencia.x;
+    
+    //float dify=toqueFinals.y-toqueFinal.y;
+    
+    float dify=pontoObjeto.y-pontoReferencia.y;
+    
+    
+    BOOL negx=false;;
+    
+    bool negy=false;
+    
+    if(difx<0){
+        negx=true;
+        difx*=-1;
+    }
+    if(dify<0){
+        negy=true;
+        dify*=-1;
+    }
+    
+    if (difx>dify) {
+        if(negx)
+            tipo = 4;
+        else
+            tipo = 3;
+    }
+    else{
+        if(negy)
+            tipo = 1;
+        else
+            tipo = 2;
+    }
+    
+    return tipo;
+    
+    
+}
+
+
 -(void)loadingWorld{
     //Ler um arquivo
     
