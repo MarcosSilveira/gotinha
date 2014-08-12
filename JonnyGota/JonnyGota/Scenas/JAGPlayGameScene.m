@@ -336,5 +336,23 @@ bool tocou;
 
 }
 
+-(void)loadingWorld{
+    //Ler um arquivo
+    
+    
+    
+    //Tamanho do Mapa b x h
+    
+    //Parades obstaculos
+    
+    //Inimigos
+    
+    //Posicao inicial da Gota.
+    
+    //
+    
+    
+}
+
 
 @end
