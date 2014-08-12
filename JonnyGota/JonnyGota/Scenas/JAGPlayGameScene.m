@@ -18,6 +18,7 @@
     float diferenca;
     CGPoint locations;
     SKCropNode *cropNode;
+    SKShapeNode *circleMask;
 }
 
 #pragma mark - Move to View
@@ -68,6 +69,7 @@ bool tocou;
         
         obstaculo.physicsBody.restitution=0;
         obstaculo.name=@"wall";
+      //  [self addChild:obstaculo];
         
         [self addChild:_gota];
         [self addChild:_fogo];
@@ -149,13 +151,14 @@ bool tocou;
     
     int radius=70;
     
-    SKShapeNode *circleMask = [[SKShapeNode alloc ]init];
+    circleMask = [[SKShapeNode alloc ]init];
     CGMutablePathRef circle = CGPathCreateMutable();
     CGPathAddArc(circle, NULL, 0, 0, radius, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
     circleMask.path = circle;
-    //circleMask.lineWidth = 1; // replace 100 with DOUBLE the desired radius of the circle
+    circleMask.lineWidth = 100; // replace 100 with DOUBLE the desired radius of the circle
     //circleMask.strokeColor = [SKColor redColor];
     circleMask.name=@"circleMask";
+
     
     
     SKShapeNode *circleBorder = [[SKShapeNode alloc ]init];
@@ -293,7 +296,15 @@ bool tocou;
 
 -(void)update:(NSTimeInterval)currentTime{
     //depois de um tempo ou acao
+    float distance = hypotf(_fogo.position.x-_gota.position.x, _fogo.position.y-_fogo.position.y);
+    NSLog(@"%f",distance);
+    circleMask.position = CGPointMake(_gota.position.x-100, _gota.position.y-50);
+    if (distance <50) {
+        
+    [_fogo mover:(_gota.position) withInterval:2 withTipe:0];
+    }
     [_hud update];
+    
 }
 - (void)didSimulatePhysics{
  //   [self centerOnNode: [self childNodeWithName: @"//"]];
@@ -305,11 +316,20 @@ bool tocou;
     }
     
     if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == ENEMY)){
-        NSLog(@"hit");
+        NSLog(@"hit");}
+    //Colisao com a parede
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ){
+        
+        //_gota.physicsBody.velocity=CGVectorMake(0, 0);
+    
+        _gota.physicsBody.velocity=CGVectorMake(0, 0);
+        
     }
     
  //   return detected;
 
 }
+
 
 @end
