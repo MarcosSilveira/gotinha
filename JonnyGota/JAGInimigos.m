@@ -9,5 +9,8 @@
 #import "JAGInimigos.h"
 
 @implementation JAGInimigos
-
+-(id)init{
+    self =[super init];
+    return self;
+}
 @end
