@@ -54,7 +54,7 @@ bool tocou;
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
        // self.physicsWorld.contactDelegate = self;
-         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+         //self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         _gota= [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
         _fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(200, 100)];
         SKSpriteNode *obstaculo = [[SKSpriteNode alloc]initWithColor:([UIColor redColor]) size:(CGSizeMake(self.scene.size.width, 10)) ];
@@ -71,8 +71,8 @@ bool tocou;
         obstaculo.name=@"wall";
       //  [self addChild:obstaculo];
         
-        [self addChild:_gota];
-        [self addChild:_fogo];
+        //[self addChild:_gota];
+        //[self addChild:_fogo];
         
         //[self addChild:_gota];
         
@@ -113,7 +113,7 @@ bool tocou;
        // cropNode.position=CGPointMake(100,100);
       
         
-        [self creteMask];
+        [self creteMask:100 withPoint:(_gota.position)];
         
         
         SKSpriteNode *cimas=[[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(1000,1000)];
@@ -124,6 +124,8 @@ bool tocou;
         //[cropNode addChild:cimas];
         
         [cropNode addChild:_gota];
+        
+        [cropNode addChild:_fogo];
         
         [cropNode addChild:obstaculo];
         
@@ -146,21 +148,22 @@ bool tocou;
     
 }
 
--(void)creteMask{
+-(void)creteMask:(int) radius
+       withPoint:(CGPoint) ponto{
     SKNode *area=[[SKNode alloc] init];
     
-    int radius=70;
+   
     
     circleMask = [[SKShapeNode alloc ]init];
     CGMutablePathRef circle = CGPathCreateMutable();
-    CGPathAddArc(circle, NULL, 0, 0, radius, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
+    CGPathAddArc(circle, NULL, 0, 0, 1, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
     circleMask.path = circle;
-    circleMask.lineWidth = 100; // replace 100 with DOUBLE the desired radius of the circle
+    circleMask.lineWidth = radius*2; // replace 100 with DOUBLE the desired radius of the circle
     //circleMask.strokeColor = [SKColor redColor];
     circleMask.name=@"circleMask";
 
     
-    
+    /*
     SKShapeNode *circleBorder = [[SKShapeNode alloc ]init];
     CGMutablePathRef circleBor = CGPathCreateMutable();
     CGPathAddArc(circleBor, NULL, 0, 0, radius, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
@@ -169,7 +172,7 @@ bool tocou;
     circleBorder.strokeColor = [SKColor redColor];
     circleBorder.name=@"circleMask";
 
-    
+    */
     
     circleMask.userInteractionEnabled = NO;
     //circleMask.zPosition=92;
@@ -178,11 +181,13 @@ bool tocou;
     
     [area addChild:circleMask];
     
-    area.position=CGPointMake(100,100);
+    //area.position=CGPointMake(ponto.x+_gota.sprite.size.width,ponto.y-_gota.sprite.size.height);
+    
+    area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
     
     [cropNode setMaskNode:area];
     
-    [cropNode addChild:area];
+    //[cropNode addChild:area];
     
     //[cropNode addChild:circleBorder];
 }
@@ -297,7 +302,7 @@ bool tocou;
 -(void)update:(NSTimeInterval)currentTime{
     //depois de um tempo ou acao
     float distance = hypotf(_fogo.position.x-_gota.position.x, _fogo.position.y-_fogo.position.y);
-    NSLog(@"%f",distance);
+    //NSLog(@"%f",distance);
     circleMask.position = CGPointMake(_gota.position.x-100, _gota.position.y-50);
     if (distance <50) {
         

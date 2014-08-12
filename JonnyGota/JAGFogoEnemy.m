@@ -27,6 +27,7 @@
     
     
     
+    
     [self addChild:self.sprite];
     
     self.position=position;

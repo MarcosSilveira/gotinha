@@ -23,6 +23,8 @@
     
     
     self.physicsBody.restitution=0;
+    
+    self.physicsBody.allowsRotation=NO;
 //    desn.position=position;
     
     //[self addChild:desn];
@@ -39,6 +41,7 @@
 -(id)init{
     self=[super init];
     
+    /*
     self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
     
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
@@ -50,11 +53,14 @@
     
     //[self addChild:desn];
     
+    self.physicsBody.allowsRotation=NO;
     
+    self.sprite.physicsBody.allowsRotation=NO;
     
     [self addChild:self.sprite];
     
     //self.position=position;
+     */
     
     return self;
 }
