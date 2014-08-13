@@ -319,8 +319,9 @@
  //   return detected;
 
 }
+
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto {
-  //  toqueFinal = pontoReferencia;
+    //  toqueFinal = pontoReferencia;
     int tipo;
     float difx=pontoObjeto.x-pontoReferencia.x;
     
@@ -386,5 +387,25 @@
 -(CGPoint) CGPointNormalize:(CGPoint)pt {
 	return [self CGPointScale:pt and:1.0/[self CGPointMagnitude:pt]];
 }
+
+
+-(void)loadingWorld{
+    //Ler um arquivo
+    
+    
+    
+    //Tamanho do Mapa b x h
+    
+    //Parades obstaculos
+    
+    //Inimigos
+    
+    //Posicao inicial da Gota.
+    
+    //
+    
+    
+}
+
 
 @end

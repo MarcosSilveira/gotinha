@@ -38,4 +38,6 @@
 
 - (id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world;
 
+-(void)loadingWorld;
+
 @end
