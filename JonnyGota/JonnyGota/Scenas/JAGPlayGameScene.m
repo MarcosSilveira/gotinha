@@ -7,6 +7,7 @@
 //
 
 #import "JAGPlayGameScene.h"
+#import "JAGLevel.h"
 
 //extern CGPoint CGPointScale(CGPoint A, double b);
 //extern CGPoint CGPointNormalize(CGPoint pt);
@@ -140,6 +141,8 @@
         //[self addChild:cimas];
 
         [self addChild: cropNode];
+        
+        [self createLevel];
         
        // [self addChild:pathShape];
 
@@ -411,6 +414,41 @@
     //
     
     
+}
+
+-(void)createLevel{
+    JAGLevel *level1=[[JAGLevel alloc] initWithHeight:20 withWidth:20];
+    
+    level1.gota=[[JAGGota alloc] initWithPosition:CGPointMake(level1.tileSize*2, level1.tileSize*2)];
+    
+    
+    SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(level1.tileSize, level1.tileSize)];
+    
+    wallSpri.name=@"brownColor";
+    
+    JAGWall *parede=[[JAGWall alloc] initWithSprite:wallSpri];
+    
+    parede.position=CGPointMake(level1.tileSize*1, level1.tileSize*1);
+    
+    [level1.paredes setValue:parede forKey:@"parede1"];
+    
+    
+    JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(level1.tileSize*4, level1.tileSize*4)];
+    
+    inimigo.sprite.name=@"grenColor";
+    
+    inimigo.tipo=1;
+    
+    [level1.inimigos setValue:inimigo forKey:@"inimigo1"];
+    
+    level1.mundo=@1;
+    
+    level1.level=@1;
+    
+    [level1 exportar];
+    
+    
+
 }
 
 

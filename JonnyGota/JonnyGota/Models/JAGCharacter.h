@@ -25,5 +25,6 @@ typedef enum : uint32_t{
 
 -(void)mover;
 
+-(NSMutableDictionary*)createJson;
 
 @end
