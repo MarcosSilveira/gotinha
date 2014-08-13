@@ -160,8 +160,8 @@ bool tocou;
     CGMutablePathRef circle = CGPathCreateMutable();
     CGPathAddArc(circle, NULL, 0, 0, 1, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
     circleMask.path = circle;
-    circleMask.lineWidth = 100; // replace 100 with DOUBLE the desired radius of the circle
-    circleMask.strokeColor = [SKColor blueColor];
+    circleMask.lineWidth = radius*2; // replace 100 with DOUBLE the desired radius of the circle
+    //circleMask.strokeColor = [SKColor redColor];
     circleMask.name=@"circleMask";
 
     
