@@ -12,7 +12,9 @@ typedef enum : uint32_t{
  ENEMY = 0x1 << 1,
  ATTACK = 0x1 << 2
 }colisao;
-@interface JAGCharacter : SKNode
+
+@interface JAGCharacter : SKNode <UIGestureRecognizerDelegate>
+
 @property (nonatomic) NSInteger* vida;
 @property (nonatomic) SKSpriteNode* sprite;
 

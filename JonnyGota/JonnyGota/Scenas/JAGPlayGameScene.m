@@ -15,7 +15,8 @@
 
 
 
-@implementation JAGPlayGameScene{
+@implementation JAGPlayGameScene {
+    
     int width;
     int height;
     float timeTouch;
@@ -25,7 +26,8 @@
     SKShapeNode *circleMask;
     CGPoint toqueFinal;
     bool tocou;
-    
+    CGMutablePathRef pathToDraw;
+    SKShapeNode *lineNode;
 }
 
 #pragma mark - Move to View
@@ -53,9 +55,6 @@
     [myWorld addChild:camera];
 
 }
-
-
-
 
 -(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world{
     if (self = [super initWithSize:size]) {
@@ -134,18 +133,12 @@
         
         [cropNode addChild:_fogo];
         
-     //   [cropNode addChild:obstaculo];
-        
-       
-        
-        
+        // [cropNode addChild:obstaculo];
         //[cropNode addChild:circleMask];
         //[cropNode setMaskNode:circleMask];
       
-        
         //[self addChild:cimas];
 
-        
         [self addChild: cropNode];
         
        // [self addChild:pathShape];
@@ -160,8 +153,6 @@
        withPoint:(CGPoint) ponto{
     SKNode *area=[[SKNode alloc] init];
     
-   
-    
     circleMask = [[SKShapeNode alloc ]init];
     CGMutablePathRef circle = CGPathCreateMutable();
     CGPathAddArc(circle, NULL, 0, 0, 1, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
@@ -169,7 +160,6 @@
     circleMask.lineWidth = radius*2; // replace 100 with DOUBLE the desired radius of the circle
     //circleMask.strokeColor = [SKColor redColor];
     circleMask.name=@"circleMask";
-
     
     /*
     SKShapeNode *circleBorder = [[SKShapeNode alloc ]init];
@@ -219,9 +209,13 @@
         
         if ([_gota tocou:[touch locationInNode:self]]) {
             tocou = true;
+            toqueInicio = [touch locationInNode:self];
+            [_gota esconder];
+            
         }else{
             tocou = false;
         }
+    
     }
 }
 
@@ -230,10 +224,21 @@
         toqueFinal = [touch locationInNode:self];
         //toqueFinal = [self CGPointNormalize:toqueFinal];
        
-        
-        //Se tocou na gota antes
         //Se tocou na gota antes
         if (tocou) {
+            
+            switch ([self verificaSentido:toqueFinal with:_gota.position]) {
+                case 3:
+                    [_gota dividir];
+                    break;
+                    
+                case 4:
+                    [_gota dividir];
+                    break;
+                    
+                default:
+                    break;
+            }
             
         }else{
             
@@ -289,7 +294,7 @@
     else _fogo.physicsBody.velocity = CGVectorMake(0, 0);
 
     [_hud update];
-    NSLog(@"%f",pararMovimentoCONTROL);
+    //NSLog(@"%f",pararMovimentoCONTROL);
     if (pararMovimentoCONTROL < 50)
         _gota.physicsBody.velocity = CGVectorMake(0, 0);
     
@@ -303,11 +308,12 @@
 
 -(void)didBeginContact:(SKPhysicsContact *)contact{
     if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ENEMY)){
-        NSLog(@"hit");
+        //NSLog(@"hit");
     }
     
     if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == ENEMY)){
-        NSLog(@"hit");}
+        //NSLog(@"hit");
+    }
     //Colisao com a parede
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
        ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ){

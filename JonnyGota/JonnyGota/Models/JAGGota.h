@@ -10,18 +10,16 @@
 
 @interface JAGGota : JAGCharacter
 
--(void)dividir;
+@property (strong, nonatomic) UISwipeGestureRecognizer *swipeGest;
 
+-(void)dividir;
 -(void)esconder;
 
 -(void)mover:(CGPoint)ponto
 withInterval:(NSTimeInterval) time
     withTipe:(int) tipo;
 
-
 -(id)initWithPosition:(CGPoint) position;
-
 -(BOOL)tocou:(CGPoint) ponto;
-
 
 @end

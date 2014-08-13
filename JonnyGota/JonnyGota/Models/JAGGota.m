@@ -8,39 +8,44 @@
 
 #import "JAGGota.h"
 
+@interface JAGGota()
+{
+    CGMutablePathRef pathToDraw;
+    SKShapeNode *lineNode;
+}
+@end
+
 @implementation JAGGota
 
 -(id)initWithPosition:(CGPoint)position{
-    self=[super init];
     
-    self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
-   
+    self = [super init];
+    
+    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
+
+    [self addChild:self.sprite];
+    
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
-  //  self.zPosition = 1;
+  //self.zPosition = 1;
     self.physicsBody.categoryBitMask = GOTA;
     self.physicsBody.collisionBitMask = ATTACK | ENEMY;
     self.physicsBody.contactTestBitMask = ATTACK | ENEMY;
     
     [self configPhysics];
     
+    self.name = @"gota";
+    self.position = position;
     
-    
-    
-//    desn.position=position;
+    //desn.position=position;
     
     //[self addChild:desn];
     
-    self.name=@"gota";
-    
-    [self addChild:self.sprite];
-    
-    self.position=position;
-
     return self;
 }
 
 -(id)init{
-    self=[super init];
+    
+    self = [super init];
     
     /*
     self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
@@ -67,20 +72,22 @@
 }
 
 -(void)esconder{
-    
+    SKAction *poca = [SKAction scaleYTo:-.5 duration:1.0];
+    [self runAction:poca];
 }
 
--(void)dividir{
-    
+-(void) dividir {
+ 
+    SKAction *divid = [SKAction fadeOutWithDuration:1.0];
+    [self runAction:divid];
 }
 
 -(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withTipe:(int)tipo{
     
-    // 1 = Cima 2= Baixo 3= Esquerda 4 = Direita
+    // 1 = Cima 2 = Baixo 3 = Esquerda 4 = Direita
     SKAction *action;
     
     SKAction *actionChangeSprite;
-
     
    // =CGVectorMake(ponto.x, ponto.y);
     
@@ -88,9 +95,9 @@
     
    // [self removeAllActions];
     
-    self.physicsBody.velocity=CGVectorMake(0, 0);
+    self.physicsBody.velocity = CGVectorMake(0, 0);
     
-    int multi=300;
+    int multi = 300;
     
     
     switch (tipo) {
