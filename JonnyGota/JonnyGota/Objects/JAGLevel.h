@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "JAGGota.h"
 #import "JAGFogoEnemy.h"
+#import "JAGWall.h"
 
 @interface JAGLevel : NSObject
 
@@ -17,5 +18,17 @@
 @property (nonatomic) NSMutableArray *inimigos;
 
 @property (nonatomic) NSMutableArray *itens;
+
+@property (nonatomic) int width;
+
+@property (nonatomic) int height;
+
+@property (nonatomic) NSMutableArray *paredes;
+
+
+-(instancetype)initWithHeight:(int) height
+                    withWidth:(int) width;
+
+
 
 @end

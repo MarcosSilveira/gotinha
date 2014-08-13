@@ -7,9 +7,13 @@
 //
 
 #import "JAGPlayGameScene.h"
-//const uint32_t GOTA = 0x1 << 0;
-//const uint32_t ENEMY = 0x1 << 1;
-//const uint32_t ATTACK = 0x1 << 2;
+
+//extern CGPoint CGPointScale(CGPoint A, double b);
+//extern CGPoint CGPointNormalize(CGPoint pt);
+//extern double CGPointDot(CGPoint a, CGPoint b);
+//extern double CGPointMagnitude(CGPoint pt);
+
+
 
 @implementation JAGPlayGameScene{
     int width;
@@ -20,6 +24,7 @@
     SKCropNode *cropNode;
     SKShapeNode *circleMask;
     CGPoint toqueFinal;
+    bool tocou;
     
 }
 
@@ -49,7 +54,7 @@
 
 }
 
-bool tocou;
+
 
 
 -(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world{
@@ -115,7 +120,7 @@ bool tocou;
        // cropNode.position=CGPointMake(100,100);
       
         
-        [self creteMask:100 withPoint:(_gota.position)];
+        [self createMask:100 withPoint:(_gota.position)];
         
         
         SKSpriteNode *cimas=[[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(1000,1000)];
@@ -150,7 +155,8 @@ bool tocou;
     
 }
 
--(void)creteMask:(int) radius
+#pragma mark - Máscara
+-(void)createMask:(int) radius
        withPoint:(CGPoint) ponto{
     SKNode *area=[[SKNode alloc] init];
     
@@ -204,6 +210,7 @@ bool tocou;
     return _gota;
 }
 
+#pragma mark - Touch treatment
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     for (UITouch *touch in touches) {
@@ -221,32 +228,31 @@ bool tocou;
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     for (UITouch *touch in touches) {
         toqueFinal = [touch locationInNode:self];
-        
-        
+        //toqueFinal = [self CGPointNormalize:toqueFinal];
+       
         
         //Se tocou na gota antes
         //Se tocou na gota antes
         if (tocou) {
             
-            
-            
-            
-            
-            
         }else{
             
             switch ([self verificaSentido:toqueFinal with:_gota.position]) {
                 case 1:
+                     //toqueFinal = [self CGPointNormalize:toqueFinal];
                     [_gota mover:toqueFinal withInterval:1.0 withTipe:1];
                     
                     break;
                 case 2:
+                     //toqueFinal = [self CGPointNormalize:toqueFinal];
                     [_gota mover:toqueFinal withInterval:1.0 withTipe:2];
                     break;
                 case 3:
+                     //toqueFinal = [self CGPointNormalize:toqueFinal];
                     [_gota mover:toqueFinal withInterval:1.0 withTipe:3];
                     break;
                 case 4:
+                     //toqueFinal = [self CGPointNormalize:toqueFinal];
                     [_gota mover:toqueFinal withInterval:1.0 withTipe:4];
                     
                     break;
@@ -288,6 +294,9 @@ bool tocou;
         _gota.physicsBody.velocity = CGVectorMake(0, 0);
     
 }
+
+#pragma mark - Physics
+
 - (void)didSimulatePhysics{
  //   [self centerOnNode: [self childNodeWithName: @"//"]];
 }
@@ -350,6 +359,33 @@ bool tocou;
     return tipo;
     
     
+}
+#pragma mark - Tratamento de vetores
+
+/**
+ * Calculate the dot-product of two 2D vectors a dot b
+ */
+-(double) CGPointDot:(CGPoint) a and: (CGPoint) b {
+	return a.x*b.x + a.y*b.y;
+}
+/**
+ * Calculate the magnitude of a 2D vector
+ */
+-(double) CGPointMagnitude:(CGPoint) pt {
+	return sqrt([self CGPointDot:pt and:pt]);
+}
+
+/**
+ * Calculate the vector-scalar product A*b
+ */
+-(CGPoint) CGPointScale:(CGPoint) A and:(double) b {
+	return CGPointMake(A.x*b, A.y*b);
+}
+/**
+ * Normalize a 2D vector
+ */
+-(CGPoint) CGPointNormalize:(CGPoint)pt {
+	return [self CGPointScale:pt and:1.0/[self CGPointMagnitude:pt]];
 }
 
 

@@ -10,4 +10,15 @@
 
 @implementation JAGLevel
 
+-(instancetype)initWithHeight:(int)height withWidth:(int)width{
+    self=[super init];
+    
+    
+    _width=width;
+    
+    _height=height;
+    
+    return self;
+}
+
 @end
