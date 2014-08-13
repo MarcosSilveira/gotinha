@@ -15,20 +15,27 @@
 
 @property (nonatomic) JAGGota* gota;
 
-@property (nonatomic) NSMutableArray *inimigos;
+@property (nonatomic) NSMutableDictionary *inimigos;
 
-@property (nonatomic) NSMutableArray *itens;
+@property (nonatomic) NSMutableDictionary *itens;
 
 @property (nonatomic) int width;
 
 @property (nonatomic) int height;
 
-@property (nonatomic) NSMutableArray *paredes;
+@property (nonatomic) NSMutableDictionary *paredes;
+
+@property (nonatomic) int tileSize;
+
+@property (nonatomic) NSNumber *mundo;
+
+@property (nonatomic) NSNumber *level;
+
 
 
 -(instancetype)initWithHeight:(int) height
                     withWidth:(int) width;
 
-
+-(void)exportar;
 
 @end

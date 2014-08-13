@@ -32,6 +32,8 @@
     
     self.name=@"gota";
     
+    self.sprite.name=@"gota";
+    
     [self addChild:self.sprite];
     
     self.position=position;

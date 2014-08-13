@@ -14,4 +14,6 @@
 
 -(instancetype)initWithSprite:(SKSpriteNode *) imagem;
 
+-(NSMutableDictionary*)createJson;
+
 @end

@@ -23,4 +23,25 @@
 -(void)Animar{
 
 }
+
+-(NSMutableDictionary *)createJson{
+    NSMutableDictionary *json=[[NSMutableDictionary alloc]init];
+    
+    NSNumber *temp=[[NSNumber alloc] initWithFloat:self.position.x];
+    
+    
+    
+    [json setObject:temp forKey:@"positionX"];
+    
+    temp=[[NSNumber alloc] initWithFloat:self.position.y];
+    
+    
+    [json setObject:temp forKey:@"positionY"];
+    
+    [json setObject:_sprite.name forKey:@"sprite"];
+    
+    
+    return json;
+}
+
 @end
