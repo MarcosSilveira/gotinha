@@ -152,8 +152,8 @@ bool tocou;
     CGMutablePathRef circle = CGPathCreateMutable();
     CGPathAddArc(circle, NULL, 0, 0, radius, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
     circleMask.path = circle;
-    //circleMask.lineWidth = 1; // replace 100 with DOUBLE the desired radius of the circle
-    //circleMask.strokeColor = [SKColor redColor];
+    circleMask.lineWidth = 100; // replace 100 with DOUBLE the desired radius of the circle
+    circleMask.strokeColor = [SKColor blueColor];
     circleMask.name=@"circleMask";
     
     
@@ -161,8 +161,8 @@ bool tocou;
     CGMutablePathRef circleBor = CGPathCreateMutable();
     CGPathAddArc(circleBor, NULL, 0, 0, radius, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
     circleBorder.path = circleBor;
-    circleBorder.lineWidth = 1; // replace 100 with DOUBLE the desired radius of the circle
-    circleBorder.strokeColor = [SKColor redColor];
+    circleBorder.lineWidth = 100; // replace 100 with DOUBLE the desired radius of the circle
+    circleBorder.strokeColor = [SKColor blueColor];
     circleBorder.name=@"circleMask";
 
     
