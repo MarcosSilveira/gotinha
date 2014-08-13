@@ -9,7 +9,17 @@
 #import "JAGCharacter.h"
 
 @implementation JAGCharacter
+-(id)init{
+    self = [super init];
+    return self;
+}
+-(void)configPhysics{
+ //   self = [super configPhysics];
+    self.physicsBody.allowsRotation = NO;
+    self.physicsBody.restitution=0;
+ //   return self;
 
+}
 -(void)Animar{
 
 }

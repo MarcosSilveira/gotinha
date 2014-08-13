@@ -21,8 +21,11 @@
     self.physicsBody.collisionBitMask = ATTACK | ENEMY;
     self.physicsBody.contactTestBitMask = ATTACK | ENEMY;
     
+    [self configPhysics];
     
-    self.physicsBody.restitution=0;
+    
+    
+    
 //    desn.position=position;
     
     //[self addChild:desn];
@@ -39,6 +42,7 @@
 -(id)init{
     self=[super init];
     
+    /*
     self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
     
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
@@ -50,11 +54,14 @@
     
     //[self addChild:desn];
     
+    self.physicsBody.allowsRotation=NO;
     
+    self.sprite.physicsBody.allowsRotation=NO;
     
     [self addChild:self.sprite];
     
     //self.position=position;
+     */
     
     return self;
 }
@@ -74,6 +81,10 @@
     
     SKAction *actionChangeSprite;
 
+    
+   // =CGVectorMake(ponto.x, ponto.y);
+    
+    //[self.physicsBody applyImpulse:CGVectorMake(0.3, 0.3) atPoint:ponto];
     
    // [self removeAllActions];
     
@@ -103,8 +114,8 @@
             
             [self.physicsBody applyForce:CGVectorMake(0,(ponto.y-self.position.y)*multi)];
             action=[SKAction moveToY:ponto.y duration:time];
-          //  action = [SKAction followPath:(CGPathCreateWithRect(CGRectMake(ponto.x, ponto.y, 10, 10), nil)) duration:2];
-            actionChangeSprite=[SKAction colorizeWithColor:[SKColor brownColor] colorBlendFactor:1.0 duration:0.15];
+            
+            actionChangeSprite=[SKAction colorizeWithColor:[SKColor brownColor] colorBlendFactor:1.0 duration:0.0];
 
             //self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
             break;

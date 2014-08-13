@@ -16,8 +16,11 @@
     int height;
     float timeTouch;
     float diferenca;
-    CGPoint locations;
+    CGPoint toqueInicio;
     SKCropNode *cropNode;
+    SKShapeNode *circleMask;
+    CGPoint toqueFinal;
+    
 }
 
 #pragma mark - Move to View
@@ -54,7 +57,8 @@ bool tocou;
         /* Setup your scene here */
        // self.physicsWorld.contactDelegate = self;
          //self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
-        _gota =  [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
+        _gota= [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
+        _fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(200, 100)];
         SKSpriteNode *obstaculo = [[SKSpriteNode alloc]initWithColor:([UIColor redColor]) size:(CGSizeMake(self.scene.size.width, 10)) ];
         obstaculo.position = CGPointMake(self.scene.size.width/2, 120);
         obstaculo.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:obstaculo.size];
@@ -67,9 +71,10 @@ bool tocou;
         
         obstaculo.physicsBody.restitution=0;
         obstaculo.name=@"wall";
+      //  [self addChild:obstaculo];
         
-        _gota.zPosition=100;
-        //[self addChild:obstaculo];
+        //[self addChild:_gota];
+        //[self addChild:_fogo];
         
         //[self addChild:_gota];
         
@@ -110,7 +115,7 @@ bool tocou;
        // cropNode.position=CGPointMake(100,100);
       
         
-        [self creteMask];
+        [self creteMask:100 withPoint:(_gota.position)];
         
         
         SKSpriteNode *cimas=[[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(1000,1000)];
@@ -122,7 +127,9 @@ bool tocou;
         
         [cropNode addChild:_gota];
         
-        [cropNode addChild:obstaculo];
+        [cropNode addChild:_fogo];
+        
+     //   [cropNode addChild:obstaculo];
         
        
         
@@ -143,20 +150,22 @@ bool tocou;
     
 }
 
--(void)creteMask{
+-(void)creteMask:(int) radius
+       withPoint:(CGPoint) ponto{
     SKNode *area=[[SKNode alloc] init];
     
-    int radius=70;
+   
     
-    SKShapeNode *circleMask = [[SKShapeNode alloc ]init];
+    circleMask = [[SKShapeNode alloc ]init];
     CGMutablePathRef circle = CGPathCreateMutable();
-    CGPathAddArc(circle, NULL, 0, 0, radius, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
+    CGPathAddArc(circle, NULL, 0, 0, 1, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
     circleMask.path = circle;
     circleMask.lineWidth = 100; // replace 100 with DOUBLE the desired radius of the circle
     circleMask.strokeColor = [SKColor blueColor];
     circleMask.name=@"circleMask";
+
     
-    
+    /*
     SKShapeNode *circleBorder = [[SKShapeNode alloc ]init];
     CGMutablePathRef circleBor = CGPathCreateMutable();
     CGPathAddArc(circleBor, NULL, 0, 0, radius, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
@@ -165,7 +174,7 @@ bool tocou;
     circleBorder.strokeColor = [SKColor blueColor];
     circleBorder.name=@"circleMask";
 
-    
+    */
     
     circleMask.userInteractionEnabled = NO;
     //circleMask.zPosition=92;
@@ -174,11 +183,13 @@ bool tocou;
     
     [area addChild:circleMask];
     
-    area.position=CGPointMake(100,100);
+    //area.position=CGPointMake(ponto.x+_gota.sprite.size.width,ponto.y-_gota.sprite.size.height);
+    
+    area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
     
     [cropNode setMaskNode:area];
     
-    [cropNode addChild:area];
+    //[cropNode addChild:area];
     
     //[cropNode addChild:circleBorder];
 }
@@ -195,14 +206,11 @@ bool tocou;
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-
     for (UITouch *touch in touches) {
-        locations = [touch locationInNode:self];
-        
-        
+        toqueInicio = [touch locationInNode:self];
         timeTouch = touch.timestamp;
         
-        if ([_gota tocou:locations]) {
+        if ([_gota tocou:[touch locationInNode:self]]) {
             tocou = true;
         }else{
             tocou = false;
@@ -212,7 +220,7 @@ bool tocou;
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
+        toqueFinal = [touch locationInNode:self];
         
         
         
@@ -227,51 +235,23 @@ bool tocou;
             
         }else{
             
-            //SE tocou fora movimenta
-            //float difx=locations.x-location.x;
-            
-            float difx=_gota.position.x-location.x;
-            
-            //float dify=locations.y-location.y;
-            
-            float dify=_gota.position.y-location.y;
-            
-            
-            BOOL negx=false;;
-            
-            bool negy=false;
-            
-            if(difx<0){
-                negx=true;
-                difx*=-1;
-            }
-            if(dify<0){
-                negy=true;
-                dify*=-1;
-            }
-            
-            
-            
-            if (difx>dify) {
-                if(negx){
-                    [_gota mover:location withInterval:1.0 withTipe:4];
+            switch ([self verificaSentido:toqueFinal with:_gota.position]) {
+                case 1:
+                    [_gota mover:toqueFinal withInterval:1.0 withTipe:1];
                     
-                }else{
-                    [_gota mover:location withInterval:1.0 withTipe:3];
-                }
-                
-                
-                
-                
-            }else{
-                if(negy){
-                    [_gota mover:location withInterval:1.0 withTipe:1];
-                }else{
-                    [_gota mover:location withInterval:1.0 withTipe:2];
-                }
+                    break;
+                case 2:
+                    [_gota mover:toqueFinal withInterval:1.0 withTipe:2];
+                    break;
+                case 3:
+                    [_gota mover:toqueFinal withInterval:1.0 withTipe:3];
+                    break;
+                case 4:
+                    [_gota mover:toqueFinal withInterval:1.0 withTipe:4];
+                    
+                    break;
             }
         }
-        
         
         //Logica da movimentacao
         //PathFinder
@@ -292,7 +272,21 @@ bool tocou;
 
 -(void)update:(NSTimeInterval)currentTime{
     //depois de um tempo ou acao
+    float distance = hypotf(_fogo.position.x-_gota.position.x, _fogo.position.y-_gota.position.y);
+    float pararMovimentoCONTROL = hypotf(toqueFinal.x-_gota.position.x, toqueFinal.y-_gota.position.y);
+
+    circleMask.position = CGPointMake(_gota.position.x-100, _gota.position.y-50);
+    if (distance <100) {
+        
+        [_fogo mover:(_gota.position) withInterval:2 withTipe:[self verificaSentido:_gota.position with:_fogo.position]];
+    }
+    else _fogo.physicsBody.velocity = CGVectorMake(0, 0);
+
     [_hud update];
+    NSLog(@"%f",pararMovimentoCONTROL);
+    if (pararMovimentoCONTROL < 50)
+        _gota.physicsBody.velocity = CGVectorMake(0, 0);
+    
 }
 - (void)didSimulatePhysics{
  //   [self centerOnNode: [self childNodeWithName: @"//"]];
@@ -304,11 +298,78 @@ bool tocou;
     }
     
     if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == ENEMY)){
-        NSLog(@"hit");
+        NSLog(@"hit");}
+    //Colisao com a parede
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ){
+        
+//        _gota.physicsBody.velocity=CGVectorMake(0, 0);
+    
     }
     
  //   return detected;
 
 }
+
+-(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto {
+    //  toqueFinal = pontoReferencia;
+    int tipo;
+    float difx=pontoObjeto.x-pontoReferencia.x;
+    
+    //float dify=toqueFinals.y-toqueFinal.y;
+    
+    float dify=pontoObjeto.y-pontoReferencia.y;
+    
+    
+    BOOL negx=false;;
+    
+    bool negy=false;
+    
+    if(difx<0){
+        negx=true;
+        difx*=-1;
+    }
+    if(dify<0){
+        negy=true;
+        dify*=-1;
+    }
+    
+    if (difx>dify) {
+        if(negx)
+            tipo = 4;
+        else
+            tipo = 3;
+    }
+    else{
+        if(negy)
+            tipo = 1;
+        else
+            tipo = 2;
+    }
+    
+    return tipo;
+    
+    
+}
+
+
+-(void)loadingWorld{
+    //Ler um arquivo
+    
+    
+    
+    //Tamanho do Mapa b x h
+    
+    //Parades obstaculos
+    
+    //Inimigos
+    
+    //Posicao inicial da Gota.
+    
+    //
+    
+    
+}
+
 
 @end
