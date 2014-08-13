@@ -90,18 +90,16 @@
     
     self.physicsBody.velocity=CGVectorMake(0, 0);
     
-    int multi=4;
+    int multi=300;
     
-
+    
     switch (tipo) {
         case 1:
             
             //self.physicsBody.velocity=CGVectorMake(ponto.x, ponto.y);
+           
             
-            
-            
-            
-            [self.physicsBody applyForce:CGVectorMake(0,(ponto.y-self.position.y)*multi)];
+            [self.physicsBody applyForce:CGVectorMake(0,multi)];
             action=[SKAction moveToY:ponto.y duration:time];
           //  action = [SKAction followPath:(CGPathCreateWithRect(CGRectMake(ponto.x, ponto.y, 10, 10), nil)) duration:2];
             //self.sprite.color=[UIColor greenColor];
@@ -112,7 +110,7 @@
             
         case 2:
             
-            [self.physicsBody applyForce:CGVectorMake(0,(ponto.y-self.position.y)*multi)];
+            [self.physicsBody applyForce:CGVectorMake(0,-multi)];
             action=[SKAction moveToY:ponto.y duration:time];
             
             actionChangeSprite=[SKAction colorizeWithColor:[SKColor brownColor] colorBlendFactor:1.0 duration:0.0];
@@ -122,7 +120,7 @@
             
         case 3:
             
-            [self.physicsBody applyForce:CGVectorMake((ponto.x-self.position.x)*multi,0)];
+            [self.physicsBody applyForce:CGVectorMake(-multi,0)];
 
             action=[SKAction moveToX:ponto.x duration:time];
             
@@ -130,7 +128,7 @@
             break;
             
         case 4:
-            [self.physicsBody applyForce:CGVectorMake((ponto.x-self.position.x)*multi,0)];
+            [self.physicsBody applyForce:CGVectorMake(multi,0)];
 
             action=[SKAction moveToX:ponto.x duration:time];
             actionChangeSprite=[SKAction colorizeWithColor:[SKColor yellowColor] colorBlendFactor:1.0 duration:0.0];
