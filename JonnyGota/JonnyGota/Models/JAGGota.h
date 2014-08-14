@@ -11,8 +11,8 @@
 @interface JAGGota : JAGCharacter
 
 @property (strong, nonatomic) UISwipeGestureRecognizer *swipeGest;
-@property BOOL *escondida;
-@property BOOL *dividida;
+@property BOOL escondida;
+@property BOOL dividida;
 -(void)dividir;
 -(void)esconder;
 

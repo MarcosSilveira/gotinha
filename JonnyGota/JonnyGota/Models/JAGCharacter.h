@@ -20,7 +20,7 @@ typedef enum : uint32_t{
 
 -(void)configPhysics;
 -(void)animar;
--(void)mover;
+-(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withType:(int)tipo and:(int)multi;
 -(NSMutableDictionary*)createJson;
 
 @end
