@@ -29,9 +29,8 @@
     self.name = @"gota";
     self.position = position;
     
-    //desn.position=position;
-    
-    //[self addChild:desn];
+    _escondida = NO;
+    _dividida = NO;
     
     return self;
 }
@@ -138,16 +137,20 @@
         default:
             break;
     }
-    //Mover em 2 passos para diagonal?
-    
-    [self.sprite runAction:actionChangeSprite];
-    
-    //[self runAction:action];
-    
-    
+    else{
+        dividAction = [SKAction fadeOutWithDuration:1.0];
+        _dividida = YES;
+    }
+    [self runAction:dividAction];
 }
 
--(BOOL)tocou:(CGPoint) ponto{
+//-(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withTipe:(int)tipo{
+//    
+//
+//    
+//}
+
+-(BOOL)verificaToque:(CGPoint) ponto{
     if((ponto.x>=(self.position.x-self.sprite.size.width/2))&&(ponto.x<(self.position.x+self.sprite.size.width/2))){
         if((ponto.y>=(self.position.y-self.sprite.size.height/2))&&(ponto.y<(self.position.y+self.sprite.size.height/2))){
             

@@ -28,6 +28,8 @@
 @property (nonatomic) JAGHud* hud;
 @property (nonatomic) JAGFogoEnemy *fogo;
 
+-(void)divideGota;
+
 - (id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world;
 -(void)loadingWorld;
 
