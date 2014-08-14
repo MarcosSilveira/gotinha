@@ -123,7 +123,7 @@
         [self createMask:100 withPoint:(_gota.position)];
         
         
-        SKSpriteNode *cimas=[[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(1000,1000)];
+        //SKSpriteNode *cimas = [[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(1000,1000)];
         
         //cimas.zPosition=90;
         
@@ -446,9 +446,6 @@
     level1.level=@1;
     
     [level1 exportar];
-    
-    
-
 }
 
 

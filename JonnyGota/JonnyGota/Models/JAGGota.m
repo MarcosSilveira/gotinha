@@ -8,13 +8,6 @@
 
 #import "JAGGota.h"
 
-@interface JAGGota()
-{
-    CGMutablePathRef pathToDraw;
-    SKShapeNode *lineNode;
-}
-@end
-
 @implementation JAGGota
 
 -(id)initWithPosition:(CGPoint)position{
@@ -22,11 +15,11 @@
     self = [super init];
     
     self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
-
+    
     [self addChild:self.sprite];
     
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
-  //self.zPosition = 1;
+    //self.zPosition = 1;
     self.physicsBody.categoryBitMask = GOTA;
     self.physicsBody.collisionBitMask = ATTACK | ENEMY;
     self.physicsBody.contactTestBitMask = ATTACK | ENEMY;
@@ -48,36 +41,36 @@
     self = [super init];
     
     /*
-    self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
-    
-    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
-    //  self.zPosition = 1;
-    self.physicsBody.categoryBitMask = GOTA;
-    self.physicsBody.collisionBitMask = ATTACK | ENEMY;
-    self.physicsBody.contactTestBitMask = ATTACK | ENEMY;
-    //    desn.position=position;
-    
-    //[self addChild:desn];
-    
-    self.physicsBody.allowsRotation=NO;
-    
-    self.sprite.physicsBody.allowsRotation=NO;
-    
-    [self addChild:self.sprite];
-    
-    //self.position=position;
+     self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
+     
+     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
+     //  self.zPosition = 1;
+     self.physicsBody.categoryBitMask = GOTA;
+     self.physicsBody.collisionBitMask = ATTACK | ENEMY;
+     self.physicsBody.contactTestBitMask = ATTACK | ENEMY;
+     //    desn.position=position;
+     
+     //[self addChild:desn];
+     
+     self.physicsBody.allowsRotation=NO;
+     
+     self.sprite.physicsBody.allowsRotation=NO;
+     
+     [self addChild:self.sprite];
+     
+     //self.position=position;
      */
     
     return self;
 }
 
 -(void)esconder{
-    SKAction *poca = [SKAction scaleYTo:-.5 duration:1.0];
+    SKAction *poca = [SKAction scaleYTo: -.5 duration:1.0];
     [self runAction:poca];
 }
 
 -(void) dividir {
- 
+    
     SKAction *divid = [SKAction fadeOutWithDuration:1.0];
     [self runAction:divid];
 }
@@ -89,11 +82,11 @@
     
     SKAction *actionChangeSprite;
     
-   // =CGVectorMake(ponto.x, ponto.y);
+    // =CGVectorMake(ponto.x, ponto.y);
     
     //[self.physicsBody applyImpulse:CGVectorMake(0.3, 0.3) atPoint:ponto];
     
-   // [self removeAllActions];
+    // [self removeAllActions];
     
     self.physicsBody.velocity = CGVectorMake(0, 0);
     
@@ -104,15 +97,15 @@
         case 1:
             
             //self.physicsBody.velocity=CGVectorMake(ponto.x, ponto.y);
-           
+            
             
             [self.physicsBody applyForce:CGVectorMake(0,multi)];
             action=[SKAction moveToY:ponto.y duration:time];
-          //  action = [SKAction followPath:(CGPathCreateWithRect(CGRectMake(ponto.x, ponto.y, 10, 10), nil)) duration:2];
+            //  action = [SKAction followPath:(CGPathCreateWithRect(CGRectMake(ponto.x, ponto.y, 10, 10), nil)) duration:2];
             //self.sprite.color=[UIColor greenColor];
             
             actionChangeSprite=[SKAction colorizeWithColor:[SKColor whiteColor] colorBlendFactor:1.0 duration:0.0];
-           // self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor greenColor] size:CGSizeMake(50, 50)];
+            // self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor greenColor] size:CGSizeMake(50, 50)];
             break;
             
         case 2:
@@ -121,14 +114,14 @@
             action=[SKAction moveToY:ponto.y duration:time];
             
             actionChangeSprite=[SKAction colorizeWithColor:[SKColor brownColor] colorBlendFactor:1.0 duration:0.0];
-
+            
             //self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
             break;
             
         case 3:
             
             [self.physicsBody applyForce:CGVectorMake(-multi,0)];
-
+            
             action=[SKAction moveToX:ponto.x duration:time];
             
             actionChangeSprite=[SKAction colorizeWithColor:[SKColor blueColor] colorBlendFactor:1.0 duration:0.0];
@@ -136,10 +129,10 @@
             
         case 4:
             [self.physicsBody applyForce:CGVectorMake(multi,0)];
-
+            
             action=[SKAction moveToX:ponto.x duration:time];
             actionChangeSprite=[SKAction colorizeWithColor:[SKColor yellowColor] colorBlendFactor:1.0 duration:0.0];
-
+            
             break;
             
         default:

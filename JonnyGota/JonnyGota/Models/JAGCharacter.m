@@ -20,26 +20,25 @@
  //   return self;
 
 }
--(void)Animar{
+-(void) animar{
 
 }
 
+-(void)mover {
+    
+    
+}
+
 -(NSMutableDictionary *)createJson{
-    NSMutableDictionary *json=[[NSMutableDictionary alloc]init];
+    NSMutableDictionary *json = [[NSMutableDictionary alloc]init];
     
-    NSNumber *temp=[[NSNumber alloc] initWithFloat:self.position.x];
-    
-    
-    
+    NSNumber *temp = [[NSNumber alloc] initWithFloat:self.position.x];
     [json setObject:temp forKey:@"positionX"];
     
-    temp=[[NSNumber alloc] initWithFloat:self.position.y];
-    
+    temp = [[NSNumber alloc] initWithFloat:self.position.y];
     
     [json setObject:temp forKey:@"positionY"];
-    
     [json setObject:_sprite.name forKey:@"sprite"];
-    
     
     return json;
 }

@@ -19,12 +19,8 @@ typedef enum : uint32_t{
 @property (nonatomic) SKSpriteNode* sprite;
 
 -(void)configPhysics;
-
 -(void)animar;
-
-
 -(void)mover;
-
 -(NSMutableDictionary*)createJson;
 
 @end
