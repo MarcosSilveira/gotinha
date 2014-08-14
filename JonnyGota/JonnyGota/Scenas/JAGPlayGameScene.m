@@ -9,6 +9,7 @@
 #import "JAGPlayGameScene.h"
 #import "JAGLevel.h"
 
+
 //extern CGPoint CGPointScale(CGPoint A, double b);
 //extern CGPoint CGPointNormalize(CGPoint pt);
 //extern double CGPointDot(CGPoint a, CGPoint b);
@@ -26,7 +27,7 @@
     SKCropNode *cropNode;
     SKShapeNode *circleMask;
     CGPoint toqueFinal;
-    bool tocou;
+    bool tocou_gota;
     CGMutablePathRef pathToDraw;
     SKShapeNode *lineNode;
 }
@@ -60,9 +61,8 @@
 -(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world{
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
-       // self.physicsWorld.contactDelegate = self;
-         //self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
-        _gota= [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
+
+
         _fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(200, 100)];
         SKSpriteNode *obstaculo = [[SKSpriteNode alloc]initWithColor:([UIColor redColor]) size:(CGSizeMake(self.scene.size.width, 10)) ];
         obstaculo.position = CGPointMake(self.scene.size.width/2, 120);
@@ -76,132 +76,113 @@
         
         obstaculo.physicsBody.restitution=0;
         obstaculo.name=@"wall";
-      //  [self addChild:obstaculo];
-        
-        //[self addChild:_gota];
-        //[self addChild:_fogo];
-        
-        //[self addChild:_gota];
         
         diferenca = 80.0f;
-        tocou = false;
-        //_boing = [SKAction playSoundFileNamed:@"boing.mp3" waitForCompletion:NO];
-        
-       // _mask = [[SKSpriteNode init] initWithColor:[SKColor purpleColor]];
-        
-        
-        //SKSpriteNode *pictureToMask = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        /*
-        SKSpriteNode *pictureToMask = [[SKSpriteNode alloc] initWithColor:[SKColor greenColor] size:CGSizeMake(100, 100)];
+        tocou_gota = false;
 
-        SKSpriteNode *mask = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size: CGSizeMake(100, 100)]; //100 by 100 is the size of the mask
-        SKCropNode *cropNode = [SKCropNode node];
-        cropNode.position = CGPointMake( 100,100);
-        
-        SKShapeNode* pathShape = [[SKShapeNode alloc] init];
-        pathShape.lineWidth = 1;
-        pathShape.fillColor = [SKColor clearColor];
-        pathShape.strokeColor = [SKColor greenColor];
-        pathShape.position=CGPointMake( 100,100);
-        
-        //[cropNode addChild:pathShape];
-        //[cropNode addChild: pictureToMask];
-        [cropNode setMaskNode: mask];
-        
-        */
-        
         cropNode = [[SKCropNode alloc] init];
+
         
         
-        
-        //cropNode.zPosition=95;
-        
-       // cropNode.position=CGPointMake(100,100);
-      
-        
+        [cropNode addChild:[self createCharacter]];
         [self createMask:100 withPoint:(_gota.position)];
-        
-        
-        SKSpriteNode *cimas=[[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(1000,1000)];
-        
-        //cimas.zPosition=90;
-        
-        
-        //[cropNode addChild:cimas];
-        
-        [cropNode addChild:_gota];
-        
         [cropNode addChild:_fogo];
-        
-        // [cropNode addChild:obstaculo];
-        //[cropNode addChild:circleMask];
-        //[cropNode setMaskNode:circleMask];
-      
-        //[self addChild:cimas];
 
         [self addChild: cropNode];
         
         [self createLevel];
         
-       // [self addChild:pathShape];
+      
 
     }
     return self;
     
 }
 
+#pragma mark - Métodos de inicialização
+
+-(JAGGota *)createCharacter{
+    _gota= [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
+    _gota.name = @"gota";
+   
+    return _gota;
+}
+
 #pragma mark - Máscara
 -(void)createMask:(int) radius
        withPoint:(CGPoint) ponto{
     SKNode *area=[[SKNode alloc] init];
-    
     circleMask = [[SKShapeNode alloc ]init];
+    
     CGMutablePathRef circle = CGPathCreateMutable();
     CGPathAddArc(circle, NULL, 0, 0, 1, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
+    
     circleMask.path = circle;
     circleMask.lineWidth = radius*2; // replace 100 with DOUBLE the desired radius of the circle
-    //circleMask.strokeColor = [SKColor redColor];
     circleMask.name=@"circleMask";
-    
-    /*
-    SKShapeNode *circleBorder = [[SKShapeNode alloc ]init];
-    CGMutablePathRef circleBor = CGPathCreateMutable();
-    CGPathAddArc(circleBor, NULL, 0, 0, radius, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
-    circleBorder.path = circleBor;
-    circleBorder.lineWidth = 100; // replace 100 with DOUBLE the desired radius of the circle
-    circleBorder.strokeColor = [SKColor blueColor];
-    circleBorder.name=@"circleMask";
-
-    */
-    
     circleMask.userInteractionEnabled = NO;
-    //circleMask.zPosition=92;
-    
     circleMask.fillColor = [SKColor clearColor];
     
     [area addChild:circleMask];
-    
-    //area.position=CGPointMake(ponto.x+_gota.sprite.size.width,ponto.y-_gota.sprite.size.height);
-    
     area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
-    
     [cropNode setMaskNode:area];
     
-    //[cropNode addChild:area];
+}
+#pragma mark - Mundo/Fases
+
+-(void)loadingWorld{
+    //Ler um arquivo
     
-    //[cropNode addChild:circleBorder];
+    
+    
+    //Tamanho do Mapa b x h
+    
+    //Parades obstaculos
+    
+    //Inimigos
+    
+    //Posicao inicial da Gota.
+    
+    //
+    
+    
 }
 
-
--(JAGGota *)createCharacter{
-    _gota = [[JAGGota alloc] init];
-    _gota.position = CGPointMake(0, -height/2.15+(platform.size.height));
-    _gota.name = @"gota";
-
+-(void)createLevel{
+    JAGLevel *level1=[[JAGLevel alloc] initWithHeight:20 withWidth:20];
     
-    return _gota;
+    level1.gota=[[JAGGota alloc] initWithPosition:CGPointMake(level1.tileSize*2, level1.tileSize*2)];
+    
+    
+    SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(level1.tileSize, level1.tileSize)];
+    
+    wallSpri.name=@"brownColor";
+    
+    JAGWall *parede=[[JAGWall alloc] initWithSprite:wallSpri];
+    
+    parede.position=CGPointMake(level1.tileSize*1, level1.tileSize*1);
+    
+    [level1.paredes setValue:parede forKey:@"parede1"];
+    
+    
+    JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(level1.tileSize*4, level1.tileSize*4)];
+    
+    inimigo.sprite.name=@"grenColor";
+    
+    inimigo.tipo=1;
+    
+    [level1.inimigos setValue:inimigo forKey:@"inimigo1"];
+    
+    level1.mundo=@1;
+    
+    level1.level=@1;
+    
+    //    [level1 exportar];
+    
+    
+    
 }
+
 
 #pragma mark - Touch treatment
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -210,13 +191,13 @@
         toqueInicio = [touch locationInNode:self];
         timeTouch = touch.timestamp;
         
-        if ([_gota tocou:[touch locationInNode:self]]) {
-            tocou = true;
+        if ([_gota verificaToque:[touch locationInNode:self]]) {
+            tocou_gota = true;
             toqueInicio = [touch locationInNode:self];
             [_gota esconder];
             
         }else{
-            tocou = false;
+            tocou_gota = false;
         }
     
     }
@@ -228,7 +209,7 @@
         //toqueFinal = [self CGPointNormalize:toqueFinal];
        
         //Se tocou na gota antes
-        if (tocou) {
+        if (tocou_gota) {
             
             switch ([self verificaSentido:toqueFinal with:_gota.position]) {
                 case 3:
@@ -369,87 +350,7 @@
     
     
 }
-#pragma mark - Tratamento de vetores
 
-/**
- * Calculate the dot-product of two 2D vectors a dot b
- */
--(double) CGPointDot:(CGPoint) a and: (CGPoint) b {
-	return a.x*b.x + a.y*b.y;
-}
-/**
- * Calculate the magnitude of a 2D vector
- */
--(double) CGPointMagnitude:(CGPoint) pt {
-	return sqrt([self CGPointDot:pt and:pt]);
-}
-
-/**
- * Calculate the vector-scalar product A*b
- */
--(CGPoint) CGPointScale:(CGPoint) A and:(double) b {
-	return CGPointMake(A.x*b, A.y*b);
-}
-/**
- * Normalize a 2D vector
- */
--(CGPoint) CGPointNormalize:(CGPoint)pt {
-	return [self CGPointScale:pt and:1.0/[self CGPointMagnitude:pt]];
-}
-
-
--(void)loadingWorld{
-    //Ler um arquivo
-    
-    
-    
-    //Tamanho do Mapa b x h
-    
-    //Parades obstaculos
-    
-    //Inimigos
-    
-    //Posicao inicial da Gota.
-    
-    //
-    
-    
-}
-
--(void)createLevel{
-    JAGLevel *level1=[[JAGLevel alloc] initWithHeight:20 withWidth:20];
-    
-    level1.gota=[[JAGGota alloc] initWithPosition:CGPointMake(level1.tileSize*2, level1.tileSize*2)];
-    
-    
-    SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(level1.tileSize, level1.tileSize)];
-    
-    wallSpri.name=@"brownColor";
-    
-    JAGWall *parede=[[JAGWall alloc] initWithSprite:wallSpri];
-    
-    parede.position=CGPointMake(level1.tileSize*1, level1.tileSize*1);
-    
-    [level1.paredes setValue:parede forKey:@"parede1"];
-    
-    
-    JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(level1.tileSize*4, level1.tileSize*4)];
-    
-    inimigo.sprite.name=@"grenColor";
-    
-    inimigo.tipo=1;
-    
-    [level1.inimigos setValue:inimigo forKey:@"inimigo1"];
-    
-    level1.mundo=@1;
-    
-    level1.level=@1;
-    
-    [level1 exportar];
-    
-    
-
-}
 
 
 @end

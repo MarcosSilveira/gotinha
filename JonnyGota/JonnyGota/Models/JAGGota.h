@@ -20,6 +20,6 @@ withInterval:(NSTimeInterval) time
     withTipe:(int) tipo;
 
 -(id)initWithPosition:(CGPoint) position;
--(BOOL)tocou:(CGPoint) ponto;
+-(BOOL)verificaToque:(CGPoint) ponto;
 
 @end

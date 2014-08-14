@@ -103,7 +103,7 @@
     switch (tipo) {
         case 1:
             
-            //self.physicsBody.velocity=CGVectorMake(ponto.x, ponto.y);
+   
            
             
             [self.physicsBody applyForce:CGVectorMake(0,multi)];
@@ -154,7 +154,7 @@
     
 }
 
--(BOOL)tocou:(CGPoint) ponto{
+-(BOOL)verificaToque:(CGPoint) ponto{
     if((ponto.x>=(self.position.x-self.sprite.size.width/2))&&(ponto.x<(self.position.x+self.sprite.size.width/2))){
         if((ponto.y>=(self.position.y-self.sprite.size.height/2))&&(ponto.y<(self.position.y+self.sprite.size.height/2))){
             
