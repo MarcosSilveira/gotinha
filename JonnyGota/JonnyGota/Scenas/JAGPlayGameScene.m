@@ -27,7 +27,6 @@
     bool tocou_gota;
     CGMutablePathRef pathToDraw;
     SKShapeNode *lineNode;
-    UIGestureRecognizer *separacao;
 
 }
 
@@ -42,10 +41,7 @@
     self.scaleMode = SKSceneScaleModeAspectFit;
     self.physicsWorld.gravity = CGVectorMake(0.0f, 0.0f);
     [self touchesEnded:nil withEvent:nil];
-    separacao = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(divideGota)];
-    [self.view addGestureRecognizer:separacao];
     
-
 }
 
 -(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world {
@@ -73,16 +69,12 @@
 
         _cropNode = [[SKCropNode alloc] init];
 
-        
-        cropNode = [[SKCropNode alloc] init];
-        
         [_cropNode addChild:[self createCharacter]];
         [self createMask:100 withPoint:(_gota.position)];
         [_cropNode addChild:_fogo];
 
         [self addChild: _cropNode];
-        
-        [self addChild: cropNode];
+    
         [self createLevel];
     }
     return self;
@@ -185,12 +177,31 @@
     }
 }
 
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
 
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    
     for (UITouch *touch in touches) {
         
         toqueFinal = [touch locationInNode:self];
-
+        //toqueFinal = [self CGPointNormalize:toqueFinal];
+        
+        //Se tocou na gota antes
+        if (tocou_gota) {
+            
+            switch ([self verificaSentido:toqueFinal with:_gota.position]) {
+                case 3:
+                    [_gota dividir];
+                    break;
+                    
+                case 4:
+                    [_gota dividir];
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+        } else {
             
             switch ([self verificaSentido:toqueFinal with:_gota.position]) {
                 case 1:
@@ -227,6 +238,7 @@
         //Tempo de pressao
         
         
+        }
     }
 }
 
@@ -356,32 +368,7 @@
     }
     return tipo;
 }
-#pragma mark - Tratamento de vetores
 
-/**
- * Calculate the dot-product of two 2D vectors a dot b
- */
--(double) CGPointDot:(CGPoint) a and: (CGPoint) b {
-	return a.x*b.x + a.y*b.y;
-}
-/**
- * Calculate the magnitude of a 2D vector
- */
--(double) CGPointMagnitude:(CGPoint) pt {
-	return sqrt([self CGPointDot:pt and:pt]);
-}
 
-/**
- * Calculate the vector-scalar product A*b
- */
--(CGPoint) CGPointScale:(CGPoint) A and:(double) b {
-	return CGPointMake(A.x*b, A.y*b);
-}
-/**
- * Normalize a 2D vector
- */
--(CGPoint) CGPointNormalize:(CGPoint)pt {
-	return [self CGPointScale:pt and:1.0/[self CGPointMagnitude:pt]];
-}
 
 @end
