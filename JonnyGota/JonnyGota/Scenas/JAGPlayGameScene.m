@@ -30,6 +30,7 @@
     bool tocou_gota;
     CGMutablePathRef pathToDraw;
     SKShapeNode *lineNode;
+    UIGestureRecognizer *separacao;
 }
 
 #pragma mark - Move to View
@@ -43,18 +44,9 @@
     self.scaleMode = SKSceneScaleModeAspectFit;
     self.physicsWorld.gravity = CGVectorMake(0.0f, 0.0f);
     [self touchesEnded:nil withEvent:nil];
+    separacao = [[UIGestureRecognizer alloc]initWithTarget:self action:@selector(divideGota)];
+    //[self.view addGestureRecognizer:separacao];
     
-    myWorld = [SKNode node];
-    
-    [self addChild:myWorld];
-    
-    myWorld.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
-    myWorld.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(-width/2, -height/2) toPoint:CGPointMake(width/2, -height/2)];
-    
-    camera = [SKNode node];
-    camera.name = @"camera";
-    
-    [myWorld addChild:camera];
 
 }
 
@@ -202,7 +194,9 @@
     
     }
 }
-
+-(void)divideGota{
+    [_gota dividir];
+}
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     for (UITouch *touch in touches) {
         toqueFinal = [touch locationInNode:self];
@@ -229,20 +223,20 @@
             switch ([self verificaSentido:toqueFinal with:_gota.position]) {
                 case 1:
                      //toqueFinal = [self CGPointNormalize:toqueFinal];
-                    [_gota mover:toqueFinal withInterval:1.0 withTipe:1];
+                    [_gota mover:toqueFinal withInterval:1.0 withType:1 and:300];
                     
                     break;
                 case 2:
                      //toqueFinal = [self CGPointNormalize:toqueFinal];
-                    [_gota mover:toqueFinal withInterval:1.0 withTipe:2];
+                    [_gota mover:toqueFinal withInterval:1.0 withType:2 and:300];
                     break;
                 case 3:
                      //toqueFinal = [self CGPointNormalize:toqueFinal];
-                    [_gota mover:toqueFinal withInterval:1.0 withTipe:3];
+                    [_gota mover:toqueFinal withInterval:1.0 withType:3 and:300];
                     break;
                 case 4:
                      //toqueFinal = [self CGPointNormalize:toqueFinal];
-                    [_gota mover:toqueFinal withInterval:1.0 withTipe:4];
+                    [_gota mover:toqueFinal withInterval:1.0 withType:4 and:300];
                     
                     break;
             }
@@ -272,8 +266,9 @@
 
     circleMask.position = CGPointMake(_gota.position.x-100, _gota.position.y-50);
     if (distance <100) {
-        
-        [_fogo mover:(_gota.position) withInterval:2 withTipe:[self verificaSentido:_gota.position with:_fogo.position]];
+        if (_gota.escondida == NO) {
+            [_fogo mover:(_gota.position) withInterval:2 withType:[self verificaSentido:_gota.position with:_fogo.position]and:100];
+        }
     }
     else _fogo.physicsBody.velocity = CGVectorMake(0, 0);
 

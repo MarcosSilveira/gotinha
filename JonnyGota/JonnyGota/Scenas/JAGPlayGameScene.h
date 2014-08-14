@@ -36,6 +36,8 @@
 
 @property (strong, nonatomic) SKCropNode *cropNode;
 
+-(void)divideGota;
+
 - (id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world;
 
 -(void)loadingWorld;

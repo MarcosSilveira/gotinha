@@ -12,9 +12,7 @@
 
 @interface JAGFogoEnemy : JAGInimigos
 
--(void)mover:(CGPoint)ponto
-withInterval:(NSTimeInterval) time
-    withTipe:(int) tipo;
+
 
 -(id)initWithPosition:(CGPoint) position;
 
