@@ -41,33 +41,6 @@
     return self;
 }
 
--(id)init{
-    
-    self = [super init];
-    
-    /*
-    self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
-    
-    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
-    //  self.zPosition = 1;
-    self.physicsBody.categoryBitMask = GOTA;
-    self.physicsBody.collisionBitMask = ATTACK | ENEMY;
-    self.physicsBody.contactTestBitMask = ATTACK | ENEMY;
-    //    desn.position=position;
-    
-    //[self addChild:desn];
-    
-    self.physicsBody.allowsRotation=NO;
-    
-    self.sprite.physicsBody.allowsRotation=NO;
-    
-    [self addChild:self.sprite];
-    
-    //self.position=position;
-     */
-    
-    return self;
-}
 
 -(void)esconder{
     SKAction *pocaAction;

@@ -24,13 +24,13 @@
     float timeTouch;
     float diferenca;
     CGPoint toqueInicio;
-    SKCropNode *cropNode;
     SKShapeNode *circleMask;
     CGPoint toqueFinal;
     bool tocou_gota;
     CGMutablePathRef pathToDraw;
     SKShapeNode *lineNode;
     UIGestureRecognizer *separacao;
+
 }
 
 #pragma mark - Move to View
@@ -44,8 +44,8 @@
     self.scaleMode = SKSceneScaleModeAspectFit;
     self.physicsWorld.gravity = CGVectorMake(0.0f, 0.0f);
     [self touchesEnded:nil withEvent:nil];
-    separacao = [[UIGestureRecognizer alloc]initWithTarget:self action:@selector(divideGota)];
-    //[self.view addGestureRecognizer:separacao];
+    separacao = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(divideGota)];
+    [self.view addGestureRecognizer:separacao];
     
 
 }
@@ -72,15 +72,15 @@
         diferenca = 80.0f;
         tocou_gota = false;
 
-        cropNode = [[SKCropNode alloc] init];
+        _cropNode = [[SKCropNode alloc] init];
 
         
         
-        [cropNode addChild:[self createCharacter]];
+        [_cropNode addChild:[self createCharacter]];
         [self createMask:100 withPoint:(_gota.position)];
-        [cropNode addChild:_fogo];
+        [_cropNode addChild:_fogo];
 
-        [self addChild: cropNode];
+        [self addChild: _cropNode];
         
         [self createLevel];
         
@@ -117,7 +117,7 @@
     
     [area addChild:circleMask];
     area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
-    [cropNode setMaskNode:area];
+    [_cropNode setMaskNode:area];
     
 }
 #pragma mark - Mundo/Fases
@@ -177,11 +177,17 @@
 
 
 #pragma mark - Touch treatment
+
+-(void)divideGota{
+    if (tocou_gota && ! _gota.escondida)
+        [_gota dividir];
+}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
+
     for (UITouch *touch in touches) {
         toqueInicio = [touch locationInNode:self];
-        timeTouch = touch.timestamp;
         
         if ([_gota verificaToque:[touch locationInNode:self]]) {
             tocou_gota = true;
@@ -194,31 +200,12 @@
     
     }
 }
--(void)divideGota{
-    [_gota dividir];
-}
+
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+
     for (UITouch *touch in touches) {
         toqueFinal = [touch locationInNode:self];
-        //toqueFinal = [self CGPointNormalize:toqueFinal];
-       
-        //Se tocou na gota antes
-        if (tocou_gota) {
-            
-            switch ([self verificaSentido:toqueFinal with:_gota.position]) {
-                case 3:
-                    [_gota dividir];
-                    break;
-                    
-                case 4:
-                    [_gota dividir];
-                    break;
-                    
-                default:
-                    break;
-            }
-            
-        }else{
+
             
             switch ([self verificaSentido:toqueFinal with:_gota.position]) {
                 case 1:
@@ -240,7 +227,7 @@
                     
                     break;
             }
-        }
+        
         
         //Logica da movimentacao
         //PathFinder
@@ -269,6 +256,7 @@
         if (_gota.escondida == NO) {
             [_fogo mover:(_gota.position) withInterval:2 withType:[self verificaSentido:_gota.position with:_fogo.position]and:100];
         }
+        else _fogo.physicsBody.velocity = CGVectorMake(0, 0);
     }
     else _fogo.physicsBody.velocity = CGVectorMake(0, 0);
 
