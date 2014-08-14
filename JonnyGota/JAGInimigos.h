@@ -11,7 +11,6 @@
 @interface JAGInimigos : JAGCharacter
 
 @property (nonatomic) int visao;
-
 @property (nonatomic) int tipo;
 
 -(void)ataque;

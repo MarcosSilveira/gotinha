@@ -24,22 +24,13 @@
 }
 
 @property (nonatomic) int vidasTotais;
-
 @property (nonatomic) JAGGota* gota;
-
 @property (nonatomic) JAGHud* hud;
-
 @property (nonatomic) JAGFogoEnemy *fogo;
-@property (strong, nonatomic) SKSpriteNode *picToMask;
-
-@property (strong, nonatomic) SKSpriteNode *mask;
-
-@property (strong, nonatomic) SKCropNode *cropNode;
 
 -(void)divideGota;
 
 - (id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world;
-
 -(void)loadingWorld;
 
 @end

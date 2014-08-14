@@ -333,7 +333,84 @@
     
     
 }
+#pragma mark - Tratamento de vetores
 
+/**
+ * Calculate the dot-product of two 2D vectors a dot b
+ */
+-(double) CGPointDot:(CGPoint) a and: (CGPoint) b {
+	return a.x*b.x + a.y*b.y;
+}
+/**
+ * Calculate the magnitude of a 2D vector
+ */
+-(double) CGPointMagnitude:(CGPoint) pt {
+	return sqrt([self CGPointDot:pt and:pt]);
+}
+
+/**
+ * Calculate the vector-scalar product A*b
+ */
+-(CGPoint) CGPointScale:(CGPoint) A and:(double) b {
+	return CGPointMake(A.x*b, A.y*b);
+}
+/**
+ * Normalize a 2D vector
+ */
+-(CGPoint) CGPointNormalize:(CGPoint)pt {
+	return [self CGPointScale:pt and:1.0/[self CGPointMagnitude:pt]];
+}
+
+
+-(void)loadingWorld{
+    //Ler um arquivo
+    
+    
+    
+    //Tamanho do Mapa b x h
+    
+    //Parades obstaculos
+    
+    //Inimigos
+    
+    //Posicao inicial da Gota.
+    
+    //
+    
+    
+}
+
+-(void)createLevel{
+    JAGLevel *level1=[[JAGLevel alloc] initWithHeight:20 withWidth:20];
+    
+    level1.gota=[[JAGGota alloc] initWithPosition:CGPointMake(level1.tileSize*2, level1.tileSize*2)];
+    
+    
+    SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(level1.tileSize, level1.tileSize)];
+    
+    wallSpri.name=@"brownColor";
+    
+    JAGWall *parede=[[JAGWall alloc] initWithSprite:wallSpri];
+    
+    parede.position=CGPointMake(level1.tileSize*1, level1.tileSize*1);
+    
+    [level1.paredes setValue:parede forKey:@"parede1"];
+    
+    
+    JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(level1.tileSize*4, level1.tileSize*4)];
+    
+    inimigo.sprite.name=@"grenColor";
+    
+    inimigo.tipo=1;
+    
+    [level1.inimigos setValue:inimigo forKey:@"inimigo1"];
+    
+    level1.mundo=@1;
+    
+    level1.level=@1;
+    
+    [level1 exportar];
+}
 
 
 @end
