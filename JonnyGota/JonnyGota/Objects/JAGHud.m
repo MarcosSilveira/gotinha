@@ -10,4 +10,7 @@
 
 @implementation JAGHud
 
+-(void)update{
+    
+}
 @end

@@ -13,9 +13,7 @@
 @interface JAGHud : NSObject
 
 @property (nonatomic) int tempoRestante;
-
 @property (nonatomic) int vidaRestante;
-
 
 //Sprites da tela
 @property (nonatomic) SKSpriteNode* sprite;

@@ -27,56 +27,43 @@
     self.physicsBody.friction = 0;
     
     
+    self = [super init];
     
-    
-//    desn.position=position;
-    
-    //[self addChild:desn];
-    
-    self.name=@"gota";
-    
-    self.sprite.name=@"gota";
+    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
     
     [self addChild:self.sprite];
     
-    self.position=position;
-
-    return self;
-}
-
--(id)init{
-    self=[super init];
-    
-    /*
-    self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
-    
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
-    //  self.zPosition = 1;
+    //self.zPosition = 1;
     self.physicsBody.categoryBitMask = GOTA;
     self.physicsBody.collisionBitMask = ATTACK | ENEMY;
     self.physicsBody.contactTestBitMask = ATTACK | ENEMY;
-    //    desn.position=position;
     
-    //[self addChild:desn];
+    [self configPhysics];
     
-    self.physicsBody.allowsRotation=NO;
+    self.name = @"gota";
+    self.position = position;
     
-    self.sprite.physicsBody.allowsRotation=NO;
-    
-    [self addChild:self.sprite];
-    
-    //self.position=position;
-     */
+    _escondida = NO;
+    _dividida = NO;
     
     return self;
 }
 
--(void)esconder{
-    
-}
 
--(void)dividir{
-    
+-(void)esconder{
+    SKAction *pocaAction;
+    pocaAction = [SKAction scaleYTo:-.5 duration:1.0];
+    if (_escondida == NO) {
+        _escondida = YES;
+        [self runAction:pocaAction];
+    }
+    else if (_escondida){
+        pocaAction = [SKAction scaleYTo:+1 duration:1.0];
+        _escondida = NO;
+        [self runAction:pocaAction];
+        
+    }
 }
 
 -(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withTipe:(int)tipo{
@@ -135,24 +122,24 @@
         case 4:
             [self.physicsBody applyForce:CGVectorMake(multi,0)];
 
-            action=[SKAction moveToX:ponto.x duration:time];
-            actionChangeSprite=[SKAction colorizeWithColor:[SKColor yellowColor] colorBlendFactor:1.0 duration:0.0];
-
-            break;
-            
-        default:
-            break;
+    if (_dividida) {
+        dividAction = [SKAction fadeInWithDuration:1.0];
+        _dividida = NO;
     }
-    //Mover em 2 passos para diagonal?
-    
-    [self.sprite runAction:actionChangeSprite];
-    
-    //[self runAction:action];
-    
-    
+    else{
+        dividAction = [SKAction fadeOutWithDuration:1.0];
+        _dividida = YES;
+    }
+    [self runAction:dividAction];
 }
 
--(BOOL)tocou:(CGPoint) ponto{
+//-(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withTipe:(int)tipo{
+//    
+//
+//    
+//}
+
+-(BOOL)verificaToque:(CGPoint) ponto{
     if((ponto.x>=(self.position.x-self.sprite.size.width/2))&&(ponto.x<(self.position.x+self.sprite.size.width/2))){
         if((ponto.y>=(self.position.y-self.sprite.size.height/2))&&(ponto.y<(self.position.y+self.sprite.size.height/2))){
             

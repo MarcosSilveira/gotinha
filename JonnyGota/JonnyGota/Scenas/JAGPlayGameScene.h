@@ -29,19 +29,13 @@
 @property (nonatomic) NSNumber *currentWorld;
 
 @property (nonatomic) int vidasTotais;
-
 @property (nonatomic) JAGGota* gota;
-
 @property (nonatomic) JAGHud* hud;
 
 @property (nonatomic) JAGLevel *level;
 
 @property (nonatomic) JAGFogoEnemy *fogo;
-@property (strong, nonatomic) SKSpriteNode *picToMask;
-
-@property (strong, nonatomic) SKSpriteNode *mask;
-
-@property (strong, nonatomic) SKCropNode *cropNode;
+@property (nonatomic) SKCropNode *cropNode;
 
 
 

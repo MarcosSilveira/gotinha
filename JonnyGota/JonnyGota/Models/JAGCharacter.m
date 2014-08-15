@@ -9,6 +9,7 @@
 #import "JAGCharacter.h"
 
 @implementation JAGCharacter
+
 -(id)init{
     self = [super init];
     return self;
@@ -16,30 +17,89 @@
 -(void)configPhysics{
  //   self = [super configPhysics];
     self.physicsBody.allowsRotation = NO;
-    self.physicsBody.restitution=0;
+    self.physicsBody.restitution = 0;
  //   return self;
 
 }
--(void)Animar{
+-(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withType:(int)tipo and:(int)multi{
+    
+    // 1 = Cima 2 = Baixo 3 = Esquerda 4 = Direita
+    SKAction *action;
+    
+    SKAction *actionChangeSprite;
+    
+    // =CGVectorMake(ponto.x, ponto.y);
+    
+    //[self.physicsBody applyImpulse:CGVectorMake(0.3, 0.3) atPoint:ponto];
+    
+    // [self removeAllActions];
+    
+    self.physicsBody.velocity = CGVectorMake(0, 0);    
+    
+    switch (tipo) {
+        case 1:
+            
+            [self.physicsBody applyForce:CGVectorMake(0,multi)];
+            action = [SKAction moveToY:ponto.y duration:time];
+            //  action = [SKAction followPath:(CGPathCreateWithRect(CGRectMake(ponto.x, ponto.y, 10, 10), nil)) duration:2];
+            //self.sprite.color=[UIColor greenColor];
+            
+            actionChangeSprite = [SKAction colorizeWithColor:[SKColor whiteColor] colorBlendFactor:1.0 duration:0.0];
+            // self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor greenColor] size:CGSizeMake(50, 50)];
+            break;
+            
+        case 2:
+            
+            [self.physicsBody applyForce:CGVectorMake(0,-multi)];
+            action = [SKAction moveToY:ponto.y duration:time];
+            
+            actionChangeSprite = [SKAction colorizeWithColor:[SKColor brownColor] colorBlendFactor:1.0 duration:0.0];
+            
+            //self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
+            break;
+            
+        case 3:
+            
+            [self.physicsBody applyForce:CGVectorMake(-multi,0)];
+            
+            action = [SKAction moveToX:ponto.x duration:time];
+            
+            actionChangeSprite = [SKAction colorizeWithColor:[SKColor blueColor] colorBlendFactor:1.0 duration:0.0];
+            break;
+            
+        case 4:
+            
+            [self.physicsBody applyForce:CGVectorMake(multi,0)];
+            
+            action = [SKAction moveToX:ponto.x duration:time];
+            actionChangeSprite = [SKAction colorizeWithColor:[SKColor yellowColor] colorBlendFactor:1.0 duration:0.0];
+            
+            break;
+            
+        default:
+            break;
+    }
+    //Mover em 2 passos para diagonal?
+    
+    [self.sprite runAction:actionChangeSprite];
+    
+    //[self runAction:action];
+}
+
+-(void)animar{
 
 }
 
 -(NSMutableDictionary *)createJson{
-    NSMutableDictionary *json=[[NSMutableDictionary alloc]init];
+    NSMutableDictionary *json = [[NSMutableDictionary alloc]init];
     
-    NSNumber *temp=[[NSNumber alloc] initWithFloat:self.position.x];
-    
-    
-    
+    NSNumber *temp = [[NSNumber alloc] initWithFloat:self.position.x];
     [json setObject:temp forKey:@"positionX"];
     
-    temp=[[NSNumber alloc] initWithFloat:self.position.y];
-    
+    temp = [[NSNumber alloc] initWithFloat:self.position.y];
     
     [json setObject:temp forKey:@"positionY"];
-    
     [json setObject:_sprite.name forKey:@"sprite"];
-    
     
     return json;
 }

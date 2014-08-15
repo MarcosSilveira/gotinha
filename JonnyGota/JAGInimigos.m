@@ -13,14 +13,17 @@
     self =[super init];
     return self;
 }
-
+-(void)ataque{
+    
+}
 -(NSMutableDictionary *)createJson{
     NSMutableDictionary *json=[super createJson];
     
-    NSNumber *temp=[[NSNumber alloc] initWithFloat:self.tipo];
-
+    
+    NSNumber *temp = [[NSNumber alloc] initWithFloat:self.tipo];
     [json setValue:temp forKeyPath:@"tipo"];
     
     return json;
 }
+
 @end

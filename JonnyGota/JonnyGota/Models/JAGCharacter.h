@@ -13,17 +13,15 @@ typedef enum : uint32_t{
  ATTACK = 0x1 << 2
 
 }colisao;
-@interface JAGCharacter : SKNode
+
+@interface JAGCharacter : SKNode <UIGestureRecognizerDelegate>
+
 @property (nonatomic) NSInteger* vida;
 @property (nonatomic) SKSpriteNode* sprite;
 
 -(void)configPhysics;
-
 -(void)animar;
-
-
--(void)mover;
-
+-(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withType:(int)tipo and:(int)multi;
 -(NSMutableDictionary*)createJson;
 
 @end
