@@ -259,27 +259,27 @@
     
     int randEixo = arc4random()%3+1;
     
-   /* NSArray *pos = [NSArray arrayWithObjects:
-                    [NSValue valueWithCGPoint:CGPointMake(self.fogo.position.x + 3, 0) ],
-                    [NSValue valueWithCGPoint:CGPointMake(self.fogo.position.x - 3, 0)],
-                    [NSValue valueWithCGPoint:CGPointMake(0,self.fogo.position.y + 3)],
-                    [NSValue valueWithCGPoint:CGPointMake(0,self.fogo.position.y - 3)], nil];*/
-    
+    CGPoint posX, posY, posX2, posY2;
+    posY  = CGPointMake(self.fogo.position.x, self.fogo.position.y + 3);
+    posY2 = CGPointMake(self.fogo.position.x, self.fogo.position.y - 3);
+    posX  = CGPointMake(self.fogo.position.x + 3, self.fogo.position.y);
+    posX2 = CGPointMake(self.fogo.position.x - 3, self.fogo.position.y);
+
     switch (randEixo) {
         case 1:
-            [self.fogo mover:(self.fogo.position) withInterval:1.0 withType:1 and:100]; //cima
+            [self.fogo mover:posY withInterval:1.0 withType:1 and:200]; //cima
             break;
             
         case 2:
-            [self.fogo mover:(self.fogo.position) withInterval:1.0 withType:2 and:100]; //baixo
+            [self.fogo mover:posY2 withInterval:1.0 withType:2 and:200]; //baixo
             break;
             
         case 3:
-            [self.fogo mover:(self.fogo.position) withInterval:1.0 withType:2 and:100]; //esq
+            [self.fogo mover:posX withInterval:1.0 withType:3 and:200]; //esq
             break;
             
         case 4:
-            [self.fogo mover:(self.fogo.position) withInterval:1.0 withType:2 and:100]; //dir
+            [self.fogo mover:posX2 withInterval:1.0 withType:4 and:200]; //dir
             break;
             
         default:
