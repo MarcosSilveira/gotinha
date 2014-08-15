@@ -21,6 +21,7 @@
     BOOL toque_moveu;
     CGMutablePathRef pathToDraw;
     SKShapeNode *lineNode;
+    SKNode *area;
 
 }
 
@@ -85,7 +86,7 @@
 -(void)createMask:(int) radius
         withPoint:(CGPoint) ponto {
     
-    SKNode *area = [[SKNode alloc] init];
+    area = [[SKNode alloc] init];
     circleMask = [[SKShapeNode alloc ]init];
     
     CGMutablePathRef circle = CGPathCreateMutable();
@@ -299,7 +300,9 @@
 -(void)update:(NSTimeInterval)currentTime {
     //depois de um tempo ou acao
     
-    circleMask.position = CGPointMake(_gota.position.x-height*0.2, _gota.position.y-width*0.29);
+    //circleMask.position = CGPointMake(_gota.position.x-height*0.2, _gota.position.y-width*0.29);
+    
+    area.position = CGPointMake(_gota.position.x,_gota.position.y);
     
     if ((self.fogo.physicsBody.velocity.dx <= 0) && (self.fogo.physicsBody.velocity.dy <= 0)) {
        // [self moveInimigo];
