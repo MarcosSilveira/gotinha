@@ -10,79 +10,59 @@
 #import "JAGLevel.h"
 
 
-//extern CGPoint CGPointScale(CGPoint A, double b);
-//extern CGPoint CGPointNormalize(CGPoint pt);
-//extern double CGPointDot(CGPoint a, CGPoint b);
-//extern double CGPointMagnitude(CGPoint pt);
-
 @implementation JAGPlayGameScene {
     
     int width;
     int height;
-    float timeTouch;
-    float diferenca;
     CGPoint toqueInicio;
-    SKCropNode *cropNode;
     SKShapeNode *circleMask;
     CGPoint toqueFinal;
-    bool tocou_gota;
+    BOOL tocou_gota;
+    BOOL toque_moveu;
     CGMutablePathRef pathToDraw;
     SKShapeNode *lineNode;
-    UIGestureRecognizer *separacao;
+
 }
 
 #pragma mark - Move to View
 -(void)didMoveToView:(SKView *)view{
-    diferenca = 80;
-    width = self.scene.size.width;
-    height = self.scene.size.height;
     
-    //  [myWorld addChild:[self createCharacter]];
     self.physicsWorld.contactDelegate = (id)self;
     self.scaleMode = SKSceneScaleModeAspectFit;
     self.physicsWorld.gravity = CGVectorMake(0.0f, 0.0f);
     [self touchesEnded:nil withEvent:nil];
-    separacao = [[UIGestureRecognizer alloc]initWithTarget:self action:@selector(divideGota)];
-    //[self.view addGestureRecognizer:separacao];
+    
 }
 
 -(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world {
     
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
+        width = self.scene.size.width;
+        height = self.scene.size.height;
         
+      
+        SKSpriteNode *obstaculoTESTE = [[SKSpriteNode alloc]initWithColor:([UIColor redColor]) size:(CGSizeMake(self.scene.size.width/2, 5)) ];
+        obstaculoTESTE.position = CGPointMake(self.scene.size.width*.1, 120);
+        obstaculoTESTE.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:obstaculoTESTE.size];
+        obstaculoTESTE.physicsBody.dynamic = NO;
+        obstaculoTESTE.physicsBody.categoryBitMask = ENEMY;
+        obstaculoTESTE.physicsBody.collisionBitMask = GOTA;
+        obstaculoTESTE.physicsBody.contactTestBitMask = GOTA;
+        obstaculoTESTE.zPosition=10;
+        obstaculoTESTE.physicsBody.restitution=0;
+        obstaculoTESTE.name = @"wall";
         
-        _fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(200, 100)];
-        SKSpriteNode *obstaculo = [[SKSpriteNode alloc]initWithColor:([UIColor redColor]) size:(CGSizeMake(self.scene.size.width, 10)) ];
-        obstaculo.position = CGPointMake(self.scene.size.width/2, 120);
-        obstaculo.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:obstaculo.size];
-        obstaculo.physicsBody.dynamic = NO;
-        obstaculo.physicsBody.categoryBitMask = ENEMY;
-        obstaculo.physicsBody.collisionBitMask = GOTA;
-        obstaculo.physicsBody.contactTestBitMask = GOTA;
-        
-        obstaculo.zPosition=10;
-        
-        obstaculo.physicsBody.restitution=0;
-        obstaculo.name = @"wall";
-        
-        diferenca = 80.0f;
         tocou_gota = false;
-        
-        cropNode = [[SKCropNode alloc] init];
-        
-        [cropNode addChild:[self createCharacter]];
+
+        _cropNode = [[SKCropNode alloc] init];
+
+        [_cropNode addChild:[self createCharacter]];
         [self createMask:100 withPoint:(_gota.position)];
-        
-        //SKSpriteNode *cimas = [[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(1000,1000)];
-        
-        //cimas.zPosition=90;
-        
-        
-        //[cropNode addChild:cimas];
-        [cropNode addChild:_fogo];
-        
-        [self addChild: cropNode];
+        //[_cropNode addChild:[self createFireEnemy]];
+
+        [self addChild: _cropNode];
+        [_cropNode addChild:obstaculoTESTE];
         [self createLevel];
     }
     return self;
@@ -91,10 +71,16 @@
 #pragma mark - Métodos de inicialização
 -(JAGGota *)createCharacter{
     
-    _gota = [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
+    _gota = [[JAGGota alloc] initWithPosition:CGPointMake(width*0.3, height*0.3)];
     _gota.name = @"gota";
     
     return _gota;
+}
+
+-(JAGFogoEnemy *)createFireEnemy{
+      _fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(width*0.9, height*0.3)];
+    
+    return _fogo;
 }
 
 #pragma mark - Máscara
@@ -114,8 +100,9 @@
     circleMask.fillColor = [SKColor clearColor];
     
     [area addChild:circleMask];
-    area.position = CGPointMake(ponto.x, ponto.y - _gota.sprite.size.height);
-    [cropNode setMaskNode:area];
+    area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
+    [_cropNode setMaskNode:area];
+    
 }
 
 #pragma mark - Mundo/Fases
@@ -160,87 +147,10 @@
     //[level1 exportar];
 }
 
-#pragma mark - Touch treatment
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    /* Called when a touch begins */
-    for (UITouch *touch in touches) {
-        toqueInicio = [touch locationInNode:self];
-        timeTouch = touch.timestamp;
-        
-        if ([_gota verificaToque:[touch locationInNode:self]]) {
-            tocou_gota = true;
-            toqueInicio = [touch locationInNode:self];
-            [_gota esconder];
-            
-        } else {
-            tocou_gota = false;
-        }
-    }
-}
+#pragma mark - Ações
 -(void)divideGota{
-    [_gota dividir];
-}
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    for (UITouch *touch in touches) {
-        
-        toqueFinal = [touch locationInNode:self];
-        //toqueFinal = [self CGPointNormalize:toqueFinal];
-        
-        //Se tocou na gota antes
-        if (tocou_gota) {
-            
-            switch ([self verificaSentido:toqueFinal with:_gota.position]) {
-                case 3:
-                    [_gota dividir];
-                    break;
-                    
-                case 4:
-                    [_gota dividir];
-                    break;
-                    
-                default:
-                    break;
-            }
-            
-        } else {
-            
-            switch ([self verificaSentido:toqueFinal with:_gota.position]) {
-                case 1:
-                    //toqueFinal = [self CGPointNormalize:toqueFinal];
-                    [_gota mover:toqueFinal withInterval:1.0 withType:1 and:300];
-                    
-                    break;
-                case 2:
-                    //toqueFinal = [self CGPointNormalize:toqueFinal];
-                    [_gota mover:toqueFinal withInterval:1.0 withType:2 and:300];
-                    break;
-                case 3:
-                    //toqueFinal = [self CGPointNormalize:toqueFinal];
-                    [_gota mover:toqueFinal withInterval:1.0 withType:3 and:300];
-                    break;
-                case 4:
-                    //toqueFinal = [self CGPointNormalize:toqueFinal];
-                    [_gota mover:toqueFinal withInterval:1.0 withType:4 and:300];
-                    break;
-            }
-        }
-        
-        //Logica da movimentacao
-        //PathFinder
-        //
-        
-        
-        //logica da divisao
-        //Condicaos de diferenca dos pontos
-        
-        
-        
-        //Logica do invisivel
-        //Tempo de pressao
-        
-        
-    }
+    if (tocou_gota && ! _gota.escondida)
+        [_gota dividir];
 }
 
 -(void) followPlayer {
@@ -251,6 +161,7 @@
         if (_gota.escondida == NO) {
             [_fogo mover:(_gota.position) withInterval:2 withType:[self verificaSentido:_gota.position with:_fogo.position]and:100];
         }
+        else _fogo.physicsBody.velocity = CGVectorMake(0, 0);
     }
     else _fogo.physicsBody.velocity = CGVectorMake(0, 0);
 }
@@ -295,43 +206,6 @@
         _gota.physicsBody.velocity = CGVectorMake(0, 0);
 }
 
--(void)update:(NSTimeInterval)currentTime {
-    //depois de um tempo ou acao
-    
-    circleMask.position = CGPointMake(_gota.position.x - 100, _gota.position.y - 50);
-    
-    if ((self.fogo.physicsBody.velocity.dx <= 0) && (self.fogo.physicsBody.velocity.dy <= 0)) {
-        [self moveInimigo];
-    }
-    
-    [self followPlayer];
-    [self pararMove];
-    [self.hud update];
-}
-
-#pragma mark - Physics
-
-- (void)didSimulatePhysics{
-    //   [self centerOnNode: [self childNodeWithName: @"//"]];
-}
-
--(void)didBeginContact:(SKPhysicsContact *)contact{
-    if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ENEMY)){
-        //NSLog(@"hit");
-    }
-    
-    if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == ENEMY)){
-        //NSLog(@"hit");
-    }
-    //Colisao com a parede
-    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
-       ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ){
-        
-        //        _gota.physicsBody.velocity=CGVectorMake(0, 0);
-    }
-    //   return detected;
-}
-
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto {
     //  toqueFinal = pontoReferencia;
     int tipo;
@@ -368,32 +242,139 @@
     }
     return tipo;
 }
-#pragma mark - Tratamento de vetores
 
-/**
- * Calculate the dot-product of two 2D vectors a dot b
- */
--(double) CGPointDot:(CGPoint) a and: (CGPoint) b {
-	return a.x*b.x + a.y*b.y;
-}
-/**
- * Calculate the magnitude of a 2D vector
- */
--(double) CGPointMagnitude:(CGPoint) pt {
-	return sqrt([self CGPointDot:pt and:pt]);
+#pragma mark - Touch treatment
+
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    /* Called when a touch begins */
+    for (UITouch *touch in touches) {
+        toqueInicio = [touch locationInNode:self];
+        tocou_gota = [_gota verificaToque:[touch locationInNode:self]];
+        
+        switch ([self verificaSentido:toqueInicio with:_gota.position]) {
+            case 1:
+                if (!_gota.escondida && !tocou_gota)
+                    
+                    [_gota mover:toqueInicio withInterval:1.0 withType:1 and:300];
+                
+                break;
+            case 2:
+                if (!_gota.escondida && !tocou_gota)
+                    
+                    [_gota mover:toqueInicio withInterval:1.0 withType:2 and:300];
+                
+                break;
+            case 3:
+                if (!_gota.escondida && !tocou_gota)
+                    
+                    [_gota mover:toqueInicio withInterval:1.0 withType:3 and:300];
+                
+                break;
+            case 4:
+                if (!_gota.escondida && !tocou_gota)
+                    
+                    
+                    [_gota mover:toqueInicio withInterval:1.0 withType:4 and:300];
+                
+                break;
+    }
+        
+        
+        
+    }
 }
 
-/**
- * Calculate the vector-scalar product A*b
- */
--(CGPoint) CGPointScale:(CGPoint) A and:(double) b {
-	return CGPointMake(A.x*b, A.y*b);
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView:self.view];
+    CGPoint prevLocation = [touch previousLocationInView:self.view];
+    
+    if (location.x - prevLocation.x > 0) {
+        //finger touch went right
+        toque_moveu = YES;
+    } else {
+        //finger touch went left
+        toque_moveu = YES;
+    }
+    if (location.y - prevLocation.y > 0) {
+        //finger touch went upwards
+    } else {
+        //finger touch went downwards
+    }
+    
 }
-/**
- * Normalize a 2D vector
- */
--(CGPoint) CGPointNormalize:(CGPoint)pt {
-	return [self CGPointScale:pt and:1.0/[self CGPointMagnitude:pt]];
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (toque_moveu && tocou_gota) {
+        [_gota dividir];
+        toque_moveu = NO;
+    }
+    for (UITouch *touch in touches) {
+        
+        toqueFinal = [touch locationInNode:self];
+        if ([_gota verificaToque:[touch locationInNode:self]])
+            [_gota esconder];
+
+            
+        
+        
+        
+        //Logica da movimentacao
+        //PathFinder
+        //
+        
+        
+        //logica da divisao
+        //Condicaos de diferenca dos pontos
+        
+        
+        
+        //Logica do invisivel
+        //Tempo de pressao
+        
+        
+        }
+    
 }
+
+-(void)update:(NSTimeInterval)currentTime {
+    //depois de um tempo ou acao
+    
+    circleMask.position = CGPointMake(_gota.position.x-height*0.2, _gota.position.y-width*0.29);
+    
+    if ((self.fogo.physicsBody.velocity.dx <= 0) && (self.fogo.physicsBody.velocity.dy <= 0)) {
+       // [self moveInimigo];
+    }
+    
+    [self followPlayer];
+    [self pararMove];
+    [self.hud update];
+}
+
+#pragma mark - Physics
+
+- (void)didSimulatePhysics{
+    
+}
+
+-(void)didBeginContact:(SKPhysicsContact *)contact{
+    if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ENEMY)){
+        //NSLog(@"hit");
+    }
+    
+    if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == ENEMY)){
+        //NSLog(@"hit");
+    }
+    //Colisao com a parede
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ){
+        
+    
+    }
+
+}
+
+
+
 
 @end
