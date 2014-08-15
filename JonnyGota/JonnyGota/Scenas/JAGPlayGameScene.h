@@ -37,8 +37,8 @@
 @property (nonatomic) JAGFogoEnemy *fogo;
 @property (nonatomic) SKCropNode *cropNode;
 
-
-
+-(void)divideGota;
+-(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto;
 - (id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world;
 
 
@@ -47,4 +47,5 @@
 
 -(void)createMask:(int) radius
         withPoint:(CGPoint) ponto;
+-(void)followPlayer;
 @end

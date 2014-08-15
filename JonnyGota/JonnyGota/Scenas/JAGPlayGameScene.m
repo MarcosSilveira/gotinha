@@ -17,8 +17,11 @@
     CGPoint toqueInicio;
     SKShapeNode *circleMask;
     CGPoint toqueFinal;
-    bool tocou;
-    JAGLevel *level1;
+    BOOL tocou_gota;
+    BOOL toque_moveu;
+    CGMutablePathRef pathToDraw;
+    SKShapeNode *lineNode;
+
 }
 
 #pragma mark - Move to View
@@ -101,30 +104,7 @@
 }
 
 #pragma mark - Mundo/Fases
--(void)loadingWorld{
-    //Ler um arquivo
-    
-    //Tamanho do Mapa b x h
-    
-    
-    JAGLevel *level1 = [[JAGLevel alloc] initWithHeight:20 withWidth:20];
-    level1.gota = [[JAGGota alloc] initWithPosition:CGPointMake(level1.tileSize*2, level1.tileSize*2)];
-    
-    
-    SKSpriteNode *wallSpri = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(level1.tileSize, level1.tileSize)];
-    wallSpri.name = @"brownColor";
-    
-    
-    [level1.paredes setValue:parede forKey:@"parede1"];
-    
-    JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(level1.tileSize*4, level1.tileSize*4)];
-    
-    inimigo.sprite.name = @"grenColor";
-    inimigo.tipo = 1;
-    
-    [_cropNode setMaskNode:area];
-    
-}
+
 
 #pragma mark - Ações
 -(void)divideGota{
@@ -145,7 +125,7 @@
     else _fogo.physicsBody.velocity = CGVectorMake(0, 0);
 }
 
-    _gota.sprite.name=@"gota";
+-(void) moveInimigo {
     
     int randEixo = arc4random()%3+1;
     
@@ -354,31 +334,7 @@
 }
 
 
-/**
- * Calculate the dot-product of two 2D vectors a dot b
- */
--(double) CGPointDot:(CGPoint) a and: (CGPoint) b {
-	return a.x*b.x + a.y*b.y;
-}
-/**
- * Calculate the magnitude of a 2D vector
- */
--(double) CGPointMagnitude:(CGPoint) pt {
-	return sqrt([self CGPointDot:pt and:pt]);
-}
 
-/**
- * Calculate the vector-scalar product A*b
- */
--(CGPoint) CGPointScale:(CGPoint) A and:(double) b {
-	return CGPointMake(A.x*b, A.y*b);
-}
-/**
- * Normalize a 2D vector
- */
--(CGPoint) CGPointNormalize:(CGPoint)pt {
-	return [self CGPointScale:pt and:1.0/[self CGPointMagnitude:pt]];
-}
 
 
 
@@ -438,7 +394,7 @@
             
             
             
-            SKSpriteNode *spri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(level1.tileSize, level1.tileSize)];
+            SKSpriteNode *spri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_level.tileSize, _level.tileSize)];
             
             
             JAGWall *wall=[[JAGWall alloc] initWithPosition:CGPointMake([[enemy objectForKey:@"positionX"] floatValue], [[enemy objectForKey:@"positionY"] floatValue]) withSprite:spri];
@@ -463,39 +419,38 @@
 }
 
 -(void)createLevel{
-    level1=[[JAGLevel alloc] initWithHeight:20 withWidth:20];
+    _level=[[JAGLevel alloc] initWithHeight:20 withWidth:20];
     
-    level1.gota=[[JAGGota alloc] initWithPosition:CGPointMake(level1.tileSize*2, level1.tileSize*2)];
+    _level.gota=[[JAGGota alloc] initWithPosition:CGPointMake(_level.tileSize*2, _level.tileSize*2)];
     
     
-    SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(level1.tileSize, level1.tileSize)];
+    SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_level.tileSize, _level.tileSize)];
     
     wallSpri.name=@"brownColor";
     
     JAGWall *parede=[[JAGWall alloc] initWithSprite:wallSpri];
     
-    parede.position=CGPointMake(level1.tileSize*5, level1.tileSize*5);
+    parede.position=CGPointMake(_level.tileSize*5, _level.tileSize*5);
     
-    [level1.paredes setValue:parede forKey:@"parede1"];
+    [_level.paredes setValue:parede forKey:@"parede1"];
     
     
-    JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(level1.tileSize*4, level1.tileSize*4)];
+    JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(_level.tileSize*4, _level.tileSize*4)];
     
     inimigo.sprite.name=@"grenColor";
     
     inimigo.tipo=1;
     
-    [level1.inimigos setValue:inimigo forKey:@"inimigo1"];
+    [_level.inimigos setValue:inimigo forKey:@"inimigo1"];
     
-    level1.mundo=@1;
+    _level.mundo=@1;
     
-    level1.level=@1;
+    _level.level=@1;
     
     //NSLog(@" Export: %@", [level1 exportar]);
     
     
-
+    
 }
-
 
 @end
