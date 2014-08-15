@@ -31,11 +31,28 @@
 
 @property (nonatomic) NSNumber *level;
 
+@property (nonatomic) SKSpriteNode *background;
 
 
 -(instancetype)initWithHeight:(int) height
                     withWidth:(int) width;
 
--(void)exportar;
+-(NSString *)exportar;
+
+
++ (void)initializeLevel:(NSNumber *)level ofWorld:(NSNumber *)world onScene:(SKScene *)scene;
+
++ (NSNumber *)numberOfLevels;
++ (NSString *)nameOfLevel:(NSNumber *)level;
++ (NSString *)nameOfWorld:(NSNumber *)world;
++ (NSNumber *)numberOfWorlds;
++ (NSString *)descriptionOfLevel:(NSNumber *)level;
++ (void)playLevel:(NSNumber *)level ofWorld:(NSNumber *)world withTransition:(SKTransition *)transition onScene:(SKScene *)lastScene;
+
+
+-(void)createWalls:(CGPoint) ponto
+       withHeight:(int) altura
+        withWidth:(int) largura
+         withScene:(SKScene *)scene;
 
 @end

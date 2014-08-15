@@ -20,8 +20,11 @@
     self.physicsBody.categoryBitMask = GOTA;
     self.physicsBody.collisionBitMask = ATTACK | ENEMY;
     self.physicsBody.contactTestBitMask = ATTACK | ENEMY;
+    self.physicsBody.usesPreciseCollisionDetection = YES;
     
     [self configPhysics];
+    
+    self.physicsBody.friction = 0;
     
     
     
@@ -92,7 +95,7 @@
     
     self.physicsBody.velocity=CGVectorMake(0, 0);
     
-    int multi=300;
+    int multi=1000;
     
     
     switch (tipo) {

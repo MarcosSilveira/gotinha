@@ -7,9 +7,11 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "JAGLevel.h"
 #import "JAGGota.h"
 #import "JAGHud.h"
 #import "JAGFogoEnemy.h"
+
 
 @interface JAGPlayGameScene : SKScene<SKPhysicsContactDelegate>
 {
@@ -23,11 +25,16 @@
     SKNode *camera;
 }
 
+@property (nonatomic) NSNumber *currentLevel;
+@property (nonatomic) NSNumber *currentWorld;
+
 @property (nonatomic) int vidasTotais;
 
 @property (nonatomic) JAGGota* gota;
 
 @property (nonatomic) JAGHud* hud;
+
+@property (nonatomic) JAGLevel *level;
 
 @property (nonatomic) JAGFogoEnemy *fogo;
 @property (strong, nonatomic) SKSpriteNode *picToMask;
@@ -36,8 +43,14 @@
 
 @property (strong, nonatomic) SKCropNode *cropNode;
 
+
+
 - (id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world;
+
+
 
 -(void)loadingWorld;
 
+-(void)createMask:(int) radius
+        withPoint:(CGPoint) ponto;
 @end

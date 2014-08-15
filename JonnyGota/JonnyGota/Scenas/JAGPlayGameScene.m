@@ -22,11 +22,10 @@
     float timeTouch;
     float diferenca;
     CGPoint toqueInicio;
-    SKCropNode *cropNode;
     SKShapeNode *circleMask;
     CGPoint toqueFinal;
     bool tocou;
-    
+    JAGLevel *level1;
 }
 
 #pragma mark - Move to View
@@ -58,102 +57,32 @@
 
 
 
+
+
 -(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world{
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
-       // self.physicsWorld.contactDelegate = self;
-         //self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
-        _gota= [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
-        _fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(200, 100)];
-        SKSpriteNode *obstaculo = [[SKSpriteNode alloc]initWithColor:([UIColor redColor]) size:(CGSizeMake(self.scene.size.width, 10)) ];
-        obstaculo.position = CGPointMake(self.scene.size.width/2, 120);
-        obstaculo.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:obstaculo.size];
-        obstaculo.physicsBody.dynamic = NO;
-        obstaculo.physicsBody.categoryBitMask = ENEMY;
-        obstaculo.physicsBody.collisionBitMask = GOTA;
-        obstaculo.physicsBody.contactTestBitMask = GOTA;
+        self.physicsWorld.contactDelegate = self;
+        //self.initSize = size;
         
-        obstaculo.zPosition=10;
+        if (level != nil && world != nil) {
+            self.currentLevel = level;
+            self.currentWorld = world;
+        }
+        else {
+            NSLog(@"Level and World not set");
+            self.currentLevel = @(1);
+            self.currentWorld = @(1);
+            
+        }
+        [JAGLevel initializeLevel:self.currentLevel ofWorld:self.currentWorld onScene:self];
         
-        obstaculo.physicsBody.restitution=0;
-        obstaculo.name=@"wall";
-      //  [self addChild:obstaculo];
+               
         
-        //[self addChild:_gota];
-        //[self addChild:_fogo];
-        
-        //[self addChild:_gota];
-        
-        diferenca = 80.0f;
-        tocou = false;
+        //_parar=NO;
         //_boing = [SKAction playSoundFileNamed:@"boing.mp3" waitForCompletion:NO];
-        
-       // _mask = [[SKSpriteNode init] initWithColor:[SKColor purpleColor]];
-        
-        
-        //SKSpriteNode *pictureToMask = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        /*
-        SKSpriteNode *pictureToMask = [[SKSpriteNode alloc] initWithColor:[SKColor greenColor] size:CGSizeMake(100, 100)];
-
-        SKSpriteNode *mask = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size: CGSizeMake(100, 100)]; //100 by 100 is the size of the mask
-        SKCropNode *cropNode = [SKCropNode node];
-        cropNode.position = CGPointMake( 100,100);
-        
-        SKShapeNode* pathShape = [[SKShapeNode alloc] init];
-        pathShape.lineWidth = 1;
-        pathShape.fillColor = [SKColor clearColor];
-        pathShape.strokeColor = [SKColor greenColor];
-        pathShape.position=CGPointMake( 100,100);
-        
-        //[cropNode addChild:pathShape];
-        //[cropNode addChild: pictureToMask];
-        [cropNode setMaskNode: mask];
-        
-        */
-        
-        cropNode = [[SKCropNode alloc] init];
-        
-        
-        
-        //cropNode.zPosition=95;
-        
-       // cropNode.position=CGPointMake(100,100);
-      
-        
-        [self createMask:100 withPoint:(_gota.position)];
-        
-        
-        SKSpriteNode *cimas=[[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(1000,1000)];
-        
-        //cimas.zPosition=90;
-        
-        
-        //[cropNode addChild:cimas];
-        
-        [cropNode addChild:_gota];
-        
-        [cropNode addChild:_fogo];
-        
-     //   [cropNode addChild:obstaculo];
-        
-       
-        
-        
-        //[cropNode addChild:circleMask];
-        //[cropNode setMaskNode:circleMask];
-      
-        
-        //[self addChild:cimas];
-
-        
-        [self addChild: cropNode];
-        
-        [self createLevel];
-        
-       // [self addChild:pathShape];
-
     }
+
     return self;
     
 }
@@ -174,16 +103,6 @@
     circleMask.name=@"circleMask";
 
     
-    /*
-    SKShapeNode *circleBorder = [[SKShapeNode alloc ]init];
-    CGMutablePathRef circleBor = CGPathCreateMutable();
-    CGPathAddArc(circleBor, NULL, 0, 0, radius, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
-    circleBorder.path = circleBor;
-    circleBorder.lineWidth = 1; // replace 100 with DOUBLE the desired radius of the circle
-    circleBorder.strokeColor = [SKColor redColor];
-    circleBorder.name=@"circleMask";
-
-    */
     
     circleMask.userInteractionEnabled = NO;
     //circleMask.zPosition=92;
@@ -192,15 +111,11 @@
     
     [area addChild:circleMask];
     
-    //area.position=CGPointMake(ponto.x+_gota.sprite.size.width,ponto.y-_gota.sprite.size.height);
     
     area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
     
-    [cropNode setMaskNode:area];
+    [_cropNode setMaskNode:area];
     
-    //[cropNode addChild:area];
-    
-    //[cropNode addChild:circleBorder];
 }
 
 
@@ -209,6 +124,7 @@
     _gota.position = CGPointMake(0, -height/2.15+(platform.size.height));
     _gota.name = @"gota";
 
+    _gota.sprite.name=@"gota";
     
     return _gota;
 }
@@ -392,12 +308,75 @@
 }
 
 
+
+
+
+
+
+
+
 -(void)loadingWorld{
     //Ler um arquivo
     
     
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"level.txt"];
+    NSString *str = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
+
+    
+    NSError *error;
+   // NSDictionary *resultados =[NSJSONSerialization JSONObjectWithData:[level1.exportar dataUsingEncoding:NSUTF8StringEncoding];
+//                                                               options:NSJSONReadingMutableContainers error:&error];
+    
+    
+    NSDictionary *resul=[NSJSONSerialization JSONObjectWithData:[str dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
+    
+    
+    if(!error){
+        //Ponto *ponto = [Ponto comDicionario: resultados];
+        //NSLog(@"Ponto: %@", ponto.descricao);
+        
+        NSDictionary *temp=[resul objectForKey:@"gota"];
+        
+        _gota=[[JAGGota alloc] initWithPosition:CGPointMake([[temp objectForKey:@"positionX"] floatValue], [[temp objectForKey:@"positionY"] floatValue])];
+        
+        [_cropNode addChild:_gota];
+        
+        NSNumber *tempoNum=[resul objectForKey:@"inimigos"];
+        //Inimigos
+        for (int i=0; i<[tempoNum intValue]; i++) {
+            NSDictionary *enemy=[resul objectForKey:[NSString stringWithFormat:@"inimigo%d",i+1]];
+            NSNumber *tipo=[enemy objectForKey:@"tipo"];
+                     
+              
+            if([tipo intValue]==1){
+                JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake([[enemy objectForKey:@"positionX"] floatValue], [[enemy objectForKey:@"positionY"] floatValue])];
+                
+                [_cropNode addChild:inimigo];
+            }
+        }
+        
+        //Paredes
+        tempoNum=[resul objectForKey:@"paredes"];
+        //Inimigos
+        for (int i=0; i<[tempoNum intValue]; i++) {
+            NSDictionary *enemy=[resul objectForKey:[NSString stringWithFormat:@"parede%d",i+1]];
+            
+            
+            
+            SKSpriteNode *spri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(level1.tileSize, level1.tileSize)];
+            
+            
+            JAGWall *wall=[[JAGWall alloc] initWithPosition:CGPointMake([[enemy objectForKey:@"positionX"] floatValue], [[enemy objectForKey:@"positionY"] floatValue]) withSprite:spri];
+            
+            [_cropNode addChild:wall];
+        }
+    }
     
     //Tamanho do Mapa b x h
+    
+    
     
     //Parades obstaculos
     
@@ -411,7 +390,7 @@
 }
 
 -(void)createLevel{
-    JAGLevel *level1=[[JAGLevel alloc] initWithHeight:20 withWidth:20];
+    level1=[[JAGLevel alloc] initWithHeight:20 withWidth:20];
     
     level1.gota=[[JAGGota alloc] initWithPosition:CGPointMake(level1.tileSize*2, level1.tileSize*2)];
     
@@ -422,7 +401,7 @@
     
     JAGWall *parede=[[JAGWall alloc] initWithSprite:wallSpri];
     
-    parede.position=CGPointMake(level1.tileSize*1, level1.tileSize*1);
+    parede.position=CGPointMake(level1.tileSize*5, level1.tileSize*5);
     
     [level1.paredes setValue:parede forKey:@"parede1"];
     
@@ -439,7 +418,7 @@
     
     level1.level=@1;
     
-    [level1 exportar];
+    //NSLog(@" Export: %@", [level1 exportar]);
     
     
 
