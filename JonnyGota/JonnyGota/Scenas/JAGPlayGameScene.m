@@ -42,27 +42,27 @@
         height = self.scene.size.height;
         
       
-        SKSpriteNode *obstaculo = [[SKSpriteNode alloc]initWithColor:([UIColor redColor]) size:(CGSizeMake(self.scene.size.width, 10)) ];
-        obstaculo.position = CGPointMake(self.scene.size.width/2, 120);
-        obstaculo.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:obstaculo.size];
-        obstaculo.physicsBody.dynamic = NO;
-        obstaculo.physicsBody.categoryBitMask = ENEMY;
-        obstaculo.physicsBody.collisionBitMask = GOTA;
-        obstaculo.physicsBody.contactTestBitMask = GOTA;
-        obstaculo.zPosition=10;
-        obstaculo.physicsBody.restitution=0;
-        obstaculo.name = @"wall";
-    
+        SKSpriteNode *obstaculoTESTE = [[SKSpriteNode alloc]initWithColor:([UIColor redColor]) size:(CGSizeMake(self.scene.size.width/2, 5)) ];
+        obstaculoTESTE.position = CGPointMake(self.scene.size.width*.1, 120);
+        obstaculoTESTE.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:obstaculoTESTE.size];
+        obstaculoTESTE.physicsBody.dynamic = NO;
+        obstaculoTESTE.physicsBody.categoryBitMask = ENEMY;
+        obstaculoTESTE.physicsBody.collisionBitMask = GOTA;
+        obstaculoTESTE.physicsBody.contactTestBitMask = GOTA;
+        obstaculoTESTE.zPosition=10;
+        obstaculoTESTE.physicsBody.restitution=0;
+        obstaculoTESTE.name = @"wall";
+        
         tocou_gota = false;
 
         _cropNode = [[SKCropNode alloc] init];
 
         [_cropNode addChild:[self createCharacter]];
         [self createMask:100 withPoint:(_gota.position)];
-        [_cropNode addChild:[self createFireEnemy]];
+        //[_cropNode addChild:[self createFireEnemy]];
 
         [self addChild: _cropNode];
-    
+        [_cropNode addChild:obstaculoTESTE];
         [self createLevel];
     }
     return self;
