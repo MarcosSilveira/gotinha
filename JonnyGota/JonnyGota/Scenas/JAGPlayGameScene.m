@@ -22,6 +22,7 @@
     BOOL toque_moveu;
     SKShapeNode *lineNode;
     SKNode *area;
+    SKNode *worldNode;
 
 }
 
@@ -44,6 +45,8 @@
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         self.physicsWorld.contactDelegate = self;
+        worldNode = [[SKNode alloc]init];
+        [worldNode setName:@"worldNode"];
         //self.initSize = size;
         
         if (level != nil && world != nil) {
@@ -67,9 +70,9 @@
         [_cropNode addChild:[self createCharacter]];
         [self createMask:100 withPoint:(_gota.position)];
         //[_cropNode addChild:[self createFireEnemy]];
-
-        [self addChild: _cropNode];
-        [_cropNode addChild:obstaculoTESTE];
+//        [worldNode addChild:_cropNode];
+//        [self addChild: worldNode];
+        [self addChild:_cropNode];
         [self createLevel];
         [self configuraParadaGota];
     }
@@ -317,8 +320,14 @@
         }
     
 }
+-(void)centerMapOnCharacter{
+    worldNode.position=CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
+                                    -(_gota.position.y)+CGRectGetMidY(self.frame));
+    
 
+}
 -(void)update:(NSTimeInterval)currentTime {
+//    [self centerMapOnCharacter];
     //depois de um tempo ou acao
     
     //circleMask.position = CGPointMake(_gota.position.x-height*0.2, _gota.position.y-width*0.29);
