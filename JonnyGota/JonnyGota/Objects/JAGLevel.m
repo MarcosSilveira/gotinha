@@ -11,42 +11,6 @@
 
 @implementation JAGLevel
 
-+ (NSNumber *)numberOfLevels{
-    return @1;
-}
-
-+ (NSString *)nameOfLevel:(NSNumber *)level{
-    return [NSString stringWithFormat:@"fase %d",[level intValue]];
-}
-+ (NSString *)nameOfWorld:(NSNumber *)world{
-    return @"House";
-}
-
-+ (NSNumber *)numberOfWorlds{
-    return @1;
-}
-+ (NSString *)descriptionOfLevel:(NSNumber *)level{
-    return @"Descrição do Level 1";
-}
-+ (void)playLevel:(NSNumber *)level ofWorld:(NSNumber *)world withTransition:(SKTransition *)transition onScene:(SKScene *)lastScene{
-    if([level intValue]<=[[self numberOfLevels] intValue]){
-        /*
-        PGPlayGameScene *nextScene = [[PGPlayGameScene alloc] initWithSize:lastScene.size level:level andWorld:world];
-        
-        [lastScene.view presentScene:nextScene transition:transition];
-       */
-    }else NSLog(@"BUG");
-}
-
-+ (void)initializeLevel:(NSNumber *)level ofWorld:(NSNumber *)world onScene:(SKScene *)scene
-{
-    SEL aSelector = NSSelectorFromString([NSString stringWithFormat:@"initializeLevel%02dofWorld%02donScene:", [level intValue], [world intValue]]);
-    
-    [self performSelector:aSelector withObject:scene];
-}
-
-
-
 
 -(instancetype)initWithHeight:(int)height withWidth:(int)width{
     self=[super init];
@@ -199,44 +163,10 @@
     }
 }
 
-
-+ (void)initializeLevel01ofWorld01onScene:(JAGPlayGameScene *)scene
-{
-    //[self configure:scene withBackgroundColor:[UIColor whiteColor]];
-    
-    scene.gota= [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
-    scene.fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(200, 100)];
-    
-    //_tileSize=32;
-    //scene.diferenca = 80.0f;
-    //tocou = false;
-    
-    scene.cropNode = [[SKCropNode alloc] init];
-    
-    scene.level=[[JAGLevel alloc] initWithHeight:30 withWidth:30];
-    
-    scene.level.tileSize=32;
-    
-    //[scene.cropNode addChild:scene.gota];
-    
-    [scene createMask:100 withPoint:(scene.gota.position)];
-    
-    [scene.cropNode addChild:scene.gota];
-    
-    [scene.level createWalls:CGPointMake(1, 1) withHeight:10 withWidth:2 withScene:scene];
-    
-    [scene.level createWalls:CGPointMake(4, 4) withHeight:10 withWidth:3 withScene:scene];
-
-    
-    [scene.cropNode addChild:scene.fogo];
-    
-    [scene addChild: scene.cropNode];
-    
-    
-    
-    
-   // self createWalls:<#(CGPoint)#> withHeight:<#(int)#> withWidth:<#(int)#>
+-(CGPoint)calculateTile:(CGPoint)pontoMatriz{
+    return CGPointMake(pontoMatriz.x*_tileSize,_tileSize*pontoMatriz.y);
 }
+
 
 
 @end
