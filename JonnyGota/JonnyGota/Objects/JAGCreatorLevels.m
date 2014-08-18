@@ -8,6 +8,7 @@
 
 #import "JAGCreatorLevels.h"
 #import "JAGPlayGameScene.h"
+#import "JAGHud.h"
 
 @implementation JAGCreatorLevels
 
@@ -73,15 +74,19 @@
     
     [scene.cropNode addChild:scene.gota];
     
-    [scene.level createWalls:CGPointMake(0, 0) withHeight:10 withWidth:2 withScene:scene];
+    [scene.level createWalls:CGPointMake(0, 0) withHeight:20 withWidth:10 withScene:scene];
     
     [scene.level createWalls:CGPointMake(3, 3) withHeight:10 withWidth:3 withScene:scene];
+    
+    [scene.level createWalls:CGPointMake(6, 3) withHeight:10 withWidth:1 withScene:scene];
     
     
     [scene.cropNode addChild:scene.fogo];
     
     [scene addChild: scene.cropNode];
     
+    
+   // JAGHud *hud=[JAGHud alloc]
 }
 
 @end
