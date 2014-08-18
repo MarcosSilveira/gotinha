@@ -70,15 +70,15 @@
 
 #pragma mark - Métodos de inicialização
 -(JAGGota *)createCharacter{
-    
-    _gota = [[JAGGota alloc] initWithPosition:CGPointMake(width*0.3, height*0.3)];
+    _gota = [[JAGGota alloc] initWithPosition:CGPointMake(width*0.3, height*0.3) withSize:[_level sizeTile]];
     _gota.name = @"gota";
     
     return _gota;
 }
 
 -(JAGFogoEnemy *)createFireEnemy{
-      _fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(width*0.9, height*0.3)];
+    
+      _fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(width*0.9, height*0.3) withSize:[_level sizeTile]];
     
     return _fogo;
 }
@@ -369,10 +369,10 @@
     if(!error){
         //Ponto *ponto = [Ponto comDicionario: resultados];
         //NSLog(@"Ponto: %@", ponto.descricao);
-        
+        CGSize tamanho=CGSizeMake(_level.tileSize, _level.tileSize);
         NSDictionary *temp=[resul objectForKey:@"gota"];
         
-        _gota=[[JAGGota alloc] initWithPosition:CGPointMake([[temp objectForKey:@"positionX"] floatValue], [[temp objectForKey:@"positionY"] floatValue])];
+        _gota=[[JAGGota alloc] initWithPosition:CGPointMake([[temp objectForKey:@"positionX"] floatValue], [[temp objectForKey:@"positionY"] floatValue]) withSize:tamanho];
         
         [_cropNode addChild:_gota];
         
@@ -384,7 +384,7 @@
                      
               
             if([tipo intValue]==1){
-                JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake([[enemy objectForKey:@"positionX"] floatValue], [[enemy objectForKey:@"positionY"] floatValue])];
+                JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake([[enemy objectForKey:@"positionX"] floatValue], [[enemy objectForKey:@"positionY"] floatValue]) withSize:tamanho];
                 
                 [_cropNode addChild:inimigo];
             }
@@ -425,7 +425,9 @@
 -(void)createLevel{
     _level=[[JAGLevel alloc] initWithHeight:20 withWidth:20];
     
-    _level.gota=[[JAGGota alloc] initWithPosition:CGPointMake(_level.tileSize*2, _level.tileSize*2)];
+    CGSize tamanho=CGSizeMake(_level.tileSize, _level.tileSize);
+    
+    _level.gota=[[JAGGota alloc] initWithPosition:CGPointMake(_level.tileSize*2, _level.tileSize*2) withSize:tamanho];
     
     
     SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_level.tileSize, _level.tileSize)];
@@ -439,7 +441,7 @@
     [_level.paredes setValue:parede forKey:@"parede1"];
     
     
-    JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(_level.tileSize*4, _level.tileSize*4)];
+    JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(_level.tileSize*4, _level.tileSize*4) withSize:tamanho];
     
     inimigo.sprite.name=@"grenColor";
     

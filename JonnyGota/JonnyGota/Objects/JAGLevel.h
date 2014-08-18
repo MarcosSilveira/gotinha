@@ -47,4 +47,7 @@
 
 -(CGPoint)calculateTile:(CGPoint) pontoMatriz;
 
+-(CGSize)sizeTile;
+
+
 @end

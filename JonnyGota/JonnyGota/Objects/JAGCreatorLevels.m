@@ -50,8 +50,14 @@
 {
     //[self configure:scene withBackgroundColor:[UIColor whiteColor]];
     
-    scene.gota= [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
-    scene.fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(200, 100)];
+    scene.level=[[JAGLevel alloc] initWithHeight:30 withWidth:30];
+    
+    scene.level.tileSize=32;
+    
+    CGSize tamanho=CGSizeMake(scene.level.tileSize, scene.level.tileSize);
+    
+    scene.gota= [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 1)] withSize:tamanho];
+    scene.fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
     
     //_tileSize=32;
     //scene.diferenca = 80.0f;
@@ -59,9 +65,7 @@
     
     scene.cropNode = [[SKCropNode alloc] init];
     
-    scene.level=[[JAGLevel alloc] initWithHeight:30 withWidth:30];
     
-    scene.level.tileSize=32;
     
     //[scene.cropNode addChild:scene.gota];
     

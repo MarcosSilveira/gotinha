@@ -167,6 +167,8 @@
     return CGPointMake(pontoMatriz.x*_tileSize,_tileSize*pontoMatriz.y);
 }
 
-
+-(CGSize)sizeTile{
+    return CGSizeMake(_tileSize, _tileSize);
+}
 
 @end
