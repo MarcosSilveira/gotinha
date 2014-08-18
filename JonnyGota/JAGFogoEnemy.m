@@ -10,10 +10,10 @@
 
 @implementation JAGFogoEnemy
 
--(id)initWithPosition:(CGPoint)position{
+-(id)initWithPosition:(CGPoint)position withSize:(CGSize)size{
     self = [super init];
     
-    SKSpriteNode *desn = [[SKSpriteNode alloc] initWithColor:[UIColor greenColor] size:CGSizeMake(50, 50)];
+    SKSpriteNode *desn = [[SKSpriteNode alloc] initWithColor:[UIColor greenColor] size:size];
     self.sprite = desn;
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
     //  self.zPosition = 1;

@@ -8,6 +8,7 @@
 
 #import "JAGCreatorLevels.h"
 #import "JAGPlayGameScene.h"
+#import "JAGHud.h"
 
 @implementation JAGCreatorLevels
 
@@ -50,8 +51,14 @@
 {
     //[self configure:scene withBackgroundColor:[UIColor whiteColor]];
     
-    scene.gota= [[JAGGota alloc] initWithPosition:CGPointMake(100, 100)];
-    scene.fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(200, 100)];
+    scene.level=[[JAGLevel alloc] initWithHeight:30 withWidth:30];
+    
+    scene.level.tileSize=32;
+    
+    CGSize tamanho=CGSizeMake(scene.level.tileSize, scene.level.tileSize);
+    
+    scene.gota= [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 1)] withSize:tamanho];
+    scene.fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
     
     //_tileSize=32;
     //scene.diferenca = 80.0f;
@@ -59,9 +66,7 @@
     
     scene.cropNode = [[SKCropNode alloc] init];
     
-    scene.level=[[JAGLevel alloc] initWithHeight:30 withWidth:30];
     
-    scene.level.tileSize=32;
     
     //[scene.cropNode addChild:scene.gota];
     
@@ -69,15 +74,19 @@
     
     [scene.cropNode addChild:scene.gota];
     
-    [scene.level createWalls:CGPointMake(0, 0) withHeight:10 withWidth:2 withScene:scene];
+    [scene.level createWalls:CGPointMake(0, 0) withHeight:20 withWidth:10 withScene:scene];
     
     [scene.level createWalls:CGPointMake(3, 3) withHeight:10 withWidth:3 withScene:scene];
+    
+    [scene.level createWalls:CGPointMake(6, 3) withHeight:10 withWidth:1 withScene:scene];
     
     
     [scene.cropNode addChild:scene.fogo];
     
     [scene addChild: scene.cropNode];
     
+    
+   // JAGHud *hud=[JAGHud alloc]
 }
 
 @end

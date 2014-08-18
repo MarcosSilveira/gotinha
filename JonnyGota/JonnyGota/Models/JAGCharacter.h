@@ -11,8 +11,8 @@
 typedef enum : uint32_t{
  GOTA = 0x1 << 0,
  ENEMY = 0x1 << 1,
- ATTACK = 0x1 << 2
-
+ ATTACK = 0x1 << 2,
+ CONTROLE_TOQUE = 0x1 << 3
 }colisao;
 
 @interface JAGCharacter : SKNode <UIGestureRecognizerDelegate>

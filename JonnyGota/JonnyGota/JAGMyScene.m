@@ -18,7 +18,11 @@
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         JAGLevel *level1=[[JAGLevel alloc] initWithHeight:20 withWidth:20];
         
-        level1.gota=[[JAGGota alloc] initWithPosition:CGPointMake(level1.tileSize*2, level1.tileSize*2)];
+         CGSize tamanho=CGSizeMake(level1.tileSize, level1.tileSize);
+        
+        level1.gota=[[JAGGota alloc] initWithPosition:CGPointMake(level1.tileSize*2, level1.tileSize*2) withSize:tamanho];
+        
+       
         
         
         SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(level1.tileSize, level1.tileSize)];
@@ -31,7 +35,7 @@
         [level1.paredes setValue:parede forKey:@"parede1"];
                                 
     
-        JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(level1.tileSize*4, level1.tileSize*4)];
+        JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(level1.tileSize*4, level1.tileSize*4) withSize:tamanho];
         
         [level1.inimigos setValue:inimigo forKey:@"inimigo1"];
         

@@ -10,11 +10,11 @@
 
 @implementation JAGGota
 
--(id)initWithPosition:(CGPoint)position{
+-(id)initWithPosition:(CGPoint)position withSize:(CGSize)size{
     
     self = [super init];
     
-    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
+    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:size];
     
     self.physicsBody.friction = 0;
     
@@ -32,7 +32,7 @@
     //self.zPosition = 1;
     self.physicsBody.categoryBitMask = GOTA;
     self.physicsBody.collisionBitMask = ATTACK | ENEMY;
-    self.physicsBody.contactTestBitMask = ATTACK | ENEMY;
+    self.physicsBody.contactTestBitMask = ATTACK | ENEMY | CONTROLE_TOQUE;
     
     [self configPhysics];
     

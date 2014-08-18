@@ -10,13 +10,25 @@
 #import <SpriteKit/SpriteKit.h>
 
 
-@interface JAGHud : NSObject
+@interface JAGHud : SKNode
 
 @property (nonatomic) int tempoRestante;
 @property (nonatomic) int vidaRestante;
 
+@property (nonatomic) SKLabelNode *vidas;
+
+@property (nonatomic) SKLabelNode *tempo;
+
+@property (nonatomic) SKLabelNode *saude;
+
+
+
 //Sprites da tela
 @property (nonatomic) SKSpriteNode* sprite;
+
+-(instancetype)initWithTempo:(int) tempo
+                    withVida:(int) vida
+              withWindowSize:(CGSize) size;
 
 -(void)update;
 

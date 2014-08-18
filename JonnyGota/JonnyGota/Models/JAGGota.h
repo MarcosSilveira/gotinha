@@ -20,7 +20,8 @@
 //withInterval:(NSTimeInterval) time
 //    withTipe:(int) tipo;
 
--(id)initWithPosition:(CGPoint) position;
+-(id)initWithPosition:(CGPoint) position
+             withSize:(CGSize) size;
 -(BOOL)verificaToque:(CGPoint) ponto;
 
 @end
