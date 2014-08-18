@@ -63,17 +63,17 @@
         
                
         
-        tocou_gota = false;
+            tocou_gota = false;
 
-        _cropNode = [[SKCropNode alloc] init];
-
-        [_cropNode addChild:[self createCharacter]];
-        [self createMask:100 withPoint:(_gota.position)];
-        //[_cropNode addChild:[self createFireEnemy]];
-//        [worldNode addChild:_cropNode];
-//        [self addChild: worldNode];
-        [self addChild:_cropNode];
-        [self createLevel];
+//        _cropNode = [[SKCropNode alloc] init];
+//
+//        [_cropNode addChild:[self createCharacter]];
+//        [self createMask:100 withPoint:(_gota.position)];
+//        //[_cropNode addChild:[self createFireEnemy]];
+////        [worldNode addChild:_cropNode];
+////        [self addChild: worldNode];
+//        [self addChild:_cropNode];
+//        [self createLevel];
         [self configuraParadaGota];
     }
 
@@ -236,33 +236,6 @@
         toqueInicio = [touch locationInNode:self];
         tocou_gota = [_gota verificaToque:[touch locationInNode:self]];
         
-        switch ([self verificaSentido:toqueInicio with:_gota.position]) {
-            case 1:
-                if (!_gota.escondida && !tocou_gota)
-                    
-                    [_gota mover:toqueInicio withInterval:1.0 withType:1 and:300];
-                
-                break;
-            case 2:
-                if (!_gota.escondida && !tocou_gota)
-                    
-                    [_gota mover:toqueInicio withInterval:1.0 withType:2 and:300];
-                
-                break;
-            case 3:
-                if (!_gota.escondida && !tocou_gota)
-                    
-                    [_gota mover:toqueInicio withInterval:1.0 withType:3 and:300];
-                
-                break;
-            case 4:
-                if (!_gota.escondida && !tocou_gota)
-                    
-                    
-                    [_gota mover:toqueInicio withInterval:1.0 withType:4 and:300];
-                
-                break;
-    }
         
         
         
@@ -298,9 +271,38 @@
         toqueFinal = [touch locationInNode:self];
         if ([_gota verificaToque:[touch locationInNode:self]])
             [_gota esconder];
-
+        if (!_gota.escondida) {
             
         
+        switch ([self verificaSentido:toqueFinal with:_gota.position]) {
+            case 1:
+                if (!_gota.escondida && !tocou_gota)
+                    
+                    [_gota mover:toqueFinal withInterval:1.0 withType:1 and:300];
+                
+                break;
+            case 2:
+                if (!_gota.escondida && !tocou_gota)
+                    
+                    [_gota mover:toqueFinal withInterval:1.0 withType:2 and:300];
+                
+                break;
+            case 3:
+                if (!_gota.escondida && !tocou_gota)
+                    
+                    [_gota mover:toqueFinal withInterval:1.0 withType:3 and:300];
+                
+                break;
+            case 4:
+                if (!_gota.escondida && !tocou_gota)
+                    
+                    
+                    [_gota mover:toqueFinal withInterval:1.0 withType:4 and:300];
+                
+                break;
+        }
+
+        }
         
         
         //Logica da movimentacao
@@ -321,13 +323,13 @@
     
 }
 -(void)centerMapOnCharacter{
-    worldNode.position=CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
+    self.cropNode.position=CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
                                     -(_gota.position.y)+CGRectGetMidY(self.frame));
     
 
 }
 -(void)update:(NSTimeInterval)currentTime {
-//    [self centerMapOnCharacter];
+    [self centerMapOnCharacter];
     //depois de um tempo ou acao
     
     //circleMask.position = CGPointMake(_gota.position.x-height*0.2, _gota.position.y-width*0.29);
