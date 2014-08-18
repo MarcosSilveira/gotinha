@@ -19,7 +19,6 @@
     CGPoint toqueFinal;
     BOOL tocou_gota;
     BOOL toque_moveu;
-    CGMutablePathRef pathToDraw;
     SKShapeNode *lineNode;
 
 }
@@ -64,6 +63,7 @@
         [self addChild: _cropNode];
         [_cropNode addChild:obstaculoTESTE];
         [self createLevel];
+        [self configuraParadaGota];
     }
     return self;
 }
@@ -198,12 +198,23 @@
     }
 }
 
--(void) pararMove {
+-(void) configuraParadaGota {
     
-    float pararMovimentoCONTROL = hypotf(toqueFinal.x - _gota.position.x, toqueFinal.y - _gota.position.y);
-    
-    if (pararMovimentoCONTROL < 50)
-        _gota.physicsBody.velocity = CGVectorMake(0, 0);
+    SKSpriteNode *pararMovimentoCONTROLx = [[SKSpriteNode alloc]initWithColor:([UIColor clearColor]) size:(CGSizeMake(width, 5)) ];
+    SKSpriteNode *pararMovimentoCONTROLy = [[SKSpriteNode alloc]initWithColor:([UIColor clearColor]) size:(CGSizeMake(5, height)) ];
+    pararMovimentoCONTROLx.physicsBody.dynamic = NO;
+    pararMovimentoCONTROLy.physicsBody.dynamic = NO;
+    pararMovimentoCONTROLx.physicsBody.categoryBitMask = CONTROLE_TOQUE;
+    pararMovimentoCONTROLy.physicsBody.categoryBitMask = CONTROLE_TOQUE;
+    pararMovimentoCONTROLx.physicsBody.contactTestBitMask = GOTA;
+    pararMovimentoCONTROLy.physicsBody.contactTestBitMask = GOTA;
+    pararMovimentoCONTROLx.physicsBody.restitution=0;
+    pararMovimentoCONTROLy.physicsBody.restitution=0;
+    pararMovimentoCONTROLy.name = @"controle_toque_x";
+    pararMovimentoCONTROLy.name = @"controle_toque_y";
+    [_cropNode addChild:pararMovimentoCONTROLy];
+    [_cropNode addChild:pararMovimentoCONTROLx];
+        
 }
 
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto {
@@ -347,7 +358,6 @@
     }
     
     [self followPlayer];
-    [self pararMove];
     [self.hud update];
 }
 
@@ -371,6 +381,18 @@
         
     
     }
+    if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == CONTROLE_TOQUE)){
+        NSLog(@"hit");
+    
+
+        _gota.physicsBody.velocity = CGVectorMake(0, 0);
+    }
+    if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == CONTROLE_TOQUE)){
+        NSLog(@"hit");
+    _gota.physicsBody.velocity = CGVectorMake(0, 0);
+    }
+
+    
 
 }
 

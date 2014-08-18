@@ -22,7 +22,7 @@
     //self.zPosition = 1;
     self.physicsBody.categoryBitMask = GOTA;
     self.physicsBody.collisionBitMask = ATTACK | ENEMY;
-    self.physicsBody.contactTestBitMask = ATTACK | ENEMY;
+    self.physicsBody.contactTestBitMask = ATTACK | ENEMY | CONTROLE_TOQUE;
     
     [self configPhysics];
     
