@@ -140,8 +140,8 @@
 
     
     JAGWall *wall;
-    for (int i=0; i<altura; i++) {
-                SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_tileSize, _tileSize)];
+    for (int i=0; i<altura&&i<_height; i++) {
+                SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_tileSize-1, _tileSize-1)];
 
         wall=[[JAGWall alloc] initWithPosition:CGPointMake(ponto.x*_tileSize,_tileSize*(i+ponto.y)) withSprite:wallSpri];
         [scene.cropNode addChild:wall];
@@ -152,8 +152,8 @@
        // [self.paredes setValue:wall forKey:[NSString stringWithFormat:@"parede%lu",_paredes.count+1]];
     }
     
-    for(int k=1;k<largura;k++){
-        SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_tileSize, _tileSize)];
+    for(int k=1;k<largura&&k<_width;k++){
+        SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_tileSize-1, _tileSize-1)];
 
         wall=[[JAGWall alloc] initWithPosition:CGPointMake(_tileSize*(k+ponto.x),ponto.y*_tileSize) withSprite:wallSpri];
         [scene.cropNode addChild:wall];
