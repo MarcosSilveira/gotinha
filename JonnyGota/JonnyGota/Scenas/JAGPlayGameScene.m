@@ -8,6 +8,7 @@
 
 #import "JAGPlayGameScene.h"
 #import "JAGLevel.h"
+#import "JAGCreatorLevels.h"
 
 
 @implementation JAGPlayGameScene {
@@ -56,7 +57,7 @@
             self.currentWorld = @(1);
             
         }
-        [JAGLevel initializeLevel:self.currentLevel ofWorld:self.currentWorld onScene:self];
+        [JAGCreatorLevels initializeLevel:self.currentLevel ofWorld:self.currentWorld onScene:self];
         
                
         

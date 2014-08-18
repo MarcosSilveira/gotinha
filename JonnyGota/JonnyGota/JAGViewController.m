@@ -9,6 +9,8 @@
 #import "JAGViewController.h"
 #import "JAGPlayGameScene.h"
 #import "JAGLevel.h"
+#import "JAGCreatorLevels.h"
+
 
 @implementation JAGViewController
 
@@ -38,7 +40,7 @@
     [skView presentScene:scene];
     
     SKTransition *transition = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1];
-    [JAGLevel playLevel:@1 ofWorld:@(1) withTransition:transition onScene:scene];
+    [JAGCreatorLevels playLevel:@1 ofWorld:@(1) withTransition:transition onScene:scene];
 }
 
 - (BOOL)shouldAutorotate

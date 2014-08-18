@@ -11,6 +11,7 @@
 		0B024D0B1991255400AE9588 /* JAGGota.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B024D0A1991255400AE9588 /* JAGGota.m */; };
 		0B024D0F1991257400AE9588 /* JAGInimigos.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B024D0E1991257400AE9588 /* JAGInimigos.m */; };
 		0B024D12199150D300AE9588 /* JAGHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B024D11199150D300AE9588 /* JAGHud.m */; };
+		0B13EDFB19A2530F006CC185 /* JAGCreatorLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B13EDFA19A2530F006CC185 /* JAGCreatorLevels.m */; };
 		0B2C5255199A99A30065BB09 /* JAGLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C5254199A99A30065BB09 /* JAGLevel.m */; };
 		0B2C5258199A9F2A0065BB09 /* JAGChuva.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C5257199A9F2A0065BB09 /* JAGChuva.m */; };
 		0B3A04501991164A00C7C39E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3A044F1991164A00C7C39E /* Foundation.framework */; };
@@ -62,6 +63,8 @@
 		0B024D0E1991257400AE9588 /* JAGInimigos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGInimigos.m; sourceTree = "<group>"; };
 		0B024D10199150D300AE9588 /* JAGHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGHud.h; path = JonnyGota/Objects/JAGHud.h; sourceTree = "<group>"; };
 		0B024D11199150D300AE9588 /* JAGHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGHud.m; path = JonnyGota/Objects/JAGHud.m; sourceTree = "<group>"; };
+		0B13EDF919A2530F006CC185 /* JAGCreatorLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGCreatorLevels.h; path = JonnyGota/Objects/JAGCreatorLevels.h; sourceTree = "<group>"; };
+		0B13EDFA19A2530F006CC185 /* JAGCreatorLevels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGCreatorLevels.m; path = JonnyGota/Objects/JAGCreatorLevels.m; sourceTree = "<group>"; };
 		0B2C5253199A99A30065BB09 /* JAGLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGLevel.h; path = JonnyGota/Objects/JAGLevel.h; sourceTree = "<group>"; };
 		0B2C5254199A99A30065BB09 /* JAGLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGLevel.m; path = JonnyGota/Objects/JAGLevel.m; sourceTree = "<group>"; };
 		0B2C5256199A9F2A0065BB09 /* JAGChuva.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGChuva.h; path = JonnyGota/Models/JAGChuva.h; sourceTree = "<group>"; };
@@ -267,6 +270,8 @@
 				0B024D11199150D300AE9588 /* JAGHud.m */,
 				0B2C5253199A99A30065BB09 /* JAGLevel.h */,
 				0B2C5254199A99A30065BB09 /* JAGLevel.m */,
+				0B13EDF919A2530F006CC185 /* JAGCreatorLevels.h */,
+				0B13EDFA19A2530F006CC185 /* JAGCreatorLevels.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -397,6 +402,7 @@
 				8D16279E1992943400AD9F12 /* JAGArEnemy.m in Sources */,
 				8D162795199293CC00AD9F12 /* JAGTrovaoEnemy.m in Sources */,
 				0B3A049A1991184700C7C39E /* JAGCharacter.m in Sources */,
+				0B13EDFB19A2530F006CC185 /* JAGCreatorLevels.m in Sources */,
 				8D1627981992941A00AD9F12 /* JAGMetalEnemy.m in Sources */,
 				0B3A046B1991164A00C7C39E /* JAGMyScene.m in Sources */,
 				0B024D0F1991257400AE9588 /* JAGInimigos.m in Sources */,
