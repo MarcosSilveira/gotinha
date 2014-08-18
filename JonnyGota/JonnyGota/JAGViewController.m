@@ -8,6 +8,9 @@
 
 #import "JAGViewController.h"
 #import "JAGPlayGameScene.h"
+#import "JAGLevel.h"
+#import "JAGCreatorLevels.h"
+
 
 @implementation JAGViewController
 
@@ -24,10 +27,20 @@
     // Create and configure the scene.
     SKScene *scene =[[JAGPlayGameScene alloc] initWithSize:skView.bounds.size level:@1 andWorld:@1];
     //SKScene * scene = [JAGP sceneWithSize:skView.bounds.size];
+    
+    
+    
+    //JAGPlayGameScene *scene=[[JAGPlayGameScene alloc] init];
+    
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
+    
+   
     [skView presentScene:scene];
+    
+    SKTransition *transition = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1];
+    [JAGCreatorLevels playLevel:@1 ofWorld:@(1) withTransition:transition onScene:scene];
 }
 
 - (BOOL)shouldAutorotate

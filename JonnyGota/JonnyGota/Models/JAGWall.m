@@ -28,6 +28,36 @@
     return self;
 }
 
+-(instancetype)initWithPosition:(CGPoint)ponto withSprite:(SKSpriteNode *)imagem{
+    self=[super init];
+    
+    _sprite=imagem;
+    
+    [self addChild:_sprite];
+    
+    self.position=ponto;
+    
+    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];//CGSizeMake(self.sprite.size.width, self.sprite.size.height) ];
+    
+    self.physicsBody.dynamic=NO;
+    
+    self.physicsBody.restitution=0.008;
+    
+    self.physicsBody.usesPreciseCollisionDetection=NO;
+    
+    self.physicsBody.friction = 0;
+
+    
+    
+    /*
+       //  self.zPosition = 1;
+    self.physicsBody.categoryBitMask = WALL;
+    self.physicsBody.collisionBitMask = GOTA;
+    //self.physicsBody.contactTestBitMask = ATTACK | ENEMY;
+    */
+    return self;
+}
+
 -(NSMutableDictionary *)createJson{
     NSMutableDictionary *json=[[NSMutableDictionary alloc]init];
     

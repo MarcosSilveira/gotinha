@@ -10,11 +10,24 @@
 
 @implementation JAGGota
 
--(id)initWithPosition:(CGPoint)position{
+-(id)initWithPosition:(CGPoint)position withSize:(CGSize)size{
     
     self = [super init];
     
-    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(50, 50)];
+    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:size];
+    
+    self.physicsBody.friction = 0;
+    
+    
+    
+    
+//    desn.position=position;
+    
+    //[self addChild:desn];
+    
+    self.name=@"gota";
+    
+    self.sprite.name=@"gota";
     
     [self addChild:self.sprite];
     

@@ -8,6 +8,7 @@
 
 #import "JAGPlayGameScene.h"
 #import "JAGLevel.h"
+#import "JAGCreatorLevels.h"
 
 
 @implementation JAGPlayGameScene {
@@ -20,6 +21,7 @@
     BOOL tocou_gota;
     BOOL toque_moveu;
     SKShapeNode *lineNode;
+    SKNode *area;
 
 }
 
@@ -33,24 +35,30 @@
     
 }
 
--(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world {
-    
+
+
+
+
+
+-(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world{
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
-        width = self.scene.size.width;
-        height = self.scene.size.height;
+        self.physicsWorld.contactDelegate = self;
+        //self.initSize = size;
         
-      
-        SKSpriteNode *obstaculoTESTE = [[SKSpriteNode alloc]initWithColor:([UIColor redColor]) size:(CGSizeMake(self.scene.size.width/2, 5)) ];
-        obstaculoTESTE.position = CGPointMake(self.scene.size.width*.1, 120);
-        obstaculoTESTE.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:obstaculoTESTE.size];
-        obstaculoTESTE.physicsBody.dynamic = NO;
-        obstaculoTESTE.physicsBody.categoryBitMask = ENEMY;
-        obstaculoTESTE.physicsBody.collisionBitMask = GOTA;
-        obstaculoTESTE.physicsBody.contactTestBitMask = GOTA;
-        obstaculoTESTE.zPosition=10;
-        obstaculoTESTE.physicsBody.restitution=0;
-        obstaculoTESTE.name = @"wall";
+        if (level != nil && world != nil) {
+            self.currentLevel = level;
+            self.currentWorld = world;
+        }
+        else {
+            NSLog(@"Level and World not set");
+            self.currentLevel = @(1);
+            self.currentWorld = @(1);
+            
+        }
+        [JAGCreatorLevels initializeLevel:self.currentLevel ofWorld:self.currentWorld onScene:self];
+        
+               
         
         tocou_gota = false;
 
@@ -65,20 +73,21 @@
         [self createLevel];
         [self configuraParadaGota];
     }
+
     return self;
 }
 
 #pragma mark - Métodos de inicialização
 -(JAGGota *)createCharacter{
-    
-    _gota = [[JAGGota alloc] initWithPosition:CGPointMake(width*0.3, height*0.3)];
+    _gota = [[JAGGota alloc] initWithPosition:CGPointMake(width*0.3, height*0.3) withSize:[_level sizeTile]];
     _gota.name = @"gota";
     
     return _gota;
 }
 
 -(JAGFogoEnemy *)createFireEnemy{
-      _fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(width*0.9, height*0.3)];
+    
+      _fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(width*0.9, height*0.3) withSize:[_level sizeTile]];
     
     return _fogo;
 }
@@ -87,7 +96,7 @@
 -(void)createMask:(int) radius
         withPoint:(CGPoint) ponto {
     
-    SKNode *area = [[SKNode alloc] init];
+    area = [[SKNode alloc] init];
     circleMask = [[SKShapeNode alloc ]init];
     
     CGMutablePathRef circle = CGPathCreateMutable();
@@ -106,46 +115,7 @@
 }
 
 #pragma mark - Mundo/Fases
--(void)loadingWorld{
-    //Ler um arquivo
-    
-    //Tamanho do Mapa b x h
-    
-    //Parades obstaculos
-    
-    //Inimigos
-    
-    //Posicao inicial da Gota.
-    
-    //
-}
 
--(void)createLevel {
-    
-    JAGLevel *level1 = [[JAGLevel alloc] initWithHeight:20 withWidth:20];
-    level1.gota = [[JAGGota alloc] initWithPosition:CGPointMake(level1.tileSize*2, level1.tileSize*2)];
-    
-    
-    SKSpriteNode *wallSpri = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(level1.tileSize, level1.tileSize)];
-    wallSpri.name = @"brownColor";
-    
-    JAGWall *parede = [[JAGWall alloc] initWithSprite:wallSpri];
-    parede.position = CGPointMake(level1.tileSize*1, level1.tileSize*1);
-    
-    [level1.paredes setValue:parede forKey:@"parede1"];
-    
-    JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(level1.tileSize*4, level1.tileSize*4)];
-    
-    inimigo.sprite.name = @"grenColor";
-    inimigo.tipo = 1;
-    
-    [level1.inimigos setValue:inimigo forKey:@"inimigo1"];
-    
-    level1.mundo = @1;
-    level1.level = @1;
-    
-    //[level1 exportar];
-}
 
 #pragma mark - Ações
 -(void)divideGota{
@@ -351,7 +321,9 @@
 -(void)update:(NSTimeInterval)currentTime {
     //depois de um tempo ou acao
     
-    circleMask.position = CGPointMake(_gota.position.x-height*0.2, _gota.position.y-width*0.29);
+    //circleMask.position = CGPointMake(_gota.position.x-height*0.2, _gota.position.y-width*0.29);
+    
+    area.position = CGPointMake(_gota.position.x,_gota.position.y);
     
     if ((self.fogo.physicsBody.velocity.dx <= 0) && (self.fogo.physicsBody.velocity.dy <= 0)) {
        // [self moveInimigo];
@@ -398,5 +370,124 @@
 
 
 
+
+
+
+
+
+
+
+
+
+-(void)loadingWorld{
+    //Ler um arquivo
+    
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"level.txt"];
+    NSString *str = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
+
+    
+    NSError *error;
+   // NSDictionary *resultados =[NSJSONSerialization JSONObjectWithData:[level1.exportar dataUsingEncoding:NSUTF8StringEncoding];
+//                                                               options:NSJSONReadingMutableContainers error:&error];
+    
+    
+    NSDictionary *resul=[NSJSONSerialization JSONObjectWithData:[str dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
+    
+    
+    if(!error){
+        //Ponto *ponto = [Ponto comDicionario: resultados];
+        //NSLog(@"Ponto: %@", ponto.descricao);
+        CGSize tamanho=CGSizeMake(_level.tileSize, _level.tileSize);
+        NSDictionary *temp=[resul objectForKey:@"gota"];
+        
+        _gota=[[JAGGota alloc] initWithPosition:CGPointMake([[temp objectForKey:@"positionX"] floatValue], [[temp objectForKey:@"positionY"] floatValue]) withSize:tamanho];
+        
+        [_cropNode addChild:_gota];
+        
+        NSNumber *tempoNum=[resul objectForKey:@"inimigos"];
+        //Inimigos
+        for (int i=0; i<[tempoNum intValue]; i++) {
+            NSDictionary *enemy=[resul objectForKey:[NSString stringWithFormat:@"inimigo%d",i+1]];
+            NSNumber *tipo=[enemy objectForKey:@"tipo"];
+                     
+              
+            if([tipo intValue]==1){
+                JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake([[enemy objectForKey:@"positionX"] floatValue], [[enemy objectForKey:@"positionY"] floatValue]) withSize:tamanho];
+                
+                [_cropNode addChild:inimigo];
+            }
+        }
+        
+        //Paredes
+        tempoNum=[resul objectForKey:@"paredes"];
+        //Inimigos
+        for (int i=0; i<[tempoNum intValue]; i++) {
+            NSDictionary *enemy=[resul objectForKey:[NSString stringWithFormat:@"parede%d",i+1]];
+            
+            
+            
+            SKSpriteNode *spri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_level.tileSize, _level.tileSize)];
+            
+            
+            JAGWall *wall=[[JAGWall alloc] initWithPosition:CGPointMake([[enemy objectForKey:@"positionX"] floatValue], [[enemy objectForKey:@"positionY"] floatValue]) withSprite:spri];
+            
+            [_cropNode addChild:wall];
+        }
+    }
+    
+    //Tamanho do Mapa b x h
+    
+    
+    
+    //Parades obstaculos
+    
+    //Inimigos
+    
+    //Posicao inicial da Gota.
+    
+    //
+    
+    
+}
+
+-(void)createLevel{
+    _level=[[JAGLevel alloc] initWithHeight:20 withWidth:20];
+    
+    CGSize tamanho=CGSizeMake(_level.tileSize, _level.tileSize);
+    
+    _level.gota=[[JAGGota alloc] initWithPosition:CGPointMake(_level.tileSize*2, _level.tileSize*2) withSize:tamanho];
+    
+    
+    SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_level.tileSize, _level.tileSize)];
+    
+    wallSpri.name=@"brownColor";
+    
+    JAGWall *parede=[[JAGWall alloc] initWithSprite:wallSpri];
+    
+    parede.position=CGPointMake(_level.tileSize*5, _level.tileSize*5);
+    
+    [_level.paredes setValue:parede forKey:@"parede1"];
+    
+    
+    JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(_level.tileSize*4, _level.tileSize*4) withSize:tamanho];
+    
+    inimigo.sprite.name=@"grenColor";
+    
+    inimigo.tipo=1;
+    
+    [_level.inimigos setValue:inimigo forKey:@"inimigo1"];
+    
+    _level.mundo=@1;
+    
+    _level.level=@1;
+    
+    //NSLog(@" Export: %@", [level1 exportar]);
+    
+    
+    
+}
 
 @end

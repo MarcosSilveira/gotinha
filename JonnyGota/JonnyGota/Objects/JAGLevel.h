@@ -31,11 +31,23 @@
 
 @property (nonatomic) NSNumber *level;
 
+@property (nonatomic) SKSpriteNode *background;
 
 
 -(instancetype)initWithHeight:(int) height
                     withWidth:(int) width;
 
--(void)exportar;
+-(NSString *)exportar;
+
+
+-(void)createWalls:(CGPoint) ponto
+       withHeight:(int) altura
+        withWidth:(int) largura
+         withScene:(SKScene *)scene;
+
+-(CGPoint)calculateTile:(CGPoint) pontoMatriz;
+
+-(CGSize)sizeTile;
+
 
 @end

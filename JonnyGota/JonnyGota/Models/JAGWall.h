@@ -10,9 +10,19 @@
 
 @interface JAGWall : SKNode
 
+/*typedef enum : uint32_t{
+    GOTA = 0x1 << 0,
+    ENEMY = 0x1 << 1,
+    ATTACK = 0x1 << 2,
+    WALL=0x1<<3
+}colisao;
+*/
 @property (nonatomic) SKSpriteNode *sprite;
 
 -(instancetype)initWithSprite:(SKSpriteNode *) imagem;
+
+-(instancetype)initWithPosition:(CGPoint) ponto
+                     withSprite:(SKSpriteNode *) imagem;
 
 -(NSMutableDictionary*)createJson;
 
