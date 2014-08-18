@@ -18,9 +18,6 @@
     
     self.physicsBody.friction = 0;
     
-    
-    
-    
 //    desn.position=position;
     
     //[self addChild:desn];
@@ -85,8 +82,8 @@
 //}
 
 -(BOOL)verificaToque:(CGPoint) ponto{
-    if((ponto.x>=(self.position.x-self.sprite.size.width/2))&&(ponto.x<(self.position.x+self.sprite.size.width/2))){
-        if((ponto.y>=(self.position.y-self.sprite.size.height/2))&&(ponto.y<(self.position.y+self.sprite.size.height/2))){
+    if((ponto.x >= (self.position.x - self.sprite.size.width/2)) && (ponto.x < (self.position.x+self.sprite.size.width/2))){
+        if((ponto.y >= (self.position.y - self.sprite.size.height/2)) && (ponto.y < (self.position.y+self.sprite.size.height/2))){
             
             return true;
         }

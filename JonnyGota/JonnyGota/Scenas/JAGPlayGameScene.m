@@ -36,11 +36,6 @@
     
 }
 
-
-
-
-
-
 -(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world{
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
@@ -55,7 +50,6 @@
             NSLog(@"Level and World not set");
             self.currentLevel = @(1);
             self.currentWorld = @(1);
-            
         }
         [JAGCreatorLevels initializeLevel:self.currentLevel ofWorld:self.currentWorld onScene:self];
         
@@ -316,10 +310,6 @@
 
 #pragma mark - Physics
 
-- (void)didSimulatePhysics{
-    
-}
-
 -(void)didBeginContact:(SKPhysicsContact *)contact{
     if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ENEMY)){
         //NSLog(@"hit");
@@ -330,23 +320,26 @@
     }
     //Colisao com a parede
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
-       ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ){
-        
+       ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
     
+    }
+    
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"chave"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"chave"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
+        //
+    }
+    
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"cronometro"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"cronometro"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
+        //
+    }
+    
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"chave"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"velocidade"] && [contact.bodyB.node.name isEqualToString:@"velocidade"]) ) {
+        //
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 -(void)loadingWorld{
     //Ler um arquivo
@@ -370,9 +363,9 @@
         //Ponto *ponto = [Ponto comDicionario: resultados];
         //NSLog(@"Ponto: %@", ponto.descricao);
         
-        NSDictionary *temp=[resul objectForKey:@"gota"];
+        NSDictionary *temp = [resul objectForKey:@"gota"];
         
-        _gota=[[JAGGota alloc] initWithPosition:CGPointMake([[temp objectForKey:@"positionX"] floatValue], [[temp objectForKey:@"positionY"] floatValue])];
+        _gota = [[JAGGota alloc] initWithPosition:CGPointMake([[temp objectForKey:@"positionX"] floatValue], [[temp objectForKey:@"positionY"] floatValue])];
         
         [_cropNode addChild:_gota];
         
@@ -422,39 +415,36 @@
     
 }
 
--(void)createLevel{
-    _level=[[JAGLevel alloc] initWithHeight:20 withWidth:20];
+-(void)createLevel {
+    _level = [[JAGLevel alloc] initWithHeight:20 withWidth:20];
     
-    _level.gota=[[JAGGota alloc] initWithPosition:CGPointMake(_level.tileSize*2, _level.tileSize*2)];
+    _level.gota = [[JAGGota alloc] initWithPosition:CGPointMake(_level.tileSize*2, _level.tileSize*2)];
     
     
-    SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_level.tileSize, _level.tileSize)];
+    SKSpriteNode *wallSpri = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_level.tileSize, _level.tileSize)];
     
-    wallSpri.name=@"brownColor";
+    wallSpri.name = @"brownColor";
     
-    JAGWall *parede=[[JAGWall alloc] initWithSprite:wallSpri];
+    JAGWall *parede = [[JAGWall alloc] initWithSprite:wallSpri];
     
-    parede.position=CGPointMake(_level.tileSize*5, _level.tileSize*5);
+    parede.position = CGPointMake(_level.tileSize*5, _level.tileSize*5);
     
     [_level.paredes setValue:parede forKey:@"parede1"];
     
     
-    JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(_level.tileSize*4, _level.tileSize*4)];
+    JAGFogoEnemy *inimigo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(_level.tileSize*4, _level.tileSize*4)];
     
-    inimigo.sprite.name=@"grenColor";
+    inimigo.sprite.name = @"grenColor";
     
-    inimigo.tipo=1;
+    inimigo.tipo = 1;
     
     [_level.inimigos setValue:inimigo forKey:@"inimigo1"];
     
-    _level.mundo=@1;
+    _level.mundo = @1;
     
-    _level.level=@1;
+    _level.level = @1;
     
     //NSLog(@" Export: %@", [level1 exportar]);
-    
-    
-    
 }
 
 @end
