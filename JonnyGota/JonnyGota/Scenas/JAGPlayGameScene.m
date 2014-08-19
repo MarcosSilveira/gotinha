@@ -193,6 +193,8 @@
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto {
     //  toqueFinal = pontoReferencia;
     int tipo;
+    
+    
     float difx = pontoObjeto.x - pontoReferencia.x;
     
     //float dify=toqueFinals.y-toqueFinal.y;
@@ -202,6 +204,8 @@
     BOOL negx = false;;
     
     bool negy = false;
+    
+    NSLog(@"Ponto ref x:%f  y:%f  Ponto Objeto x:%f  y:%f", pontoReferencia.x,pontoReferencia.y, pontoObjeto.x, pontoObjeto.y);
     
     if(difx < 0){
         negx = true;
@@ -224,6 +228,8 @@
         else
             tipo = 2;
     }
+    
+    NSLog(@"tipo %d",tipo);
     return tipo;
 }
 
@@ -234,11 +240,12 @@
     /* Called when a touch begins */
     for (UITouch *touch in touches) {
         toqueInicio = [touch locationInNode:self];
+        toqueInicio =CGPointMake(toqueInicio.x+(_gota.position.x)+CGRectGetMidX(self.frame),
+                                 toqueInicio.y+(_gota.position.y)+CGRectGetMidY(self.frame));
         tocou_gota = [_gota verificaToque:[touch locationInNode:self]];
-        
-        
-        
-        
+        if(tocou_gota){
+            NSLog(@"tocou");
+        }
     }
 }
 
@@ -246,6 +253,9 @@
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInView:self.view];
     CGPoint prevLocation = [touch previousLocationInView:self.view];
+    
+    location=CGPointMake(location.x-(_gota.position.x)+CGRectGetMidX(self.frame),
+                         location.y-(_gota.position.y)+CGRectGetMidY(self.frame));
     
     if (location.x - prevLocation.x > 0) {
         //finger touch went right
@@ -262,64 +272,68 @@
     
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (toque_moveu && tocou_gota) {
-        [_gota dividir];
-        toque_moveu = NO;
-    }
+    
     for (UITouch *touch in touches) {
         
-        toqueFinal = [touch locationInNode:self];
-        if ([_gota verificaToque:[touch locationInNode:self]])
-            [_gota esconder];
-        if (!_gota.escondida) {
+        if (toque_moveu && tocou_gota) {
+            [_gota dividir];
+            toque_moveu = NO;
+        }else{
             
+            toqueFinal = [touch locationInNode:self];
+            toqueFinal=CGPointMake(toqueFinal.x-(_gota.position.x)+CGRectGetMidX(self.frame),
+                                   toqueFinal.y-(_gota.position.y)+CGRectGetMidY(self.frame));
+            if ([_gota verificaToque:[touch locationInNode:self]]){
+                [_gota esconder];
+            }else{
+                if (!_gota.escondida) {
+                    
+                    
+                    switch ([self verificaSentido:toqueFinal with:_gota.position]) {
+                        case 1:
+                           
+                                
+                                [_gota mover:toqueFinal withInterval:1.0 withType:1 and:300];
+                            
+                            break;
+                        case 2:
+                           
+                                
+                                [_gota mover:toqueFinal withInterval:1.0 withType:2 and:300];
+                            
+                            break;
+                        case 3:
+                            
+                                [_gota mover:toqueFinal withInterval:1.0 withType:3 and:300];
+                            
+                            break;
+                        case 4:
         
-        switch ([self verificaSentido:toqueFinal with:_gota.position]) {
-            case 1:
-                if (!_gota.escondida && !tocou_gota)
+                                [_gota mover:toqueFinal withInterval:1.0 withType:4 and:300];
+                            
+                            break;
+                    }
                     
-                    [_gota mover:toqueFinal withInterval:1.0 withType:1 and:300];
+                }
                 
-                break;
-            case 2:
-                if (!_gota.escondida && !tocou_gota)
-                    
-                    [_gota mover:toqueFinal withInterval:1.0 withType:2 and:300];
                 
-                break;
-            case 3:
-                if (!_gota.escondida && !tocou_gota)
-                    
-                    [_gota mover:toqueFinal withInterval:1.0 withType:3 and:300];
+                //Logica da movimentacao
+                //PathFinder
+                //
                 
-                break;
-            case 4:
-                if (!_gota.escondida && !tocou_gota)
-                    
-                    
-                    [_gota mover:toqueFinal withInterval:1.0 withType:4 and:300];
                 
-                break;
+                //logica da divisao
+                //Condicaos de diferenca dos pontos
+                
+                
+                
+                //Logica do invisivel
+                //Tempo de pressao
+                
+                
+            }
         }
-
-        }
-        
-        
-        //Logica da movimentacao
-        //PathFinder
-        //
-        
-        
-        //logica da divisao
-        //Condicaos de diferenca dos pontos
-        
-        
-        
-        //Logica do invisivel
-        //Tempo de pressao
-        
-        
-        }
+    }
     
 }
 -(void)centerMapOnCharacter{
@@ -339,6 +353,8 @@
     if ((self.fogo.physicsBody.velocity.dx <= 0) && (self.fogo.physicsBody.velocity.dy <= 0)) {
        // [self moveInimigo];
     }
+    
+    //NSLog(@"gota x:%f y:%f",_gota.position.x,_gota.position.y);
     
     [self followPlayer];
     [self.hud update];
