@@ -80,10 +80,15 @@
     
     [scene.level createWalls:CGPointMake(6, 3) withHeight:10 withWidth:1 withScene:scene];
     
+    scene.hud =[[JAGHud alloc] initWithTempo:300 withVida:3 withWindowSize:scene.frame.size];
+    
+    [scene addChild:scene.hud];
     
     [scene.cropNode addChild:scene.fogo];
     
     [scene addChild: scene.cropNode];
+    
+    [scene.hud startTimer];
     
     
    // JAGHud *hud=[JAGHud alloc]

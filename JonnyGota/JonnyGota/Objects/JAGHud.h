@@ -32,5 +32,6 @@
 
 -(void)update;
 
+-(void)startTimer;
 
 @end

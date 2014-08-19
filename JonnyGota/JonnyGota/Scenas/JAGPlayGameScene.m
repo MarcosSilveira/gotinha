@@ -248,8 +248,8 @@
     CGPoint location = [touch locationInView:self.view];
     CGPoint prevLocation = [touch previousLocationInView:self.view];
     
-    location=CGPointMake(location.x-(_gota.position.x)+CGRectGetMidX(self.frame),
-                         location.y-(_gota.position.y)+CGRectGetMidY(self.frame));
+   // location=CGPointMake(location.x-(_gota.position.x)+CGRectGetMidX(self.frame),
+    //                     location.y-(_gota.position.y)+CGRectGetMidY(self.frame));
     
     if (location.x - prevLocation.x > 0) {
         //finger touch went right
@@ -275,8 +275,8 @@
         }else{
             
             toqueFinal = [touch locationInNode:self];
-            toqueFinal=CGPointMake(toqueFinal.x-(_gota.position.x)+CGRectGetMidX(self.frame),
-                                   toqueFinal.y-(_gota.position.y)+CGRectGetMidY(self.frame));
+            //toqueFinal=CGPointMake(toqueFinal.x-(_gota.position.x)+CGRectGetMidX(self.frame),
+            //                       toqueFinal.y-(_gota.position.y)+CGRectGetMidY(self.frame));
             if ([_gota verificaToque:[touch locationInNode:self]]){
                 [_gota esconder];
             }else{
@@ -337,6 +337,8 @@
 
 }
 -(void)update:(NSTimeInterval)currentTime {
+    
+    
     [self centerMapOnCharacter];
     //depois de um tempo ou acao
     
@@ -407,11 +409,11 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"level.txt"];
     NSString *str = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
-
+    
     
     NSError *error;
-   // NSDictionary *resultados =[NSJSONSerialization JSONObjectWithData:[level1.exportar dataUsingEncoding:NSUTF8StringEncoding];
-//                                                               options:NSJSONReadingMutableContainers error:&error];
+    // NSDictionary *resultados =[NSJSONSerialization JSONObjectWithData:[level1.exportar dataUsingEncoding:NSUTF8StringEncoding];
+    //                                                               options:NSJSONReadingMutableContainers error:&error];
     
     
     NSDictionary *resul=[NSJSONSerialization JSONObjectWithData:[str dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
@@ -420,10 +422,10 @@
     if(!error){
         //Ponto *ponto = [Ponto comDicionario: resultados];
         //NSLog(@"Ponto: %@", ponto.descricao);
+        CGSize tamanho=CGSizeMake(_level.tileSize, _level.tileSize);
+        NSDictionary *temp=[resul objectForKey:@"gota"];
         
-        NSDictionary *temp = [resul objectForKey:@"gota"];
-        
-        _gota = [[JAGGota alloc] initWithPosition:CGPointMake([[temp objectForKey:@"positionX"] floatValue], [[temp objectForKey:@"positionY"] floatValue])];
+        _gota=[[JAGGota alloc] initWithPosition:CGPointMake([[temp objectForKey:@"positionX"] floatValue], [[temp objectForKey:@"positionY"] floatValue]) withSize:tamanho];
         
         [_cropNode addChild:_gota];
         
@@ -432,8 +434,8 @@
         for (int i=0; i<[tempoNum intValue]; i++) {
             NSDictionary *enemy=[resul objectForKey:[NSString stringWithFormat:@"inimigo%d",i+1]];
             NSNumber *tipo=[enemy objectForKey:@"tipo"];
-                     
-              
+            
+            
             if([tipo intValue]==1){
                 JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake([[enemy objectForKey:@"positionX"] floatValue], [[enemy objectForKey:@"positionY"] floatValue]) withSize:tamanho];
                 
@@ -473,36 +475,42 @@
     
 }
 
--(void)createLevel {
-    _level = [[JAGLevel alloc] initWithHeight:20 withWidth:20];
+
+-(void)createLevel{
+    _level=[[JAGLevel alloc] initWithHeight:20 withWidth:20];
     
-    _level.gota = [[JAGGota alloc] initWithPosition:CGPointMake(_level.tileSize*2, _level.tileSize*2)];
+    CGSize tamanho=CGSizeMake(_level.tileSize, _level.tileSize);
+    
+    _level.gota=[[JAGGota alloc] initWithPosition:CGPointMake(_level.tileSize*2, _level.tileSize*2) withSize:tamanho];
     
     
-    SKSpriteNode *wallSpri = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_level.tileSize, _level.tileSize)];
+    SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_level.tileSize, _level.tileSize)];
     
-    wallSpri.name = @"brownColor";
+    wallSpri.name=@"brownColor";
     
-    JAGWall *parede = [[JAGWall alloc] initWithSprite:wallSpri];
+    JAGWall *parede=[[JAGWall alloc] initWithSprite:wallSpri];
     
-    parede.position = CGPointMake(_level.tileSize*5, _level.tileSize*5);
+    parede.position=CGPointMake(_level.tileSize*5, _level.tileSize*5);
     
     [_level.paredes setValue:parede forKey:@"parede1"];
     
     
-    JAGFogoEnemy *inimigo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(_level.tileSize*4, _level.tileSize*4)];
+    JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(_level.tileSize*4, _level.tileSize*4) withSize:tamanho];
     
-    inimigo.sprite.name = @"grenColor";
+    inimigo.sprite.name=@"grenColor";
     
-    inimigo.tipo = 1;
+    inimigo.tipo=1;
     
     [_level.inimigos setValue:inimigo forKey:@"inimigo1"];
     
-    _level.mundo = @1;
+    _level.mundo=@1;
     
-    _level.level = @1;
+    _level.level=@1;
     
     //NSLog(@" Export: %@", [level1 exportar]);
+    
+    
+    
 }
 
 @end

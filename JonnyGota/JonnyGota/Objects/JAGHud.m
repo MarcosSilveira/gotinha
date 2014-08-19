@@ -27,9 +27,9 @@
     
     _tempo.text=[NSString stringWithFormat:@"%ds",_tempoRestante];
     
-    _vidas.position=CGPointMake(size.width*0.1, size.height*0.95);
+    _vidas.position=CGPointMake(size.width*0.2, size.height*0.95);
     
-    _tempo.position=CGPointMake(size.width*0.3, size.height*0.95);
+    _tempo.position=CGPointMake(size.width*0.6, size.height*0.95);
     
     [self addChild:_vidas];
     
@@ -44,5 +44,16 @@
     _tempo.text=[NSString stringWithFormat:@"%ds",_tempoRestante];
     
     _vidas.text=[NSString stringWithFormat:@"Vidas %d",_vidaRestante];
+}
+
+-(void)cronometro:(NSTimer *)timer{
+    _tempoRestante--;
+    [self update];
+}
+
+-(void)startTimer{
+    NSTimer *t = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(cronometro:) userInfo:nil repeats:YES];
+    
+    [[NSRunLoop mainRunLoop] addTimer:t forMode:NSRunLoopCommonModes];
 }
 @end
