@@ -199,8 +199,7 @@
     
     bool negy = false;
     
-    NSLog(@"Ponto ref x:%f  y:%f  Ponto Objeto x:%f  y:%f", pontoReferencia.x,pontoReferencia.y, pontoObjeto.x, pontoObjeto.y);
-    
+        
     if(difx < 0){
         negx = true;
         difx *= -1;
@@ -234,11 +233,17 @@
     /* Called when a touch begins */
     for (UITouch *touch in touches) {
         toqueInicio = [touch locationInNode:self];
-        toqueInicio =CGPointMake(toqueInicio.x+(_gota.position.x)+CGRectGetMidX(self.frame),
-                                 toqueInicio.y+(_gota.position.y)+CGRectGetMidY(self.frame));
-        tocou_gota = [_gota verificaToque:[touch locationInNode:self]];
+        
+        
+    
+        
+        toqueInicio =CGPointMake(toqueInicio.x+(_gota.position.x)-CGRectGetMidX(self.frame),
+                                 toqueInicio.y+(_gota.position.y)-CGRectGetMidY(self.frame));
+        tocou_gota = [_gota verificaToque:toqueInicio];
+        
+       
         if(tocou_gota){
-            NSLog(@"tocou");
+          
         }
     }
 }
@@ -275,9 +280,9 @@
         }else{
             
             toqueFinal = [touch locationInNode:self];
-            //toqueFinal=CGPointMake(toqueFinal.x-(_gota.position.x)+CGRectGetMidX(self.frame),
-            //                       toqueFinal.y-(_gota.position.y)+CGRectGetMidY(self.frame));
-            if ([_gota verificaToque:[touch locationInNode:self]]){
+            toqueFinal=CGPointMake(toqueFinal.x+(_gota.position.x)-CGRectGetMidX(self.frame),
+                                   toqueFinal.y+(_gota.position.y)-CGRectGetMidY(self.frame));
+            if ([_gota verificaToque:toqueFinal]){
                 [_gota esconder];
             }else{
                 if (!_gota.escondida) {
