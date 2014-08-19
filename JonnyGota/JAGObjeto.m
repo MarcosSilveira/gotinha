@@ -27,6 +27,13 @@
     _sprite.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(_sprite.frame.size.width, _sprite.frame.size.height)];
     _sprite.physicsBody.categoryBitMask = ITEM;
     
+    self.physicsBody.categoryBitMask = ITEM;
+    self.physicsBody.collisionBitMask = GOTA;
+
+    
+    _sprite.physicsBody.dynamic=NO;
+    
+    _tipo=tipo;
     switch (tipo) {
         case 1:
             _sprite.name = @"chave";
@@ -45,14 +52,15 @@
     }
 }
 
--(void) habilidade:(NSInteger)tipo {
+-(void) habilidade:(JAGPlayGameScene *)scene{
     
-    switch (tipo) {
+    switch (_tipo) {
             
         case 1:
             break;
             
         case 2:
+            scene.hud.tempoRestante+=10;
             break;
             
         case 3:

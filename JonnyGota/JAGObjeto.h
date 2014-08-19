@@ -7,18 +7,17 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "JAGPlayGameScene.h"
 
-typedef enum : uint32_t { 
-    CHAVE = 0x1 << 0,
-    ITEM = 0x1 << 1,
-    
-} colisao;
+
 
 @interface JAGObjeto : SKNode
+
+@property (nonatomic) int tipo;
 
 @property (strong, nonatomic) SKSpriteNode *sprite;
 
 -(void) criarObj:(CGPoint)posi comTipo:(NSInteger)tipo eSprite:(SKSpriteNode *) sprite;
--(void) habilidade:(NSInteger)tipo;
+-(void) habilidade:(JAGPlayGameScene *)scene;
 
 @end

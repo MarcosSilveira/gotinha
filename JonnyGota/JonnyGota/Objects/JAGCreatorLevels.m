@@ -8,7 +8,7 @@
 
 #import "JAGCreatorLevels.h"
 #import "JAGPlayGameScene.h"
-#import "JAGHud.h"
+#import "JAGObjeto.h"
 
 @implementation JAGCreatorLevels
 
@@ -78,11 +78,23 @@
     
     [scene.cropNode addChild:scene.gota];
     
+    //Box limite
+    
     [scene.level createWalls:CGPointMake(0, 0) withHeight:20 withWidth:10 withScene:scene];
+    
+    [scene.level createWalls:CGPointMake(10, 0) withHeight:20 withWidth:1 withScene:scene];
+    
+    [scene.level createWalls:CGPointMake(0, 20) withHeight:1 withWidth:11 withScene:scene];
+    
+    
+    //Box do Inimigo
     
     [scene.level createWalls:CGPointMake(3, 3) withHeight:10 withWidth:3 withScene:scene];
     
     [scene.level createWalls:CGPointMake(6, 3) withHeight:10 withWidth:1 withScene:scene];
+   
+
+
     
     
     scene.hud =[[JAGHud alloc] initWithTempo:300 withVida:3 withWindowSize:scene.frame.size];
@@ -94,6 +106,12 @@
     [scene addChild: scene.cropNode];
     
     [scene.hud startTimer];
+    
+    JAGObjeto *obj=[[JAGObjeto alloc] init];
+    SKSpriteNode *cron=[[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(scene.level.tileSize-1, scene.level.tileSize-1)];
+    [obj criarObj:[scene.level calculateTile:CGPointMake(9, 3)] comTipo:2 eSprite:cron];
+    
+    [scene.cropNode addChild:obj];
     
     
    // JAGHud *hud=[JAGHud alloc]

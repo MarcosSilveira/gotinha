@@ -9,6 +9,7 @@
 #import "JAGPlayGameScene.h"
 #import "JAGLevel.h"
 #import "JAGCreatorLevels.h"
+#import "JAGObjeto.h"
 
 
 @implementation JAGPlayGameScene {
@@ -395,6 +396,15 @@
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"cronometro"]) ||
        ([contact.bodyA.node.name isEqualToString:@"cronometro"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
         //
+        if([contact.bodyA.node.name isEqualToString:@"cronometro"]){
+            JAGObjeto *obj=(JAGObjeto *)contact.bodyA.node.parent;
+            [obj habilidade:self];
+            [obj removeFromParent];
+        }else{
+            JAGObjeto *obj=(JAGObjeto *)contact.bodyB.node.parent;
+            [obj habilidade:self];
+            [obj removeFromParent];
+        }
     }
     
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"chave"]) ||
