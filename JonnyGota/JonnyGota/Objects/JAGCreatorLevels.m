@@ -50,6 +50,8 @@
 + (void)initializeLevel01ofWorld01onScene:(JAGPlayGameScene *)scene
 {
     //[self configure:scene withBackgroundColor:[UIColor whiteColor]];
+    SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
+
     
     scene.level=[[JAGLevel alloc] initWithHeight:30 withWidth:30];
     
@@ -80,7 +82,7 @@
     
     [scene.level createWalls:CGPointMake(6, 3) withHeight:10 withWidth:1 withScene:scene];
     
-    
+    [scene.cropNode addChild:bgImage];
     [scene.cropNode addChild:scene.fogo];
     
     [scene addChild: scene.cropNode];

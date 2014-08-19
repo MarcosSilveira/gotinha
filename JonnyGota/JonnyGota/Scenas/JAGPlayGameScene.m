@@ -236,9 +236,6 @@
         toqueInicio = [touch locationInNode:self];
         tocou_gota = [_gota verificaToque:[touch locationInNode:self]];
         
-        
-        
-        
     }
 }
 
@@ -271,37 +268,37 @@
         toqueFinal = [touch locationInNode:self];
         if ([_gota verificaToque:[touch locationInNode:self]])
             [_gota esconder];
+        
         if (!_gota.escondida) {
             
-        
-        switch ([self verificaSentido:toqueFinal with:_gota.position]) {
-            case 1:
-                if (!_gota.escondida && !tocou_gota)
+            switch ([self verificaSentido:toqueFinal with:_gota.position]) {
+                case 1:
+                    if (!_gota.escondida && !tocou_gota)
+                        
+                        [_gota mover:toqueFinal withInterval:1.0 withType:1 and:300];
                     
-                    [_gota mover:toqueFinal withInterval:1.0 withType:1 and:300];
-                
-                break;
-            case 2:
-                if (!_gota.escondida && !tocou_gota)
+                    break;
+                case 2:
+                    if (!_gota.escondida && !tocou_gota)
+                        
+                        [_gota mover:toqueFinal withInterval:1.0 withType:2 and:300];
                     
-                    [_gota mover:toqueFinal withInterval:1.0 withType:2 and:300];
-                
-                break;
-            case 3:
-                if (!_gota.escondida && !tocou_gota)
+                    break;
+                case 3:
+                    if (!_gota.escondida && !tocou_gota)
+                        
+                        [_gota mover:toqueFinal withInterval:1.0 withType:3 and:300];
                     
-                    [_gota mover:toqueFinal withInterval:1.0 withType:3 and:300];
-                
-                break;
-            case 4:
-                if (!_gota.escondida && !tocou_gota)
+                    break;
+                case 4:
+                    if (!_gota.escondida && !tocou_gota)
+                        
+                        
+                        [_gota mover:toqueFinal withInterval:1.0 withType:4 and:300];
                     
-                    
-                    [_gota mover:toqueFinal withInterval:1.0 withType:4 and:300];
-                
-                break;
-        }
-
+                    break;
+            }
+            
         }
         
         
@@ -346,9 +343,6 @@
 
 #pragma mark - Physics
 
-- (void)didSimulatePhysics{
-    
-}
 
 -(void)didBeginContact:(SKPhysicsContact *)contact{
     if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ENEMY)){
@@ -380,23 +374,13 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
 -(void)loadingWorld{
     //Ler um arquivo
     
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"level.txt"];
+    NSString *filePath = [documentsDirectory stringByAppendingPathCompnent:@"level.txt"];
     NSString *str = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
 
     
@@ -464,41 +448,6 @@
     
 }
 
--(void)createLevel{
-    _level=[[JAGLevel alloc] initWithHeight:20 withWidth:20];
-    
-    CGSize tamanho=CGSizeMake(_level.tileSize, _level.tileSize);
-    
-    _level.gota=[[JAGGota alloc] initWithPosition:CGPointMake(_level.tileSize*2, _level.tileSize*2) withSize:tamanho];
-    
-    
-    SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_level.tileSize, _level.tileSize)];
-    
-    wallSpri.name=@"brownColor";
-    
-    JAGWall *parede=[[JAGWall alloc] initWithSprite:wallSpri];
-    
-    parede.position=CGPointMake(_level.tileSize*5, _level.tileSize*5);
-    
-    [_level.paredes setValue:parede forKey:@"parede1"];
-    
-    
-    JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(_level.tileSize*4, _level.tileSize*4) withSize:tamanho];
-    
-    inimigo.sprite.name=@"grenColor";
-    
-    inimigo.tipo=1;
-    
-    [_level.inimigos setValue:inimigo forKey:@"inimigo1"];
-    
-    _level.mundo=@1;
-    
-    _level.level=@1;
-    
-    //NSLog(@" Export: %@", [level1 exportar]);
-    
-    
-    
-}
+
 
 @end
