@@ -39,7 +39,7 @@
     
     self.physicsBody.dynamic=NO;
     
-    self.physicsBody.restitution=0.008;
+    self.physicsBody.restitution=0.015;
     
     self.physicsBody.usesPreciseCollisionDetection=NO;
     

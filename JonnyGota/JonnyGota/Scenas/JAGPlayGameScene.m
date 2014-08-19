@@ -23,7 +23,6 @@
     SKShapeNode *lineNode;
     SKNode *area;
     SKNode *worldNode;
-
 }
 
 #pragma mark - Move to View
@@ -39,6 +38,7 @@
 -(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world{
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
+        atlas = [SKTextureAtlas atlasNamed:@"gotinha"];
         self.physicsWorld.contactDelegate = self;
         worldNode = [[SKNode alloc]init];
         [worldNode setName:@"worldNode"];
@@ -145,19 +145,19 @@
 
     switch (randEixo) {
         case 1:
-            [self.fogo mover:posY withInterval:1.0 withType:1 and:200]; //cima
+            [self.fogo mover:posY withInterval:1.0 withType:1 and:100]; //cima
             break;
             
         case 2:
-            [self.fogo mover:posY2 withInterval:1.0 withType:2 and:200]; //baixo
+            [self.fogo mover:posY2 withInterval:1.0 withType:2 and:100]; //baixo
             break;
             
         case 3:
-            [self.fogo mover:posX withInterval:1.0 withType:3 and:200]; //esq
+            [self.fogo mover:posX withInterval:1.0 withType:3 and:100]; //esq
             break;
             
         case 4:
-            [self.fogo mover:posX2 withInterval:1.0 withType:4 and:200]; //dir
+            [self.fogo mover:posX2 withInterval:1.0 withType:4 and:100]; //dir
             break;
             
         default:
@@ -271,7 +271,13 @@
     
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    
+    NSMutableArray *walkFrames = [NSMutableArray array];
+    int numImages = atlas.textureNames.count;
+    for (int i=1; i <= numImages/2; i++) {
+        NSString *textureName = [NSString stringWithFormat:@"gota_walk_%d", i];
+        SKTexture *temp = [atlas textureNamed:textureName];
+        [walkFrames addObject:temp];
+    }
     for (UITouch *touch in touches) {
         
         if (toque_moveu && tocou_gota) {
@@ -293,23 +299,25 @@
                            
                                 
                                 [_gota mover:toqueFinal withInterval:1.0 withType:1 and:300];
+                            [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
+
                             
                             break;
                         case 2:
                            
                                 
                                 [_gota mover:toqueFinal withInterval:1.0 withType:2 and:300];
-                            
+                            [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
                             break;
                         case 3:
                             
                                 [_gota mover:toqueFinal withInterval:1.0 withType:3 and:300];
-                            
+                            [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
                             break;
                         case 4:
         
                                 [_gota mover:toqueFinal withInterval:1.0 withType:4 and:300];
-                            
+                            [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
                             break;
                     }
                     
