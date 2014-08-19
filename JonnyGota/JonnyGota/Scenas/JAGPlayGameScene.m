@@ -36,11 +36,6 @@
     
 }
 
-
-
-
-
-
 -(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world{
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
@@ -57,7 +52,6 @@
             NSLog(@"Level and World not set");
             self.currentLevel = @(1);
             self.currentWorld = @(1);
-            
         }
         [JAGCreatorLevels initializeLevel:self.currentLevel ofWorld:self.currentWorld onScene:self];
         
@@ -143,27 +137,27 @@
     
     int randEixo = arc4random()%3+1;
     
-    /* NSArray *pos = [NSArray arrayWithObjects:
-     [NSValue valueWithCGPoint:CGPointMake(self.fogo.position.x + 3, 0) ],
-     [NSValue valueWithCGPoint:CGPointMake(self.fogo.position.x - 3, 0)],
-     [NSValue valueWithCGPoint:CGPointMake(0,self.fogo.position.y + 3)],
-     [NSValue valueWithCGPoint:CGPointMake(0,self.fogo.position.y - 3)], nil];*/
-    
+    CGPoint posX, posY, posX2, posY2;
+    posY  = CGPointMake(self.fogo.position.x, self.fogo.position.y + 3);
+    posY2 = CGPointMake(self.fogo.position.x, self.fogo.position.y - 3);
+    posX  = CGPointMake(self.fogo.position.x + 3, self.fogo.position.y);
+    posX2 = CGPointMake(self.fogo.position.x - 3, self.fogo.position.y);
+
     switch (randEixo) {
         case 1:
-            [self.fogo mover:(self.fogo.position) withInterval:1.0 withType:1 and:100]; //cima
+            [self.fogo mover:posY withInterval:1.0 withType:1 and:200]; //cima
             break;
             
         case 2:
-            [self.fogo mover:(self.fogo.position) withInterval:1.0 withType:2 and:100]; //baixo
+            [self.fogo mover:posY2 withInterval:1.0 withType:2 and:200]; //baixo
             break;
             
         case 3:
-            [self.fogo mover:(self.fogo.position) withInterval:1.0 withType:2 and:100]; //esq
+            [self.fogo mover:posX withInterval:1.0 withType:3 and:200]; //esq
             break;
             
         case 4:
-            [self.fogo mover:(self.fogo.position) withInterval:1.0 withType:2 and:100]; //dir
+            [self.fogo mover:posX2 withInterval:1.0 withType:4 and:200]; //dir
             break;
             
         default:
@@ -362,10 +356,6 @@
 
 #pragma mark - Physics
 
-- (void)didSimulatePhysics{
-    
-}
-
 -(void)didBeginContact:(SKPhysicsContact *)contact{
     if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ENEMY)){
         //NSLog(@"hit");
@@ -376,9 +366,23 @@
     }
     //Colisao com a parede
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
-       ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ){
-        
+       ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
     
+    }
+    
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"chave"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"chave"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
+        //
+    }
+    
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"cronometro"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"cronometro"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
+        //
+    }
+    
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"chave"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"velocidade"] && [contact.bodyB.node.name isEqualToString:@"velocidade"]) ) {
+        //
     }
     if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == CONTROLE_TOQUE)){
         NSLog(@"hit");
@@ -394,17 +398,6 @@
     
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 -(void)loadingWorld{
     //Ler um arquivo
@@ -427,10 +420,10 @@
     if(!error){
         //Ponto *ponto = [Ponto comDicionario: resultados];
         //NSLog(@"Ponto: %@", ponto.descricao);
-        CGSize tamanho=CGSizeMake(_level.tileSize, _level.tileSize);
-        NSDictionary *temp=[resul objectForKey:@"gota"];
         
-        _gota=[[JAGGota alloc] initWithPosition:CGPointMake([[temp objectForKey:@"positionX"] floatValue], [[temp objectForKey:@"positionY"] floatValue]) withSize:tamanho];
+        NSDictionary *temp = [resul objectForKey:@"gota"];
+        
+        _gota = [[JAGGota alloc] initWithPosition:CGPointMake([[temp objectForKey:@"positionX"] floatValue], [[temp objectForKey:@"positionY"] floatValue])];
         
         [_cropNode addChild:_gota];
         
@@ -480,41 +473,36 @@
     
 }
 
--(void)createLevel{
-    _level=[[JAGLevel alloc] initWithHeight:20 withWidth:20];
+-(void)createLevel {
+    _level = [[JAGLevel alloc] initWithHeight:20 withWidth:20];
     
-    CGSize tamanho=CGSizeMake(_level.tileSize, _level.tileSize);
-    
-    _level.gota=[[JAGGota alloc] initWithPosition:CGPointMake(_level.tileSize*2, _level.tileSize*2) withSize:tamanho];
+    _level.gota = [[JAGGota alloc] initWithPosition:CGPointMake(_level.tileSize*2, _level.tileSize*2)];
     
     
-    SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_level.tileSize, _level.tileSize)];
+    SKSpriteNode *wallSpri = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_level.tileSize, _level.tileSize)];
     
-    wallSpri.name=@"brownColor";
+    wallSpri.name = @"brownColor";
     
-    JAGWall *parede=[[JAGWall alloc] initWithSprite:wallSpri];
+    JAGWall *parede = [[JAGWall alloc] initWithSprite:wallSpri];
     
-    parede.position=CGPointMake(_level.tileSize*5, _level.tileSize*5);
+    parede.position = CGPointMake(_level.tileSize*5, _level.tileSize*5);
     
     [_level.paredes setValue:parede forKey:@"parede1"];
     
     
-    JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(_level.tileSize*4, _level.tileSize*4) withSize:tamanho];
+    JAGFogoEnemy *inimigo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(_level.tileSize*4, _level.tileSize*4)];
     
-    inimigo.sprite.name=@"grenColor";
+    inimigo.sprite.name = @"grenColor";
     
-    inimigo.tipo=1;
+    inimigo.tipo = 1;
     
     [_level.inimigos setValue:inimigo forKey:@"inimigo1"];
     
-    _level.mundo=@1;
+    _level.mundo = @1;
     
-    _level.level=@1;
+    _level.level = @1;
     
     //NSLog(@" Export: %@", [level1 exportar]);
-    
-    
-    
 }
 
 @end
