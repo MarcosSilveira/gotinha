@@ -42,6 +42,7 @@
 		8D1627A11992943B00AD9F12 /* JAGFogoEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1627A01992943B00AD9F12 /* JAGFogoEnemy.m */; };
 		8D1627A71992945E00AD9F12 /* JAGPedraEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1627A61992945E00AD9F12 /* JAGPedraEnemy.m */; };
 		8D4A4F3019A2842D00255468 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D4A4F2F19A2842D00255468 /* background.png */; };
+		B157BDA819A267E400ACA4C1 /* JAGObjeto.m in Sources */ = {isa = PBXBuildFile; fileRef = B157BDA719A267E400ACA4C1 /* JAGObjeto.m */; };
 		B1F768C11995443A0063E27C /* mask.png in Resources */ = {isa = PBXBuildFile; fileRef = B1F768C01995443A0063E27C /* mask.png */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +114,8 @@
 		8D1627A51992945E00AD9F12 /* JAGPedraEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGPedraEnemy.h; sourceTree = "<group>"; };
 		8D1627A61992945E00AD9F12 /* JAGPedraEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGPedraEnemy.m; sourceTree = "<group>"; };
 		8D4A4F2F19A2842D00255468 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		B157BDA619A267E400ACA4C1 /* JAGObjeto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGObjeto.h; sourceTree = "<group>"; };
+		B157BDA719A267E400ACA4C1 /* JAGObjeto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGObjeto.m; sourceTree = "<group>"; };
 		B1F768C01995443A0063E27C /* mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mask.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 

@@ -237,7 +237,9 @@
         toqueInicio =CGPointMake(toqueInicio.x+(_gota.position.x)+CGRectGetMidX(self.frame),
                                  toqueInicio.y+(_gota.position.y)+CGRectGetMidY(self.frame));
         tocou_gota = [_gota verificaToque:[touch locationInNode:self]];
-        
+        if(tocou_gota){
+            NSLog(@"tocou");
+        }
     }
 }
 
@@ -267,57 +269,64 @@
     
     for (UITouch *touch in touches) {
         
-        toqueFinal = [touch locationInNode:self];
-        if ([_gota verificaToque:[touch locationInNode:self]])
-            [_gota esconder];
-        
-        if (!_gota.escondida) {
+        if (toque_moveu && tocou_gota) {
+            [_gota dividir];
+            toque_moveu = NO;
+        }else{
             
-            switch ([self verificaSentido:toqueFinal with:_gota.position]) {
-                case 1:
-                    if (!_gota.escondida && !tocou_gota)
-                        
-                        [_gota mover:toqueFinal withInterval:1.0 withType:1 and:300];
+            toqueFinal = [touch locationInNode:self];
+            //toqueFinal=CGPointMake(toqueFinal.x-(_gota.position.x)+CGRectGetMidX(self.frame),
+            //                       toqueFinal.y-(_gota.position.y)+CGRectGetMidY(self.frame));
+            if ([_gota verificaToque:[touch locationInNode:self]]){
+                [_gota esconder];
+            }else{
+                if (!_gota.escondida) {
                     
-                    break;
-                case 2:
-                    if (!_gota.escondida && !tocou_gota)
-                        
-                        [_gota mover:toqueFinal withInterval:1.0 withType:2 and:300];
                     
-                    break;
-                case 3:
-                    if (!_gota.escondida && !tocou_gota)
-                        
-                        [_gota mover:toqueFinal withInterval:1.0 withType:3 and:300];
+                    switch ([self verificaSentido:toqueFinal with:_gota.position]) {
+                        case 1:
+                           
+                                
+                                [_gota mover:toqueFinal withInterval:1.0 withType:1 and:300];
+                            
+                            break;
+                        case 2:
+                           
+                                
+                                [_gota mover:toqueFinal withInterval:1.0 withType:2 and:300];
+                            
+                            break;
+                        case 3:
+                            
+                                [_gota mover:toqueFinal withInterval:1.0 withType:3 and:300];
+                            
+                            break;
+                        case 4:
+        
+                                [_gota mover:toqueFinal withInterval:1.0 withType:4 and:300];
+                            
+                            break;
+                    }
                     
-                    break;
-                case 4:
-                    if (!_gota.escondida && !tocou_gota)
-                        
-                        
-                        [_gota mover:toqueFinal withInterval:1.0 withType:4 and:300];
-                    
-                    break;
+                }
+                
+                
+                //Logica da movimentacao
+                //PathFinder
+                //
+                
+                
+                //logica da divisao
+                //Condicaos de diferenca dos pontos
+                
+                
+                
+                //Logica do invisivel
+                //Tempo de pressao
+                
+                
             }
             
-        }
-        
-        
-        //Logica da movimentacao
-        //PathFinder
-        //
-        
-        
-        //logica da divisao
-        //Condicaos de diferenca dos pontos
-        
-        
-        
-        //Logica do invisivel
-        //Tempo de pressao
-        
-        
         }
     }
     
@@ -469,6 +478,43 @@
     
 }
 
+
+-(void)createLevel{
+    _level=[[JAGLevel alloc] initWithHeight:20 withWidth:20];
+    
+    CGSize tamanho=CGSizeMake(_level.tileSize, _level.tileSize);
+    
+    _level.gota=[[JAGGota alloc] initWithPosition:CGPointMake(_level.tileSize*2, _level.tileSize*2) withSize:tamanho];
+    
+    
+    SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_level.tileSize, _level.tileSize)];
+    
+    wallSpri.name=@"brownColor";
+    
+    JAGWall *parede=[[JAGWall alloc] initWithSprite:wallSpri];
+    
+    parede.position=CGPointMake(_level.tileSize*5, _level.tileSize*5);
+    
+    [_level.paredes setValue:parede forKey:@"parede1"];
+    
+    
+    JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(_level.tileSize*4, _level.tileSize*4) withSize:tamanho];
+    
+    inimigo.sprite.name=@"grenColor";
+    
+    inimigo.tipo=1;
+    
+    [_level.inimigos setValue:inimigo forKey:@"inimigo1"];
+    
+    _level.mundo=@1;
+    
+    _level.level=@1;
+    
+    //NSLog(@" Export: %@", [level1 exportar]);
+    
+    
+    
+}
 
 
 @end
