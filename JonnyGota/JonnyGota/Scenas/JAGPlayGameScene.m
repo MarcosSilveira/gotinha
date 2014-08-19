@@ -36,11 +36,6 @@
     
 }
 
-
-
-
-
-
 -(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world{
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
@@ -57,7 +52,6 @@
             NSLog(@"Level and World not set");
             self.currentLevel = @(1);
             self.currentWorld = @(1);
-            
         }
         [JAGCreatorLevels initializeLevel:self.currentLevel ofWorld:self.currentWorld onScene:self];
         
@@ -143,27 +137,27 @@
     
     int randEixo = arc4random()%3+1;
     
-    /* NSArray *pos = [NSArray arrayWithObjects:
-     [NSValue valueWithCGPoint:CGPointMake(self.fogo.position.x + 3, 0) ],
-     [NSValue valueWithCGPoint:CGPointMake(self.fogo.position.x - 3, 0)],
-     [NSValue valueWithCGPoint:CGPointMake(0,self.fogo.position.y + 3)],
-     [NSValue valueWithCGPoint:CGPointMake(0,self.fogo.position.y - 3)], nil];*/
-    
+    CGPoint posX, posY, posX2, posY2;
+    posY  = CGPointMake(self.fogo.position.x, self.fogo.position.y + 3);
+    posY2 = CGPointMake(self.fogo.position.x, self.fogo.position.y - 3);
+    posX  = CGPointMake(self.fogo.position.x + 3, self.fogo.position.y);
+    posX2 = CGPointMake(self.fogo.position.x - 3, self.fogo.position.y);
+
     switch (randEixo) {
         case 1:
-            [self.fogo mover:(self.fogo.position) withInterval:1.0 withType:1 and:100]; //cima
+            [self.fogo mover:posY withInterval:1.0 withType:1 and:200]; //cima
             break;
             
         case 2:
-            [self.fogo mover:(self.fogo.position) withInterval:1.0 withType:2 and:100]; //baixo
+            [self.fogo mover:posY2 withInterval:1.0 withType:2 and:200]; //baixo
             break;
             
         case 3:
-            [self.fogo mover:(self.fogo.position) withInterval:1.0 withType:2 and:100]; //esq
+            [self.fogo mover:posX withInterval:1.0 withType:3 and:200]; //esq
             break;
             
         case 4:
-            [self.fogo mover:(self.fogo.position) withInterval:1.0 withType:2 and:100]; //dir
+            [self.fogo mover:posX2 withInterval:1.0 withType:4 and:200]; //dir
             break;
             
         default:
@@ -193,6 +187,8 @@
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto {
     //  toqueFinal = pontoReferencia;
     int tipo;
+    
+    
     float difx = pontoObjeto.x - pontoReferencia.x;
     
     //float dify=toqueFinals.y-toqueFinal.y;
@@ -202,6 +198,8 @@
     BOOL negx = false;;
     
     bool negy = false;
+    
+    NSLog(@"Ponto ref x:%f  y:%f  Ponto Objeto x:%f  y:%f", pontoReferencia.x,pontoReferencia.y, pontoObjeto.x, pontoObjeto.y);
     
     if(difx < 0){
         negx = true;
@@ -224,6 +222,8 @@
         else
             tipo = 2;
     }
+    
+    NSLog(@"tipo %d",tipo);
     return tipo;
 }
 
@@ -234,6 +234,8 @@
     /* Called when a touch begins */
     for (UITouch *touch in touches) {
         toqueInicio = [touch locationInNode:self];
+        toqueInicio =CGPointMake(toqueInicio.x+(_gota.position.x)+CGRectGetMidX(self.frame),
+                                 toqueInicio.y+(_gota.position.y)+CGRectGetMidY(self.frame));
         tocou_gota = [_gota verificaToque:[touch locationInNode:self]];
         
     }
@@ -243,6 +245,9 @@
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInView:self.view];
     CGPoint prevLocation = [touch previousLocationInView:self.view];
+    
+   // location=CGPointMake(location.x-(_gota.position.x)+CGRectGetMidX(self.frame),
+    //                     location.y-(_gota.position.y)+CGRectGetMidY(self.frame));
     
     if (location.x - prevLocation.x > 0) {
         //finger touch went right
@@ -259,10 +264,7 @@
     
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (toque_moveu && tocou_gota) {
-        [_gota dividir];
-        toque_moveu = NO;
-    }
+    
     for (UITouch *touch in touches) {
         
         toqueFinal = [touch locationInNode:self];
@@ -317,6 +319,7 @@
         
         
         }
+    }
     
 }
 -(void)centerMapOnCharacter{
@@ -326,6 +329,8 @@
 
 }
 -(void)update:(NSTimeInterval)currentTime {
+    
+    
     [self centerMapOnCharacter];
     //depois de um tempo ou acao
     
@@ -336,6 +341,8 @@
     if ((self.fogo.physicsBody.velocity.dx <= 0) && (self.fogo.physicsBody.velocity.dy <= 0)) {
        // [self moveInimigo];
     }
+    
+    //NSLog(@"gota x:%f y:%f",_gota.position.x,_gota.position.y);
     
     [self followPlayer];
     [self.hud update];
@@ -354,9 +361,23 @@
     }
     //Colisao com a parede
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
-       ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ){
-        
+       ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
     
+    }
+    
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"chave"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"chave"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
+        //
+    }
+    
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"cronometro"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"cronometro"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
+        //
+    }
+    
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"chave"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"velocidade"] && [contact.bodyB.node.name isEqualToString:@"velocidade"]) ) {
+        //
     }
     if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == CONTROLE_TOQUE)){
         NSLog(@"hit");
@@ -382,11 +403,11 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"level.txt"];
     NSString *str = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
-
+    
     
     NSError *error;
-   // NSDictionary *resultados =[NSJSONSerialization JSONObjectWithData:[level1.exportar dataUsingEncoding:NSUTF8StringEncoding];
-//                                                               options:NSJSONReadingMutableContainers error:&error];
+    // NSDictionary *resultados =[NSJSONSerialization JSONObjectWithData:[level1.exportar dataUsingEncoding:NSUTF8StringEncoding];
+    //                                                               options:NSJSONReadingMutableContainers error:&error];
     
     
     NSDictionary *resul=[NSJSONSerialization JSONObjectWithData:[str dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
@@ -407,8 +428,8 @@
         for (int i=0; i<[tempoNum intValue]; i++) {
             NSDictionary *enemy=[resul objectForKey:[NSString stringWithFormat:@"inimigo%d",i+1]];
             NSNumber *tipo=[enemy objectForKey:@"tipo"];
-                     
-              
+            
+            
             if([tipo intValue]==1){
                 JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake([[enemy objectForKey:@"positionX"] floatValue], [[enemy objectForKey:@"positionY"] floatValue]) withSize:tamanho];
                 

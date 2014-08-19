@@ -87,6 +87,8 @@
     
     [scene addChild: scene.cropNode];
     
+    [scene.hud startTimer];
+    
     
    // JAGHud *hud=[JAGHud alloc]
 }

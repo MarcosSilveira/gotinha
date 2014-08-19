@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+
 typedef enum : uint32_t{
  GOTA = 0x1 << 0,
  ENEMY = 0x1 << 1,
