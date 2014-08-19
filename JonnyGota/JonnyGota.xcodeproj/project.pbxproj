@@ -42,7 +42,7 @@
 		8D1627A11992943B00AD9F12 /* JAGFogoEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1627A01992943B00AD9F12 /* JAGFogoEnemy.m */; };
 		8D1627A71992945E00AD9F12 /* JAGPedraEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1627A61992945E00AD9F12 /* JAGPedraEnemy.m */; };
 		8D4A4F3019A2842D00255468 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D4A4F2F19A2842D00255468 /* background.png */; };
-		8D4A4F3319A3C33900255468 /* gotinha.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8D4A4F3219A3C33900255468 /* gotinha.atlas */; };
+		8D4A4F3519A3D0E300255468 /* gotinha.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8D4A4F3419A3D0E300255468 /* gotinha.atlas */; };
 		B157BDA819A267E400ACA4C1 /* JAGObjeto.m in Sources */ = {isa = PBXBuildFile; fileRef = B157BDA719A267E400ACA4C1 /* JAGObjeto.m */; };
 		B1F768C11995443A0063E27C /* mask.png in Resources */ = {isa = PBXBuildFile; fileRef = B1F768C01995443A0063E27C /* mask.png */; };
 /* End PBXBuildFile section */
@@ -115,7 +115,7 @@
 		8D1627A51992945E00AD9F12 /* JAGPedraEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGPedraEnemy.h; sourceTree = "<group>"; };
 		8D1627A61992945E00AD9F12 /* JAGPedraEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGPedraEnemy.m; sourceTree = "<group>"; };
 		8D4A4F2F19A2842D00255468 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		8D4A4F3219A3C33900255468 /* gotinha.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = gotinha.atlas; sourceTree = "<group>"; };
+		8D4A4F3419A3D0E300255468 /* gotinha.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = gotinha.atlas; sourceTree = "<group>"; };
 		B157BDA619A267E400ACA4C1 /* JAGObjeto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGObjeto.h; sourceTree = "<group>"; };
 		B157BDA719A267E400ACA4C1 /* JAGObjeto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGObjeto.m; sourceTree = "<group>"; };
 		B1F768C01995443A0063E27C /* mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mask.png; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 		0B3A04431991164A00C7C39E = {
 			isa = PBXGroup;
 			children = (
-				8D4A4F3219A3C33900255468 /* gotinha.atlas */,
+				8D4A4F3419A3D0E300255468 /* gotinha.atlas */,
 				B1F768C01995443A0063E27C /* mask.png */,
 				0B45FF5119929948001948F9 /* Actions */,
 				0B024D0C1991256300AE9588 /* Enemies */,
@@ -389,7 +389,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D4A4F3319A3C33900255468 /* gotinha.atlas in Resources */,
+				8D4A4F3519A3D0E300255468 /* gotinha.atlas in Resources */,
 				8D4A4F3019A2842D00255468 /* background.png in Resources */,
 				0B3A045C1991164A00C7C39E /* InfoPlist.strings in Resources */,
 				0B3A046F1991164A00C7C39E /* Images.xcassets in Resources */,
