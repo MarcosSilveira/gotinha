@@ -223,7 +223,7 @@
             tipo = 2;
     }
     
-    NSLog(@"tipo %d",tipo);
+   
     return tipo;
 }
 
@@ -283,6 +283,7 @@
         
         if (toque_moveu && tocou_gota) {
             [_gota dividir];
+            NSLog(@"Dividiu");
             toque_moveu = NO;
         }else{
             
@@ -299,7 +300,7 @@
                         case 1:
                            
                                 
-                                [_gota mover:toqueFinal withInterval:1.0 withType:1 and:300];
+                            [_gota mover:toqueFinal withInterval:1.0 withType:1 and:300];
                             [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
 
                             
@@ -317,7 +318,7 @@
                             break;
                         case 4:
         
-                                [_gota mover:toqueFinal withInterval:1.0 withType:4 and:300];
+                            [_gota mover:toqueFinal withInterval:1.0 withType:4 and:300];
                             [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
                             break;
                     }
