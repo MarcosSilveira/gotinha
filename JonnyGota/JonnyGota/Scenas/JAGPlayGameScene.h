@@ -23,6 +23,8 @@
     SKSpriteNode *fundo2;
     SKNode *myWorld;
     SKNode *camera;
+    SKTextureAtlas *atlas;
+
 }
 
 @property (nonatomic) NSNumber *currentLevel;

@@ -13,6 +13,7 @@
 @property (strong, nonatomic) UISwipeGestureRecognizer *swipeGest;
 @property BOOL escondida;
 @property BOOL dividida;
+@property SKTextureAtlas *atlas;
 -(void)dividir;
 -(void)esconder;
 

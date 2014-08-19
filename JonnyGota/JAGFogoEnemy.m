@@ -12,9 +12,10 @@
 
 -(id)initWithPosition:(CGPoint)position withSize:(CGSize)size{
     self = [super init];
+    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
+    self.atlas = [SKTextureAtlas atlasNamed:@"gotinha.atlas"];
+    self.sprite.texture = [_atlas textureNamed:@"fire_idle.png"];
     
-    SKSpriteNode *desn = [[SKSpriteNode alloc] initWithColor:[UIColor greenColor] size:size];
-    self.sprite = desn;
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
     //  self.zPosition = 1;
     self.physicsBody.categoryBitMask = ENEMY;

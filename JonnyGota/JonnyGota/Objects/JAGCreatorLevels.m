@@ -49,7 +49,10 @@
 
 + (void)initializeLevel01ofWorld01onScene:(JAGPlayGameScene *)scene
 {
+
     //[self configure:scene withBackgroundColor:[UIColor whiteColor]];
+    SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
+
     
     scene.level=[[JAGLevel alloc] initWithHeight:30 withWidth:30];
     
@@ -59,13 +62,14 @@
     
     scene.gota= [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 1)] withSize:tamanho];
     scene.fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
-    
+
     //_tileSize=32;
     //scene.diferenca = 80.0f;
     //tocou = false;
     
     scene.cropNode = [[SKCropNode alloc] init];
-    
+    [scene.cropNode addChild:bgImage];
+
     
     
     //[scene.cropNode addChild:scene.gota];
@@ -91,6 +95,7 @@
    
 
 
+    
     
     scene.hud =[[JAGHud alloc] initWithTempo:300 withVida:3 withWindowSize:scene.frame.size];
     

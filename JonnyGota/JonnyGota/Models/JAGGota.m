@@ -14,7 +14,9 @@
     
     self = [super init];
     
-    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:size];
+    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
+    self.atlas = [SKTextureAtlas atlasNamed:@"gotinha.atlas"];
+    self.sprite.texture = [_atlas textureNamed:@"gota_walk_1.png"];
     
     self.physicsBody.friction = 0;
     
