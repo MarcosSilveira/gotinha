@@ -33,13 +33,17 @@
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
     //self.zPosition = 1;
     self.physicsBody.categoryBitMask = GOTA;
-    self.physicsBody.collisionBitMask = ATTACK | ENEMY |ITEM;
+    self.physicsBody.collisionBitMask = ATTACK | ENEMY |ITEM |PORTA;
     self.physicsBody.contactTestBitMask = ATTACK | ENEMY | CONTROLE_TOQUE |ITEM;
     
     [self configPhysics];
     
     self.name = @"gota";
     self.position = position;
+    
+    self.sprite.zPosition=100;
+    
+    self.zPosition=100;
     
     _escondida = NO;
     _dividida = NO;

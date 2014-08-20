@@ -10,6 +10,7 @@
 #import "JAGLevel.h"
 #import "JAGCreatorLevels.h"
 #import "JAGObjeto.h"
+#import "JAGPressao.h"
 
 
 @implementation JAGPlayGameScene {
@@ -408,6 +409,55 @@
         }
     }
     
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"pressao"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"pressao"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
+        //
+        if([contact.bodyA.node.name isEqualToString:@"pressao"]){
+            JAGPressao *pre=(JAGPressao *)contact.bodyA.node;
+            
+            [pre pisar];
+            
+                for (int i=0; i<_portas.count; i++) {
+                    JAGPorta *porta=_portas[i];
+                    [porta verificarBotoes];
+                }
+            
+           
+            //[obj removeFromParent];
+        }else{
+            JAGPressao *obj=(JAGPressao *)contact.bodyB.node;
+            [obj pisar];
+            
+                for (int i=0; i<_portas.count; i++) {
+                    JAGPorta *porta=_portas[i];
+                    [porta verificarBotoes];
+                }
+            
+            //[obj removeFromParent];
+        }
+    }
+    
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"porta"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"porta"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
+        //
+        if([contact.bodyA.node.name isEqualToString:@"porta"]){
+            JAGPorta *pre=(JAGPorta *)contact.bodyA.node;
+            
+            if(!pre.aberta){
+                 _gota.physicsBody.velocity = CGVectorMake(0, 0);
+            }
+            
+            //[obj removeFromParent];
+        }else{
+            JAGPorta *pre=(JAGPorta *)contact.bodyA.node;
+            if(!pre.aberta){
+                _gota.physicsBody.velocity = CGVectorMake(0, 0);
+                
+            }
+            //[obj removeFromParent];
+        }
+    }
+    
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"chave"]) ||
        ([contact.bodyA.node.name isEqualToString:@"velocidade"] && [contact.bodyB.node.name isEqualToString:@"velocidade"]) ) {
         //
@@ -418,6 +468,7 @@
 
         _gota.physicsBody.velocity = CGVectorMake(0, 0);
     }
+    
     if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == CONTROLE_TOQUE)){
         NSLog(@"hit");
     _gota.physicsBody.velocity = CGVectorMake(0, 0);
@@ -425,6 +476,38 @@
 
     
 
+}
+
+-(void)didEndContact:(SKPhysicsContact *)contact{
+    //Termino da colisao do botao pressionado;
+    
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"pressao"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"pressao"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
+        //
+        if([contact.bodyA.node.name isEqualToString:@"pressao"]){
+            JAGPressao *pre=(JAGPressao *)contact.bodyA.node;
+            
+            
+            
+                for (int i=0; i<_portas.count; i++) {
+                    JAGPorta *porta=_portas[i];
+                    [porta verificarBotoes];
+                }
+            
+            
+            //[obj removeFromParent];
+        }else{
+            JAGPressao *obj=(JAGPressao *)contact.bodyB.node;
+            
+           
+                for (int i=0; i<_portas.count; i++) {
+                    JAGPorta *porta=_portas[i];
+                    [porta verificarBotoes];
+                }
+            
+            //[obj removeFromParent];
+        }
+    }
 }
 
 
