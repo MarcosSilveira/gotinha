@@ -27,6 +27,8 @@
     SKNode *worldNode;
     SKSpriteNode *pararMovimentoCONTROLx;
     SKSpriteNode *pararMovimentoCONTROLy;
+    BOOL controleXnaTela;
+    BOOL controleYnaTela;
 }
 
 #pragma mark - Move to View
@@ -173,8 +175,8 @@
 
 -(void) configuraParadaGota {
     
-    pararMovimentoCONTROLx = [[SKSpriteNode alloc]initWithColor:([UIColor greenColor]) size:(CGSizeMake(10, 50)) ];
-    pararMovimentoCONTROLy = [[SKSpriteNode alloc]initWithColor:([UIColor redColor]) size:(CGSizeMake(50, 10)) ];
+    pararMovimentoCONTROLx = [[SKSpriteNode alloc]initWithColor:([UIColor clearColor]) size:(CGSizeMake(5, height)) ];
+    pararMovimentoCONTROLy = [[SKSpriteNode alloc]initWithColor:([UIColor clearColor]) size:(CGSizeMake(width, 5)) ];
     pararMovimentoCONTROLx.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:pararMovimentoCONTROLx.size];
     pararMovimentoCONTROLy.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:pararMovimentoCONTROLy.size];
     pararMovimentoCONTROLx.physicsBody.dynamic = NO;
@@ -187,9 +189,11 @@
     pararMovimentoCONTROLy.physicsBody.restitution=0;
     pararMovimentoCONTROLy.name = @"controle_toque_x";
     pararMovimentoCONTROLy.name = @"controle_toque_y";
-    [_cropNode addChild:pararMovimentoCONTROLy];
-    [_cropNode addChild:pararMovimentoCONTROLx];
-        
+    controleXnaTela = NO;
+    controleYnaTela = NO;
+//    [_cropNode addChild:pararMovimentoCONTROLy];
+//    [_cropNode addChild:pararMovimentoCONTROLx];
+    
 }
 
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto {
@@ -317,24 +321,47 @@
                                 
                             [_gota mover:toqueFinal withInterval:1.0 withType:1 and:300];
                             [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
-
+                            if (controleXnaTela){
+                                [pararMovimentoCONTROLx removeFromParent];
+                                controleXnaTela = NO;}
+                                if (!controleYnaTela) {
+                            [_cropNode addChild:pararMovimentoCONTROLy];
+                                    controleYnaTela = YES;}
                             
                             break;
                         case 2:
-                           
-                                
-                                [_gota mover:toqueFinal withInterval:1.0 withType:2 and:300];
+                            
+                            [_gota mover:toqueFinal withInterval:1.0 withType:2 and:300];
                             [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
+                            if (controleXnaTela){
+                                [pararMovimentoCONTROLx removeFromParent];
+                                controleXnaTela = NO;}
+                                if (!controleYnaTela) {
+                                    [_cropNode addChild:pararMovimentoCONTROLy];
+                                    controleYnaTela = YES;}
                             break;
                         case 3:
-                            
+
                                 [_gota mover:toqueFinal withInterval:1.0 withType:3 and:300];
                             [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
+                            if (controleYnaTela){
+                                [pararMovimentoCONTROLy removeFromParent];
+                                controleYnaTela = NO;}
+                                if (!controleXnaTela) {
+                                    [_cropNode addChild:pararMovimentoCONTROLx];
+                                    controleXnaTela = YES;}
                             break;
                         case 4:
-        
+
                             [_gota mover:toqueFinal withInterval:1.0 withType:4 and:300];
                             [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
+                            
+                            if (controleYnaTela){
+                                [pararMovimentoCONTROLy removeFromParent];
+                                controleYnaTela = NO;}
+                                if (!controleXnaTela) {
+                                    [_cropNode addChild:pararMovimentoCONTROLx];
+                                    controleXnaTela = YES;}
                             break;
                     }
                     
