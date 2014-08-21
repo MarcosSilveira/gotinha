@@ -14,8 +14,8 @@
 
 @implementation JAGPlayGameScene {
     
-    int width;
-    int height;
+    float width;
+    float height;
     CGPoint toqueInicio;
     SKShapeNode *circleMask;
     CGPoint toqueFinal;
@@ -24,6 +24,8 @@
     SKShapeNode *lineNode;
     SKNode *area;
     SKNode *worldNode;
+    SKSpriteNode *pararMovimentoCONTROLx;
+    SKSpriteNode *pararMovimentoCONTROLy;
 }
 
 #pragma mark - Move to View
@@ -69,6 +71,8 @@
 ////        [self addChild: worldNode];
 //        [self addChild:_cropNode];
 //        [self createLevel];
+        width = self.scene.size.width;
+        height = self.scene.size.height;
         [self configuraParadaGota];
     }
 
@@ -168,8 +172,10 @@
 
 -(void) configuraParadaGota {
     
-    SKSpriteNode *pararMovimentoCONTROLx = [[SKSpriteNode alloc]initWithColor:([UIColor clearColor]) size:(CGSizeMake(width, 5)) ];
-    SKSpriteNode *pararMovimentoCONTROLy = [[SKSpriteNode alloc]initWithColor:([UIColor clearColor]) size:(CGSizeMake(5, height)) ];
+    pararMovimentoCONTROLx = [[SKSpriteNode alloc]initWithColor:([UIColor greenColor]) size:(CGSizeMake(10, 50)) ];
+    pararMovimentoCONTROLy = [[SKSpriteNode alloc]initWithColor:([UIColor redColor]) size:(CGSizeMake(50, 10)) ];
+    pararMovimentoCONTROLx.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:pararMovimentoCONTROLx.size];
+    pararMovimentoCONTROLy.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:pararMovimentoCONTROLy.size];
     pararMovimentoCONTROLx.physicsBody.dynamic = NO;
     pararMovimentoCONTROLy.physicsBody.dynamic = NO;
     pararMovimentoCONTROLx.physicsBody.categoryBitMask = CONTROLE_TOQUE;
@@ -234,6 +240,7 @@
     /* Called when a touch begins */
     for (UITouch *touch in touches) {
         toqueInicio = [touch locationInNode:self];
+
         
         
     
@@ -247,6 +254,8 @@
           
         }
     }
+
+
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -280,7 +289,12 @@
         [walkFrames addObject:temp];
     }
     for (UITouch *touch in touches) {
+
         
+        pararMovimentoCONTROLx.position = [touch locationInNode:_cropNode];
+        pararMovimentoCONTROLy.position = [touch locationInNode:_cropNode];
+        
+
         if (toque_moveu && tocou_gota) {
             [_gota dividir];
             toque_moveu = NO;
@@ -343,7 +357,7 @@
             
         }
     }
-    
+
 }
 -(void)centerMapOnCharacter{
     self.cropNode.position=CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
@@ -366,21 +380,21 @@
     }
     
     //NSLog(@"gota x:%f y:%f",_gota.position.x,_gota.position.y);
-    
     [self followPlayer];
     [self.hud update];
 }
+
 
 #pragma mark - Physics
 
 
 -(void)didBeginContact:(SKPhysicsContact *)contact{
     if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ENEMY)){
-        //NSLog(@"hit");
+        NSLog(@"hit");
     }
     
     if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == ENEMY)){
-        //NSLog(@"hit");
+        NSLog(@"hit");
     }
     //Colisao com a parede
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
