@@ -26,6 +26,7 @@
     
     //[self addChild:desn];
     
+    self.multi = 10;
     
     [self configPhysics];
     [self addChild:self.sprite];
@@ -50,15 +51,12 @@
 -(void)mover:(CGPoint)ponto withInterval:(NSTimeInterval)time withTipe:(int)tipo{
     self.physicsBody.velocity=CGVectorMake(0, 0);
     
-    int multi = 2;
-    
-    
     switch (tipo) {
         case 1:
             
             //self.physicsBody.velocity=CGVectorMake(ponto.x, ponto.y);
             
-            [self.physicsBody applyForce:CGVectorMake(0,(ponto.y - self.position.y)*multi)];
+            [self.physicsBody applyForce:CGVectorMake(0,(ponto.y - self.position.y)*self.multi)];
             
             //  action = [SKAction followPath:(CGPathCreateWithRect(CGRectMake(ponto.x, ponto.y, 10, 10), nil)) duration:2];
             //self.sprite.color=[UIColor greenColor];
@@ -69,7 +67,7 @@
             
         case 2:
             
-            [self.physicsBody applyForce:CGVectorMake(0,(ponto.y - self.position.y)*multi)];
+            [self.physicsBody applyForce:CGVectorMake(0,(ponto.y - self.position.y)*self.multi)];
             
             //            actionChangeSprite=[SKAction colorizeWithColor:[SKColor brownColor] colorBlendFactor:1.0 duration:0.0];
             
@@ -78,13 +76,13 @@
             
         case 3:
             
-            [self.physicsBody applyForce:CGVectorMake((ponto.x - self.position.x)*multi,0)];
+            [self.physicsBody applyForce:CGVectorMake((ponto.x - self.position.x)*self.multi,0)];
             
             //            actionChangeSprite=[SKAction colorizeWithColor:[SKColor blueColor] colorBlendFactor:1.0 duration:0.0];
             break;
             
         case 4:
-            [self.physicsBody applyForce:CGVectorMake((ponto.x - self.position.x)*multi,0)];
+            [self.physicsBody applyForce:CGVectorMake((ponto.x - self.position.x)*self.multi,0)];
             
             //            actionChangeSprite=[SKAction colorizeWithColor:[SKColor yellowColor] colorBlendFactor:1.0 duration:0.0];
             
