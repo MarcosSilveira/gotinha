@@ -12,6 +12,7 @@
 
 @property (nonatomic) int visao;
 @property (nonatomic) int tipo;
+@property int multi;
 
 -(void)ataque;
 

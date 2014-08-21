@@ -20,7 +20,9 @@
     
     self.physicsBody.friction = 0;
     
-//    desn.position=position;
+    self.multi = 300;
+    
+    //    desn.position=position;
     
     //[self addChild:desn];
     
@@ -69,7 +71,7 @@
 
 -(void) dividir {
     SKAction *dividAction;
-
+    
     if (_dividida) {
         dividAction = [SKAction fadeInWithDuration:1.0];
         _dividida = NO;
@@ -82,9 +84,9 @@
 }
 
 //-(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withTipe:(int)tipo{
-//    
 //
-//    
+//
+//
 //}
 
 -(BOOL)verificaToque:(CGPoint) ponto{

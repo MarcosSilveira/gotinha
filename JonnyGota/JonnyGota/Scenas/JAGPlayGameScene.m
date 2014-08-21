@@ -134,7 +134,7 @@
     
     if (distance < 100) {
         if (_gota.escondida == NO) {
-            [_fogo mover:(_gota.position) withInterval:2 withType:[self verificaSentido:_gota.position with:_fogo.position]and:100];
+            [_fogo mover:(_gota.position) withInterval:2 withType:[self verificaSentido:_gota.position with:_fogo.position]];
         }
         else _fogo.physicsBody.velocity = CGVectorMake(0, 0);
     }
@@ -153,19 +153,19 @@
 
     switch (randEixo) {
         case 1:
-            [self.fogo mover:posY withInterval:1.0 withType:1 and:100]; //cima
+            [self.fogo mover:posY withInterval:1.0 withType:1]; //cima
             break;
             
         case 2:
-            [self.fogo mover:posY2 withInterval:1.0 withType:2 and:100]; //baixo
+            [self.fogo mover:posY2 withInterval:1.0 withType:2 ]; //baixo
             break;
             
         case 3:
-            [self.fogo mover:posX withInterval:1.0 withType:3 and:100]; //esq
+            [self.fogo mover:posX withInterval:1.0 withType:3 ]; //esq
             break;
             
         case 4:
-            [self.fogo mover:posX2 withInterval:1.0 withType:4 and:100]; //dir
+            [self.fogo mover:posX2 withInterval:1.0 withType:4 ]; //dir
             break;
             
         default:
@@ -247,9 +247,6 @@
         toqueInicio = [touch locationInNode:self];
 
         
-        
-    
-        
         toqueInicio =CGPointMake(toqueInicio.x+(_gota.position.x)-CGRectGetMidX(self.frame),
                                  toqueInicio.y+(_gota.position.y)-CGRectGetMidY(self.frame));
         tocou_gota = [_gota verificaToque:toqueInicio];
@@ -319,7 +316,7 @@
                         case 1:
                            
                                 
-                            [_gota mover:toqueFinal withInterval:1.0 withType:1 and:300];
+                            [_gota mover:toqueFinal withInterval:1.0 withType:1 ];
                             [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
                             if (controleXnaTela){
                                 [pararMovimentoCONTROLx removeFromParent];
@@ -330,8 +327,9 @@
                             
                             break;
                         case 2:
-                            
-                            [_gota mover:toqueFinal withInterval:1.0 withType:2 and:300];
+                           
+                                
+                                [_gota mover:toqueFinal withInterval:1.0 withType:2 ];
                             [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
                             if (controleXnaTela){
                                 [pararMovimentoCONTROLx removeFromParent];
@@ -341,8 +339,8 @@
                                     controleYnaTela = YES;}
                             break;
                         case 3:
-
-                                [_gota mover:toqueFinal withInterval:1.0 withType:3 and:300];
+                            
+                                [_gota mover:toqueFinal withInterval:1.0 withType:3 ];
                             [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
                             if (controleYnaTela){
                                 [pararMovimentoCONTROLy removeFromParent];
@@ -352,8 +350,8 @@
                                     controleXnaTela = YES;}
                             break;
                         case 4:
-
-                            [_gota mover:toqueFinal withInterval:1.0 withType:4 and:300];
+        
+                            [_gota mover:toqueFinal withInterval:1.0 withType:4 ];
                             [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
                             
                             if (controleYnaTela){
@@ -411,6 +409,10 @@
     //NSLog(@"gota x:%f y:%f",_gota.position.x,_gota.position.y);
     [self followPlayer];
     [self.hud update];
+    
+    if (self.hud.tempoRestante == 0) {
+        self.scene.view.paused = YES;
+    }
 }
 
 
@@ -419,11 +421,11 @@
 
 -(void)didBeginContact:(SKPhysicsContact *)contact{
     if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ENEMY)){
-        NSLog(@"hit");
+        self.hud.vidaRestante--;
     }
     
     if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == ENEMY)){
-        NSLog(@"hit");
+        self.hud.vidaRestante--;
     }
     //Colisao com a parede
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
