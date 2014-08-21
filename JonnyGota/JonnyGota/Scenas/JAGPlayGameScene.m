@@ -63,7 +63,7 @@
         
                
         
-            tocou_gota = false;
+        tocou_gota = false;
 
 //        _cropNode = [[SKCropNode alloc] init];
 //
@@ -536,10 +536,30 @@
             
             if(pre.tipo==2){
                 //Inicia um Action que faz a validacao depois de um tempo
+                _despresionar =[SKAction sequence:@[[SKAction waitForDuration:4],
+                                                    [SKAction runBlock:^{
+                    if(![pre pisado:_characteres]){
+                        [pre pisar];
+                    }
+                    
+                    for (int i=0; i<_portas.count; i++) {
+                        JAGPorta *porta=_portas[i];
+                        [porta verificarBotoes];
+                    }
+                }]]];
+                
+                //_despresionar =;
+                
+                [self runAction:_despresionar];
             }
             if(pre.tipo==3){
                 //Libera
-                [pre pressionar:false];
+                [pre pisar];
+                
+                for (int i=0; i<_portas.count; i++) {
+                    JAGPorta *porta=_portas[i];
+                    [porta verificarBotoes];
+                }
             }
             
             

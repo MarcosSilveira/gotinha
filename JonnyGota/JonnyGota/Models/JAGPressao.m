@@ -44,30 +44,28 @@
 }
 
 -(void)pisar{
-    
-    
     if(!_presionado){
         _presionado=true;
         }else{
         _presionado=false;
     }
-    [self animar:_presionado];
+    [self animar:!_presionado];
    }
 
 
 -(BOOL)pisado:(NSMutableArray *)personagens{
-    for (int i=0; personagens.count; i++) {
-        JAGCharacter *obj=personagens[i];
+    for (int i=0; i<personagens.count; i++) {
+        JAGCharacter *obj=(JAGCharacter *)personagens[i];
         if((obj.position.x >= (self.position.x - self.sprite.size.width/2)) && ((obj.position.x < (self.position.x+self.sprite.size.width/2)))){
             if((obj.position.y >= (self.position.y - self.sprite.size.height/2)) && ((obj.position.y < (self.position.y+self.sprite.size.height/2)))){
                 //Continuar pisado
-                
+                //[self pressionar:true];
                 return true;
             }
         }
     }
     //Liberar
-    [self pressionar:false];
+    [self pressionar:true];
     return false;
 }
 
