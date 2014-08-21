@@ -15,8 +15,8 @@
 
 @implementation JAGPlayGameScene {
     
-    int width;
-    int height;
+    float width;
+    float height;
     CGPoint toqueInicio;
     SKShapeNode *circleMask;
     CGPoint toqueFinal;
@@ -25,6 +25,10 @@
     SKShapeNode *lineNode;
     SKNode *area;
     SKNode *worldNode;
+    SKSpriteNode *pararMovimentoCONTROLx;
+    SKSpriteNode *pararMovimentoCONTROLy;
+    BOOL controleXnaTela;
+    BOOL controleYnaTela;
 }
 
 #pragma mark - Move to View
@@ -70,6 +74,8 @@
 ////        [self addChild: worldNode];
 //        [self addChild:_cropNode];
 //        [self createLevel];
+        width = self.scene.size.width;
+        height = self.scene.size.height;
         [self configuraParadaGota];
     }
 
@@ -169,8 +175,10 @@
 
 -(void) configuraParadaGota {
     
-    SKSpriteNode *pararMovimentoCONTROLx = [[SKSpriteNode alloc]initWithColor:([UIColor clearColor]) size:(CGSizeMake(width, 5)) ];
-    SKSpriteNode *pararMovimentoCONTROLy = [[SKSpriteNode alloc]initWithColor:([UIColor clearColor]) size:(CGSizeMake(5, height)) ];
+    pararMovimentoCONTROLx = [[SKSpriteNode alloc]initWithColor:([UIColor clearColor]) size:(CGSizeMake(5, height)) ];
+    pararMovimentoCONTROLy = [[SKSpriteNode alloc]initWithColor:([UIColor clearColor]) size:(CGSizeMake(width, 5)) ];
+    pararMovimentoCONTROLx.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:pararMovimentoCONTROLx.size];
+    pararMovimentoCONTROLy.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:pararMovimentoCONTROLy.size];
     pararMovimentoCONTROLx.physicsBody.dynamic = NO;
     pararMovimentoCONTROLy.physicsBody.dynamic = NO;
     pararMovimentoCONTROLx.physicsBody.categoryBitMask = CONTROLE_TOQUE;
@@ -181,9 +189,11 @@
     pararMovimentoCONTROLy.physicsBody.restitution=0;
     pararMovimentoCONTROLy.name = @"controle_toque_x";
     pararMovimentoCONTROLy.name = @"controle_toque_y";
-    [_cropNode addChild:pararMovimentoCONTROLy];
-    [_cropNode addChild:pararMovimentoCONTROLx];
-        
+    controleXnaTela = NO;
+    controleYnaTela = NO;
+//    [_cropNode addChild:pararMovimentoCONTROLy];
+//    [_cropNode addChild:pararMovimentoCONTROLx];
+    
 }
 
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto {
@@ -235,6 +245,7 @@
     /* Called when a touch begins */
     for (UITouch *touch in touches) {
         toqueInicio = [touch locationInNode:self];
+
         
         toqueInicio =CGPointMake(toqueInicio.x+(_gota.position.x)-CGRectGetMidX(self.frame),
                                  toqueInicio.y+(_gota.position.y)-CGRectGetMidY(self.frame));
@@ -245,6 +256,8 @@
           
         }
     }
+
+
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -278,7 +291,12 @@
         [walkFrames addObject:temp];
     }
     for (UITouch *touch in touches) {
+
         
+        pararMovimentoCONTROLx.position = [touch locationInNode:_cropNode];
+        pararMovimentoCONTROLy.position = [touch locationInNode:_cropNode];
+        
+
         if (toque_moveu && tocou_gota) {
             [_gota dividir];
             NSLog(@"Dividiu");
@@ -300,7 +318,12 @@
                                 
                             [_gota mover:toqueFinal withInterval:1.0 withType:1 ];
                             [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
-
+                            if (controleXnaTela){
+                                [pararMovimentoCONTROLx removeFromParent];
+                                controleXnaTela = NO;}
+                                if (!controleYnaTela) {
+                            [_cropNode addChild:pararMovimentoCONTROLy];
+                                    controleYnaTela = YES;}
                             
                             break;
                         case 2:
@@ -308,16 +331,35 @@
                                 
                                 [_gota mover:toqueFinal withInterval:1.0 withType:2 ];
                             [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
+                            if (controleXnaTela){
+                                [pararMovimentoCONTROLx removeFromParent];
+                                controleXnaTela = NO;}
+                                if (!controleYnaTela) {
+                                    [_cropNode addChild:pararMovimentoCONTROLy];
+                                    controleYnaTela = YES;}
                             break;
                         case 3:
                             
                                 [_gota mover:toqueFinal withInterval:1.0 withType:3 ];
                             [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
+                            if (controleYnaTela){
+                                [pararMovimentoCONTROLy removeFromParent];
+                                controleYnaTela = NO;}
+                                if (!controleXnaTela) {
+                                    [_cropNode addChild:pararMovimentoCONTROLx];
+                                    controleXnaTela = YES;}
                             break;
                         case 4:
         
                             [_gota mover:toqueFinal withInterval:1.0 withType:4 ];
                             [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
+                            
+                            if (controleYnaTela){
+                                [pararMovimentoCONTROLy removeFromParent];
+                                controleYnaTela = NO;}
+                                if (!controleXnaTela) {
+                                    [_cropNode addChild:pararMovimentoCONTROLx];
+                                    controleXnaTela = YES;}
                             break;
                     }
                     
@@ -342,7 +384,7 @@
             
         }
     }
-    
+
 }
 -(void)centerMapOnCharacter{
     self.cropNode.position=CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
@@ -365,7 +407,6 @@
     }
     
     //NSLog(@"gota x:%f y:%f",_gota.position.x,_gota.position.y);
-    
     [self followPlayer];
     [self.hud update];
     
@@ -373,6 +414,7 @@
         self.scene.view.paused = YES;
     }
 }
+
 
 #pragma mark - Physics
 
