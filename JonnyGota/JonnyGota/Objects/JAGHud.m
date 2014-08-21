@@ -43,8 +43,11 @@
 
 -(void)cronometro:(NSTimer *)timer{
     
-    if (_tempoRestante > 0) {
-     _tempoRestante--;
+    if(!self.paused){
+        if(_tempoRestante>0){
+            _tempoRestante--;
+            [self update];
+        }
     }
     
     [self update];
