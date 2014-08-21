@@ -460,6 +460,10 @@
             
             [pre pisar];
             
+            if(pre.tipo==2){
+                //Reseta o tempo
+            }
+            
                 for (int i=0; i<_portas.count; i++) {
                     JAGPorta *porta=_portas[i];
                     [porta verificarBotoes];
@@ -530,6 +534,13 @@
         if([contact.bodyA.node.name isEqualToString:@"pressao"]){
             JAGPressao *pre=(JAGPressao *)contact.bodyA.node;
             
+            if(pre.tipo==2){
+                //Inicia um Action que faz a validacao depois de um tempo
+            }
+            if(pre.tipo==3){
+                //Libera
+                [pre pressionar:false];
+            }
             
             
                 for (int i=0; i<_portas.count; i++) {
@@ -551,6 +562,52 @@
             //[obj removeFromParent];
         }
     }
+    
+    if((contact.bodyA.categoryBitMask == PRESSAO) && (contact.bodyB.categoryBitMask == ENEMY)){
+        JAGPressao *pre=(JAGPressao *)contact.bodyA.node;
+        if(pre.tipo==3){
+            //Libera
+            [pre pressionar:false];
+        }
+    }
+    
+    if((contact.bodyB.categoryBitMask == PRESSAO) && (contact.bodyA.categoryBitMask == ENEMY)){
+        JAGPressao *pre=(JAGPressao *)contact.bodyB.node;
+        if(pre.tipo==3){
+            //Libera
+            [pre pressionar:false];
+        }
+    }
+
+/*
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"pressao"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"pressao"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
+        //
+        if([contact.bodyA.node.name isEqualToString:@"pressao"]){
+            JAGPressao *pre=(JAGPressao *)contact.bodyA.node;
+            
+            
+            
+            for (int i=0; i<_portas.count; i++) {
+                JAGPorta *porta=_portas[i];
+                [porta verificarBotoes];
+            }
+            
+            
+            //[obj removeFromParent];
+        }else{
+            JAGPressao *obj=(JAGPressao *)contact.bodyB.node;
+            
+            
+            for (int i=0; i<_portas.count; i++) {
+                JAGPorta *porta=_portas[i];
+                [porta verificarBotoes];
+            }
+            
+            //[obj removeFromParent];
+        }
+    }
+*/
 }
 
 
@@ -627,6 +684,8 @@
     
     
 }
+
+
 
 
 -(void)createLevel{
