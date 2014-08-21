@@ -9,6 +9,7 @@
 #import "JAGCreatorLevels.h"
 #import "JAGPlayGameScene.h"
 #import "JAGObjeto.h"
+#import "JAGPressao.h"
 
 @implementation JAGCreatorLevels
 
@@ -53,6 +54,7 @@
     //[self configure:scene withBackgroundColor:[UIColor whiteColor]];
     SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
 
+    scene.portas =[[NSMutableArray alloc] init];
     
     scene.level=[[JAGLevel alloc] initWithHeight:30 withWidth:30];
     
@@ -71,6 +73,20 @@
     [scene.cropNode addChild:bgImage];
 
     
+    JAGPressao *presao=[[JAGPressao alloc] initWithPosition:[scene.level calculateTile:CGPointMake(7, 8)]];
+    
+    SKSpriteNode *spritePor=[[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size:CGSizeMake(scene.level.tileSize, scene.level.tileSize)];
+    
+    JAGPorta *porta=[[JAGPorta alloc] initWithPosition:[scene.level calculateTile:CGPointMake(9, 17)] withSprite:spritePor];
+    
+    [scene.cropNode addChild:porta];
+    
+    [porta vincularBotao:presao];
+    
+    [scene.portas addObject:porta];
+    
+    
+    [scene.cropNode addChild:presao];
     
     //[scene.cropNode addChild:scene.gota];
     
@@ -92,9 +108,13 @@
     [scene.level createWalls:CGPointMake(3, 3) withHeight:10 withWidth:3 withScene:scene];
     
     [scene.level createWalls:CGPointMake(6, 3) withHeight:10 withWidth:1 withScene:scene];
+    
+    //Box do Challenge
    
-
-
+    [scene.level createWalls:CGPointMake(8, 17) withHeight:3 withWidth:1 withScene:scene];
+    
+    
+   
     
     
     scene.hud =[[JAGHud alloc] initWithTempo:300 withVida:3 withWindowSize:scene.frame.size];

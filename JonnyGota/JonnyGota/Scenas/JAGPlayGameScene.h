@@ -11,6 +11,7 @@
 #import "JAGGota.h"
 #import "JAGHud.h"
 #import "JAGFogoEnemy.h"
+#import "JAGPorta.h"
 
 
 @interface JAGPlayGameScene : SKScene<SKPhysicsContactDelegate>
@@ -38,6 +39,8 @@
 
 @property (nonatomic) JAGFogoEnemy *fogo;
 @property (nonatomic) SKCropNode *cropNode;
+
+@property (nonatomic) NSMutableArray *portas;
 
 -(void)divideGota;
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto;
