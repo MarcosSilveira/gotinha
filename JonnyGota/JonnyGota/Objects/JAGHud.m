@@ -47,8 +47,14 @@
 }
 
 -(void)cronometro:(NSTimer *)timer{
-    _tempoRestante--;
-    [self update];
+    
+    if(!self.paused){
+        if(_tempoRestante>0){
+            _tempoRestante--;
+            [self update];
+        }
+    }
+    
 }
 
 -(void)startTimer{

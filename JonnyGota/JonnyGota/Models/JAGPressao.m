@@ -11,7 +11,7 @@
 
 @implementation JAGPressao
 
--(instancetype)initWithPosition:(CGPoint)ponto{
+-(instancetype)initWithPosition:(CGPoint)ponto withTipo:(int)tipo{
     self=[super init];
     
     _sprite=[[SKSpriteNode alloc] initWithColor:[SKColor cyanColor] size:CGSizeMake(32,32)];
@@ -21,8 +21,8 @@
     self.physicsBody.dynamic=NO;
     
     self.physicsBody.categoryBitMask = PRESSAO;
-    self.physicsBody.collisionBitMask = GOTA;
-    self.physicsBody.contactTestBitMask = GOTA;
+    self.physicsBody.collisionBitMask = GOTA|ENEMY;
+    self.physicsBody.contactTestBitMask = GOTA |ENEMY;
 
     self.name=@"pressao";
     
@@ -32,24 +32,68 @@
     
     _presionado=FALSE;
     
+    _tipo=tipo;
+    
+    //Tipo 1 pisa e fica normal 2 depois de um tempo libera
+    //tipo 3 tem que ser precionado constantemente
     return self;
 }
 
 
 
 -(void)pisar{
-    SKAction *actionChangeSprite;
+    
     
     if(!_presionado){
         _presionado=true;
-        actionChangeSprite = [SKAction colorizeWithColor:[SKColor whiteColor] colorBlendFactor:1.0 duration:0.0];
-        
         }else{
         _presionado=false;
+    }
+    [self animar:_presionado];
+   }
+
+
+-(BOOL)pisado:(NSMutableArray *)personagens{
+    for (int i=0; personagens.count; i++) {
+        JAGCharacter *obj=personagens[i];
+        if((obj.position.x >= (self.position.x - self.sprite.size.width/2)) && ((obj.position.x < (self.position.x+self.sprite.size.width/2)))){
+            if((obj.position.y >= (self.position.y - self.sprite.size.height/2)) && ((obj.position.y < (self.position.y+self.sprite.size.height/2)))){
+                //Continuar pisado
+                
+                return true;
+            }
+        }
+    }
+    //Liberar
+    [self pressionar:false];
+    return false;
+}
+
+-(void)pressionar:(BOOL)pressao{
+    if(_presionado!=pressao){
+        if(pressao){
+            _presionado=true;
+            
+            }else{
+            _presionado=false;
+        }
+    }
+    [self animar:_presionado];
+}
+
+-(void)animar:(BOOL)anima{
+    SKAction *actionChangeSprite;
+    if(!anima){
+               actionChangeSprite = [SKAction colorizeWithColor:[SKColor whiteColor] colorBlendFactor:1.0 duration:0.0];
+        
+    }else{
+      
         actionChangeSprite = [SKAction colorizeWithColor:[SKColor cyanColor] colorBlendFactor:1.0 duration:0.0];
         
     }
     [self.sprite runAction:actionChangeSprite];
+
 }
+
 
 @end
