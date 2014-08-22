@@ -38,7 +38,6 @@
     
     [self configPhysics];
     
-    self.name = @"gota";
     self.position = position;
     
     self.sprite.zPosition=100;
@@ -67,7 +66,7 @@
     }
 }
 
--(void) dividir {
+-(JAGGotaDividida*) dividir {
     SKAction *dividAction;
 
     if (_dividida) {
@@ -78,7 +77,19 @@
         dividAction = [SKAction fadeOutWithDuration:1.0];
         _dividida = YES;
     }
-    [self runAction:dividAction];
+//    [self runAction:dividAction];
+    
+    CGSize aux = self.sprite.size;
+    aux.height = aux.height/2;
+    aux.width = aux.width/2;
+    CGPoint aux2;
+    aux2.x = self.position.x+5;
+    aux2.y = self.position.y+5;
+    JAGGotaDividida *gota2 = [[JAGGotaDividida alloc]initWithPosition:aux2 withSize:aux];
+    gota2.sprite.texture = self.sprite.texture;
+
+    
+    return gota2;
 }
 
 //-(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withTipe:(int)tipo{

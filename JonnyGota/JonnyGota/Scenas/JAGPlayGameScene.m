@@ -301,7 +301,7 @@
         
 
         if (toque_moveu && tocou_gota) {
-            [_gota dividir];
+            [_cropNode addChild:[_gota dividir]];
             NSLog(@"Dividiu");
             toque_moveu = NO;
         }else{
