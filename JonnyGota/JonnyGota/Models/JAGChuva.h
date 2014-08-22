@@ -10,5 +10,9 @@
 
 @interface JAGChuva : SKNode
 
+@property (nonatomic) SKSpriteNode *sprite;
+
+-(instancetype)initWithPosition:(CGPoint) ponto;
+
 
 @end

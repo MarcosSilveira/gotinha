@@ -10,6 +10,7 @@
 #import "JAGPlayGameScene.h"
 #import "JAGObjeto.h"
 #import "JAGPressao.h"
+#import "JAGChuva.h"
 
 @implementation JAGCreatorLevels
 
@@ -78,7 +79,7 @@
     [scene.cropNode addChild:bgImage];
 
     
-    JAGPressao *presao=[[JAGPressao alloc] initWithPosition:[scene.level calculateTile:CGPointMake(7, 8)] withTipo:2];
+    JAGPressao *presao=[[JAGPressao alloc] initWithPosition:[scene.level calculateTile:CGPointMake(7, 8)] withTipo:1];
     
     SKSpriteNode *spritePor=[[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size:CGSizeMake(scene.level.tileSize, scene.level.tileSize)];
     
@@ -89,6 +90,10 @@
     [porta vincularBotao:presao];
     
     [scene.portas addObject:porta];
+    
+    JAGChuva *chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(9, 19)]];
+    
+    [scene.cropNode addChild:chuva];
     
     
     [scene.cropNode addChild:presao];

@@ -32,11 +32,11 @@
     
     [self addChild:self.sprite];
     
-    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
+    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.sprite.size.width-2, self.sprite.size.height-2)];
     //self.zPosition = 1;
     self.physicsBody.categoryBitMask = GOTA;
-    self.physicsBody.collisionBitMask = ATTACK | ENEMY |ITEM |PORTA;
-    self.physicsBody.contactTestBitMask = ATTACK | ENEMY | CONTROLE_TOQUE |ITEM;
+    self.physicsBody.collisionBitMask = ATTACK | ENEMY |ITEM |PORTA | CHUVA;
+    self.physicsBody.contactTestBitMask = ATTACK | ENEMY | CONTROLE_TOQUE |ITEM | CHUVA;
     
     [self configPhysics];
     
