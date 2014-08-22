@@ -39,7 +39,9 @@
     return self;
 }
 
-
+-(void)criarParede:(SKSpriteNode *)sprite withPosition:(CGPoint)ponto {
+    
+}
 
 -(void)pisar{
     if(!_presionado){

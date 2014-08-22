@@ -571,7 +571,7 @@
             
             //[obj removeFromParent];
         }else{
-            JAGPressao *obj=(JAGPressao *)contact.bodyB.node;
+            JAGPressao *obj = (JAGPressao *)contact.bodyB.node;
             
            
                 for (int i=0; i<_portas.count; i++) {
