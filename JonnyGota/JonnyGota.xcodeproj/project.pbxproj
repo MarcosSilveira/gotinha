@@ -11,6 +11,7 @@
 		0B024D0B1991255400AE9588 /* JAGGota.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B024D0A1991255400AE9588 /* JAGGota.m */; };
 		0B024D0F1991257400AE9588 /* JAGInimigos.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B024D0E1991257400AE9588 /* JAGInimigos.m */; };
 		0B024D12199150D300AE9588 /* JAGHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B024D11199150D300AE9588 /* JAGHud.m */; };
+		0B0E04A019A7A29400927A16 /* backgroundChuva.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B0E049F19A7A29400927A16 /* backgroundChuva.png */; };
 		0B13EDFB19A2530F006CC185 /* JAGCreatorLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B13EDFA19A2530F006CC185 /* JAGCreatorLevels.m */; };
 		0B15087D19A4F891007D70F1 /* JAGPressao.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B15087C19A4F891007D70F1 /* JAGPressao.m */; };
 		0B15088019A51374007D70F1 /* JAGPorta.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B15087F19A51374007D70F1 /* JAGPorta.m */; };
@@ -68,6 +69,7 @@
 		0B024D0E1991257400AE9588 /* JAGInimigos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGInimigos.m; sourceTree = "<group>"; };
 		0B024D10199150D300AE9588 /* JAGHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGHud.h; path = JonnyGota/Objects/JAGHud.h; sourceTree = "<group>"; };
 		0B024D11199150D300AE9588 /* JAGHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGHud.m; path = JonnyGota/Objects/JAGHud.m; sourceTree = "<group>"; };
+		0B0E049F19A7A29400927A16 /* backgroundChuva.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundChuva.png; sourceTree = "<group>"; };
 		0B13EDF919A2530F006CC185 /* JAGCreatorLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGCreatorLevels.h; path = JonnyGota/Objects/JAGCreatorLevels.h; sourceTree = "<group>"; };
 		0B13EDFA19A2530F006CC185 /* JAGCreatorLevels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGCreatorLevels.m; path = JonnyGota/Objects/JAGCreatorLevels.m; sourceTree = "<group>"; };
 		0B15087B19A4F891007D70F1 /* JAGPressao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGPressao.h; path = JonnyGota/Models/JAGPressao.h; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 		0B3A04431991164A00C7C39E = {
 			isa = PBXGroup;
 			children = (
+				0B0E049F19A7A29400927A16 /* backgroundChuva.png */,
 				8D4A4F3419A3D0E300255468 /* gotinha.atlas */,
 				B1F768C01995443A0063E27C /* mask.png */,
 				0B45FF5119929948001948F9 /* Actions */,
@@ -403,6 +406,7 @@
 				8D4A4F3019A2842D00255468 /* background.png in Resources */,
 				0B3A045C1991164A00C7C39E /* InfoPlist.strings in Resources */,
 				0B3A046F1991164A00C7C39E /* Images.xcassets in Resources */,
+				0B0E04A019A7A29400927A16 /* backgroundChuva.png in Resources */,
 				0B3A04651991164A00C7C39E /* Main.storyboard in Resources */,
 				B1F768C11995443A0063E27C /* mask.png in Resources */,
 			);

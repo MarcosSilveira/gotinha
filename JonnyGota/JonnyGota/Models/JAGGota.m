@@ -20,7 +20,7 @@
     
     self.physicsBody.friction = 0;
     
-    self.multi = 300;
+    self.multi = 130;
     
     //    desn.position=position;
     
@@ -40,7 +40,7 @@
     
     [self configPhysics];
     
-    self.name = @"gota";
+   
     self.position = position;
     
     self.sprite.zPosition=100;

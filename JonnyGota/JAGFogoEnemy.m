@@ -26,7 +26,7 @@
     
     //[self addChild:desn];
     
-    self.multi = 10;
+    self.multi = 100;
     
     [self configPhysics];
     [self addChild:self.sprite];

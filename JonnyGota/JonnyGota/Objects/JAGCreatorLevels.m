@@ -53,7 +53,7 @@
 {
 
     //[self configure:scene withBackgroundColor:[UIColor whiteColor]];
-    SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
+    SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithImageNamed:@"backgroundChuva"];
 
     scene.portas =[[NSMutableArray alloc] init];
     
