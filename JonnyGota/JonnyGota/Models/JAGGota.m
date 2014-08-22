@@ -20,7 +20,9 @@
     
     self.physicsBody.friction = 0;
     
-//    desn.position=position;
+    self.multi = 130;
+    
+    //    desn.position=position;
     
     //[self addChild:desn];
     
@@ -30,11 +32,11 @@
     
     [self addChild:self.sprite];
     
-    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
+    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.sprite.size.width-2, self.sprite.size.height-2)];
     //self.zPosition = 1;
     self.physicsBody.categoryBitMask = GOTA;
-    self.physicsBody.collisionBitMask = ATTACK | ENEMY |ITEM |PORTA;
-    self.physicsBody.contactTestBitMask = ATTACK | ENEMY | CONTROLE_TOQUE |ITEM;
+    self.physicsBody.collisionBitMask = ATTACK | ENEMY |ITEM |PORTA | CHUVA;
+    self.physicsBody.contactTestBitMask = ATTACK | ENEMY | CONTROLE_TOQUE |ITEM | CHUVA;
     
     [self configPhysics];
     
@@ -68,7 +70,7 @@
 
 -(JAGGotaDividida*) dividir {
     SKAction *dividAction;
-
+    
     if (_dividida) {
         dividAction = [SKAction fadeInWithDuration:1.0];
         _dividida = NO;
@@ -93,9 +95,9 @@
 }
 
 //-(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withTipe:(int)tipo{
-//    
 //
-//    
+//
+//
 //}
 
 -(BOOL)verificaToque:(CGPoint) ponto{

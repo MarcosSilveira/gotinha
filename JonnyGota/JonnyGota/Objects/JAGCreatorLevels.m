@@ -10,6 +10,7 @@
 #import "JAGPlayGameScene.h"
 #import "JAGObjeto.h"
 #import "JAGPressao.h"
+#import "JAGChuva.h"
 
 @implementation JAGCreatorLevels
 
@@ -52,7 +53,7 @@
 {
 
     //[self configure:scene withBackgroundColor:[UIColor whiteColor]];
-    SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
+    SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithImageNamed:@"backgroundChuva"];
 
     scene.portas =[[NSMutableArray alloc] init];
     
@@ -62,9 +63,14 @@
     
     CGSize tamanho=CGSizeMake(scene.level.tileSize, scene.level.tileSize);
     
+    scene.characteres=[[NSMutableArray alloc] init];
+    
     scene.gota= [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 1)] withSize:tamanho];
     scene.fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
 
+    [scene.characteres addObject:scene.gota];
+    [scene.characteres addObject:scene.fogo];
+    
     //_tileSize=32;
     //scene.diferenca = 80.0f;
     //tocou = false;
@@ -73,7 +79,7 @@
     [scene.cropNode addChild:bgImage];
 
     
-    JAGPressao *presao=[[JAGPressao alloc] initWithPosition:[scene.level calculateTile:CGPointMake(7, 8)]];
+    JAGPressao *presao=[[JAGPressao alloc] initWithPosition:[scene.level calculateTile:CGPointMake(7, 8)] withTipo:1];
     
     SKSpriteNode *spritePor=[[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size:CGSizeMake(scene.level.tileSize, scene.level.tileSize)];
     
@@ -84,6 +90,10 @@
     [porta vincularBotao:presao];
     
     [scene.portas addObject:porta];
+    
+    JAGChuva *chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(9, 19)]];
+    
+    [scene.cropNode addChild:chuva];
     
     
     [scene.cropNode addChild:presao];

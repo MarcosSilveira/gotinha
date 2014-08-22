@@ -10,12 +10,14 @@
 
 @implementation JAGInimigos
 -(id)init{
-    self =[super init];
+    self = [super init];
     return self;
 }
+
 -(void)ataque{
     
 }
+
 -(NSMutableDictionary *)createJson{
     NSMutableDictionary *json=[super createJson];
     
