@@ -46,6 +46,7 @@
 		8D1627A71992945E00AD9F12 /* JAGPedraEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1627A61992945E00AD9F12 /* JAGPedraEnemy.m */; };
 		8D4A4F3019A2842D00255468 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D4A4F2F19A2842D00255468 /* background.png */; };
 		8D4A4F3519A3D0E300255468 /* gotinha.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8D4A4F3419A3D0E300255468 /* gotinha.atlas */; };
+		8D4A4F3819A66CE300255468 /* JAGGotaDividida.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A4F3719A66CE300255468 /* JAGGotaDividida.m */; };
 		B157BDA819A267E400ACA4C1 /* JAGObjeto.m in Sources */ = {isa = PBXBuildFile; fileRef = B157BDA719A267E400ACA4C1 /* JAGObjeto.m */; };
 		B1F768C11995443A0063E27C /* mask.png in Resources */ = {isa = PBXBuildFile; fileRef = B1F768C01995443A0063E27C /* mask.png */; };
 /* End PBXBuildFile section */
@@ -124,6 +125,8 @@
 		8D1627A61992945E00AD9F12 /* JAGPedraEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGPedraEnemy.m; sourceTree = "<group>"; };
 		8D4A4F2F19A2842D00255468 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		8D4A4F3419A3D0E300255468 /* gotinha.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = gotinha.atlas; sourceTree = "<group>"; };
+		8D4A4F3619A66CE300255468 /* JAGGotaDividida.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGGotaDividida.h; sourceTree = "<group>"; };
+		8D4A4F3719A66CE300255468 /* JAGGotaDividida.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGGotaDividida.m; sourceTree = "<group>"; };
 		B157BDA619A267E400ACA4C1 /* JAGObjeto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGObjeto.h; sourceTree = "<group>"; };
 		B157BDA719A267E400ACA4C1 /* JAGObjeto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGObjeto.m; sourceTree = "<group>"; };
 		B1F768C01995443A0063E27C /* mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mask.png; sourceTree = "<group>"; };
@@ -281,6 +284,8 @@
 				0BB81678199BBDA800490104 /* JAGWall.m */,
 				0B15087E19A51374007D70F1 /* JAGPorta.h */,
 				0B15087F19A51374007D70F1 /* JAGPorta.m */,
+				8D4A4F3619A66CE300255468 /* JAGGotaDividida.h */,
+				8D4A4F3719A66CE300255468 /* JAGGotaDividida.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -373,6 +378,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Henrique Manfroi da Silveira";
 				TargetAttributes = {
+					0B3A044B1991164A00C7C39E = {
+						DevelopmentTeam = VCE77X465D;
+					};
 					0B3A04731991164A00C7C39E = {
 						TestTargetID = 0B3A044B1991164A00C7C39E;
 					};
@@ -450,6 +458,7 @@
 				0BB81679199BBDA800490104 /* JAGWall.m in Sources */,
 				0B2C5255199A99A30065BB09 /* JAGLevel.m in Sources */,
 				0B3A04621991164A00C7C39E /* JAGAppDelegate.m in Sources */,
+				8D4A4F3819A66CE300255468 /* JAGGotaDividida.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,11 +583,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JonnyGota/JonnyGota-Prefix.pch";
 				INFOPLIST_FILE = "JonnyGota/JonnyGota-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -589,11 +601,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JonnyGota/JonnyGota-Prefix.pch";
 				INFOPLIST_FILE = "JonnyGota/JonnyGota-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
