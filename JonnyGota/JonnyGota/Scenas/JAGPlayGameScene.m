@@ -630,6 +630,10 @@
 */
 }
 
+-(void)morrreu{
+    
+}
+
 
 -(void)loadingWorld{
     //Ler um arquivo
