@@ -7,6 +7,7 @@
 //
 
 #import "JAGCharacter.h"
+#import "JAGGotaDividida.h"
 
 @interface JAGGota : JAGCharacter
 
@@ -14,7 +15,7 @@
 @property BOOL escondida;
 @property BOOL dividida;
 @property SKTextureAtlas *atlas;
--(void)dividir;
+-(SKSpriteNode*)dividir;
 -(void)esconder;
 
 //-(void)mover:(CGPoint)ponto
