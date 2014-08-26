@@ -11,6 +11,8 @@
 #import "JAGObjeto.h"
 #import "JAGPressao.h"
 #import "JAGChuva.h"
+#import "JAGChave.h"
+#import "JAGFonte.h"
 
 @implementation JAGCreatorLevels
 
@@ -84,9 +86,11 @@
     SKSpriteNode *spritePor=[[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size:CGSizeMake(scene.level.tileSize, scene.level.tileSize)];
     
     JAGPorta *porta=[[JAGPorta alloc] initWithPosition:[scene.level calculateTile:CGPointMake(9, 17)] withSprite:spritePor];
-    
+    //Fonte
+    SKSpriteNode *fonteSprite = [[SKSpriteNode alloc]initWithColor:[UIColor blueColor] size:CGSizeMake(scene.frame.size.width*0.1, scene.frame.size.width*0.1)];
+    JAGFonte *fonte = [[JAGFonte alloc] initWithPosition:CGPointMake(scene.frame.size.width*0.5, scene.frame.size.height*0.7) withSprite:fonteSprite];
     [scene.cropNode addChild:porta];
-    
+    [scene.cropNode addChild:fonte];
     [porta vincularBotao:presao];
     
     [scene.portas addObject:porta];
@@ -112,6 +116,10 @@
     
     [scene.level createWalls:CGPointMake(0, 20) withHeight:1 withWidth:11 withScene:scene];
     
+    //Chave
+    SKSpriteNode *oi = [[SKSpriteNode alloc]initWithColor:[UIColor yellowColor] size:CGSizeMake(scene.frame.size.width*0.02, scene.frame.size.height*0.05)];
+    JAGChave *chave = [[JAGChave alloc] initWithPosition:CGPointMake(scene.fogo.position.x, scene.fogo.position.y *0.9) withSprite:oi];
+    
     
     //Box do Inimigo
     
@@ -125,6 +133,7 @@
     
     
    
+    [scene.cropNode addChild:chave];
     
     
     scene.hud =[[JAGHud alloc] initWithTempo:300 withVida:3 withWindowSize:scene.frame.size];

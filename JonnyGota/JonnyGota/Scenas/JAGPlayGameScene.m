@@ -11,6 +11,7 @@
 #import "JAGCreatorLevels.h"
 #import "JAGObjeto.h"
 #import "JAGPressao.h"
+#import "JAGChave.h"
 
 
 @implementation JAGPlayGameScene {
@@ -29,6 +30,7 @@
     SKSpriteNode *pararMovimentoCONTROLy;
     BOOL controleXnaTela;
     BOOL controleYnaTela;
+    JAGChave* chave;
 }
 
 #pragma mark - Move to View
@@ -79,6 +81,10 @@
         [self configuraParadaGota];
     }
 
+    NSTimer timerWithTimeInterval:1 target:self
+                         selector:@selector(gotaReduzVida)
+                         userInfo:nil
+                          repeats:YES;
     return self;
 }
 
@@ -90,6 +96,9 @@
     return _gota;
 }
 
+-(void)gotaReduzVida{
+    _gota.aguaRestante --;
+}
 -(JAGFogoEnemy *)createFireEnemy{
     
       _fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(width*0.9, height*0.3) withSize:[_level sizeTile]];
@@ -394,6 +403,11 @@
 }
 -(void)update:(NSTimeInterval)currentTime {
     
+    if (_gota.comChave) {
+
+        chave.position = CGPointMake(_gota.position.x*0.9, _gota.position.y*0.9);
+        
+    }
     
     [self centerMapOnCharacter];
     //depois de um tempo ou acao
@@ -437,7 +451,11 @@
        ([contact.bodyA.node.name isEqualToString:@"chave"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
         //
     }
-    
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"fonte"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"fonte"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
+        _gota.emContatoFonte = YES;
+    }
+    else _gota.emContatoFonte = NO;
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"cronometro"]) ||
        ([contact.bodyA.node.name isEqualToString:@"cronometro"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
         //
@@ -489,7 +507,9 @@
         //
         if([contact.bodyA.node.name isEqualToString:@"porta"]){
             JAGPorta *pre=(JAGPorta *)contact.bodyA.node;
-            
+            if (_gota.comChave) {
+                [pre abrir:YES];
+            }
             if(!pre.aberta){
                  _gota.physicsBody.velocity = CGVectorMake(0, 0);
             }
@@ -497,6 +517,7 @@
             //[obj removeFromParent];
         }else{
             JAGPorta *pre=(JAGPorta *)contact.bodyA.node;
+            [pre abrir:YES];
             if(!pre.aberta){
                 _gota.physicsBody.velocity = CGVectorMake(0, 0);
                 
@@ -597,6 +618,15 @@
             //Libera
             [pre pressionar:false];
         }
+    }
+    
+    if(([contact.bodyA.node.name isEqualToString:@"chave"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
+        chave = (JAGChave *)contact.bodyA.node;
+        _gota.comChave = YES;
+    }
+    if (([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"chave"]) ) {
+        chave = (JAGChave *)contact.bodyB.node;
+        _gota.comChave = YES;
     }
 
 /*
