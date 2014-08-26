@@ -7,6 +7,7 @@
 //
 
 #import "JAGCharacter.h"
+#import "JAGGota.h"
 
 @interface JAGInimigos : JAGCharacter
 
@@ -15,5 +16,6 @@
 @property int multi;
 
 -(void)ataque;
+-(void) ia;
 
 @end

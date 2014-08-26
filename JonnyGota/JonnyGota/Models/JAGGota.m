@@ -15,7 +15,7 @@
     self = [super init];
     
     self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
-    self.atlas = [SKTextureAtlas atlasNamed:@"gotinha.atlas"];
+    self.atlas  = [SKTextureAtlas atlasNamed:@"gotinha.atlas"];
     self.sprite.texture = [_atlas textureNamed:@"gota_walk_1.png"];
     
     self.physicsBody.friction = 0;
@@ -26,16 +26,16 @@
     
     //[self addChild:desn];
     
-    self.name=@"gota";
+    self.name = @"gota";
     
-    self.sprite.name=@"gota";
+    self.sprite.name = @"gota";
     
     [self addChild:self.sprite];
     
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.sprite.size.width-2, self.sprite.size.height-2)];
     //self.zPosition = 1;
-    self.physicsBody.categoryBitMask = GOTA;
-    self.physicsBody.collisionBitMask = ATTACK | ENEMY |ITEM |PORTA | CHUVA;
+    self.physicsBody.categoryBitMask    = GOTA;
+    self.physicsBody.collisionBitMask   = ATTACK | ENEMY |ITEM |PORTA | CHUVA;
     self.physicsBody.contactTestBitMask = ATTACK | ENEMY | CONTROLE_TOQUE |ITEM | CHUVA;
     
     [self configPhysics];
@@ -51,7 +51,6 @@
     
     return self;
 }
-
 
 -(void)esconder{
     SKAction *pocaAction;

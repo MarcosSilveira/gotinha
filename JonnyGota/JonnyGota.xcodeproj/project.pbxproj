@@ -48,6 +48,7 @@
 		8D4A4F3519A3D0E300255468 /* gotinha.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8D4A4F3419A3D0E300255468 /* gotinha.atlas */; };
 		8D4A4F3819A66CE300255468 /* JAGGotaDividida.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A4F3719A66CE300255468 /* JAGGotaDividida.m */; };
 		B157BDA819A267E400ACA4C1 /* JAGObjeto.m in Sources */ = {isa = PBXBuildFile; fileRef = B157BDA719A267E400ACA4C1 /* JAGObjeto.m */; };
+		B157BDB619AD14A700ACA4C1 /* JAGMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B157BDB519AD14A700ACA4C1 /* JAGMenu.m */; };
 		B1F768C11995443A0063E27C /* mask.png in Resources */ = {isa = PBXBuildFile; fileRef = B1F768C01995443A0063E27C /* mask.png */; };
 /* End PBXBuildFile section */
 
@@ -129,6 +130,8 @@
 		8D4A4F3719A66CE300255468 /* JAGGotaDividida.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGGotaDividida.m; sourceTree = "<group>"; };
 		B157BDA619A267E400ACA4C1 /* JAGObjeto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGObjeto.h; sourceTree = "<group>"; };
 		B157BDA719A267E400ACA4C1 /* JAGObjeto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGObjeto.m; sourceTree = "<group>"; };
+		B157BDB419AD14A700ACA4C1 /* JAGMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGMenu.h; path = ../JAGMenu.h; sourceTree = "<group>"; };
+		B157BDB519AD14A700ACA4C1 /* JAGMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGMenu.m; path = ../JAGMenu.m; sourceTree = "<group>"; };
 		B1F768C01995443A0063E27C /* mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mask.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -309,6 +312,8 @@
 			isa = PBXGroup;
 			children = (
 				0B024D061991252B00AE9588 /* JAGPlayGameScene.h */,
+				B157BDB419AD14A700ACA4C1 /* JAGMenu.h */,
+				B157BDB519AD14A700ACA4C1 /* JAGMenu.m */,
 				0B024D071991252B00AE9588 /* JAGPlayGameScene.m */,
 			);
 			name = Scenes;
@@ -459,6 +464,7 @@
 				0B2C5255199A99A30065BB09 /* JAGLevel.m in Sources */,
 				0B3A04621991164A00C7C39E /* JAGAppDelegate.m in Sources */,
 				8D4A4F3819A66CE300255468 /* JAGGotaDividida.m in Sources */,
+				B157BDB619AD14A700ACA4C1 /* JAGMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,8 +28,6 @@
     SKScene *scene =[[JAGPlayGameScene alloc] initWithSize:skView.bounds.size level:@1 andWorld:@1];
     //SKScene * scene = [JAGP sceneWithSize:skView.bounds.size];
     
-    
-    
     //JAGPlayGameScene *scene=[[JAGPlayGameScene alloc] init];
     
     scene.scaleMode = SKSceneScaleModeAspectFill;
