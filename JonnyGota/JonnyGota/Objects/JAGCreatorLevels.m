@@ -64,15 +64,19 @@
     CGSize tamanho=CGSizeMake(scene.level.tileSize, scene.level.tileSize);
     
     scene.characteres=[[NSMutableArray alloc] init];
+    scene.inimigos=[[NSMutableArray alloc] init];
     
     scene.gota= [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 1)] withSize:tamanho];
     
 
-    scene.fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
-    scene.fogo.dano=10;
+    
+    JAGFogoEnemy *fogo =[[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
+    fogo.dano=10;
 
     [scene.characteres addObject:scene.gota];
-    [scene.characteres addObject:scene.fogo];
+    [scene.characteres addObject:fogo];
+    
+    [scene.inimigos addObject:fogo];
     
     //_tileSize=32;
     //scene.diferenca = 80.0f;
@@ -141,7 +145,7 @@
     
     
     
-    [scene.cropNode addChild:scene.fogo];
+    [scene.cropNode addChild:fogo];
     
     [scene addChild: scene.cropNode];
     
