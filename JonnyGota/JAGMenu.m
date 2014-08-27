@@ -25,10 +25,22 @@
  
     self.backgroundColor = [SKColor whiteColor];
     
-    botaoPlay = [[SKSpriteNode alloc] initWithColor:[SKColor colorWithRed:.3 green:.2 blue:.001 alpha:1.0] size:CGSizeMake(CGRectGetWidth(self.frame), CGRectGetHeight(self.frame) / 4)];
-    botaoPlay.position = CGPointMake(CGRectGetWidth(self.frame) - CGRectGetWidth(botaoPlay.frame) / 2, CGRectGetHeight(self.frame) - CGRectGetHeight(botaoPlay.frame) / 2);
+    botaoPlay = [[SKSpriteNode alloc] initWithColor:[SKColor colorWithRed:.7 green:.2 blue:.1 alpha:1.0] size:CGSizeMake(CGRectGetWidth(self.frame)/2, CGRectGetHeight(self.frame) / 4)];
+    botaoPlay.position = CGPointMake(CGRectGetWidth(self.frame) - CGRectGetWidth(botaoPlay.frame), CGRectGetHeight(self.frame) - CGRectGetHeight(botaoPlay.frame)*3);
     
     [self addChild:botaoPlay];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    for (UITouch *touch in touches) {
+        
+        CGPoint location = [touch locationInNode: self];
+        
+        if ([botaoPlay containsPoint:location]) {
+            NSLog(@"teste");
+        }
+    }
 }
 
 @end
