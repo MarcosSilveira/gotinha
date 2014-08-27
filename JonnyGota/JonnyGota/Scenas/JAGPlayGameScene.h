@@ -51,7 +51,7 @@
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto;
 - (id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world;
 
-
+-(void)gotaReduzVida;
 
 -(void)loadingWorld;
 

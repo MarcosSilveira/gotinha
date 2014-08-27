@@ -15,6 +15,7 @@
 
 @property (nonatomic) int tempoRestante;
 @property (nonatomic) int vidaRestante;
+@property (nonatomic) float saudeRestante;
 
 
 @property (nonatomic) SKLabelNode *vidas;
@@ -31,6 +32,7 @@
 
 -(instancetype)initWithTempo:(int) tempo
                     withVida:(int) vida
+                       saude:(float)saude
               withWindowSize:(CGSize) size;
 
 -(void)update;
