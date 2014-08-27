@@ -62,8 +62,6 @@
         }
         [JAGCreatorLevels initializeLevel:self.currentLevel ofWorld:self.currentWorld onScene:self];
         
-               
-        
         tocou_gota = false;
 
 //        _cropNode = [[SKCropNode alloc] init];
@@ -94,7 +92,7 @@
 -(JAGFogoEnemy *)createFireEnemy{
     
       _fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(width*0.9, height*0.3) withSize:[_level sizeTile]];
-    
+
     return _fogo;
 }
 
@@ -142,38 +140,6 @@
     else _fogo.physicsBody.velocity = CGVectorMake(0, 0);
 }
 
--(void) moveInimigo {
-    
-    int randEixo = arc4random()%3+1;
-    
-    CGPoint posX, posY, posX2, posY2;
-    posY  = CGPointMake(self.fogo.position.x, self.fogo.position.y + 3);
-    posY2 = CGPointMake(self.fogo.position.x, self.fogo.position.y - 3);
-    posX  = CGPointMake(self.fogo.position.x + 3, self.fogo.position.y);
-    posX2 = CGPointMake(self.fogo.position.x - 3, self.fogo.position.y);
-
-    switch (randEixo) {
-        case 1:
-            [self.fogo mover:posY withInterval:1.0 withType:1]; //cima
-            break;
-            
-        case 2:
-            [self.fogo mover:posY2 withInterval:1.0 withType:2 ]; //baixo
-            break;
-            
-        case 3:
-            [self.fogo mover:posX withInterval:1.0 withType:3 ]; //esq
-            break;
-            
-        case 4:
-            [self.fogo mover:posX2 withInterval:1.0 withType:4 ]; //dir
-            break;
-            
-        default:
-            break;
-    }
-}
-
 -(void) configuraParadaGota {
     
     pararMovimentoCONTROLx = [[SKSpriteNode alloc]initWithColor:([UIColor clearColor]) size:(CGSizeMake(5, height)) ];
@@ -186,9 +152,9 @@
     pararMovimentoCONTROLy.physicsBody.categoryBitMask = CONTROLE_TOQUE;
     pararMovimentoCONTROLx.physicsBody.contactTestBitMask = GOTA;
     pararMovimentoCONTROLy.physicsBody.contactTestBitMask = GOTA;
-    pararMovimentoCONTROLx.physicsBody.restitution=0;
-    pararMovimentoCONTROLy.physicsBody.restitution=0;
-    pararMovimentoCONTROLy.name = @"controle_toque_x";
+    pararMovimentoCONTROLx.physicsBody.restitution = 0;
+    pararMovimentoCONTROLy.physicsBody.restitution = 0;
+    pararMovimentoCONTROLx.name = @"controle_toque_x";
     pararMovimentoCONTROLy.name = @"controle_toque_y";
     controleXnaTela = NO;
     controleYnaTela = NO;
@@ -200,8 +166,7 @@
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto {
     //  toqueFinal = pontoReferencia;
     int tipo;
-    
-    
+
     float difx = pontoObjeto.x - pontoReferencia.x;
     
     //float dify=toqueFinals.y-toqueFinal.y;
@@ -234,8 +199,7 @@
         else
             tipo = 2;
     }
-    
-   
+
     return tipo;
 }
 
@@ -246,19 +210,11 @@
     /* Called when a touch begins */
     for (UITouch *touch in touches) {
         toqueInicio = [touch locationInNode:self];
-
         
-        toqueInicio =CGPointMake(toqueInicio.x+(_gota.position.x)-CGRectGetMidX(self.frame),
+        toqueInicio = CGPointMake(toqueInicio.x+(_gota.position.x)-CGRectGetMidX(self.frame),
                                  toqueInicio.y+(_gota.position.y)-CGRectGetMidY(self.frame));
-        tocou_gota = [_gota verificaToque:toqueInicio];
-        
-       
-        if(tocou_gota){
-          
-        }
+        tocou_gota  = [_gota verificaToque:toqueInicio];
     }
-
-
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -293,29 +249,25 @@
     }
     for (UITouch *touch in touches) {
 
-        
         pararMovimentoCONTROLx.position = [touch locationInNode:_cropNode];
         pararMovimentoCONTROLy.position = [touch locationInNode:_cropNode];
-        
 
         if (toque_moveu && tocou_gota) {
             [_cropNode addChild:[_gota dividir]];
             NSLog(@"Dividiu");
             toque_moveu = NO;
-        }else{
+        } else {
             
             toqueFinal = [touch locationInNode:self];
-            toqueFinal=CGPointMake(toqueFinal.x+(_gota.position.x)-CGRectGetMidX(self.frame),
+            toqueFinal = CGPointMake(toqueFinal.x+(_gota.position.x)-CGRectGetMidX(self.frame),
                                    toqueFinal.y+(_gota.position.y)-CGRectGetMidY(self.frame));
             if ([_gota verificaToque:toqueFinal]){
                 [_gota esconder];
-            }else{
+            } else {
                 if (!_gota.escondida) {
-                    
                     
                     switch ([self verificaSentido:toqueFinal with:_gota.position]) {
                         case 1:
-                           
                                 
                             [_gota mover:toqueFinal withInterval:1.0 withType:1 ];
                             [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
@@ -329,7 +281,6 @@
                             break;
                         case 2:
                            
-                                
                                 [_gota mover:toqueFinal withInterval:1.0 withType:2 ];
                             [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
                             if (controleXnaTela){
@@ -340,7 +291,6 @@
                                     controleYnaTela = YES;}
                             break;
                         case 3:
-                            
                                 [_gota mover:toqueFinal withInterval:1.0 withType:3 ];
                             [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
                             if (controleYnaTela){
@@ -388,7 +338,7 @@
 
 }
 -(void)centerMapOnCharacter{
-    self.cropNode.position=CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
+    self.cropNode.position = CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
                                     -(_gota.position.y)+CGRectGetMidY(self.frame));
     
 
@@ -402,11 +352,7 @@
     //circleMask.position = CGPointMake(_gota.position.x-height*0.2, _gota.position.y-width*0.29);
     
     area.position = CGPointMake(_gota.position.x,_gota.position.y);
-    
-    if ((self.fogo.physicsBody.velocity.dx <= 0) && (self.fogo.physicsBody.velocity.dy <= 0)) {
-       // [self moveInimigo];
-    }
-    
+
     //NSLog(@"gota x:%f y:%f",_gota.position.x,_gota.position.y);
     [self followPlayer];
     [self.hud update];
@@ -416,9 +362,7 @@
     }
 }
 
-
 #pragma mark - Physics
-
 
 -(void)didBeginContact:(SKPhysicsContact *)contact{
     if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ENEMY)){
@@ -721,8 +665,6 @@
 }
 
 
-
-
 -(void)createLevel{
     _level=[[JAGLevel alloc] initWithHeight:20 withWidth:20];
     
@@ -754,10 +696,7 @@
     
     _level.level=@1;
     
-    //NSLog(@" Export: %@", [level1 exportar]);
-    
-    
-    
+    //NSLog(@" Export: %@", [level1 exportar]);    
 }
 
 
