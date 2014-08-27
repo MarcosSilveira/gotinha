@@ -14,6 +14,8 @@
 @property (nonatomic) int tipo;
 @property int multi;
 
+@property (nonatomic) int dano;
+
 -(void)ataque;
 
 @end

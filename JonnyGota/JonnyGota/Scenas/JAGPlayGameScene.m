@@ -29,6 +29,7 @@
     SKSpriteNode *pararMovimentoCONTROLy;
     BOOL controleXnaTela;
     BOOL controleYnaTela;
+   
 }
 
 #pragma mark - Move to View
@@ -421,11 +422,13 @@
 
 -(void)didBeginContact:(SKPhysicsContact *)contact{
     if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ENEMY)){
-        self.hud.vidaRestante--;
+        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
+        [self receberDano:inimigo.dano];
     }
     
     if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == ENEMY)){
-        self.hud.vidaRestante--;
+        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
+        [self receberDano:inimigo.dano];
     }
     //Colisao com a parede
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
@@ -630,11 +633,19 @@
 */
 }
 
--(void)morrreu{
-    
+#pragma mark - Receber Dano
+-(void)receberDano:(int) dano{
+    self.gota.vida-=dano;
+    if(self.gota.vida<0){
+        self.gota.vida=15;
+        self.hud.vidaRestante--;
+        [self.gota changePosition:_posicaoInicial];
+    }
 }
 
 
+
+#pragma mark - Arquivos
 -(void)loadingWorld{
     //Ler um arquivo
     
