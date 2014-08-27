@@ -12,6 +12,7 @@
 #import "JAGObjeto.h"
 #import "JAGPressao.h"
 #import "JAGPerdaGota.h"
+#import "JAGChave.h"
 
 
 @implementation JAGPlayGameScene {
@@ -78,10 +79,7 @@
         height = self.scene.size.height;
         [self configuraParadaGota];
     }
-    [NSTimer timerWithTimeInterval:1 target:self
-                          selector:@selector(gotaReduzVida)
-                          userInfo:nil
-                           repeats:YES];
+
     return self;
 }
 
@@ -400,7 +398,12 @@
     }
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"fonte"]) ||
        ([contact.bodyA.node.name isEqualToString:@"fonte"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
-        _gota.emContatoFonte = YES;
+        _gota.vida+=15;
+        if([contact.bodyA.node.name isEqualToString:@"fonte"]){
+            [contact.bodyA.node removeFromParent];
+        }else{
+            [contact.bodyB.node removeFromParent];
+        }
     }
     else _gota.emContatoFonte = NO;
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"cronometro"]) ||

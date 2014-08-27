@@ -125,7 +125,7 @@
     
     //Chave
     SKSpriteNode *oi = [[SKSpriteNode alloc]initWithColor:[UIColor yellowColor] size:CGSizeMake(scene.frame.size.width*0.02, scene.frame.size.height*0.05)];
-    JAGChave *chave = [[JAGChave alloc] initWithPosition:CGPointMake(scene.fogo.position.x, scene.fogo.position.y *0.9) withSprite:oi];
+    JAGChave *chave = [[JAGChave alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 4)] withSprite:oi];
     
     
     //Box do Inimigo
