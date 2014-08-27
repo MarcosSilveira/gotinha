@@ -66,7 +66,6 @@
     scene.characteres=[[NSMutableArray alloc] init];
     
     scene.gota= [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 1)] withSize:tamanho];
-    scene.posicaoInicial=scene.gota.position;
     
 
     scene.fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
@@ -139,6 +138,9 @@
     scene.gota.vida=15;
     scene.hud.gota=scene.gota;
     
+    
+    
+    
     [scene.cropNode addChild:scene.fogo];
     
     [scene addChild: scene.cropNode];
@@ -150,6 +152,8 @@
     [obj criarObj:[scene.level calculateTile:CGPointMake(9, 3)] comTipo:2 eSprite:cron];
     
     [scene.cropNode addChild:obj];
+    
+    [scene configStart:8];
     
     
    // JAGHud *hud=[JAGHud alloc]

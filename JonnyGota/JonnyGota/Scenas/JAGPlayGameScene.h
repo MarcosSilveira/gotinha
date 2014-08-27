@@ -60,4 +60,6 @@
 
 @property (nonatomic) SKAction* despresionar;
 
+-(void)configStart:(int) time;
+
 @end

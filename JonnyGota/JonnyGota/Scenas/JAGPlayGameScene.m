@@ -580,11 +580,26 @@
 #pragma mark - Receber Dano
 -(void)receberDano:(int) dano{
     self.gota.vida-=dano;
-    if(self.gota.vida<0){
+    if(self.gota.vida<=0){
         self.gota.vida=15;
         self.hud.vidaRestante--;
         [self.gota changePosition:_posicaoInicial];
     }
+}
+
+#pragma mark - Configuração de Start
+-(void)configStart:(int) time{
+    _posicaoInicial=self.gota.position;
+    SKAction *diminuirSaude=[SKAction sequence:@[[SKAction waitForDuration:time],
+                                                [SKAction runBlock:^{
+        [self receberDano:1];
+        //Criar uma gotinha
+        
+        //Aumentar a area
+                                                }]]];
+    SKAction *loop=[SKAction repeatActionForever:diminuirSaude];
+    
+    [self runAction:loop];
 }
 
 

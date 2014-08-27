@@ -312,9 +312,9 @@
 			isa = PBXGroup;
 			children = (
 				0B024D061991252B00AE9588 /* JAGPlayGameScene.h */,
+				0B024D071991252B00AE9588 /* JAGPlayGameScene.m */,
 				B157BDB419AD14A700ACA4C1 /* JAGMenu.h */,
 				B157BDB519AD14A700ACA4C1 /* JAGMenu.m */,
-				0B024D071991252B00AE9588 /* JAGPlayGameScene.m */,
 			);
 			name = Scenes;
 			path = JonnyGota;
