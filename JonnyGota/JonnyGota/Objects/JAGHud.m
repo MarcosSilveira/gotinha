@@ -31,7 +31,12 @@
     
     _vidas.position=CGPointMake(size.width*0.2, size.height*0.95);
     
-    _tempo.position=CGPointMake(size.width*0.6, size.height*0.95);
+    _tempo.position=CGPointMake(size.width*0.5, size.height*0.95);
+    
+    _saude=[[SKLabelNode alloc]initWithFontNamed:fonte];
+    _saude.text=[NSString stringWithFormat:@"hp: %l", _gota.vida];
+    
+    _saude.position=CGPointMake(size.width*0.8, size.height*0.95);
     
     _saude.position = CGPointMake(size.width*0.8, size.height*0.94);
     

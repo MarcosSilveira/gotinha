@@ -23,7 +23,7 @@ typedef enum : uint32_t{
 
 @interface JAGCharacter : SKNode <UIGestureRecognizerDelegate>
 
-@property (nonatomic) NSInteger* vida;
+@property (nonatomic) NSInteger vida;
 @property (nonatomic) SKSpriteNode* sprite;
 @property int multi;
 

@@ -29,4 +29,6 @@
              withSize:(CGSize) size;
 -(BOOL)verificaToque:(CGPoint) ponto;
 
+-(void)changePosition:(CGPoint) posicao;
+
 @end

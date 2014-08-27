@@ -15,7 +15,7 @@
     self = [super init];
     
     self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
-    self.atlas = [SKTextureAtlas atlasNamed:@"gotinha.atlas"];
+    self.atlas  = [SKTextureAtlas atlasNamed:@"gotinha.atlas"];
     self.sprite.texture = [_atlas textureNamed:@"gota_walk_1.png"];
     
     self.physicsBody.friction = 0;
@@ -26,9 +26,9 @@
     
     //[self addChild:desn];
     
-    self.name=@"gota";
+    self.name = @"gota";
     
-    self.sprite.name=@"gota";
+    self.sprite.name = @"gota";
     
     [self addChild:self.sprite];
     
@@ -53,7 +53,6 @@
     _aguaRestante = 10;
     return self;
 }
-
 
 -(void)esconder{
     SKAction *pocaAction;
@@ -94,6 +93,17 @@
 
     
     return gota2;
+}
+
+-(void)changePosition:(CGPoint) posicao{
+    
+    
+    SKPhysicsBody *temp= self.physicsBody;
+    self.physicsBody = nil;
+    
+    self.position=posicao;
+    
+    self.physicsBody = temp;
 }
 
 //-(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withTipe:(int)tipo{

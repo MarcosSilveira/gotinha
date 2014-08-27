@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
+#import "JAGGota.h"
 
 
 @interface JAGHud : SKNode
@@ -16,12 +17,14 @@
 @property (nonatomic) int vidaRestante;
 @property (nonatomic) float saudeRestante;
 
+
 @property (nonatomic) SKLabelNode *vidas;
 
 @property (nonatomic) SKLabelNode *tempo;
 
 @property (nonatomic) SKLabelNode *saude;
 
+@property (nonatomic) JAGGota *gota;
 
 
 //Sprites da tela
