@@ -13,11 +13,20 @@
 #import "JAGChuva.h"
 #import "JAGChave.h"
 #import "JAGFonte.h"
+#import "JAGTrovaoEnemy.h"
 
 @implementation JAGCreatorLevels
 
-+ (NSNumber *)numberOfLevels{
-    return @1;
++ (NSNumber *)numberOfLevels:(int)mundo{
+    switch (mundo) {
+        case 1:
+            return @1;
+            break;
+            
+        default:
+            return @1;
+            break;
+    }
 }
 
 + (NSString *)nameOfLevel:(NSNumber *)level{
@@ -34,7 +43,7 @@
     return @"Descrição do Level 1";
 }
 + (void)playLevel:(NSNumber *)level ofWorld:(NSNumber *)world withTransition:(SKTransition *)transition onScene:(SKScene *)lastScene{
-    if([level intValue]<=[[self numberOfLevels] intValue]){
+    if([level intValue]<=[[self numberOfLevels:1] intValue]){
         /*
          PGPlayGameScene *nextScene = [[PGPlayGameScene alloc] initWithSize:lastScene.size level:level andWorld:world];
          

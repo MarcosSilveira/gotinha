@@ -27,6 +27,7 @@ typedef enum : uint32_t{
 @property (nonatomic) NSInteger vida;
 @property (nonatomic) SKSpriteNode* sprite;
 @property int multi;
+@property (nonatomic) SKTextureAtlas *atlas;
 
 -(void)configPhysics;
 -(void)animar;

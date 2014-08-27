@@ -14,7 +14,6 @@
 @property (strong, nonatomic) UISwipeGestureRecognizer *swipeGest;
 @property BOOL escondida;
 @property BOOL dividida;
-@property SKTextureAtlas *atlas;
 @property BOOL comChave;
 @property BOOL emContatoFonte;
 @property float aguaRestante;
