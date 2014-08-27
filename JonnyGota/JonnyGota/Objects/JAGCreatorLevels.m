@@ -136,7 +136,7 @@
     [scene.cropNode addChild:chave];
     
     
-    scene.hud =[[JAGHud alloc] initWithTempo:300 withVida:3 withWindowSize:scene.frame.size];
+    scene.hud =[[JAGHud alloc] initWithTempo:300 withVida:3 saude:scene.gota.aguaRestante withWindowSize:scene.frame.size];
     
     [scene addChild:scene.hud];
     
