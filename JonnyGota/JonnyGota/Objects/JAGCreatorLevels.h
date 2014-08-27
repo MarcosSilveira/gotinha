@@ -14,7 +14,7 @@
 
 + (void)initializeLevel:(NSNumber *)level ofWorld:(NSNumber *)world onScene:(SKScene *)scene;
 
-+ (NSNumber *)numberOfLevels;
++ (NSNumber *)numberOfLevels:(int)mundo;
 + (NSString *)nameOfLevel:(NSNumber *)level;
 + (NSString *)nameOfWorld:(NSNumber *)world;
 + (NSNumber *)numberOfWorlds;

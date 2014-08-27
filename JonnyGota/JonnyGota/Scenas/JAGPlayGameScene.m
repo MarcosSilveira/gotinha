@@ -11,6 +11,8 @@
 #import "JAGCreatorLevels.h"
 #import "JAGObjeto.h"
 #import "JAGPressao.h"
+#import "JAGPerdaGota.h"
+#import "JAGChave.h"
 
 
 @implementation JAGPlayGameScene {
@@ -29,6 +31,7 @@
     SKSpriteNode *pararMovimentoCONTROLy;
     BOOL controleXnaTela;
     BOOL controleYnaTela;
+    JAGChave* chave;
 }
 
 #pragma mark - Move to View
@@ -88,12 +91,6 @@
     return _gota;
 }
 
--(JAGFogoEnemy *)createFireEnemy{
-    
-      _fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(width*0.9, height*0.3) withSize:[_level sizeTile]];
-
-    return _fogo;
-}
 
 #pragma mark - Máscara
 -(void)createMask:(int) radius
@@ -111,8 +108,10 @@
     circleMask.userInteractionEnabled = NO;
     circleMask.fillColor = [SKColor clearColor];
     
+    circleMask.position=CGPointMake(ponto.x-_gota.sprite.size.width,ponto.y-_gota.sprite.size.height);
+    
     [area addChild:circleMask];
-    area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
+    //area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
     [_cropNode setMaskNode:area];
     
 }
@@ -128,15 +127,21 @@
 
 -(void) followPlayer {
     
-    float distance = hypotf(_fogo.position.x - _gota.position.x, _fogo.position.y - _gota.position.y);
+    for (int i=0;i<_inimigos.count;i++){
+    
+        JAGInimigos *fogo=(JAGInimigos *)_inimigos[i];
+        
+    float distance = hypotf(fogo.position.x - _gota.position.x, fogo.position.y - _gota.position.y);
     
     if (distance < 100) {
         if (_gota.escondida == NO) {
-            [_fogo mover:(_gota.position) withInterval:2 withType:[self verificaSentido:_gota.position with:_fogo.position]];
+            [fogo mover:(_gota.position) withInterval:2 withType:[self verificaSentido:_gota.position with:fogo.position]];
         }
-        else _fogo.physicsBody.velocity = CGVectorMake(0, 0);
+        else fogo.physicsBody.velocity = CGVectorMake(0, 0);
     }
-    else _fogo.physicsBody.velocity = CGVectorMake(0, 0);
+    else fogo.physicsBody.velocity = CGVectorMake(0, 0);
+        
+    }
 }
 
 -(void) configuraParadaGota {
@@ -340,10 +345,18 @@
     self.cropNode.position = CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
                                     -(_gota.position.y)+CGRectGetMidY(self.frame));
     
+    
+    //circleMask.position=CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
+     //                               -(_gota.position.y)+CGRectGetMidY(self.frame));
 
 }
 -(void)update:(NSTimeInterval)currentTime {
-    
+    _hud.saudeRestante = _gota.aguaRestante;
+    if (_gota.comChave) {
+
+        chave.position = CGPointMake(_gota.position.x*0.9, _gota.position.y*0.9);
+        
+    }
     
     [self centerMapOnCharacter];
     //depois de um tempo ou acao
@@ -365,11 +378,13 @@
 
 -(void)didBeginContact:(SKPhysicsContact *)contact{
     if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ENEMY)){
-        self.hud.vidaRestante--;
+        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
+        [self receberDano:inimigo.dano];
     }
     
     if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == ENEMY)){
-        self.hud.vidaRestante--;
+        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
+        [self receberDano:inimigo.dano];
     }
     //Colisao com a parede
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
@@ -381,7 +396,16 @@
        ([contact.bodyA.node.name isEqualToString:@"chave"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
         //
     }
-    
+    if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"fonte"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"fonte"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
+        _gota.vida+=15;
+        if([contact.bodyA.node.name isEqualToString:@"fonte"]){
+            [contact.bodyA.node removeFromParent];
+        }else{
+            [contact.bodyB.node removeFromParent];
+        }
+    }
+    else _gota.emContatoFonte = NO;
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"cronometro"]) ||
        ([contact.bodyA.node.name isEqualToString:@"cronometro"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
         //
@@ -433,7 +457,9 @@
         //
         if([contact.bodyA.node.name isEqualToString:@"porta"]){
             JAGPorta *pre=(JAGPorta *)contact.bodyA.node;
-            
+            if (_gota.comChave) {
+                [pre abrir:YES];
+            }
             if(!pre.aberta){
                  _gota.physicsBody.velocity = CGVectorMake(0, 0);
             }
@@ -441,6 +467,7 @@
             //[obj removeFromParent];
         }else{
             JAGPorta *pre=(JAGPorta *)contact.bodyA.node;
+            [pre abrir:YES];
             if(!pre.aberta){
                 _gota.physicsBody.velocity = CGVectorMake(0, 0);
                 
@@ -542,6 +569,15 @@
             [pre pressionar:false];
         }
     }
+    
+    if(([contact.bodyA.node.name isEqualToString:@"chave"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
+        chave = (JAGChave *)contact.bodyA.node;
+        _gota.comChave = YES;
+    }
+    if (([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"chave"]) ) {
+        chave = (JAGChave *)contact.bodyB.node;
+        _gota.comChave = YES;
+    }
 
 /*
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"pressao"]) ||
@@ -574,7 +610,38 @@
 */
 }
 
+#pragma mark - Receber Dano
+-(void)receberDano:(int) dano{
+    self.gota.vida-=dano;
+    if(self.gota.vida<=0){
+        self.gota.vida=15;
+        self.hud.vidaRestante--;
+        [self.gota changePosition:_posicaoInicial];
+    }
+}
 
+#pragma mark - Configuração de Start
+-(void)configStart:(int) time{
+    _posicaoInicial=self.gota.position;
+    SKAction *diminuirSaude=[SKAction sequence:@[[SKAction waitForDuration:time],
+                                                [SKAction runBlock:^{
+        [self receberDano:1];
+        //Criar uma gotinha
+        //JAGPerdaGota *gotinha=[[JAGPerdaGota alloc] initWithPosition:self.gota.position withTimeLife:10];
+        
+        //[self.cropNode addChild:gotinha];
+        //Aumentar a area
+        //[area addChild:[gotinha areavisao:50]];
+        
+                                                }]]];
+    SKAction *loop=[SKAction repeatActionForever:diminuirSaude];
+    
+    [self runAction:loop];
+}
+
+
+
+#pragma mark - Arquivos
 -(void)loadingWorld{
     //Ler um arquivo
     

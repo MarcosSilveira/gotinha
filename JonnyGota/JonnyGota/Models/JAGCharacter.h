@@ -13,18 +13,21 @@ typedef enum : uint32_t{
  ENEMY = 0x1 << 1,
  ATTACK = 0x1 << 2,
  CONTROLE_TOQUE = 0x1 << 3,
+ FONTE_DA_JUVENTUDE = 0x1 <<4,
  CHAVE = 0x1<<11,
  ITEM = 0x1 << 12,
  PRESSAO = 0x1 <<13,
  PORTA = 0x1<<14,
- CHUVA=0x1<<20
+ CHUVA=0x1<<20,
+ PERDAGOTA=0X1<<21
 }colisao;
 
 @interface JAGCharacter : SKNode <UIGestureRecognizerDelegate>
 
-@property (nonatomic) NSInteger* vida;
+@property (nonatomic) NSInteger vida;
 @property (nonatomic) SKSpriteNode* sprite;
 @property int multi;
+@property (nonatomic) SKTextureAtlas *atlas;
 
 -(void)configPhysics;
 -(void)animar;

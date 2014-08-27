@@ -14,7 +14,7 @@
     self = [super init];
     self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
     self.atlas = [SKTextureAtlas atlasNamed:@"gotinha.atlas"];
-    self.sprite.texture = [_atlas textureNamed:@"fire_idle.png"];
+    self.sprite.texture = [self.atlas textureNamed:@"fire_idle.png"];
     
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
     //  self.zPosition = 1;

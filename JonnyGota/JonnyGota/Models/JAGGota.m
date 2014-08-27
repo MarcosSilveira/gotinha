@@ -16,7 +16,7 @@
     
     self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
     self.atlas  = [SKTextureAtlas atlasNamed:@"gotinha.atlas"];
-    self.sprite.texture = [_atlas textureNamed:@"gota_walk_1.png"];
+    self.sprite.texture = [self.atlas textureNamed:@"gota_walk_1.png"];
     
     self.physicsBody.friction = 0;
     
@@ -34,9 +34,9 @@
     
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.sprite.size.width-2, self.sprite.size.height-2)];
     //self.zPosition = 1;
-    self.physicsBody.categoryBitMask    = GOTA;
-    self.physicsBody.collisionBitMask   = ATTACK | ENEMY |ITEM |PORTA | CHUVA;
-    self.physicsBody.contactTestBitMask = ATTACK | ENEMY | CONTROLE_TOQUE |ITEM | CHUVA;
+    self.physicsBody.categoryBitMask = GOTA;
+    self.physicsBody.collisionBitMask = ATTACK | ENEMY |ITEM |PORTA | CHUVA | CHAVE ;
+    self.physicsBody.contactTestBitMask = ATTACK | ENEMY | CONTROLE_TOQUE |ITEM | CHUVA |CHAVE | FONTE_DA_JUVENTUDE;
     
     [self configPhysics];
     
@@ -48,7 +48,9 @@
     
     _escondida = NO;
     _dividida = NO;
-    
+    _emContatoFonte = NO;
+    _comChave = NO;
+    _aguaRestante = 10;
     return self;
 }
 
@@ -91,6 +93,17 @@
 
     
     return gota2;
+}
+
+-(void)changePosition:(CGPoint) posicao{
+    
+    
+    SKPhysicsBody *temp= self.physicsBody;
+    self.physicsBody = nil;
+    
+    self.position=posicao;
+    
+    self.physicsBody = temp;
 }
 
 //-(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withTipe:(int)tipo{

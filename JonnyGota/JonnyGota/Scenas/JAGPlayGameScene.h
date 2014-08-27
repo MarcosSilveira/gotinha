@@ -37,18 +37,21 @@
 
 @property (nonatomic) JAGLevel *level;
 
-@property (nonatomic) JAGFogoEnemy *fogo;
 @property (nonatomic) SKCropNode *cropNode;
 
 @property (nonatomic) NSMutableArray *portas;
 
 @property (nonatomic) NSMutableArray *characteres;
 
+@property (nonatomic) NSMutableArray *inimigos;
+
+@property (nonatomic) CGPoint posicaoInicial;
+
 -(void)divideGota;
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto;
 - (id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world;
 
-
+-(void)gotaReduzVida;
 
 -(void)loadingWorld;
 
@@ -57,5 +60,7 @@
 -(void)followPlayer;
 
 @property (nonatomic) SKAction* despresionar;
+
+-(void)configStart:(int) time;
 
 @end

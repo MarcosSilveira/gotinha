@@ -14,7 +14,9 @@
 @property (strong, nonatomic) UISwipeGestureRecognizer *swipeGest;
 @property BOOL escondida;
 @property BOOL dividida;
-@property SKTextureAtlas *atlas;
+@property BOOL comChave;
+@property BOOL emContatoFonte;
+@property float aguaRestante;
 -(SKSpriteNode*)dividir;
 -(void)esconder;
 
@@ -25,5 +27,7 @@
 -(id)initWithPosition:(CGPoint) position
              withSize:(CGSize) size;
 -(BOOL)verificaToque:(CGPoint) ponto;
+
+-(void)changePosition:(CGPoint) posicao;
 
 @end

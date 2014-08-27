@@ -11,11 +11,22 @@
 #import "JAGObjeto.h"
 #import "JAGPressao.h"
 #import "JAGChuva.h"
+#import "JAGChave.h"
+#import "JAGFonte.h"
+#import "JAGTrovaoEnemy.h"
 
 @implementation JAGCreatorLevels
 
-+ (NSNumber *)numberOfLevels{
-    return @1;
++ (NSNumber *)numberOfLevels:(int)mundo{
+    switch (mundo) {
+        case 1:
+            return @1;
+            break;
+            
+        default:
+            return @1;
+            break;
+    }
 }
 
 + (NSString *)nameOfLevel:(NSNumber *)level{
@@ -32,7 +43,7 @@
     return @"Descrição do Level 1";
 }
 + (void)playLevel:(NSNumber *)level ofWorld:(NSNumber *)world withTransition:(SKTransition *)transition onScene:(SKScene *)lastScene{
-    if([level intValue]<=[[self numberOfLevels] intValue]){
+    if([level intValue]<=[[self numberOfLevels:1] intValue]){
         /*
          PGPlayGameScene *nextScene = [[PGPlayGameScene alloc] initWithSize:lastScene.size level:level andWorld:world];
          
@@ -64,12 +75,19 @@
     CGSize tamanho=CGSizeMake(scene.level.tileSize, scene.level.tileSize);
     
     scene.characteres=[[NSMutableArray alloc] init];
+    scene.inimigos=[[NSMutableArray alloc] init];
     
     scene.gota= [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 1)] withSize:tamanho];
-    scene.fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
+    
+
+    
+    JAGFogoEnemy *fogo =[[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
+    fogo.dano=10;
 
     [scene.characteres addObject:scene.gota];
-    [scene.characteres addObject:scene.fogo];
+    [scene.characteres addObject:fogo];
+    
+    [scene.inimigos addObject:fogo];
     
     //_tileSize=32;
     //scene.diferenca = 80.0f;
@@ -84,9 +102,11 @@
     SKSpriteNode *spritePor=[[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size:CGSizeMake(scene.level.tileSize, scene.level.tileSize)];
     
     JAGPorta *porta=[[JAGPorta alloc] initWithPosition:[scene.level calculateTile:CGPointMake(9, 17)] withSprite:spritePor];
-    
+    //Fonte
+    SKSpriteNode *fonteSprite = [[SKSpriteNode alloc]initWithColor:[UIColor blueColor] size:CGSizeMake(scene.frame.size.width*0.1, scene.frame.size.width*0.1)];
+    JAGFonte *fonte = [[JAGFonte alloc] initWithPosition:CGPointMake(scene.frame.size.width*0.5, scene.frame.size.height*0.7) withSprite:fonteSprite];
     [scene.cropNode addChild:porta];
-    
+    [scene.cropNode addChild:fonte];
     [porta vincularBotao:presao];
     
     [scene.portas addObject:porta];
@@ -112,6 +132,10 @@
     
     [scene.level createWalls:CGPointMake(0, 20) withHeight:1 withWidth:11 withScene:scene];
     
+    //Chave
+    SKSpriteNode *oi = [[SKSpriteNode alloc]initWithColor:[UIColor yellowColor] size:CGSizeMake(scene.frame.size.width*0.02, scene.frame.size.height*0.05)];
+    JAGChave *chave = [[JAGChave alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 4)] withSprite:oi];
+    
     
     //Box do Inimigo
     
@@ -125,13 +149,21 @@
     
     
    
+    [scene.cropNode addChild:chave];
     
     
-    scene.hud =[[JAGHud alloc] initWithTempo:300 withVida:3 withWindowSize:scene.frame.size];
+    scene.hud =[[JAGHud alloc] initWithTempo:300 withVida:3 saude:scene.gota.aguaRestante withWindowSize:scene.frame.size];
     
     [scene addChild:scene.hud];
     
-    [scene.cropNode addChild:scene.fogo];
+    
+    scene.gota.vida=15;
+    scene.hud.gota=scene.gota;
+    
+    
+    
+    
+    [scene.cropNode addChild:fogo];
     
     [scene addChild: scene.cropNode];
     
@@ -142,6 +174,8 @@
     [obj criarObj:[scene.level calculateTile:CGPointMake(9, 3)] comTipo:2 eSprite:cron];
     
     [scene.cropNode addChild:obj];
+    
+    [scene configStart:8];
     
     
    // JAGHud *hud=[JAGHud alloc]
