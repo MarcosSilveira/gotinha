@@ -74,12 +74,10 @@
     
     CGSize tamanho=CGSizeMake(scene.level.tileSize, scene.level.tileSize);
     
-    scene.characteres=[[NSMutableArray alloc] init];
-    scene.inimigos=[[NSMutableArray alloc] init];
-    
+        
     scene.gota= [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 1)] withSize:tamanho];
     
-
+    [scene configInit:bgImage];
     
     JAGFogoEnemy *fogo =[[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
     fogo.dano=10;
@@ -93,9 +91,7 @@
     //scene.diferenca = 80.0f;
     //tocou = false;
     
-    scene.cropNode = [[SKCropNode alloc] init];
-    [scene.cropNode addChild:bgImage];
-
+    
     
     JAGPressao *presao=[[JAGPressao alloc] initWithPosition:[scene.level calculateTile:CGPointMake(7, 8)] withTipo:1];
     

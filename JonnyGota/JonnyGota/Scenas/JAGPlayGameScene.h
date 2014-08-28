@@ -63,4 +63,6 @@
 
 -(void)configStart:(int) time;
 
+-(void)configInit:(SKSpriteNode *)backgorund;
+
 @end
