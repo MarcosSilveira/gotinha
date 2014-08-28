@@ -38,8 +38,6 @@
     
     _saude.position=CGPointMake(size.width*0.8, size.height*0.95);
     
-    _saude.position = CGPointMake(size.width*0.8, size.height*0.94);
-    
     [self addChild:_vidas];
     [self addChild:_tempo];
     [self addChild:_saude];
@@ -50,9 +48,11 @@
 -(void)update{
     _tempo.text=[NSString stringWithFormat:@"%ds",_tempoRestante];
     
-    _vidas.text=[NSString stringWithFormat:@"Vidas %d",_vidaRestante];
+    _vidas.text=[NSString stringWithFormat:@"S2: %d",_vidaRestante];
     
-    _saude.text = [NSString stringWithFormat:@"%fs",_saudeRestante];
+    _saude.text=[NSString stringWithFormat:@"hp: %d", _gota.vida];
+    
+  //  NSLog(@"gota %s",_gota);
 }
 
 -(void)cronometro:(NSTimer *)timer{

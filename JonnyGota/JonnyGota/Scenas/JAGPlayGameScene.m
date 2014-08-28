@@ -78,10 +78,11 @@
         height = self.scene.size.height;
         [self configuraParadaGota];
     }
-    [NSTimer timerWithTimeInterval:1 target:self
+    NSTimer *timer=[NSTimer timerWithTimeInterval:1 target:self
                           selector:@selector(gotaReduzVida)
                           userInfo:nil
                            repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     return self;
 }
 
@@ -94,8 +95,8 @@
 }
 
 -(void)gotaReduzVida{
-    if(!_gota.emContatoFonte)_gota.aguaRestante --;
-    else _gota.aguaRestante ++;
+    if(!_gota.emContatoFonte){}
+    else _gota.vida ++;
     
 }
 -(JAGFogoEnemy *)createFireEnemy{
@@ -402,7 +403,6 @@
        ([contact.bodyA.node.name isEqualToString:@"fonte"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
         _gota.emContatoFonte = YES;
     }
-    else _gota.emContatoFonte = NO;
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"cronometro"]) ||
        ([contact.bodyA.node.name isEqualToString:@"cronometro"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
         //
