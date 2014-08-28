@@ -84,12 +84,8 @@
         width = self.scene.size.width;
         height = self.scene.size.height;
         [self configuraParadaGota];
-    }
-    NSTimer *timer=[NSTimer timerWithTimeInterval:1 target:self
-                          selector:@selector(gotaReduzVida)
-                          userInfo:nil
-                           repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    
+
     return self;
 }
 
@@ -109,9 +105,6 @@
 -(JAGFogoEnemy *)createFireEnemy{
     
       _fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(width*0.9, height*0.3) withSize:[_level sizeTile]];
-
-    return _fogo;
-}
 
 #pragma mark - Máscara
 -(void)createMask:(int) radius
