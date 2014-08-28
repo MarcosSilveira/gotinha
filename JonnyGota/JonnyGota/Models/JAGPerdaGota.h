@@ -18,6 +18,8 @@
 
 @property (nonatomic) SKShapeNode* circleMask;
 
+@property (nonatomic)SKEmitterNode *emitter;
+
 -(instancetype)initWithPosition:(CGPoint)ponto
                    withTimeLife:(int)time;
 

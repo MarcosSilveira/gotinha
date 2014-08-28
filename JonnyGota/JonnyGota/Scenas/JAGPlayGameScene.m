@@ -85,7 +85,8 @@
         width = self.scene.size.width;
         height = self.scene.size.height;
         [self configuraParadaGota];
-    
+    }
+
 
     return self;
 }
@@ -103,9 +104,7 @@
     else _gota.vida ++;
     
 }
--(JAGFogoEnemy *)createFireEnemy{
-    
-      _fogo = [[JAGFogoEnemy alloc] initWithPosition:CGPointMake(width*0.9, height*0.3) withSize:[_level sizeTile]];
+
 
 #pragma mark - Máscara
 -(void)createMask:(int) radius
@@ -649,9 +648,11 @@
         //Criar uma gotinha
         JAGPerdaGota *gotinha=[[JAGPerdaGota alloc] initWithPosition:self.gota.position withTimeLife:10];
         
+        
         [area addChild:[gotinha areavisao:50]];
 
         [self.cropNode addChild:gotinha];
+        [self.cropNode addChild:gotinha.emitter];
         //Aumentar a area
         
         
