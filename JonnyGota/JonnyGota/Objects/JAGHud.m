@@ -30,7 +30,7 @@
     _tempo.position=CGPointMake(size.width*0.5, size.height*0.95);
     
     _saude=[[SKLabelNode alloc]initWithFontNamed:fonte];
-    _saude.text=[NSString stringWithFormat:@"hp: %l", _gota.vida];
+    _saude.text=[NSString stringWithFormat:@"hp: %ld", _gota.vida];
     
     _saude.position=CGPointMake(size.width*0.8, size.height*0.95);
     
@@ -46,7 +46,7 @@
     
     _vidas.text=[NSString stringWithFormat:@"S2: %d",_vidaRestante];
     
-    _saude.text=[NSString stringWithFormat:@"hp: %d", _gota.vida];
+    _saude.text=[NSString stringWithFormat:@"hp: %ld", (long)_gota.vida];
     
     //  NSLog(@"gota %s",_gota);
 }

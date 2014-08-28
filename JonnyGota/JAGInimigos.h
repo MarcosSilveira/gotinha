@@ -11,13 +11,18 @@
 
 @interface JAGInimigos : JAGCharacter
 
+//Path definido por pontos; ao chegar no ponto, ESPERAR a ACTION e trocar para outro ponto de movimento;
+
+@property int multi;
 @property (nonatomic) int visao;
 @property (nonatomic) int tipo;
-@property int multi;
+@property (strong, nonatomic) SKAction *movePath;
+@property (strong, nonatomic) NSMutableArray *arrPoints;
 
 @property (nonatomic) int dano;
 
 -(void)ataque;
--(void) ia;
+-(void)IAcomInfo:(JAGGota *) jogador;
+-(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto;
 
 @end

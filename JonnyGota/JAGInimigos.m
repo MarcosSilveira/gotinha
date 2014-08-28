@@ -11,14 +11,16 @@
 @implementation JAGInimigos {
     
     CGPoint point;
+    CGPoint point1;
+    CGPoint point2;
+    CGPoint point3;
     CGPoint pointInit;
-    JAGGota *personagem;
 }
 -(id)init {
     self = [super init];
-    
-    pointInit = self.position;
-    
+
+    point2 = CGPointMake(self.position.x - 10, 0);
+    point3 = CGPointMake(self.position.x + 10, 0);
     
     return self;
 }
@@ -28,26 +30,30 @@
 }
 
 // IN PROGRESS ...
--(void)ia { // Inteligencia Artificial GENERICA
+-(void)IAcomInfo:(JAGGota *) jogador { // Inteligencia Artificial GENERICA
     
-    // Movimentaçao;
-    
-    [self mover:point withInterval:1.0 withType:1]; // cima
-    [self mover:point withInterval:1.0 withType:2]; // baixo
-    [self mover:point withInterval:1.0 withType:3]; // esq
-    [self mover:point withInterval:1.0 withType:4]; // dir
+    point  = CGPointMake(0, self.position.y + 10);
+    point1 = CGPointMake(0, self.position.y - 10);
     
     // Detecçao;
     
-    float distance = hypotf(self.position.x - personagem.position.x, self.position.y - personagem.position.y);
+    float distance = hypotf(self.position.x - jogador.position.x, self.position.y - jogador.position.y);
     
     if (distance < 100) {
-        if (personagem.escondida == NO) {
-            [self mover:(personagem.position) withInterval:2 withType:1];
+        if (jogador.escondida == NO) {
+            [self mover:(jogador.position) withInterval:2 withType:[self verificaSentido:jogador.position with:self.position]];
         }
-        else self.physicsBody.velocity = CGVectorMake(0, 0);
     }
-    else self.physicsBody.velocity = CGVectorMake(0, 0);
+    
+    // Movimentaçao
+    
+    else {
+        
+        _movePath = [SKAction sequence:@[[SKAction waitForDuration:10.0],
+                                         [SKAction moveTo:point duration:2.0],
+                                         [SKAction waitForDuration:10.0],
+                                         [SKAction moveTo:point1 duration:2.0]]];
+    }
 }
 
 -(NSMutableDictionary *)createJson {
@@ -59,5 +65,41 @@
     
     return json;
 }
+
+-(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto {
+    
+    int tipo;
+    
+    float difx = pontoObjeto.x - pontoReferencia.x;
+    float dify = pontoObjeto.y - pontoReferencia.y;
+    
+    BOOL negx = false;;
+    bool negy = false;
+    
+    if(difx < 0){
+        negx = true;
+        difx *= -1;
+    }
+    if(dify < 0){
+        negy = true;
+        dify *= -1;
+    }
+    
+    if (difx > dify) {
+        if(negx)
+            tipo = 4;
+        else
+            tipo = 3;
+    }
+    else{
+        if(negy)
+            tipo = 1;
+        else
+            tipo = 2;
+    }
+    
+    return tipo;
+}
+
 
 @end
