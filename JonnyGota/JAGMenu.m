@@ -39,7 +39,7 @@
         
         if ([botaoPlay containsPoint:location]) {
             NSLog(@"teste");
-        }
+            }
     }
 }
 

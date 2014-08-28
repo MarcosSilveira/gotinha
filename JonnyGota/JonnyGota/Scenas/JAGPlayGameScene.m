@@ -31,7 +31,8 @@
     SKSpriteNode *pararMovimentoCONTROLy;
     BOOL controleXnaTela;
     BOOL controleYnaTela;
-    JAGChave* chave;
+    JAGChave *chave;
+    JAGInimigos *fogo;
 }
 
 #pragma mark - Move to View
@@ -65,6 +66,11 @@
         [JAGCreatorLevels initializeLevel:self.currentLevel ofWorld:self.currentWorld onScene:self];
         
         tocou_gota = false;
+        
+        for (int i=0;i<_inimigos.count;i++) {
+            
+            fogo = (JAGInimigos *)_inimigos[i];
+        }
 
 //        _cropNode = [[SKCropNode alloc] init];
 //
@@ -125,24 +131,24 @@
         [_gota dividir];
 }
 
--(void) followPlayer {
-    
-    for (int i=0;i<_inimigos.count;i++){
-    
-        JAGInimigos *fogo=(JAGInimigos *)_inimigos[i];
-        
-    float distance = hypotf(fogo.position.x - _gota.position.x, fogo.position.y - _gota.position.y);
-    
-    if (distance < 100) {
-        if (_gota.escondida == NO) {
-            [fogo mover:(_gota.position) withInterval:2 withType:[self verificaSentido:_gota.position with:fogo.position]];
-        }
-        else fogo.physicsBody.velocity = CGVectorMake(0, 0);
-    }
-    else fogo.physicsBody.velocity = CGVectorMake(0, 0);
-        
-    }
-}
+//-(void) followPlayer {
+//    
+//    for (int i=0;i<_inimigos.count;i++){
+//    
+//        JAGInimigos *fogo=(JAGInimigos *)_inimigos[i];
+//        
+//    float distance = hypotf(fogo.position.x - _gota.position.x, fogo.position.y - _gota.position.y);
+//    
+//    if (distance < 100) {
+//        if (_gota.escondida == NO) {
+//            [fogo mover:(_gota.position) withInterval:2 withType:[self verificaSentido:_gota.position with:fogo.position]];
+//        }
+//        else fogo.physicsBody.velocity = CGVectorMake(0, 0);
+//    }
+//    else fogo.physicsBody.velocity = CGVectorMake(0, 0);
+//        
+//    }
+//}
 
 -(void) configuraParadaGota {
     
@@ -358,6 +364,8 @@
         
     }
     
+    [fogo IAcomInfo:_gota];
+    
     [self centerMapOnCharacter];
     //depois de um tempo ou acao
     
@@ -366,7 +374,7 @@
     area.position = CGPointMake(_gota.position.x,_gota.position.y);
 
     //NSLog(@"gota x:%f y:%f",_gota.position.x,_gota.position.y);
-    [self followPlayer];
+//    [self followPlayer];
     [self.hud update];
     
     if (self.hud.tempoRestante == 0) {
@@ -532,13 +540,10 @@
                     [porta verificarBotoes];
                 }
             }
-            
-            
                 for (int i=0; i<_portas.count; i++) {
                     JAGPorta *porta=_portas[i];
                     [porta verificarBotoes];
                 }
-            
             
             //[obj removeFromParent];
         }else{
