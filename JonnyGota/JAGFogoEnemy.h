@@ -11,7 +11,7 @@
 // Habilidade Especial: Ao caminhar, deixa rastro que queima, durante alguns segundos
 
 @interface JAGFogoEnemy : JAGInimigos
-@property SKTextureAtlas *atlas;
+
 -(id)initWithPosition:(CGPoint) position withSize:(CGSize)size;
 
 -(BOOL)tocou:(CGPoint) ponto;

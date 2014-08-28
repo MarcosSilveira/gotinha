@@ -10,6 +10,7 @@
 #import "JAGPlayGameScene.h"
 #import "JAGLevel.h"
 #import "JAGCreatorLevels.h"
+#import "JAGMenu.h"
 
 
 @implementation JAGViewController
@@ -25,15 +26,14 @@
    // skView.showsPhysics = YES;
     
     // Create and configure the scene.
-    SKScene *scene =[[JAGPlayGameScene alloc] initWithSize:skView.bounds.size level:@1 andWorld:@1];
+    SKScene *scene = [[JAGPlayGameScene alloc] initWithSize:skView.bounds.size level:@1 andWorld:@1];
     //SKScene * scene = [JAGP sceneWithSize:skView.bounds.size];
-    
+   // SKScene *scene = [[JAGMenu alloc] init];
     //JAGPlayGameScene *scene=[[JAGPlayGameScene alloc] init];
     
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
-    
    
     [skView presentScene:scene];
     

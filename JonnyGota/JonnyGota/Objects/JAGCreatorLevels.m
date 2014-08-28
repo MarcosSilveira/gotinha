@@ -13,11 +13,20 @@
 #import "JAGChuva.h"
 #import "JAGChave.h"
 #import "JAGFonte.h"
+#import "JAGTrovaoEnemy.h"
 
 @implementation JAGCreatorLevels
 
-+ (NSNumber *)numberOfLevels{
-    return @1;
++ (NSNumber *)numberOfLevels:(int)mundo{
+    switch (mundo) {
+        case 1:
+            return @1;
+            break;
+            
+        default:
+            return @1;
+            break;
+    }
 }
 
 + (NSString *)nameOfLevel:(NSNumber *)level{
@@ -34,7 +43,7 @@
     return @"Descrição do Level 1";
 }
 + (void)playLevel:(NSNumber *)level ofWorld:(NSNumber *)world withTransition:(SKTransition *)transition onScene:(SKScene *)lastScene{
-    if([level intValue]<=[[self numberOfLevels] intValue]){
+    if([level intValue]<=[[self numberOfLevels:1] intValue]){
         /*
          PGPlayGameScene *nextScene = [[PGPlayGameScene alloc] initWithSize:lastScene.size level:level andWorld:world];
          
@@ -66,15 +75,19 @@
     CGSize tamanho=CGSizeMake(scene.level.tileSize, scene.level.tileSize);
     
     scene.characteres=[[NSMutableArray alloc] init];
+    scene.inimigos=[[NSMutableArray alloc] init];
     
     scene.gota= [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 1)] withSize:tamanho];
     
 
-    scene.fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
-    scene.fogo.dano=10;
+    
+    JAGFogoEnemy *fogo =[[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
+    fogo.dano=10;
 
     [scene.characteres addObject:scene.gota];
-    [scene.characteres addObject:scene.fogo];
+    [scene.characteres addObject:fogo];
+    
+    [scene.inimigos addObject:fogo];
     
     //_tileSize=32;
     //scene.diferenca = 80.0f;
@@ -121,7 +134,7 @@
     
     //Chave
     SKSpriteNode *oi = [[SKSpriteNode alloc]initWithColor:[UIColor yellowColor] size:CGSizeMake(scene.frame.size.width*0.02, scene.frame.size.height*0.05)];
-    JAGChave *chave = [[JAGChave alloc] initWithPosition:CGPointMake(scene.fogo.position.x, scene.fogo.position.y *0.9) withSprite:oi];
+    JAGChave *chave = [[JAGChave alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 4)] withSprite:oi];
     
     
     //Box do Inimigo
@@ -150,7 +163,7 @@
     
     
     
-    [scene.cropNode addChild:scene.fogo];
+    [scene.cropNode addChild:fogo];
     
     [scene addChild: scene.cropNode];
     
