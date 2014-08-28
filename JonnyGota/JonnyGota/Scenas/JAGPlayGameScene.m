@@ -31,8 +31,9 @@
     SKSpriteNode *pararMovimentoCONTROLy;
     BOOL controleXnaTela;
     BOOL controleYnaTela;
-    JAGChave *chave;
-    JAGInimigos *fogo;
+    JAGChave* chave;
+    JAGFogoEnemy *fogo;
+   
 }
 
 #pragma mark - Move to View
@@ -128,6 +129,8 @@
     //area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
     [_cropNode setMaskNode:area];
     
+    
+   
 }
 
 #pragma mark - Mundo/Fases
@@ -365,7 +368,6 @@
 
 }
 -(void)update:(NSTimeInterval)currentTime {
-    _hud.saudeRestante = _gota.aguaRestante;
     if (_gota.comChave) {
 
         chave.position = CGPointMake(_gota.position.x*0.9, _gota.position.y*0.9);
@@ -379,7 +381,9 @@
     
     //circleMask.position = CGPointMake(_gota.position.x-height*0.2, _gota.position.y-width*0.29);
     
-    area.position = CGPointMake(_gota.position.x,_gota.position.y);
+    //area.position = CGPointMake(_gota.position.x,_gota.position.y);
+    
+    circleMask.position=CGPointMake(_gota.position.x,_gota.position.y);
 
     //NSLog(@"gota x:%f y:%f",_gota.position.x,_gota.position.y);
 //    [self followPlayer];
@@ -481,7 +485,7 @@
             
             //[obj removeFromParent];
         }else{
-            JAGPorta *pre=(JAGPorta *)contact.bodyA.node;
+            JAGPorta *pre=(JAGPorta *)contact.bodyB.node;
             [pre abrir:YES];
             if(!pre.aberta){
                 _gota.physicsBody.velocity = CGVectorMake(0, 0);
@@ -635,20 +639,37 @@
 #pragma mark - Configuração de Start
 -(void)configStart:(int) time{
     _posicaoInicial=self.gota.position;
+    
+    self.cropNode.zPosition=50;
+    
+    
     SKAction *diminuirSaude=[SKAction sequence:@[[SKAction waitForDuration:time],
                                                 [SKAction runBlock:^{
         [self receberDano:1];
         //Criar uma gotinha
-        //JAGPerdaGota *gotinha=[[JAGPerdaGota alloc] initWithPosition:self.gota.position withTimeLife:10];
+        JAGPerdaGota *gotinha=[[JAGPerdaGota alloc] initWithPosition:self.gota.position withTimeLife:10];
         
-        //[self.cropNode addChild:gotinha];
+        [area addChild:[gotinha areavisao:50]];
+
+        [self.cropNode addChild:gotinha];
         //Aumentar a area
-        //[area addChild:[gotinha areavisao:50]];
+        
         
                                                 }]]];
     SKAction *loop=[SKAction repeatActionForever:diminuirSaude];
     
     [self runAction:loop];
+}
+
+-(void)configInit:(SKSpriteNode *)backgorund{
+    self.cropNode = [[SKCropNode alloc] init];
+    [self.cropNode addChild:backgorund];
+    
+    self.characteres=[[NSMutableArray alloc] init];
+    self.inimigos=[[NSMutableArray alloc] init];
+
+    
+    
 }
 
 

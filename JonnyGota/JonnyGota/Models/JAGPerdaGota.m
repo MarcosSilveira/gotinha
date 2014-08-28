@@ -39,7 +39,10 @@
     
     self.position = ponto;
     
-    self.sprite.zPosition=100;
+    self.zPosition=50;
+    
+    self.sprite.zPosition=50;
+    
     
     SKAction *destruir=[SKAction sequence:@[[SKAction waitForDuration:time],
                                             [SKAction runBlock:^{
@@ -65,8 +68,8 @@
     _circleMask.lineWidth = raio*2; // replace 100 with DOUBLE the desired radius of the circle
     _circleMask.name = @"circleMask";
     _circleMask.userInteractionEnabled = NO;
-    _circleMask.fillColor = [SKColor clearColor];
-    
+    //_circleMask.fillColor = [SKColor redColor];
+   
     
     _circleMask.position=self.position;
 
