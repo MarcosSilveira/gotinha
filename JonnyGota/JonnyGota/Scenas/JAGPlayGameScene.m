@@ -32,7 +32,7 @@
     BOOL controleXnaTela;
     BOOL controleYnaTela;
     JAGChave* chave;
-    
+    JAGFogoEnemy *fogo;
    
 }
 
@@ -478,7 +478,7 @@
             
             //[obj removeFromParent];
         }else{
-            JAGPorta *pre=(JAGPorta *)contact.bodyA.node;
+            JAGPorta *pre=(JAGPorta *)contact.bodyB.node;
             [pre abrir:YES];
             if(!pre.aberta){
                 _gota.physicsBody.velocity = CGVectorMake(0, 0);
