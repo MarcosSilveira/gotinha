@@ -85,7 +85,7 @@
         height = self.scene.size.height;
         [self configuraParadaGota];
     }
-    [self presentGameOver];
+  //  [self presentGameOver];
 
     return self;
 }
@@ -797,10 +797,20 @@
     
     //NSLog(@" Export: %@", [level1 exportar]);    
 }
+
 -(void)presentGameOver{
     GObackground = [[SKSpriteNode alloc]initWithColor:[UIColor redColor] size:CGSizeMake( self.frame.size.height/2, self.frame.size.width/2)];
-    GObackground.position = CGPointMake(self.frame.size.height/2, self.frame.size.width/2);
-    [self.cropNode addChild:GObackground];
+    GObackground.position = CGPointMake(self.frame.size.height*0.35, self.frame.size.width*0.7);
+    button1 = [[SKSpriteNode alloc] initWithColor:[UIColor greenColor] size:CGSizeMake(GObackground.size.width/4, GObackground.size.height/4.5)];
+    button1.position = CGPointMake(self.frame.size.height*0.2, self.frame.size.width*0.45);
+    button2 = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(GObackground.size.width/4, GObackground.size.height/4.5)];
+    button2.position = CGPointMake(self.frame.size.height*0.5, self.frame.size.width*0.45);
+    [self.scene addChild:GObackground];
+    [self.scene addChild:button1];
+    [self.scene addChild:button2];
+    button1.zPosition = 201;
+    button2.zPosition = 201;
+    GObackground.zPosition = 200;
 }
 
 @end
