@@ -33,7 +33,7 @@
         
     }]]];
     
-    NSLog(@"Minha position x: %f  y: %f",self.position.x,self.position.y);
+   // NSLog(@"Minha position x: %f  y: %f",self.position.x,self.position.y);
     
     [self runAction:destruir];
     
@@ -56,7 +56,7 @@
     
     _circleMask.position=self.position;
 
-    NSLog(@"cir x: %f  y: %f",self.position.x,self.position.y);
+    //NSLog(@"cir x: %f  y: %f",self.position.x,self.position.y);
     return _circleMask;
 }
 

@@ -372,7 +372,7 @@
         
     }
     
-    [fogo IAcomInfo:_gota];
+    //[fogo IAcomInfo:_gota];
     
     [self centerMapOnCharacter];
     //depois de um tempo ou acao
@@ -658,6 +658,8 @@
     SKAction *loop=[SKAction repeatActionForever:diminuirSaude];
     
     [self runAction:loop];
+    
+    [fogo IAcomInfo:_gota];
 }
 
 -(void)configInit:(SKSpriteNode *)background{

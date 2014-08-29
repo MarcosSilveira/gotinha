@@ -32,7 +32,7 @@
         
     }]]];
     
-    NSLog(@"Minha position x: %f  y: %f",self.position.x,self.position.y);
+   // NSLog(@"Minha position x: %f  y: %f",self.position.x,self.position.y);
     
     [self runAction:destruir];
     

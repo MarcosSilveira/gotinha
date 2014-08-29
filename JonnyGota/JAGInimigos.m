@@ -31,10 +31,7 @@
 
 // IN PROGRESS ...
 -(void)IAcomInfo:(JAGGota *) jogador { // Inteligencia Artificial GENERICA
-    
-    point  = CGPointMake(0, self.position.y + 10);
-    point1 = CGPointMake(0, self.position.y - 10);
-    
+
     // Detecçao;
     
     float distance = hypotf(self.position.x - jogador.position.x, self.position.y - jogador.position.y);
@@ -48,11 +45,16 @@
     // Movimentaçao
     
     else {
-        
-        _movePath = [SKAction sequence:@[[SKAction waitForDuration:10.0],
-                                         [SKAction moveTo:point duration:2.0],
+        CGPoint ponto=CGPointMake(0, 100);
+        _movePath = [SKAction sequence:@[[SKAction moveTo:CGPointMake(0, self.position.y+ponto.y) duration:1.0],
                                          [SKAction waitForDuration:10.0],
-                                         [SKAction moveTo:point1 duration:2.0]]];
+                                         [SKAction moveTo:CGPointMake(0, self.position.y-ponto.y) duration:1.0],
+                                         //[SKAction repeatActionForever:_movePath]
+                                         ]];
+        
+        NSLog(@"pos: %f", self.position.y);
+        
+        [self runAction:_movePath];
     }
 }
 
