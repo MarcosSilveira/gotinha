@@ -14,6 +14,7 @@
 #import "JAGChave.h"
 #import "JAGFonte.h"
 #import "JAGTrovaoEnemy.h"
+#import "JAGPerdaFogo.h"
 
 @implementation JAGCreatorLevels
 
@@ -170,6 +171,28 @@
     [obj criarObj:[scene.level calculateTile:CGPointMake(9, 3)] comTipo:2 eSprite:cron];
     
     [scene.cropNode addChild:obj];
+    
+    //JAGPerdaFogo *perda_fogo = [[JAGPerdaFogo alloc] initWithPosition:fogo.position withTimeLife:10];
+    SKAction *diminuirSaude=[SKAction sequence:@[[SKAction waitForDuration:5],
+                                                 [SKAction runBlock:^{
+        JAGPerdaFogo *perda_fogo = [[JAGPerdaFogo alloc] initWithPosition:fogo.position withTimeLife:10];
+        
+        [scene.cropNode addChild:perda_fogo.emitter];
+        SKAction *destruir=[SKAction sequence:@[[SKAction waitForDuration:10],
+                                                [SKAction runBlock:^{
+            [perda_fogo.emitter removeFromParent];
+            
+            }]]];
+
+        [scene runAction:destruir];
+        
+    }]]];
+    
+
+    SKAction *loop=[SKAction repeatActionForever:diminuirSaude];
+    
+    [scene runAction:loop];
+
     
     [scene configStart:8];
     

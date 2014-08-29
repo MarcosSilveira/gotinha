@@ -17,39 +17,14 @@
     _emitter =  [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"Vapor" ofType:@"sks"]];
     _emitter.position = ponto;
     _emitter.name = @"perdida";
-//    emitter.targetNode = self;
-    _emitter.numParticlesToEmit = 1000;
-//    emitter.zPosition=2.0;
-//    return emitter;
 
-//    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(20, 20)];
-//    self.atlas  = [SKTextureAtlas atlasNamed:@"gotinha.atlas"];
-//    self.sprite.texture = [_atlas textureNamed:@"gota_walk_2.png"];
-    
-//    self.physicsBody.friction = 0;
-    //    desn.position=position;
-    
-    //[self addChild:desn];
+    _emitter.numParticlesToEmit = 1000;
+
     
     self.name = @"perdida";
     
-    //self.sprite.name = @"gota";
-    
-
-    
-//    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.sprite.size.width-2, self.sprite.size.height-2)];
-//    //self.zPosition = 1;
-//    self.physicsBody.categoryBitMask    = PERDAGOTA;
-//    self.physicsBody.collisionBitMask   = ENEMY |GOTA;
-//    self.physicsBody.contactTestBitMask = ENEMY |GOTA;
-//    
-//    self.physicsBody.dynamic=NO;
     
     self.position = ponto;
-    
-//    self.zPosition=50;
-    
-//    self.sprite.zPosition=50;
     
     
     SKAction *destruir=[SKAction sequence:@[[SKAction waitForDuration:time],

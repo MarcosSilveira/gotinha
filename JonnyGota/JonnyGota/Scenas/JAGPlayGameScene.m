@@ -12,6 +12,7 @@
 #import "JAGObjeto.h"
 #import "JAGPressao.h"
 #import "JAGPerdaGota.h"
+#import "JAGPerdaFogo.h"
 #import "JAGChave.h"
 
 
@@ -51,9 +52,7 @@
         /* Setup your scene here */
         atlas = [SKTextureAtlas atlasNamed:@"gotinha"];
         self.physicsWorld.contactDelegate = self;
-        worldNode = [[SKNode alloc]init];
-        [worldNode setName:@"worldNode"];
-        //self.initSize = size;
+
         
         if (level != nil && world != nil) {
             self.currentLevel = level;
@@ -86,7 +85,7 @@
         height = self.scene.size.height;
         [self configuraParadaGota];
     }
-
+    [self presentGameOver];
 
     return self;
 }
@@ -648,7 +647,6 @@
         //Criar uma gotinha
         JAGPerdaGota *gotinha=[[JAGPerdaGota alloc] initWithPosition:self.gota.position withTimeLife:10];
         
-        
         [area addChild:[gotinha areavisao:50]];
 
         [self.cropNode addChild:gotinha];
@@ -662,9 +660,9 @@
     [self runAction:loop];
 }
 
--(void)configInit:(SKSpriteNode *)backgorund{
+-(void)configInit:(SKSpriteNode *)background{
     self.cropNode = [[SKCropNode alloc] init];
-    [self.cropNode addChild:backgorund];
+    [self.cropNode addChild:background];
     
     self.characteres=[[NSMutableArray alloc] init];
     self.inimigos=[[NSMutableArray alloc] init];
@@ -674,7 +672,21 @@
 }
 
 
+-(void)rastroInimigo: (SKNode*)inimigo{
+    JAGPerdaFogo *perda_fogo = [[JAGPerdaFogo alloc] initWithPosition:inimigo.position withTimeLife:10];
+    SKAction *diminuirSaude=[SKAction sequence:@[[SKAction waitForDuration:5],
+                                                 [SKAction runBlock:^{
 
+    
+        [self.cropNode addChild:perda_fogo.emitter];
+        
+        
+    }]]];
+    SKAction *loop=[SKAction repeatActionForever:diminuirSaude];
+    
+    [self runAction:loop];
+
+}
 #pragma mark - Arquivos
 -(void)loadingWorld{
     //Ler um arquivo
@@ -713,8 +725,9 @@
             
             if([tipo intValue]==1){
                 JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake([[enemy objectForKey:@"positionX"] floatValue], [[enemy objectForKey:@"positionY"] floatValue]) withSize:tamanho];
-                
+                [self rastroInimigo:inimigo];
                 [_cropNode addChild:inimigo];
+
             }
         }
         
@@ -784,6 +797,10 @@
     
     //NSLog(@" Export: %@", [level1 exportar]);    
 }
-
+-(void)presentGameOver{
+    GObackground = [[SKSpriteNode alloc]initWithColor:[UIColor redColor] size:CGSizeMake( self.frame.size.height/2, self.frame.size.width/2)];
+    GObackground.position = CGPointMake(self.frame.size.height/2, self.frame.size.width/2);
+    [self.cropNode addChild:GObackground];
+}
 
 @end
