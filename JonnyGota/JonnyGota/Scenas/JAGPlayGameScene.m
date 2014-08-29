@@ -631,6 +631,8 @@
         self.gota.vida=15;
         self.hud.vidaRestante--;
         [self.gota changePosition:_posicaoInicial];
+         [self presentGameOver];
+        self.paused=YES;
     }
 }
 
