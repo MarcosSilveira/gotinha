@@ -31,6 +31,7 @@
     SKSpriteNode *GObackground;
     SKSpriteNode *button1;
     SKSpriteNode *button2;
+    SKSpriteNode *button3;
 
 }
 
