@@ -46,9 +46,9 @@
     
     _vidas.text=[NSString stringWithFormat:@"S2: %d",_vidaRestante];
     
-    _saude.text=[NSString stringWithFormat:@"hp: %ld", (long)_gota.vida];
+    _saude.text=[NSString stringWithFormat:@"hp: %d", _gota.vida];
     
-    //  NSLog(@"gota %s",_gota);
+  //  NSLog(@"gota %s",_gota);
 }
 
 -(void)cronometro:(NSTimer *)timer{

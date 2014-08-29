@@ -33,6 +33,8 @@
     
     self.position = position;
     
+    
+    
     return self;
 }
 

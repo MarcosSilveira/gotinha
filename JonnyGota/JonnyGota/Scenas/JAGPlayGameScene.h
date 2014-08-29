@@ -25,6 +25,12 @@
     SKNode *myWorld;
     SKNode *camera;
     SKTextureAtlas *atlas;
+    
+    //----Game over screen----
+    
+    SKSpriteNode *GObackground;
+    SKSpriteNode *button1;
+    SKSpriteNode *button2;
 
 }
 
@@ -63,6 +69,8 @@
 
 -(void)configStart:(int) time;
 
--(void)configInit:(SKSpriteNode *)backgorund;
+-(void)configInit:(SKSpriteNode *)background;
+
+-(void)presentGameOver;
 
 @end

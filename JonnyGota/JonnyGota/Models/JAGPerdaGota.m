@@ -14,34 +14,17 @@
 -(instancetype)initWithPosition:(CGPoint)ponto withTimeLife:(int)time{
     self = [super init];
     
-    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(20, 20)];
-    self.atlas  = [SKTextureAtlas atlasNamed:@"gotinha.atlas"];
-    self.sprite.texture = [_atlas textureNamed:@"gota_walk_2.png"];
+    _emitter =  [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"Vapor" ofType:@"sks"]];
+    _emitter.position = ponto;
+    _emitter.name = @"perdida";
+
+    _emitter.numParticlesToEmit = 1000;
+
     
-    self.physicsBody.friction = 0;
-    //    desn.position=position;
+    self.name = @"perdida";
     
-    //[self addChild:desn];
-    
-    self.name = @"gota";
-    
-    self.sprite.name = @"gota";
-    
-    [self addChild:self.sprite];
-    
-    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.sprite.size.width-2, self.sprite.size.height-2)];
-    //self.zPosition = 1;
-    self.physicsBody.categoryBitMask    = PERDAGOTA;
-    self.physicsBody.collisionBitMask   = ENEMY |GOTA;
-    self.physicsBody.contactTestBitMask = ENEMY |GOTA;
-    
-    self.physicsBody.dynamic=NO;
     
     self.position = ponto;
-    
-    self.zPosition=50;
-    
-    self.sprite.zPosition=50;
     
     
     SKAction *destruir=[SKAction sequence:@[[SKAction waitForDuration:time],
@@ -79,8 +62,9 @@
 
 -(void)destruir{
     [_circleMask removeFromParent];
+    [_emitter removeFromParent];
     [self removeFromParent];
-   
+
 }
 
 @end
