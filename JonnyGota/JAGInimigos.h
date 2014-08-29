@@ -17,12 +17,19 @@
 @property (nonatomic) int visao;
 @property (nonatomic) int tipo;
 @property (strong, nonatomic) SKAction *movePath;
-@property (strong, nonatomic) NSMutableArray *arrPoints;
+@property (strong, nonatomic) NSMutableArray *arrPointsPath;
+@property (strong, nonatomic) NSMutableArray *arrPointsFixes;
+@property (nonatomic) BOOL seguindo;
+@property (nonatomic) BOOL andandoIa;
 
 @property (nonatomic) int dano;
 
+@property (nonatomic) int sentido;
+
 -(void)ataque;
--(void)IAcomInfo:(JAGGota *) jogador;
+-(void)IAcomInfo;
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto;
+
+-(void)follow:(JAGGota *) jogador;
 
 @end
