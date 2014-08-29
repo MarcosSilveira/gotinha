@@ -37,8 +37,6 @@
    
     [skView presentScene:scene];
     
-    SKTransition *transition = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1];
-    [JAGCreatorLevels playLevel:@1 ofWorld:@(1) withTransition:transition onScene:scene];
 }
 
 - (BOOL)shouldAutorotate

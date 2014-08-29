@@ -51,7 +51,7 @@
     bool temp=true;
     for (int i=0; i<_pressoes.count; i++) {
         JAGPressao *obj=_pressoes[i];
-        if(!obj.presionado){
+        if(!obj.pressionado){
             temp=false;
         }
     }

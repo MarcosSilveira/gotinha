@@ -20,7 +20,7 @@
 + (NSNumber *)numberOfLevels:(int)mundo{
     switch (mundo) {
         case 1:
-            return @1;
+            return @2;
             break;
             
         default:
@@ -192,7 +192,7 @@
     CGSize tamanho=CGSizeMake(scene.level.tileSize, scene.level.tileSize);
     
     
-    scene.gota= [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 1)] withSize:tamanho];
+    scene.gota= [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(3, 1)] withSize:tamanho];
     
     [scene configInit:bgImage];
     
