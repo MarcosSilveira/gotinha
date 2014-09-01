@@ -115,14 +115,11 @@
     circleMask.userInteractionEnabled = NO;
     circleMask.fillColor = [SKColor clearColor];
     
-    circleMask.position=CGPointMake(ponto.x-_gota.sprite.size.width,ponto.y-_gota.sprite.size.height);
+    circleMask.position = CGPointMake(ponto.x-_gota.sprite.size.width,ponto.y-_gota.sprite.size.height);
     
     [area addChild:circleMask];
     //area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
     //[_cropNode setMaskNode:area];
-    
-    
-   
 }
 
 #pragma mark - Mundo/Fases

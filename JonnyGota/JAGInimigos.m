@@ -56,10 +56,10 @@
                 
                 if(i == 0){
                     sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:1.5],
-                                                        [SKAction waitForDuration:5.0]]];
+                                                        [SKAction waitForDuration:2.0]]];
                 } else {
                     sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:1.5],
-                                                        [SKAction waitForDuration:5.0]]];
+                                                        [SKAction waitForDuration:2.0]]];
                 }
             }
             _movePath = [SKAction repeatActionForever:sequenceTemp];
@@ -71,11 +71,11 @@
             
             SKAction *sequenceTemp;
             
-            for(int i = self.arrPointsFixes.count-1;i>=0;i--) {
+            for(int i = self.arrPointsFixes.count - 1.0; i >= 0; i--) {
                 
                 CGPoint ponto = [(NSValue *)[self.arrPointsFixes objectAtIndex:i] CGPointValue];
                 
-                if(i == self.arrPointsFixes.count-1) {
+                if(i == self.arrPointsFixes.count - 1) {
                     sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:1],
                                                         [SKAction waitForDuration:0.1],
                                                         [SKAction runBlock:^{
@@ -88,17 +88,17 @@
                                                         [SKAction runBlock:^{
                         [self.arrPointsFixes removeObjectAtIndex:i];
                     }]]];
-                    if(i == 0) {
-                        sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction runBlock:^{
-                            self.andandoIa=false;
-                        }]]];
-                    }
                 }
                 
-                _movePath = sequenceTemp;
-                
-                [self runAction:_movePath withKey:@"move"];
+                if(i == 0) {
+                    sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction runBlock:^{
+                        self.andandoIa = false;
+                        NSLog(@"ponto: %@", [NSValue valueWithCGPoint:ponto]);
+                    }]]];
+                }
             }
+            _movePath = sequenceTemp;
+            [self runAction:_movePath withKey:@"move"];
         }
     }
 }
