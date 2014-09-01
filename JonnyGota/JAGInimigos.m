@@ -8,19 +8,15 @@
 
 #import "JAGInimigos.h"
 
-@implementation JAGInimigos {
-    
-    CGPoint point;
-    CGPoint point1;
-    CGPoint point2;
-    CGPoint point3;
-    CGPoint pointInit;
-}
+@implementation JAGInimigos
+
 -(id)init {
     self = [super init];
-
-    point2 = CGPointMake(self.position.x - 10, 0);
-    point3 = CGPointMake(self.position.x + 10, 0);
+    
+    self.arrPointsFixes = [[NSMutableArray alloc] init];
+    self.seguindo       = false;
+    self.andandoIa      = false;
+    self.sentido        = 0;
     
     return self;
 }
@@ -30,29 +26,92 @@
 }
 
 // IN PROGRESS ...
--(void)IAcomInfo:(JAGGota *) jogador { // Inteligencia Artificial GENERICA
+-(void)IAcomInfo{ // Inteligencia Artificial GENERICA
     
-    point  = CGPointMake(0, self.position.y + 10);
-    point1 = CGPointMake(0, self.position.y - 10);
+    // Movimentaçao
     
-    // Detecçao;
-    
+    if (!self.andandoIa) {
+        
+        self.andandoIa = true;
+        
+        if (self.arrPointsFixes.count == 0) {
+            
+            SKAction *sequenceTemp;
+            
+            for(int i = 0; i < self.arrPointsPath.count; i++){
+                
+                CGPoint ponto = [(NSValue *)[self.arrPointsPath objectAtIndex:i] CGPointValue];
+                
+                if(i == 0){
+                    sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:1.5],
+                                                        [SKAction waitForDuration:5.0]]];
+                } else {
+                    sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:1.5],
+                                                        [SKAction waitForDuration:5.0]]];
+                }
+            }
+            _movePath = [SKAction repeatActionForever:sequenceTemp];
+            
+            [self runAction:_movePath withKey:@"move"];
+            
+        } else {
+            //Correção - SABER QUAL PONTO Q ELE PAROU
+            
+            SKAction *sequenceTemp;
+            
+            for(int i = self.arrPointsFixes.count-1;i>=0;i--) {
+                
+                CGPoint ponto = [(NSValue *)[self.arrPointsFixes objectAtIndex:i] CGPointValue];
+                
+                if(i == self.arrPointsFixes.count-1) {
+                    sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:1],
+                                                        [SKAction waitForDuration:0.1],
+                                                        [SKAction runBlock:^{
+                        [self.arrPointsFixes removeObjectAtIndex:i];
+                    }]]];
+                    
+                } else {
+                    sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:1],
+                                                        [SKAction waitForDuration:0.1],
+                                                        [SKAction runBlock:^{
+                        [self.arrPointsFixes removeObjectAtIndex:i];
+                    }]]];
+                    if(i == 0) {
+                        sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction runBlock:^{
+                            self.andandoIa=false;
+                        }]]];
+                    }
+                }
+                
+                _movePath = sequenceTemp;
+                
+                [self runAction:_movePath withKey:@"move"];
+            }
+        }
+    }
+}
+
+-(void)follow:(JAGGota *) jogador{
     float distance = hypotf(self.position.x - jogador.position.x, self.position.y - jogador.position.y);
     
     if (distance < 100) {
         if (jogador.escondida == NO) {
-            [self mover:(jogador.position) withInterval:2 withType:[self verificaSentido:jogador.position with:self.position]];
+            self.seguindo = true;
+            self.andandoIa = false;
+            int tempSentido = [self verificaSentido:jogador.position with:self.position];
+            if(tempSentido != self.sentido){
+                self.sentido = tempSentido;
+                [self mover:(jogador.position) withInterval:2 withType:self.sentido];
+                [self.arrPointsFixes addObject:[NSValue valueWithCGPoint:self.position]];
+                [self removeActionForKey:@"move"];
+            }
         }
-    }
-    
-    // Movimentaçao
-    
-    else {
         
-        _movePath = [SKAction sequence:@[[SKAction waitForDuration:10.0],
-                                         [SKAction moveTo:point duration:2.0],
-                                         [SKAction waitForDuration:10.0],
-                                         [SKAction moveTo:point1 duration:2.0]]];
+    } else {
+        
+        self.seguindo = false;
+        self.sentido  = 0;
+        [self IAcomInfo];
     }
 }
 
