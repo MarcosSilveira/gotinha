@@ -80,6 +80,7 @@
     
     [scene configInit:bgImage];
     
+    //FOgo
     JAGFogoEnemy *fogo =[[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
     fogo.dano=10;
     
@@ -89,10 +90,29 @@
 
     fogo.arrPointsPath=paths;
     
+    
+    
+    //Trovao
+    
+    JAGTrovaoEnemy *trovao =[[JAGTrovaoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 10)] withSize:tamanho];
+    trovao.dano=10;
+    
+    
+    NSMutableArray *patht=[[NSMutableArray alloc] init];
+    [patht addObject:[NSValue valueWithCGPoint:CGPointMake(trovao.position.x, trovao.position.y+100)]];
+    [patht addObject:[NSValue valueWithCGPoint:CGPointMake(trovao.position.x, trovao.position.y)]];
+    
+    trovao.arrPointsPath=patht;
+    
     [scene.characteres addObject:scene.gota];
+    
     [scene.characteres addObject:fogo];
+    [scene.characteres addObject:trovao];
+    
+
     
     [scene.inimigos addObject:fogo];
+    [scene.inimigos addObject:trovao];
     
     //_tileSize=32;
     //scene.diferenca = 80.0f;
@@ -157,7 +177,6 @@
     
     scene.hud =[[JAGHud alloc] initWithTempo:300 withVida:3 saude:scene.gota.aguaRestante withWindowSize:scene.frame.size];
     
-    [scene addChild:scene.hud];
     
     
     scene.gota.vida=15;
@@ -167,6 +186,8 @@
     
     
     [scene.cropNode addChild:fogo];
+    [scene.cropNode addChild:trovao];
+
     
     [scene addChild: scene.cropNode];
     
@@ -202,6 +223,10 @@
     
     [scene configStart:8];
     
+    scene.hud.zPosition=1000;
+    
+    [scene addChild:scene.hud];
+
     
    // JAGHud *hud=[JAGHud alloc]
 }

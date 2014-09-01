@@ -19,18 +19,27 @@
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
     //  self.zPosition = 1;
     self.physicsBody.categoryBitMask = ATTACK;
-    self.physicsBody.collisionBitMask = GOTA;
-    self.physicsBody.contactTestBitMask = GOTA;
-    //    self.physicsBody.mass = 9000;
+    self.physicsBody.collisionBitMask = GOTA|PAREDE;
+    self.physicsBody.contactTestBitMask = GOTA|PAREDE;
+    
+       //    self.physicsBody.mass = 9000;
     //    desn.position = position;
     
     //[self addChild:desn];
+    self.physicsBody.velocity=impulse;
     
     
     [self addChild:self.sprite];
     
     self.position = ponto;
+    
+    self.dano=dano;
+    
+   // self.physicsBody.dynamic=NO;
 
+    self.zPosition=100;
+    
+    self.name=@"attack";
     
     return self;
 }

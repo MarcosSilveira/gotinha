@@ -7,6 +7,7 @@
 //
 
 #import "JAGWall.h"
+#import "JAGCharacter.h"
 
 @implementation JAGWall
 
@@ -47,12 +48,10 @@
 
     
     
-    /*
-       //  self.zPosition = 1;
-    self.physicsBody.categoryBitMask = WALL;
-    self.physicsBody.collisionBitMask = GOTA;
-    //self.physicsBody.contactTestBitMask = ATTACK | ENEMY;
-    */
+    
+    self.physicsBody.categoryBitMask = PAREDE;
+    self.physicsBody.collisionBitMask = GOTA|ATTACK|ENEMY;
+ 
     return self;
 }
 

@@ -19,7 +19,7 @@
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
     //  self.zPosition = 1;
     self.physicsBody.categoryBitMask = ENEMY;
-    self.physicsBody.collisionBitMask = GOTA|PORTA;
+    self.physicsBody.collisionBitMask = GOTA|PORTA|PAREDE;
     self.physicsBody.contactTestBitMask = GOTA;
     //    self.physicsBody.mass = 9000;
     //    desn.position = position;

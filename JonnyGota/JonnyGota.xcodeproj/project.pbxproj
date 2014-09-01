@@ -208,8 +208,8 @@
 			isa = PBXGroup;
 			children = (
 				8DF47BD119B0B4EE0021AE2D /* Fogo.sks */,
-				8DF47BD219B0B4EE0021AE2D /* spark.png */,
 				8D4A4F3F19AFA99300255468 /* Vapor.sks */,
+				8DF47BD219B0B4EE0021AE2D /* spark.png */,
 				8D4A4F4019AFA99300255468 /* spark.png */,
 				0B0E049F19A7A29400927A16 /* backgroundChuva.png */,
 				8D4A4F3419A3D0E300255468 /* gotinha.atlas */,

@@ -25,6 +25,12 @@
     
     self.sentido=0;
     
+    self.visaoRanged=0;
+    
+    self.visao=100;
+    
+    self.atacouRanged=false;
+    
     return self;
 }
 
@@ -100,7 +106,7 @@
 -(void)follow:(JAGGota *) jogador{
     float distance = hypotf(self.position.x - jogador.position.x, self.position.y - jogador.position.y);
     
-    if (distance < 100) {
+    if (distance < self.visao) {
         if (jogador.escondida == NO) {
             self.seguindo=true;
             self.andandoIa=false;
@@ -114,11 +120,35 @@
             
         }
     }else{
-        
         self.seguindo=false;
         self.sentido=0;
         [self IAcomInfo];
     }
+}
+
+-(JAGAttack *)attackRanged:(JAGGota *)jogador{
+    float distance = hypotf(self.position.x - jogador.position.x, self.position.y - jogador.position.y);
+    
+    JAGAttack *ata;
+    
+    if (distance < self.visaoRanged &&self.visaoRanged>0 && !self.atacouRanged) {
+        self.physicsBody.velocity=CGVectorMake(0, 0);
+        
+        self.atacouRanged=YES;
+        
+        ata=[self createAttackRanged:CGVectorMake(jogador.position.x - self.position.x,  jogador.position.y - self.position.y)];
+        
+        SKAction *delay=[SKAction sequence:@[[SKAction waitForDuration:self.delayAttack], [SKAction runBlock:^{
+            self.atacouRanged=NO;
+        }]]];        
+        [self runAction:delay];
+
+    }
+    return ata;
+}
+
+-(JAGAttack *)createAttackRanged: (CGVector)withImpulse{
+    return nil;
 }
 
 -(NSMutableDictionary *)createJson {
