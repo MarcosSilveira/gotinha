@@ -72,6 +72,6 @@
 
 -(void)configInit:(SKSpriteNode *)background;
 
--(void)presentGameOver;
+-(void)presentGameOver:(int)withOP;
 
 @end

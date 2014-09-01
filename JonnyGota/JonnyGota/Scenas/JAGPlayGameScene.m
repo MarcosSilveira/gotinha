@@ -79,7 +79,7 @@
         height = self.scene.size.height;
         [self configuraParadaGota];
     }
-  //  [self presentGameOver];
+//    [self presentGameOver:0];
 
     return self;
 }
@@ -386,8 +386,9 @@
 -(void)update:(NSTimeInterval)currentTime {
     if (_gota.comChave) {
 
-        chave.position = CGPointMake(_gota.position.x*0.9, _gota.position.y*0.9);
-        
+//        chave.position = CGPointMake(_gota.position.x*0.9, _gota.position.y*0.9);
+        SKPhysicsJointPin *jointKey = [SKPhysicsJointPin jointWithBodyA:_gota.physicsBody bodyB:chave.physicsBody anchor:_gota.position];
+        [self.scene.physicsWorld addJoint:jointKey];
     }
     
     //[fogo IAcomInfo:_gota];
@@ -600,7 +601,7 @@
             
             //[obj removeFromParent];
         }else{
-            JAGPressao *obj = (JAGPressao *)contact.bodyB.node;
+//            JAGPressao *obj = (JAGPressao *)contact.bodyB.node;
             
            
                 for (int i=0; i<_portas.count; i++) {
@@ -674,6 +675,8 @@
     if(self.gota.vida<=0){
         self.gota.vida=15;
         self.hud.vidaRestante--;
+        [self presentGameOver:0];
+
         [self.gota changePosition:_posicaoInicial];
          [self presentGameOver];
         self.paused=YES;
@@ -854,13 +857,17 @@
     //NSLog(@" Export: %@", [level1 exportar]);    
 }
 
--(void)presentGameOver{
+-(void)presentGameOver:(int)withOP{
+    
     GObackground = [[SKSpriteNode alloc]initWithColor:[UIColor redColor] size:CGSizeMake( self.frame.size.height/2, self.frame.size.width/2)];
     GObackground.position = CGPointMake(self.frame.size.height*0.35, self.frame.size.width*0.7);
-    button1 = [[SKSpriteNode alloc] initWithColor:[UIColor greenColor] size:CGSizeMake(GObackground.size.width/4, GObackground.size.height/4.5)];
+    button1 = [[SKSpriteNode alloc] initWithImageNamed:@"play.png"];
+    button1.size = CGSizeMake(GObackground.size.width/4, GObackground.size.height/4.5);
     button1.position = CGPointMake(self.frame.size.height*0.2, self.frame.size.width*0.45);
-    button2 = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(GObackground.size.width/4, GObackground.size.height/4.5)];
+    button2 = [[SKSpriteNode alloc] initWithImageNamed:@"list.png"];
+    button2.size =CGSizeMake(GObackground.size.width/4, GObackground.size.height/4.5);
     button2.position = CGPointMake(self.frame.size.height*0.5, self.frame.size.width*0.45);
+
     [self.scene addChild:GObackground];
     [self.scene addChild:button1];
     [self.scene addChild:button2];
