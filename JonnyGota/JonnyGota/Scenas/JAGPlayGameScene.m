@@ -678,8 +678,9 @@
         [self presentGameOver:0];
 
         [self.gota changePosition:_posicaoInicial];
-         [self presentGameOver];
+        [self presentGameOver:1];
         self.paused=YES;
+        _gota.physicsBody.velocity = CGVectorMake(0, 0);
     }
 }
 
