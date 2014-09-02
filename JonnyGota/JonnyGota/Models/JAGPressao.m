@@ -30,7 +30,7 @@
     
     self.position=ponto;
     
-    _presionado=FALSE;
+    _pressionado=FALSE;
     
     _tipo=tipo;
     
@@ -44,12 +44,12 @@
 }
 
 -(void)pisar{
-    if(!_presionado){
-        _presionado=true;
+    if(!_pressionado){
+        _pressionado=true;
         }else{
-        _presionado=false;
+        _pressionado=false;
     }
-    [self animar:!_presionado];
+    [self animar:!_pressionado];
    }
 
 
@@ -70,15 +70,15 @@
 }
 
 -(void)pressionar:(BOOL)pressao{
-    if(_presionado!=pressao){
+    if(_pressionado!=pressao){
         if(pressao){
-            _presionado=true;
+            _pressionado=true;
             
             }else{
-            _presionado=false;
+            _pressionado=false;
         }
     }
-    [self animar:_presionado];
+    [self animar:_pressionado];
 }
 
 -(void)animar:(BOOL)anima{

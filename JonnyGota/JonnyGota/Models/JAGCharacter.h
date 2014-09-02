@@ -19,7 +19,8 @@ typedef enum : uint32_t{
  PRESSAO = 0x1 <<13,
  PORTA = 0x1<<14,
  CHUVA=0x1<<20,
- PERDAGOTA=0X1<<21
+ PERDAGOTA=0X1<<21,
+ PAREDE=0x1<<22
 }colisao;
 
 @interface JAGCharacter : SKNode <UIGestureRecognizerDelegate>

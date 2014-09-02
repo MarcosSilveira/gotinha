@@ -115,14 +115,11 @@
     circleMask.userInteractionEnabled = NO;
     circleMask.fillColor = [SKColor clearColor];
     
-    circleMask.position=CGPointMake(ponto.x-_gota.sprite.size.width,ponto.y-_gota.sprite.size.height);
+    circleMask.position = CGPointMake(ponto.x-_gota.sprite.size.width,ponto.y-_gota.sprite.size.height);
     
     [area addChild:circleMask];
     //area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
     //[_cropNode setMaskNode:area];
-    
-    
-   
 }
 
 #pragma mark - Mundo/Fases
@@ -134,14 +131,6 @@
         [_gota dividir];
 }
 
--(void) followPlayer {
-    
-    for (int i=0;i<_inimigos.count;i++){
-   
-       JAGInimigos *fogo=(JAGInimigos *)_inimigos[i];
-        [fogo follow:self.gota];
-    }
-}
 
 -(void) configuraParadaGota {
     
@@ -204,6 +193,48 @@
 
     return tipo;
 }
+
+-(void) followPlayer {
+    
+    for (int i=0;i<_inimigos.count;i++){
+        
+        JAGInimigos *fogo=(JAGInimigos *)_inimigos[i];
+        [fogo follow:self.gota];
+    }
+}
+
+
+#pragma mark - Lógica dos inimigos
+-(void)actionsEnemys{
+    JAGAttack *ata;
+    for (int i=0;i<_inimigos.count;i++){
+        
+        JAGInimigos *fogo=(JAGInimigos *)_inimigos[i];
+        ata=[fogo attackRanged:self.gota];
+        if (ata!=nil) {
+            
+            SKAction *attacks=[SKAction sequence:@[[SKAction waitForDuration:1],
+                                                   [SKAction runBlock:^{
+                //Cria o attack
+                [self.cropNode addChild:ata];
+                
+            }],
+                                                   [SKAction waitForDuration:1]]];
+            
+
+            [self runAction:attacks];
+            
+        }else{
+            [self followPlayer];
+        }
+        
+        //[fogo follow:self.gota];
+    }
+    
+    
+    
+}
+
 
 #pragma mark - Touch treatment
 
@@ -368,8 +399,9 @@
     circleMask.position=CGPointMake(_gota.position.x,_gota.position.y);
 
     //NSLog(@"gota x:%f y:%f",_gota.position.x,_gota.position.y);
-    [self followPlayer];
-    [self.hud update];
+    
+    [self actionsEnemys];
+        [self.hud update];
     
     if (self.hud.tempoRestante == 0) {
         self.scene.view.paused = YES;
@@ -493,8 +525,33 @@
     _gota.physicsBody.velocity = CGVectorMake(0, 0);
     }
 
+    //Colissao do Attack
     
+    if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ATTACK)){
+        JAGAttack *attack;
+        if((contact.bodyB.categoryBitMask == GOTA)){
+            attack=(JAGAttack *)contact.bodyA.node;
+            [self receberDano:attack.dano];
+            [attack removeFromParent];
+        }
+        else{
+            attack=(JAGAttack *)contact.bodyB.node;
+            [self receberDano:attack.dano];
+            [attack removeFromParent];
 
+        }
+    }
+    if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ATTACK)){
+        if ((contact.bodyA.categoryBitMask == ATTACK)) {
+            JAGAttack *attack=(JAGAttack *)contact.bodyA.node;
+            [attack removeFromParent];
+        }else{
+            JAGAttack *attack=(JAGAttack *)contact.bodyB.node;
+            [attack removeFromParent];
+        }
+    }
+    
+    
 }
 
 -(void)didEndContact:(SKPhysicsContact *)contact{
@@ -617,6 +674,8 @@
         [self presentGameOver:0];
 
         [self.gota changePosition:_posicaoInicial];
+        [self presentGameOver:1];
+        self.paused=YES;
         _gota.physicsBody.velocity = CGVectorMake(0, 0);
     }
 }
@@ -664,9 +723,9 @@
     self.characteres=[[NSMutableArray alloc] init];
     self.inimigos=[[NSMutableArray alloc] init];
 
-    
-    
 }
+
+
 
 
 -(void)rastroInimigo: (SKNode*)inimigo{

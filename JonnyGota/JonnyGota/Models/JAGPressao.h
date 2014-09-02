@@ -12,7 +12,7 @@
 
 @interface JAGPressao : SKNode
 
-@property (nonatomic) BOOL presionado;
+@property (nonatomic) BOOL pressionado;
 
 @property (nonatomic) SKSpriteNode *sprite;
 

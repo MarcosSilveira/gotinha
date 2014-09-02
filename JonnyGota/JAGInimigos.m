@@ -18,6 +18,18 @@
     self.andandoIa      = false;
     self.sentido        = 0;
     
+    self.seguindo=false;
+    
+    self.andandoIa=false;
+    
+    self.sentido=0;
+    
+    self.visaoRanged=0;
+    
+    self.visao=100;
+    
+    self.atacouRanged=false;
+    
     return self;
 }
 
@@ -44,10 +56,10 @@
                 
                 if(i == 0){
                     sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:1.5],
-                                                        [SKAction waitForDuration:5.0]]];
+                                                        [SKAction waitForDuration:2.0]]];
                 } else {
                     sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:1.5],
-                                                        [SKAction waitForDuration:5.0]]];
+                                                        [SKAction waitForDuration:2.0]]];
                 }
             }
             _movePath = [SKAction repeatActionForever:sequenceTemp];
@@ -59,11 +71,11 @@
             
             SKAction *sequenceTemp;
             
-            for(int i = self.arrPointsFixes.count-1;i>=0;i--) {
+            for(int i = self.arrPointsFixes.count - 1.0; i >= 0; i--) {
                 
                 CGPoint ponto = [(NSValue *)[self.arrPointsFixes objectAtIndex:i] CGPointValue];
                 
-                if(i == self.arrPointsFixes.count-1) {
+                if(i == self.arrPointsFixes.count - 1) {
                     sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:1],
                                                         [SKAction waitForDuration:0.1],
                                                         [SKAction runBlock:^{
@@ -76,17 +88,17 @@
                                                         [SKAction runBlock:^{
                         [self.arrPointsFixes removeObjectAtIndex:i];
                     }]]];
-                    if(i == 0) {
-                        sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction runBlock:^{
-                            self.andandoIa=false;
-                        }]]];
-                    }
                 }
                 
-                _movePath = sequenceTemp;
-                
-                [self runAction:_movePath withKey:@"move"];
+                if(i == 0) {
+                    sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction runBlock:^{
+                        self.andandoIa = false;
+                        NSLog(@"ponto: %@", [NSValue valueWithCGPoint:ponto]);
+                    }]]];
+                }
             }
+            _movePath = sequenceTemp;
+            [self runAction:_movePath withKey:@"move"];
         }
     }
 }
@@ -94,7 +106,7 @@
 -(void)follow:(JAGGota *) jogador{
     float distance = hypotf(self.position.x - jogador.position.x, self.position.y - jogador.position.y);
     
-    if (distance < 100) {
+    if (distance < self.visao) {
         if (jogador.escondida == NO) {
             self.seguindo = true;
             self.andandoIa = false;
@@ -113,6 +125,31 @@
         self.sentido  = 0;
         [self IAcomInfo];
     }
+}
+
+-(JAGAttack *)attackRanged:(JAGGota *)jogador{
+    float distance = hypotf(self.position.x - jogador.position.x, self.position.y - jogador.position.y);
+    
+    JAGAttack *ata;
+    
+    if (distance < self.visaoRanged &&self.visaoRanged>0 && !self.atacouRanged) {
+        self.physicsBody.velocity=CGVectorMake(0, 0);
+        
+        self.atacouRanged=YES;
+        
+        ata=[self createAttackRanged:CGVectorMake(jogador.position.x - self.position.x,  jogador.position.y - self.position.y)];
+        
+        SKAction *delay=[SKAction sequence:@[[SKAction waitForDuration:self.delayAttack], [SKAction runBlock:^{
+            self.atacouRanged=NO;
+        }]]];        
+        [self runAction:delay];
+
+    }
+    return ata;
+}
+
+-(JAGAttack *)createAttackRanged: (CGVector)withImpulse{
+    return nil;
 }
 
 -(NSMutableDictionary *)createJson {

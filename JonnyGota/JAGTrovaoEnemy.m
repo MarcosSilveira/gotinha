@@ -31,7 +31,11 @@
     [self configPhysics];
     [self addChild:self.sprite];
     
+    self.visaoRanged=150;
+    
     self.position = position;
+    
+    self.delayAttack=5;
     
     return self;
 }
@@ -39,6 +43,14 @@
 -(void)ataque{
     
     
+}
+
+
+-(JAGAttack *)createAttackRanged: (CGVector)withImpulse{
+    SKSpriteNode *trovao=[[SKSpriteNode alloc] initWithColor:[UIColor yellowColor] size:CGSizeMake(15, 15)];
+    JAGAttack *attack=[[JAGAttack alloc] initWithPosition:self.position withImpulse:withImpulse withDano:3 withSprite:trovao];
+    
+    return attack;
 }
 
 -(BOOL)tocou:(CGPoint)ponto{
