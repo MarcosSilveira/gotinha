@@ -161,8 +161,7 @@
     pararMovimentoCONTROLy.name = @"controle_toque_y";
     controleXnaTela = NO;
     controleYnaTela = NO;
-//    [_cropNode addChild:pararMovimentoCONTROLy];
-//    [_cropNode addChild:pararMovimentoCONTROLx];
+
     
 }
 
