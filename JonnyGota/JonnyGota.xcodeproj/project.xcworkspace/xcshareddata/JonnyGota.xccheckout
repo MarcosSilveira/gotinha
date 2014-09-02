@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>F6C9B260-BAEA-41A5-8FE7-B671C70AC825</string>
+	<string>DFFAF3E4-8635-4ADE-AEDC-CE906F3B7C96</string>
 	<key>IDESourceControlProjectName</key>
 	<string>JonnyGota</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>BBD53023-F17C-49C5-A5E0-8ABC51938683</key>
-		<string>https://github.com/MarcosSilveira/gotinha.git</string>
+		<key>EFE44A94-A4D4-4201-84B6-42AEA2F2F33D</key>
+		<string>https://github.com/MarcosSilveira/gotinha</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>JonnyGota/JonnyGota.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>BBD53023-F17C-49C5-A5E0-8ABC51938683</key>
+		<key>EFE44A94-A4D4-4201-84B6-42AEA2F2F33D</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/MarcosSilveira/gotinha.git</string>
+	<string>https://github.com/MarcosSilveira/gotinha</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>BBD53023-F17C-49C5-A5E0-8ABC51938683</string>
+	<string>EFE44A94-A4D4-4201-84B6-42AEA2F2F33D</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>BBD53023-F17C-49C5-A5E0-8ABC51938683</string>
+			<string>EFE44A94-A4D4-4201-84B6-42AEA2F2F33D</string>
 			<key>IDESourceControlWCCName</key>
 			<string>gotinha</string>
 		</dict>

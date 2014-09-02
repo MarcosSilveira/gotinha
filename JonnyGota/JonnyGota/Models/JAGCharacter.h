@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "Musica.h"
 
 typedef enum : uint32_t{
  GOTA = 0x1 << 0,
@@ -35,5 +36,7 @@ typedef enum : uint32_t{
 -(void)animar;
 -(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withType:(int)tipo;
 -(NSMutableDictionary*)createJson;
+
+
 
 @end
