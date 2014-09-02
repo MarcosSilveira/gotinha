@@ -51,7 +51,7 @@
   //  NSLog(@"gota %s",_gota);
 }
 
--(void)cronometro:(NSTimer *)timer{
+-(void)cronometro{
     
     if(!self.paused){
         if(_tempoRestante>0){
@@ -64,8 +64,13 @@
 }
 
 -(void)startTimer{
-    NSTimer *t = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(cronometro:) userInfo:nil repeats:YES];
     
-    [[NSRunLoop mainRunLoop] addTimer:t forMode:NSRunLoopCommonModes];
+    SKAction *timer=[SKAction sequence:@[[SKAction waitForDuration:1],
+                                         [SKAction runBlock:^{
+        [self cronometro];
+    }]]];
+    
+    SKAction *runs=[SKAction repeatAction:timer count:self.tempoRestante];
+    [self runAction:runs];
 }
 @end

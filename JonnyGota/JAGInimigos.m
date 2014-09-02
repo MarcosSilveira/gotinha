@@ -242,5 +242,10 @@
     return tipo;
 }
 
+//Usado para atualizar os liteners
+-(void)update:(JAGGota *)gota{
+    
+}
+
 
 @end

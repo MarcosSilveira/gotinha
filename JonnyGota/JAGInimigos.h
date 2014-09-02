@@ -45,4 +45,6 @@
 
 -(JAGAttack *)attackRanged:(JAGGota *)jogador;
 
+-(void)update:(JAGGota *)gota;
+
 @end
