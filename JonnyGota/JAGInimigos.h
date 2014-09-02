@@ -32,6 +32,8 @@
 
 @property (nonatomic) int sentido;
 
+@property int lastPointToGo;
+
 -(void)ataque;
 -(void)IAcomInfo;
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto;

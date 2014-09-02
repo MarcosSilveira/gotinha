@@ -218,6 +218,7 @@
                                                    [SKAction runBlock:^{
                 //Cria o attack
                 [self.cropNode addChild:ata];
+                fogo.andandoIa = false;
                 
             }],
                                                    [SKAction waitForDuration:1]]];

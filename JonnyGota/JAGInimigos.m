@@ -30,6 +30,8 @@
     
     self.atacouRanged=false;
     
+    self.lastPointToGo=0;
+    
     return self;
 }
 
@@ -47,27 +49,14 @@
         self.andandoIa = true;
         
         if (self.arrPointsFixes.count == 0) {
-            
-            SKAction *sequenceTemp;
-            
-            for(int i = 0; i < self.arrPointsPath.count; i++){
-                
-                CGPoint ponto = [(NSValue *)[self.arrPointsPath objectAtIndex:i] CGPointValue];
-                
-                if(i == 0){
-                    sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:1.5],
-                                                        [SKAction waitForDuration:2.0]]];
-                } else {
-                    sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:1.5],
-                                                        [SKAction waitForDuration:2.0]]];
-                }
-            }
-            _movePath = [SKAction repeatActionForever:sequenceTemp];
-            
+            [self createPathto];
+            _movePath = [SKAction repeatActionForever:_movePath];
             [self runAction:_movePath withKey:@"move"];
-            
         } else {
             //Correção - SABER QUAL PONTO Q ELE PAROU
+            
+            //self.andandoIa = true;
+
             
             SKAction *sequenceTemp;
             
@@ -90,17 +79,63 @@
                     }]]];
                 }
                 
-                if(i == 0) {
-                    sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction runBlock:^{
-                        self.andandoIa = false;
-                        NSLog(@"ponto: %@", [NSValue valueWithCGPoint:ponto]);
-                    }]]];
-                }
+                
             }
-            _movePath = sequenceTemp;
+            [self createPathto];
+            _movePath = [SKAction sequence:@[sequenceTemp,_movePath]];
+            
+            
+                _movePath = [SKAction sequence:@[_movePath,[SKAction runBlock:^{
+                    self.andandoIa = false;
+                     self.lastPointToGo=0;
+                    }]]];
+           
+
+           
             [self runAction:_movePath withKey:@"move"];
         }
     }
+}
+
+-(void)createPathto{
+    
+    SKAction *sequenceTemp;
+    
+    
+    if(self.lastPointToGo>=self.arrPointsPath.count){
+        self.lastPointToGo=0;
+    }
+    
+    for(int i = self.lastPointToGo; i < self.arrPointsPath.count; i++){
+        
+        CGPoint ponto = [(NSValue *)[self.arrPointsPath objectAtIndex:i] CGPointValue];
+        
+        if(sequenceTemp==nil){
+            sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:1.5],
+                                                [SKAction runBlock:^{
+                self.lastPointToGo=i+1;
+                          }],
+                                                [SKAction waitForDuration:2.0]]];
+        } else {
+            sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:1.5],
+                                                [SKAction runBlock:^{
+                self.lastPointToGo=i+1;
+          
+            }],
+                                                
+                                                [SKAction waitForDuration:2.0]]];
+        }
+        
+    }
+    sequenceTemp = [SKAction sequence:@[sequenceTemp,
+                                        [SKAction runBlock:^{
+        self.lastPointToGo=0;
+    }]
+                                        ]];
+
+    //_movePath = [SKAction repeatActionForever:sequenceTemp];
+    
+    _movePath = sequenceTemp;
 }
 
 -(void)follow:(JAGGota *) jogador{
@@ -135,9 +170,15 @@
     if (distance < self.visaoRanged &&self.visaoRanged>0 && !self.atacouRanged) {
         self.physicsBody.velocity=CGVectorMake(0, 0);
         
+        [self removeActionForKey:@"move"];
         self.atacouRanged=YES;
+         //self.andandoIa = true;
+        
+        [self.arrPointsFixes addObject:[NSValue valueWithCGPoint:self.position]];
         
         ata=[self createAttackRanged:CGVectorMake(jogador.position.x - self.position.x,  jogador.position.y - self.position.y)];
+        
+        //[self mover:(jogador.position) withInterval:2 withType:self.sentido];
         
         SKAction *delay=[SKAction sequence:@[[SKAction waitForDuration:self.delayAttack], [SKAction runBlock:^{
             self.atacouRanged=NO;
@@ -160,6 +201,10 @@
     [json setValue:temp forKeyPath:@"tipo"];
     
     return json;
+}
+
+-(int)localizePoint:(CGPoint) ponto{
+    return 0;
 }
 
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto {
