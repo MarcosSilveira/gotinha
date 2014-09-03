@@ -25,13 +25,64 @@
     self.visao        = 100;
     self.atacouRanged = false;
     
-    self.lastPointToGo=0;
+    self.lastPointToGo = 0;
     
     return self;
 }
 
 -(void)ataque{
     
+}
+
+-(void)habilEspec:(int)tipo {
+    
+    if (tipo == 1) {
+        
+        SKAction *habilid = [SKAction sequence:@[[SKAction waitForDuration:5.0],
+                                                 [SKAction runBlock:^{
+            
+            _emitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"Raio" ofType:@"sks"]];
+            _emitter.position = self.position;
+            _emitter.name = @"perdida_raio";
+            _emitter.numParticlesToEmit = 1000;
+            
+            [self destruirParti];
+            
+        }],
+                                                 [SKAction runBlock:^{
+            [self changePosition:CGPointMake(0, 0)];
+        }],
+                                                 [SKAction waitForDuration: 5.0],
+                                                 [SKAction runBlock:^{
+            
+            _emitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"Raio" ofType:@"sks"]];
+            _emitter.position = self.position;
+            _emitter.name = @"perdida_raio";
+            _emitter.numParticlesToEmit = 1000;
+            
+            [self destruirParti];
+        }],
+                                                 [SKAction runBlock:^{
+            [self changePosition:self.position];
+        }]]];
+        [self runAction:habilid];
+    }
+    
+    else {
+        // rastro fogo;
+    }
+}
+
+-(void) destruirParti {
+    
+    [_emitter removeFromParent];
+}
+
+-(BOOL)tocou:(CGPoint)ponto {
+    
+    BOOL toque;
+    
+    return toque;
 }
 
 // IN PROGRESS ...
@@ -51,7 +102,6 @@
             //Correção - SABER QUAL PONTO Q ELE PAROU
             
             //self.andandoIa = true;
-
             
             SKAction *sequenceTemp;
             
@@ -73,20 +123,17 @@
                         [self.arrPointsFixes removeObjectAtIndex:i];
                     }]]];
                 }
-                
-                
             }
+            
             [self createPathto];
             _movePath = [SKAction sequence:@[sequenceTemp,_movePath]];
             
             
-                _movePath = [SKAction sequence:@[_movePath,[SKAction runBlock:^{
-                    self.andandoIa = false;
-                     self.lastPointToGo=0;
-                    }]]];
-           
-
-           
+            _movePath = [SKAction sequence:@[_movePath,[SKAction runBlock:^{
+                self.andandoIa = false;
+                self.lastPointToGo=0;
+            }]]];
+            
             [self runAction:_movePath withKey:@"move"];
         }
     }
@@ -95,7 +142,6 @@
 -(void)createPathto{
     
     SKAction *sequenceTemp;
-    
     
     if(self.lastPointToGo>=self.arrPointsPath.count){
         self.lastPointToGo=0;
@@ -109,13 +155,13 @@
             sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:1.5],
                                                 [SKAction runBlock:^{
                 self.lastPointToGo=i+1;
-                          }],
+            }],
                                                 [SKAction waitForDuration:2.0]]];
         } else {
             sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:1.5],
                                                 [SKAction runBlock:^{
                 self.lastPointToGo=i+1;
-          
+                
             }],
                                                 
                                                 [SKAction waitForDuration:2.0]]];
@@ -127,7 +173,7 @@
         self.lastPointToGo=0;
     }]
                                         ]];
-
+    
     //_movePath = [SKAction repeatActionForever:sequenceTemp];
     
     _movePath = sequenceTemp;
@@ -167,7 +213,7 @@
         
         [self removeActionForKey:@"move"];
         self.atacouRanged=YES;
-         //self.andandoIa = true;
+        //self.andandoIa = true;
         
         [self.arrPointsFixes addObject:[NSValue valueWithCGPoint:self.position]];
         
@@ -177,9 +223,9 @@
         
         SKAction *delay=[SKAction sequence:@[[SKAction waitForDuration:self.delayAttack], [SKAction runBlock:^{
             self.atacouRanged=NO;
-        }]]];        
+        }]]];
         [self runAction:delay];
-
+        
     }
     return ata;
 }

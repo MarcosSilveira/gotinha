@@ -95,16 +95,6 @@
     return gota2;
 }
 
--(void)changePosition:(CGPoint) posicao{
-    
-    
-    SKPhysicsBody *temp= self.physicsBody;
-    self.physicsBody = nil;
-    
-    self.position=posicao;
-    
-    self.physicsBody = temp;
-}
 
 //-(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withTipe:(int)tipo{
 //

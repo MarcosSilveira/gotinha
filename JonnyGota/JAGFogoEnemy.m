@@ -33,20 +33,10 @@
     
     self.position = position;
     
-    
-    
     return self;
 }
 
--(void)ataque{
-    
-    
-}
-
--(BOOL)tocou:(CGPoint)ponto{
-    BOOL toque;
-    
-    return toque;
+-(void)ataque {
     
 }
 

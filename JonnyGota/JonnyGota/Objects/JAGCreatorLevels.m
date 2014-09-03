@@ -15,6 +15,7 @@
 #import "JAGFonte.h"
 #import "JAGTrovaoEnemy.h"
 #import "JAGPerdaFogo.h"
+#import "JAGSparkRaio.h"
 #import "JAGTrap.h"
 
 @implementation JAGCreatorLevels
@@ -63,7 +64,6 @@
     [self performSelector:aSelector withObject:scene];
 }
 
-
 + (void)initializeLevel01ofWorld01onScene:(JAGPlayGameScene *)scene
 {
     //[self configure:scene withBackgroundColor:[UIColor whiteColor]];
@@ -80,9 +80,8 @@
     [scene configInit:bgImage];
     
     //Fogo
-    
-    JAGFogoEnemy *fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
-    fogo.dano = 10;
+    JAGFogoEnemy *fogo =[[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
+    fogo.dano=10;
     
     NSMutableArray *paths = [[NSMutableArray alloc] init];
     [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y+100)]];
@@ -93,8 +92,7 @@
     //Trovao
     
     JAGTrovaoEnemy *trovao = [[JAGTrovaoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 10)] withSize:tamanho];
-    trovao.dano=10;
-    
+    trovao.dano = 10;
     
     NSMutableArray *patht = [[NSMutableArray alloc] init];
     [patht addObject:[NSValue valueWithCGPoint:CGPointMake(trovao.position.x, trovao.position.y+100)]];
@@ -174,7 +172,6 @@
     [scene.cropNode addChild:fogo];
     [scene.cropNode addChild:trovao];
 
-    
     [scene addChild: scene.cropNode];
     
     [scene.hud startTimer];
@@ -189,10 +186,14 @@
     SKAction *diminuirSaude = [SKAction sequence:@[[SKAction waitForDuration:5],
                                                  [SKAction runBlock:^{
         JAGPerdaFogo *perda_fogo = [[JAGPerdaFogo alloc] initWithPosition:fogo.position withTimeLife:10];
-        
+
         [scene.cropNode addChild:perda_fogo.emitter];
+        
+        [trovao habilEspec:1];
+        
         SKAction *destruir = [SKAction sequence:@[[SKAction waitForDuration:10],
                                                 [SKAction runBlock:^{
+            
             [perda_fogo.emitter removeFromParent];
             
             }]]];
@@ -211,13 +212,11 @@
     
     [scene addChild:scene.hud];
 
-    
    // JAGHud *hud = [JAGHud alloc]
 }
 
 + (void)initializeLevel02ofWorld01onScene:(JAGPlayGameScene *)scene
 {
-    
     //[self configure:scene withBackgroundColor:[UIColor whiteColor]];
     SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithImageNamed:@"backgroundChuva"];
     
@@ -235,6 +234,18 @@
     [scene configInit:bgImage];
     
     JAGTrovaoEnemy *fogo = [[JAGTrovaoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
+    JAGSparkRaio *perda_raio = [[JAGSparkRaio alloc] initWithPosition:fogo.position withTimeLife:10];
+    
+    [scene.cropNode addChild:perda_raio.emitter];
+
+    SKAction *destruir = [SKAction sequence:@[[SKAction waitForDuration:10],
+                                              [SKAction runBlock:^{
+        [perda_raio.emitter removeFromParent];
+        
+    }]]];
+    
+    [scene runAction:destruir];
+    
     fogo.dano = 10;
     
     [scene.characteres addObject:scene.gota];
@@ -245,9 +256,7 @@
     //_tileSize=32;
     //scene.diferenca = 80.0f;
     //tocou = false;
-    
-    
-    
+
     JAGPressao *presao = [[JAGPressao alloc] initWithPosition:[scene.level calculateTile:CGPointMake(7, 8)] withTipo:1];
     
     SKSpriteNode *spritePor = [[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size:CGSizeMake(scene.level.tileSize, scene.level.tileSize)];
