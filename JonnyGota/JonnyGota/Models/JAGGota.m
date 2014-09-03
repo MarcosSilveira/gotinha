@@ -36,15 +36,15 @@
     //self.zPosition = 1;
     self.physicsBody.categoryBitMask = GOTA;
     self.physicsBody.collisionBitMask = ATTACK | ENEMY |ITEM |PORTA | CHUVA | CHAVE | PAREDE;
-    self.physicsBody.contactTestBitMask = ATTACK | ENEMY | CONTROLE_TOQUE |ITEM | CHUVA |CHAVE | FONTE_DA_JUVENTUDE | PAREDE;
+    self.physicsBody.contactTestBitMask = ATTACK | ENEMY | CONTROLE_TOQUE |ITEM | CHUVA |CHAVE | FONTE_DA_JUVENTUDE | PAREDE | TRAP;
     
     [self configPhysics];
     
     self.position = position;
     
-    self.sprite.zPosition=100;
+    self.sprite.zPosition=10;
     
-    self.zPosition=100;
+    self.zPosition=10;
     
     _escondida = NO;
     _dividida = NO;

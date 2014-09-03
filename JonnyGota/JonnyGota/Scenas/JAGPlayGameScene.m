@@ -14,6 +14,7 @@
 #import "JAGPerdaGota.h"
 #import "JAGPerdaFogo.h"
 #import "JAGChave.h"
+#import "JAGTrap.h"
 
 
 @implementation JAGPlayGameScene {
@@ -150,8 +151,7 @@
     pararMovimentoCONTROLy.name = @"controle_toque_y";
     controleXnaTela = NO;
     controleYnaTela = NO;
-//    [_cropNode addChild:pararMovimentoCONTROLy];
-//    [_cropNode addChild:pararMovimentoCONTROLx];
+
     
 }
 
@@ -249,6 +249,9 @@
         toqueInicio = CGPointMake(toqueInicio.x+(_gota.position.x)-CGRectGetMidX(self.frame),
                                  toqueInicio.y+(_gota.position.y)-CGRectGetMidY(self.frame));
         tocou_gota  = [_gota verificaToque:toqueInicio];
+    
+            
+        
     }
 }
 
@@ -351,7 +354,19 @@
                     
                 }
                 
-                
+                //menu gameover
+                SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
+
+                if ([node.name isEqualToString:@"button1"]) {
+                    NSLog(@"bt1 gameover");
+                    self.scene.paused = NO;
+                    [button1 removeFromParent];
+                    [button2 removeFromParent];
+                    [GObackground removeFromParent];
+                }
+                else if([node.name isEqualToString:@"button2"]){
+                    NSLog(@"bt2 gameover");
+                }
                 //Logica da movimentacao
                 //PathFinder
                 //
@@ -422,6 +437,21 @@
         JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
         [self receberDano:inimigo.dano];
     }
+    
+    if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == TRAP)){
+        JAGTrap *trap=(JAGTrap *)contact.bodyB.node;
+        if (trap.tipo!=0)
+        [trap capturouAGota:_gota];
+        else [self receberDano:5];
+    }
+    
+    if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == TRAP)){
+         JAGTrap *trap=(JAGTrap *)contact.bodyA.node;
+        if (trap.tipo!=0)
+        [trap capturouAGota:_gota];
+        else [self receberDano:5];
+    }
+    
     //Colisao com a parede
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
        ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
@@ -695,7 +725,7 @@
         [self presentGameOver:0];
 
         [self.gota changePosition:_posicaoInicial];
-        [self presentGameOver:1];
+//        [self presentGameOver:1];
         self.paused=YES;
         _gota.physicsBody.velocity = CGVectorMake(0, 0);
     }
@@ -885,6 +915,8 @@
     button2 = [[SKSpriteNode alloc] initWithImageNamed:@"list.png"];
     button2.size =CGSizeMake(GObackground.size.width/4, GObackground.size.height/4.5);
     button2.position = CGPointMake(self.frame.size.height*0.5, self.frame.size.width*0.45);
+    button1.name = @"button1";
+    button2.name = @"button2";
 
     [self.scene addChild:GObackground];
     [self.scene addChild:button1];

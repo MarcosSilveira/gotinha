@@ -15,6 +15,7 @@
 #import "JAGFonte.h"
 #import "JAGTrovaoEnemy.h"
 #import "JAGPerdaFogo.h"
+#import "JAGTrap.h"
 
 @implementation JAGCreatorLevels
 
@@ -79,8 +80,8 @@
     scene.gota= [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 1)] withSize:tamanho];
     
     [scene configInit:bgImage];
-    
-    //FOgo
+
+    //Fogo
     JAGFogoEnemy *fogo =[[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
     fogo.dano=10;
     
@@ -159,7 +160,10 @@
     SKSpriteNode *oi = [[SKSpriteNode alloc]initWithColor:[UIColor yellowColor] size:CGSizeMake(scene.frame.size.width*0.02, scene.frame.size.height*0.05)];
     JAGChave *chave = [[JAGChave alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 4)] withSprite:oi];
     
-    
+    //TRAP!
+    SKSpriteNode *oi2 = [[SKSpriteNode alloc]initWithColor:[UIColor yellowColor] size:CGSizeMake(scene.frame.size.width*0.05, scene.frame.size.height*0.05)];
+    JAGTrap *trap = [[JAGTrap alloc] initWithPosition:[scene.level calculateTile:CGPointMake(9, 10)] withSprite:oi2];
+    trap.tipo = 1;
     //Box do Inimigo
     
     [scene.level createWalls:CGPointMake(3, 3) withHeight:10 withWidth:3 withScene:scene];
@@ -173,6 +177,7 @@
     
    
     [scene.cropNode addChild:chave];
+    [scene.cropNode addChild:trap];
     
     
     scene.hud =[[JAGHud alloc] initWithTempo:300 withVida:3 saude:scene.gota.aguaRestante withWindowSize:scene.frame.size];
