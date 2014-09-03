@@ -14,7 +14,7 @@
 #import "JAGPorta.h"
 
 
-@interface JAGPlayGameScene : SKScene<SKPhysicsContactDelegate>
+@interface JAGPlayGameScene : SKScene<SKPhysicsContactDelegate, UIGestureRecognizerDelegate>
 {
 //    JAGGota *gota;
     //Scenario----
