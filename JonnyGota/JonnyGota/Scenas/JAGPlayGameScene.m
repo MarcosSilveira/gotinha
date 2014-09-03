@@ -553,7 +553,16 @@
         }
     }
     
+    //Melhorar Ia do monstro
+    if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ENEMY)){
+        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
+        inimigo.inColissao=true;
+    }
     
+    if((contact.bodyB.categoryBitMask == PAREDE) && (contact.bodyA.categoryBitMask == ENEMY)){
+        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
+        inimigo.inColissao=true;
+    }
 }
 
 -(void)didEndContact:(SKPhysicsContact *)contact{
@@ -665,6 +674,16 @@
         }
     }
 */
+    
+    if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ENEMY)){
+        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
+        inimigo.inColissao=false;
+    }
+    
+    if((contact.bodyB.categoryBitMask == PAREDE) && (contact.bodyA.categoryBitMask == ENEMY)){
+        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
+        inimigo.inColissao=false;
+    }
 }
 
 #pragma mark - Receber Dano

@@ -32,6 +32,8 @@
     
     self.lastPointToGo=0;
     
+    self.inColissao=false;
+    
     return self;
 }
 
@@ -65,14 +67,14 @@
                 CGPoint ponto = [(NSValue *)[self.arrPointsFixes objectAtIndex:i] CGPointValue];
                 
                 if(i == self.arrPointsFixes.count - 1) {
-                    sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:1],
+                    sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:0.5],
                                                         [SKAction waitForDuration:0.1],
                                                         [SKAction runBlock:^{
                         [self.arrPointsFixes removeObjectAtIndex:i];
                     }]]];
                     
                 } else {
-                    sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:1],
+                    sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:0.5],
                                                         [SKAction waitForDuration:0.1],
                                                         [SKAction runBlock:^{
                         [self.arrPointsFixes removeObjectAtIndex:i];
@@ -111,19 +113,19 @@
         CGPoint ponto = [(NSValue *)[self.arrPointsPath objectAtIndex:i] CGPointValue];
         
         if(sequenceTemp==nil){
-            sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:1.5],
+            sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:1],
                                                 [SKAction runBlock:^{
                 self.lastPointToGo=i+1;
                           }],
-                                                [SKAction waitForDuration:2.0]]];
+                                                [SKAction waitForDuration:1.3]]];
         } else {
-            sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:1.5],
+            sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:1],
                                                 [SKAction runBlock:^{
                 self.lastPointToGo=i+1;
           
             }],
                                                 
-                                                [SKAction waitForDuration:2.0]]];
+                                                [SKAction waitForDuration:1.3]]];
         }
         
     }
@@ -145,13 +147,25 @@
         if (jogador.escondida == NO) {
             self.seguindo = true;
             self.andandoIa = false;
-            int tempSentido = [self verificaSentido:jogador.position with:self.position];
-            if(tempSentido != self.sentido){
-                self.sentido = tempSentido;
-                [self mover:(jogador.position) withInterval:2 withType:self.sentido];
-                [self.arrPointsFixes addObject:[NSValue valueWithCGPoint:self.position]];
-                [self removeActionForKey:@"move"];
+            int tempSentido;
+            if(!self.inColissao){
+                tempSentido = [self verificaSentido:jogador.position with:self.position];
+                if(tempSentido != self.sentido) {
+                    self.sentido = tempSentido;
+                    [self mover:(jogador.position) withInterval:2 withType:self.sentido];
+                    [self.arrPointsFixes addObject:[NSValue valueWithCGPoint:self.position]];
+                    [self removeActionForKey:@"move"];
+                }
+            }else{
+                tempSentido=[self verificaSentidoColisao:jogador.position withPontoObjeto:self.position withSentido:self.sentido];
+                if (tempSentido!=self.sentidoCol) {
+                    self.sentidoCol=tempSentido;
+                    [self mover:(jogador.position) withInterval:2 withType:self.sentido];
+                    [self.arrPointsFixes addObject:[NSValue valueWithCGPoint:self.position]];
+                    [self removeActionForKey:@"move"];
+                }
             }
+            
         }
         
     } else {
@@ -238,6 +252,43 @@
         else
             tipo = 2;
     }
+    
+    return tipo;
+}
+
+-(int)verificaSentidoColisao:(CGPoint)pontoReferencia withPontoObjeto:(CGPoint)pontoObjeto withSentido:(int) sentido{
+    
+    
+    int tipo;
+    
+    float difx = pontoObjeto.x - pontoReferencia.x;
+    float dify = pontoObjeto.y - pontoReferencia.y;
+    
+    BOOL negx = false;;
+    bool negy = false;
+    
+    if(difx < 0){
+        negx = true;
+        difx *= -1;
+    }
+    if(dify < 0){
+        negy = true;
+        dify *= -1;
+    }
+    
+    if(sentido<3){
+        if(negx)
+            tipo = 4;
+        else
+            tipo = 3;
+
+    }else{
+        if(negy)
+            tipo = 1;
+        else
+            tipo = 2;
+    }
+    
     
     return tipo;
 }

@@ -26,6 +26,8 @@
     
     //[self addChild:desn];
     
+    self.physicsBody.restitution=0.1;
+    
     self.multi = 100;
     
     [self configPhysics];

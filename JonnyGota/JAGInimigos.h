@@ -34,6 +34,10 @@
 
 @property int lastPointToGo;
 
+@property BOOL inColissao;
+
+@property (nonatomic) int sentidoCol;
+
 -(void)ataque;
 -(void)IAcomInfo;
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto;
@@ -46,5 +50,7 @@
 -(JAGAttack *)attackRanged:(JAGGota *)jogador;
 
 -(void)update:(JAGGota *)gota;
+
+-(int)verificaSentidoColisao:(CGPoint)pontoReferencia withPontoObjeto:(CGPoint)pontoObjeto withSentido:(int) sentido;
 
 @end
