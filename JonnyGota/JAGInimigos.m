@@ -18,17 +18,12 @@
     self.andandoIa      = false;
     self.sentido        = 0;
     
-    self.seguindo=false;
-    
-    self.andandoIa=false;
-    
-    self.sentido=0;
-    
-    self.visaoRanged=0;
-    
-    self.visao=100;
-    
-    self.atacouRanged=false;
+    self.seguindo     = false;
+    self.andandoIa    = false;
+    self.sentido      = 0;
+    self.visaoRanged  = 0;
+    self.visao        = 100;
+    self.atacouRanged = false;
     
     return self;
 }
