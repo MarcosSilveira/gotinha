@@ -41,4 +41,6 @@
 -(JAGAttack *)attackRanged:(JAGGota *)jogador;
 -(void)update:(JAGGota *)gota;
 
+-(int)verificaSentidoColisao:(CGPoint)pontoReferencia withPontoObjeto:(CGPoint)pontoObjeto withSentido:(int) sentido;
+
 @end
