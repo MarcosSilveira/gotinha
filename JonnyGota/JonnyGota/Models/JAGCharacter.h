@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "Musica.h"
 
 typedef enum : uint32_t{
  GOTA = 0x1 << 0,
@@ -14,13 +15,14 @@ typedef enum : uint32_t{
  ATTACK = 0x1 << 2,
  CONTROLE_TOQUE = 0x1 << 3,
  FONTE_DA_JUVENTUDE = 0x1 <<4,
+ TRAP = 0x1<<10,
  CHAVE = 0x1<<11,
  ITEM = 0x1 << 12,
  PRESSAO = 0x1 <<13,
  PORTA = 0x1<<14,
- CHUVA=0x1<<20,
- PERDAGOTA=0X1<<21,
- PAREDE=0x1<<22
+ CHUVA = 0x1<<20,
+ PERDAGOTA = 0X1<<21,
+ PAREDE = 0x1<<22
 }colisao;
 
 @interface JAGCharacter : SKNode <UIGestureRecognizerDelegate>
@@ -34,5 +36,7 @@ typedef enum : uint32_t{
 -(void)animar;
 -(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withType:(int)tipo;
 -(NSMutableDictionary*)createJson;
+
+
 
 @end

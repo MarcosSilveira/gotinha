@@ -32,6 +32,8 @@
 
 @property (nonatomic) int sentido;
 
+@property int lastPointToGo;
+
 -(void)ataque;
 -(void)IAcomInfo;
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto;
@@ -42,5 +44,7 @@
 -(JAGAttack *)createAttackRanged: (CGVector)withImpulse;
 
 -(JAGAttack *)attackRanged:(JAGGota *)jogador;
+
+-(void)update:(JAGGota *)gota;
 
 @end
