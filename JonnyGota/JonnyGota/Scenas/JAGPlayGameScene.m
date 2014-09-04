@@ -591,7 +591,16 @@
         }
     }
     
+    //Melhorar Ia do monstro
+    if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ENEMY)){
+        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
+        inimigo.inColissao=true;
+    }
     
+    if((contact.bodyB.categoryBitMask == PAREDE) && (contact.bodyA.categoryBitMask == ENEMY)){
+        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
+        inimigo.inColissao=true;
+    }
 }
 
 -(void)didEndContact:(SKPhysicsContact *)contact{
@@ -703,16 +712,26 @@
         }
     }
 */
+    
+    if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ENEMY)){
+        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
+        inimigo.inColissao=false;
+    }
+    
+    if((contact.bodyB.categoryBitMask == PAREDE) && (contact.bodyA.categoryBitMask == ENEMY)){
+        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
+        inimigo.inColissao=false;
+    }
 }
 
 #pragma mark - Receber Dano
 -(void)receberDano:(int) dano{
     self.gota.vida-=dano;
     if(self.gota.vida<=0){
+        
         self.gota.vida=15;
         self.hud.vidaRestante--;
         [self presentGameOver:0];
-
         [self.gota changePosition:_posicaoInicial];
 //        [self presentGameOver:1];
         self.paused=YES;

@@ -12,9 +12,8 @@
 
 @interface JAGFogoEnemy : JAGInimigos
 
--(id)initWithPosition:(CGPoint) position withSize:(CGSize)size;
-
 @property (nonatomic)SKEmitterNode *emitter;
 
--(BOOL)tocou:(CGPoint) ponto;
+-(id)initWithPosition:(CGPoint) position withSize:(CGSize)size;
+
 @end

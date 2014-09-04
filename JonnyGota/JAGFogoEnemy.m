@@ -26,6 +26,8 @@
     
     //[self addChild:desn];
     
+    self.physicsBody.restitution=0.1;
+    
     self.multi = 100;
     
     [self configPhysics];
@@ -33,20 +35,10 @@
     
     self.position = position;
     
-    
-    
     return self;
 }
 
--(void)ataque{
-    
-    
-}
-
--(BOOL)tocou:(CGPoint)ponto{
-    BOOL toque;
-    
-    return toque;
+-(void)ataque {
     
 }
 

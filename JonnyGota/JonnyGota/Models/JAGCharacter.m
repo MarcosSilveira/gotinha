@@ -23,6 +23,16 @@
  //   return self;
 
 }
+
+-(void)changePosition:(CGPoint) posicao{
+    
+    SKPhysicsBody *temp = self.physicsBody;
+    
+    self.physicsBody = nil;
+    self.position = posicao;
+    self.physicsBody = temp;
+}
+
 -(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withType:(int)tipo {
     
     // 1 = Cima 2 = Baixo 3 = Esquerda 4 = Direita
