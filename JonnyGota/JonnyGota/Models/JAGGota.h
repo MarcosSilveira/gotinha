@@ -19,6 +19,8 @@
 @property BOOL emContatoFonte;
 @property float aguaRestante;
 
+@property (nonatomic) int sentido;
+
 //-(void)mover:(CGPoint)ponto
 //withInterval:(NSTimeInterval) time
 //    withTipe:(int) tipo;

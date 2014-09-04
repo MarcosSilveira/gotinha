@@ -35,7 +35,6 @@
 
 @property BOOL inColissao;
 
-@property (nonatomic) int sentidoCol;
 
 -(BOOL)tocou:(CGPoint)ponto;
 -(void)ataque;
