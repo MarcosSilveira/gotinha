@@ -14,6 +14,7 @@
 #import "JAGPerdaGota.h"
 #import "JAGPerdaFogo.h"
 #import "JAGChave.h"
+#import "JAGTrovaoEnemy.h"
 #import "JAGTrap.h"
 
 
@@ -46,7 +47,7 @@
     [self touchesEnded:nil withEvent:nil];
     longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressOK)];
     longPress.delegate = self;
-    
+    longPress.minimumPressDuration = 1;
 }
 -(void)longPressOK{
     NSLog(@"long press recognized");
@@ -56,7 +57,6 @@
         /* Setup your scene here */
         atlas = [SKTextureAtlas atlasNamed:@"gotinha"];
         self.physicsWorld.contactDelegate = self;
-
         
         if (level != nil && world != nil) {
             self.currentLevel = level;
@@ -86,6 +86,7 @@
         [self configuraParadaGota];
     }
 //    [self presentGameOver:0];
+
 
     return self;
 }
@@ -256,6 +257,61 @@
         toqueInicio = CGPointMake(toqueInicio.x+(_gota.position.x)-CGRectGetMidX(self.frame),
                                  toqueInicio.y+(_gota.position.y)-CGRectGetMidY(self.frame));
         tocou_gota  = [_gota verificaToque:toqueInicio];
+        
+        
+//
+//            if (!_gota.escondida) {
+//                
+//                switch ([self verificaSentido:toqueFinal with:_gota.position]) {
+//                    case 1:
+//                        
+//                        [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:1 ];
+//
+//                        if (controleXnaTela){
+//                            [pararMovimentoCONTROLx removeFromParent];
+//                            controleXnaTela = NO;}
+//                        if (!controleYnaTela) {
+//                            [_cropNode addChild:pararMovimentoCONTROLy];
+//                            controleYnaTela = YES;}
+//                        
+//                        break;
+//                    case 2:
+//                        
+//                        [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:2 ];
+//
+//                        if (controleXnaTela){
+//                            [pararMovimentoCONTROLx removeFromParent];
+//                            controleXnaTela = NO;}
+//                        if (!controleYnaTela) {
+//                            [_cropNode addChild:pararMovimentoCONTROLy];
+//                            controleYnaTela = YES;}
+//                        break;
+//                    case 3:
+//                        [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:3 ];
+//
+//                        if (controleYnaTela){
+//                            [pararMovimentoCONTROLy removeFromParent];
+//                            controleYnaTela = NO;}
+//                        if (!controleXnaTela) {
+//                            [_cropNode addChild:pararMovimentoCONTROLx];
+//                            controleXnaTela = YES;}
+//                        break;
+//                    case 4:
+//                        
+//                        [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:4 ];
+//
+//                        
+//                        if (controleYnaTela){
+//                            [pararMovimentoCONTROLy removeFromParent];
+//                            controleYnaTela = NO;}
+//                        if (!controleXnaTela) {
+//                            [_cropNode addChild:pararMovimentoCONTROLx];
+//                            controleXnaTela = YES;}
+//                        break;
+//                }
+//                
+//            }
+
     
             
         
@@ -282,6 +338,62 @@
     } else {
         //finger touch went downwards
     }
+    
+    
+    
+
+//        if (!_gota.escondida) {
+//            
+//            switch ([self verificaSentido:location with:_gota.position]) {
+//                case 1:
+//                    
+//                    [_gota mover:toqueFinal withInterval:1.0 withType:1 ];
+//
+//                    if (controleXnaTela){
+//                        [pararMovimentoCONTROLx removeFromParent];
+//                        controleXnaTela = NO;}
+//                    if (!controleYnaTela) {
+//                        [_cropNode addChild:pararMovimentoCONTROLy];
+//                        controleYnaTela = YES;}
+//                    
+//                    break;
+//                case 2:
+//                    
+//                    [_gota mover:location withInterval:1.0 withType:2 ];
+//
+//                    if (controleXnaTela){
+//                        [pararMovimentoCONTROLx removeFromParent];
+//                        controleXnaTela = NO;}
+//                    if (!controleYnaTela) {
+//                        [_cropNode addChild:pararMovimentoCONTROLy];
+//                        controleYnaTela = YES;}
+//                    break;
+//                case 3:
+//                    [_gota mover:location withInterval:1.0 withType:3 ];
+//
+//                    if (controleYnaTela){
+//                        [pararMovimentoCONTROLy removeFromParent];
+//                        controleYnaTela = NO;}
+//                    if (!controleXnaTela) {
+//                        [_cropNode addChild:pararMovimentoCONTROLx];
+//                        controleXnaTela = YES;}
+//                    break;
+//                case 4:
+//                    
+//                    [_gota mover:location withInterval:1.0 withType:4 ];
+//
+//                    
+//                    if (controleYnaTela){
+//                        [pararMovimentoCONTROLy removeFromParent];
+//                        controleYnaTela = NO;}
+//                    if (!controleXnaTela) {
+//                        [_cropNode addChild:pararMovimentoCONTROLx];
+//                        controleXnaTela = YES;}
+//                    break;
+//            }
+//            
+//        }
+
     
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -362,7 +474,7 @@
                     }
                     
                 }
-                
+            
                 //menu gameover
                 SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
 
@@ -782,7 +894,6 @@
     
     self.cropNode.zPosition=50;
     
-    
     SKAction *diminuirSaude=[SKAction sequence:@[[SKAction waitForDuration:time],
                                                 [SKAction runBlock:^{
         [self receberDano:1];
@@ -795,7 +906,6 @@
         [self.cropNode addChild:gotinha.emitter];
         //Aumentar a area
         
-        
                                                 }]]];
     SKAction *loop=[SKAction repeatActionForever:diminuirSaude];
     
@@ -803,13 +913,10 @@
     
     for (int i=0;i<_inimigos.count;i++){
         
-                JAGInimigos *fogo=(JAGInimigos *)_inimigos[i];
+                JAGInimigos *inimigo = (JAGInimigos *)_inimigos[i];
         
-        [fogo IAcomInfo];
+        [inimigo IAcomInfo];
     }
-
-    
-    
 }
 
 -(void)configInit:(SKSpriteNode *)background{
@@ -818,11 +925,7 @@
     
     self.characteres=[[NSMutableArray alloc] init];
     self.inimigos=[[NSMutableArray alloc] init];
-
 }
-
-
-
 
 -(void)rastroInimigo: (SKNode*)inimigo{
     JAGPerdaFogo *perda_fogo = [[JAGPerdaFogo alloc] initWithPosition:inimigo.position withTimeLife:10];

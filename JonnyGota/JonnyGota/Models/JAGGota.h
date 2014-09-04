@@ -19,20 +19,6 @@
 @property BOOL emContatoFonte;
 @property float aguaRestante;
 
-@property BOOL andando;
-
-
-//Musicas
-@property Musica *musandar;
-
-@property Musica *musdividir;
-
-@property Musica *muspoca;
-
-
--(SKSpriteNode*)dividir;
--(void)esconder;
-
 //-(void)mover:(CGPoint)ponto
 //withInterval:(NSTimeInterval) time
 //    withTipe:(int) tipo;
@@ -40,5 +26,7 @@
 -(id)initWithPosition:(CGPoint) position
              withSize:(CGSize) size;
 -(BOOL)verificaToque:(CGPoint) ponto;
+-(SKSpriteNode*)dividir;
+-(void)esconder;
 
 @end

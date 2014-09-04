@@ -13,5 +13,6 @@
 @interface JAGTrovaoEnemy : JAGInimigos
 
 -(id)initWithPosition:(CGPoint) position withSize:(CGSize)size;
+-(void) moveTelep;
 
 @end

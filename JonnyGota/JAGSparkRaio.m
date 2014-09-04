@@ -17,11 +17,10 @@
     _emitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"Raio" ofType:@"sks"]];
     _emitter.position = ponto;
     _emitter.name = @"perdida_raio";
-    _emitter.numParticlesToEmit = 1000;
+    _emitter.numParticlesToEmit = 50;
     
     self.name = @"perdida_raio";
     self.position = ponto;
-    
     
     SKAction *destruir = [SKAction sequence:@[[SKAction waitForDuration:time],
                                             [SKAction runBlock:^{

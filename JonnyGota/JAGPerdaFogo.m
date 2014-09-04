@@ -26,7 +26,7 @@
     self.position = ponto;
     
     
-    SKAction *destruir=[SKAction sequence:@[[SKAction waitForDuration:time],
+    SKAction *destruir = [SKAction sequence:@[[SKAction waitForDuration:time],
                                             [SKAction runBlock:^{
         [self destruir];
         
