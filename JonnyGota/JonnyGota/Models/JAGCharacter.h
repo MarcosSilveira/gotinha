@@ -31,6 +31,7 @@ typedef enum : uint32_t {
 @property (nonatomic) SKSpriteNode* sprite;
 @property int multi;
 @property (nonatomic) SKTextureAtlas *atlas;
+@property (nonatomic) BOOL EMTESTE;
 
 -(void)configPhysics;
 -(void)animar;

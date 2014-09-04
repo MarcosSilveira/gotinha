@@ -46,12 +46,12 @@
     
     self.physicsBody.friction = 0;
 
-    
+    self.name=@"wall";
     
     
     self.physicsBody.categoryBitMask = PAREDE;
     self.physicsBody.collisionBitMask = GOTA|ATTACK|ENEMY;
-    self.physicsBody.contactTestBitMask = ENEMY;
+    self.physicsBody.contactTestBitMask = ENEMY|ATTACK;
 
     
     return self;

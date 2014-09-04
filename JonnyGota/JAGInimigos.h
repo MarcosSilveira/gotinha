@@ -24,6 +24,8 @@
 @property (nonatomic)SKEmitterNode *emitter;
 @property (nonatomic) BOOL seguindo;
 @property (nonatomic) BOOL andandoIa;
+@property (nonatomic) BOOL inColisao;
+@property (nonatomic) int sentidoCol;
 
 @property (nonatomic) int delayAttack;
 @property (nonatomic) BOOL atacouRanged;
@@ -44,5 +46,7 @@
 -(JAGAttack *)attackRanged:(JAGGota *)jogador;
 -(void)update:(JAGGota *)gota;
 -(int)verificaSentidoColisao:(CGPoint)pontoReferencia withPontoObjeto:(CGPoint)pontoObjeto withSentido:(int) sentido;
+
+-(void)movernaParede:(JAGGota *) jogador;
 
 @end

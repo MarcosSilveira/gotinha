@@ -16,7 +16,7 @@
     
     self.sprite = imagem;
     
-    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
+    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake( self.sprite.size.width,  self.sprite.size.height)];
     //  self.zPosition = 1;
     self.physicsBody.categoryBitMask = ATTACK;
     self.physicsBody.collisionBitMask = GOTA|PAREDE;
@@ -40,6 +40,13 @@
     self.zPosition=100;
     
     self.name=@"attack";
+    
+    SKAction *sumir=[SKAction sequence:@[[SKAction waitForDuration:5],
+                                         [SKAction runBlock:^{
+        [self removeFromParent];
+    }]]];
+                     
+                     [self runAction:sumir];
     
     return self;
 }

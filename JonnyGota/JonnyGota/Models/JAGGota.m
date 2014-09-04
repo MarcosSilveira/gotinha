@@ -20,7 +20,7 @@
     
     self.physicsBody.friction = 0;
     
-    self.multi = 130;
+    self.multi = 5;
     
     //    desn.position=position;
     
@@ -51,6 +51,11 @@
     _emContatoFonte = NO;
     _comChave = NO;
     _aguaRestante = 10;
+    
+    
+    //Musicas
+//    self.musandar=[Musica alloc] in
+    
     return self;
 }
 

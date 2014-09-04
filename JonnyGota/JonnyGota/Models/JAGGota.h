@@ -8,6 +8,7 @@
 
 #import "JAGCharacter.h"
 #import "JAGGotaDividida.h"
+#import "Musica.h"
 
 @interface JAGGota : JAGCharacter
 
