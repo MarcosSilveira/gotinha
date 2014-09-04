@@ -14,6 +14,7 @@
 #import "JAGPerdaGota.h"
 #import "JAGPerdaFogo.h"
 #import "JAGChave.h"
+#import "JAGTrovaoEnemy.h"
 #import "JAGTrap.h"
 
 
@@ -56,7 +57,6 @@
         /* Setup your scene here */
         atlas = [SKTextureAtlas atlasNamed:@"gotinha"];
         self.physicsWorld.contactDelegate = self;
-
         
         if (level != nil && world != nil) {
             self.currentLevel = level;
@@ -213,6 +213,7 @@
 
 #pragma mark - Lógica dos inimigos
 -(void)actionsEnemys{
+    
     JAGAttack *ata;
     for (int i=0;i<_inimigos.count;i++){
         
@@ -225,6 +226,7 @@
                 //Cria o attack
                 [self.cropNode addChild:ata];
                 fogo.andandoIa = false;
+                fogo.sentido=0;
                 
             }],
                                                    [SKAction waitForDuration:1]]];
@@ -395,13 +397,7 @@
     
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSMutableArray *walkFrames = [NSMutableArray array];
-    int numImages = atlas.textureNames.count;
-    for (int i=1; i <= numImages/2; i++) {
-        NSString *textureName = [NSString stringWithFormat:@"gota_walk_%d", i];
-        SKTexture *temp = [atlas textureNamed:textureName];
-        [walkFrames addObject:temp];
-    }
+    
     for (UITouch *touch in touches) {
 
         pararMovimentoCONTROLx.position = [touch locationInNode:_cropNode];
@@ -420,6 +416,14 @@
                 [_gota esconder];
             } else {
                 if (!_gota.escondida) {
+                    
+                    NSMutableArray *walkFrames = [NSMutableArray array];
+                    int numImages = atlas.textureNames.count;
+                    for (int i=1; i <= numImages/2; i++) {
+                        NSString *textureName = [NSString stringWithFormat:@"gota_walk_%d", i];
+                        SKTexture *temp = [atlas textureNamed:textureName];
+                        [walkFrames addObject:temp];
+                    }
                     
                     switch ([self verificaSentido:toqueFinal with:_gota.position]) {
                         case 1:
@@ -504,6 +508,10 @@
     }
 
 }
+
+-(void)touchFim{
+    
+}
 -(void)centerMapOnCharacter{
     self.cropNode.position = CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
                                     -(_gota.position.y)+CGRectGetMidY(self.frame));
@@ -513,6 +521,7 @@
      //                               -(_gota.position.y)+CGRectGetMidY(self.frame));
 
 }
+
 -(void)update:(NSTimeInterval)currentTime {
     if (longPress.state == UIGestureRecognizerStateBegan ) {
         NSLog(@"Long Press Recognized");
@@ -525,6 +534,7 @@
     }
     
     //[fogo IAcomInfo:_gota];
+   
     
     [self centerMapOnCharacter];
     //depois de um tempo ou acao
@@ -537,12 +547,26 @@
 
     //NSLog(@"gota x:%f y:%f",_gota.position.x,_gota.position.y);
     
-    [self actionsEnemys];
+    
+    [self prepareMove];
+    
         [self.hud update];
     
     if (self.hud.tempoRestante == 0) {
         self.scene.view.paused = YES;
     }
+}
+
+#pragma mark - PrepareMove
+-(void)prepareMove{
+    dispatch_queue_t queue;
+    
+    queue = dispatch_queue_create("actionEnemys",
+                                  NULL);
+    
+    dispatch_async(queue, ^{
+        [self actionsEnemys];
+    });
 }
 
 #pragma mark - Physics
@@ -679,7 +703,8 @@
 
     //Colissao do Attack
     
-    if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ATTACK)){
+    if(( (contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ATTACK)) ||
+       ((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == ATTACK))){
         JAGAttack *attack;
         if((contact.bodyB.categoryBitMask == GOTA)){
             attack=(JAGAttack *)contact.bodyA.node;
@@ -693,7 +718,8 @@
 
         }
     }
-    if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ATTACK)){
+    if(((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ATTACK))||
+       ((contact.bodyB.categoryBitMask == PAREDE) && (contact.bodyA.categoryBitMask == ATTACK))){
         if ((contact.bodyA.categoryBitMask == ATTACK)) {
             JAGAttack *attack=(JAGAttack *)contact.bodyA.node;
             [attack removeFromParent];
@@ -834,6 +860,17 @@
         JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
         inimigo.inColisao=false;
     }
+    
+    if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ATTACK)){
+        if ((contact.bodyA.categoryBitMask == ATTACK)) {
+            JAGAttack *attack=(JAGAttack *)contact.bodyA.node;
+            [attack removeFromParent];
+        }else{
+            JAGAttack *attack=(JAGAttack *)contact.bodyB.node;
+            [attack removeFromParent];
+        }
+    }
+    
 }
 
 #pragma mark - Receber Dano
@@ -857,7 +894,6 @@
     
     self.cropNode.zPosition=50;
     
-    
     SKAction *diminuirSaude=[SKAction sequence:@[[SKAction waitForDuration:time],
                                                 [SKAction runBlock:^{
         [self receberDano:1];
@@ -870,7 +906,6 @@
         [self.cropNode addChild:gotinha.emitter];
         //Aumentar a area
         
-        
                                                 }]]];
     SKAction *loop=[SKAction repeatActionForever:diminuirSaude];
     
@@ -878,13 +913,10 @@
     
     for (int i=0;i<_inimigos.count;i++){
         
-                JAGInimigos *fogo=(JAGInimigos *)_inimigos[i];
+                JAGInimigos *inimigo = (JAGInimigos *)_inimigos[i];
         
-        [fogo IAcomInfo];
+        [inimigo IAcomInfo];
     }
-
-    
-    
 }
 
 -(void)configInit:(SKSpriteNode *)background{
@@ -893,11 +925,7 @@
     
     self.characteres=[[NSMutableArray alloc] init];
     self.inimigos=[[NSMutableArray alloc] init];
-
 }
-
-
-
 
 -(void)rastroInimigo: (SKNode*)inimigo{
     JAGPerdaFogo *perda_fogo = [[JAGPerdaFogo alloc] initWithPosition:inimigo.position withTimeLife:10];

@@ -11,20 +11,21 @@
 @implementation JAGInimigos
 
 -(id)init {
+    
     self = [super init];
     
     self.arrPointsFixes = [[NSMutableArray alloc] init];
     self.seguindo       = false;
     self.andandoIa      = false;
-    self.sentido        = 0;
+    self.seguindo       = false;
+    self.andandoIa      = false;
+    self.atacouRanged   = false;
+    self.inColissao     = false;
     
-    self.seguindo     = false;
-    self.andandoIa    = false;
-    self.sentido      = 0;
-    self.visaoRanged  = 0;
-    self.visao        = 100;
-    self.atacouRanged = false;
-    
+    self.sentido       = 0;
+    self.sentido       = 0;
+    self.visaoRanged   = 0;
+    self.visao         = 100;
     self.lastPointToGo = 0;
     
     return self;
@@ -32,50 +33,6 @@
 
 -(void)ataque{
     
-}
-
--(void)habilEspec:(int)tipo {
-    
-    if (tipo == 1) {
-        
-        SKAction *habilid = [SKAction sequence:@[[SKAction waitForDuration:5.0],
-                                                 [SKAction runBlock:^{
-            
-            _emitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"Raio" ofType:@"sks"]];
-            _emitter.position = self.position;
-            _emitter.name = @"perdida_raio";
-            _emitter.numParticlesToEmit = 1000;
-            
-            [self destruirParti];
-            
-        }],
-                                                 [SKAction runBlock:^{
-            [self changePosition:CGPointMake(0, 0)];
-        }],
-                                                 [SKAction waitForDuration: 5.0],
-                                                 [SKAction runBlock:^{
-            
-            _emitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"Raio" ofType:@"sks"]];
-            _emitter.position = self.position;
-            _emitter.name = @"perdida_raio";
-            _emitter.numParticlesToEmit = 1000;
-            
-            [self destruirParti];
-        }],
-                                                 [SKAction runBlock:^{
-            [self changePosition:self.position];
-        }]]];
-        [self runAction:habilid];
-    }
-    
-    else {
-        // rastro fogo;
-    }
-}
-
--(void) destruirParti {
-    
-    [_emitter removeFromParent];
 }
 
 -(BOOL)tocou:(CGPoint)ponto {
@@ -102,6 +59,7 @@
             //Correção - SABER QUAL PONTO Q ELE PAROU
             
             //self.andandoIa = true;
+
             
             SKAction *sequenceTemp;
             
@@ -123,17 +81,20 @@
                         [self.arrPointsFixes removeObjectAtIndex:i];
                     }]]];
                 }
+                
+                
             }
-            
             [self createPathto];
             _movePath = [SKAction sequence:@[sequenceTemp,_movePath]];
             
             
-            _movePath = [SKAction sequence:@[_movePath,[SKAction runBlock:^{
-                self.andandoIa = false;
-                self.lastPointToGo=0;
-            }]]];
-            
+                _movePath = [SKAction sequence:@[_movePath,[SKAction runBlock:^{
+                    self.andandoIa = false;
+                     self.lastPointToGo=0;
+                    }]]];
+           
+
+           
             [self runAction:_movePath withKey:@"move"];
         }
     }
@@ -155,8 +116,8 @@
             sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:1],
                                                 [SKAction runBlock:^{
                 self.lastPointToGo=i+1;
-            }],
-                                                [SKAction waitForDuration:2.0]]];
+                          }],
+                                                [SKAction waitForDuration:1.3]]];
         } else {
             sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:1],
                                                 [SKAction runBlock:^{
@@ -192,17 +153,15 @@
                 if(tempSentido != self.sentido) {
                     self.sentido = tempSentido;
                     [self mover:(jogador.position) withInterval:2 withType:self.sentido];
-                    [self.arrPointsFixes addObject:[NSValue valueWithCGPoint:self.position]];
-                    [self removeActionForKey:@"move"];
+                    [self addPointFIxes];
                 }
             }else{
-                tempSentido=[self verificaSentidoColisao:jogador.position withPontoObjeto:self.position withSentido:self.sentido];
-                if (tempSentido!=self.sentidoCol) {
-                    self.sentidoCol=tempSentido;
-                    [self mover:(jogador.position) withInterval:2 withType:self.sentido];
-                    [self.arrPointsFixes addObject:[NSValue valueWithCGPoint:self.position]];
-                    [self removeActionForKey:@"move"];
-                }
+//                tempSentido=[self verificaSentidoColisao:jogador.position withPontoObjeto:self.position withSentido:self.sentido];
+//                if (tempSentido!=self.sentidoCol) {
+//                    self.sentidoCol=tempSentido;
+//                    [self mover:(jogador.position) withInterval:2 withType:self.sentidoCol];
+//                    [self addPointFIxes];
+//                }
             }
             
         }
@@ -211,8 +170,41 @@
         
         self.seguindo = false;
         self.sentido  = 0;
+        self.sentidoCol=0;
         [self IAcomInfo];
     }
+}
+
+-(void)movernaParede:(JAGGota *) jogador{
+    int tempSentido=[self verificaSentidoColisao:jogador.position withPontoObjeto:self.position withSentido:self.sentido];
+    if (tempSentido!=self.sentidoCol) {
+        self.sentidoCol=tempSentido;
+        [self mover:(jogador.position) withInterval:2 withType:self.sentidoCol];
+        [self addPointFIxes];
+    }
+}
+
+-(void)addPointFIxes{
+    
+    
+    if([self addPointOk]){
+        [self.arrPointsFixes addObject:[NSValue valueWithCGPoint:self.position]];
+//        NSLog(@"Counts. %d",self.arrPointsFixes.count);
+    }
+    [self removeActionForKey:@"move"];
+}
+
+-(bool)addPointOk{
+    if (self.arrPointsFixes.count>0) {
+        
+        CGPoint ponto = [(NSValue *)[self.arrPointsFixes objectAtIndex:self.arrPointsFixes.count-1] CGPointValue]; 
+       
+        if(self.position.x==ponto.x&&self.position.y==ponto.y){
+            return false;
+        }
+    }
+    
+    return true;
 }
 
 -(JAGAttack *)attackRanged:(JAGGota *)jogador{
