@@ -17,8 +17,6 @@
 @property BOOL comChave;
 @property BOOL emContatoFonte;
 @property float aguaRestante;
--(SKSpriteNode*)dividir;
--(void)esconder;
 
 //-(void)mover:(CGPoint)ponto
 //withInterval:(NSTimeInterval) time
@@ -27,5 +25,7 @@
 -(id)initWithPosition:(CGPoint) position
              withSize:(CGSize) size;
 -(BOOL)verificaToque:(CGPoint) ponto;
+-(SKSpriteNode*)dividir;
+-(void)esconder;
 
 @end

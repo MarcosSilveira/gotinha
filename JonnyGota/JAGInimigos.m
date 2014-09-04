@@ -11,20 +11,21 @@
 @implementation JAGInimigos
 
 -(id)init {
+    
     self = [super init];
     
     self.arrPointsFixes = [[NSMutableArray alloc] init];
     self.seguindo       = false;
     self.andandoIa      = false;
-    self.sentido        = 0;
+    self.seguindo       = false;
+    self.andandoIa      = false;
+    self.atacouRanged   = false;
+    self.inColissao     = false;
     
-    self.seguindo     = false;
-    self.andandoIa    = false;
-    self.sentido      = 0;
-    self.visaoRanged  = 0;
-    self.visao        = 100;
-    self.atacouRanged = false;
-    
+    self.sentido       = 0;
+    self.sentido       = 0;
+    self.visaoRanged   = 0;
+    self.visao         = 100;
     self.lastPointToGo = 0;
     
     return self;
@@ -32,50 +33,6 @@
 
 -(void)ataque{
     
-}
-
--(void)habilEspec:(int)tipo {
-    
-    if (tipo == 1) {
-        
-        SKAction *habilid = [SKAction sequence:@[[SKAction waitForDuration:5.0],
-                                                 [SKAction runBlock:^{
-            
-            _emitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"Raio" ofType:@"sks"]];
-            _emitter.position = self.position;
-            _emitter.name = @"perdida_raio";
-            _emitter.numParticlesToEmit = 1000;
-            
-            [self destruirParti];
-            
-        }],
-                                                 [SKAction runBlock:^{
-            [self changePosition:CGPointMake(0, 0)];
-        }],
-                                                 [SKAction waitForDuration: 5.0],
-                                                 [SKAction runBlock:^{
-            
-            _emitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"Raio" ofType:@"sks"]];
-            _emitter.position = self.position;
-            _emitter.name = @"perdida_raio";
-            _emitter.numParticlesToEmit = 1000;
-            
-            [self destruirParti];
-        }],
-                                                 [SKAction runBlock:^{
-            [self changePosition:self.position];
-        }]]];
-        [self runAction:habilid];
-    }
-    
-    else {
-        // rastro fogo;
-    }
-}
-
--(void) destruirParti {
-    
-    [_emitter removeFromParent];
 }
 
 -(BOOL)tocou:(CGPoint)ponto {
@@ -155,8 +112,8 @@
             sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:1],
                                                 [SKAction runBlock:^{
                 self.lastPointToGo=i+1;
-            }],
-                                                [SKAction waitForDuration:2.0]]];
+                          }],
+                                                [SKAction waitForDuration:1.3]]];
         } else {
             sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:1],
                                                 [SKAction runBlock:^{

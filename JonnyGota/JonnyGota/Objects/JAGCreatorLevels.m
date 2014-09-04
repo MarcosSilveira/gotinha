@@ -186,15 +186,16 @@
     SKAction *diminuirSaude = [SKAction sequence:@[[SKAction waitForDuration:5],
                                                  [SKAction runBlock:^{
         JAGPerdaFogo *perda_fogo = [[JAGPerdaFogo alloc] initWithPosition:fogo.position withTimeLife:10];
+        JAGSparkRaio *spark = [[JAGSparkRaio alloc] initWithPosition:trovao.position withTimeLife:10];
 
         [scene.cropNode addChild:perda_fogo.emitter];
+        [scene.cropNode addChild:spark.emitter];
         
-        [trovao habilEspec:1];
-        
-        SKAction *destruir = [SKAction sequence:@[[SKAction waitForDuration:10],
+        SKAction *destruir = [SKAction sequence:@[[SKAction waitForDuration:5],
                                                 [SKAction runBlock:^{
             
             [perda_fogo.emitter removeFromParent];
+            [spark.emitter removeFromParent];
             
             }]]];
 

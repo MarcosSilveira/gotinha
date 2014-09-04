@@ -7,8 +7,13 @@
 //
 
 #import "JAGTrovaoEnemy.h"
+#import "JAGSparkRaio.h"
 
-@implementation JAGTrovaoEnemy
+@implementation JAGTrovaoEnemy {
+    
+    int x,
+    y;
+}
 
 -(id)initWithPosition:(CGPoint)position withSize:(CGSize)size{
     self = [super init];
@@ -31,11 +36,12 @@
     [self configPhysics];
     [self addChild:self.sprite];
     
-    self.visaoRanged=150;
-    
+    self.visaoRanged = 150;
     self.position = position;
+    self.delayAttack = 5;
     
-    self.delayAttack=5;
+    x = arc4random()%200;
+    y = arc4random()%200;
     
     return self;
 }
@@ -58,50 +64,23 @@
     return attack;
 }
 
--(void)mover:(CGPoint)ponto withInterval:(NSTimeInterval)time withTipe:(int)tipo{
-    self.physicsBody.velocity = CGVectorMake(0, 0);
+-(void) moveTelep {
     
-    switch (tipo) {
-        case 1:
-            
-            //self.physicsBody.velocity=CGVectorMake(ponto.x, ponto.y);
-            
-            [self.physicsBody applyForce:CGVectorMake(0,(ponto.y - self.position.y)*self.multi)];
-            
-            //  action = [SKAction followPath:(CGPathCreateWithRect(CGRectMake(ponto.x, ponto.y, 10, 10), nil)) duration:2];
-            //self.sprite.color=[UIColor greenColor];
-            
-            //            actionChangeSprite=[SKAction colorizeWithColor:[SKColor whiteColor] colorBlendFactor:1.0 duration:0.0];
-            // self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor greenColor] size:CGSizeMake(50, 50)];
-            break;
-            
-        case 2:
-            
-            [self.physicsBody applyForce:CGVectorMake(0,(ponto.y - self.position.y)*self.multi)];
-            
-            //            actionChangeSprite=[SKAction colorizeWithColor:[SKColor brownColor] colorBlendFactor:1.0 duration:0.0];
-            
-            //self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
-            break;
-            
-        case 3:
-            
-            [self.physicsBody applyForce:CGVectorMake((ponto.x - self.position.x)*self.multi,0)];
-            
-            //            actionChangeSprite=[SKAction colorizeWithColor:[SKColor blueColor] colorBlendFactor:1.0 duration:0.0];
-            break;
-            
-        case 4:
-            [self.physicsBody applyForce:CGVectorMake((ponto.x - self.position.x)*self.multi,0)];
-            
-            //            actionChangeSprite=[SKAction colorizeWithColor:[SKColor yellowColor] colorBlendFactor:1.0 duration:0.0];
-            
-            break;
-            
-        default:
-            break;
-    }
+    JAGSparkRaio *spark = [[JAGSparkRaio alloc] initWithPosition:self.position withTimeLife:10];
+    
+    SKAction *tp = [SKAction sequence:@[[SKAction waitForDuration:5],
+                                        [SKAction runBlock:^{
+        
+        [self addChild:spark.emitter];
+        [self changePosition:CGPointMake(x, y)];
+        [spark.emitter removeFromParent];
+        
+    }]]];
+    
+    SKAction *loop = [SKAction repeatActionForever:tp];
+    
+    [self runAction:loop];
+    
 }
-
 
 @end

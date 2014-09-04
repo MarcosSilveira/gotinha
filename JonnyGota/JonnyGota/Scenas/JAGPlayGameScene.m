@@ -14,6 +14,7 @@
 #import "JAGPerdaGota.h"
 #import "JAGPerdaFogo.h"
 #import "JAGChave.h"
+#import "JAGTrovaoEnemy.h"
 #import "JAGTrap.h"
 
 
@@ -51,7 +52,6 @@
         /* Setup your scene here */
         atlas = [SKTextureAtlas atlasNamed:@"gotinha"];
         self.physicsWorld.contactDelegate = self;
-
         
         if (level != nil && world != nil) {
             self.currentLevel = level;
@@ -737,7 +737,6 @@
     
     self.cropNode.zPosition=50;
     
-    
     SKAction *diminuirSaude=[SKAction sequence:@[[SKAction waitForDuration:time],
                                                 [SKAction runBlock:^{
         [self receberDano:1];
@@ -750,7 +749,6 @@
         [self.cropNode addChild:gotinha.emitter];
         //Aumentar a area
         
-        
                                                 }]]];
     SKAction *loop=[SKAction repeatActionForever:diminuirSaude];
     
@@ -758,13 +756,10 @@
     
     for (int i=0;i<_inimigos.count;i++){
         
-                JAGInimigos *fogo=(JAGInimigos *)_inimigos[i];
+                JAGInimigos *inimigo = (JAGInimigos *)_inimigos[i];
         
-        [fogo IAcomInfo];
+        [inimigo IAcomInfo];
     }
-
-    
-    
 }
 
 -(void)configInit:(SKSpriteNode *)background{
@@ -773,11 +768,7 @@
     
     self.characteres=[[NSMutableArray alloc] init];
     self.inimigos=[[NSMutableArray alloc] init];
-
 }
-
-
-
 
 -(void)rastroInimigo: (SKNode*)inimigo{
     JAGPerdaFogo *perda_fogo = [[JAGPerdaFogo alloc] initWithPosition:inimigo.position withTimeLife:10];
