@@ -46,7 +46,7 @@
     
     self.physicsBody.friction = 0;
 
-    
+    self.name=@"wall";
     
     
     self.physicsBody.categoryBitMask = PAREDE;

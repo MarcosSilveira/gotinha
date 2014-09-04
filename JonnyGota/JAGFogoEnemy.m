@@ -28,7 +28,7 @@
     
     self.physicsBody.restitution=0.0;
     
-    self.multi = 100;
+    self.multi = 3;
     
     [self configPhysics];
     [self addChild:self.sprite];

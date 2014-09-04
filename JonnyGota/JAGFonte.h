@@ -7,10 +7,14 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "Musica.h"
 
 @interface JAGFonte : SKNode
 @property SKSpriteNode *sprite;
 @property float aguaRestante;
+
+@property (nonatomic) Musica *musFonte;
+
 -(instancetype)initWithPosition:(CGPoint) ponto
                      withSprite:(SKSpriteNode *) imagem;
 @end

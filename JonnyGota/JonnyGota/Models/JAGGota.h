@@ -8,6 +8,7 @@
 
 #import "JAGCharacter.h"
 #import "JAGGotaDividida.h"
+#import "Musica.h"
 
 @interface JAGGota : JAGCharacter
 
@@ -19,6 +20,15 @@
 @property float aguaRestante;
 
 @property BOOL andando;
+
+
+//Musicas
+@property Musica *musandar;
+
+@property Musica *musdividir;
+
+@property Musica *muspoca;
+
 
 -(SKSpriteNode*)dividir;
 -(void)esconder;

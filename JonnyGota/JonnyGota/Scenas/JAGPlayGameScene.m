@@ -285,13 +285,7 @@
     
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSMutableArray *walkFrames = [NSMutableArray array];
-    int numImages = atlas.textureNames.count;
-    for (int i=1; i <= numImages/2; i++) {
-        NSString *textureName = [NSString stringWithFormat:@"gota_walk_%d", i];
-        SKTexture *temp = [atlas textureNamed:textureName];
-        [walkFrames addObject:temp];
-    }
+    
     for (UITouch *touch in touches) {
 
         pararMovimentoCONTROLx.position = [touch locationInNode:_cropNode];
@@ -310,6 +304,14 @@
                 [_gota esconder];
             } else {
                 if (!_gota.escondida) {
+                    
+                    NSMutableArray *walkFrames = [NSMutableArray array];
+                    int numImages = atlas.textureNames.count;
+                    for (int i=1; i <= numImages/2; i++) {
+                        NSString *textureName = [NSString stringWithFormat:@"gota_walk_%d", i];
+                        SKTexture *temp = [atlas textureNamed:textureName];
+                        [walkFrames addObject:temp];
+                    }
                     
                     switch ([self verificaSentido:toqueFinal with:_gota.position]) {
                         case 1:
@@ -394,6 +396,10 @@
     }
 
 }
+
+-(void)touchFim{
+    
+}
 -(void)centerMapOnCharacter{
     self.cropNode.position = CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
                                     -(_gota.position.y)+CGRectGetMidY(self.frame));
@@ -403,6 +409,7 @@
      //                               -(_gota.position.y)+CGRectGetMidY(self.frame));
 
 }
+
 -(void)update:(NSTimeInterval)currentTime {
     if (longPress.state == UIGestureRecognizerStateBegan ) {
         NSLog(@"Long Press Recognized");
@@ -429,7 +436,7 @@
     //NSLog(@"gota x:%f y:%f",_gota.position.x,_gota.position.y);
     
     
-    
+    [self prepareMove];
     
         [self.hud update];
     
@@ -584,7 +591,8 @@
 
     //Colissao do Attack
     
-    if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ATTACK)){
+    if(( (contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ATTACK)) ||
+       ((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == ATTACK))){
         JAGAttack *attack;
         if((contact.bodyB.categoryBitMask == GOTA)){
             attack=(JAGAttack *)contact.bodyA.node;
@@ -598,7 +606,8 @@
 
         }
     }
-    if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ATTACK)){
+    if(((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ATTACK))||
+       ((contact.bodyB.categoryBitMask == PAREDE) && (contact.bodyA.categoryBitMask == ATTACK))){
         if ((contact.bodyA.categoryBitMask == ATTACK)) {
             JAGAttack *attack=(JAGAttack *)contact.bodyA.node;
             [attack removeFromParent];
@@ -611,15 +620,12 @@
     //Melhorar Ia do monstro
     if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ENEMY)){
         JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
-        inimigo.inColissao=true;
-        
-//        [inimigo movernaParede:_gota];
+        inimigo.inColisao=true;
     }
     
     if((contact.bodyB.categoryBitMask == PAREDE) && (contact.bodyA.categoryBitMask == ENEMY)){
         JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
-        inimigo.inColissao=true;
-//        [inimigo movernaParede:_gota];
+        inimigo.inColisao=true;
     }
 }
 

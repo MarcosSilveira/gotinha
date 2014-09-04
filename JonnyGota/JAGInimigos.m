@@ -90,57 +90,57 @@
     
     // Movimentaçao
     
-//    if (!self.andandoIa) {
-//        
-//        self.andandoIa = true;
-//        
-//        if (self.arrPointsFixes.count == 0) {
-//            [self createPathto];
-//            _movePath = [SKAction repeatActionForever:_movePath];
-//            [self runAction:_movePath withKey:@"move"];
-//        } else {
-//            //Correção - SABER QUAL PONTO Q ELE PAROU
-//            
-//            //self.andandoIa = true;
-//
-//            
-//            SKAction *sequenceTemp;
-//            
-//            for(int i = self.arrPointsFixes.count - 1.0; i >= 0; i--) {
-//                
-//                CGPoint ponto = [(NSValue *)[self.arrPointsFixes objectAtIndex:i] CGPointValue];
-//                
-//                if(i == self.arrPointsFixes.count - 1) {
-//                    sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:0.5],
-//                                                        [SKAction waitForDuration:0.1],
-//                                                        [SKAction runBlock:^{
-//                        [self.arrPointsFixes removeObjectAtIndex:i];
-//                    }]]];
-//                    
-//                } else {
-//                    sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:0.5],
-//                                                        [SKAction waitForDuration:0.1],
-//                                                        [SKAction runBlock:^{
-//                        [self.arrPointsFixes removeObjectAtIndex:i];
-//                    }]]];
-//                }
-//                
-//                
-//            }
-//            [self createPathto];
-//            _movePath = [SKAction sequence:@[sequenceTemp,_movePath]];
-//            
-//            
-//                _movePath = [SKAction sequence:@[_movePath,[SKAction runBlock:^{
-//                    self.andandoIa = false;
-//                     self.lastPointToGo=0;
-//                    }]]];
-//           
-//
-//           
-//            [self runAction:_movePath withKey:@"move"];
-//        }
-//    }
+    if (!self.andandoIa) {
+        
+        self.andandoIa = true;
+        
+        if (self.arrPointsFixes.count == 0) {
+            [self createPathto];
+            _movePath = [SKAction repeatActionForever:_movePath];
+            [self runAction:_movePath withKey:@"move"];
+        } else {
+            //Correção - SABER QUAL PONTO Q ELE PAROU
+            
+            //self.andandoIa = true;
+
+            
+            SKAction *sequenceTemp;
+            
+            for(int i = self.arrPointsFixes.count - 1.0; i >= 0; i--) {
+                
+                CGPoint ponto = [(NSValue *)[self.arrPointsFixes objectAtIndex:i] CGPointValue];
+                
+                if(i == self.arrPointsFixes.count - 1) {
+                    sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:0.5],
+                                                        [SKAction waitForDuration:0.1],
+                                                        [SKAction runBlock:^{
+                        [self.arrPointsFixes removeObjectAtIndex:i];
+                    }]]];
+                    
+                } else {
+                    sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:0.5],
+                                                        [SKAction waitForDuration:0.1],
+                                                        [SKAction runBlock:^{
+                        [self.arrPointsFixes removeObjectAtIndex:i];
+                    }]]];
+                }
+                
+                
+            }
+            [self createPathto];
+            _movePath = [SKAction sequence:@[sequenceTemp,_movePath]];
+            
+            
+                _movePath = [SKAction sequence:@[_movePath,[SKAction runBlock:^{
+                    self.andandoIa = false;
+                     self.lastPointToGo=0;
+                    }]]];
+           
+
+           
+            [self runAction:_movePath withKey:@"move"];
+        }
+    }
 }
 
 -(void)createPathto{
@@ -232,7 +232,7 @@
     
     if([self addPointOk]){
         [self.arrPointsFixes addObject:[NSValue valueWithCGPoint:self.position]];
-        NSLog(@"Counts. %d",self.arrPointsFixes.count);
+//        NSLog(@"Counts. %d",self.arrPointsFixes.count);
     }
     [self removeActionForKey:@"move"];
 }

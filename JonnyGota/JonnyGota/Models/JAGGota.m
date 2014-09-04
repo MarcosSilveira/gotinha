@@ -51,6 +51,11 @@
     _emContatoFonte = NO;
     _comChave = NO;
     _aguaRestante = 10;
+    
+    
+    //Musicas
+//    self.musandar=[Musica alloc] in
+    
     return self;
 }
 
