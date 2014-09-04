@@ -187,7 +187,7 @@
             self.seguindo = true;
             self.andandoIa = false;
             int tempSentido;
-            if(!self.inColissao){
+            if(!self.inColisao){
                 tempSentido = [self verificaSentido:jogador.position with:self.position];
                 if(tempSentido != self.sentido) {
                     self.sentido = tempSentido;

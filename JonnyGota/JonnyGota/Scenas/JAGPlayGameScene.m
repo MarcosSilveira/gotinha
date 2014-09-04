@@ -594,12 +594,12 @@
     //Melhorar Ia do monstro
     if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ENEMY)){
         JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
-        inimigo.inColissao=true;
+        inimigo.inColisao=true;
     }
     
     if((contact.bodyB.categoryBitMask == PAREDE) && (contact.bodyA.categoryBitMask == ENEMY)){
         JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
-        inimigo.inColissao=true;
+        inimigo.inColisao=true;
     }
 }
 
@@ -715,12 +715,12 @@
     
     if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ENEMY)){
         JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
-        inimigo.inColissao=false;
+        inimigo.inColisao=false;
     }
     
     if((contact.bodyB.categoryBitMask == PAREDE) && (contact.bodyA.categoryBitMask == ENEMY)){
         JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
-        inimigo.inColissao=false;
+        inimigo.inColisao=false;
     }
 }
 
