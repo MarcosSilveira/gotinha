@@ -51,7 +51,7 @@
     
     self.physicsBody.categoryBitMask = PAREDE;
     self.physicsBody.collisionBitMask = GOTA|ATTACK|ENEMY;
-    self.physicsBody.contactTestBitMask = ENEMY;
+    self.physicsBody.contactTestBitMask = ENEMY|ATTACK;
 
     
     return self;

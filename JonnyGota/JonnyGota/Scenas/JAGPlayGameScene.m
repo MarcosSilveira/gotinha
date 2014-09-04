@@ -207,6 +207,7 @@
 
 #pragma mark - Lógica dos inimigos
 -(void)actionsEnemys{
+    
     JAGAttack *ata;
     for (int i=0;i<_inimigos.count;i++){
         
@@ -219,6 +220,7 @@
                 //Cria o attack
                 [self.cropNode addChild:ata];
                 fogo.andandoIa = false;
+                fogo.sentido=0;
                 
             }],
                                                    [SKAction waitForDuration:1]]];
@@ -405,6 +407,7 @@
     }
     
     //[fogo IAcomInfo:_gota];
+   
     
     [self centerMapOnCharacter];
     //depois de um tempo ou acao
@@ -417,12 +420,26 @@
 
     //NSLog(@"gota x:%f y:%f",_gota.position.x,_gota.position.y);
     
-    [self actionsEnemys];
+    
+    
+    
         [self.hud update];
     
     if (self.hud.tempoRestante == 0) {
         self.scene.view.paused = YES;
     }
+}
+
+#pragma mark - PrepareMove
+-(void)prepareMove{
+    dispatch_queue_t queue;
+    
+    queue = dispatch_queue_create("actionEnemys",
+                                  NULL);
+    
+    dispatch_async(queue, ^{
+        [self actionsEnemys];
+    });
 }
 
 #pragma mark - Physics
@@ -587,11 +604,14 @@
     if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ENEMY)){
         JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
         inimigo.inColissao=true;
+        
+//        [inimigo movernaParede:_gota];
     }
     
     if((contact.bodyB.categoryBitMask == PAREDE) && (contact.bodyA.categoryBitMask == ENEMY)){
         JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
         inimigo.inColissao=true;
+//        [inimigo movernaParede:_gota];
     }
 }
 
@@ -714,6 +734,17 @@
         JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
         inimigo.inColissao=false;
     }
+    
+    if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ATTACK)){
+        if ((contact.bodyA.categoryBitMask == ATTACK)) {
+            JAGAttack *attack=(JAGAttack *)contact.bodyA.node;
+            [attack removeFromParent];
+        }else{
+            JAGAttack *attack=(JAGAttack *)contact.bodyB.node;
+            [attack removeFromParent];
+        }
+    }
+    
 }
 
 #pragma mark - Receber Dano

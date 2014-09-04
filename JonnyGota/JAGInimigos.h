@@ -53,4 +53,6 @@
 
 -(int)verificaSentidoColisao:(CGPoint)pontoReferencia withPontoObjeto:(CGPoint)pontoObjeto withSentido:(int) sentido;
 
+-(void)movernaParede:(JAGGota *) jogador;
+
 @end

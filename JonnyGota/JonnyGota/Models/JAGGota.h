@@ -17,6 +17,9 @@
 @property BOOL comChave;
 @property BOOL emContatoFonte;
 @property float aguaRestante;
+
+@property BOOL andando;
+
 -(SKSpriteNode*)dividir;
 -(void)esconder;
 
