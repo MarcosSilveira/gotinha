@@ -20,7 +20,7 @@
     
     self.physicsBody.friction = 0;
     
-    self.multi = 130;
+    self.multi = 5;
     
     //    desn.position=position;
     
@@ -95,16 +95,6 @@
     return gota2;
 }
 
--(void)changePosition:(CGPoint) posicao{
-    
-    
-    SKPhysicsBody *temp= self.physicsBody;
-    self.physicsBody = nil;
-    
-    self.position=posicao;
-    
-    self.physicsBody = temp;
-}
 
 //-(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withTipe:(int)tipo{
 //

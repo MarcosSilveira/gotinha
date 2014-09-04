@@ -14,9 +14,4 @@
 
 -(id)initWithPosition:(CGPoint) position withSize:(CGSize)size;
 
--(BOOL)tocou:(CGPoint) ponto;
-
-
-
-
 @end

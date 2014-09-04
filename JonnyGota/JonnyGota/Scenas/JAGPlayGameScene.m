@@ -34,6 +34,7 @@
     BOOL controleXnaTela;
     BOOL controleYnaTela;
     JAGChave* chave;
+    UILongPressGestureRecognizer *longPress;
 }
 
 #pragma mark - Move to View
@@ -43,9 +44,13 @@
     self.scaleMode = SKSceneScaleModeAspectFit;
     self.physicsWorld.gravity = CGVectorMake(0.0f, 0.0f);
     [self touchesEnded:nil withEvent:nil];
+    longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressOK)];
+    longPress.delegate = self;
     
 }
-
+-(void)longPressOK{
+    NSLog(@"long press recognized");
+}
 -(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world{
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
@@ -399,6 +404,9 @@
 
 }
 -(void)update:(NSTimeInterval)currentTime {
+    if (longPress.state == UIGestureRecognizerStateBegan ) {
+        NSLog(@"Long Press Recognized");
+    }
     if (_gota.comChave) {
 
 //        chave.position = CGPointMake(_gota.position.x*0.9, _gota.position.y*0.9);
@@ -727,12 +735,12 @@
     
     if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ENEMY)){
         JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
-        inimigo.inColissao=false;
+        inimigo.inColisao=false;
     }
     
     if((contact.bodyB.categoryBitMask == PAREDE) && (contact.bodyA.categoryBitMask == ENEMY)){
         JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
-        inimigo.inColissao=false;
+        inimigo.inColisao=false;
     }
     
     if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ATTACK)){
@@ -751,10 +759,10 @@
 -(void)receberDano:(int) dano{
     self.gota.vida-=dano;
     if(self.gota.vida<=0){
+        
         self.gota.vida=15;
         self.hud.vidaRestante--;
         [self presentGameOver:0];
-
         [self.gota changePosition:_posicaoInicial];
 //        [self presentGameOver:1];
         self.paused=YES;

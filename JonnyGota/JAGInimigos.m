@@ -18,27 +18,71 @@
     self.andandoIa      = false;
     self.sentido        = 0;
     
-    self.seguindo=false;
+    self.seguindo     = false;
+    self.andandoIa    = false;
+    self.sentido      = 0;
+    self.visaoRanged  = 0;
+    self.visao        = 100;
+    self.atacouRanged = false;
     
-    self.andandoIa=false;
-    
-    self.sentido=0;
-    
-    self.visaoRanged=0;
-    
-    self.visao=100;
-    
-    self.atacouRanged=false;
-    
-    self.lastPointToGo=0;
-    
-    self.inColissao=false;
+    self.lastPointToGo = 0;
     
     return self;
 }
 
 -(void)ataque{
     
+}
+
+-(void)habilEspec:(int)tipo {
+    
+    if (tipo == 1) {
+        
+        SKAction *habilid = [SKAction sequence:@[[SKAction waitForDuration:5.0],
+                                                 [SKAction runBlock:^{
+            
+            _emitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"Raio" ofType:@"sks"]];
+            _emitter.position = self.position;
+            _emitter.name = @"perdida_raio";
+            _emitter.numParticlesToEmit = 1000;
+            
+            [self destruirParti];
+            
+        }],
+                                                 [SKAction runBlock:^{
+            [self changePosition:CGPointMake(0, 0)];
+        }],
+                                                 [SKAction waitForDuration: 5.0],
+                                                 [SKAction runBlock:^{
+            
+            _emitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"Raio" ofType:@"sks"]];
+            _emitter.position = self.position;
+            _emitter.name = @"perdida_raio";
+            _emitter.numParticlesToEmit = 1000;
+            
+            [self destruirParti];
+        }],
+                                                 [SKAction runBlock:^{
+            [self changePosition:self.position];
+        }]]];
+        [self runAction:habilid];
+    }
+    
+    else {
+        // rastro fogo;
+    }
+}
+
+-(void) destruirParti {
+    
+    [_emitter removeFromParent];
+}
+
+-(BOOL)tocou:(CGPoint)ponto {
+    
+    BOOL toque;
+    
+    return toque;
 }
 
 // IN PROGRESS ...
@@ -103,7 +147,6 @@
     
     SKAction *sequenceTemp;
     
-    
     if(self.lastPointToGo>=self.arrPointsPath.count){
         self.lastPointToGo=0;
     }
@@ -116,13 +159,13 @@
             sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:1],
                                                 [SKAction runBlock:^{
                 self.lastPointToGo=i+1;
-                          }],
-                                                [SKAction waitForDuration:1.3]]];
+            }],
+                                                [SKAction waitForDuration:2.0]]];
         } else {
             sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:1],
                                                 [SKAction runBlock:^{
                 self.lastPointToGo=i+1;
-          
+                
             }],
                                                 
                                                 [SKAction waitForDuration:1.3]]];
@@ -134,7 +177,7 @@
         self.lastPointToGo=0;
     }]
                                         ]];
-
+    
     //_movePath = [SKAction repeatActionForever:sequenceTemp];
     
     _movePath = sequenceTemp;
@@ -148,7 +191,7 @@
             self.seguindo = true;
             self.andandoIa = false;
             int tempSentido;
-            if(!self.inColissao){
+            if(!self.inColisao){
                 tempSentido = [self verificaSentido:jogador.position with:self.position];
                 if(tempSentido != self.sentido) {
                     self.sentido = tempSentido;
@@ -217,7 +260,7 @@
         
         [self removeActionForKey:@"move"];
         self.atacouRanged=YES;
-         //self.andandoIa = true;
+        //self.andandoIa = true;
         
         [self.arrPointsFixes addObject:[NSValue valueWithCGPoint:self.position]];
         
@@ -227,9 +270,9 @@
         
         SKAction *delay=[SKAction sequence:@[[SKAction waitForDuration:self.delayAttack], [SKAction runBlock:^{
             self.atacouRanged=NO;
-        }]]];        
+        }]]];
         [self runAction:delay];
-
+        
     }
     return ata;
 }

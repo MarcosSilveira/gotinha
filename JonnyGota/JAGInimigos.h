@@ -21,34 +21,26 @@
 @property (strong, nonatomic) SKAction *movePath;
 @property (strong, nonatomic) NSMutableArray *arrPointsPath;
 @property (strong, nonatomic) NSMutableArray *arrPointsFixes;
+@property (nonatomic)SKEmitterNode *emitter;
 @property (nonatomic) BOOL seguindo;
 @property (nonatomic) BOOL andandoIa;
-
-@property (nonatomic) int delayAttack;
-
-@property (nonatomic) BOOL atacouRanged;
-
-@property (nonatomic) int dano;
-
-@property (nonatomic) int sentido;
-
-@property int lastPointToGo;
-
-@property BOOL inColissao;
-
+@property (nonatomic) BOOL inColisao;
 @property (nonatomic) int sentidoCol;
 
+@property (nonatomic) int delayAttack;
+@property (nonatomic) BOOL atacouRanged;
+@property (nonatomic) int dano;
+@property (nonatomic) int sentido;
+@property int lastPointToGo;
+
+-(BOOL)tocou:(CGPoint)ponto;
+-(void)habilEspec:(int)tipo;
 -(void)ataque;
 -(void)IAcomInfo;
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto;
-
 -(void)follow:(JAGGota *) jogador;
-
-
 -(JAGAttack *)createAttackRanged: (CGVector)withImpulse;
-
 -(JAGAttack *)attackRanged:(JAGGota *)jogador;
-
 -(void)update:(JAGGota *)gota;
 
 -(int)verificaSentidoColisao:(CGPoint)pontoReferencia withPontoObjeto:(CGPoint)pontoObjeto withSentido:(int) sentido;

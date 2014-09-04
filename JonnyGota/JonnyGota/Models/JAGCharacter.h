@@ -9,7 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "Musica.h"
 
-typedef enum : uint32_t{
+typedef enum : uint32_t {
  GOTA = 0x1 << 0,
  ENEMY = 0x1 << 1,
  ATTACK = 0x1 << 2,
@@ -23,7 +23,7 @@ typedef enum : uint32_t{
  CHUVA = 0x1<<20,
  PERDAGOTA = 0X1<<21,
  PAREDE = 0x1<<22
-}colisao;
+} colisao;
 
 @interface JAGCharacter : SKNode <UIGestureRecognizerDelegate>
 
@@ -31,12 +31,12 @@ typedef enum : uint32_t{
 @property (nonatomic) SKSpriteNode* sprite;
 @property int multi;
 @property (nonatomic) SKTextureAtlas *atlas;
+@property (nonatomic) BOOL EMTESTE;
 
 -(void)configPhysics;
 -(void)animar;
 -(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withType:(int)tipo;
 -(NSMutableDictionary*)createJson;
-
-
+-(void)changePosition:(CGPoint) posicao;
 
 @end

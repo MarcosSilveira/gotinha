@@ -42,26 +42,24 @@
 
 -(void)ataque{
     
-    
 }
 
+-(BOOL)tocou:(CGPoint)ponto {
+    
+    BOOL toque;
+    
+    return toque;
+}
 
 -(JAGAttack *)createAttackRanged: (CGVector)withImpulse{
-    SKSpriteNode *trovao=[[SKSpriteNode alloc] initWithColor:[UIColor yellowColor] size:CGSizeMake(15, 15)];
-    JAGAttack *attack=[[JAGAttack alloc] initWithPosition:self.position withImpulse:withImpulse withDano:3 withSprite:trovao];
+    SKSpriteNode *trovao = [[SKSpriteNode alloc] initWithColor:[UIColor yellowColor] size:CGSizeMake(15, 15)];
+    JAGAttack *attack = [[JAGAttack alloc] initWithPosition:self.position withImpulse:withImpulse withDano:3 withSprite:trovao];
     
     return attack;
 }
 
--(BOOL)tocou:(CGPoint)ponto{
-    BOOL toque;
-    
-    return toque;
-    
-}
-
 -(void)mover:(CGPoint)ponto withInterval:(NSTimeInterval)time withTipe:(int)tipo{
-    self.physicsBody.velocity=CGVectorMake(0, 0);
+    self.physicsBody.velocity = CGVectorMake(0, 0);
     
     switch (tipo) {
         case 1:
