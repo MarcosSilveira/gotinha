@@ -26,7 +26,6 @@
 @property (nonatomic) BOOL andandoIa;
 @property (nonatomic) BOOL inColisao;
 @property (nonatomic) int sentidoCol;
-
 @property (nonatomic) int delayAttack;
 @property (nonatomic) BOOL atacouRanged;
 @property (nonatomic) int dano;
@@ -34,8 +33,6 @@
 @property int lastPointToGo;
 
 @property BOOL inColissao;
-
-@property (nonatomic) int sentidoCol;
 
 -(BOOL)tocou:(CGPoint)ponto;
 -(void)ataque;
