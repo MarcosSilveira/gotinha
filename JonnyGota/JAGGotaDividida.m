@@ -39,6 +39,8 @@
     
     self.zPosition=100;
     
+    self.physicsBody.restitution=0.3;
+    
     return self;
 
 }

@@ -258,63 +258,17 @@
                                  toqueInicio.y+(_gota.position.y)-CGRectGetMidY(self.frame));
         tocou_gota  = [_gota verificaToque:toqueInicio];
         
-        
-//
-//            if (!_gota.escondida) {
-//                
-//                switch ([self verificaSentido:toqueFinal with:_gota.position]) {
-//                    case 1:
-//                        
-//                        [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:1 ];
-//
-//                        if (controleXnaTela){
-//                            [pararMovimentoCONTROLx removeFromParent];
-//                            controleXnaTela = NO;}
-//                        if (!controleYnaTela) {
-//                            [_cropNode addChild:pararMovimentoCONTROLy];
-//                            controleYnaTela = YES;}
-//                        
-//                        break;
-//                    case 2:
-//                        
-//                        [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:2 ];
-//
-//                        if (controleXnaTela){
-//                            [pararMovimentoCONTROLx removeFromParent];
-//                            controleXnaTela = NO;}
-//                        if (!controleYnaTela) {
-//                            [_cropNode addChild:pararMovimentoCONTROLy];
-//                            controleYnaTela = YES;}
-//                        break;
-//                    case 3:
-//                        [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:3 ];
-//
-//                        if (controleYnaTela){
-//                            [pararMovimentoCONTROLy removeFromParent];
-//                            controleYnaTela = NO;}
-//                        if (!controleXnaTela) {
-//                            [_cropNode addChild:pararMovimentoCONTROLx];
-//                            controleXnaTela = YES;}
-//                        break;
-//                    case 4:
-//                        
-//                        [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:4 ];
-//
-//                        
-//                        if (controleYnaTela){
-//                            [pararMovimentoCONTROLy removeFromParent];
-//                            controleYnaTela = NO;}
-//                        if (!controleXnaTela) {
-//                            [_cropNode addChild:pararMovimentoCONTROLx];
-//                            controleXnaTela = YES;}
-//                        break;
-//                }
-//                
-//            }
-
-    
+        if(!tocou_gota){
+            [self logicaMove:touch];
+            SKAction *move=[SKAction sequence:@[[SKAction waitForDuration:0.1],[SKAction runBlock:^{
+                [self logicaMove:touch];
+            }]]];
             
-        
+            move=[SKAction repeatActionForever:move];
+            
+            [self runAction:move withKey:@"moveGota"];
+            
+        }
     }
 }
 
@@ -338,142 +292,73 @@
     } else {
         //finger touch went downwards
     }
-    
-    
-    
-
-//        if (!_gota.escondida) {
-//            
-//            switch ([self verificaSentido:location with:_gota.position]) {
-//                case 1:
-//                    
-//                    [_gota mover:toqueFinal withInterval:1.0 withType:1 ];
-//
-//                    if (controleXnaTela){
-//                        [pararMovimentoCONTROLx removeFromParent];
-//                        controleXnaTela = NO;}
-//                    if (!controleYnaTela) {
-//                        [_cropNode addChild:pararMovimentoCONTROLy];
-//                        controleYnaTela = YES;}
-//                    
-//                    break;
-//                case 2:
-//                    
-//                    [_gota mover:location withInterval:1.0 withType:2 ];
-//
-//                    if (controleXnaTela){
-//                        [pararMovimentoCONTROLx removeFromParent];
-//                        controleXnaTela = NO;}
-//                    if (!controleYnaTela) {
-//                        [_cropNode addChild:pararMovimentoCONTROLy];
-//                        controleYnaTela = YES;}
-//                    break;
-//                case 3:
-//                    [_gota mover:location withInterval:1.0 withType:3 ];
-//
-//                    if (controleYnaTela){
-//                        [pararMovimentoCONTROLy removeFromParent];
-//                        controleYnaTela = NO;}
-//                    if (!controleXnaTela) {
-//                        [_cropNode addChild:pararMovimentoCONTROLx];
-//                        controleXnaTela = YES;}
-//                    break;
-//                case 4:
-//                    
-//                    [_gota mover:location withInterval:1.0 withType:4 ];
-//
-//                    
-//                    if (controleYnaTela){
-//                        [pararMovimentoCONTROLy removeFromParent];
-//                        controleYnaTela = NO;}
-//                    if (!controleXnaTela) {
-//                        [_cropNode addChild:pararMovimentoCONTROLx];
-//                        controleXnaTela = YES;}
-//                    break;
-//            }
-//            
-//        }
 
     
 }
+
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
     for (UITouch *touch in touches) {
+        
+        toqueFinal = [touch locationInNode:self];
+        toqueFinal = CGPointMake(toqueFinal.x+(_gota.position.x)-CGRectGetMidX(self.frame),
+                                 toqueFinal.y+(_gota.position.y)-CGRectGetMidY(self.frame));
 
+        
         pararMovimentoCONTROLx.position = [touch locationInNode:_cropNode];
         pararMovimentoCONTROLy.position = [touch locationInNode:_cropNode];
 
         if (toque_moveu && tocou_gota) {
-            [_cropNode addChild:[_gota dividir]];
+//            [_cropNode addChild:[_gota dividir]];
+            
+            JAGGotaDividida* gota2=[_gota dividir];
+            
+            [_cropNode addChild:gota2];
+
+//            [_cropNode addChild:[_gota dividirwithSentido:[self verificaSentido:toqueFinal with:_gota.position]]];
+            
+            
+            int mul=2;
+            
+            switch ([self verificaSentido:toqueFinal with:_gota.position]) {
+                case 1:
+                    
+                    [gota2.physicsBody applyImpulse:CGVectorMake(0,mul)];
+                    break;
+                    
+                case 2:
+                    
+                    [gota2.physicsBody applyImpulse:CGVectorMake(0, - mul)];
+                    break;
+                    
+                case 3:
+                    
+                    [gota2.physicsBody applyImpulse:CGVectorMake(-mul,0)];
+                    break;
+                    
+                case 4:
+                    
+                    [gota2.physicsBody applyImpulse:CGVectorMake(mul,0)];
+                    break;
+                    
+                default:
+                    break;
+            }
+
             NSLog(@"Dividiu");
             toque_moveu = NO;
         } else {
             
-            toqueFinal = [touch locationInNode:self];
-            toqueFinal = CGPointMake(toqueFinal.x+(_gota.position.x)-CGRectGetMidX(self.frame),
-                                   toqueFinal.y+(_gota.position.y)-CGRectGetMidY(self.frame));
+           
+            
             if ([_gota verificaToque:toqueFinal]){
                 [_gota esconder];
             } else {
-                if (!_gota.escondida) {
-                    
-                    NSMutableArray *walkFrames = [NSMutableArray array];
-                    int numImages = atlas.textureNames.count;
-                    for (int i=1; i <= numImages/2; i++) {
-                        NSString *textureName = [NSString stringWithFormat:@"gota_walk_%d", i];
-                        SKTexture *temp = [atlas textureNamed:textureName];
-                        [walkFrames addObject:temp];
-                    }
-                    
-                    switch ([self verificaSentido:toqueFinal with:_gota.position]) {
-                        case 1:
-                                
-                            [_gota mover:toqueFinal withInterval:1.0 withType:1 ];
-                            [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
-                            if (controleXnaTela){
-                                [pararMovimentoCONTROLx removeFromParent];
-                                controleXnaTela = NO;}
-                                if (!controleYnaTela) {
-                            [_cropNode addChild:pararMovimentoCONTROLy];
-                                    controleYnaTela = YES;}
-                            
-                            break;
-                        case 2:
-                           
-                                [_gota mover:toqueFinal withInterval:1.0 withType:2 ];
-                            [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
-                            if (controleXnaTela){
-                                [pararMovimentoCONTROLx removeFromParent];
-                                controleXnaTela = NO;}
-                                if (!controleYnaTela) {
-                                    [_cropNode addChild:pararMovimentoCONTROLy];
-                                    controleYnaTela = YES;}
-                            break;
-                        case 3:
-                                [_gota mover:toqueFinal withInterval:1.0 withType:3 ];
-                            [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
-                            if (controleYnaTela){
-                                [pararMovimentoCONTROLy removeFromParent];
-                                controleYnaTela = NO;}
-                                if (!controleXnaTela) {
-                                    [_cropNode addChild:pararMovimentoCONTROLx];
-                                    controleXnaTela = YES;}
-                            break;
-                        case 4:
-        
-                            [_gota mover:toqueFinal withInterval:1.0 withType:4 ];
-                            [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
-                            
-                            if (controleYnaTela){
-                                [pararMovimentoCONTROLy removeFromParent];
-                                controleYnaTela = NO;}
-                                if (!controleXnaTela) {
-                                    [_cropNode addChild:pararMovimentoCONTROLx];
-                                    controleXnaTela = YES;}
-                            break;
-                    }
-                    
-                }
+                
+                [self logicaMove:touch];
+                
+                [self removeActionForKey:@"moveGota"];
+                
             
                 //menu gameover
                 SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
@@ -509,8 +394,70 @@
 
 }
 
--(void)touchFim{
-    
+-(void)logicaMove:(UITouch *) touch{
+    if (!_gota.escondida) {
+        
+        toqueFinal = [touch locationInNode:self];
+        toqueFinal = CGPointMake(toqueFinal.x+(_gota.position.x)-CGRectGetMidX(self.frame),
+                                 toqueFinal.y+(_gota.position.y)-CGRectGetMidY(self.frame));
+        
+        int temp=[self verificaSentido:toqueFinal with:_gota.position];
+        
+        if(temp!=self.gota.sentido){
+            
+            self.gota.sentido=temp;
+            
+            switch (self.gota.sentido) {
+                case 1:
+                    
+                    [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:1 ];
+                    
+                    if (controleXnaTela){
+                        [pararMovimentoCONTROLx removeFromParent];
+                        controleXnaTela = NO;}
+                    if (!controleYnaTela) {
+                        [_cropNode addChild:pararMovimentoCONTROLy];
+                        controleYnaTela = YES;}
+                    
+                    break;
+                case 2:
+                    
+                    [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:2 ];
+                    
+                    if (controleXnaTela){
+                        [pararMovimentoCONTROLx removeFromParent];
+                        controleXnaTela = NO;}
+                    if (!controleYnaTela) {
+                        [_cropNode addChild:pararMovimentoCONTROLy];
+                        controleYnaTela = YES;}
+                    break;
+                case 3:
+                    [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:3 ];
+                    
+                    if (controleYnaTela){
+                        [pararMovimentoCONTROLy removeFromParent];
+                        controleYnaTela = NO;}
+                    if (!controleXnaTela) {
+                        [_cropNode addChild:pararMovimentoCONTROLx];
+                        controleXnaTela = YES;}
+                    break;
+                case 4:
+                    
+                    [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:4 ];
+                    
+                    
+                    if (controleYnaTela){
+                        [pararMovimentoCONTROLy removeFromParent];
+                        controleYnaTela = NO;}
+                    if (!controleXnaTela) {
+                        [_cropNode addChild:pararMovimentoCONTROLx];
+                        controleXnaTela = YES;}
+                    break;
+            }
+            
+        }
+        
+    }
 }
 -(void)centerMapOnCharacter{
     self.cropNode.position = CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
@@ -694,11 +641,15 @@
     
 
         _gota.physicsBody.velocity = CGVectorMake(0, 0);
+        
+        self.gota.sentido=0;
     }
     
     if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == CONTROLE_TOQUE)){
         NSLog(@"hit");
-    _gota.physicsBody.velocity = CGVectorMake(0, 0);
+        _gota.physicsBody.velocity = CGVectorMake(0, 0);
+        self.gota.sentido=0;
+
     }
 
     //Colissao do Attack

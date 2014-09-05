@@ -100,6 +100,34 @@
     return gota2;
 }
 
+-(JAGGotaDividida*) dividirwithSentido:(int)sentido{
+    SKAction *dividAction;
+    
+    if (_dividida) {
+        dividAction = [SKAction fadeInWithDuration:1.0];
+        _dividida = NO;
+    }
+    else{
+        dividAction = [SKAction fadeOutWithDuration:1.0];
+        _dividida = YES;
+    }
+    //    [self runAction:dividAction];
+    
+    CGSize aux = self.sprite.size;
+    aux.height = aux.height/2;
+    aux.width = aux.width/2;
+    CGPoint aux2;
+    aux2.x = self.position.x;
+    aux2.y = self.position.y;
+    JAGGotaDividida *gota2 = [[JAGGotaDividida alloc]initWithPosition:aux2 withSize:aux];
+    gota2.sprite.texture = self.sprite.texture;
+        
+
+
+
+    return gota2;
+}
+
 
 //-(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withTipe:(int)tipo{
 //
