@@ -71,7 +71,7 @@
 
     scene.portas = [[NSMutableArray alloc] init];
     scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
-    scene.level.tileSize = 32;
+    scene.level.tileSize = 128;
     
     CGSize tamanho = CGSizeMake(scene.level.tileSize, scene.level.tileSize);
         
@@ -120,7 +120,7 @@
     //Fonte
     
     SKSpriteNode *fonteSprite = [[SKSpriteNode alloc]initWithColor:[UIColor blueColor] size:CGSizeMake(scene.frame.size.width*0.1, scene.frame.size.width*0.1)];
-    JAGFonte *fonte = [[JAGFonte alloc] initWithPosition:CGPointMake(scene.frame.size.width*0.5, scene.frame.size.height*0.7) withSprite:fonteSprite];
+    JAGFonte *fonte = [[JAGFonte alloc] initWithPosition:[scene.level calculateTile:CGPointMake(6, 13)] withSprite:fonteSprite];
     [scene.cropNode addChild:porta];
     [scene.cropNode addChild:fonte];
     [porta vincularBotao:presao];
