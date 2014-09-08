@@ -71,6 +71,8 @@
                     sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:0.5],
                                                         [SKAction waitForDuration:0.1],
                                                         [SKAction runBlock:^{
+                        
+                        
                         [self.arrPointsFixes removeObjectAtIndex:i];
                     }]]];
                     
