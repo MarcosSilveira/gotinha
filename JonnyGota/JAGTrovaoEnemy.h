@@ -7,10 +7,13 @@
 //
 
 #import "JAGInimigos.h"
+#import "JAGSparkRaio.h"
 
 // Habilidade Especial: Se teletransporta ao redor da fase
 
 @interface JAGTrovaoEnemy : JAGInimigos
+
+@property (strong, nonatomic) JAGSparkRaio *spark;
 
 -(id)initWithPosition:(CGPoint) position withSize:(CGSize)size;
 -(void) moveTelep;
