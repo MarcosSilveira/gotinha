@@ -41,11 +41,11 @@
         
         SKAction *diminuirVelocidade=[SKAction sequence:@[[SKAction waitForDuration:0.1],
                                                      [SKAction runBlock:^{
-            gota.multi = gota.multi/2;
+            gota.multi = 2;
             
             SKAction *recuperarVelocidade=[SKAction sequence:@[[SKAction waitForDuration:10],
                                                     [SKAction runBlock:^{
-                gota.multi = gota.multi*2;
+                gota.multi = 5;
                 
             }]]];
             
@@ -70,6 +70,24 @@
             
         }]]];
         [self runAction:diminuirVelocidade];
+    }
+    
+    else if (_tipo==3){
+        SKAction *diminuirVelocidade=[SKAction sequence:@[[SKAction waitForDuration:0.1],
+                                                          [SKAction runBlock:^{
+            gota.multi = 8;
+            
+            SKAction *recuperarVelocidade=[SKAction sequence:@[[SKAction waitForDuration:10],
+                                                               [SKAction runBlock:^{
+                gota.multi = 5;
+                
+            }]]];
+            
+            [self runAction:recuperarVelocidade];
+            
+        }]]];
+        [self runAction:diminuirVelocidade];
+
     }
 }
 

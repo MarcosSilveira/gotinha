@@ -34,6 +34,7 @@
     SKSpriteNode *pararMovimentoCONTROLy;
     BOOL controleXnaTela;
     BOOL controleYnaTela;
+    BOOL pauseDetected;
     JAGChave* chave;
     UILongPressGestureRecognizer *longPress;
 }
@@ -55,6 +56,7 @@
 -(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world{
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
+        pauseDetected =NO;
         atlas = [SKTextureAtlas atlasNamed:@"gotinha"];
         self.physicsWorld.contactDelegate = self;
         
@@ -252,6 +254,13 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     for (UITouch *touch in touches) {
+        SKNode *nodeAux = [self nodeAtPoint:[touch locationInNode:self]];
+        if ([nodeAux.name isEqualToString:@"pauseBT"]) {
+            NSLog(@"pause detected");
+            pauseDetected = !pauseDetected;
+            self.scene.view.paused = !self.scene.view.paused;
+            [self.cropNode removeAllActions];
+        }
         toqueInicio = [touch locationInNode:self];
         
         toqueInicio = CGPointMake(toqueInicio.x+(_gota.position.x)-CGRectGetMidX(self.frame),
@@ -292,57 +301,7 @@
     
     
 
-//        if (!_gota.escondida) {
-//            
-//            switch ([self verificaSentido:location with:_gota.position]) {
-//                case 1:
-//                    
-//                    [_gota mover:toqueFinal withInterval:1.0 withType:1 ];
-//
-//                    if (controleXnaTela){
-//                        [pararMovimentoCONTROLx removeFromParent];
-//                        controleXnaTela = NO;}
-//                    if (!controleYnaTela) {
-//                        [_cropNode addChild:pararMovimentoCONTROLy];
-//                        controleYnaTela = YES;}
-//                    
-//                    break;
-//                case 2:
-//                    
-//                    [_gota mover:location withInterval:1.0 withType:2 ];
-//
-//                    if (controleXnaTela){
-//                        [pararMovimentoCONTROLx removeFromParent];
-//                        controleXnaTela = NO;}
-//                    if (!controleYnaTela) {
-//                        [_cropNode addChild:pararMovimentoCONTROLy];
-//                        controleYnaTela = YES;}
-//                    break;
-//                case 3:
-//                    [_gota mover:location withInterval:1.0 withType:3 ];
-//
-//                    if (controleYnaTela){
-//                        [pararMovimentoCONTROLy removeFromParent];
-//                        controleYnaTela = NO;}
-//                    if (!controleXnaTela) {
-//                        [_cropNode addChild:pararMovimentoCONTROLx];
-//                        controleXnaTela = YES;}
-//                    break;
-//                case 4:
-//                    
-//                    [_gota mover:location withInterval:1.0 withType:4 ];
-//
-//                    
-//                    if (controleYnaTela){
-//                        [pararMovimentoCONTROLy removeFromParent];
-//                        controleYnaTela = NO;}
-//                    if (!controleXnaTela) {
-//                        [_cropNode addChild:pararMovimentoCONTROLx];
-//                        controleXnaTela = YES;}
-//                    break;
-//            }
-//            
-//        }
+
 
     
 }
@@ -370,65 +329,7 @@
                 
                 [self removeActionForKey:@"moveGota"];
                 
-//                if (!_gota.escondida) {
-//                    
-//                    NSMutableArray *walkFrames = [NSMutableArray array];
-//                    int numImages = atlas.textureNames.count;
-//                    for (int i=1; i <= numImages/2; i++) {
-//                        NSString *textureName = [NSString stringWithFormat:@"gota_walk_%d", i];
-//                        SKTexture *temp = [atlas textureNamed:textureName];
-//                        [walkFrames addObject:temp];
-//                    }
-//                    
-//                    switch ([self verificaSentido:toqueFinal with:_gota.position]) {
-//                        case 1:
-//                                
-//                            [_gota mover:toqueFinal withInterval:1.0 withType:1 ];
-//                            [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
-//                            if (controleXnaTela){
-//                                [pararMovimentoCONTROLx removeFromParent];
-//                                controleXnaTela = NO;}
-//                                if (!controleYnaTela) {
-//                            [_cropNode addChild:pararMovimentoCONTROLy];
-//                                    controleYnaTela = YES;}
-//                            
-//                            break;
-//                        case 2:
-//                           
-//                                [_gota mover:toqueFinal withInterval:1.0 withType:2 ];
-//                            [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
-//                            if (controleXnaTela){
-//                                [pararMovimentoCONTROLx removeFromParent];
-//                                controleXnaTela = NO;}
-//                                if (!controleYnaTela) {
-//                                    [_cropNode addChild:pararMovimentoCONTROLy];
-//                                    controleYnaTela = YES;}
-//                            break;
-//                        case 3:
-//                                [_gota mover:toqueFinal withInterval:1.0 withType:3 ];
-//                            [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
-//                            if (controleYnaTela){
-//                                [pararMovimentoCONTROLy removeFromParent];
-//                                controleYnaTela = NO;}
-//                                if (!controleXnaTela) {
-//                                    [_cropNode addChild:pararMovimentoCONTROLx];
-//                                    controleXnaTela = YES;}
-//                            break;
-//                        case 4:
-//        
-//                            [_gota mover:toqueFinal withInterval:1.0 withType:4 ];
-//                            [_gota runAction:[SKAction repeatActionForever:[SKAction animateWithTextures: walkFrames timePerFrame:0.1f]]withKey:@"WalkLAction2"];
-//                            
-//                            if (controleYnaTela){
-//                                [pararMovimentoCONTROLy removeFromParent];
-//                                controleYnaTela = NO;}
-//                                if (!controleXnaTela) {
-//                                    [_cropNode addChild:pararMovimentoCONTROLx];
-//                                    controleXnaTela = YES;}
-//                            break;
-//                    }
-//                
-//                }
+
             
                 //menu gameover
                 SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
@@ -470,6 +371,8 @@
         toqueFinal = [touch locationInNode:self];
         toqueFinal = CGPointMake(toqueFinal.x+(_gota.position.x)-CGRectGetMidX(self.frame),
                                  toqueFinal.y+(_gota.position.y)-CGRectGetMidY(self.frame));
+        if (!pauseDetected) {
+            
         
         switch ([self verificaSentido:toqueFinal with:_gota.position]) {
             case 1:
@@ -519,6 +422,7 @@
                 break;
         }
         
+        }
     }
 
 }
@@ -533,9 +437,10 @@
 }
 
 -(void)update:(NSTimeInterval)currentTime {
-    if (longPress.state == UIGestureRecognizerStateBegan ) {
-        NSLog(@"Long Press Recognized");
+    if (pauseDetected) {
+        [_gota.physicsBody applyImpulse:CGVectorMake(0,0)];
     }
+   
     if (_gota.comChave) {
 
 //        chave.position = CGPointMake(_gota.position.x*0.9, _gota.position.y*0.9);
@@ -555,7 +460,7 @@
     
     circleMask.position=CGPointMake(_gota.position.x,_gota.position.y);
 
-    //NSLog(@"gota x:%f y:%f",_gota.position.x,_gota.position.y);
+
     
     
     [self prepareMove];
