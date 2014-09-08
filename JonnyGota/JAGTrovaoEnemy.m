@@ -32,6 +32,7 @@
     //[self addChild:desn];
     
     self.multi = 2;
+    self.spark = [[JAGSparkRaio alloc] initWithPosition:self.position withTimeLife:10];
     
     [self configPhysics];
     [self addChild:self.sprite];
@@ -64,16 +65,17 @@
     return attack;
 }
 
--(void) moveTelep {
+-(void) moveTelep { // vou arrumar a volta do teleport, tp e tp de volta pra pos init;
     
-    JAGSparkRaio *spark = [[JAGSparkRaio alloc] initWithPosition:self.position withTimeLife:10];
+    x = arc4random_uniform(200);
+    y = arc4random_uniform(200);
     
     SKAction *tp = [SKAction sequence:@[[SKAction waitForDuration:5],
                                         [SKAction runBlock:^{
         
-        [self addChild:spark.emitter];
+        [self addChild:_spark.emitter];
         [self changePosition:CGPointMake(x, y)];
-        [spark.emitter removeFromParent];
+        [_spark.emitter removeFromParent];
         
     }]]];
     
