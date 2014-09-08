@@ -46,4 +46,6 @@
 
 -(void)movernaParede:(JAGGota *) jogador;
 
+-(void)activateIa;
+
 @end

@@ -27,9 +27,9 @@
     [self addChild:self.sprite];
     
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
-    self.physicsBody.categoryBitMask = GOTA;
-    self.physicsBody.collisionBitMask = ATTACK | ENEMY |ITEM |PORTA;
-    self.physicsBody.contactTestBitMask = ATTACK | ENEMY | CONTROLE_TOQUE |ITEM;
+    self.physicsBody.categoryBitMask = DIVIDIDA;
+    self.physicsBody.collisionBitMask = ENEMY |ITEM |PORTA|PAREDE;
+    self.physicsBody.contactTestBitMask = ENEMY | CONTROLE_TOQUE |ITEM;
     
     [self configPhysics];
     
@@ -39,7 +39,7 @@
     
     self.zPosition=100;
     
-    self.physicsBody.restitution=0.3;
+    self.physicsBody.restitution=0;
     
     return self;
 
