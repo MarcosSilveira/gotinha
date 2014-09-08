@@ -71,7 +71,7 @@
 
     scene.portas = [[NSMutableArray alloc] init];
     scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
-    scene.level.tileSize = 128;
+    scene.level.tileSize = 64;
     
     CGSize tamanho = CGSizeMake(scene.level.tileSize, scene.level.tileSize);
         
@@ -144,6 +144,19 @@
     [scene.level createWalls:CGPointMake(0, 0) withHeight:20 withWidth:10 withScene:scene];
     [scene.level createWalls:CGPointMake(10, 0) withHeight:20 withWidth:1 withScene:scene];
     [scene.level createWalls:CGPointMake(0, 20) withHeight:1 withWidth:11 withScene:scene];
+    
+    //teste do tileSet
+    
+    JAGWall *wall;
+//    SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(scene.level.tileSize-1, scene.level.tileSize-1)];
+    
+    SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithTexture:[scene.level loadingSprite:0 withHeight:10 isCima:YES]];
+    
+    CGPoint ponto=[scene.level calculateTile:CGPointMake(2, 1)] ;
+    
+    wall=[[JAGWall alloc] initWithPosition:ponto withSprite:wallSpri];
+    [scene.cropNode addChild:wall];
+
     
     //Chave
     SKSpriteNode *oi = [[SKSpriteNode alloc]initWithColor:[UIColor yellowColor] size:CGSizeMake(scene.frame.size.width*0.02, scene.frame.size.height*0.05)];
@@ -296,6 +309,7 @@
     //Chave
     SKSpriteNode *oi = [[SKSpriteNode alloc]initWithColor:[UIColor yellowColor] size:CGSizeMake(scene.frame.size.width*0.02, scene.frame.size.height*0.05)];
     JAGChave *chave = [[JAGChave alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 4)] withSprite:oi];
+    
     
     
     //Box do Inimigo
