@@ -49,5 +49,12 @@
 
 -(CGSize)sizeTile;
 
+@property NSArray *tilesFromAtlas;
+
+@property SKTexture *tilefull;
+
+-(SKTexture *)loadingSprite:(int)tile
+                 withHeight:(int)tamanho
+                     isCima:(BOOL) cima;
 
 @end

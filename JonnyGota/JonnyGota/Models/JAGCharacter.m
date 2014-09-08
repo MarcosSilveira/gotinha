@@ -52,11 +52,11 @@
             case 1:
                 
                 [self.physicsBody applyImpulse:CGVectorMake(0,_multi)];
-                action = [SKAction moveToY:ponto.y duration:time];
+
                 //  action = [SKAction followPath:(CGPathCreateWithRect(CGRectMake(ponto.x, ponto.y, 10, 10), nil)) duration:2];
                 //self.sprite.color=[UIColor greenColor];
                 
-                actionChangeSprite = [SKAction colorizeWithColor:[SKColor whiteColor] colorBlendFactor:1.0 duration:0.0];
+      //          actionChangeSprite = [SKAction colorizeWithColor:[SKColor whiteColor] colorBlendFactor:1.0 duration:0.0];
                 // self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor greenColor] size:CGSizeMake(50, 50)];
                 break;
                 
@@ -65,7 +65,7 @@
                 [self.physicsBody applyImpulse:CGVectorMake(0, - _multi)];
                 action = [SKAction moveToY:ponto.y duration:time];
                 
-                actionChangeSprite = [SKAction colorizeWithColor:[SKColor brownColor] colorBlendFactor:1.0 duration:0.0];
+         //       actionChangeSprite = [SKAction colorizeWithColor:[SKColor brownColor] colorBlendFactor:1.0 duration:0.0];
                 
                 //self.sprite=[[SKSpriteNode alloc] initWithColor:[UIColor brownColor] size:CGSizeMake(50, 50)];
                 break;
@@ -76,7 +76,7 @@
                 
                 action = [SKAction moveToX:ponto.x duration:time];
                 
-                actionChangeSprite = [SKAction colorizeWithColor:[SKColor blueColor] colorBlendFactor:1.0 duration:0.0];
+         //       actionChangeSprite = [SKAction colorizeWithColor:[SKColor blueColor] colorBlendFactor:1.0 duration:0.0];
                 break;
                 
             case 4:
@@ -84,7 +84,7 @@
                 [self.physicsBody applyImpulse:CGVectorMake(_multi,0)];
                 
                 action = [SKAction moveToX:ponto.x duration:time];
-                actionChangeSprite = [SKAction colorizeWithColor:[SKColor yellowColor] colorBlendFactor:1.0 duration:0.0];
+        //        actionChangeSprite = [SKAction colorizeWithColor:[SKColor yellowColor] colorBlendFactor:1.0 duration:0.0];
                 
                 break;
                 

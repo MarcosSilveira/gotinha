@@ -13,6 +13,10 @@
 -(instancetype)initWithTempo:(int)tempo withVida:(int)vida saude:(float)saude withWindowSize:(CGSize)size{
     self= [super init];
     
+    _pauseBT = [[SKSpriteNode alloc] initWithColor:[UIColor purpleColor] size:CGSizeMake(20, 20)];
+    _pauseBT.position = CGPointMake(size.width*0.7, size.height*0.9);
+    _pauseBT.name = @"pauseBT";
+    
     _tempoRestante=tempo;
     
     _vidaRestante=vida;
@@ -30,13 +34,14 @@
     _tempo.position=CGPointMake(size.width*0.5, size.height*0.95);
     
     _saude=[[SKLabelNode alloc]initWithFontNamed:fonte];
-    _saude.text=[NSString stringWithFormat:@"hp: %ld", _gota.vida];
+    _saude.text=[NSString stringWithFormat:@"hp: %d", _gota.vida];
     
     _saude.position=CGPointMake(size.width*0.8, size.height*0.95);
     
     [self addChild:_vidas];
     [self addChild:_tempo];
     [self addChild:_saude];
+    [self addChild:_pauseBT];
     
     return self;
 }

@@ -26,6 +26,8 @@
 
 @property (nonatomic) JAGGota *gota;
 
+@property (nonatomic) SKSpriteNode *pauseBT;
+
 
 //Sprites da tela
 @property (nonatomic) SKSpriteNode* sprite;

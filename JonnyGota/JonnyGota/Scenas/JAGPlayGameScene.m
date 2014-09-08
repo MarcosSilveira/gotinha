@@ -33,6 +33,7 @@
     SKSpriteNode *pararMovimentoCONTROLy;
     BOOL controleXnaTela;
     BOOL controleYnaTela;
+    BOOL pauseDetected;
     JAGChave* chave;
     UILongPressGestureRecognizer *longPress;
 }
@@ -54,6 +55,7 @@
 -(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world{
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
+        pauseDetected =NO;
         atlas = [SKTextureAtlas atlasNamed:@"gotinha"];
         self.physicsWorld.contactDelegate = self;
         
@@ -251,6 +253,13 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     for (UITouch *touch in touches) {
+        SKNode *nodeAux = [self nodeAtPoint:[touch locationInNode:self]];
+        if ([nodeAux.name isEqualToString:@"pauseBT"]) {
+            NSLog(@"pause detected");
+            pauseDetected = !pauseDetected;
+            self.scene.view.paused = !self.scene.view.paused;
+            [self.cropNode removeAllActions];
+        }
         toqueInicio = [touch locationInNode:self];
         
         toqueInicio = CGPointMake(toqueInicio.x+(_gota.position.x)-CGRectGetMidX(self.frame),
@@ -291,6 +300,11 @@
     } else {
         //finger touch went downwards
     }
+    
+    
+    
+
+
 
     
 }
@@ -358,6 +372,7 @@
                 
                 [self removeActionForKey:@"moveGota"];
                 
+
             
                 //menu gameover
                 SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
@@ -399,6 +414,8 @@
         toqueFinal = [touch locationInNode:self];
         toqueFinal = CGPointMake(toqueFinal.x+(_gota.position.x)-CGRectGetMidX(self.frame),
                                  toqueFinal.y+(_gota.position.y)-CGRectGetMidY(self.frame));
+        if (!pauseDetected) {
+            
         
         int temp=[self verificaSentido:toqueFinal with:_gota.position];
         
@@ -456,6 +473,7 @@
             
         }
         
+        }
     }
 }
 -(void)centerMapOnCharacter{
@@ -469,9 +487,10 @@
 }
 
 -(void)update:(NSTimeInterval)currentTime {
-    if (longPress.state == UIGestureRecognizerStateBegan ) {
-        NSLog(@"Long Press Recognized");
+    if (pauseDetected) {
+        [_gota.physicsBody applyImpulse:CGVectorMake(0,0)];
     }
+   
     if (_gota.comChave) {
 
 //        chave.position = CGPointMake(_gota.position.x*0.9, _gota.position.y*0.9);
@@ -491,7 +510,7 @@
     
     circleMask.position=CGPointMake(_gota.position.x,_gota.position.y);
 
-    //NSLog(@"gota x:%f y:%f",_gota.position.x,_gota.position.y);
+
     
     
     [self prepareMove];
