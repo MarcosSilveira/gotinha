@@ -15,6 +15,7 @@ typedef enum : uint32_t {
  ATTACK = 0x1 << 2,
  CONTROLE_TOQUE = 0x1 << 3,
  FONTE_DA_JUVENTUDE = 0x1 <<4,
+ DIVIDIDA=0x1<<5,
  TRAP = 0x1<<10,
  CHAVE = 0x1<<11,
  ITEM = 0x1 << 12,

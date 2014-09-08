@@ -10,6 +10,8 @@
 
 @implementation JAGInimigos
 
+bool iaActiva;
+
 -(id)init {
     
     self = [super init];
@@ -27,6 +29,8 @@
     self.visaoRanged   = 0;
     self.visao         = 100;
     self.lastPointToGo = 0;
+    
+    iaActiva=NO;
     
     return self;
 }
@@ -47,25 +51,23 @@
     
     // Movimentaçao
     
-    if (!self.andandoIa) {
+    if(iaActiva){
         
-        self.andandoIa = true;
-        
-        if (self.arrPointsFixes.count == 0) {
-            [self createPathto];
-            _movePath = [SKAction repeatActionForever:_movePath];
-            [self runAction:_movePath withKey:@"move"];
-        } else {
-            //Correção - SABER QUAL PONTO Q ELE PAROU
+        if (!self.andandoIa) {
             
-            //self.andandoIa = true;
-
+            self.andandoIa = true;
             
-            SKAction *sequenceTemp;
-            
-            for(int i = self.arrPointsFixes.count - 1.0; i >= 0; i--) {
+            if (self.arrPointsFixes.count == 0) {
+                [self createPathto];
+                _movePath = [SKAction repeatActionForever:_movePath];
+                [self runAction:_movePath withKey:@"move"];
+            } else {
+                //Correção - SABER QUAL PONTO Q ELE PAROU
                 
-                CGPoint ponto = [(NSValue *)[self.arrPointsFixes objectAtIndex:i] CGPointValue];
+                //self.andandoIa = true;
+                
+                
+                SKAction *sequenceTemp;
                 
                 if(i == self.arrPointsFixes.count - 1) {
                     sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:0.5],
@@ -76,28 +78,20 @@
                         [self.arrPointsFixes removeObjectAtIndex:i];
                     }]]];
                     
-                } else {
-                    sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:0.5],
-                                                        [SKAction waitForDuration:0.1],
-                                                        [SKAction runBlock:^{
-                        [self.arrPointsFixes removeObjectAtIndex:i];
-                    }]]];
                 }
+                [self createPathto];
+                _movePath = [SKAction sequence:@[sequenceTemp,_movePath]];
                 
                 
-            }
-            [self createPathto];
-            _movePath = [SKAction sequence:@[sequenceTemp,_movePath]];
-            
-            
                 _movePath = [SKAction sequence:@[_movePath,[SKAction runBlock:^{
                     self.andandoIa = false;
-                     self.lastPointToGo=0;
-                    }]]];
-           
-
-           
-            [self runAction:_movePath withKey:@"move"];
+                    self.lastPointToGo=0;
+                }]]];
+                
+                
+                
+                [self runAction:_movePath withKey:@"move"];
+            }
         }
     }
 }
@@ -331,5 +325,8 @@
     
 }
 
+-(void)activateIa{
+    iaActiva=YES;
+}
 
 @end
