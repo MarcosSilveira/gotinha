@@ -13,6 +13,7 @@
  0 para armadinha do tipo perda de agua
  1 para armadilha de redução de velocidade
  2 para armadilha que tranca a gota no local
+ 3 para acelerar a gotinha
  
  */
 
