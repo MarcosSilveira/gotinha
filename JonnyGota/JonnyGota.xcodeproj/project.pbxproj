@@ -63,6 +63,7 @@
 		8DF47BE319B635F30021AE2D /* JAGTrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF47BE219B635F30021AE2D /* JAGTrap.m */; };
 		B157BDA819A267E400ACA4C1 /* JAGObjeto.m in Sources */ = {isa = PBXBuildFile; fileRef = B157BDA719A267E400ACA4C1 /* JAGObjeto.m */; };
 		B157BDB619AD14A700ACA4C1 /* JAGMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B157BDB519AD14A700ACA4C1 /* JAGMenu.m */; };
+		B1A598ED19BE310A0098C962 /* JAGMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A598EC19BE310A0098C962 /* JAGMenuViewController.m */; };
 		B1E9587B19B77718002302D7 /* Raio.sks in Resources */ = {isa = PBXBuildFile; fileRef = B1E9587A19B77718002302D7 /* Raio.sks */; };
 		B1E9587E19B7783C002302D7 /* JAGSparkRaio.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E9587D19B7783C002302D7 /* JAGSparkRaio.m */; };
 		B1F768C11995443A0063E27C /* mask.png in Resources */ = {isa = PBXBuildFile; fileRef = B1F768C01995443A0063E27C /* mask.png */; };
@@ -168,6 +169,8 @@
 		B157BDA719A267E400ACA4C1 /* JAGObjeto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGObjeto.m; sourceTree = "<group>"; };
 		B157BDB419AD14A700ACA4C1 /* JAGMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGMenu.h; path = ../JAGMenu.h; sourceTree = "<group>"; };
 		B157BDB519AD14A700ACA4C1 /* JAGMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGMenu.m; path = ../JAGMenu.m; sourceTree = "<group>"; };
+		B1A598EB19BE310A0098C962 /* JAGMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGMenuViewController.h; sourceTree = "<group>"; };
+		B1A598EC19BE310A0098C962 /* JAGMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGMenuViewController.m; sourceTree = "<group>"; };
 		B1E9587A19B77718002302D7 /* Raio.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Raio.sks; sourceTree = "<group>"; };
 		B1E9587C19B7783C002302D7 /* JAGSparkRaio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGSparkRaio.h; sourceTree = "<group>"; };
 		B1E9587D19B7783C002302D7 /* JAGSparkRaio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGSparkRaio.m; sourceTree = "<group>"; };
@@ -277,6 +280,8 @@
 				0B3A046E1991164A00C7C39E /* Images.xcassets */,
 				0B3A04601991164A00C7C39E /* JAGAppDelegate.h */,
 				0B3A04611991164A00C7C39E /* JAGAppDelegate.m */,
+				B1A598EB19BE310A0098C962 /* JAGMenuViewController.h */,
+				B1A598EC19BE310A0098C962 /* JAGMenuViewController.m */,
 				0B3A04691991164A00C7C39E /* JAGMyScene.h */,
 				0B3A046A1991164A00C7C39E /* JAGMyScene.m */,
 				0B3A04661991164A00C7C39E /* JAGViewController.h */,
@@ -446,7 +451,7 @@
 				ORGANIZATIONNAME = "Henrique Manfroi da Silveira";
 				TargetAttributes = {
 					0B3A044B1991164A00C7C39E = {
-						DevelopmentTeam = 64TH9999YT;
+						DevelopmentTeam = VCE77X465D;
 					};
 					0B3A04731991164A00C7C39E = {
 						TestTargetID = 0B3A044B1991164A00C7C39E;
@@ -515,6 +520,7 @@
 				8D4A4F3B19ABA08400255468 /* JAGChave.m in Sources */,
 				0B2C5258199A9F2A0065BB09 /* JAGChuva.m in Sources */,
 				0B3A045E1991164A00C7C39E /* main.m in Sources */,
+				B1A598ED19BE310A0098C962 /* JAGMenuViewController.m in Sources */,
 				8D16279B1992942C00AD9F12 /* JAGTAreiaEnemy.m in Sources */,
 				8DF47BE319B635F30021AE2D /* JAGTrap.m in Sources */,
 				0B024D0B1991255400AE9588 /* JAGGota.m in Sources */,

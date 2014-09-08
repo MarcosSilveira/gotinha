@@ -1,18 +1,15 @@
 //
-//  JAGViewController.m
+//  JAGMenuViewController.m
 //  JonnyGota
 //
-//  Created by Henrique Manfroi da Silveira on 05/08/14.
+//  Created by Joao Pedro da Costa Nunes on 08/09/14.
 //  Copyright (c) 2014 Henrique Manfroi da Silveira. All rights reserved.
 //
 
-#import "JAGViewController.h"
-#import "JAGPlayGameScene.h"
-#import "JAGLevel.h"
-#import "JAGCreatorLevels.h"
+#import "JAGMenuViewController.h"
 #import "JAGMenu.h"
 
-@implementation JAGViewController
+@implementation JAGMenuViewController
 
 - (void)viewDidLoad
 {
@@ -25,7 +22,7 @@
     skView.showsPhysics = YES;
     
     // Create and configure the scene.
-    SKScene *scene = [[JAGPlayGameScene alloc] initWithSize:skView.bounds.size level:@1 andWorld:@1];
+    SKScene *scene = [[JAGMenu alloc] init];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene \\
