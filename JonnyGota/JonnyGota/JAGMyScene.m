@@ -22,11 +22,7 @@
         
         level1.gota=[[JAGGota alloc] initWithPosition:CGPointMake(level1.tileSize*2, level1.tileSize*2) withSize:tamanho];
         
-       
-        
-        
         SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(level1.tileSize, level1.tileSize)];
-                               
         
         JAGWall *parede=[[JAGWall alloc] initWithSprite:wallSpri];
                                 

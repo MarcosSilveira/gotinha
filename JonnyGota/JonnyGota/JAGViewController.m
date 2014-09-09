@@ -19,18 +19,20 @@
     [super viewDidLoad];
     //[[UIApplication sharedApplication]setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     // Configure the view.
-    SKView * skView = (SKView *)self.view;
-    skView.showsFPS = YES;
-    skView.showsNodeCount = YES;
-    skView.showsPhysics = YES;
+    SKView *skView = (SKView *)self.view;
+//    skView.showsFPS = YES;
+//    skView.showsNodeCount = YES;
+//    skView.showsPhysics = YES;
     
     // Create and configure the scene.
-    SKScene *scene = [[JAGPlayGameScene alloc] initWithSize:skView.bounds.size level:@1 andWorld:@1];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
+
+    SKScene *sceneMenu = [[JAGMenu alloc] initWithSize:skView.bounds.size];
+    sceneMenu.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene \\
     
-    [skView presentScene:scene];
+    [skView presentScene:sceneMenu];
+    
 }
 
 - (BOOL)shouldAutorotate
