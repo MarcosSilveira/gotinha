@@ -196,7 +196,7 @@
         JAGSparkRaio *spark = [[JAGSparkRaio alloc] initWithPosition:trovao.position withTimeLife:10];
         
         [scene.cropNode addChild:perda_fogo.emitter];
-        [scene.cropNode addChild:spark.emitter];
+//        [scene.cropNode addChild:spark.emitter];
         
         SKAction *destruir = [SKAction sequence:@[[SKAction waitForDuration:5],
                                                   [SKAction runBlock:^{

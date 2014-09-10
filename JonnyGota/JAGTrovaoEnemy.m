@@ -62,29 +62,36 @@
     return attack;
 }
 
--(void)moveTelep:(CGPoint) totp { // vou arrumar a volta do teleport, tp e tp de volta pra pos init;
+-(void)moveTelep:(CGPoint)totp { // vou arrumar a volta do teleport, tp e tp de volta pra pos init;
     
     x = arc4random_uniform(200);
     y = arc4random_uniform(200);
     
     CGPoint back=self.position;
     
-    SKAction *tp = [SKAction sequence:@[[SKAction waitForDuration:5],
-                                        [SKAction runBlock:^{
-        
-        [self addChild:_spark.emitter];
-        [self changePosition:totp];
-        [_spark.emitter removeFromParent];
-        
-    }],[SKAction waitForDuration:4],[SKAction runBlock:^{
-        [self addChild:_spark.emitter];
-        [self changePosition:back];
-        [_spark.emitter removeFromParent];
-    }] ]];
+    SKAction *tp = [SKAction sequence:@[[SKAction waitForDuration:5], [self preparetp:totp],
+                                        [SKAction waitForDuration:4], [self preparetp:back]]];
     
     SKAction *loop = [SKAction repeatActionForever:tp];
     
     [self runAction:loop];
+}
+
+-(SKAction *)preparetp:(CGPoint) ponto{
+    SKAction *tprepare=[SKAction sequence:@[[SKAction runBlock:^{
+        SKEmitterNode *trovao=[self.spark createEmitter:CGPointMake(ponto.x-self.position.x, ponto.y-self.position.y) withTimeLife:0.5];
+        NSLog(@"Ponto x:%f  y:%f",ponto.x,ponto.y);
+        [self addChild:trovao];
+            }], [SKAction waitForDuration:1], [SKAction runBlock:^{
+        //[self addChild:_spark.emitter];
+        [self changePosition:ponto];
+                SKEmitterNode *trovao=[self.spark createEmitter:CGPointMake(ponto.x-self.position.x, ponto.y-self.position.y) withTimeLife:0.1];
+                [self addChild:trovao];
+      //  [_spark.emitter removeFromParent];
+    }]
+                                             ]]  ;
+    
+    return tprepare;
 }
 
 @end

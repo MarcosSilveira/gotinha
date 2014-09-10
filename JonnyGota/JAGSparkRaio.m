@@ -13,29 +13,57 @@
 -(instancetype)initWithPosition:(CGPoint)ponto withTimeLife:(int)time {
     
     self = [super init];
+//    
+//    _emitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"Raio" ofType:@"sks"]];
+//    _emitter.position = ponto;
+//    _emitter.name = @"perdida_raio";
+//    _emitter.numParticlesToEmit = 50;
+//    
+//    self.name = @"perdida_raio";
+//    self.position = ponto;
+//    
+//    SKAction *destruir = [SKAction sequence:@[[SKAction waitForDuration:time],
+//                                            [SKAction runBlock:^{
+//        [self destruir];
+//        
+//    }]]];
+//    
+//    [self runAction:destruir];
     
-    _emitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"Raio" ofType:@"sks"]];
-    _emitter.position = ponto;
-    _emitter.name = @"perdida_raio";
-    _emitter.numParticlesToEmit = 50;
+    return self;
+}
+
+
+-(void)destruir {
+    [_emitter removeFromParent];
+    [self removeFromParent];
+}
+
+-(void)destruir:(SKEmitterNode *)node{
+    [node removeFromParent];
+    [node removeFromParent];
+}
+
+-(SKEmitterNode*)createEmitter:(CGPoint)ponto withTimeLife:(int)time{
+    SKEmitterNode *teste;
     
-    self.name = @"perdida_raio";
-    self.position = ponto;
+    teste = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"Raio" ofType:@"sks"]];
+    teste.position = ponto;
+    teste.name = @"perdida_raio";
+    teste.numParticlesToEmit = 50;
+    
+    teste.name = @"perdida_raio";
+    teste.position = ponto;
     
     SKAction *destruir = [SKAction sequence:@[[SKAction waitForDuration:time],
-                                            [SKAction runBlock:^{
-        [self destruir];
+                                              [SKAction runBlock:^{
+        [self destruir:teste];
         
     }]]];
     
     [self runAction:destruir];
     
-    return self;
-}
-
--(void)destruir {
-    [_emitter removeFromParent];
-    [self removeFromParent];
+    return teste;
 }
 
 @end

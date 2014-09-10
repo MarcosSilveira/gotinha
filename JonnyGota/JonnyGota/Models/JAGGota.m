@@ -70,8 +70,10 @@
         [self runAction:pocaAction];
     }
     else if (_escondida){
-        pocaAction = [SKAction scaleYTo:+1 duration:1.0];
-        _escondida = NO;
+        pocaAction = [SKAction sequence:@[[SKAction scaleYTo:+1 duration:1.0], [SKAction waitForDuration:0.3], [SKAction runBlock:^{
+            _escondida = NO;
+        }]]];
+        
         [self runAction:pocaAction];
         
     }

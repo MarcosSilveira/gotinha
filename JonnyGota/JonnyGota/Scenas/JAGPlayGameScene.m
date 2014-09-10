@@ -405,6 +405,7 @@
             
             if ([_gota verificaToque:toqueFinal]){
                 [_gota esconder];
+                [self removeActionForKey:@"moveGota"];
             } else {
                 
                 [self logicaMove:touch];
