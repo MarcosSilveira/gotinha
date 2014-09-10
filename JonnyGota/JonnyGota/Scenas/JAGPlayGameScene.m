@@ -70,7 +70,7 @@
         height = self.scene.size.height;
         [self configuraParadaGota];
     }
-    [self presentGameOver:nil];
+    [self fadeMask];
 
 
     return self;
@@ -124,7 +124,7 @@
     CGPathAddArc(circle, NULL, 0, 0, 1, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
     
     circleMask.path = circle;
-    circleMask.lineWidth = radius*2; // replace 100 with DOUBLE the desired radius of the circle
+    circleMask.lineWidth = radius*2.5; // replace 100 with DOUBLE the desired radius of the circle
     circleMask.name = @"circleMask";
     circleMask.userInteractionEnabled = NO;
     circleMask.fillColor = [SKColor clearColor];
@@ -142,30 +142,33 @@
 }
 
 -(void)fadeMask{
-    SKAction *fadeIn = [SKAction fadeAlphaTo:0 duration:1];
-    SKAction *fadeOut = [SKAction fadeAlphaTo:1 duration:1];
-    
-    SKAction *diminuirVelocidade=[SKAction sequence:@[[SKAction waitForDuration:0.1],
-                                                      [SKAction runBlock:^{
-//        [circleMask runAction:fadeIn];
-//        [circleMask removeFromParent];
-        [_cropNode setMaskNode:nil];
+    double frequencia = _level.frequenciaRelampago;
+    NSTimeInterval tempo = frequencia;
+    SKAction *controle = [SKAction sequence:@[[SKAction waitForDuration:tempo],
+                                              [SKAction runBlock:^{
         
-        SKAction *recuperarVelocidade=[SKAction sequence:@[[SKAction waitForDuration:0.01],
-                                                           [SKAction runBlock:^{
-//            [circleMask runAction:fadeOut];
-//            [area addChild:circleMask];
-            [_cropNode setMaskNode:area];
-
+        SKAction *retiraMascara=[SKAction sequence:@[[SKAction waitForDuration:0.1],
+                                                          [SKAction runBlock:^{
+            //        [circleMask runAction:fadeIn];
+            //        [circleMask removeFromParent];
+            [_cropNode setMaskNode:nil];
+            
+            SKAction *retornaMascara=[SKAction sequence:@[[SKAction waitForDuration:0.05],
+                                                               [SKAction runBlock:^{
+                //            [circleMask runAction:fadeOut];
+                //            [area addChild:circleMask];
+                [_cropNode setMaskNode:area];
+                
+            }]]];
+            
+            [self runAction:retornaMascara];
+            
         }]]];
-        
-        [self runAction:recuperarVelocidade];
-        
+        SKAction *repeater2 = [SKAction repeatAction:retiraMascara count:4];
+        [self runAction:repeater2];
     }]]];
-
-    SKAction *repeater=[SKAction repeatAction:diminuirVelocidade count:4];
+    SKAction *repeater=[SKAction repeatActionForever:controle];
     [self runAction:repeater];
-
 
     
 }
@@ -446,7 +449,7 @@
 
 -(void)logicaMove:(UITouch *) touch{
     if (!_gota.escondida) {
-        [self fadeMask];
+
         toqueFinal = [touch locationInNode:self];
         toqueFinal = CGPointMake(toqueFinal.x+(_gota.position.x)-CGRectGetMidX(self.frame),
                                  toqueFinal.y+(_gota.position.y)-CGRectGetMidY(self.frame));

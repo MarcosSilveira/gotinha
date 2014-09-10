@@ -66,13 +66,14 @@
 
 + (void)initializeLevel01ofWorld01onScene:(JAGPlayGameScene *)scene
 {
+    
     //[self configure:scene withBackgroundColor:[UIColor whiteColor]];
     SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithImageNamed:@"backgroundChuva"];
     
     scene.portas = [[NSMutableArray alloc] init];
     scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
     scene.level.tileSize = 64;
-    
+    scene.level.frequenciaRelampago = 10.0;
     CGSize tamanho = CGSizeMake(scene.level.tileSize, scene.level.tileSize);
     
     scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 1)] withSize:tamanho];
