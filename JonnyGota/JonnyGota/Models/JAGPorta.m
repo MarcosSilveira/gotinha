@@ -34,7 +34,7 @@
 }
 
 -(void)configPhysicsBody{
-    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];//CGSizeMake(self.sprite.size.width, self.sprite.size.height) ];
+    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
     
     self.physicsBody.dynamic=NO;
     

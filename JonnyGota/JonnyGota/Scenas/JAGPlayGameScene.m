@@ -14,44 +14,37 @@
 #import "JAGPerdaGota.h"
 #import "JAGPerdaFogo.h"
 #import "JAGChave.h"
-#import "JAGTrovaoEnemy.h"
 #import "JAGTrap.h"
 
 
 @implementation JAGPlayGameScene {
     
-    float width;
-    float height;
-    CGPoint toqueInicio;
-    SKShapeNode *circleMask;
-    CGPoint toqueFinal;
-    BOOL tocou_gota;
-    BOOL toque_moveu;
+    float width;   //largura da tela
+    float height;  //altura da tela
+    CGPoint toqueInicio;   //ponto inicial do toque
+    SKShapeNode *circleMask;  //circulo da mascara
+    CGPoint toqueFinal;  //ponto final do toque
+    BOOL tocou_gota;     //gota foi tocada?
+    BOOL toque_moveu;    //toque mudou de posição?
     SKShapeNode *lineNode;
-    SKNode *area;
-    SKNode *worldNode;
-    SKSpriteNode *pararMovimentoCONTROLx;
-    SKSpriteNode *pararMovimentoCONTROLy;
-    BOOL controleXnaTela;
-    BOOL controleYnaTela;
-    BOOL pauseDetected;
-    JAGChave* chave;
-    UILongPressGestureRecognizer *longPress;
+    SKNode *area;     //area da máscara
+    SKSpriteNode *pararMovimentoCONTROLx;  //nodo para colisão e parada do movimento da gota em x
+    SKSpriteNode *pararMovimentoCONTROLy;   //nodo para colisão e parada da gota em y
+    BOOL controleXnaTela;   //controle para verificar se nodo de parada da gota x está na tela
+    BOOL controleYnaTela;   //controle para verificar se nodo de parada da gota y está na tela
+    BOOL pauseDetected;     //jogo pausado?
+    JAGChave* chave;        //item chave
+
 }
 
-#pragma mark - Move to View
+#pragma mark - View Initialization
 -(void)didMoveToView:(SKView *)view{
     
     self.physicsWorld.contactDelegate = (id)self;
     self.scaleMode = SKSceneScaleModeAspectFit;
     self.physicsWorld.gravity = CGVectorMake(0.0f, 0.0f);
     [self touchesEnded:nil withEvent:nil];
-    longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressOK)];
-    longPress.delegate = self;
-    longPress.minimumPressDuration = 1;
-}
--(void)longPressOK{
-    NSLog(@"long press recognized");
+
 }
 -(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world{
     if (self = [super initWithSize:size]) {
@@ -73,46 +66,58 @@
         
         tocou_gota = false;
        
-
-//        _cropNode = [[SKCropNode alloc] init];
-//
-//        [_cropNode addChild:[self createCharacter]];
-//        [self createMask:100 withPoint:(_gota.position)];
-//        //[_cropNode addChild:[self createFireEnemy]];
-////        [worldNode addChild:_cropNode];
-////        [self addChild: worldNode];
-//        [self addChild:_cropNode];
-//        [self createLevel];
         width = self.scene.size.width;
         height = self.scene.size.height;
         [self configuraParadaGota];
     }
-//    [self presentGameOver:0];
+    [self presentGameOver:nil];
 
 
     return self;
 }
-
-#pragma mark - Métodos de inicialização
--(JAGGota *)createCharacter{
-    _gota = [[JAGGota alloc] initWithPosition:CGPointMake(width*0.3, height*0.3) withSize:[_level sizeTile]];
-    _gota.name = @"gota";
+-(void)presentGameOver:(int)withOP{
+    /* Configuração e apresentação da popup de game over
+     OP é utilizado para definir a situação atual, em cada caso, os botões da popup serão
+     mostrados de formas diferentes e serão atribuidos a ações diferentes.
+     A situações podem ser:
+     -Fim de fase ganhando
+     -Fim de fase perdendo com vida extra
+     -Fim de fase perdendo sem nenhuma vida */
     
-    return _gota;
+    GObackground = [[SKSpriteNode alloc]initWithColor:[UIColor redColor] size:CGSizeMake( self.frame.size.height/2, self.frame.size.width/2)];
+    GObackground.position = CGPointMake(self.frame.size.height*0.3, self.frame.size.width*0.9);
+    button1 = [[SKSpriteNode alloc] initWithImageNamed:@"play.png"];
+    button1.size = CGSizeMake(GObackground.size.width/4, GObackground.size.height/4.5);
+    button1.position = CGPointMake(self.frame.size.height*0.2, self.frame.size.width*0.65);
+    button2 = [[SKSpriteNode alloc] initWithImageNamed:@"list.png"];
+    button2.size =CGSizeMake(GObackground.size.width/4, GObackground.size.height/4.5);
+    button2.position = CGPointMake(self.frame.size.height*0.4, self.frame.size.width*0.65);
+    button1.name = @"button1";
+    button2.name = @"button2";
+    
+    [self.scene addChild:GObackground];
+    [self.scene addChild:button1];
+    [self.scene addChild:button2];
+    button1.zPosition = 201;
+    button2.zPosition = 201;
+    GObackground.zPosition = 200;
 }
 
--(void)gotaReduzVida{
-    if(!_gota.emContatoFonte){}
-    else _gota.vida ++;
-    
-}
+
+//
+//-(void)gotaReduzVida{
+//    if(!_gota.emContatoFonte){}
+//    else _gota.vida ++;
+//    
+//}
 
 
 #pragma mark - Máscara
 -(void)createMask:(int) radius
         withPoint:(CGPoint) ponto {
-    
-    area = [[SKNode alloc] init];
+//    UIColor *areaColor = [[UIColor alloc]initWithRed:1 green:1 blue:1 alpha:0.5];
+//    area = [[SKSpriteNode alloc] initWithColor:areaColor size:self.frame.size];
+    area = [[SKNode alloc]init];
     circleMask = [[SKShapeNode alloc ]init];
     
     CGMutablePathRef circle = CGPathCreateMutable();
@@ -125,14 +130,45 @@
     circleMask.fillColor = [SKColor clearColor];
     
     circleMask.position = CGPointMake(ponto.x-_gota.sprite.size.width,ponto.y-_gota.sprite.size.height);
+    area.alpha = 0.5;
+    circleMask.alpha = 0.5;
     
+  //  _cropNode.alpha = 0.5;
+    area.zPosition = _cropNode.zPosition+1;
     [area addChild:circleMask];
     //area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
-    //[_cropNode setMaskNode:area];
+    [_cropNode setMaskNode:area];
+
 }
 
-#pragma mark - Mundo/Fases
+-(void)fadeMask{
+    SKAction *fadeIn = [SKAction fadeAlphaTo:0 duration:1];
+    SKAction *fadeOut = [SKAction fadeAlphaTo:1 duration:1];
+    
+    SKAction *diminuirVelocidade=[SKAction sequence:@[[SKAction waitForDuration:0.1],
+                                                      [SKAction runBlock:^{
+//        [circleMask runAction:fadeIn];
+//        [circleMask removeFromParent];
+        [_cropNode setMaskNode:nil];
+        
+        SKAction *recuperarVelocidade=[SKAction sequence:@[[SKAction waitForDuration:0.01],
+                                                           [SKAction runBlock:^{
+//            [circleMask runAction:fadeOut];
+//            [area addChild:circleMask];
+            [_cropNode setMaskNode:area];
 
+        }]]];
+        
+        [self runAction:recuperarVelocidade];
+        
+    }]]];
+
+    SKAction *repeater=[SKAction repeatAction:diminuirVelocidade count:4];
+    [self runAction:repeater];
+
+
+    
+}
 
 #pragma mark - Ações
 -(void)divideGota{
@@ -249,7 +285,6 @@
 
 
 #pragma mark - Touch treatment
-
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
@@ -411,13 +446,16 @@
 
 -(void)logicaMove:(UITouch *) touch{
     if (!_gota.escondida) {
-        
+        [self fadeMask];
         toqueFinal = [touch locationInNode:self];
         toqueFinal = CGPointMake(toqueFinal.x+(_gota.position.x)-CGRectGetMidX(self.frame),
                                  toqueFinal.y+(_gota.position.y)-CGRectGetMidY(self.frame));
-        if (!pauseDetected) {
-            
         
+        if (pauseDetected) {
+            _gota.physicsBody.velocity = CGVectorMake(0,0);
+        }
+        else if (!pauseDetected) {
+            
         int temp=[self verificaSentido:toqueFinal with:_gota.position];
         
         if(temp!=self.gota.sentido){
@@ -476,16 +514,9 @@
         
         }
     }
-}
--(void)centerMapOnCharacter{
-    self.cropNode.position = CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
-                                    -(_gota.position.y)+CGRectGetMidY(self.frame));
-    
-    
-    //circleMask.position=CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
-     //                               -(_gota.position.y)+CGRectGetMidY(self.frame));
 
 }
+
 
 -(void)update:(NSTimeInterval)currentTime {
     if (pauseDetected) {
@@ -562,6 +593,8 @@
         else [self receberDano:5];
     }
     
+
+
     //Colisao com a parede
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
        ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
@@ -860,7 +893,13 @@
     }
 }
 
-#pragma mark - Configuração de Start
+#pragma mark - Configuração/Inicialização
+
+-(void)centerMapOnCharacter{
+    self.cropNode.position = CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
+                                         -(_gota.position.y)+CGRectGetMidY(self.frame));
+    
+}
 -(void)configStart:(int) time{
     _posicaoInicial=self.gota.position;
     
@@ -991,59 +1030,6 @@
 }
 
 
--(void)createLevel{
-    _level=[[JAGLevel alloc] initWithHeight:20 withWidth:20];
-    
-    CGSize tamanho=CGSizeMake(_level.tileSize, _level.tileSize);
-    
-    _level.gota=[[JAGGota alloc] initWithPosition:CGPointMake(_level.tileSize*2, _level.tileSize*2) withSize:tamanho];
-    
-    
-    SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_level.tileSize, _level.tileSize)];
-    
-    wallSpri.name=@"brownColor";
-    
-    JAGWall *parede=[[JAGWall alloc] initWithSprite:wallSpri];
-    
-    parede.position=CGPointMake(_level.tileSize*5, _level.tileSize*5);
-    
-    [_level.paredes setValue:parede forKey:@"parede1"];
-    
-    
-    JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake(_level.tileSize*4, _level.tileSize*4) withSize:tamanho];
-    
-    inimigo.sprite.name=@"grenColor";
-    
-    inimigo.tipo=1;
-    
-    [_level.inimigos setValue:inimigo forKey:@"inimigo1"];
-    
-    _level.mundo=@1;
-    
-    _level.level=@1;
-    
-    //NSLog(@" Export: %@", [level1 exportar]);    
-}
 
--(void)presentGameOver:(int)withOP{
-    
-    GObackground = [[SKSpriteNode alloc]initWithColor:[UIColor redColor] size:CGSizeMake( self.frame.size.height/2, self.frame.size.width/2)];
-    GObackground.position = CGPointMake(self.frame.size.height*0.35, self.frame.size.width*0.7);
-    button1 = [[SKSpriteNode alloc] initWithImageNamed:@"play.png"];
-    button1.size = CGSizeMake(GObackground.size.width/4, GObackground.size.height/4.5);
-    button1.position = CGPointMake(self.frame.size.height*0.2, self.frame.size.width*0.45);
-    button2 = [[SKSpriteNode alloc] initWithImageNamed:@"list.png"];
-    button2.size =CGSizeMake(GObackground.size.width/4, GObackground.size.height/4.5);
-    button2.position = CGPointMake(self.frame.size.height*0.5, self.frame.size.width*0.45);
-    button1.name = @"button1";
-    button2.name = @"button2";
-
-    [self.scene addChild:GObackground];
-    [self.scene addChild:button1];
-    [self.scene addChild:button2];
-    button1.zPosition = 201;
-    button2.zPosition = 201;
-    GObackground.zPosition = 200;
-}
 
 @end

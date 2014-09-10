@@ -68,15 +68,15 @@
 {
     //[self configure:scene withBackgroundColor:[UIColor whiteColor]];
     SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithImageNamed:@"backgroundChuva"];
-
+    
     scene.portas = [[NSMutableArray alloc] init];
     scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
     scene.level.tileSize = 64;
     
     CGSize tamanho = CGSizeMake(scene.level.tileSize, scene.level.tileSize);
-        
+    
     scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 1)] withSize:tamanho];
-
+    
     [scene configInit:bgImage];
     
     //Fogo
@@ -108,7 +108,7 @@
     [scene.characteres addObject:scene.gota];
     [scene.characteres addObject:fogo];
     [scene.characteres addObject:trovao];
-  
+    
     [scene.inimigos addObject:fogo];
     [scene.inimigos addObject:trovao];
     
@@ -164,7 +164,7 @@
     [scene.level createWalls:CGPointMake(6, 3) withHeight:10 withWidth:1 withScene:scene];
     
     //Box do Challenge
-   
+    
     [scene.level createWalls:CGPointMake(8, 17) withHeight:3 withWidth:1 withScene:scene];
     
     [scene.cropNode addChild:chave];
@@ -177,7 +177,7 @@
     
     [scene.cropNode addChild:fogo];
     [scene.cropNode addChild:trovao];
-
+    
     [scene addChild: scene.cropNode];
     
     [scene.hud startTimer];
@@ -190,36 +190,38 @@
     
     //JAGPerdaFogo *perda_fogo = [[JAGPerdaFogo alloc] initWithPosition:fogo.position withTimeLife:10];
     SKAction *diminuirSaude = [SKAction sequence:@[[SKAction waitForDuration:5],
-                                                 [SKAction runBlock:^{
+                                                   [SKAction runBlock:^{
         JAGPerdaFogo *perda_fogo = [[JAGPerdaFogo alloc] initWithPosition:fogo.position withTimeLife:10];
         JAGSparkRaio *spark = [[JAGSparkRaio alloc] initWithPosition:trovao.position withTimeLife:10];
-
+        
         [scene.cropNode addChild:perda_fogo.emitter];
         [scene.cropNode addChild:spark.emitter];
         
         SKAction *destruir = [SKAction sequence:@[[SKAction waitForDuration:5],
-                                                [SKAction runBlock:^{
+                                                  [SKAction runBlock:^{
             
             [perda_fogo.emitter removeFromParent];
             [spark.emitter removeFromParent];
+            NSLog(@"pos %@", [NSValue valueWithCGPoint:trovao.position]);
+            [trovao moveTelep];
             
-            }]]];
-
+        }]]];
+        
         [scene runAction:destruir];
         
     }]]];
-
+    
     SKAction *loop = [SKAction repeatActionForever:diminuirSaude];
     
     [scene runAction:loop];
-
+    
     [scene configStart:8];
     
     scene.hud.zPosition = 1000;
     
     [scene addChild:scene.hud];
-
-   // JAGHud *hud = [JAGHud alloc]
+    
+    // JAGHud *hud = [JAGHud alloc]
 }
 
 + (void)initializeLevel02ofWorld01onScene:(JAGPlayGameScene *)scene
@@ -241,18 +243,6 @@
     [scene configInit:bgImage];
     
     JAGTrovaoEnemy *fogo = [[JAGTrovaoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
-    JAGSparkRaio *perda_raio = [[JAGSparkRaio alloc] initWithPosition:fogo.position withTimeLife:10];
-    
-    [scene.cropNode addChild:perda_raio.emitter];
-
-    SKAction *destruir = [SKAction sequence:@[[SKAction waitForDuration:10],
-                                              [SKAction runBlock:^{
-        [perda_raio.emitter removeFromParent];
-        
-    }]]];
-    
-    [scene runAction:destruir];
-    
     fogo.dano = 10;
     
     [scene.characteres addObject:scene.gota];
@@ -263,7 +253,7 @@
     //_tileSize=32;
     //scene.diferenca = 80.0f;
     //tocou = false;
-
+    
     JAGPressao *presao = [[JAGPressao alloc] initWithPosition:[scene.level calculateTile:CGPointMake(7, 8)] withTipo:1];
     
     SKSpriteNode *spritePor = [[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size:CGSizeMake(scene.level.tileSize, scene.level.tileSize)];
@@ -313,7 +303,7 @@
     //Box do Challenge
     
     [scene.level createWalls:CGPointMake(8, 17) withHeight:3 withWidth:1 withScene:scene];
-
+    
     [scene.cropNode addChild:chave];
     
     

@@ -26,8 +26,8 @@
     self.physicsBody.categoryBitMask = ENEMY;
     self.physicsBody.collisionBitMask = GOTA|PORTA|PAREDE;
     self.physicsBody.contactTestBitMask = GOTA|PRESSAO;
-    //    self.physicsBody.mass = 9000;
-    //    desn.position = position;
+    //  self.physicsBody.mass = 9000;
+    //  desn.position = position;
     
     //[self addChild:desn];
     
@@ -40,9 +40,6 @@
     self.visaoRanged = 150;
     self.position = position;
     self.delayAttack = 5;
-    
-    x = arc4random()%200;
-    y = arc4random()%200;
     
     return self;
 }
@@ -88,7 +85,6 @@
     SKAction *loop = [SKAction repeatActionForever:tp];
     
     [self runAction:loop];
-    
 }
 
 @end

@@ -51,9 +51,6 @@
     _circleMask.lineWidth = raio*2; // replace 100 with DOUBLE the desired radius of the circle
     _circleMask.name = @"circleMask";
     _circleMask.userInteractionEnabled = NO;
-    //_circleMask.fillColor = [SKColor redColor];
-   
-    
     _circleMask.position=self.position;
 
     //NSLog(@"cir x: %f  y: %f",self.position.x,self.position.y);

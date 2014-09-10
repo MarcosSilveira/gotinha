@@ -7,6 +7,7 @@
 //
 
 #import "JAGMenu.h"
+#import "JAGPlayGameScene.h"
 
 @implementation JAGMenu
 {
@@ -39,6 +40,13 @@
         
         if ([botaoPlay containsPoint:location]) {
             NSLog(@"teste");
+            self.play = YES;
+            
+            SKScene *scene = [[JAGPlayGameScene alloc] initWithSize:self.frame.size level:@1 andWorld:@1];
+            
+            SKTransition *trans = [SKTransition fadeWithDuration:1.0];
+            
+            [self.scene.view presentScene:scene transition:trans];
             }
     }
 }
