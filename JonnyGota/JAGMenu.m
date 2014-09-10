@@ -13,6 +13,7 @@
 {
     SKSpriteNode *botaoPlay;
     SKLabelNode *lblGame;
+    SKLabelNode *lblPlay;
 }
 
 -(id)initWithSize:(CGSize)size {
@@ -36,8 +37,14 @@
     lblGame.fontSize = 20.0;
     lblGame.text = @"As Aventuras da Gotinha";
     
+    lblPlay = [[SKLabelNode alloc] init];
+    [lblPlay setFontColor:[SKColor yellowColor]];
+    lblPlay.text = @"Play";
+    
     [self addChild:botaoPlay];
     [self addChild:lblGame];
+    
+    [botaoPlay addChild:lblPlay];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
