@@ -16,6 +16,6 @@
 @property (strong, nonatomic) JAGSparkRaio *spark;
 
 -(id)initWithPosition:(CGPoint) position withSize:(CGSize)size;
--(void) moveTelep;
+-(void)moveTelep:(CGPoint) totp;
 
 @end

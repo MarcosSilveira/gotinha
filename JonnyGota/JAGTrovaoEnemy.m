@@ -62,19 +62,25 @@
     return attack;
 }
 
--(void) moveTelep { // vou arrumar a volta do teleport, tp e tp de volta pra pos init;
+-(void)moveTelep:(CGPoint) totp { // vou arrumar a volta do teleport, tp e tp de volta pra pos init;
     
     x = arc4random_uniform(200);
     y = arc4random_uniform(200);
+    
+    CGPoint back=self.position;
     
     SKAction *tp = [SKAction sequence:@[[SKAction waitForDuration:5],
                                         [SKAction runBlock:^{
         
         [self addChild:_spark.emitter];
-        [self changePosition:CGPointMake(x, y)];
+        [self changePosition:totp];
         [_spark.emitter removeFromParent];
         
-    }]]];
+    }],[SKAction waitForDuration:4],[SKAction runBlock:^{
+        [self addChild:_spark.emitter];
+        [self changePosition:back];
+        [_spark.emitter removeFromParent];
+    }] ]];
     
     SKAction *loop = [SKAction repeatActionForever:tp];
     

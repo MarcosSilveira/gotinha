@@ -32,7 +32,11 @@
 @property (nonatomic) int sentido;
 @property int lastPointToGo;
 
+@property (nonatomic) BOOL activeIa;
+
 @property BOOL inColissao;
+
+
 
 -(BOOL)tocou:(CGPoint)ponto;
 -(void)ataque;

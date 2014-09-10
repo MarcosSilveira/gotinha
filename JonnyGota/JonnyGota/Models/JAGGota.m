@@ -20,7 +20,7 @@
     
     self.physicsBody.friction = 0;
     
-    self.multi = size.width/3;
+    self.multi = size.width/2;
     
     //    desn.position=position;
     
