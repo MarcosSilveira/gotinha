@@ -14,7 +14,6 @@
 #import "JAGPerdaGota.h"
 #import "JAGPerdaFogo.h"
 #import "JAGChave.h"
-#import "JAGTrovaoEnemy.h"
 #import "JAGTrap.h"
 
 

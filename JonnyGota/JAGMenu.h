@@ -10,4 +10,6 @@
 
 @interface JAGMenu : SKScene
 
+@property BOOL play;
+
 @end

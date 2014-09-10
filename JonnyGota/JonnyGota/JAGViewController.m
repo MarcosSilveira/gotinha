@@ -12,30 +12,26 @@
 #import "JAGCreatorLevels.h"
 #import "JAGMenu.h"
 
-
 @implementation JAGViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//[[UIApplication sharedApplication]setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+    //[[UIApplication sharedApplication]setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     // Configure the view.
-    SKView * skView = (SKView *)self.view;
-    skView.showsFPS = YES;
-    skView.showsNodeCount = YES;
-    skView.showsPhysics = YES;
+    SKView *skView = (SKView *)self.view;
+//    skView.showsFPS = YES;
+//    skView.showsNodeCount = YES;
+//    skView.showsPhysics = YES;
     
     // Create and configure the scene.
-    SKScene *scene = [[JAGPlayGameScene alloc] initWithSize:skView.bounds.size level:@1 andWorld:@1];
-    //SKScene * scene = [JAGP sceneWithSize:skView.bounds.size];
-   // SKScene *scene = [[JAGMenu alloc] init];
-    //JAGPlayGameScene *scene=[[JAGPlayGameScene alloc] init];
+
+    SKScene *sceneMenu = [[JAGMenu alloc] initWithSize:skView.bounds.size];
+    sceneMenu.scaleMode = SKSceneScaleModeAspectFill;
     
-    scene.scaleMode = SKSceneScaleModeAspectFill;
+    // Present the scene \\
     
-    // Present the scene.
-   
-    [skView presentScene:scene];
+    [skView presentScene:sceneMenu];
     
 }
 
