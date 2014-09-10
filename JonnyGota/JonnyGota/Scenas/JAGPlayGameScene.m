@@ -662,6 +662,39 @@
         }
     }
     
+    if(([contact.bodyA.node.name isEqualToString:@"gotaDividida"] && [contact.bodyB.node.name isEqualToString:@"pressao"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"pressao"] && [contact.bodyB.node.name isEqualToString:@"gotaDividida"]) ) {
+        //
+        if([contact.bodyA.node.name isEqualToString:@"pressao"]){
+            JAGPressao *pre=(JAGPressao *)contact.bodyA.node;
+            
+            [pre pisar];
+            
+            if(pre.tipo==2){
+                //Reseta o tempo
+            }
+            
+            for (int i=0; i<_portas.count; i++) {
+                JAGPorta *porta=_portas[i];
+                [porta verificarBotoes];
+            }
+            
+            
+            //[obj removeFromParent];
+        }else{
+            JAGPressao *obj=(JAGPressao *)contact.bodyB.node;
+            [obj pisar];
+            
+            for (int i=0; i<_portas.count; i++) {
+                JAGPorta *porta=_portas[i];
+                [porta verificarBotoes];
+            }
+            
+            //[obj removeFromParent];
+        }
+    }
+
+    
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"porta"]) ||
        ([contact.bodyA.node.name isEqualToString:@"porta"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
         //
@@ -800,6 +833,59 @@
             //[obj removeFromParent];
         }
     }
+    
+    if(([contact.bodyA.node.name isEqualToString:@"gotaDividida"] && [contact.bodyB.node.name isEqualToString:@"pressao"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"pressao"] && [contact.bodyB.node.name isEqualToString:@"gotaDividida"]) ) {
+        //
+        if([contact.bodyA.node.name isEqualToString:@"pressao"]){
+            JAGPressao *pre=(JAGPressao *)contact.bodyA.node;
+            
+            if(pre.tipo==2){
+                //Inicia um Action que faz a validacao depois de um tempo
+                _despresionar =[SKAction sequence:@[[SKAction waitForDuration:4],
+                                                    [SKAction runBlock:^{
+                    if(![pre pisado:_characteres]){
+                        [pre pisar];
+                    }
+                    
+                    for (int i=0; i<_portas.count; i++) {
+                        JAGPorta *porta=_portas[i];
+                        [porta verificarBotoes];
+                    }
+                }]]];
+                
+                //_despresionar =;
+                
+                [self runAction:_despresionar];
+            }
+            if(pre.tipo==3){
+                //Libera
+                [pre pisar];
+                
+                for (int i=0; i<_portas.count; i++) {
+                    JAGPorta *porta=_portas[i];
+                    [porta verificarBotoes];
+                }
+            }
+            for (int i=0; i<_portas.count; i++) {
+                JAGPorta *porta=_portas[i];
+                [porta verificarBotoes];
+            }
+            
+            //[obj removeFromParent];
+        }else{
+            //            JAGPressao *obj = (JAGPressao *)contact.bodyB.node;
+            
+            
+            for (int i=0; i<_portas.count; i++) {
+                JAGPorta *porta=_portas[i];
+                [porta verificarBotoes];
+            }
+            
+            //[obj removeFromParent];
+        }
+    }
+
     
     if((contact.bodyA.categoryBitMask == PRESSAO) && (contact.bodyB.categoryBitMask == ENEMY)){
         JAGPressao *pre=(JAGPressao *)contact.bodyA.node;
