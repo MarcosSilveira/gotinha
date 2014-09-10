@@ -203,7 +203,7 @@
             [perda_fogo.emitter removeFromParent];
             [spark.emitter removeFromParent];
             NSLog(@"pos %@", [NSValue valueWithCGPoint:trovao.position]);
-            [trovao moveTelep];
+            [trovao moveTelep:[scene.level calculateTile:CGPointMake(2, 3)]];
             
         }]]];
         
