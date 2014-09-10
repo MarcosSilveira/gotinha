@@ -83,11 +83,13 @@
     JAGFogoEnemy *fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 5)] withSize:tamanho];
     fogo.dano=10;
     
+    [fogo activateIa];
+    
     NSMutableArray *paths = [[NSMutableArray alloc] init];
     [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y+100)]];
     [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y)]];
     
-    [fogo activateIa];
+    
 
     fogo.arrPointsPath = paths;
     
@@ -95,7 +97,7 @@
     
     JAGTrovaoEnemy *trovao = [[JAGTrovaoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 10)] withSize:tamanho];
     trovao.dano = 10;
-    [trovao moveTelep];
+    [trovao moveTelep:[scene.level calculateTile:CGPointMake(2, 3)]];
     
     NSMutableArray *patht = [[NSMutableArray alloc] init];
     [patht addObject:[NSValue valueWithCGPoint:CGPointMake(trovao.position.x, trovao.position.y+100)]];

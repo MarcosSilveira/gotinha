@@ -10,7 +10,7 @@
 
 @implementation JAGInimigos
 
-bool iaActiva;
+
 
 -(id)init {
     
@@ -30,7 +30,7 @@ bool iaActiva;
     self.visao         = 100;
     self.lastPointToGo = 0;
     
-    iaActiva=NO;
+    _activeIa=NO;
     
     return self;
 }
@@ -51,7 +51,7 @@ bool iaActiva;
     
     // Movimentaçao
     
-    if(iaActiva){
+    if(_activeIa){
         
         if (!self.andandoIa) {
             
@@ -337,7 +337,7 @@ bool iaActiva;
 }
 
 -(void)activateIa{
-    iaActiva=YES;
+    _activeIa=true;
 }
 
 @end

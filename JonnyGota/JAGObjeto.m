@@ -33,6 +33,8 @@
     
     _sprite.physicsBody.dynamic=NO;
     
+    _sprite.physicsBody.restitution=0;
+    
     _tipo=tipo;
     switch (tipo) {
         case 1:

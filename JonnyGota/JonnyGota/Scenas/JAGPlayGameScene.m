@@ -587,10 +587,12 @@
         if([contact.bodyA.node.name isEqualToString:@"cronometro"]){
             JAGObjeto *obj=(JAGObjeto *)contact.bodyA.node.parent;
             [obj habilidade:self];
+            self.gota.sentido=0;
             [obj removeFromParent];
         }else{
             JAGObjeto *obj=(JAGObjeto *)contact.bodyB.node.parent;
             [obj habilidade:self];
+            self.gota.sentido=0;
             [obj removeFromParent];
         }
     }
