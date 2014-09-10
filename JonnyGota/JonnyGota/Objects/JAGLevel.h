@@ -32,6 +32,7 @@
 @property (nonatomic) NSNumber *level;
 
 @property (nonatomic) SKSpriteNode *background;
+@property (nonatomic)double frequenciaRelampago;
 
 
 -(instancetype)initWithHeight:(int) height
