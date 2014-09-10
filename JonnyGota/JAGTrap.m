@@ -29,23 +29,27 @@
     
     self.physicsBody.categoryBitMask = TRAP;
     self.physicsBody.contactTestBitMask = GOTA;
-    
+
     return self;
 }
 
 -(void)capturouAGota:(JAGCharacter *)gota{
+    int multiAux = gota.multi;
+    _newVelocity = gota.multi/2;
+    _fastVelocity = gota.multi*2;
+    
     if (_tipo==0){
 //        gota.vida = gota.vida - 5;
     }
     else if(_tipo==1){
-        
+
         SKAction *diminuirVelocidade=[SKAction sequence:@[[SKAction waitForDuration:0.1],
                                                      [SKAction runBlock:^{
-            gota.multi = 2;
+            gota.multi = _newVelocity;
             
             SKAction *recuperarVelocidade=[SKAction sequence:@[[SKAction waitForDuration:10],
                                                     [SKAction runBlock:^{
-                gota.multi = 5;
+                gota.multi = multiAux;
                 
             }]]];
             
@@ -55,7 +59,7 @@
         [self runAction:diminuirVelocidade];
     }
     else if(_tipo==2){
-        int multiAux = gota.multi;
+        
         SKAction *diminuirVelocidade=[SKAction sequence:@[[SKAction waitForDuration:0.1],
                                                           [SKAction runBlock:^{
             gota.multi = 0;
@@ -73,20 +77,20 @@
     }
     
     else if (_tipo==3){
-        SKAction *diminuirVelocidade=[SKAction sequence:@[[SKAction waitForDuration:0.1],
+        SKAction *acelerar=[SKAction sequence:@[[SKAction waitForDuration:0.1],
                                                           [SKAction runBlock:^{
-            gota.multi = 8;
+            gota.multi = _fastVelocity;
             
             SKAction *recuperarVelocidade=[SKAction sequence:@[[SKAction waitForDuration:10],
                                                                [SKAction runBlock:^{
-                gota.multi = 5;
+                gota.multi = multiAux;
                 
             }]]];
             
             [self runAction:recuperarVelocidade];
             
         }]]];
-        [self runAction:diminuirVelocidade];
+        [self runAction:acelerar];
 
     }
 }

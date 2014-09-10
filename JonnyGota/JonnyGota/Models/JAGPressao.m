@@ -9,6 +9,7 @@
 #import "JAGPressao.h"
 #import "JAGCharacter.h"
 
+ 
 @implementation JAGPressao
 
 -(instancetype)initWithPosition:(CGPoint)ponto withTipo:(int)tipo{
@@ -33,9 +34,9 @@
     _pressionado=FALSE;
     
     _tipo=tipo;
-    
     //Tipo 1 pisa e fica normal 2 depois de um tempo libera
     //tipo 3 tem que ser precionado constantemente
+
     return self;
 }
 

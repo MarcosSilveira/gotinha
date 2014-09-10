@@ -20,6 +20,8 @@
 @interface JAGTrap : SKNode
 
 @property (nonatomic) int tipo;
+@property (nonatomic) int newVelocity;
+@property (nonatomic) int fastVelocity;
 
 @property (nonatomic) SKSpriteNode *sprite;
 

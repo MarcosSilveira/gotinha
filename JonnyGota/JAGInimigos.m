@@ -69,14 +69,25 @@ bool iaActiva;
                 
                 SKAction *sequenceTemp;
                 
-                if(i == self.arrPointsFixes.count - 1) {
-                    sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:0.5],
-                                                        [SKAction waitForDuration:0.1],
-                                                        [SKAction runBlock:^{
+                for(int i = self.arrPointsFixes.count - 1.0; i >= 0; i--) {
+                    
+                    CGPoint ponto = [(NSValue *)[self.arrPointsFixes objectAtIndex:i] CGPointValue];
+                    
+                    if(i == self.arrPointsFixes.count - 1) {
+                        sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:0.5],
+                                                            [SKAction waitForDuration:0.1],
+                                                            [SKAction runBlock:^{
+                            [self.arrPointsFixes removeObjectAtIndex:i];
+                        }]]];
                         
-                        
-                        [self.arrPointsFixes removeObjectAtIndex:i];
-                    }]]];
+                    } else {
+                        sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:0.5],
+                                                            [SKAction waitForDuration:0.1],
+                                                            [SKAction runBlock:^{
+                            [self.arrPointsFixes removeObjectAtIndex:i];
+                        }]]];
+                    }
+                    
                     
                 }
                 [self createPathto];

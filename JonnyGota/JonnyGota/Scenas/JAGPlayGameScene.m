@@ -28,7 +28,7 @@
     BOOL tocou_gota;     //gota foi tocada?
     BOOL toque_moveu;    //toque mudou de posição?
     SKShapeNode *lineNode;
-    SKNode *area;
+    SKNode *area;     //area da máscara
     SKSpriteNode *pararMovimentoCONTROLx;  //nodo para colisão e parada do movimento da gota em x
     SKSpriteNode *pararMovimentoCONTROLy;   //nodo para colisão e parada da gota em y
     BOOL controleXnaTela;   //controle para verificar se nodo de parada da gota x está na tela
@@ -71,7 +71,7 @@
         height = self.scene.size.height;
         [self configuraParadaGota];
     }
-
+    [self presentGameOver:nil];
 
 
     return self;
@@ -86,13 +86,13 @@
      -Fim de fase perdendo sem nenhuma vida */
     
     GObackground = [[SKSpriteNode alloc]initWithColor:[UIColor redColor] size:CGSizeMake( self.frame.size.height/2, self.frame.size.width/2)];
-    GObackground.position = CGPointMake(self.frame.size.height*0.35, self.frame.size.width*0.7);
+    GObackground.position = CGPointMake(self.frame.size.height*0.3, self.frame.size.width*0.9);
     button1 = [[SKSpriteNode alloc] initWithImageNamed:@"play.png"];
     button1.size = CGSizeMake(GObackground.size.width/4, GObackground.size.height/4.5);
-    button1.position = CGPointMake(self.frame.size.height*0.2, self.frame.size.width*0.45);
+    button1.position = CGPointMake(self.frame.size.height*0.2, self.frame.size.width*0.65);
     button2 = [[SKSpriteNode alloc] initWithImageNamed:@"list.png"];
     button2.size =CGSizeMake(GObackground.size.width/4, GObackground.size.height/4.5);
-    button2.position = CGPointMake(self.frame.size.height*0.5, self.frame.size.width*0.45);
+    button2.position = CGPointMake(self.frame.size.height*0.4, self.frame.size.width*0.65);
     button1.name = @"button1";
     button2.name = @"button2";
     
@@ -116,8 +116,9 @@
 #pragma mark - Máscara
 -(void)createMask:(int) radius
         withPoint:(CGPoint) ponto {
-    
-    area = [[SKNode alloc] init];
+//    UIColor *areaColor = [[UIColor alloc]initWithRed:1 green:1 blue:1 alpha:0.5];
+//    area = [[SKSpriteNode alloc] initWithColor:areaColor size:self.frame.size];
+    area = [[SKNode alloc]init];
     circleMask = [[SKShapeNode alloc ]init];
     
     CGMutablePathRef circle = CGPathCreateMutable();
@@ -130,13 +131,45 @@
     circleMask.fillColor = [SKColor clearColor];
     
     circleMask.position = CGPointMake(ponto.x-_gota.sprite.size.width,ponto.y-_gota.sprite.size.height);
+    area.alpha = 0.5;
+    circleMask.alpha = 0.5;
     
+  //  _cropNode.alpha = 0.5;
+    area.zPosition = _cropNode.zPosition+1;
     [area addChild:circleMask];
     //area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
-    //[_cropNode setMaskNode:area];
+    [_cropNode setMaskNode:area];
+
 }
 
+-(void)fadeMask{
+    SKAction *fadeIn = [SKAction fadeAlphaTo:0 duration:1];
+    SKAction *fadeOut = [SKAction fadeAlphaTo:1 duration:1];
+    
+    SKAction *diminuirVelocidade=[SKAction sequence:@[[SKAction waitForDuration:0.1],
+                                                      [SKAction runBlock:^{
+//        [circleMask runAction:fadeIn];
+//        [circleMask removeFromParent];
+        [_cropNode setMaskNode:nil];
+        
+        SKAction *recuperarVelocidade=[SKAction sequence:@[[SKAction waitForDuration:0.01],
+                                                           [SKAction runBlock:^{
+//            [circleMask runAction:fadeOut];
+//            [area addChild:circleMask];
+            [_cropNode setMaskNode:area];
 
+        }]]];
+        
+        [self runAction:recuperarVelocidade];
+        
+    }]]];
+
+    SKAction *repeater=[SKAction repeatAction:diminuirVelocidade count:4];
+    [self runAction:repeater];
+
+
+    
+}
 
 #pragma mark - Ações
 -(void)divideGota{
@@ -414,7 +447,7 @@
 
 -(void)logicaMove:(UITouch *) touch{
     if (!_gota.escondida) {
-        
+        [self fadeMask];
         toqueFinal = [touch locationInNode:self];
         toqueFinal = CGPointMake(toqueFinal.x+(_gota.position.x)-CGRectGetMidX(self.frame),
                                  toqueFinal.y+(_gota.position.y)-CGRectGetMidY(self.frame));
