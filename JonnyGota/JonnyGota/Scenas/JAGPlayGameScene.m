@@ -462,7 +462,7 @@
             
         int temp=[self verificaSentido:toqueFinal with:_gota.position];
         
-        if(temp!=self.gota.sentido){
+//        if(temp!=self.gota.sentido){
             
             self.gota.sentido=temp;
             
@@ -516,7 +516,7 @@
             
         }
         
-        }
+//        }
     }
 
 }
@@ -551,7 +551,7 @@
     
     [self prepareMove];
     
-        [self.hud update];
+    [self.hud update];
     
     if (self.hud.tempoRestante == 0) {
         self.scene.view.paused = YES;
@@ -564,7 +564,8 @@
     
     queue = dispatch_queue_create("actionEnemys",
                                   NULL);
-    
+//    [self actionsEnemys];
+
     dispatch_async(queue, ^{
         [self actionsEnemys];
     });
@@ -986,9 +987,10 @@
 #pragma mark - Configuração/Inicialização
 
 -(void)centerMapOnCharacter{
+//    if(self.gota.physicsBody.velocity.dx>0){
     self.cropNode.position = CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
                                          -(_gota.position.y)+CGRectGetMidY(self.frame));
-    
+//    }
 }
 -(void)configStart:(int) time{
     _posicaoInicial=self.gota.position;

@@ -41,6 +41,12 @@
     
     self.physicsBody.restitution=0;
     
+    SKAction *stop=[SKAction sequence:@[[SKAction waitForDuration:1], [SKAction runBlock:^{
+        self.physicsBody.velocity=CGVectorMake(0, 0);
+    }]]];
+    
+    [self runAction:stop];
+    
     return self;
 
 }
