@@ -29,7 +29,7 @@
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
     self.physicsBody.categoryBitMask = DIVIDIDA;
     self.physicsBody.collisionBitMask = ENEMY |ITEM |PORTA|PAREDE;
-    self.physicsBody.contactTestBitMask = ENEMY | CONTROLE_TOQUE |ITEM;
+    self.physicsBody.contactTestBitMask = ENEMY | CONTROLE_TOQUE |ITEM |PRESSAO ;
     
     [self configPhysics];
     
@@ -40,6 +40,12 @@
     self.zPosition=100;
     
     self.physicsBody.restitution=0;
+    
+    SKAction *stop=[SKAction sequence:@[[SKAction waitForDuration:1], [SKAction runBlock:^{
+        self.physicsBody.velocity=CGVectorMake(0, 0);
+    }]]];
+    
+    [self runAction:stop];
     
     return self;
 

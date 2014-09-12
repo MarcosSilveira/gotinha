@@ -12,10 +12,12 @@
  
 @implementation JAGPressao
 
--(instancetype)initWithPosition:(CGPoint)ponto withTipo:(int)tipo{
+-(instancetype)initWithPosition:(CGPoint)ponto
+                       withTipo:(int)tipo
+                       withSize:(CGSize) tamanho{
     self=[super init];
     
-    _sprite=[[SKSpriteNode alloc] initWithColor:[SKColor cyanColor] size:CGSizeMake(32,32)];
+    _sprite=[[SKSpriteNode alloc] initWithColor:[SKColor cyanColor] size:tamanho];
     
     self.physicsBody=[SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
     

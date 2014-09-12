@@ -32,7 +32,7 @@
     
     [self addChild:self.sprite];
     
-    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.sprite.size.width-2, self.sprite.size.height-2)];
+    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.sprite.size.width, self.sprite.size.height)];
     //self.zPosition = 1;
     self.physicsBody.categoryBitMask = GOTA;
     self.physicsBody.collisionBitMask = ATTACK | ENEMY |ITEM |PORTA | CHUVA | CHAVE | PAREDE;
@@ -52,6 +52,11 @@
     _comChave = NO;
     _aguaRestante = 10;
     
+    self.physicsBody.usesPreciseCollisionDetection=NO;
+    
+    self.gotinhas=[[NSMutableArray alloc] init];
+    
+    self.qtGotinhas=2;
     
     //Musicas
 //    self.musandar=[Musica alloc] in
@@ -67,8 +72,10 @@
         [self runAction:pocaAction];
     }
     else if (_escondida){
-        pocaAction = [SKAction scaleYTo:+1 duration:1.0];
-        _escondida = NO;
+        pocaAction = [SKAction sequence:@[[SKAction scaleYTo:+1 duration:1.0], [SKAction waitForDuration:0.3], [SKAction runBlock:^{
+            _escondida = NO;
+        }]]];
+        
         [self runAction:pocaAction];
         
     }
@@ -95,6 +102,15 @@
     aux2.y = self.position.y+5;
     JAGGotaDividida *gota2 = [[JAGGotaDividida alloc]initWithPosition:aux2 withSize:aux];
     gota2.sprite.texture = self.sprite.texture;
+    
+    [self.gotinhas addObject:gota2];
+    
+    if (self.gotinhas.count>self.qtGotinhas) {
+        JAGGotaDividida *temp=(JAGGotaDividida *)self.gotinhas[0];
+        [temp removeFromParent];
+        [self.gotinhas removeObject:temp];
+    }
+
 
     
     return gota2;
@@ -123,6 +139,14 @@
     gota2.sprite.texture = self.sprite.texture;
         
 
+    [self.gotinhas addObject:gota2];
+    
+    if (self.gotinhas.count>self.qtGotinhas) {
+        JAGGotaDividida *temp=(JAGGotaDividida *)self.gotinhas[0];
+        [temp removeFromParent];
+        [self.gotinhas removeObject:temp];
+    }
+    
 
 
     return gota2;

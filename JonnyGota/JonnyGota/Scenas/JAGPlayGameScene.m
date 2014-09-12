@@ -296,6 +296,7 @@
         if ([nodeAux.name isEqualToString:@"pauseBT"]) {
             NSLog(@"pause detected");
             pauseDetected = !pauseDetected;
+            
             self.scene.view.paused = !self.scene.view.paused;
             [self.cropNode removeAllActions];
         }
@@ -339,11 +340,6 @@
     } else {
         //finger touch went downwards
     }
-    
-    
-    
-
-
 
     
 }
@@ -405,6 +401,7 @@
             
             if ([_gota verificaToque:toqueFinal]){
                 [_gota esconder];
+                [self removeActionForKey:@"moveGota"];
             } else {
                 
                 [self logicaMove:touch];
@@ -418,10 +415,16 @@
 
                 if ([node.name isEqualToString:@"button1"]) {
                     NSLog(@"bt1 gameover");
-                    self.scene.paused = NO;
+                    
+                    self.scene.view.paused=NO;
+//                    self.scene.paused = NO;
                     [button1 removeFromParent];
                     [button2 removeFromParent];
                     [GObackground removeFromParent];
+                    
+                    self.gota.physicsBody.velocity=CGVectorMake(0, 0);
+                    
+                    [self.gota changePosition:CGPointMake(66, 66)];
                 }
                 else if([node.name isEqualToString:@"button2"]){
                     NSLog(@"bt2 gameover");
@@ -461,7 +464,7 @@
             
         int temp=[self verificaSentido:toqueFinal with:_gota.position];
         
-        if(temp!=self.gota.sentido){
+//        if(temp!=self.gota.sentido){
             
             self.gota.sentido=temp;
             
@@ -515,7 +518,7 @@
             
         }
         
-        }
+//        }
     }
 
 }
@@ -550,7 +553,7 @@
     
     [self prepareMove];
     
-        [self.hud update];
+    [self.hud update];
     
     if (self.hud.tempoRestante == 0) {
         self.scene.view.paused = YES;
@@ -559,14 +562,15 @@
 
 #pragma mark - PrepareMove
 -(void)prepareMove{
-    dispatch_queue_t queue;
-    
-    queue = dispatch_queue_create("actionEnemys",
-                                  NULL);
-    
-    dispatch_async(queue, ^{
-        [self actionsEnemys];
-    });
+//    dispatch_queue_t queue;
+//    
+//    queue = dispatch_queue_create("actionEnemys",
+//                                  NULL);
+//
+//
+//    dispatch_async(queue, ^{
+//        [self actionsEnemys];
+//    });
 }
 
 #pragma mark - Physics
@@ -665,6 +669,39 @@
         }
     }
     
+    if(([contact.bodyA.node.name isEqualToString:@"gotaDividida"] && [contact.bodyB.node.name isEqualToString:@"pressao"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"pressao"] && [contact.bodyB.node.name isEqualToString:@"gotaDividida"]) ) {
+        //
+        if([contact.bodyA.node.name isEqualToString:@"pressao"]){
+            JAGPressao *pre=(JAGPressao *)contact.bodyA.node;
+            
+            [pre pisar];
+            
+            if(pre.tipo==2){
+                //Reseta o tempo
+            }
+            
+            for (int i=0; i<_portas.count; i++) {
+                JAGPorta *porta=_portas[i];
+                [porta verificarBotoes];
+            }
+            
+            
+            //[obj removeFromParent];
+        }else{
+            JAGPressao *obj=(JAGPressao *)contact.bodyB.node;
+            [obj pisar];
+            
+            for (int i=0; i<_portas.count; i++) {
+                JAGPorta *porta=_portas[i];
+                [porta verificarBotoes];
+            }
+            
+            //[obj removeFromParent];
+        }
+    }
+
+    
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"porta"]) ||
        ([contact.bodyA.node.name isEqualToString:@"porta"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
         //
@@ -737,16 +774,16 @@
         }
     }
     
-    //Melhorar Ia do monstro
-    if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ENEMY)){
-        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
-        inimigo.inColisao=true;
-    }
-    
-    if((contact.bodyB.categoryBitMask == PAREDE) && (contact.bodyA.categoryBitMask == ENEMY)){
-        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
-        inimigo.inColisao=true;
-    }
+//    //Melhorar Ia do monstro
+//    if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ENEMY)){
+//        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
+//        inimigo.inColisao=true;
+//    }
+//    
+//    if((contact.bodyB.categoryBitMask == PAREDE) && (contact.bodyA.categoryBitMask == ENEMY)){
+//        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
+//        inimigo.inColisao=true;
+//    }
 }
 
 -(void)didEndContact:(SKPhysicsContact *)contact{
@@ -803,6 +840,59 @@
             //[obj removeFromParent];
         }
     }
+    
+    if(([contact.bodyA.node.name isEqualToString:@"gotaDividida"] && [contact.bodyB.node.name isEqualToString:@"pressao"]) ||
+       ([contact.bodyA.node.name isEqualToString:@"pressao"] && [contact.bodyB.node.name isEqualToString:@"gotaDividida"]) ) {
+        //
+        if([contact.bodyA.node.name isEqualToString:@"pressao"]){
+            JAGPressao *pre=(JAGPressao *)contact.bodyA.node;
+            
+            if(pre.tipo==2){
+                //Inicia um Action que faz a validacao depois de um tempo
+                _despresionar =[SKAction sequence:@[[SKAction waitForDuration:4],
+                                                    [SKAction runBlock:^{
+                    if(![pre pisado:_characteres]){
+                        [pre pisar];
+                    }
+                    
+                    for (int i=0; i<_portas.count; i++) {
+                        JAGPorta *porta=_portas[i];
+                        [porta verificarBotoes];
+                    }
+                }]]];
+                
+                //_despresionar =;
+                
+                [self runAction:_despresionar];
+            }
+            if(pre.tipo==3){
+                //Libera
+                [pre pisar];
+                
+                for (int i=0; i<_portas.count; i++) {
+                    JAGPorta *porta=_portas[i];
+                    [porta verificarBotoes];
+                }
+            }
+            for (int i=0; i<_portas.count; i++) {
+                JAGPorta *porta=_portas[i];
+                [porta verificarBotoes];
+            }
+            
+            //[obj removeFromParent];
+        }else{
+            //            JAGPressao *obj = (JAGPressao *)contact.bodyB.node;
+            
+            
+            for (int i=0; i<_portas.count; i++) {
+                JAGPorta *porta=_portas[i];
+                [porta verificarBotoes];
+            }
+            
+            //[obj removeFromParent];
+        }
+    }
+
     
     if((contact.bodyA.categoryBitMask == PRESSAO) && (contact.bodyB.categoryBitMask == ENEMY)){
         JAGPressao *pre=(JAGPressao *)contact.bodyA.node;
@@ -889,19 +979,21 @@
         self.gota.vida=15;
         self.hud.vidaRestante--;
         [self presentGameOver:0];
-        [self.gota changePosition:_posicaoInicial];
+        
+      
+//        [self.gota changePosition:_posicaoInicial];
 //        [self presentGameOver:1];
-        self.paused=YES;
-        _gota.physicsBody.velocity = CGVectorMake(0, 0);
-    }
+        self.scene.view.paused=YES;
+        }
 }
 
 #pragma mark - Configuração/Inicialização
 
 -(void)centerMapOnCharacter{
+//    if(self.gota.physicsBody.velocity.dx>0){
     self.cropNode.position = CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
                                          -(_gota.position.y)+CGRectGetMidY(self.frame));
-    
+//    }
 }
 -(void)configStart:(int) time{
     _posicaoInicial=self.gota.position;
@@ -936,6 +1028,14 @@
 -(void)configInit:(SKSpriteNode *)background{
     self.cropNode = [[SKCropNode alloc] init];
     [self.cropNode addChild:background];
+    
+    self.characteres=[[NSMutableArray alloc] init];
+    self.inimigos=[[NSMutableArray alloc] init];
+}
+
+-(void)configInit{
+    self.cropNode = [[SKCropNode alloc] init];
+//    [self.cropNode addChild:background];
     
     self.characteres=[[NSMutableArray alloc] init];
     self.inimigos=[[NSMutableArray alloc] init];

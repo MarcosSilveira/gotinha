@@ -39,6 +39,10 @@
 		0B3A0497199117C000C7C39E /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3A0496199117C000C7C39E /* OpenAL.framework */; };
 		0B3A049A1991184700C7C39E /* JAGCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3A04991991184700C7C39E /* JAGCharacter.m */; };
 		0B8600F619AFA40B00615FA6 /* JAGAttack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8600F519AFA40B00615FA6 /* JAGAttack.m */; };
+		0B9229BC19C31FEA00009EC4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9229BB19C31FEA00009EC4 /* libz.dylib */; };
+		0B9229C319C3206C00009EC4 /* LFCGzipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9229C219C3206C00009EC4 /* LFCGzipUtility.m */; };
+		0B9229C619C3208900009EC4 /* JSTileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9229C519C3208900009EC4 /* JSTileMap.m */; };
+		0B9229C819C3213200009EC4 /* map1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0B9229C719C3213200009EC4 /* map1.tmx */; };
 		0BB7E84919AE403700C36889 /* JAGPerdaGota.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB7E84819AE403700C36889 /* JAGPerdaGota.m */; };
 		0BB81679199BBDA800490104 /* JAGWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB81678199BBDA800490104 /* JAGWall.m */; };
 		8D162795199293CC00AD9F12 /* JAGTrovaoEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D162794199293CC00AD9F12 /* JAGTrovaoEnemy.m */; };
@@ -129,6 +133,12 @@
 		0B3A04991991184700C7C39E /* JAGCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGCharacter.m; path = JonnyGota/Models/JAGCharacter.m; sourceTree = "<group>"; };
 		0B8600F419AFA40B00615FA6 /* JAGAttack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGAttack.h; path = JonnyGota/Actions/JAGAttack.h; sourceTree = "<group>"; };
 		0B8600F519AFA40B00615FA6 /* JAGAttack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGAttack.m; path = JonnyGota/Actions/JAGAttack.m; sourceTree = "<group>"; };
+		0B9229BB19C31FEA00009EC4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		0B9229C119C3206C00009EC4 /* LFCGzipUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFCGzipUtility.h; sourceTree = "<group>"; };
+		0B9229C219C3206C00009EC4 /* LFCGzipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFCGzipUtility.m; sourceTree = "<group>"; };
+		0B9229C419C3208900009EC4 /* JSTileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTileMap.h; sourceTree = "<group>"; };
+		0B9229C519C3208900009EC4 /* JSTileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTileMap.m; sourceTree = "<group>"; };
+		0B9229C719C3213200009EC4 /* map1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map1.tmx; sourceTree = "<group>"; };
 		0BB7E84719AE403700C36889 /* JAGPerdaGota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGPerdaGota.h; path = JonnyGota/Models/JAGPerdaGota.h; sourceTree = "<group>"; };
 		0BB7E84819AE403700C36889 /* JAGPerdaGota.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGPerdaGota.m; path = JonnyGota/Models/JAGPerdaGota.m; sourceTree = "<group>"; };
 		0BB81677199BBDA800490104 /* JAGWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGWall.h; path = JonnyGota/Models/JAGWall.h; sourceTree = "<group>"; };
@@ -179,6 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B9229BC19C31FEA00009EC4 /* libz.dylib in Frameworks */,
 				0B3A0497199117C000C7C39E /* OpenAL.framework in Frameworks */,
 				0B3A0495199117B700C7C39E /* AudioToolbox.framework in Frameworks */,
 				0B3A04521991164A00C7C39E /* CoreGraphics.framework in Frameworks */,
@@ -223,6 +234,8 @@
 		0B3A04431991164A00C7C39E = {
 			isa = PBXGroup;
 			children = (
+				0B9229C719C3213200009EC4 /* map1.tmx */,
+				0B9229BD19C3200D00009EC4 /* TileMap */,
 				0B224F7719BD337500FE4A86 /* tileSheet.png */,
 				B1E9587A19B77718002302D7 /* Raio.sks */,
 				8DF47BDB19B4EB8C0021AE2D /* list.png */,
@@ -260,6 +273,7 @@
 		0B3A044E1991164A00C7C39E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0B9229BB19C31FEA00009EC4 /* libz.dylib */,
 				0B3A0496199117C000C7C39E /* OpenAL.framework */,
 				0B3A0494199117B700C7C39E /* AudioToolbox.framework */,
 				0B3A044F1991164A00C7C39E /* Foundation.framework */,
@@ -389,6 +403,17 @@
 			name = Actions;
 			sourceTree = "<group>";
 		};
+		0B9229BD19C3200D00009EC4 /* TileMap */ = {
+			isa = PBXGroup;
+			children = (
+				0B9229C419C3208900009EC4 /* JSTileMap.h */,
+				0B9229C519C3208900009EC4 /* JSTileMap.m */,
+				0B9229C119C3206C00009EC4 /* LFCGzipUtility.h */,
+				0B9229C219C3206C00009EC4 /* LFCGzipUtility.m */,
+			);
+			name = TileMap;
+			sourceTree = "<group>";
+		};
 		8D4A4F3119A2843100255468 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -446,7 +471,7 @@
 				ORGANIZATIONNAME = "Henrique Manfroi da Silveira";
 				TargetAttributes = {
 					0B3A044B1991164A00C7C39E = {
-						DevelopmentTeam = VCE77X465D;
+						DevelopmentTeam = 64TH9999YT;
 					};
 					0B3A04731991164A00C7C39E = {
 						TestTargetID = 0B3A044B1991164A00C7C39E;
@@ -487,6 +512,7 @@
 				0B224F7819BD337500FE4A86 /* tileSheet.png in Resources */,
 				0B3A046F1991164A00C7C39E /* Images.xcassets in Resources */,
 				0B0E04A019A7A29400927A16 /* backgroundChuva.png in Resources */,
+				0B9229C819C3213200009EC4 /* map1.tmx in Resources */,
 				0B3A04651991164A00C7C39E /* Main.storyboard in Resources */,
 				B1F768C11995443A0063E27C /* mask.png in Resources */,
 				8DF47BD319B0B4EE0021AE2D /* Fogo.sks in Resources */,
@@ -515,6 +541,8 @@
 				8D4A4F3B19ABA08400255468 /* JAGChave.m in Sources */,
 				0B2C5258199A9F2A0065BB09 /* JAGChuva.m in Sources */,
 				0B3A045E1991164A00C7C39E /* main.m in Sources */,
+				0B9229C319C3206C00009EC4 /* LFCGzipUtility.m in Sources */,
+				0B9229C619C3208900009EC4 /* JSTileMap.m in Sources */,
 				8D16279B1992942C00AD9F12 /* JAGTAreiaEnemy.m in Sources */,
 				8DF47BE319B635F30021AE2D /* JAGTrap.m in Sources */,
 				0B024D0B1991255400AE9588 /* JAGGota.m in Sources */,

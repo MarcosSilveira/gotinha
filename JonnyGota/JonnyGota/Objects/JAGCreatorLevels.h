@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "JAGLevel.h"
+//#import "JSTileMap.h"
 
 
 @interface JAGCreatorLevels : NSObject
+
+//@property (strong, nonatomic) JSTileMap *map;
+//@property (strong, nonatomic) TMXLayer *tile;
+//@property (strong, nonatomic) TMXLayer *bg;
 
 + (void)initializeLevel:(NSNumber *)level ofWorld:(NSNumber *)world onScene:(SKScene *)scene;
 

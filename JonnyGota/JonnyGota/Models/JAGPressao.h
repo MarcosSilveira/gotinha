@@ -24,7 +24,8 @@
 
 -(void)pisar;
 
--(instancetype)initWithPosition:(CGPoint)ponto withTipo:(int)tipo;
+-(instancetype)initWithPosition:(CGPoint)ponto withTipo:(int)tipo
+withSize:(CGSize) tamanho;
 
 -(BOOL)pisado:(NSMutableArray *)personagens;
 

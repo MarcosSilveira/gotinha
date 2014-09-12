@@ -15,6 +15,11 @@
 -(instancetype)initWithPosition:(CGPoint)ponto
                    withTimeLife:(int)time;
 
+-(SKEmitterNode *)createEmitter:(CGPoint)ponto
+                              withTimeLife:(int)time;
+
 -(void)destruir;
+
+-(void)destruir:(SKEmitterNode *)node;
 
 @end

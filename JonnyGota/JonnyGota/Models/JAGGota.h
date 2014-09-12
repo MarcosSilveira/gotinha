@@ -21,6 +21,10 @@
 
 @property (nonatomic) int sentido;
 
+@property (nonatomic) NSMutableArray *gotinhas;
+
+@property (nonatomic) int qtGotinhas;
+
 //-(void)mover:(CGPoint)ponto
 //withInterval:(NSTimeInterval) time
 //    withTipe:(int) tipo;
@@ -31,5 +35,7 @@
 -(JAGGotaDividida*)dividir;
 -(JAGGotaDividida*)dividirwithSentido:(int) sentido;
 -(void)esconder;
+
+
 
 @end
