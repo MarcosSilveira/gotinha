@@ -15,6 +15,7 @@
 #import "JAGPerdaFogo.h"
 #import "JAGChave.h"
 #import "JAGTrap.h"
+#import "JAGMenu.h"
 
 
 @implementation JAGPlayGameScene {
@@ -81,9 +82,10 @@
      mostrados de formas diferentes e serão atribuidos a ações diferentes.
      A situações podem ser:
      -Fim de fase ganhando
-     -Fim de fase perdendo com vida extra
-     -Fim de fase perdendo sem nenhuma vida */
-    
+     -Fim de fase perdendo com vida restante
+     -Fim de fase perdendo sem vida restante */
+    if (withOP ==0) {
+        
     GObackground = [[SKSpriteNode alloc]initWithColor:[UIColor redColor] size:CGSizeMake( self.frame.size.height/2, self.frame.size.width/2)];
     GObackground.position = CGPointMake(self.frame.size.height*0.3, self.frame.size.width*0.9);
     button1 = [[SKSpriteNode alloc] initWithImageNamed:@"play.png"];
@@ -101,6 +103,7 @@
     button1.zPosition = 201;
     button2.zPosition = 201;
     GObackground.zPosition = 200;
+    }
 }
 
 
@@ -124,7 +127,7 @@
     CGPathAddArc(circle, NULL, 0, 0, 1, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
     
     circleMask.path = circle;
-    circleMask.lineWidth = radius*2.5; // replace 100 with DOUBLE the desired radius of the circle
+    circleMask.lineWidth = radius*3; // replace 100 with DOUBLE the desired radius of the circle
     circleMask.name = @"circleMask";
     circleMask.userInteractionEnabled = NO;
     circleMask.fillColor = [SKColor clearColor];
@@ -428,6 +431,12 @@
                 }
                 else if([node.name isEqualToString:@"button2"]){
                     NSLog(@"bt2 gameover");
+                    self.scene.view.paused = NO;
+                    JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
+                    
+                    SKTransition *trans = [SKTransition fadeWithDuration:1.0];
+
+                    [self.scene.view presentScene:scene transition:trans];
                 }
                 //Logica da movimentacao
                 //PathFinder
@@ -731,7 +740,7 @@
         //
     }
     if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == CONTROLE_TOQUE)){
-        NSLog(@"hit");
+        NSLog(@"touch control hit");
     
 
         _gota.physicsBody.velocity = CGVectorMake(0, 0);
@@ -740,7 +749,7 @@
     }
     
     if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == CONTROLE_TOQUE)){
-        NSLog(@"hit");
+        NSLog(@"touch control hit");
         _gota.physicsBody.velocity = CGVectorMake(0, 0);
         self.gota.sentido=0;
 

@@ -19,6 +19,7 @@
 -(id)initWithSize:(CGSize)size {
     
     self = [super initWithSize:size];
+    NSLog(@"menu presentation");
     if (self) {
         [self configuraMenu];
     }
