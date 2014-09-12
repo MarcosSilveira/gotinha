@@ -229,6 +229,7 @@
 }
 
 
+
 + (void)initializeLevel02ofWorld01onScene:(JAGPlayGameScene *)scene
 {
 //    JSTileMap *map;
@@ -238,21 +239,85 @@
     JSTileMap* tiledMap = [JSTileMap mapNamed:@"map1.tmx"];
     if (tiledMap){
         
+        
+//        [bgLayer physicsBody];
         scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
         scene.level.tileSize = 64;
-//        scene.level.frequenciaRelampago = 10.0;
-//        CGSize tamanho = CGSizeMake(scene.level.tileSize, scene.level.tileSize);
         
-//        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 1)] withSize:tamanho];
-        
-        [scene configInit];
-    
-        [scene.cropNode addChild:tiledMap];
+//        [scene configInit:bgImage];
 
-//        [scene.cropNode addChild:scene.gota];
+        scene.level.frequenciaRelampago = 10.0;
+        CGSize tamanho = CGSizeMake(scene.level.tileSize, scene.level.tileSize);
         
-         [scene configStart:8];
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(2, 2)] withSize:tamanho];
+        
+//        CGRect mapBounds = [tiledMap calculateAccumulatedFrame];
+//        tiledMap.position = CGPointMake(-mapBounds.size.width/2.0, -mapBounds.size.height/2.0);
+
+        tiledMap.position = CGPointMake(0, 0);
+        [scene configInit];
+        
+        [self createPhiscsBodytoLayer:tiledMap];
+        
+//        [scene addChild:tiledMap];
+        
+        
+        [scene.cropNode addChild:tiledMap];
+        
+//        [scene.cropNode addChild:bgLayer];
+        
+        
+        
+//        [tiledMap.imageLayers[0]];
+        
+        [scene createMask:100 withPoint:(scene.gota.position)];
+
+        
+        scene.hud = [[JAGHud alloc] initWithTempo:300 withVida:3 saude:scene.gota.aguaRestante withWindowSize:scene.frame.size];
+        
+        scene.gota.vida = 15;
+        scene.hud.gota  = scene.gota;
+        
+        [scene.cropNode addChild:scene.gota];
+
+        
+        [scene addChild: scene.cropNode];
+        
+        [scene.hud startTimer];
+
+        [scene configStart:8];
+        
+        
     }
 }
 
+
++(void)createPhiscsBodytoLayer:(JSTileMap*) tileMap{
+   
+    TMXLayer* bgLayer = [tileMap layerNamed:@"Tile"];
+    
+    for (int a = 0; a < tileMap.mapSize.width; a++)
+	{
+		for (int b = 0; b < tileMap.mapSize.height; b++)
+		{
+//			TMXLayerInfo* layerInfo = [tileMap.layers firstObject];
+            TMXLayerInfo* layerInfo=[bgLayer layerInfo];
+			CGPoint pt = CGPointMake(a, b);
+			NSInteger gid = [layerInfo.layer tileGidAt:[layerInfo.layer pointForCoord:pt]];
+            
+//            NSLog(@"ptx:%d y:%d  gid:%d",a,b,gid);
+			if (gid != 12)
+			{
+				SKSpriteNode* node = [layerInfo.layer tileAtCoord:pt];
+				node.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:node.frame.size];
+				node.physicsBody.dynamic = NO;
+                //				NSLog(@"BRICK AT (%d, %d) is (%.2f, %.2f, %.2f, %.2f)", a, b, node.frame.origin.x, node.frame.origin.y, node.frame.size.width, node.frame.size.height);
+                //				SKSpriteNode* node2 = [SKSpriteNode spriteNodeWithColor:[UIColor redColor] size:node.frame.size];
+                //				node2.position = node.frame.origin;
+                //				node2.anchorPoint = CGPointMake(0, 0);
+                //				[self addChild:node2];
+			}
+		}
+	}
+}
 @end
