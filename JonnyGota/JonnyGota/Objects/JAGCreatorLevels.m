@@ -17,6 +17,7 @@
 #import "JAGPerdaFogo.h"
 #import "JAGSparkRaio.h"
 #import "JAGTrap.h"
+#import "JSTileMap.h"
 
 @implementation JAGCreatorLevels
 
@@ -108,7 +109,7 @@
     
     [scene.characteres addObject:scene.gota];
     [scene.characteres addObject:fogo];
-   [scene.characteres addObject:trovao];
+    [scene.characteres addObject:trovao];
     
     [scene.inimigos addObject:fogo];
     [scene.inimigos addObject:trovao];
@@ -125,7 +126,7 @@
     
     //Fonte
     
-    SKSpriteNode *fonteSprite = [[SKSpriteNode alloc]initWithColor:[UIColor blueColor] size:CGSizeMake(scene.frame.size.width*0.1, scene.frame.size.width*0.1)];
+    SKSpriteNode *fonteSprite = [[SKSpriteNode alloc]initWithColor:[UIColor blueColor] size:tamanho];
     JAGFonte *fonte = [[JAGFonte alloc] initWithPosition:[scene.level calculateTile:CGPointMake(6, 13)] withSprite:fonteSprite];
     [scene.cropNode addChild:porta];
     [scene.cropNode addChild:fonte];
@@ -227,5 +228,31 @@
     // JAGHud *hud = [JAGHud alloc]
 }
 
+
++ (void)initializeLevel02ofWorld01onScene:(JAGPlayGameScene *)scene
+{
+//    JSTileMap *map;
+//    TMXLayer *tile;
+//    TMXLayer *bg;
+    
+    JSTileMap* tiledMap = [JSTileMap mapNamed:@"map1.tmx"];
+    if (tiledMap){
+        
+        scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
+        scene.level.tileSize = 64;
+//        scene.level.frequenciaRelampago = 10.0;
+//        CGSize tamanho = CGSizeMake(scene.level.tileSize, scene.level.tileSize);
+        
+//        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 1)] withSize:tamanho];
+        
+        [scene configInit];
+    
+        [scene.cropNode addChild:tiledMap];
+
+//        [scene.cropNode addChild:scene.gota];
+        
+         [scene configStart:8];
+    }
+}
 
 @end

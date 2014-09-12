@@ -1033,6 +1033,14 @@
     self.inimigos=[[NSMutableArray alloc] init];
 }
 
+-(void)configInit{
+    self.cropNode = [[SKCropNode alloc] init];
+//    [self.cropNode addChild:background];
+    
+    self.characteres=[[NSMutableArray alloc] init];
+    self.inimigos=[[NSMutableArray alloc] init];
+}
+
 -(void)rastroInimigo: (SKNode*)inimigo{
     JAGPerdaFogo *perda_fogo = [[JAGPerdaFogo alloc] initWithPosition:inimigo.position withTimeLife:10];
     SKAction *diminuirSaude=[SKAction sequence:@[[SKAction waitForDuration:5],
