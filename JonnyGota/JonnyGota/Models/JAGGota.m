@@ -52,6 +52,8 @@
     _comChave = NO;
     _aguaRestante = 10;
     
+    self.physicsBody.usesPreciseCollisionDetection=NO;
+    
     self.gotinhas=[[NSMutableArray alloc] init];
     
     self.qtGotinhas=2;

@@ -28,7 +28,11 @@
     
     self.physicsBody.restitution=0.0;
     
+    self.physicsBody.usesPreciseCollisionDetection=NO;
+    
     self.multi = 3;
+    
+    self.name=@"fogo";
     
     [self configPhysics];
     [self addChild:self.sprite];

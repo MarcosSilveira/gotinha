@@ -296,6 +296,7 @@
         if ([nodeAux.name isEqualToString:@"pauseBT"]) {
             NSLog(@"pause detected");
             pauseDetected = !pauseDetected;
+            
             self.scene.view.paused = !self.scene.view.paused;
             [self.cropNode removeAllActions];
         }
@@ -339,11 +340,6 @@
     } else {
         //finger touch went downwards
     }
-    
-    
-    
-
-
 
     
 }
@@ -419,10 +415,16 @@
 
                 if ([node.name isEqualToString:@"button1"]) {
                     NSLog(@"bt1 gameover");
-                    self.scene.paused = NO;
+                    
+                    self.scene.view.paused=NO;
+//                    self.scene.paused = NO;
                     [button1 removeFromParent];
                     [button2 removeFromParent];
                     [GObackground removeFromParent];
+                    
+                    self.gota.physicsBody.velocity=CGVectorMake(0, 0);
+                    
+                    [self.gota changePosition:CGPointMake(66, 66)];
                 }
                 else if([node.name isEqualToString:@"button2"]){
                     NSLog(@"bt2 gameover");
@@ -560,15 +562,15 @@
 
 #pragma mark - PrepareMove
 -(void)prepareMove{
-    dispatch_queue_t queue;
-    
-    queue = dispatch_queue_create("actionEnemys",
-                                  NULL);
-//    [self actionsEnemys];
-
-    dispatch_async(queue, ^{
-        [self actionsEnemys];
-    });
+//    dispatch_queue_t queue;
+//    
+//    queue = dispatch_queue_create("actionEnemys",
+//                                  NULL);
+//
+//
+//    dispatch_async(queue, ^{
+//        [self actionsEnemys];
+//    });
 }
 
 #pragma mark - Physics
@@ -772,16 +774,16 @@
         }
     }
     
-    //Melhorar Ia do monstro
-    if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ENEMY)){
-        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
-        inimigo.inColisao=true;
-    }
-    
-    if((contact.bodyB.categoryBitMask == PAREDE) && (contact.bodyA.categoryBitMask == ENEMY)){
-        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
-        inimigo.inColisao=true;
-    }
+//    //Melhorar Ia do monstro
+//    if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ENEMY)){
+//        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
+//        inimigo.inColisao=true;
+//    }
+//    
+//    if((contact.bodyB.categoryBitMask == PAREDE) && (contact.bodyA.categoryBitMask == ENEMY)){
+//        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
+//        inimigo.inColisao=true;
+//    }
 }
 
 -(void)didEndContact:(SKPhysicsContact *)contact{
@@ -977,11 +979,12 @@
         self.gota.vida=15;
         self.hud.vidaRestante--;
         [self presentGameOver:0];
-        [self.gota changePosition:_posicaoInicial];
+        
+      
+//        [self.gota changePosition:_posicaoInicial];
 //        [self presentGameOver:1];
-        self.paused=YES;
-        _gota.physicsBody.velocity = CGVectorMake(0, 0);
-    }
+        self.scene.view.paused=YES;
+        }
 }
 
 #pragma mark - Configuração/Inicialização
