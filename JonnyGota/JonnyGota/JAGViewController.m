@@ -14,7 +14,7 @@
 
 @implementation JAGViewController
 
-- (void)viewDidLoad
+- (void)viewWillLayoutSubviews
 {
     [super viewDidLoad];
     //[[UIApplication sharedApplication]setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
