@@ -14,6 +14,7 @@
 		0B08DD4F19C3A96B00D27C95 /* iso-64x64-outside.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B08DD4E19C3A96B00D27C95 /* iso-64x64-outside.png */; };
 		0B08DD5119C3BB6C00D27C95 /* tileSet.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B08DD5019C3BB6C00D27C95 /* tileSet.png */; };
 		0B0E04A019A7A29400927A16 /* backgroundChuva.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B0E049F19A7A29400927A16 /* backgroundChuva.png */; };
+		0B12A3F219C8974E00210DDA /* JAGPreparePoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B12A3F119C8974E00210DDA /* JAGPreparePoints.m */; };
 		0B13EDFB19A2530F006CC185 /* JAGCreatorLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B13EDFA19A2530F006CC185 /* JAGCreatorLevels.m */; };
 		0B15087D19A4F891007D70F1 /* JAGPressao.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B15087C19A4F891007D70F1 /* JAGPressao.m */; };
 		0B15088019A51374007D70F1 /* JAGPorta.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B15087F19A51374007D70F1 /* JAGPorta.m */; };
@@ -99,6 +100,8 @@
 		0B08DD4E19C3A96B00D27C95 /* iso-64x64-outside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iso-64x64-outside.png"; sourceTree = "<group>"; };
 		0B08DD5019C3BB6C00D27C95 /* tileSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileSet.png; sourceTree = "<group>"; };
 		0B0E049F19A7A29400927A16 /* backgroundChuva.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundChuva.png; sourceTree = "<group>"; };
+		0B12A3F019C8974E00210DDA /* JAGPreparePoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGPreparePoints.h; path = walls/JAGPreparePoints.h; sourceTree = "<group>"; };
+		0B12A3F119C8974E00210DDA /* JAGPreparePoints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGPreparePoints.m; path = walls/JAGPreparePoints.m; sourceTree = "<group>"; };
 		0B13EDF919A2530F006CC185 /* JAGCreatorLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGCreatorLevels.h; path = JonnyGota/Objects/JAGCreatorLevels.h; sourceTree = "<group>"; };
 		0B13EDFA19A2530F006CC185 /* JAGCreatorLevels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGCreatorLevels.m; path = JonnyGota/Objects/JAGCreatorLevels.m; sourceTree = "<group>"; };
 		0B15087B19A4F891007D70F1 /* JAGPressao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGPressao.h; path = JonnyGota/Models/JAGPressao.h; sourceTree = "<group>"; };
@@ -239,6 +242,15 @@
 				8D162794199293CC00AD9F12 /* JAGTrovaoEnemy.m */,
 			);
 			name = Enemies;
+			sourceTree = "<group>";
+		};
+		0B12A3EF19C8970300210DDA /* walls */ = {
+			isa = PBXGroup;
+			children = (
+				0B12A3F019C8974E00210DDA /* JAGPreparePoints.h */,
+				0B12A3F119C8974E00210DDA /* JAGPreparePoints.m */,
+			);
+			name = walls;
 			sourceTree = "<group>";
 		};
 		0B3A04431991164A00C7C39E = {
@@ -425,6 +437,7 @@
 				0B9229C519C3208900009EC4 /* JSTileMap.m */,
 				0B9229C119C3206C00009EC4 /* LFCGzipUtility.h */,
 				0B9229C219C3206C00009EC4 /* LFCGzipUtility.m */,
+				0B12A3EF19C8970300210DDA /* walls */,
 			);
 			name = TileMap;
 			sourceTree = "<group>";
@@ -578,6 +591,7 @@
 				0B13EDFB19A2530F006CC185 /* JAGCreatorLevels.m in Sources */,
 				8D1627981992941A00AD9F12 /* JAGMetalEnemy.m in Sources */,
 				0B3A046B1991164A00C7C39E /* JAGMyScene.m in Sources */,
+				0B12A3F219C8974E00210DDA /* JAGPreparePoints.m in Sources */,
 				0B024D0F1991257400AE9588 /* JAGInimigos.m in Sources */,
 				0B15088019A51374007D70F1 /* JAGPorta.m in Sources */,
 				0B3A04681991164A00C7C39E /* JAGViewController.m in Sources */,

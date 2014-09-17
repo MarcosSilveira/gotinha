@@ -18,6 +18,7 @@
 #import "JAGSparkRaio.h"
 #import "JAGTrap.h"
 #import "JSTileMap.h"
+#import "JAGPreparePoints.h"
 
 @implementation JAGCreatorLevels
 
@@ -257,12 +258,16 @@
         tiledMap.position = CGPointMake(0, 0);
         [scene configInit];
         
-        [self createPhiscsBodytoLayer:tiledMap];
+        
+//        [self createPhiscsBodytoLayer:tiledMap];
         
 //        [scene addChild:tiledMap];
         
         
         [scene.cropNode addChild:tiledMap];
+        
+        [scene.cropNode addChild:[self createPhiscsBodytoLayer:tiledMap]];
+
         
 //        [scene.cropNode addChild:bgLayer];
         
@@ -292,9 +297,13 @@
 }
 
 
-+(void)createPhiscsBodytoLayer:(JSTileMap*) tileMap{
++(SKNode *)createPhiscsBodytoLayer:(JSTileMap*) tileMap{
    
     TMXLayer* bgLayer = [tileMap layerNamed:@"Tile"];
+    
+    NSMutableArray *nodes=[[NSMutableArray alloc] init];
+    
+    
     
     for (int a = 0; a < tileMap.mapSize.width; a++)
 	{
@@ -306,11 +315,43 @@
 			NSInteger gid = [layerInfo.layer tileGidAt:[layerInfo.layer pointForCoord:pt]];
             
 //            NSLog(@"ptx:%d y:%d  gid:%d",a,b,gid);
-			if (gid != 12)
+            
+//            NSLog(@"a: %d  b:%d  gid:%d",a,b,gid);
+			if (gid != 0)
 			{
-				SKSpriteNode* node = [layerInfo.layer tileAtCoord:pt];
-				node.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:node.frame.size];
-				node.physicsBody.dynamic = NO;
+                
+//                SKPhysicsBody *node=[[SKNode alloc] init];
+//                node.size=tileMap.tileSize;
+                
+                JAGPreparePoints *ponto=[[JAGPreparePoints alloc] init];
+                
+                ponto.ponto=CGPointMake(tileMap.tileSize.width*a+tileMap.tileSize.width/2,  (tileMap.tileSize.height*(tileMap.mapSize.height-b-1)+tileMap.tileSize.height/2));
+                
+                ponto.usado=NO;
+                
+                if (![ponto procurarProximo:nodes withTileSize:tileMap.tileSize.height]) {
+                    [nodes addObject:ponto];
+                };
+                
+                
+               
+//                NSLog(@"a: %d  b:%d  gid:%d",a,b,gid);
+//                SKPhysicsBody *node;
+//                node=[SKPhysicsBody bodyWithRectangleOfSize:tileMap.tileSize center:CGPointMake(tileMap.tileSize.width*a+tileMap.tileSize.width/2,  (tileMap.tileSize.height*(tileMap.mapSize.height-b-1)+tileMap.tileSize.height/2))];
+//                node.dynamic = NO;
+//                node.restitution=0.0;
+                
+//                node.position=CGPointMake(tileMap.tileSize.width*a, tileMap.tileSize.height*b);
+                
+//                [nodes addObject:node];
+//				SKSpriteNode* node = [layerInfo.layer tileAtCoord:pt];
+                
+//                NSLog(@"node %d",node);
+//              [nodes addObject:node];
+                
+//				node.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:node.frame.size];
+//				node.physicsBody.dynamic = NO;
+//                node.physicsBody.restitution=0.0;
                 //				NSLog(@"BRICK AT (%d, %d) is (%.2f, %.2f, %.2f, %.2f)", a, b, node.frame.origin.x, node.frame.origin.y, node.frame.size.width, node.frame.size.height);
                 //				SKSpriteNode* node2 = [SKSpriteNode spriteNodeWithColor:[UIColor redColor] size:node.frame.size];
                 //				node2.position = node.frame.origin;
@@ -319,5 +360,55 @@
 			}
 		}
 	}
+    
+    NSMutableArray *nodesPhy=[[NSMutableArray alloc] init];
+    
+        for (int i=nodes.count-1; i>0;i--) {
+        JAGPreparePoints *ponto=(JAGPreparePoints *)nodes[i];
+        
+        CGPoint pontos=ponto.ponto;
+        
+//        while (proximoAlto.proximo!=nil && (proximoAlto.usado!=YES)) {
+        int tamy=tileMap.tileSize.height;
+
+        int tamx=tileMap.tileSize.width;
+//        JAGPreparePoints *proximo=ponto.proximo;
+//        while (proximo!=nil && (proximo.usado==false) && ponto.usado==false) {
+//            tamx+=tileMap.tileSize.width;
+//            proximo.usado=true;
+//            pontos.x=proximo.ponto.x;
+//            proximo=proximo.proximo;
+//        }
+            
+        JAGPreparePoints *proximoAlto=ponto.proximoAlto;
+        while (proximoAlto!=nil && proximoAlto.usadoAlto==false ) {
+            tamy+=tileMap.tileSize.height;
+            proximoAlto.usadoAlto=true;
+                
+            pontos.y=proximoAlto.ponto.y;
+            proximoAlto=proximoAlto.proximoAlto;
+        }
+        
+        if (ponto.usado==false && ponto.usadoAlto==false) {
+            ponto.usado=true;
+            SKPhysicsBody *node;
+//            node=[SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(tamx, tamy) center:CGPointMake(ponto.ponto.x+(tamx-tileMap.tileSize.width)/2, ponto.ponto.y+(tamy-tileMap.tileSize.height)/2)];
+            
+            
+            node=[SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(tamx, tamy) center:CGPointMake(pontos.x+(tamx-tileMap.tileSize.width)/2, ponto.ponto.y+(tamy-tileMap.tileSize.height)/2)];
+            
+            [nodesPhy addObject:node];
+        }
+    }
+    
+    
+    
+    
+    SKNode *nodofinal=[[SKNode alloc] init];
+    nodofinal.physicsBody=[SKPhysicsBody bodyWithBodies:nodesPhy];
+    nodofinal.physicsBody.dynamic=NO;
+    nodofinal.physicsBody.restitution=0;
+    
+    return nodofinal;
 }
 @end

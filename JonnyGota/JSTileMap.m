@@ -94,6 +94,16 @@
   return (SKSpriteNode*)[self childNodeWithName:nodeName];
 }
 
+- (SKNode*)tnodeAtCoord:(CGPoint)coord
+{
+    NSString* nodeName = [NSString stringWithFormat:@"*/%d",(int)(coord.x + coord.y * _layerInfo.layerGridSize.width)];
+//    SKSpriteNode *node=[[SKNode alloc] init];
+    //				node.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:node.frame.size];
+//    node.size=[]
+    return (SKNode*)[self childNodeWithName:nodeName];
+}
+
+
 
 //#warning need to write setTileGidAt:
 
