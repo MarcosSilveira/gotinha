@@ -250,26 +250,14 @@
 		0B3A04431991164A00C7C39E = {
 			isa = PBXGroup;
 			children = (
-				8D4A4F3419A3D0E300255468 /* gotinha.atlas */,
-				0B0E049F19A7A29400927A16 /* backgroundChuva.png */,
-				8DF47BDC19B4EB8C0021AE2D /* jogar.png */,
-				8DF47BDB19B4EB8C0021AE2D /* list.png */,
-				8DF47BDD19B4EB8C0021AE2D /* restart.png */,
-				8DF47BD219B0B4EE0021AE2D /* spark.png */,
-				8D4A4F4019AFA99300255468 /* spark.png */,
 				0B08DD5019C3BB6C00D27C95 /* tileSet.png */,
-				8DF47BD119B0B4EE0021AE2D /* Fogo.sks */,
-				B1E9587A19B77718002302D7 /* Raio.sks */,
-				8D4A4F3F19AFA99300255468 /* Vapor.sks */,
-				0B9229C719C3213200009EC4 /* map1.tmx */,
 				0B9229C919C3273000009EC4 /* map2.tmx */,
 				0B9229CA19C3273000009EC4 /* map3.tmx */,
 				0B9229CB19C3273000009EC4 /* map4.tmx */,
 				0B9229C719C3213200009EC4 /* map1.tmx */,
-				0B9229BD19C3200D00009EC4 /* TileMap */,
 				B1E9587A19B77718002302D7 /* Raio.sks */,
 				8DF47BDB19B4EB8C0021AE2D /* list.png */,
-				8DF47BDC19B4EB8C0021AE2D /* play.png */,
+				8DF47BDC19B4EB8C0021AE2D /* jogar.png */,
 				8DF47BDD19B4EB8C0021AE2D /* restart.png */,
 				8DF47BD119B0B4EE0021AE2D /* Fogo.sks */,
 				8D4A4F3F19AFA99300255468 /* Vapor.sks */,
@@ -278,7 +266,6 @@
 				0B0E049F19A7A29400927A16 /* backgroundChuva.png */,
 				8D6B5A4619CB496A00127198 /* enemies.atlas */,
 				8D4A4F3419A3D0E300255468 /* gotinha.atlas */,
-				B1F768C01995443A0063E27C /* mask.png */,
 				0B45FF5119929948001948F9 /* Actions */,
 				0B024D0C1991256300AE9588 /* Enemies */,
 				0B3A044E1991164A00C7C39E /* Frameworks */,
@@ -462,13 +449,6 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		B16E253C19CB5368006C73C4 /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = iPad;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -518,7 +498,7 @@
 				ORGANIZATIONNAME = "Henrique Manfroi da Silveira";
 				TargetAttributes = {
 					0B3A044B1991164A00C7C39E = {
-						DevelopmentTeam = T5N5TT4E82;
+						DevelopmentTeam = 64TH9999YT;
 					};
 					0B3A04731991164A00C7C39E = {
 						TestTargetID = 0B3A044B1991164A00C7C39E;

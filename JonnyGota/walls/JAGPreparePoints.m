@@ -31,6 +31,8 @@
             self.proximoAlto=ponto;
              self.proximoAlto.usadoAlto=false;
             
+            self.proximoAlto.antesAlto=true;
+            
 //            NSLog(@"Aqui  y");
 
 //            return true;
