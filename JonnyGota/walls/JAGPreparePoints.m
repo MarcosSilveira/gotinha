@@ -14,10 +14,8 @@
           withTileSize:(int) tilesize{
     
     if (nodes.count>1) {
-        JAGPreparePoints *ponto=(JAGPreparePoints *)nodes[nodes.count-1];
         
-        
-           }
+    }
     
     for(int i=0;i<nodes.count;i++){
         JAGPreparePoints *ponto=(JAGPreparePoints *)nodes[i];
@@ -27,6 +25,7 @@
         if(ponto.ponto.x+tilesize==self.ponto.x && ponto.ponto.y==self.ponto.y){
             self.proximo=ponto;
             self.proximo.usado=false;
+            self.proximo.antes=true;
         }
         if(ponto.ponto.y-tilesize==self.ponto.y && ponto.ponto.x==self.ponto.x){
             self.proximoAlto=ponto;
