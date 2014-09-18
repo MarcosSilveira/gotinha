@@ -62,7 +62,7 @@
         
         if ([botaoPlay containsPoint:location]) {
             
-            SKScene *scene = [[JAGPlayGameScene alloc] initWithSize:self.frame.size level:@1 andWorld:@1];
+            SKScene *scene = [[JAGPlayGameScene alloc] initWithSize:self.frame.size level:@2 andWorld:@1];
             
             SKTransition *trans = [SKTransition fadeWithDuration:1.0];
             [self.scene.view presentScene:scene transition:trans];

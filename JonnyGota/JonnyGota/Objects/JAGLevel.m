@@ -142,6 +142,7 @@
 
     
     JAGWall *wall;
+
     for (int i=0; i<altura&&i<_height; i++) {
 //        SKSpriteNode *wallSpri=[[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(_tileSize-1, _tileSize-1)];
         

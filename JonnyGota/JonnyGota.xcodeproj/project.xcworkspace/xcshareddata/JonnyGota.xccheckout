@@ -10,22 +10,26 @@
 	<string>JonnyGota</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>582BEA93FEF0C90D499D75CB6453D83218C26B48</key>
+		<string>https://github.com/MarcosSilveira/gotinha.git</string>
 		<key>F84A0031-F70E-4F72-A3AE-8DFD156D25E6</key>
 		<string>https://github.com/MarcosSilveira/gotinha.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>JonnyGota/JonnyGota.xcodeproj/project.xcworkspace</string>
+	<string>JonnyGota/JonnyGota.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>F84A0031-F70E-4F72-A3AE-8DFD156D25E6</key>
+		<key>582BEA93FEF0C90D499D75CB6453D83218C26B48</key>
 		<string>../../..</string>
+		<key>F84A0031-F70E-4F72-A3AE-8DFD156D25E6</key>
+		<string>../../../../The Gota adventure!</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/MarcosSilveira/gotinha.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>F84A0031-F70E-4F72-A3AE-8DFD156D25E6</string>
+	<string>582BEA93FEF0C90D499D75CB6453D83218C26B48</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -35,6 +39,14 @@
 			<string>F84A0031-F70E-4F72-A3AE-8DFD156D25E6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>The Gota adventure!</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>582BEA93FEF0C90D499D75CB6453D83218C26B48</string>
+			<key>IDESourceControlWCCName</key>
+			<string>The%20Gota%20adventure!</string>
 		</dict>
 	</array>
 </dict>

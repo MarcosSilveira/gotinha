@@ -456,6 +456,7 @@
     
     nodofinal.physicsBody.categoryBitMask = PAREDE;
     nodofinal.physicsBody.collisionBitMask = ATTACK;
+    nodofinal.name = @"wall";
     return nodofinal;
 }
 
