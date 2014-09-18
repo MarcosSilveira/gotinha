@@ -12,40 +12,46 @@
 @implementation JAGMenu
 {
     SKSpriteNode *botaoPlay;
+    SKSpriteNode *logo;
+    SKSpriteNode *fundo;
     SKLabelNode *lblGame;
     SKLabelNode *lblPlay;
+    SKTexture *botaoPlayText;
+    SKTexture *logoText;
+    SKTexture *bg;
 }
 
 -(id)initWithSize:(CGSize)size {
     
     self = [super initWithSize:size];
-    NSLog(@"menu presentation");
     if (self) {
+        
         [self configuraMenu];
     }
     return self;
 }
+
 -(void) configuraMenu {
- 
-    self.backgroundColor = [SKColor colorWithRed:.3 green:.3 blue:1.0 alpha:1.0];
     
-    botaoPlay = [[SKSpriteNode alloc] initWithColor:[SKColor colorWithRed:.0 green:.0 blue:1.0 alpha:1.0] size:CGSizeMake(CGRectGetWidth(self.frame)/2, CGRectGetHeight(self.frame) / 4)];
-    botaoPlay.position = CGPointMake(CGRectGetWidth(self.frame) - CGRectGetWidth(botaoPlay.frame), CGRectGetHeight(self.frame) - CGRectGetHeight(botaoPlay.frame)*3);
+    botaoPlayText = [SKTexture textureWithImageNamed:@"play"];
+    logoText      = [SKTexture textureWithImageNamed:@"logo"];
+    bg            = [ SKTexture textureWithImageNamed:@"menu"];
     
-    lblGame = [[SKLabelNode alloc] init];
-    lblGame.position = CGPointMake(self.frame.size.width/2, self.frame.size.height - self.frame.size.height/4);
-    [lblGame setFontColor:[SKColor yellowColor]];
-    lblGame.fontSize = 20.0;
-    lblGame.text = @"As Aventuras da Gotinha";
+    fundo = [[SKSpriteNode alloc] initWithTexture:bg];
+    [fundo setSize: CGSizeMake(self.size.width, self.size.height)];
+    fundo.position = CGPointMake(self.size.width/2, self.size.height/2);
     
-    lblPlay = [[SKLabelNode alloc] init];
-    [lblPlay setFontColor:[SKColor yellowColor]];
-    lblPlay.text = @"Play";
+    logo = [[SKSpriteNode alloc] initWithTexture:logoText];
+    [logo setSize: CGSizeMake(self.size.width, self.size.height)];
+    logo.position = CGPointMake(self.size.width/2, self.size.height/2);
     
+    botaoPlay = [[SKSpriteNode alloc] initWithTexture:botaoPlayText];
+    [botaoPlay setScale: .5];
+    botaoPlay.position = CGPointMake(self.size.width/2, self.size.height/4);
+    
+    [self addChild:fundo];
+    [self addChild:logo];
     [self addChild:botaoPlay];
-    [self addChild:lblGame];
-    
-    [botaoPlay addChild:lblPlay];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -55,14 +61,12 @@
         CGPoint location = [touch locationInNode: self];
         
         if ([botaoPlay containsPoint:location]) {
-            NSLog(@"teste");
-            self.play = YES;
             
             SKScene *scene = [[JAGPlayGameScene alloc] initWithSize:self.frame.size level:@1 andWorld:@1];
             
             SKTransition *trans = [SKTransition fadeWithDuration:1.0];
             [self.scene.view presentScene:scene transition:trans];
-            }
+        }
     }
 }
 
