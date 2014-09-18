@@ -84,11 +84,11 @@
      -Fim de fase ganhando
      -Fim de fase perdendo com vida restante
      -Fim de fase perdendo sem vida restante */
-    if (withOP ==0) {
+    if (withOP == 0) {
         
     GObackground = [[SKSpriteNode alloc]initWithColor:[UIColor redColor] size:CGSizeMake( self.frame.size.height/2, self.frame.size.width/2)];
     GObackground.position = CGPointMake(self.frame.size.height*0.3, self.frame.size.width*0.9);
-    button1 = [[SKSpriteNode alloc] initWithImageNamed:@"play.png"];
+    button1 = [[SKSpriteNode alloc] initWithImageNamed:@"jogar.png"];
     button1.size = CGSizeMake(GObackground.size.width/4, GObackground.size.height/4.5);
     button1.position = CGPointMake(self.frame.size.height*0.2, self.frame.size.width*0.65);
     button2 = [[SKSpriteNode alloc] initWithImageNamed:@"list.png"];
