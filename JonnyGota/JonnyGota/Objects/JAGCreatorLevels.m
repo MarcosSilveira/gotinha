@@ -363,44 +363,89 @@
     
     NSMutableArray *nodesPhy=[[NSMutableArray alloc] init];
     
-        for (int i=nodes.count-1; i>0;i--) {
+    for (int i=nodes.count-1; i>0;i--) {
         JAGPreparePoints *ponto=(JAGPreparePoints *)nodes[i];
+        
+        if(i==nodes.count-1){
+//            NSLog(@"ponto x. ponto y.  proximo.x  proximo. y  ")
+        }
         
         CGPoint pontos=ponto.ponto;
         
-//        while (proximoAlto.proximo!=nil && (proximoAlto.usado!=YES)) {
-        int tamy=tileMap.tileSize.height;
-
-        int tamx=tileMap.tileSize.width;
-//        JAGPreparePoints *proximo=ponto.proximo;
-//        while (proximo!=nil && (proximo.usado==false) && ponto.usado==false) {
-//            tamx+=tileMap.tileSize.width;
-//            proximo.usado=true;
-//            pontos.x=proximo.ponto.x;
-//            proximo=proximo.proximo;
-//        }
-            
-        JAGPreparePoints *proximoAlto=ponto.proximoAlto;
-        while (proximoAlto!=nil && proximoAlto.usadoAlto==false ) {
-            tamy+=tileMap.tileSize.height;
-            proximoAlto.usadoAlto=true;
-                
-            pontos.y=proximoAlto.ponto.y;
-            proximoAlto=proximoAlto.proximoAlto;
+        CGPoint inicial1=CGPointMake(ponto.ponto.x-tileMap.tileSize.width/2, ponto.ponto.y-tileMap.tileSize.height/2);
+        
+        CGPoint inicial2=CGPointMake(ponto.ponto.x+tileMap.tileSize.width/2, ponto.ponto.y-tileMap.tileSize.height/2);
+        
+        if(ponto.proximo!=nil){
+            inicial1=CGPointMake(ponto.ponto.x+tileMap.tileSize.width/2, ponto.ponto.y-tileMap.tileSize.height/2);
         }
         
-        if (ponto.usado==false && ponto.usadoAlto==false) {
-            ponto.usado=true;
-            SKPhysicsBody *node;
-//            node=[SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(tamx, tamy) center:CGPointMake(ponto.ponto.x+(tamx-tileMap.tileSize.width)/2, ponto.ponto.y+(tamy-tileMap.tileSize.height)/2)];
+        CGPoint fim1=CGPointMake(ponto.ponto.x-tileMap.tileSize.width/2, ponto.ponto.y-tileMap.tileSize.height/2);
+        
+        CGPoint fim2=CGPointMake(ponto.ponto.x+tileMap.tileSize.width/2, ponto.ponto.y-tileMap.tileSize.height/2);
+        
+        
+        
+        
+        
+//        JAGPreparePoints *proximoAlto=ponto.proximoAlto;
+//        while (proximoAlto!=nil && proximoAlto.usadoAlto==false) {
+//            //            tamy+=tileMap.tileSize.height;
+//            proximoAlto.usadoAlto=true;
+//            
+//            pontos.y=proximoAlto.ponto.y;
+//            
+//            fim1=CGPointMake(proximoAlto.ponto.x-tileMap.tileSize.width/2, proximoAlto.ponto.y+tileMap.tileSize.height/2);
+//            
+//            fim2=CGPointMake(proximoAlto.ponto.x+tileMap.tileSize.width/2, proximoAlto.ponto.y+tileMap.tileSize.height/2);
+//            if (proximoAlto.proximo!=nil) {
+//                CGPoint inicioReta=CGPointMake(proximoAlto.ponto.x+tileMap.tileSize.width/2, proximoAlto.ponto.y-tileMap.tileSize.height/2);
+//                
+//                CGPoint inicioReta2=CGPointMake(proximoAlto.ponto.x-tileMap.tileSize.width/2, proximoAlto.ponto.y+tileMap.tileSize.height/2);
+//                //                CGPathAddLineToPoint(ponti, nil, inicioReta.x, inicioReta.y);
+//                
+//                CGMutablePathRef pontos=CGPathCreateMutable();
+//                
+//                CGPathMoveToPoint(pontos, nil, inicioReta.x, inicioReta.y);
+//                
+//                CGPathAddLineToPoint(pontos, nil, inicioReta2.x, inicioReta2.y);
+//                
+//                [nodesPhy addObject:[self fazlinhas:proximoAlto withPath:pontos withtileSize:tileMap.tileSize withArray:nodesPhy]];
+//            }
+//           
+//            if(proximoAlto.proximoAlto==nil&& proximoAlto.proximo!=nil){
+//                fim1=CGPointMake(proximoAlto.ponto.x-tileMap.tileSize.width/2, proximoAlto.ponto.y-tileMap.tileSize.height/2);
+//                
+//            }
+//            
+//            proximoAlto=proximoAlto.proximoAlto;
+//            
+//        }
+        
+        if (ponto.usadoAlto==false && ponto.usado==false) {
             
+            CGMutablePathRef ponti=CGPathCreateMutable();
             
-            node=[SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(tamx, tamy) center:CGPointMake(pontos.x+(tamx-tileMap.tileSize.width)/2, ponto.ponto.y+(tamy-tileMap.tileSize.height)/2)];
+            CGPathMoveToPoint(ponti, nil, inicial1.x, inicial1.y);
+            CGPathAddLineToPoint(ponti, nil, inicial2.x, inicial2.y);
+            [self fazColunas:ponto withPath:ponti withtileSize:tileMap.tileSize withArray:nodesPhy];
             
-            [nodesPhy addObject:node];
+//            ponto.usadoAlto=true;
+//            SKPhysicsBody *node;
+//            //          node=[SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(tamx, tamy) center:CGPointMake(ponto.ponto.x+(tamx-tileMap.tileSize.width)/2, ponto.ponto.y+(tamy-tileMap.tileSize.height)/2)];
+//           
+//            CGPathAddLineToPoint(ponti, nil, fim2.x, fim2.y);
+//            CGPathAddLineToPoint(ponti, nil, fim1.x, fim1.y);
+//            //            CGPathAddLineToPoint(ponti, nil, inicial2.x, inicial2.y);
+//            
+//            CGPathCloseSubpath(ponti);
+//            node=[SKPhysicsBody bodyWithPolygonFromPath:ponti];
+//            //            node=[SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(tamx, tamy) center:CGPointMake(pontos.x+(tamx-tileMap.tileSize.width)/2, ponto.ponto.y+(tamy-tileMap.tileSize.height)/2)];
+//            
+//            [nodesPhy addObject:node];
+            
         }
     }
-    
     
     
     
@@ -409,6 +454,187 @@
     nodofinal.physicsBody.dynamic=NO;
     nodofinal.physicsBody.restitution=0;
     
+    nodofinal.physicsBody.categoryBitMask = PAREDE;
+    nodofinal.physicsBody.collisionBitMask = ATTACK;
     return nodofinal;
+}
+
++(SKPhysicsBody*)fazColunas:(JAGPreparePoints *)inicial
+                   withPath:(CGMutablePathRef) pontos
+               withtileSize:(CGSize)tileSize
+                  withArray:(NSMutableArray*)nodesPhy{
+    if(inicial!=nil){
+        
+        
+        JAGPreparePoints *proximoAlto=inicial;
+        
+        CGPoint fim1;
+        CGPoint fim2;
+        
+        while (proximoAlto!=nil && proximoAlto.usadoAlto==false ) {
+            //            tamy+=tileMap.tileSize.height;
+            proximoAlto.usadoAlto=true;
+ 
+            fim1=CGPointMake(proximoAlto.ponto.x-tileSize.width/2, proximoAlto.ponto.y+tileSize.height/2);
+            
+            fim2=CGPointMake(proximoAlto.ponto.x+tileSize.width/2, proximoAlto.ponto.y+tileSize.height/2);
+            
+            if (proximoAlto.proximo!=nil &&proximoAlto.proximo.usado==false) {
+                CGPoint inicioReta=CGPointMake(proximoAlto.ponto.x+tileSize.width/2, proximoAlto.ponto.y-tileSize.height/2);
+                
+                CGPoint inicioReta2=CGPointMake(proximoAlto.ponto.x-tileSize.width/2, proximoAlto.ponto.y+tileSize.height/2);
+                //                CGPathAddLineToPoint(ponti, nil, inicioReta.x, inicioReta.y);
+                
+                CGMutablePathRef pontos=CGPathCreateMutable();
+                
+                CGPathMoveToPoint(pontos, nil, inicioReta.x, inicioReta.y);
+                
+                CGPathAddLineToPoint(pontos, nil, inicioReta2.x, inicioReta2.y);
+                
+                if (inicioReta.x==0) {
+                    NSLog(@"loloro");
+                }
+                if(inicioReta2.x==0){
+                    NSLog(@"loloro2");
+                }
+//                NSLog(@"4 casos");
+                
+                [nodesPhy addObject:[self fazlinhas:proximoAlto withPath:pontos withtileSize:tileSize withArray:nodesPhy]];
+            }
+            
+            if(proximoAlto.proximoAlto==nil&& proximoAlto.proximo!=nil){
+                fim1=CGPointMake(proximoAlto.ponto.x-tileSize.width/2, proximoAlto.ponto.y-tileSize.height/2);
+                
+            }
+            
+            proximoAlto=proximoAlto.proximoAlto;
+            
+        }
+        
+        if(fim1.x==0){
+            fim1=CGPointMake(proximoAlto.ponto.x-tileSize.width/2, proximoAlto.ponto.y-tileSize.height/2);
+            NSLog(@"KKKKKK");
+        }
+        
+        if(fim2.x==0){
+            fim1=CGPointMake(proximoAlto.ponto.x-tileSize.width/2, proximoAlto.ponto.y-tileSize.height/2);
+            NSLog(@"KXXXKKK");
+        }
+        
+        
+        
+        CGPathAddLineToPoint(pontos, nil, fim2.x, fim2.y);
+        CGPathAddLineToPoint(pontos, nil, fim1.x, fim1.y);
+        
+        CGPathCloseSubpath(pontos);
+        
+        SKPhysicsBody *node;
+        node=[SKPhysicsBody bodyWithPolygonFromPath:pontos];
+        
+        return node;
+    }
+    return nil;
+}
+
++(SKPhysicsBody*)fazlinhas:(JAGPreparePoints *)inicial
+        withPath:(CGMutablePathRef) pontos
+    withtileSize:(CGSize)tileSize
+                 withArray:(NSMutableArray*)nodesPhy{
+    if(inicial!=nil){
+        
+        
+        JAGPreparePoints *proximo=inicial;
+        
+        CGPoint fim1;
+        CGPoint fim2;
+        while (proximo!=nil && proximo.usado==false) {
+            proximo.usado=true;
+            
+            if(proximo.proximoAlto!=nil&& proximo.proximoAlto.proximo==nil && proximo.proximoAlto.usadoAlto==false){
+                //Recursivo do bloco coluna
+                
+                CGPoint inicioReta=CGPointMake((proximo.ponto.x-tileSize.width/2)-2, (proximo.ponto.y-tileSize.height/2)+2);
+                
+                CGPoint inicioReta2=CGPointMake((proximo.ponto.x+tileSize.width/2)-2, proximo.ponto.y+tileSize.height/2);
+                //                CGPathAddLineToPoint(ponti, nil, inicioReta.x, inicioReta.y);
+                
+                CGMutablePathRef pontosn=CGPathCreateMutable();
+                
+                CGPathMoveToPoint(pontosn, nil, inicioReta.x, inicioReta.y);
+                
+                 if(proximo.antes==true && proximo.proximo==nil){
+                     
+                     inicioReta=CGPointMake((proximo.ponto.x-tileSize.width/2)-2, (proximo.ponto.y-tileSize.height/2));
+                     inicioReta2=CGPointMake((proximo.ponto.x+tileSize.width/2)-2, (proximo.ponto.y-tileSize.height/2));
+
+                     CGPathMoveToPoint(pontosn, nil, inicioReta.x, inicioReta.y);
+                     CGPathAddLineToPoint(pontosn, nil, inicioReta2.x, inicioReta2.y);
+               
+                     
+                 }else{
+                     
+                     CGPathMoveToPoint(pontosn, nil, inicioReta.x, inicioReta.y);
+                      CGPathAddLineToPoint(pontosn, nil, inicioReta2.x, inicioReta2.y);
+                 }
+
+                
+                [nodesPhy addObject:[self fazColunas:proximo.proximoAlto withPath:pontosn withtileSize:tileSize withArray:nodesPhy]];
+            }
+            
+            
+            
+            fim1=CGPointMake(proximo.ponto.x-tileSize.width/2, proximo.ponto.y-tileSize.height/2);
+            
+            fim2=CGPointMake(proximo.ponto.x-tileSize.width/2, proximo.ponto.y+tileSize.height/2);
+            
+            if(proximo.proximo){
+                
+                fim1=CGPointMake(proximo.ponto.x-tileSize.width/2, (proximo.ponto.y-tileSize.height/2)+2);
+
+                fim2=CGPointMake(proximo.ponto.x-tileSize.width/2, (proximo.ponto.y+tileSize.height/2)-2);
+            }
+            
+//            if(proximo.antes==true && proximo.proximo==nil){
+//                fim1=CGPointMake(proximo.ponto.x+tileSize.width/2, proximo.ponto.y-tileSize.height/2);
+//                
+//                fim2=CGPointMake(proximo.ponto.x+tileSize.width/2, proximo.ponto.y+tileSize.height/2);
+//            }
+           
+            proximo=proximo.proximo;
+        }
+        
+        
+        
+        if(fim1.x==0){
+            NSLog(@"XXX");
+            
+            fim1=CGPointMake(proximo.ponto.x-tileSize.width/2, proximo.ponto.y-tileSize.height/2);
+            
+            fim2=CGPointMake(proximo.ponto.x-tileSize.width/2, proximo.ponto.y+tileSize.height/2);
+        }
+        
+        if(proximo.proximo==nil&&proximo.proximoAlto!=nil){
+            NSLog(@"Final da linha com acima");
+            
+            fim2=CGPointMake((proximo.ponto.x+tileSize.width/2)+2, proximo.ponto.y-tileSize.height/2);
+            
+            fim1=CGPointMake((proximo.ponto.x-tileSize.width/2)+2, proximo.ponto.y-tileSize.height/2);
+
+        }
+        
+       
+        
+        
+        CGPathAddLineToPoint(pontos, nil, fim2.x, fim2.y);
+        CGPathAddLineToPoint(pontos, nil, fim1.x, fim1.y);
+        
+        CGPathCloseSubpath(pontos);
+        
+        SKPhysicsBody *node;
+        node=[SKPhysicsBody bodyWithPolygonFromPath:pontos];
+        
+        return node;
+    }
+    return nil;
 }
 @end
