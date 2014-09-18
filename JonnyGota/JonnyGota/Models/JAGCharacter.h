@@ -33,6 +33,10 @@ typedef enum : uint32_t {
 @property int multi;
 @property (nonatomic) SKTextureAtlas *atlas;
 @property (nonatomic) BOOL EMTESTE;
+@property (nonatomic) NSMutableArray *walkTexturesFront;
+@property (nonatomic) NSMutableArray *walkTexturesBack;
+@property (nonatomic) NSMutableArray *walkTexturesSide;
+@property (nonatomic) SKTexture *idleTexture;
 
 -(void)configPhysics;
 -(void)animar;

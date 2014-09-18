@@ -64,6 +64,7 @@
 		8D4A4F3E19ACFB2F00255468 /* JAGFonte.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A4F3D19ACFB2F00255468 /* JAGFonte.m */; };
 		8D4A4F4119AFA99300255468 /* Vapor.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8D4A4F3F19AFA99300255468 /* Vapor.sks */; };
 		8D4A4F4219AFA99300255468 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D4A4F4019AFA99300255468 /* spark.png */; };
+		8D6B5A4719CB496A00127198 /* enemies.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8D6B5A4619CB496A00127198 /* enemies.atlas */; };
 		8DF47BD019B0AF1D0021AE2D /* JAGPerdaFogo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF47BCF19B0AF1D0021AE2D /* JAGPerdaFogo.m */; };
 		8DF47BD319B0B4EE0021AE2D /* Fogo.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8DF47BD119B0B4EE0021AE2D /* Fogo.sks */; };
 		8DF47BD419B0B4EE0021AE2D /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF47BD219B0B4EE0021AE2D /* spark.png */; };
@@ -178,6 +179,7 @@
 		8D4A4F3D19ACFB2F00255468 /* JAGFonte.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGFonte.m; sourceTree = "<group>"; };
 		8D4A4F3F19AFA99300255468 /* Vapor.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Vapor.sks; sourceTree = "<group>"; };
 		8D4A4F4019AFA99300255468 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		8D6B5A4619CB496A00127198 /* enemies.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = enemies.atlas; sourceTree = "<group>"; };
 		8DF47BCE19B0AF1D0021AE2D /* JAGPerdaFogo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGPerdaFogo.h; sourceTree = "<group>"; };
 		8DF47BCF19B0AF1D0021AE2D /* JAGPerdaFogo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGPerdaFogo.m; sourceTree = "<group>"; };
 		8DF47BD119B0B4EE0021AE2D /* Fogo.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Fogo.sks; path = JonnyGota/Fogo.sks; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				8DF47BD219B0B4EE0021AE2D /* spark.png */,
 				8D4A4F4019AFA99300255468 /* spark.png */,
 				0B0E049F19A7A29400927A16 /* backgroundChuva.png */,
+				8D6B5A4619CB496A00127198 /* enemies.atlas */,
 				8D4A4F3419A3D0E300255468 /* gotinha.atlas */,
 				B1F768C01995443A0063E27C /* mask.png */,
 				0B45FF5119929948001948F9 /* Actions */,
@@ -315,6 +318,7 @@
 		0B3A04571991164A00C7C39E /* JonnyGota */ = {
 			isa = PBXGroup;
 			children = (
+				8D24972119C9EC86005D5602 /* iPad */,
 				0B3A046E1991164A00C7C39E /* Images.xcassets */,
 				0B3A04601991164A00C7C39E /* JAGAppDelegate.h */,
 				0B3A04611991164A00C7C39E /* JAGAppDelegate.m */,
@@ -442,6 +446,13 @@
 			name = TileMap;
 			sourceTree = "<group>";
 		};
+		8D24972119C9EC86005D5602 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 		8D4A4F3119A2843100255468 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -499,7 +510,7 @@
 				ORGANIZATIONNAME = "Henrique Manfroi da Silveira";
 				TargetAttributes = {
 					0B3A044B1991164A00C7C39E = {
-						DevelopmentTeam = 64TH9999YT;
+						DevelopmentTeam = T5N5TT4E82;
 					};
 					0B3A04731991164A00C7C39E = {
 						TestTargetID = 0B3A044B1991164A00C7C39E;
@@ -552,6 +563,7 @@
 				0B9229CD19C3273000009EC4 /* map3.tmx in Resources */,
 				8DF47BDF19B4EB8C0021AE2D /* play.png in Resources */,
 				8DF47BDE19B4EB8C0021AE2D /* list.png in Resources */,
+				8D6B5A4719CB496A00127198 /* enemies.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,6 +752,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -758,6 +771,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

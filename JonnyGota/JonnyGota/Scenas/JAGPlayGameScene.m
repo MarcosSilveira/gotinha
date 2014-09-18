@@ -472,10 +472,11 @@
         else if (!pauseDetected) {
             
         int temp=[self verificaSentido:toqueFinal with:_gota.position];
-        
-//        if(temp!=self.gota.sentido){
             
-            self.gota.sentido=temp;
+
+            
+            if (_gota.sentido != temp) {
+            self.gota.sentido=temp;                
             
             switch (self.gota.sentido) {
                 case 1:
@@ -524,12 +525,12 @@
                         controleXnaTela = YES;}
                     break;
             }
+                
+            }
             
         }
-        
-//        }
     }
-
+    
 }
 
 
@@ -571,15 +572,15 @@
 
 #pragma mark - PrepareMove
 -(void)prepareMove{
-//    dispatch_queue_t queue;
-//    
-//    queue = dispatch_queue_create("actionEnemys",
-//                                  NULL);
-//
-//
-//    dispatch_async(queue, ^{
-//        [self actionsEnemys];
-//    });
+    dispatch_queue_t queue;
+    
+    queue = dispatch_queue_create("actionEnemys",
+                                  NULL);
+
+
+    dispatch_async(queue, ^{
+        [self actionsEnemys];
+    });
 }
 
 #pragma mark - Physics
@@ -614,7 +615,8 @@
     //Colisao com a parede
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
        ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
-    
+        [_gota.sprite removeAllActions];
+        _gota.sprite.texture = _gota.idleTexture;
     }
     
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"chave"]) ||
@@ -741,8 +743,8 @@
     }
     if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == CONTROLE_TOQUE)){
         NSLog(@"touch control hit");
-    
-
+        [_gota.sprite removeAllActions];
+        _gota.sprite.texture = _gota.idleTexture;
         _gota.physicsBody.velocity = CGVectorMake(0, 0);
         
         self.gota.sentido=0;
@@ -750,6 +752,8 @@
     
     if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == CONTROLE_TOQUE)){
         NSLog(@"touch control hit");
+        [_gota.sprite removeAllActions];
+        _gota.sprite.texture = _gota.idleTexture;
         _gota.physicsBody.velocity = CGVectorMake(0, 0);
         self.gota.sentido=0;
 

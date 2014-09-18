@@ -13,49 +13,53 @@
 -(id)initWithPosition:(CGPoint)position withSize:(CGSize)size{
     
     self = [super init];
+    self.name = @"gota";
+    self.position = position;
+    self.zPosition=10;
     
+    //textures load
     self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
     self.atlas  = [SKTextureAtlas atlasNamed:@"gotinha.atlas"];
-    self.sprite.texture = [self.atlas textureNamed:@"gota_walk_1.png"];
-    
-    self.physicsBody.friction = 0;
-    
-    self.multi = size.width/2;
-    
-    //    desn.position=position;
-    
-    //[self addChild:desn];
-    
-    self.name = @"gota";
-    
+    self.sprite.texture = [self.atlas textureNamed:@"gotinha_correndo_frente1@2x.png"];
+    self.sprite.zPosition=10;
     self.sprite.name = @"gota";
+    self.idleTexture = [self.atlas textureNamed:@"gotinha_correndo_frente1@2x.png"];
     
+    for (int i=1; i<=9; i++) {
+        NSString *textureName = [NSString stringWithFormat:@"gotinha_correndo_frente%d@2x.png", i];
+        [self.walkTexturesFront addObject:[self.atlas textureNamed:textureName]];
+    }
+    for (int i=1; i<=9; i++) {
+        NSString *textureName = [NSString stringWithFormat:@"gotinha_correndo_costa%d@2x.png", i];
+        [self.walkTexturesBack addObject:[self.atlas textureNamed:textureName]];
+    }
+    for (int i=1; i<=6; i++) {
+        NSString *textureName = [NSString stringWithFormat:@"gotinha_correndo_lado%d@2x.png", i];
+        [self.walkTexturesSide addObject:[self.atlas textureNamed:textureName]];
+    }
     [self addChild:self.sprite];
-    
-    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.sprite.size.width, self.sprite.size.height)];
+
+    //physics body config
+    self.physicsBody.friction = 0;
+    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.sprite.size.width/1.5, self.sprite.size.height/1.5)];
     //self.zPosition = 1;
     self.physicsBody.categoryBitMask = GOTA;
     self.physicsBody.collisionBitMask = ATTACK | ENEMY |ITEM |PORTA | CHUVA | CHAVE | PAREDE;
     self.physicsBody.contactTestBitMask = ATTACK | ENEMY | CONTROLE_TOQUE |ITEM | CHUVA |CHAVE | FONTE_DA_JUVENTUDE | PAREDE | TRAP;
+    [self configPhysics];  //herdado de character
+    self.physicsBody.usesPreciseCollisionDetection=NO;
+
+
     
-    [self configPhysics];
-    
-    self.position = position;
-    
-    self.sprite.zPosition=10;
-    
-    self.zPosition=10;
-    
+    //variaveis de controle
     _escondida = NO;
     _dividida = NO;
     _emContatoFonte = NO;
     _comChave = NO;
     _aguaRestante = 10;
-    
-    self.physicsBody.usesPreciseCollisionDetection=NO;
+    self.multi = size.width/3;
     
     self.gotinhas=[[NSMutableArray alloc] init];
-    
     self.qtGotinhas=2;
     
     //Musicas
