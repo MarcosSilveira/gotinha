@@ -12,33 +12,31 @@
 
 -(id)initWithPosition:(CGPoint)position withSize:(CGSize)size{
     self = [super init];
-    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
-    self.atlas = [SKTextureAtlas atlasNamed:@"gotinha.atlas"];
-    self.sprite.texture = [self.atlas textureNamed:@"fire_idle.png"];
     
+    //texture config
+    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
+    self.atlas = [SKTextureAtlas atlasNamed:@"enemies.atlas"];
+    self.sprite.texture = [self.atlas textureNamed:@"fogo_correndo_lado1@2x.png"];
+    self.idleTexture = [self.atlas textureNamed:@"fogo_correndo_lado_1@2x.png"];
+    
+    for (int i=1; i<=8; i++) {
+        NSString *textureName = [NSString stringWithFormat:@"ogo_correndo_lado%d@2x.png", i];
+        [self.walkTexturesFront addObject:[self.atlas textureNamed:textureName]];
+    }
+
+    //physics config
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
-    //  self.zPosition = 1;
     self.physicsBody.categoryBitMask = ENEMY;
     self.physicsBody.collisionBitMask = GOTA|PORTA|PAREDE;
     self.physicsBody.contactTestBitMask = GOTA;
-    //    self.physicsBody.mass = 9000;
-    //    desn.position = position;
-    
-    //[self addChild:desn];
-    
     self.physicsBody.restitution=0.0;
-    
     self.physicsBody.usesPreciseCollisionDetection=NO;
-    
-    self.multi = 3;
-    
-    self.name=@"fogo";
-    
     [self configPhysics];
+
+    self.multi = 3;
+    self.name=@"fogo";
     [self addChild:self.sprite];
-    
     self.position = position;
-    
     return self;
 }
 
