@@ -68,7 +68,7 @@
 		8DF47BD319B0B4EE0021AE2D /* Fogo.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8DF47BD119B0B4EE0021AE2D /* Fogo.sks */; };
 		8DF47BD419B0B4EE0021AE2D /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF47BD219B0B4EE0021AE2D /* spark.png */; };
 		8DF47BDE19B4EB8C0021AE2D /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF47BDB19B4EB8C0021AE2D /* list.png */; };
-		8DF47BDF19B4EB8C0021AE2D /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF47BDC19B4EB8C0021AE2D /* play.png */; };
+		8DF47BDF19B4EB8C0021AE2D /* jogar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF47BDC19B4EB8C0021AE2D /* jogar.png */; };
 		8DF47BE019B4EB8C0021AE2D /* restart.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF47BDD19B4EB8C0021AE2D /* restart.png */; };
 		8DF47BE319B635F30021AE2D /* JAGTrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF47BE219B635F30021AE2D /* JAGTrap.m */; };
 		B157BDA819A267E400ACA4C1 /* JAGObjeto.m in Sources */ = {isa = PBXBuildFile; fileRef = B157BDA719A267E400ACA4C1 /* JAGObjeto.m */; };
@@ -183,7 +183,7 @@
 		8DF47BD119B0B4EE0021AE2D /* Fogo.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Fogo.sks; path = JonnyGota/Fogo.sks; sourceTree = "<group>"; };
 		8DF47BD219B0B4EE0021AE2D /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = JonnyGota/spark.png; sourceTree = "<group>"; };
 		8DF47BDB19B4EB8C0021AE2D /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
-		8DF47BDC19B4EB8C0021AE2D /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
+		8DF47BDC19B4EB8C0021AE2D /* jogar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jogar.png; sourceTree = "<group>"; };
 		8DF47BDD19B4EB8C0021AE2D /* restart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restart.png; sourceTree = "<group>"; };
 		8DF47BE119B635F30021AE2D /* JAGTrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGTrap.h; sourceTree = "<group>"; };
 		8DF47BE219B635F30021AE2D /* JAGTrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGTrap.m; sourceTree = "<group>"; };
@@ -256,35 +256,35 @@
 		0B3A04431991164A00C7C39E = {
 			isa = PBXGroup;
 			children = (
-				0B08DD5019C3BB6C00D27C95 /* tileSet.png */,
+				8D4A4F3419A3D0E300255468 /* gotinha.atlas */,
+				0B0E049F19A7A29400927A16 /* backgroundChuva.png */,
 				0B08DD4E19C3A96B00D27C95 /* iso-64x64-outside.png */,
+				8DF47BDC19B4EB8C0021AE2D /* jogar.png */,
+				8DF47BDB19B4EB8C0021AE2D /* list.png */,
+				B1F768C01995443A0063E27C /* mask.png */,
+				8DF47BDD19B4EB8C0021AE2D /* restart.png */,
+				8DF47BD219B0B4EE0021AE2D /* spark.png */,
+				8D4A4F4019AFA99300255468 /* spark.png */,
+				0B08DD5019C3BB6C00D27C95 /* tileSet.png */,
+				8DF47BD119B0B4EE0021AE2D /* Fogo.sks */,
+				B1E9587A19B77718002302D7 /* Raio.sks */,
+				8D4A4F3F19AFA99300255468 /* Vapor.sks */,
 				0B922A6919C3276D00009EC4 /* iso-test-1.tmx */,
+				0B9229C719C3213200009EC4 /* map1.tmx */,
 				0B9229C919C3273000009EC4 /* map2.tmx */,
 				0B9229CA19C3273000009EC4 /* map3.tmx */,
 				0B9229CB19C3273000009EC4 /* map4.tmx */,
-				0B9229C719C3213200009EC4 /* map1.tmx */,
-				0B9229BD19C3200D00009EC4 /* TileMap */,
-				B1E9587A19B77718002302D7 /* Raio.sks */,
-				8DF47BDB19B4EB8C0021AE2D /* list.png */,
-				8DF47BDC19B4EB8C0021AE2D /* play.png */,
-				8DF47BDD19B4EB8C0021AE2D /* restart.png */,
-				8DF47BD119B0B4EE0021AE2D /* Fogo.sks */,
-				8D4A4F3F19AFA99300255468 /* Vapor.sks */,
-				8DF47BD219B0B4EE0021AE2D /* spark.png */,
-				8D4A4F4019AFA99300255468 /* spark.png */,
-				0B0E049F19A7A29400927A16 /* backgroundChuva.png */,
-				8D4A4F3419A3D0E300255468 /* gotinha.atlas */,
-				B1F768C01995443A0063E27C /* mask.png */,
 				0B45FF5119929948001948F9 /* Actions */,
 				0B024D0C1991256300AE9588 /* Enemies */,
-				0B3A04931991179000C7C39E /* Scenes */,
-				0B3A04911991171E00C7C39E /* Models */,
-				0B3A04921991177500C7C39E /* Objects */,
+				0B3A044E1991164A00C7C39E /* Frameworks */,
+				8D4A4F3119A2843100255468 /* Images */,
 				0B3A04571991164A00C7C39E /* JonnyGota */,
 				0B3A047B1991164A00C7C39E /* JonnyGotaTests */,
-				0B3A044E1991164A00C7C39E /* Frameworks */,
+				0B3A04911991171E00C7C39E /* Models */,
+				0B3A04921991177500C7C39E /* Objects */,
 				0B3A044D1991164A00C7C39E /* Products */,
-				8D4A4F3119A2843100255468 /* Images */,
+				0B3A04931991179000C7C39E /* Scenes */,
+				0B9229BD19C3200D00009EC4 /* TileMap */,
 			);
 			sourceTree = "<group>";
 		};
@@ -499,7 +499,7 @@
 				ORGANIZATIONNAME = "Henrique Manfroi da Silveira";
 				TargetAttributes = {
 					0B3A044B1991164A00C7C39E = {
-						DevelopmentTeam = 64TH9999YT;
+						DevelopmentTeam = VCE77X465D;
 					};
 					0B3A04731991164A00C7C39E = {
 						TestTargetID = 0B3A044B1991164A00C7C39E;
@@ -550,7 +550,7 @@
 				8DF47BE019B4EB8C0021AE2D /* restart.png in Resources */,
 				0B08DD5119C3BB6C00D27C95 /* tileSet.png in Resources */,
 				0B9229CD19C3273000009EC4 /* map3.tmx in Resources */,
-				8DF47BDF19B4EB8C0021AE2D /* play.png in Resources */,
+				8DF47BDF19B4EB8C0021AE2D /* jogar.png in Resources */,
 				8DF47BDE19B4EB8C0021AE2D /* list.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
