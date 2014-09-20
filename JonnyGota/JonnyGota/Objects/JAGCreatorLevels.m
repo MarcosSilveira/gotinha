@@ -240,53 +240,63 @@
     JSTileMap* tiledMap = [JSTileMap mapNamed:@"map1.tmx"];
     if (tiledMap){
         
-        
-//        [bgLayer physicsBody];
         scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
         scene.level.tileSize = 64;
         
-//        [scene configInit:bgImage];
+
 
         scene.level.frequenciaRelampago = 10.0;
         CGSize tamanho = CGSizeMake(scene.level.tileSize, scene.level.tileSize);
         
-        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(2, 2)] withSize:tamanho];
+        //Gotinha
         
-//        CGRect mapBounds = [tiledMap calculateAccumulatedFrame];
-//        tiledMap.position = CGPointMake(-mapBounds.size.width/2.0, -mapBounds.size.height/2.0);
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tamanho];
 
         tiledMap.position = CGPointMake(0, 0);
         [scene configInit];
         
         
-//        [self createPhiscsBodytoLayer:tiledMap];
+
         
-//        [scene addChild:tiledMap];
-        
-        
+        //Mapa
         [scene.cropNode addChild:tiledMap];
         
         [scene.cropNode addChild:[self createPhiscsBodytoLayer:tiledMap]];
 
         
-//        [scene.cropNode addChild:bgLayer];
-        
-        
-        
-//        [tiledMap.imageLayers[0]];
+        //Mascara
         
         [scene createMask:100 withPoint:(scene.gota.position)];
+        
+        
+        //Add Monstros
+        
+        
+        
+        
+        
+        //Add objetos
+        
+        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(3, 20)]];
+        
+        [scene.cropNode addChild:scene.level.chuva];
 
         
+
+        //Config de hud e faze
         scene.hud = [[JAGHud alloc] initWithTempo:300 withVida:3 saude:scene.gota.aguaRestante withWindowSize:scene.frame.size];
         
         scene.gota.vida = 15;
         scene.hud.gota  = scene.gota;
         
         [scene.cropNode addChild:scene.gota];
+        
+       
 
         
         [scene addChild: scene.cropNode];
+        
+        [scene addChild:scene.hud];
         
         [scene.hud startTimer];
 
@@ -334,30 +344,7 @@
                 };
                 
                 
-               
-//                NSLog(@"a: %d  b:%d  gid:%d",a,b,gid);
-//                SKPhysicsBody *node;
-//                node=[SKPhysicsBody bodyWithRectangleOfSize:tileMap.tileSize center:CGPointMake(tileMap.tileSize.width*a+tileMap.tileSize.width/2,  (tileMap.tileSize.height*(tileMap.mapSize.height-b-1)+tileMap.tileSize.height/2))];
-//                node.dynamic = NO;
-//                node.restitution=0.0;
-                
-//                node.position=CGPointMake(tileMap.tileSize.width*a, tileMap.tileSize.height*b);
-                
-//                [nodes addObject:node];
-//				SKSpriteNode* node = [layerInfo.layer tileAtCoord:pt];
-                
-//                NSLog(@"node %d",node);
-//              [nodes addObject:node];
-                
-//				node.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:node.frame.size];
-//				node.physicsBody.dynamic = NO;
-//                node.physicsBody.restitution=0.0;
-                //				NSLog(@"BRICK AT (%d, %d) is (%.2f, %.2f, %.2f, %.2f)", a, b, node.frame.origin.x, node.frame.origin.y, node.frame.size.width, node.frame.size.height);
-                //				SKSpriteNode* node2 = [SKSpriteNode spriteNodeWithColor:[UIColor redColor] size:node.frame.size];
-                //				node2.position = node.frame.origin;
-                //				node2.anchorPoint = CGPointMake(0, 0);
-                //				[self addChild:node2];
-			}
+            }
 		}
 	}
     
@@ -370,8 +357,6 @@
 //            NSLog(@"ponto x. ponto y.  proximo.x  proximo. y  ")
         }
         
-        CGPoint pontos=ponto.ponto;
-        
         CGPoint inicial1=CGPointMake(ponto.ponto.x-tileMap.tileSize.width/2, ponto.ponto.y-tileMap.tileSize.height/2);
         
         CGPoint inicial2=CGPointMake(ponto.ponto.x+tileMap.tileSize.width/2, ponto.ponto.y-tileMap.tileSize.height/2);
@@ -380,48 +365,7 @@
             inicial1=CGPointMake(ponto.ponto.x+tileMap.tileSize.width/2, ponto.ponto.y-tileMap.tileSize.height/2);
         }
         
-        CGPoint fim1=CGPointMake(ponto.ponto.x-tileMap.tileSize.width/2, ponto.ponto.y-tileMap.tileSize.height/2);
-        
-        CGPoint fim2=CGPointMake(ponto.ponto.x+tileMap.tileSize.width/2, ponto.ponto.y-tileMap.tileSize.height/2);
-        
-        
-        
-        
-        
-//        JAGPreparePoints *proximoAlto=ponto.proximoAlto;
-//        while (proximoAlto!=nil && proximoAlto.usadoAlto==false) {
-//            //            tamy+=tileMap.tileSize.height;
-//            proximoAlto.usadoAlto=true;
-//            
-//            pontos.y=proximoAlto.ponto.y;
-//            
-//            fim1=CGPointMake(proximoAlto.ponto.x-tileMap.tileSize.width/2, proximoAlto.ponto.y+tileMap.tileSize.height/2);
-//            
-//            fim2=CGPointMake(proximoAlto.ponto.x+tileMap.tileSize.width/2, proximoAlto.ponto.y+tileMap.tileSize.height/2);
-//            if (proximoAlto.proximo!=nil) {
-//                CGPoint inicioReta=CGPointMake(proximoAlto.ponto.x+tileMap.tileSize.width/2, proximoAlto.ponto.y-tileMap.tileSize.height/2);
-//                
-//                CGPoint inicioReta2=CGPointMake(proximoAlto.ponto.x-tileMap.tileSize.width/2, proximoAlto.ponto.y+tileMap.tileSize.height/2);
-//                //                CGPathAddLineToPoint(ponti, nil, inicioReta.x, inicioReta.y);
-//                
-//                CGMutablePathRef pontos=CGPathCreateMutable();
-//                
-//                CGPathMoveToPoint(pontos, nil, inicioReta.x, inicioReta.y);
-//                
-//                CGPathAddLineToPoint(pontos, nil, inicioReta2.x, inicioReta2.y);
-//                
-//                [nodesPhy addObject:[self fazlinhas:proximoAlto withPath:pontos withtileSize:tileMap.tileSize withArray:nodesPhy]];
-//            }
-//           
-//            if(proximoAlto.proximoAlto==nil&& proximoAlto.proximo!=nil){
-//                fim1=CGPointMake(proximoAlto.ponto.x-tileMap.tileSize.width/2, proximoAlto.ponto.y-tileMap.tileSize.height/2);
-//                
-//            }
-//            
-//            proximoAlto=proximoAlto.proximoAlto;
-//            
-//        }
-        
+    
         if (ponto.usadoAlto==false && ponto.usado==false) {
             
             CGMutablePathRef ponti=CGPathCreateMutable();
@@ -429,20 +373,7 @@
             CGPathMoveToPoint(ponti, nil, inicial1.x, inicial1.y);
             CGPathAddLineToPoint(ponti, nil, inicial2.x, inicial2.y);
             [self fazColunas:ponto withPath:ponti withtileSize:tileMap.tileSize withArray:nodesPhy];
-            
-//            ponto.usadoAlto=true;
-//            SKPhysicsBody *node;
-//            //          node=[SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(tamx, tamy) center:CGPointMake(ponto.ponto.x+(tamx-tileMap.tileSize.width)/2, ponto.ponto.y+(tamy-tileMap.tileSize.height)/2)];
-//           
-//            CGPathAddLineToPoint(ponti, nil, fim2.x, fim2.y);
-//            CGPathAddLineToPoint(ponti, nil, fim1.x, fim1.y);
-//            //            CGPathAddLineToPoint(ponti, nil, inicial2.x, inicial2.y);
-//            
-//            CGPathCloseSubpath(ponti);
-//            node=[SKPhysicsBody bodyWithPolygonFromPath:ponti];
-//            //            node=[SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(tamx, tamy) center:CGPointMake(pontos.x+(tamx-tileMap.tileSize.width)/2, ponto.ponto.y+(tamy-tileMap.tileSize.height)/2)];
-//            
-//            [nodesPhy addObject:node];
+
             
         }
     }
@@ -456,6 +387,7 @@
     
     nodofinal.physicsBody.categoryBitMask = PAREDE;
     nodofinal.physicsBody.collisionBitMask = ATTACK;
+    nodofinal.name = @"wall";
     return nodofinal;
 }
 

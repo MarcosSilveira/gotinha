@@ -10,6 +10,7 @@
 #import "JAGGota.h"
 #import "JAGFogoEnemy.h"
 #import "JAGWall.h"
+#import "JAGChuva.h"
 
 @interface JAGLevel : NSObject
 
@@ -30,6 +31,8 @@
 @property (nonatomic) NSNumber *mundo;
 
 @property (nonatomic) NSNumber *level;
+
+@property (nonatomic) JAGChuva *chuva;
 
 @property (nonatomic) SKSpriteNode *background;
 @property (nonatomic)double frequenciaRelampago;

@@ -18,8 +18,14 @@
 -(id)initWithPosition:(CGPoint)position withSize:(CGSize)size{
     self = [super init];
     self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
-    self.atlas = [SKTextureAtlas atlasNamed:@"gotinha.atlas"];
-    self.sprite.texture = [self.atlas textureNamed:@"fire_idle.png"];
+    self.atlas = [SKTextureAtlas atlasNamed:@"enemies.atlas"];
+    self.sprite.texture = [self.atlas textureNamed:@"fogo_idle.png"];
+    self.idleTexture = [self.atlas textureNamed:@"fogo_idle.png"];
+    
+    for (int i=1; i<=8; i++) {
+        NSString *textureName = [NSString stringWithFormat:@"fogo_correndo_lado%d@2x.png", i];
+        [self.walkTexturesFront addObject:[self.atlas textureNamed:textureName]];
+    }
     
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
     //  self.zPosition = 1;

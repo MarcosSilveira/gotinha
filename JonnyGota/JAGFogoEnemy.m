@@ -12,33 +12,31 @@
 
 -(id)initWithPosition:(CGPoint)position withSize:(CGSize)size{
     self = [super init];
-    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
-    self.atlas = [SKTextureAtlas atlasNamed:@"gotinha.atlas"];
-    self.sprite.texture = [self.atlas textureNamed:@"fire_idle.png"];
     
+    //texture config
+    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
+    self.atlas = [SKTextureAtlas atlasNamed:@"enemies.atlas"];
+    self.sprite.texture = [self.atlas textureNamed:@"fogo_idle.png"];
+    self.idleTexture = [self.atlas textureNamed:@"fogo_idle.png"];
+    
+    for (int i=1; i<=8; i++) {
+        NSString *textureName = [NSString stringWithFormat:@"fogo_correndo_lado%d@2x.png", i];
+        [self.walkTexturesFront addObject:[self.atlas textureNamed:textureName]];
+    }
+
+    //physics config
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
-    //  self.zPosition = 1;
     self.physicsBody.categoryBitMask = ENEMY;
     self.physicsBody.collisionBitMask = GOTA|PORTA|PAREDE;
     self.physicsBody.contactTestBitMask = GOTA;
-    //    self.physicsBody.mass = 9000;
-    //    desn.position = position;
-    
-    //[self addChild:desn];
-    
     self.physicsBody.restitution=0.0;
-    
     self.physicsBody.usesPreciseCollisionDetection=NO;
-    
-    self.multi = 3;
-    
-    self.name=@"fogo";
-    
     [self configPhysics];
+
+    self.multi = 3;
+    self.name=@"fogo";
     [self addChild:self.sprite];
-    
     self.position = position;
-    
     return self;
 }
 
@@ -55,7 +53,7 @@
             //self.physicsBody.velocity=CGVectorMake(ponto.x, ponto.y);
             
             [self.physicsBody applyForce:CGVectorMake(0,(ponto.y - self.position.y)*self.multi)];
-            
+            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesFront timePerFrame:0.1f]]withKey:@"walkingSide"];
             //  action = [SKAction followPath:(CGPathCreateWithRect(CGRectMake(ponto.x, ponto.y, 10, 10), nil)) duration:2];
             //self.sprite.color=[UIColor greenColor];
             
@@ -64,7 +62,7 @@
             break;
             
         case 2:
-            
+            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesFront timePerFrame:0.1f]]withKey:@"walkingSide"];
             [self.physicsBody applyForce:CGVectorMake(0,(ponto.y - self.position.y)*self.multi)];
             
             //            actionChangeSprite=[SKAction colorizeWithColor:[SKColor brownColor] colorBlendFactor:1.0 duration:0.0];
@@ -73,13 +71,14 @@
             break;
             
         case 3:
-            
+            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesFront timePerFrame:0.1f]]withKey:@"walkingSide"];
             [self.physicsBody applyForce:CGVectorMake((ponto.x - self.position.x)*self.multi,0)];
             
             //            actionChangeSprite=[SKAction colorizeWithColor:[SKColor blueColor] colorBlendFactor:1.0 duration:0.0];
             break;
             
         case 4:
+            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesFront timePerFrame:0.1f]]withKey:@"walkingSide"];
             [self.physicsBody applyForce:CGVectorMake((ponto.x - self.position.x)*self.multi,0)];
             
             //            actionChangeSprite=[SKAction colorizeWithColor:[SKColor yellowColor] colorBlendFactor:1.0 duration:0.0];

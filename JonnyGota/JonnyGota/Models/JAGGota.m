@@ -73,15 +73,17 @@
     pocaAction = [SKAction scaleYTo:-.5 duration:1.0];
     if (_escondida == NO) {
         _escondida = YES;
-        [self runAction:pocaAction];
+//        [self runAction:pocaAction];
+        self.sprite.texture = [SKTexture textureWithImageNamed:@"poca.png"];
     }
     else if (_escondida){
         pocaAction = [SKAction sequence:@[[SKAction scaleYTo:+1 duration:1.0], [SKAction waitForDuration:0.3], [SKAction runBlock:^{
             _escondida = NO;
         }]]];
         
-        [self runAction:pocaAction];
-        
+//        [self runAction:pocaAction];
+        self.sprite.texture = self.idleTexture;
+        _escondida = NO;
     }
 }
 

@@ -31,7 +31,7 @@ static ALCdevice* openDevice;
     if (self = [super init]) {
         /* Setup your scene here */
         if(openDevice == nil){
-            openDevice = alcOpenDevice(NULL);
+//            openDevice = alcOpenDevice(NULL);
             
             _openContext = cont;
         }
@@ -195,7 +195,7 @@ static ALCdevice* openDevice;
     */
     alSourcei(_outputSource, AL_SOURCE_RELATIVE, AL_TRUE);
     alSource3f (_outputSource, AL_POSITION, x, y, z);
-    alSource3f (_outputSource, AL_VELOCITY, x, y, z);
+//    alSource3f (_outputSource, AL_VELOCITY, x, y, z);
    // alSourcePlay(_outputSource);
 }
 

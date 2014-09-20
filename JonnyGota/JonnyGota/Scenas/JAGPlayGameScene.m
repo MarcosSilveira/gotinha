@@ -16,7 +16,7 @@
 #import "JAGChave.h"
 #import "JAGTrap.h"
 #import "JAGMenu.h"
-
+#import <AVFoundation/AVFoundation.h>
 
 @implementation JAGPlayGameScene {
     
@@ -35,6 +35,7 @@
     BOOL controleYnaTela;   //controle para verificar se nodo de parada da gota y está na tela
     BOOL pauseDetected;     //jogo pausado?
     JAGChave* chave;        //item chave
+    Musica *relampago;
 
 }
 
@@ -45,6 +46,7 @@
     self.scaleMode = SKSceneScaleModeAspectFit;
     self.physicsWorld.gravity = CGVectorMake(0.0f, 0.0f);
     [self touchesEnded:nil withEvent:nil];
+
 
 }
 -(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world{
@@ -72,6 +74,7 @@
         [self configuraParadaGota];
     }
     [self fadeMask];
+    self.cropNode.alpha = 0.8f;
 
 
     return self;
@@ -86,14 +89,14 @@
      -Fim de fase perdendo sem vida restante */
     if (withOP == 0) {
         
-    GObackground = [[SKSpriteNode alloc]initWithColor:[UIColor redColor] size:CGSizeMake( self.frame.size.height/2, self.frame.size.width/2)];
-    GObackground.position = CGPointMake(self.frame.size.height*0.3, self.frame.size.width*0.9);
+    GObackground = [[SKSpriteNode alloc]initWithColor:[UIColor redColor] size:CGSizeMake( self.frame.size.width/2, self.frame.size.height/2)];
+    GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
     button1 = [[SKSpriteNode alloc] initWithImageNamed:@"jogar.png"];
     button1.size = CGSizeMake(GObackground.size.width/4, GObackground.size.height/4.5);
-    button1.position = CGPointMake(self.frame.size.height*0.2, self.frame.size.width*0.65);
+    button1.position = CGPointMake(self.frame.size.width*0.4, self.frame.size.height*0.25);
     button2 = [[SKSpriteNode alloc] initWithImageNamed:@"list.png"];
     button2.size =CGSizeMake(GObackground.size.width/4, GObackground.size.height/4.5);
-    button2.position = CGPointMake(self.frame.size.height*0.4, self.frame.size.width*0.65);
+    button2.position = CGPointMake(self.frame.size.width*0.6, self.frame.size.height*0.25);
     button1.name = @"button1";
     button2.name = @"button2";
     
@@ -149,7 +152,8 @@
     NSTimeInterval tempo = frequencia;
     SKAction *controle = [SKAction sequence:@[[SKAction waitForDuration:tempo],
                                               [SKAction runBlock:^{
-        
+        [relampago play];
+//        [self.scene runAction:[SKAction playSoundFileNamed:@"trovao.wav" waitForCompletion:NO]];
         SKAction *retiraMascara=[SKAction sequence:@[[SKAction waitForDuration:0.1],
                                                           [SKAction runBlock:^{
             //        [circleMask runAction:fadeIn];
@@ -559,7 +563,7 @@
     circleMask.position=CGPointMake(_gota.position.x,_gota.position.y);
 
 
-    
+    [self.level.chuva update:self.gota];
     
     [self prepareMove];
     
@@ -1036,6 +1040,17 @@
         
         [inimigo IAcomInfo];
     }
+    
+    
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"granada" ofType:@"caf"];
+    NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
+    
+    relampago=[[Musica alloc] initWithContext:self.level.chuva.chuva.openContext];
+    
+    [relampago carregar:fileUrl withEffects:false];
+    
+    [relampago changeVolume:0.6];
+
 }
 
 -(void)configInit:(SKSpriteNode *)background{
@@ -1052,6 +1067,11 @@
     
     self.characteres=[[NSMutableArray alloc] init];
     self.inimigos=[[NSMutableArray alloc] init];
+    
+    
+    
+    
+    
 }
 
 -(void)rastroInimigo: (SKNode*)inimigo{
