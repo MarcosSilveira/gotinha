@@ -791,6 +791,26 @@
         }
     }
     
+    //Fim da fase
+    if(((contact.bodyA.categoryBitMask == CHUVA) && (contact.bodyB.categoryBitMask == GOTA))||
+       ((contact.bodyB.categoryBitMask == CHUVA) && (contact.bodyA.categoryBitMask == GOTA))){
+        //Ir para o proximo nivel
+        
+        NSNumber *nextlevel=[NSNumber numberWithInt:([self.currentLevel intValue] + 1)];
+        
+        if ([[JAGCreatorLevels numberOfLevels:1] intValue]>[nextlevel intValue]) {
+            SKScene *scene = [[JAGPlayGameScene alloc] initWithSize:self.frame.size level:nextlevel andWorld:@1];
+            
+            SKTransition *trans = [SKTransition fadeWithDuration:1.0];
+            [self.scene.view presentScene:scene transition:trans];
+
+        }
+        /*
+         
+         */
+    }
+    
+    
 //    //Melhorar Ia do monstro
 //    if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ENEMY)){
 //        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
