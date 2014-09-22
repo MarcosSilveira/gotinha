@@ -411,25 +411,23 @@
             
             fim2=CGPointMake(proximoAlto.ponto.x+tileSize.width/2, proximoAlto.ponto.y+tileSize.height/2);
             
-            if (proximoAlto.proximo!=nil &&proximoAlto.proximo.usado==false) {
-                CGPoint inicioReta=CGPointMake(proximoAlto.ponto.x+tileSize.width/2, proximoAlto.ponto.y-tileSize.height/2);
+            if (proximoAlto.proximo!=nil &&proximoAlto.proximo.usado==false ) {
+                CGPoint inicioReta=CGPointMake((proximoAlto.ponto.x+tileSize.width/2), proximoAlto.ponto.y-tileSize.height/2);
                 
                 CGPoint inicioReta2=CGPointMake((proximoAlto.ponto.x+tileSize.width/2)-2, proximoAlto.ponto.y+tileSize.height/2);
                 //                CGPathAddLineToPoint(ponti, nil, inicioReta.x, inicioReta.y);
                 
                 CGMutablePathRef pontos=CGPathCreateMutable();
                 
+                if (proximoAlto.antes==false) {
+                    inicioReta=CGPointMake((proximoAlto.ponto.x+tileSize.width/2)-3, proximoAlto.ponto.y-tileSize.height/2);
+                }
+            
                 CGPathMoveToPoint(pontos, nil, inicioReta.x, inicioReta.y);
                 
                 CGPathAddLineToPoint(pontos, nil, inicioReta2.x, inicioReta2.y);
                 
-                if (inicioReta.x==0) {
-                    NSLog(@"loloro");
-                }
-                if(inicioReta2.x==0){
-                    NSLog(@"loloro2");
-                }
-//                NSLog(@"4 casos");
+                //                NSLog(@"4 casos");
                 
                 [nodesPhy addObject:[self fazlinhas:proximoAlto withPath:pontos withtileSize:tileSize withArray:nodesPhy]];
             }
@@ -554,11 +552,7 @@
                 }
 
             }
-//            if(proximo.antes==true && proximo.proximo==nil){
-//                fim1=CGPointMake(proximo.ponto.x+tileSize.width/2, proximo.ponto.y-tileSize.height/2);
-//                
-//                fim2=CGPointMake(proximo.ponto.x+tileSize.width/2, proximo.ponto.y+tileSize.height/2);
-//            }
+
            
             proximo=proximo.proximo;
         }
