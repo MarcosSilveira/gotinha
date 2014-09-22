@@ -14,6 +14,7 @@
 @interface JAGChuva : SKNode
 
 @property (nonatomic) SKSpriteNode *sprite;
+@property (strong, nonatomic) SKTexture *nuvemText;
 
 @property (nonatomic) Musica *chuva;
 

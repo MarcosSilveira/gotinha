@@ -12,12 +12,12 @@
 @implementation JAGChuva
 
 -(instancetype)initWithPosition:(CGPoint)ponto{
-    self=[super init];
     
-    self.sprite=[[SKSpriteNode alloc] initWithColor:[SKColor blueColor] size:CGSizeMake(32, 32)];
+    self = [super init];
     
-    self.name=@"chuva";
-    
+    self.nuvemText = [SKTexture textureWithImageNamed:@"nuvem"];
+    self.sprite = [[SKSpriteNode alloc] initWithTexture:self.nuvemText];
+    self.name = @"chuva";
     
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
     //self.zPosition = 1;
@@ -25,7 +25,7 @@
     self.physicsBody.collisionBitMask = GOTA;
     self.physicsBody.contactTestBitMask = GOTA;
 
-    self.chuva=[[Musica alloc] init];
+    self.chuva = [[Musica alloc] init];
     
     [self.chuva inici];
     
@@ -36,24 +36,19 @@
     
     [self.chuva changeVolume:0.8];
     
-    
-    
 //    [self.chuva updateListener:posx withY:posy withZ:0.0f];
     
 //    [self.chuva configureEffects:ponto.x withY:ponto.y withZ:0.0f];
     
     [self.chuva playInLoop];
     
-    
-
-    
     [self addChild:self.sprite];
     
     self.physicsBody.dynamic=NO;
     
-    self.position=ponto;
+    self.position = ponto;
     
-    self.physicsBody.restitution=0;
+    self.physicsBody.restitution = 0;
     
     return self;
 }
