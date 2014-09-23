@@ -18,6 +18,7 @@
 @property BOOL comChave;
 @property BOOL emContatoFonte;
 @property float aguaRestante;
+@property BOOL parada;
 
 @property (nonatomic) int sentido;
 

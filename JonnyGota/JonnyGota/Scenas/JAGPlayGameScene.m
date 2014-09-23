@@ -539,6 +539,11 @@
 
 
 -(void)update:(NSTimeInterval)currentTime {
+   CGVector zero= CGVectorMake(0, 0);
+    if(_gota.physicsBody.velocity.dx == zero.dx && _gota.physicsBody.velocity.dy == zero.dy && _gota.sprite.texture != _gota.idleTexture)
+    {        [_gota.sprite removeAllActions];
+            _gota.sprite.texture = _gota.idleTexture;}
+    
     if (pauseDetected) {
         [_gota.physicsBody applyImpulse:CGVectorMake(0,0)];
     }
@@ -619,8 +624,8 @@
     //Colisao com a parede
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
        ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
-        [_gota.sprite removeAllActions];
-        _gota.sprite.texture = _gota.idleTexture;
+
+
     }
     
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"chave"]) ||
