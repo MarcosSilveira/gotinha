@@ -433,24 +433,29 @@
 //            NSLog(@"ponto x. ponto y.  proximo.x  proximo. y  ")
         }
         
-        CGPoint inicial1=CGPointMake(ponto.ponto.x-tileMap.tileSize.width/2, (ponto.ponto.y-tileMap.tileSize.height/2));
         
-        CGPoint inicial2=CGPointMake(ponto.ponto.x+tileMap.tileSize.width/2, (ponto.ponto.y-tileMap.tileSize.height/2));
         
-        if(ponto.proximo!=nil){
-            inicial1=CGPointMake(ponto.ponto.x+tileMap.tileSize.width/2, ponto.ponto.y-tileMap.tileSize.height/2);
-        }
         
     
-        if (ponto.usadoAlto==false && ponto.usado==false) {
+        if (ponto.usadoAlto==false ) {
             
             CGMutablePathRef ponti=CGPathCreateMutable();
             
-            CGPathMoveToPoint(ponti, nil, inicial1.x, inicial1.y);
-            CGPathAddLineToPoint(ponti, nil, inicial2.x, inicial2.y);
-            [nodesPhy addObject:[self fazColunas:ponto withPath:ponti withtileSize:tileMap.tileSize withArray:nodesPhy]];
-
+            SKPhysicsBody *temp=[self fazColunas:ponto withPath:ponti withtileSize:tileMap.tileSize withArray:nodesPhy];
             
+            if(temp!=nil){
+                [nodesPhy addObject:temp];
+            }
+            
+            
+        }
+        if (ponto.usado==false){
+            CGMutablePathRef ponti=CGPathCreateMutable();
+            
+            SKPhysicsBody *temp=[self fazlinhas:ponto withPath:ponti withtileSize:tileMap.tileSize withArray:nodesPhy];
+            if(temp!=nil){
+                [nodesPhy addObject:temp];
+            }
         }
     }
     
@@ -473,7 +478,11 @@
                    withPath:(CGMutablePathRef) pontos
                withtileSize:(CGSize)tileSize
                   withArray:(NSMutableArray*)nodesPhy{
-    if(inicial!=nil){
+    if(inicial!=nil && inicial.proximoAlto.proximoAlto!=nil){
+        
+        //Altura quando for maior que 2
+        
+        //Prioridades dos lados
         
         
         JAGPreparePoints *proximoAlto=inicial;
@@ -481,82 +490,41 @@
         CGPoint fim1;
         CGPoint fim2;
         
-        bool criou=false;
-               
+        CGPoint inicial1=CGPointMake(proximoAlto.ponto.x-tileSize.width/2, (proximoAlto.ponto.y-tileSize.height/2)+2);
+        
+        CGPoint inicial2=CGPointMake(proximoAlto.ponto.x+tileSize.width/2, (proximoAlto.ponto.y-tileSize.height/2)+2);
+        
+        
+        CGMutablePathRef pontosn=CGPathCreateMutable();
+        
+        CGPathMoveToPoint(pontosn, nil, inicial1.x, inicial1.y);
+        
+        CGPathAddLineToPoint(pontosn, nil, inicial2.x, inicial2.y);
+        
+        
         while (proximoAlto!=nil && proximoAlto.usadoAlto==false ) {
             //            tamy+=tileMap.tileSize.height;
             proximoAlto.usadoAlto=true;
- 
-            fim1=CGPointMake(proximoAlto.ponto.x-tileSize.width/2, proximoAlto.ponto.y+tileSize.height/2);
             
-            fim2=CGPointMake(proximoAlto.ponto.x+tileSize.width/2, proximoAlto.ponto.y+tileSize.height/2);
+            fim1=CGPointMake(proximoAlto.ponto.x-tileSize.width/2, (proximoAlto.ponto.y+tileSize.height/2)-2);
             
-            if (proximoAlto.proximo!=nil &&proximoAlto.proximo.usado==false ) {
-                CGPoint inicioReta=CGPointMake((proximoAlto.ponto.x+tileSize.width/2), proximoAlto.ponto.y-tileSize.height/2);
-                
-                CGPoint inicioReta2=CGPointMake((proximoAlto.ponto.x+tileSize.width/2)-2, proximoAlto.ponto.y+tileSize.height/2);
-                //                CGPathAddLineToPoint(ponti, nil, inicioReta.x, inicioReta.y);
-                
-                
-                
-                if (proximoAlto.antes==false) {
-                    inicioReta=CGPointMake((proximoAlto.ponto.x+tileSize.width/2)-3, proximoAlto.ponto.y-tileSize.height/2);
-                }
-                
-                
-
-                CGMutablePathRef pontosn=CGPathCreateMutable();
-                
-                CGPathMoveToPoint(pontosn, nil, inicioReta.x, inicioReta.y);
-                
-                CGPathAddLineToPoint(pontosn, nil, inicioReta2.x, inicioReta2.y);
-                
-                //                NSLog(@"4 casos");
-                
-               
-                
-                [nodesPhy addObject:[self fazlinhas:proximoAlto withPath:pontosn withtileSize:tileSize withArray:nodesPhy]];
-                
-                if(criou){
-                    
-                }
-                
-            }else{
-                
-                if (proximoAlto.antesAlto==false &&proximoAlto.proximoAlto!=nil) {
-                    criou=true;
-                }
-                
-            
-            
-            if(proximoAlto.proximoAlto==nil&& proximoAlto.proximo!=nil){
-                fim1=CGPointMake(proximoAlto.ponto.x-tileSize.width/2, proximoAlto.ponto.y-tileSize.height/2);
-                
-            }
-            
-            if(proximoAlto.antes==false){
-                fim1=CGPointMake(proximoAlto.ponto.x-tileSize.width/2, (proximoAlto.ponto.y+tileSize.height/2)-2);
-                
-                fim2=CGPointMake((proximoAlto.ponto.x+tileSize.width/2)-2, (proximoAlto.ponto.y+tileSize.height/2)-2);
-            }
-            
-            
-            }
+            fim2=CGPointMake(proximoAlto.ponto.x+tileSize.width/2, (proximoAlto.ponto.y+tileSize.height/2)-2);
             
             proximoAlto=proximoAlto.proximoAlto;
         }
-       
         
-        CGPathAddLineToPoint(pontos, nil, fim2.x, fim2.y);
-        CGPathAddLineToPoint(pontos, nil, fim1.x, fim1.y);
         
-        CGPathCloseSubpath(pontos);
+        CGPathAddLineToPoint(pontosn, nil, fim2.x, fim2.y);
+        CGPathAddLineToPoint(pontosn, nil, fim1.x, fim1.y);
+        
+        CGPathCloseSubpath(pontosn);
         
         SKPhysicsBody *node;
-        node=[SKPhysicsBody bodyWithPolygonFromPath:pontos];
+        node=[SKPhysicsBody bodyWithPolygonFromPath:pontosn];
         
         return node;
     }
+    
     return nil;
 }
 
@@ -564,7 +532,8 @@
         withPath:(CGMutablePathRef) pontos
     withtileSize:(CGSize)tileSize
                  withArray:(NSMutableArray*)nodesPhy{
-    if(inicial!=nil){
+    
+    if(inicial!=nil&& inicial.proximo.proximo!=nil){
         
         
         JAGPreparePoints *proximo=inicial;
@@ -572,132 +541,38 @@
         CGPoint fim1;
         CGPoint fim2;
         
-        CGPoint save;
+        CGPoint inicial1=CGPointMake((proximo.ponto.x+tileSize.width/2)-2, (proximo.ponto.y-tileSize.height/2));
+        
+        CGPoint inicial2=CGPointMake((proximo.ponto.x+tileSize.width/2)-2, (proximo.ponto.y+tileSize.height/2));
+        
+        
+        CGMutablePathRef pontosn=CGPathCreateMutable();
+        
+        CGPathMoveToPoint(pontosn, nil, inicial1.x, inicial1.y);
+        
+        CGPathAddLineToPoint(pontosn, nil, inicial2.x, inicial2.y);
+        
+        
         while (proximo!=nil && proximo.usado==false) {
             proximo.usado=true;
+    
+            fim1=CGPointMake((proximo.ponto.x-tileSize.width/2)+2, (proximo.ponto.y+tileSize.height/2));
             
-            if((proximo.proximoAlto!=nil&& proximo.proximoAlto.proximo==nil && proximo.proximoAlto.usadoAlto==false)){
-                //Recursivo do bloco coluna
-                
-                CGPoint inicioReta=CGPointMake((proximo.ponto.x-tileSize.width/2)-2, (proximo.ponto.y+tileSize.height/2));
-                
-                CGPoint inicioReta2=CGPointMake((proximo.ponto.x+tileSize.width/2)-2, proximo.ponto.y+tileSize.height/2);
-                //                CGPathAddLineToPoint(ponti, nil, inicioReta.x, inicioReta.y);
-                
-                CGMutablePathRef pontosn=CGPathCreateMutable();
-                
-                CGPathMoveToPoint(pontosn, nil, inicioReta.x, inicioReta.y);
-                
-                 if(proximo.antes==true && proximo.proximo==nil){
-                    
-                     inicioReta=CGPointMake((proximo.ponto.x-tileSize.width/2)-2, (proximo.ponto.y-tileSize.height/2));
-                     inicioReta2=CGPointMake((proximo.ponto.x+tileSize.width/2)-2, (proximo.ponto.y-tileSize.height/2));
-
-                     CGPathMoveToPoint(pontosn, nil, inicioReta.x, inicioReta.y);
-                     CGPathAddLineToPoint(pontosn, nil, inicioReta2.x, inicioReta2.y);
-               
-                     
-                 }else{
-                     
-                     
-                     if(proximo.antes==false){
-                         inicioReta=CGPointMake((proximo.ponto.x-tileSize.width/2)-2, (proximo.ponto.y-tileSize.height/2));
-                         inicioReta2=CGPointMake((proximo.ponto.x+tileSize.width/2)-3, (proximo.ponto.y-tileSize.height/2));
-                         
-                         CGPathMoveToPoint(pontosn, nil, inicioReta.x, inicioReta.y);
-                         CGPathAddLineToPoint(pontosn, nil, inicioReta2.x, inicioReta2.y);
-
-                     }else{
-                     
-                        CGPathMoveToPoint(pontosn, nil, inicioReta.x, inicioReta.y);
-                        CGPathAddLineToPoint(pontosn, nil, inicioReta2.x, inicioReta2.y);
-                     }
-                 }
-
-                
-                [nodesPhy addObject:[self fazColunas:proximo.proximoAlto withPath:pontosn withtileSize:tileSize withArray:nodesPhy]];
-            }else{
-                
-                if (proximo.proximoAlto!=nil) {
-                    fim1=CGPointMake(proximo.ponto.x-tileSize.width/2, proximo.ponto.y-tileSize.height/2);
-                    
-                    fim2=CGPointMake(proximo.ponto.x-tileSize.width/2, proximo.ponto.y+tileSize.height/2);
-//                    NSLog(@"KKK");
-
-                    
-                }else{
-                    
-                    if(proximo.antes==false){
-                        fim1=CGPointMake((proximo.ponto.x-tileSize.width/2)-2, proximo.ponto.y-tileSize.height/2);
-                        
-                        fim2=CGPointMake((proximo.ponto.x+tileSize.width/2)-2, proximo.ponto.y+tileSize.height/2);
-                        
-//                        NSLog(@"YYY");
-
-                    }
-                    
-                    if(proximo.proximo!=nil && proximo.proximo.antesAlto==true){
-                        
-                        fim1=CGPointMake(proximo.ponto.x-tileSize.width/2, (proximo.ponto.y-tileSize.height/2)+2);
-                        
-                        fim2=CGPointMake(proximo.ponto.x-tileSize.width/2, (proximo.ponto.y+tileSize.height/2)-2);
-                        
-//                        NSLog(@"QQQ");
-
- 
-                    }
-
-                    fim1=CGPointMake(proximo.ponto.x-tileSize.width/2, proximo.ponto.y-tileSize.height/2);
-                    
-                    fim2=CGPointMake(proximo.ponto.x-tileSize.width/2, proximo.ponto.y+tileSize.height/2);
-                    
-                    if(proximo.proximo.proximoAlto!=nil&& proximo.proximo.proximoAlto.proximo==nil && proximo.proximo.proximoAlto.usadoAlto==false){
-                        fim1=CGPointMake(proximo.ponto.x-tileSize.width/2, proximo.ponto.y-tileSize.height/2);
-                        
-                        fim2=CGPointMake(proximo.ponto.x-tileSize.width/2, proximo.ponto.y+tileSize.height/2);
-
-//                        NSLog(@"Quantas vezes");
-                    }
-                    
-                    if(proximo.proximo==nil){
-                        save=proximo.ponto;
-                       
-                    }
-
-                }
-               
-                
-                
-               
-            }
+            fim2=CGPointMake((proximo.ponto.x-tileSize.width/2)+2, (proximo.ponto.y-tileSize.height/2));
             
-            
-
             
             proximo=proximo.proximo;
         }
         
         
         
-        if(proximo.proximo==nil&&proximo.proximoAlto!=nil){
-            NSLog(@"Final da linha com acima");
-            
-            fim2=CGPointMake((proximo.ponto.x+tileSize.width/2)+2, proximo.ponto.y-tileSize.height/2);
-            
-            fim1=CGPointMake((proximo.ponto.x-tileSize.width/2)+2, proximo.ponto.y-tileSize.height/2);
-
-        }
+        CGPathAddLineToPoint(pontosn, nil, fim1.x, fim1.y);
+        CGPathAddLineToPoint(pontosn, nil, fim2.x, fim2.y);
         
-       
-        
-        
-        CGPathAddLineToPoint(pontos, nil, fim2.x, fim2.y);
-        CGPathAddLineToPoint(pontos, nil, fim1.x, fim1.y);
-        
-        CGPathCloseSubpath(pontos);
+        CGPathCloseSubpath(pontosn);
         
         SKPhysicsBody *node;
-        node=[SKPhysicsBody bodyWithPolygonFromPath:pontos];
+        node=[SKPhysicsBody bodyWithPolygonFromPath:pontosn];
         
         return node;
     }

@@ -25,13 +25,13 @@
         if(ponto.ponto.x+tilesize==self.ponto.x && ponto.ponto.y==self.ponto.y){
             self.proximo=ponto;
             self.proximo.usado=false;
-            self.proximo.antes=true;
+           
         }
         if(ponto.ponto.y-tilesize==self.ponto.y && ponto.ponto.x==self.ponto.x){
             self.proximoAlto=ponto;
              self.proximoAlto.usadoAlto=false;
             
-            self.proximoAlto.antesAlto=true;
+           
             
 //            NSLog(@"Aqui  y");
 
