@@ -14,7 +14,7 @@
 
 @interface Musica : NSObject
 
-@property (nonatomic) ALCcontext* openContext;
+//@property (nonatomic) ALCcontext* openContext;
 
 
 @property (nonatomic) ALuint outputSource;

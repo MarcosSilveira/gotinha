@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="20" height="20" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="TileSet" tilewidth="64" tileheight="64">
-  <image source="tileSet.png" width="192" height="256"/>
+  <image source="TileSet.png" width="192" height="384"/>
  </tileset>
  <layer name="BackGround" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJzjYWBg4BnFo3gUj+JRPIpJxADHJhLB
+   eJwTYmBgEBrFo3gUj+JRPIpJxAAnqBwh
   </data>
  </layer>
  <layer name="Tile" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJy1lNsOhCAMRAd0Ff7/h3WTJTbjtIqyk/SlDYemtwzgM8jybgmHZhNb0K9EvHW38rPqvMlBfsy7m8Pd/EbxOO+odjPOPWBeIfNqpzQJ3hu95XF/bW28+mX44vpUiqn8rnoYxf7BU33v4SUcu9vitk8l4LX5W4TP8iKGVdvxKnwj5s9K8a7mpZf31SR8gL5Van/VP97/vOuJ4tF9fHLvNzKwAos=
+   eJy1lEsOgCAMRGdBTFCE+99WSDSSsS2g2GQ2VF+GfnAAtklasjzuWKtcwHh44u1Z8VRS/nGGP+b1euj1N4vHvq3arXj2gHmRpNWu5ffNfWfzuL91bbT6LdCD65MoJ/lr9dDK/cGT+j7Cc7h31wvfRYN3zV+gs0A8i1HHteNJOJsxf3VIvNa8jPKgnJWQ3ippf3t50q7zvvF78UWlxwcGbwap
   </data>
  </layer>
 </map>

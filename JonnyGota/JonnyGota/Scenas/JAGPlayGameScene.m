@@ -431,7 +431,7 @@
                     
                     self.gota.physicsBody.velocity=CGVectorMake(0, 0);
                     
-                    [self.gota changePosition:CGPointMake(66, 66)];
+                    [self.gota changePosition:self.posicaoInicial];
                 }
                 else if([node.name isEqualToString:@"button2"]){
                     NSLog(@"bt2 gameover");
@@ -798,8 +798,12 @@
         
         NSNumber *nextlevel=[NSNumber numberWithInt:([self.currentLevel intValue] + 1)];
         
-        if ([[JAGCreatorLevels numberOfLevels:1] intValue]>[nextlevel intValue]) {
+        if ([[JAGCreatorLevels numberOfLevels:1] intValue]>=[nextlevel intValue]) {
+            [relampago soltar];
+            [self.level.chuva.chuva soltar];
+            
             SKScene *scene = [[JAGPlayGameScene alloc] initWithSize:self.frame.size level:nextlevel andWorld:@1];
+            
             
             SKTransition *trans = [SKTransition fadeWithDuration:1.0];
             [self.scene.view presentScene:scene transition:trans];
@@ -1065,12 +1069,13 @@
     NSString* filePath = [[NSBundle mainBundle] pathForResource:@"granada" ofType:@"caf"];
     NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
     
-    relampago=[[Musica alloc] initWithContext:self.level.chuva.chuva.openContext];
+    relampago=[[Musica alloc] init];
     
     [relampago carregar:fileUrl withEffects:false];
     
     [relampago changeVolume:0.6];
 
+    self.posicaoInicial=self.gota.position;
 }
 
 -(void)configInit:(SKSpriteNode *)background{
@@ -1087,10 +1092,6 @@
     
     self.characteres=[[NSMutableArray alloc] init];
     self.inimigos=[[NSMutableArray alloc] init];
-    
-    
-    
-    
     
 }
 

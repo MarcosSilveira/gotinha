@@ -14,12 +14,15 @@
 
 static ALCdevice* openDevice;
 
+static ALCcontext* openContext;
+
 //init
 - (instancetype)init{
     if (self = [super init]) {
         /* Setup your scene here */
         if(openDevice == nil){
             openDevice = alcOpenDevice(NULL);
+            
         }
     }
     return self;
@@ -33,7 +36,7 @@ static ALCdevice* openDevice;
         if(openDevice == nil){
 //            openDevice = alcOpenDevice(NULL);
             
-            _openContext = cont;
+            openContext = cont;
         }
     }
     return self;
@@ -41,15 +44,15 @@ static ALCdevice* openDevice;
 
 
 -(void)inici{
+    if(openDevice !=nil && openContext==nil){
+        openContext = alcCreateContext(openDevice, NULL);
     
-    _openContext = alcCreateContext(openDevice, NULL);
-    
-    alcMakeContextCurrent(_openContext);
-
+        alcMakeContextCurrent(openContext);
+    }
 }
 
 -(void)configure:(ALCcontext *)context {
-    _openContext = context;
+    openContext = context;
 }
 
 -(void)carregar:(NSString *)url withEffects:(BOOL)efeito{
@@ -156,8 +159,11 @@ static ALCdevice* openDevice;
 -(void)soltar{
      alDeleteSources(1, &_outputSource);
      alDeleteBuffers(1, &_outputBuffer);
-     alcDestroyContext(_openContext);
+     alcDestroyContext(openContext);
      alcCloseDevice(openDevice);
+    
+    openContext=nil;
+    openDevice=nil;
 }
 
 
