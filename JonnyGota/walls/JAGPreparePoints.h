@@ -16,6 +16,8 @@
 
 @property (nonatomic) JAGPreparePoints *proximoAlto;
 
+
+
 @property (nonatomic) BOOL usado;
 
 @property (nonatomic) BOOL usadoAlto;
