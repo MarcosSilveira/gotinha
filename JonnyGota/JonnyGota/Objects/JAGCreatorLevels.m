@@ -283,7 +283,7 @@
 
         
 
-        //Config de hud e faze
+        //Config de hud e fase
         scene.hud = [[JAGHud alloc] initWithTempo:300 withVida:3 saude:scene.gota.aguaRestante withWindowSize:scene.frame.size];
         
         scene.gota.vida = 15;

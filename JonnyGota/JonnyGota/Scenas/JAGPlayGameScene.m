@@ -130,7 +130,7 @@
     CGPathAddArc(circle, NULL, 0, 0, 1, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
     
     circleMask.path = circle;
-    circleMask.lineWidth = radius*3; // replace 100 with DOUBLE the desired radius of the circle
+    circleMask.lineWidth = radius*2.5; // replace 100 with DOUBLE the desired radius of the circle
     circleMask.name = @"circleMask";
     circleMask.userInteractionEnabled = NO;
     circleMask.fillColor = [SKColor clearColor];

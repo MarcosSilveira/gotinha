@@ -79,7 +79,7 @@
     else if (_escondida){
         pocaAction = [SKAction sequence:@[[SKAction scaleYTo:+1 duration:1.0], [SKAction waitForDuration:0.3], [SKAction runBlock:^{
             _escondida = NO;
-        }]]];
+        }]]];   
         
 //        [self runAction:pocaAction];
         self.sprite.texture = self.idleTexture;
