@@ -295,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				0B15AACE19D09B0500ED6110 /* map1.tmx */,
+				0B15AAC919D09A2100ED6110 /* map2.tmx */,
 				0B15AACF19D09B0500ED6110 /* map3.tmx */,
 				0B15AAD019D09B0500ED6110 /* map4.tmx */,
 				0B15AAD119D09B0500ED6110 /* map5.tmx */,
@@ -304,7 +305,6 @@
 				0B15AAD519D09B0500ED6110 /* map9.tmx */,
 				0B15AAD619D09B0500ED6110 /* map10.tmx */,
 				0B15AACC19D09AE100ED6110 /* TileSet.png */,
-				0B15AAC919D09A2100ED6110 /* map2.tmx */,
 			);
 			name = tilemaps;
 			sourceTree = "<group>";

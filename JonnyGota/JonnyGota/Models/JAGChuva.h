@@ -17,6 +17,7 @@
 @property (strong, nonatomic) SKTexture *nuvemText;
 
 @property (nonatomic) Musica *chuva;
+@property (nonatomic) Musica *chuvaOposto;
 
 -(instancetype)initWithPosition:(CGPoint) ponto;
 

@@ -66,6 +66,194 @@
     [self performSelector:aSelector withObject:scene];
 }
 
++(SKNode *)createPhiscsBodytoLayer:(JSTileMap*) tileMap{
+    
+    TMXLayer* bgLayer = [tileMap layerNamed:@"Tile"];
+    
+    NSMutableArray *nodes=[[NSMutableArray alloc] init];
+    
+    
+    //Ler os pontos
+    
+    
+    for (int a = 0; a < tileMap.mapSize.width; a++)
+    {
+        for (int b = 0; b < tileMap.mapSize.height; b++)
+        {
+            
+            TMXLayerInfo* layerInfo=[bgLayer layerInfo];
+            CGPoint pt = CGPointMake(a, b);
+            NSInteger gid = [layerInfo.layer tileGidAt:[layerInfo.layer pointForCoord:pt]];
+            
+            
+            if (gid != 0)
+            {
+                
+                //Preapara o array de pontos
+                JAGPreparePoints *ponto=[[JAGPreparePoints alloc] init];
+                
+                ponto.ponto=CGPointMake(tileMap.tileSize.width*a+tileMap.tileSize.width/2,  (tileMap.tileSize.height*(tileMap.mapSize.height-b-1)+tileMap.tileSize.height/2));
+                
+                ponto.usado=NO;
+                
+                if (![ponto procurarProximo:nodes withTileSize:tileMap.tileSize.height]) {
+                    [nodes addObject:ponto];
+                };
+                
+                
+            }
+        }
+    }
+    
+    
+    //Cria o physhics body
+    NSMutableArray *nodesPhy=[[NSMutableArray alloc] init];
+    
+    for (int i=nodes.count-1; i>0;i--) {
+        JAGPreparePoints *ponto=(JAGPreparePoints *)nodes[i];
+        
+        
+        
+        if (ponto.usadoAlto==false ) {
+            
+            CGMutablePathRef ponti=CGPathCreateMutable();
+            
+            SKPhysicsBody *temp=[self fazColunas:ponto withPath:ponti withtileSize:tileMap.tileSize withArray:nodesPhy];
+            
+            if(temp!=nil){
+                [nodesPhy addObject:temp];
+            }
+            
+            
+        }
+        if (ponto.usado==false){
+            CGMutablePathRef ponti=CGPathCreateMutable();
+            
+            SKPhysicsBody *temp=[self fazlinhas:ponto withPath:ponti withtileSize:tileMap.tileSize withArray:nodesPhy];
+            if(temp!=nil){
+                [nodesPhy addObject:temp];
+            }
+        }
+    }
+    
+    
+    
+    SKNode *nodofinal=[[SKNode alloc] init];
+    nodofinal.physicsBody=[SKPhysicsBody bodyWithBodies:nodesPhy];
+    nodofinal.physicsBody.dynamic=NO;
+    nodofinal.physicsBody.restitution=0;
+    
+    nodofinal.physicsBody.categoryBitMask = PAREDE;
+    nodofinal.physicsBody.collisionBitMask = ATTACK;
+    nodofinal.name = @"wall";
+    
+    //    return nil;
+    return nodofinal;
+}
+
++(SKPhysicsBody*)fazColunas:(JAGPreparePoints *)inicial
+                   withPath:(CGMutablePathRef) pontos
+               withtileSize:(CGSize)tileSize
+                  withArray:(NSMutableArray*)nodesPhy{
+    if(inicial!=nil && (inicial.antes!=true|| inicial.proximo==nil)){
+        
+        
+        
+        JAGPreparePoints *proximoAlto=inicial;
+        
+        CGPoint fim1;
+        CGPoint fim2;
+        
+        CGPoint inicial1=CGPointMake(proximoAlto.ponto.x-tileSize.width/2, (proximoAlto.ponto.y-tileSize.height/2)+2);
+        
+        CGPoint inicial2=CGPointMake(proximoAlto.ponto.x+tileSize.width/2, (proximoAlto.ponto.y-tileSize.height/2)+2);
+        
+        
+        CGMutablePathRef pontosn=CGPathCreateMutable();
+        
+        CGPathMoveToPoint(pontosn, nil, inicial1.x, inicial1.y);
+        
+        CGPathAddLineToPoint(pontosn, nil, inicial2.x, inicial2.y);
+        
+        
+        while (proximoAlto!=nil && proximoAlto.usadoAlto==false ) {
+            //            tamy+=tileMap.tileSize.height;
+            proximoAlto.usadoAlto=true;
+            
+            fim1=CGPointMake(proximoAlto.ponto.x-tileSize.width/2, (proximoAlto.ponto.y+tileSize.height/2)-2);
+            
+            fim2=CGPointMake(proximoAlto.ponto.x+tileSize.width/2, (proximoAlto.ponto.y+tileSize.height/2)-2);
+            
+            proximoAlto=proximoAlto.proximoAlto;
+        }
+        
+        
+        CGPathAddLineToPoint(pontosn, nil, fim2.x, fim2.y);
+        CGPathAddLineToPoint(pontosn, nil, fim1.x, fim1.y);
+        
+        CGPathCloseSubpath(pontosn);
+        
+        SKPhysicsBody *node;
+        node=[SKPhysicsBody bodyWithPolygonFromPath:pontosn];
+        
+        return node;
+    }
+    
+    return nil;
+}
+
++(SKPhysicsBody*)fazlinhas:(JAGPreparePoints *)inicial
+                  withPath:(CGMutablePathRef) pontos
+              withtileSize:(CGSize)tileSize
+                 withArray:(NSMutableArray*)nodesPhy{
+    
+    if(inicial!=nil&& (inicial.antesAlto!=true || inicial.proximoAlto==nil)){
+        
+        
+        JAGPreparePoints *proximo=inicial;
+        
+        CGPoint fim1;
+        CGPoint fim2;
+        
+        CGPoint inicial1=CGPointMake((proximo.ponto.x+tileSize.width/2)-2, (proximo.ponto.y-tileSize.height/2));
+        
+        CGPoint inicial2=CGPointMake((proximo.ponto.x+tileSize.width/2)-2, (proximo.ponto.y+tileSize.height/2));
+        
+        
+        CGMutablePathRef pontosn=CGPathCreateMutable();
+        
+        CGPathMoveToPoint(pontosn, nil, inicial1.x, inicial1.y);
+        
+        CGPathAddLineToPoint(pontosn, nil, inicial2.x, inicial2.y);
+        
+        
+        while (proximo!=nil && proximo.usado==false) {
+            proximo.usado=true;
+            
+            fim1=CGPointMake((proximo.ponto.x-tileSize.width/2)+2, (proximo.ponto.y+tileSize.height/2));
+            
+            fim2=CGPointMake((proximo.ponto.x-tileSize.width/2)+2, (proximo.ponto.y-tileSize.height/2));
+            
+            
+            proximo=proximo.proximo;
+        }
+        
+        
+        
+        CGPathAddLineToPoint(pontosn, nil, fim1.x, fim1.y);
+        CGPathAddLineToPoint(pontosn, nil, fim2.x, fim2.y);
+        
+        CGPathCloseSubpath(pontosn);
+        
+        SKPhysicsBody *node;
+        node=[SKPhysicsBody bodyWithPolygonFromPath:pontosn];
+        
+        return node;
+    }
+    return nil;
+}
+
+
 + (void)initializeLevel01ofWorld01onScene:(JAGPlayGameScene *)scene
 {
     
@@ -269,7 +457,7 @@
         [scene createMask:100 withPoint:(scene.gota.position)];
         
         
-        //Add Monstros
+        
         
         
         
@@ -280,6 +468,12 @@
         scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(3, 20)]];
         
         [scene.cropNode addChild:scene.level.chuva];
+        
+        //Add Monstros
+        
+        
+        
+        //Portas
 
         
 
@@ -308,10 +502,7 @@
 
 + (void)initializeLevel03ofWorld01onScene:(JAGPlayGameScene *)scene
 {
-    //    JSTileMap *map;
-    //    TMXLayer *tile;
-    //    TMXLayer *bg;
-    
+   
     JSTileMap* tiledMap = [JSTileMap mapNamed:@"map2.tmx"];
     if (tiledMap){
         
@@ -325,9 +516,11 @@
         
         //Gotinha
         
-        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tamanho];
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(8, 3)] withSize:tamanho];
         
         tiledMap.position = CGPointMake(0, 0);
+        
+        //Muito importante
         [scene configInit];
         
         
@@ -346,6 +539,16 @@
         
         //Add Monstros
         
+        JAGFogoEnemy *fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(17, 13)] withSize:tamanho];
+        fogo.dano=10;
+        
+//        [fogo activateIa];
+//        
+//        NSMutableArray *paths = [[NSMutableArray alloc] init];
+//        [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y+100)]];
+//        [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y)]];
+//        
+//        fogo.arrPointsPath = paths;
         
         
         
@@ -357,6 +560,17 @@
         [scene.cropNode addChild:scene.level.chuva];
         
         
+        
+        //Colocar nos arrays sempre depois do configInit
+        
+        [scene.characteres addObject:scene.gota];
+        [scene.characteres addObject:fogo];
+        
+        [scene.inimigos addObject:fogo];
+        
+        
+        //Add no crop
+        [scene.cropNode addChild:fogo];
         
         //Config de hud e faze
         scene.hud = [[JAGHud alloc] initWithTempo:300 withVida:3 saude:scene.gota.aguaRestante withWindowSize:scene.frame.size];
@@ -383,199 +597,4 @@
 
 
 
-+(SKNode *)createPhiscsBodytoLayer:(JSTileMap*) tileMap{
-   
-    TMXLayer* bgLayer = [tileMap layerNamed:@"Tile"];
-    
-    NSMutableArray *nodes=[[NSMutableArray alloc] init];
-    
-    
-    
-    for (int a = 0; a < tileMap.mapSize.width; a++)
-	{
-		for (int b = 0; b < tileMap.mapSize.height; b++)
-		{
-//			TMXLayerInfo* layerInfo = [tileMap.layers firstObject];
-            TMXLayerInfo* layerInfo=[bgLayer layerInfo];
-			CGPoint pt = CGPointMake(a, b);
-			NSInteger gid = [layerInfo.layer tileGidAt:[layerInfo.layer pointForCoord:pt]];
-            
-//            NSLog(@"ptx:%d y:%d  gid:%d",a,b,gid);
-            
-//            NSLog(@"a: %d  b:%d  gid:%d",a,b,gid);
-			if (gid != 0)
-			{
-                
-//                SKPhysicsBody *node=[[SKNode alloc] init];
-//                node.size=tileMap.tileSize;
-                
-                JAGPreparePoints *ponto=[[JAGPreparePoints alloc] init];
-                
-                ponto.ponto=CGPointMake(tileMap.tileSize.width*a+tileMap.tileSize.width/2,  (tileMap.tileSize.height*(tileMap.mapSize.height-b-1)+tileMap.tileSize.height/2));
-                
-                ponto.usado=NO;
-                
-                if (![ponto procurarProximo:nodes withTileSize:tileMap.tileSize.height]) {
-                    [nodes addObject:ponto];
-                };
-                
-                
-            }
-		}
-	}
-    
-    NSMutableArray *nodesPhy=[[NSMutableArray alloc] init];
-    
-    for (int i=nodes.count-1; i>0;i--) {
-        JAGPreparePoints *ponto=(JAGPreparePoints *)nodes[i];
-        
-        if(i==nodes.count-1){
-//            NSLog(@"ponto x. ponto y.  proximo.x  proximo. y  ")
-        }
-        
-        
-        
-        
-    
-        if (ponto.usadoAlto==false ) {
-            
-            CGMutablePathRef ponti=CGPathCreateMutable();
-            
-            SKPhysicsBody *temp=[self fazColunas:ponto withPath:ponti withtileSize:tileMap.tileSize withArray:nodesPhy];
-            
-            if(temp!=nil){
-                [nodesPhy addObject:temp];
-            }
-            
-            
-        }
-        if (ponto.usado==false){
-            CGMutablePathRef ponti=CGPathCreateMutable();
-            
-            SKPhysicsBody *temp=[self fazlinhas:ponto withPath:ponti withtileSize:tileMap.tileSize withArray:nodesPhy];
-            if(temp!=nil){
-                [nodesPhy addObject:temp];
-            }
-        }
-    }
-    
-    
-    
-    SKNode *nodofinal=[[SKNode alloc] init];
-    nodofinal.physicsBody=[SKPhysicsBody bodyWithBodies:nodesPhy];
-    nodofinal.physicsBody.dynamic=NO;
-    nodofinal.physicsBody.restitution=0;
-    
-    nodofinal.physicsBody.categoryBitMask = PAREDE;
-    nodofinal.physicsBody.collisionBitMask = ATTACK;
-    nodofinal.name = @"wall";
-    
-//    return nil;
-    return nodofinal;
-}
-
-+(SKPhysicsBody*)fazColunas:(JAGPreparePoints *)inicial
-                   withPath:(CGMutablePathRef) pontos
-               withtileSize:(CGSize)tileSize
-                  withArray:(NSMutableArray*)nodesPhy{
-    if(inicial!=nil && (inicial.antes!=true|| inicial.proximo==nil)){
-        
-        //Altura quando for maior que 2
-        
-        //Prioridades dos lados
-        
-        
-        JAGPreparePoints *proximoAlto=inicial;
-        
-        CGPoint fim1;
-        CGPoint fim2;
-        
-        CGPoint inicial1=CGPointMake(proximoAlto.ponto.x-tileSize.width/2, (proximoAlto.ponto.y-tileSize.height/2)+2);
-        
-        CGPoint inicial2=CGPointMake(proximoAlto.ponto.x+tileSize.width/2, (proximoAlto.ponto.y-tileSize.height/2)+2);
-        
-        
-        CGMutablePathRef pontosn=CGPathCreateMutable();
-        
-        CGPathMoveToPoint(pontosn, nil, inicial1.x, inicial1.y);
-        
-        CGPathAddLineToPoint(pontosn, nil, inicial2.x, inicial2.y);
-        
-        
-        while (proximoAlto!=nil && proximoAlto.usadoAlto==false ) {
-            //            tamy+=tileMap.tileSize.height;
-            proximoAlto.usadoAlto=true;
-            
-            fim1=CGPointMake(proximoAlto.ponto.x-tileSize.width/2, (proximoAlto.ponto.y+tileSize.height/2)-2);
-            
-            fim2=CGPointMake(proximoAlto.ponto.x+tileSize.width/2, (proximoAlto.ponto.y+tileSize.height/2)-2);
-            
-            proximoAlto=proximoAlto.proximoAlto;
-        }
-        
-        
-        CGPathAddLineToPoint(pontosn, nil, fim2.x, fim2.y);
-        CGPathAddLineToPoint(pontosn, nil, fim1.x, fim1.y);
-        
-        CGPathCloseSubpath(pontosn);
-        
-        SKPhysicsBody *node;
-        node=[SKPhysicsBody bodyWithPolygonFromPath:pontosn];
-        
-        return node;
-    }
-    
-    return nil;
-}
-
-+(SKPhysicsBody*)fazlinhas:(JAGPreparePoints *)inicial
-        withPath:(CGMutablePathRef) pontos
-    withtileSize:(CGSize)tileSize
-                 withArray:(NSMutableArray*)nodesPhy{
-    
-    if(inicial!=nil&& (inicial.antesAlto!=true || inicial.proximoAlto==nil)){
-        
-        
-        JAGPreparePoints *proximo=inicial;
-        
-        CGPoint fim1;
-        CGPoint fim2;
-        
-        CGPoint inicial1=CGPointMake((proximo.ponto.x+tileSize.width/2)-2, (proximo.ponto.y-tileSize.height/2));
-        
-        CGPoint inicial2=CGPointMake((proximo.ponto.x+tileSize.width/2)-2, (proximo.ponto.y+tileSize.height/2));
-        
-        
-        CGMutablePathRef pontosn=CGPathCreateMutable();
-        
-        CGPathMoveToPoint(pontosn, nil, inicial1.x, inicial1.y);
-        
-        CGPathAddLineToPoint(pontosn, nil, inicial2.x, inicial2.y);
-        
-        
-        while (proximo!=nil && proximo.usado==false) {
-            proximo.usado=true;
-    
-            fim1=CGPointMake((proximo.ponto.x-tileSize.width/2)+2, (proximo.ponto.y+tileSize.height/2));
-            
-            fim2=CGPointMake((proximo.ponto.x-tileSize.width/2)+2, (proximo.ponto.y-tileSize.height/2));
-            
-            
-            proximo=proximo.proximo;
-        }
-        
-        
-        
-        CGPathAddLineToPoint(pontosn, nil, fim1.x, fim1.y);
-        CGPathAddLineToPoint(pontosn, nil, fim2.x, fim2.y);
-        
-        CGPathCloseSubpath(pontosn);
-        
-        SKPhysicsBody *node;
-        node=[SKPhysicsBody bodyWithPolygonFromPath:pontosn];
-        
-        return node;
-    }
-    return nil;
-}
 @end

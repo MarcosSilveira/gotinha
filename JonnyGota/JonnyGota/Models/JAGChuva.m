@@ -36,12 +36,26 @@
     
     [self.chuva changeVolume:0.8];
     
+    
+    self.chuvaOposto = [[Musica alloc] init];
+    
+    [self.chuvaOposto inici];
+
+    
+    [self.chuvaOposto carregar:fileUrl withEffects:true];
+    
+    [self.chuvaOposto changeVolume:0.3];
+    
+    
+    
 //    [self.chuva updateListener:posx withY:posy withZ:0.0f];
     
 //    [self.chuva configureEffects:ponto.x withY:ponto.y withZ:0.0f];
     
     [self.chuva playInLoop];
-    
+
+    [self.chuvaOposto playInLoop];
+
     [self addChild:self.sprite];
     
     self.physicsBody.dynamic=NO;
@@ -60,7 +74,10 @@
     
     float posy=self.position.y-gota.position.y;
     
+    float posxOpos=posx*(-1);
+    
     [self.chuva configureEffects:posx withY:posy withZ:0.0f];
+    [self.chuvaOposto configureEffects:posxOpos withY:posy withZ:0.0f];
 //    NSLog(@"update gota");
 }
 
