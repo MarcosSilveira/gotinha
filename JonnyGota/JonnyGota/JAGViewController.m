@@ -20,9 +20,9 @@
     //[[UIApplication sharedApplication]setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     // Configure the view.
     SKView *skView = (SKView *)self.view;
-//    skView.showsFPS = YES;
+    skView.showsFPS = YES;
 //    skView.showsNodeCount = YES;
-    skView.showsPhysics = YES;
+//    skView.showsPhysics = YES;
     
     // Create and configure the scene.
 

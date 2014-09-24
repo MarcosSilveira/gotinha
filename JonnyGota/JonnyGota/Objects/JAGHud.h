@@ -28,9 +28,14 @@
 
 @property (nonatomic) SKSpriteNode *pauseBT;
 
+@property (nonatomic) NSMutableArray *saude_sprites;
 
 //Sprites da tela
 @property (nonatomic) SKSpriteNode* sprite;
+@property (nonatomic) SKSpriteNode *back;
+@property (nonatomic) SKSpriteNode *heart;
+@property (nonatomic) SKSpriteNode *clock;
+@property (nonatomic) SKSpriteNode *life;
 
 -(instancetype)initWithTempo:(int) tempo
                     withVida:(int) vida
