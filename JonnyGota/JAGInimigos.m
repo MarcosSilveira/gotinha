@@ -41,12 +41,7 @@
     
 }
 
--(BOOL)tocou:(CGPoint)ponto {
-    
-    BOOL toque;
-    
-    return toque;
-}
+
 
 // IN PROGRESS ...
 -(void)IAcomInfo{ // Inteligencia Artificial GENERICA

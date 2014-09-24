@@ -54,12 +54,6 @@
     
 }
 
--(BOOL)tocou:(CGPoint)ponto {
-    
-    BOOL toque;
-    
-    return toque;
-}
 
 -(JAGAttack *)createAttackRanged: (CGVector)withImpulse{
     SKSpriteNode *trovao = [[SKSpriteNode alloc] initWithColor:[UIColor yellowColor] size:CGSizeMake(15, 15)];
