@@ -478,7 +478,7 @@
                    withPath:(CGMutablePathRef) pontos
                withtileSize:(CGSize)tileSize
                   withArray:(NSMutableArray*)nodesPhy{
-    if(inicial!=nil && inicial.proximoAlto.proximoAlto!=nil){
+    if(inicial!=nil && (inicial.antes!=true|| inicial.proximo==nil)){
         
         //Altura quando for maior que 2
         
@@ -533,7 +533,7 @@
     withtileSize:(CGSize)tileSize
                  withArray:(NSMutableArray*)nodesPhy{
     
-    if(inicial!=nil&& inicial.proximo.proximo!=nil){
+    if(inicial!=nil&& (inicial.antesAlto!=true || inicial.proximoAlto==nil)){
         
         
         JAGPreparePoints *proximo=inicial;
