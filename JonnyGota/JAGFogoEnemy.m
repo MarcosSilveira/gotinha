@@ -23,9 +23,8 @@
         NSString *textureName = [NSString stringWithFormat:@"fogo_correndo_lado%d@2x.png", i];
         [self.walkTexturesSide addObject:[self.atlas textureNamed:textureName]];
     }
-//    for (<#initialization#>; <#condition#>; <#increment#>) {
-//        <#statements#>
-//    }
+
+
 
     //physics config
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
