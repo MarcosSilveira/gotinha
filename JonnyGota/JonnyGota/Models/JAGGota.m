@@ -33,7 +33,7 @@
         NSString *textureName = [NSString stringWithFormat:@"gotinha_correndo_costa%d@2x.png", i];
         [self.walkTexturesBack addObject:[self.atlas textureNamed:textureName]];
     }
-    for (int i=1; i<=6; i++) {
+    for (int i=1; i<=7; i++) {
         NSString *textureName = [NSString stringWithFormat:@"gotinha_correndo_lado%d@2x.png", i];
         [self.walkTexturesSide addObject:[self.atlas textureNamed:textureName]];
     }
