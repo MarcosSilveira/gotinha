@@ -25,29 +25,29 @@
     
     _back = [[SKSpriteNode alloc]init];
     _back.texture =textura;
-    _back.position = CGPointMake(size.width*0.01, size.height*0.95);
-    _back.size = CGSizeMake(textura.size.width, textura.size.height/2);
+    _back.position = CGPointMake(size.width*0.01, size.height*.96);
+    _back.size = CGSizeMake(size.width*2, size.height*.08);
     
     textura = [SKTexture textureWithImageNamed:@"heart.png"];
     _heart = [[SKSpriteNode alloc] init];
     _heart.texture = textura;
-    _heart.position = CGPointMake(size.width*0.23, size.height*0.95);
-    _heart.size = CGSizeMake(textura.size.width/2, textura.size.height/2);
+    _heart.position = CGPointMake(size.width*0.23, size.height*0.96);
+    _heart.size = CGSizeMake(size.width*.05, size.height*.065);
     
     textura = [SKTexture textureWithImageNamed:@"clock.png"];
     _clock = [[SKSpriteNode alloc] init];
     _clock.texture = textura;
-    _clock.position = CGPointMake(size.width*0.42, size.height*0.94);
-    _clock.size = CGSizeMake(textura.size.width/2, textura.size.height/2);
+    _clock.position = CGPointMake(size.width*0.42, size.height*0.955);
+    _clock.size = CGSizeMake(size.width*.05, size.height*.065);
     
     _life = [[SKSpriteNode alloc]init];
     _life.texture = _saude_sprites[0];
-    _life.position = CGPointMake(size.width*0.9, size.height*0.94);
-    _life.size = CGSizeMake(_life.texture.size.width/2, _life.texture.size.height/2);
+    _life.position = CGPointMake(size.width*0.88, size.height*0.955);
+    _life.size = CGSizeMake(size.width*.15, size.height*.045);
 
     
     _pauseBT = [[SKSpriteNode alloc] initWithColor:[UIColor purpleColor] size:CGSizeMake(20, 20)];
-    _pauseBT.position = CGPointMake(size.width*0.11, size.height*0.94);
+    _pauseBT.position = CGPointMake(size.width*0.11, size.height*0.96);
     _pauseBT.name = @"pauseBT";
     
     _tempoRestante=tempo;
@@ -56,19 +56,19 @@
     NSString *fonte=@"AvenirNext-Bold";
     
     _vidas=[[SKLabelNode alloc] initWithFontNamed:fonte];
-    _vidas.fontSize = size.height*0.07;
-    _vidas.position=CGPointMake(size.width*0.29, size.height*0.92);
+    _vidas.fontSize = size.height*0.05;
+    _vidas.position=CGPointMake(size.width*0.29, size.height*0.94);
     
     
     _tempo=[[SKLabelNode alloc] initWithFontNamed:fonte];
     _tempo.text=[NSString stringWithFormat:@"%ds",_tempoRestante];
-    _tempo.fontSize = size.height*0.07;
-    _tempo.position=CGPointMake(size.width*0.5, size.height*0.92);
+    _tempo.fontSize = size.height*0.05;
+    _tempo.position=CGPointMake(size.width*0.5, size.height*0.94);
     
     _saude=[[SKLabelNode alloc]initWithFontNamed:fonte];
     _saude.text=[NSString stringWithFormat:@"saúde: %d", _gota.vida];
-    _saude.fontSize = size.height*0.07;
-    _saude.position=CGPointMake(size.width*0.72, size.height*0.92);
+    _saude.fontSize = size.height*0.05;
+    _saude.position=CGPointMake(size.width*0.73, size.height*0.94);
     
     [self addChild:_back];
     [self addChild:_heart];
@@ -78,7 +78,7 @@
     [self addChild:_tempo];
     [self addChild:_saude];
     [self addChild:_pauseBT];
-    
+    self.zPosition = 100;
     return self;
 }
 

@@ -143,7 +143,7 @@
     area.zPosition = _cropNode.zPosition+1;
     [area addChild:circleMask];
     //area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
-    [_cropNode setMaskNode:area];
+//    [_cropNode setMaskNode:area];
 
 }
 
@@ -283,7 +283,7 @@
             [self runAction:attacks];
             
         }else{
-            [self followPlayer];
+//            [self followPlayer];
         }
         
         //[fogo follow:self.gota];
