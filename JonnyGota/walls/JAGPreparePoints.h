@@ -26,6 +26,7 @@
 
 @property (nonatomic) BOOL antesAlto;
 
+
 -(BOOL)procurarProximo:(NSMutableArray *)nodes
           withTileSize:(int) tilesize;
 

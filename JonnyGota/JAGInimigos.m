@@ -25,7 +25,6 @@
     self.inColissao     = false;
     
     self.sentido       = 0;
-    self.sentido       = 0;
     self.visaoRanged   = 0;
     self.visao         = 100;
     self.lastPointToGo = 0;

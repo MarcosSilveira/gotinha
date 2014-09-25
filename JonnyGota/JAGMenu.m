@@ -46,7 +46,7 @@
     logo.position = CGPointMake(self.size.width/2, self.size.height/2);
     
     botaoPlay = [[SKSpriteNode alloc] initWithTexture:botaoPlayText];
-    [botaoPlay setScale: .5];
+    botaoPlay.size = CGSizeMake(self.frame.size.width * .3, self.frame.size.height * .2);
     botaoPlay.position = CGPointMake(self.size.width/2, self.size.height/4);
     
     [self addChild:fundo];
