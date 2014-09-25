@@ -10,6 +10,7 @@
 
 @implementation JAGGota
 
+
 -(id)initWithPosition:(CGPoint)position withSize:(CGSize)size{
     
     self = [super init];
@@ -88,6 +89,8 @@
 }
 
 -(JAGGotaDividida*) dividir {
+    
+    
     SKAction *dividAction;
     
     if (_dividida) {
@@ -113,11 +116,15 @@
     
     if (self.gotinhas.count>self.qtGotinhas) {
         JAGGotaDividida *temp=(JAGGotaDividida *)self.gotinhas[0];
+        
+        [temp removeAllActions];
+        temp.physicsBody=nil;
         [temp removeFromParent];
         [self.gotinhas removeObject:temp];
     }
 
 
+    
     
     return gota2;
 }

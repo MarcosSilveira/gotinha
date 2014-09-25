@@ -119,6 +119,8 @@ static ALCcontext* openContext;
    // alBufferData(_outputBuffer, AL_FORMAT_STEREO16, audioData, bytesRead, 24100);
     if (efeito) {
         alBufferData(_outputBuffer, AL_FORMAT_MONO16, audioData, bytesRead, 24100);
+      
+        alSourcei(_outputSource, AL_MAX_DISTANCE, 2000.0f);
     }else{
         alBufferData(_outputBuffer, AL_FORMAT_STEREO16, audioData, bytesRead, 24100);
     }
