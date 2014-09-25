@@ -130,7 +130,7 @@
     CGPathAddArc(circle, NULL, 0, 0, 1, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
     
     circleMask.path = circle;
-    circleMask.lineWidth = radius*2.5; // replace 100 with DOUBLE the desired radius of the circle
+    circleMask.lineWidth = radius*5; // replace 100 with DOUBLE the desired radius of the circle
     circleMask.name = @"circleMask";
     circleMask.userInteractionEnabled = NO;
     circleMask.fillColor = [SKColor clearColor];
@@ -143,7 +143,7 @@
     area.zPosition = _cropNode.zPosition+1;
     [area addChild:circleMask];
     //area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
-//    [_cropNode setMaskNode:area];
+    [_cropNode setMaskNode:area];
 
 }
 
@@ -181,10 +181,10 @@
 }
 
 #pragma mark - Ações
--(void)divideGota{
-    if (tocou_gota && ! _gota.escondida)
-        [_gota dividir];
-}
+//-(void)divideGota{
+//    if (tocou_gota && ! _gota.escondida)
+//        [_gota dividir];
+//}
 
 
 -(void) configuraParadaGota {
@@ -283,7 +283,7 @@
             [self runAction:attacks];
             
         }else{
-//            [self followPlayer];
+            [self followPlayer];
         }
         
         //[fogo follow:self.gota];
@@ -365,10 +365,10 @@
 
         if (toque_moveu && tocou_gota) {
 //            [_cropNode addChild:[_gota dividir]];
-            
-            JAGGotaDividida* gota2=[_gota dividir];
-            
-            [_cropNode addChild:gota2];
+            JAGGotaDividida* gota2;
+            if (!_gota.escondida){
+                gota2=[_gota dividir];
+                [_cropNode addChild:gota2];}
 
 //            [_cropNode addChild:[_gota dividirwithSentido:[self verificaSentido:toqueFinal with:_gota.position]]];
             
@@ -408,6 +408,7 @@
             
             if ([_gota verificaToque:toqueFinal]){
                 [_gota esconder];
+                NSLog(@"escondeu");
                 [self removeActionForKey:@"moveGota"];
             } else {
                 
@@ -542,6 +543,7 @@
    CGVector zero= CGVectorMake(0, 0);
     if(_gota.physicsBody.velocity.dx == zero.dx && _gota.physicsBody.velocity.dy == zero.dy && _gota.sprite.texture != _gota.idleTexture)
     {        [_gota.sprite removeAllActions];
+        if (!_gota.escondida)
             _gota.sprite.texture = _gota.idleTexture;}
     
     if (pauseDetected) {
