@@ -36,7 +36,7 @@
     BOOL pauseDetected;     //jogo pausado?
     JAGChave* chave;        //item chave
     Musica *relampago;
-
+    bool frenetico;
 }
 
 #pragma mark - View Initialization
@@ -363,8 +363,10 @@
         pararMovimentoCONTROLx.position = [touch locationInNode:_cropNode];
         pararMovimentoCONTROLy.position = [touch locationInNode:_cropNode];
 
-        if (toque_moveu && tocou_gota) {
+        if (toque_moveu && tocou_gota && !frenetico) {
 //            [_cropNode addChild:[_gota dividir]];
+            
+             NSLog(@"Dividiu");
             
             JAGGotaDividida* gota2=[_gota dividir];
             
@@ -399,17 +401,25 @@
                 default:
                     break;
             }
+            frenetico=true;
 
-            NSLog(@"Dividiu");
+            SKAction *liberaDivisao=[SKAction sequence:@[[SKAction waitForDuration:3], [SKAction runBlock:^{
+                frenetico=false;
+            }]]];
+            
+            [self runAction:liberaDivisao];
+           
             toque_moveu = NO;
         } else {
             
            
             
             if ([_gota verificaToque:toqueFinal]){
+                NSLog(@"Escondeu");
+
                 [_gota esconder];
                 [self removeActionForKey:@"moveGota"];
-            } else {
+                            } else {
                 
                 [self logicaMove:touch];
                 
