@@ -146,28 +146,27 @@
 -(void)follow:(JAGGota *) jogador{
     float distance = hypotf(self.position.x - jogador.position.x, self.position.y - jogador.position.y);
     
-    if (distance < self.visao) {
-        if (jogador.escondida == NO) {
-            self.seguindo = true;
-            self.andandoIa = false;
-            int tempSentido;
-            if(!self.inColisao){
-                tempSentido = [self verificaSentido:jogador.position with:self.position];
-                if(tempSentido != self.sentido) {
-                    self.sentido = tempSentido;
-                    [self mover:(jogador.position) withInterval:2 withType:self.sentido];
-                    [self addPointFIxes];
-                }
-            }else{
-//                tempSentido=[self verificaSentidoColisao:jogador.position withPontoObjeto:self.position withSentido:self.sentido];
-//                if (tempSentido!=self.sentidoCol) {
-//                    self.sentidoCol=tempSentido;
-//                    [self mover:(jogador.position) withInterval:2 withType:self.sentidoCol];
-//                    [self addPointFIxes];
-//                }
+    if (distance < self.visao && jogador.escondida==NO) {
+        self.seguindo = true;
+        self.andandoIa = false;
+        int tempSentido;
+        if(!self.inColisao){
+            tempSentido = [self verificaSentido:jogador.position with:self.position];
+            if(tempSentido != self.sentido) {
+                self.sentido = tempSentido;
+                [self mover:(jogador.position) withInterval:2 withType:self.sentido];
+                [self addPointFIxes];
             }
-            
+        }else{
+            //                tempSentido=[self verificaSentidoColisao:jogador.position withPontoObjeto:self.position withSentido:self.sentido];
+            //                if (tempSentido!=self.sentidoCol) {
+            //                    self.sentidoCol=tempSentido;
+            //                    [self mover:(jogador.position) withInterval:2 withType:self.sentidoCol];
+            //                    [self addPointFIxes];
+            //                }
         }
+        
+        
         
     } else {
         

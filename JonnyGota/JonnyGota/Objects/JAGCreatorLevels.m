@@ -25,7 +25,7 @@
 + (NSNumber *)numberOfLevels:(int)mundo{
     switch (mundo) {
         case 1:
-            return @3;
+            return @4;
             break;
             
         default:
@@ -594,6 +594,88 @@
         
     }
 }
+
++ (void)initializeLevel04ofWorld01onScene:(JAGPlayGameScene *)scene
+{
+    //    JSTileMap *map;
+    //    TMXLayer *tile;
+    //    TMXLayer *bg;
+    
+    JSTileMap* tiledMap = [JSTileMap mapNamed:@"map4.tmx"];
+    if (tiledMap){
+        
+        scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
+        scene.level.tileSize = 64;
+        
+        
+        
+        scene.level.frequenciaRelampago = 10.0;
+        CGSize tamanho = CGSizeMake(scene.level.tileSize*1.2, scene.level.tileSize*1.2);
+        
+        //Gotinha
+        
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tamanho];
+        
+        tiledMap.position = CGPointMake(0, 0);
+        [scene configInit];
+        
+        
+        
+        
+        //Mapa
+        [scene.cropNode addChild:tiledMap];
+        
+        [scene.cropNode addChild:[self createPhiscsBodytoLayer:tiledMap]];
+        
+        
+        //Mascara
+        
+        [scene createMask:100 withPoint:(scene.gota.position)];
+        
+        
+        
+        
+        
+        
+        
+        
+        //Add objetos
+        
+        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(18, 18)]];
+        
+        [scene.cropNode addChild:scene.level.chuva];
+        
+        //Add Monstros
+        
+        
+        
+        //Portas
+        
+        
+        
+        //Config de hud e fase
+        scene.hud = [[JAGHud alloc] initWithTempo:300 withVida:3 saude:scene.gota.aguaRestante withWindowSize:scene.frame.size];
+        
+        scene.gota.vida = 15;
+        scene.hud.gota  = scene.gota;
+        
+        [scene.cropNode addChild:scene.gota];
+        
+        
+        
+        
+        [scene addChild: scene.cropNode];
+        
+        [scene addChild:scene.hud];
+        
+        [scene.hud startTimer];
+        
+        [scene configStart:8];
+        
+        
+    }
+}
+
 
 
 

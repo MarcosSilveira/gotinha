@@ -37,7 +37,7 @@
     self.physicsBody.usesPreciseCollisionDetection=NO;
     [self configPhysics];
 
-    self.multi = 3;
+    self.multi = size.width/8;
     self.name=@"fogo";
     [self addChild:self.sprite];
     self.position = position;
