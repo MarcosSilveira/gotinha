@@ -542,13 +542,13 @@
         JAGFogoEnemy *fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(17, 13)] withSize:tamanho];
         fogo.dano=10;
         
-//        [fogo activateIa];
-//        
-//        NSMutableArray *paths = [[NSMutableArray alloc] init];
-//        [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y+100)]];
-//        [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y)]];
-//        
-//        fogo.arrPointsPath = paths;
+        [fogo activateIa];
+        
+        NSMutableArray *paths = [[NSMutableArray alloc] init];
+        [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y+100)]];
+        [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y)]];
+        
+        fogo.arrPointsPath = paths;
         
         
         
