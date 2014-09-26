@@ -22,6 +22,8 @@
     for (int i=1; i<=8; i++) {
         NSString *textureName = [NSString stringWithFormat:@"fogo_correndo_lado%d@2x.png", i];
         [self.walkTexturesSide addObject:[self.atlas textureNamed:textureName]];
+        [self.walkTexturesBack addObject:[self.atlas textureNamed:textureName]];
+        [self.walkTexturesFront addObject:[self.atlas textureNamed:textureName]];
     }
 
 

@@ -37,6 +37,7 @@
     JAGChave* chave;        //item chave
     Musica *relampago;
     bool frenetico;
+    BOOL GONaTela;
 }
 
 #pragma mark - View Initialization
@@ -75,6 +76,8 @@
     }
     [self fadeMask];
     self.cropNode.alpha = 0.8f;
+    GONaTela = NO;
+    [self presentGameOver:0];
 
 
     return self;
@@ -89,24 +92,30 @@
      -Fim de fase perdendo sem vida restante */
     if (withOP == 0) {
         
-    GObackground = [[SKSpriteNode alloc]initWithColor:[UIColor redColor] size:CGSizeMake( self.frame.size.width/2, self.frame.size.height/2)];
-    GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
-    button1 = [[SKSpriteNode alloc] initWithImageNamed:@"jogar.png"];
-    button1.size = CGSizeMake(GObackground.size.width/4, GObackground.size.height/4.5);
-    button1.position = CGPointMake(self.frame.size.width*0.4, self.frame.size.height*0.25);
-    button2 = [[SKSpriteNode alloc] initWithImageNamed:@"list.png"];
-    button2.size =CGSizeMake(GObackground.size.width/4, GObackground.size.height/4.5);
-    button2.position = CGPointMake(self.frame.size.width*0.6, self.frame.size.height*0.25);
-    button1.name = @"button1";
-    button2.name = @"button2";
-    
-    [self.scene addChild:GObackground];
-    [self.scene addChild:button1];
-    [self.scene addChild:button2];
-    button1.zPosition = 201;
-    button2.zPosition = 201;
-    GObackground.zPosition = 200;
+        GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
+        GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
+        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"comprarVidas"];
+        button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
+        button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
+        button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
+        button2.size =CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
+        button2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.2);
+        button1.name = @"button1";
+        button2.name = @"button2";
+        message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
+        message.fontSize = self.frame.size.height*0.1;
+        message.text = @"Fim de jogo!";
+        message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
+        [self.scene addChild:GObackground];
+        [self.scene addChild:message];
+        [self.scene addChild:button1];
+        [self.scene addChild:button2];
+        button1.zPosition = 201;
+        button2.zPosition = 201;
+        GObackground.zPosition = 200;
+        message.zPosition = 201;
     }
+    GONaTela = YES;
 }
 
 
@@ -130,7 +139,7 @@
     CGPathAddArc(circle, NULL, 0, 0, 1, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
     
     circleMask.path = circle;
-    circleMask.lineWidth = radius*5; // replace 100 with DOUBLE the desired radius of the circle
+    circleMask.lineWidth = radius*2.5; // replace 100 with DOUBLE the desired radius of the circle
     circleMask.name = @"circleMask";
     circleMask.userInteractionEnabled = NO;
     circleMask.fillColor = [SKColor clearColor];
@@ -302,10 +311,13 @@
         SKNode *nodeAux = [self nodeAtPoint:[touch locationInNode:self]];
         if ([nodeAux.name isEqualToString:@"pauseBT"]) {
             NSLog(@"pause detected");
+            if (!GONaTela) {
+                
+            
             pauseDetected = !pauseDetected;
             
             self.scene.view.paused = !self.scene.view.paused;
-            [self.cropNode removeAllActions];
+                [self.cropNode removeAllActions];}
         }
         toqueInicio = [touch locationInNode:self];
         
@@ -433,6 +445,7 @@
                     NSLog(@"bt1 gameover");
                     
                     self.scene.view.paused=NO;
+                    GONaTela = NO;
 //                    self.scene.paused = NO;
                     [button1 removeFromParent];
                     [button2 removeFromParent];
@@ -445,6 +458,7 @@
                 else if([node.name isEqualToString:@"button2"]){
                     NSLog(@"bt2 gameover");
                     self.scene.view.paused = NO;
+                    GONaTela = NO;
                     JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
                     
                     SKTransition *trans = [SKTransition fadeWithDuration:1.0];

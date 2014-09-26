@@ -31,25 +31,24 @@
     textura = [SKTexture textureWithImageNamed:@"heart.png"];
     _heart = [[SKSpriteNode alloc] init];
     _heart.texture = textura;
-    _heart.position = CGPointMake(size.width*0.23, size.height*0.96);
-    _heart.size = CGSizeMake(size.width*.05, size.height*.065);
+    _heart.position = CGPointMake(size.width*0.23, size.height*0.965);
+    _heart.size = CGSizeMake(size.width*.05, size.height*.08);
     
     textura = [SKTexture textureWithImageNamed:@"clock.png"];
     _clock = [[SKSpriteNode alloc] init];
     _clock.texture = textura;
-    _clock.position = CGPointMake(size.width*0.42, size.height*0.955);
-    _clock.size = CGSizeMake(size.width*.05, size.height*.065);
+    _clock.position = CGPointMake(size.width*0.42, size.height*0.956);
+    _clock.size = CGSizeMake(size.width*.05, size.height*.068);
     
     _life = [[SKSpriteNode alloc]init];
     _life.texture = _saude_sprites[0];
     _life.position = CGPointMake(size.width*0.88, size.height*0.955);
-    _life.size = CGSizeMake(size.width*.15, size.height*.045);
+    _life.size = CGSizeMake(size.width*.15, size.height*.05);
 
     
     _pauseBT = [[SKSpriteNode alloc] initWithColor:[UIColor purpleColor] size:CGSizeMake(20, 20)];
     _pauseBT.position = CGPointMake(size.width*0.11, size.height*0.96);
     _pauseBT.name = @"pauseBT";
-    
     _tempoRestante=tempo;
     _vidaRestante=vida;
     

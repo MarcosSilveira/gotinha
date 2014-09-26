@@ -32,6 +32,7 @@
     SKSpriteNode *button1;
     SKSpriteNode *button2;
     SKSpriteNode *button3;
+    SKLabelNode *message;
 
 }
 

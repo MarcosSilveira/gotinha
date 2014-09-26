@@ -71,6 +71,7 @@
 		8D4A4F3E19ACFB2F00255468 /* JAGFonte.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A4F3D19ACFB2F00255468 /* JAGFonte.m */; };
 		8D4A4F4119AFA99300255468 /* Vapor.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8D4A4F3F19AFA99300255468 /* Vapor.sks */; };
 		8D4A4F4219AFA99300255468 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D4A4F4019AFA99300255468 /* spark.png */; };
+		8D560AA719D59BE8004586B6 /* JAGStoreScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D560AA619D59BE8004586B6 /* JAGStoreScene.m */; };
 		8D6B5A4719CB496A00127198 /* enemies.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8D6B5A4619CB496A00127198 /* enemies.atlas */; };
 		8D7E78DC19D1F2E900126F42 /* hud_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E78DB19D1F2E900126F42 /* hud_back.png */; };
 		8D7E78DE19D1FB5900126F42 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E78DD19D1FB5900126F42 /* heart.png */; };
@@ -204,6 +205,8 @@
 		8D4A4F3D19ACFB2F00255468 /* JAGFonte.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGFonte.m; sourceTree = "<group>"; };
 		8D4A4F3F19AFA99300255468 /* Vapor.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Vapor.sks; sourceTree = "<group>"; };
 		8D4A4F4019AFA99300255468 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		8D560AA519D59BE8004586B6 /* JAGStoreScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGStoreScene.h; sourceTree = "<group>"; };
+		8D560AA619D59BE8004586B6 /* JAGStoreScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGStoreScene.m; sourceTree = "<group>"; };
 		8D6B5A4619CB496A00127198 /* enemies.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = enemies.atlas; sourceTree = "<group>"; };
 		8D7E78DB19D1F2E900126F42 /* hud_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hud_back.png; sourceTree = "<group>"; };
 		8D7E78DD19D1FB5900126F42 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
@@ -468,6 +471,8 @@
 				0B024D071991252B00AE9588 /* JAGPlayGameScene.m */,
 				B157BDB419AD14A700ACA4C1 /* JAGMenu.h */,
 				B157BDB519AD14A700ACA4C1 /* JAGMenu.m */,
+				8D560AA519D59BE8004586B6 /* JAGStoreScene.h */,
+				8D560AA619D59BE8004586B6 /* JAGStoreScene.m */,
 			);
 			name = Scenes;
 			path = JonnyGota;
@@ -682,6 +687,7 @@
 				0B024D0B1991255400AE9588 /* JAGGota.m in Sources */,
 				B1E9587E19B7783C002302D7 /* JAGSparkRaio.m in Sources */,
 				8D1627A71992945E00AD9F12 /* JAGPedraEnemy.m in Sources */,
+				8D560AA719D59BE8004586B6 /* JAGStoreScene.m in Sources */,
 				0B024D081991252B00AE9588 /* JAGPlayGameScene.m in Sources */,
 				0B3A04901991168800C7C39E /* Musica.m in Sources */,
 				8D16279E1992943400AD9F12 /* JAGArEnemy.m in Sources */,

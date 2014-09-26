@@ -26,11 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JonnyGota/Scenas/JAGPlayGameScene.m"
-            timestampString = "432832197.626293"
+            timestampString = "433440881.621751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239">
+            startingLineNumber = "248"
+            endingLineNumber = "248"
+            landmarkName = "-verificaSentido:with:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -40,11 +42,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JonnyGota/Scenas/JAGPlayGameScene.m"
-            timestampString = "433361322.722864"
+            timestampString = "433440881.621751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "506"
-            endingLineNumber = "506">
+            startingLineNumber = "520"
+            endingLineNumber = "520"
+            landmarkName = "-logicaMove:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -54,11 +58,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JonnyGota/Scenas/JAGPlayGameScene.m"
-            timestampString = "433361440.331275"
+            timestampString = "433440881.621751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "810"
-            endingLineNumber = "810">
+            startingLineNumber = "824"
+            endingLineNumber = "824"
+            landmarkName = "-didBeginContact:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -68,11 +74,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JonnyGota/Scenas/JAGPlayGameScene.m"
-            timestampString = "432832197.626293"
+            timestampString = "433440881.621751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300">
+            startingLineNumber = "309"
+            endingLineNumber = "309"
+            landmarkName = "-touchesBegan:withEvent:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -98,11 +106,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JonnyGota/Scenas/JAGPlayGameScene.m"
-            timestampString = "432832197.626293"
+            timestampString = "433440881.621751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151">
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "-fadeMask"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -112,11 +122,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JonnyGota/Scenas/JAGPlayGameScene.m"
-            timestampString = "432832197.626293"
+            timestampString = "433440881.621751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152">
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "-fadeMask"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -126,12 +138,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JonnyGota/Objects/JAGHud.m"
-            timestampString = "433260187.867208"
+            timestampString = "433432069.884401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "-update"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JonnyGota/Scenas/JAGPlayGameScene.m"
+            timestampString = "433440881.621751"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "565"
+            endingLineNumber = "565"
+            landmarkName = "-update:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

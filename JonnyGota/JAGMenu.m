@@ -8,10 +8,12 @@
 
 #import "JAGMenu.h"
 #import "JAGPlayGameScene.h"
+#import "JAGStoreScene.h"
 
 @implementation JAGMenu
 {
     SKSpriteNode *botaoPlay;
+    SKSpriteNode *botaoStore;
     SKSpriteNode *logo;
     SKSpriteNode *fundo;
     SKLabelNode *lblGame;
@@ -19,6 +21,7 @@
     SKTexture *botaoPlayText;
     SKTexture *logoText;
     SKTexture *bg;
+    SKTexture *botaoStoreText;
 }
 
 -(id)initWithSize:(CGSize)size {
@@ -36,6 +39,7 @@
     botaoPlayText = [SKTexture textureWithImageNamed:@"play"];
     logoText      = [SKTexture textureWithImageNamed:@"logo"];
     bg            = [ SKTexture textureWithImageNamed:@"menu"];
+    botaoStoreText    = [SKTexture textureWithImageNamed:@"store"];
     
     fundo = [[SKSpriteNode alloc] initWithTexture:bg];
     [fundo setSize: CGSizeMake(self.size.width, self.size.height)];
@@ -46,12 +50,17 @@
     logo.position = CGPointMake(self.size.width/2, self.size.height/2);
     
     botaoPlay = [[SKSpriteNode alloc] initWithTexture:botaoPlayText];
-    botaoPlay.size = CGSizeMake(self.frame.size.width * .3, self.frame.size.height * .2);
-    botaoPlay.position = CGPointMake(self.size.width/2, self.size.height/4);
+    botaoPlay.size = CGSizeMake(self.frame.size.width *.25, self.frame.size.height *.16);
+    botaoPlay.position = CGPointMake(self.size.width/2, self.size.height/2.8);
+    
+    botaoStore = [[SKSpriteNode alloc] initWithTexture:botaoStoreText];
+    botaoStore.size = CGSizeMake(self.frame.size.width*.25, self.frame.size.height*.15);
+    botaoStore.position = CGPointMake(self.size.width/2, self.size.height/5.1);
     
     [self addChild:fundo];
     [self addChild:logo];
     [self addChild:botaoPlay];
+    [self addChild:botaoStore];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -66,6 +75,9 @@
             
             SKTransition *trans = [SKTransition fadeWithDuration:1.0];
             [self.scene.view presentScene:scene transition:trans];
+        }
+        else if([botaoStore containsPoint:location]){
+            NSLog(@"Chamar Store");
         }
     }
 }

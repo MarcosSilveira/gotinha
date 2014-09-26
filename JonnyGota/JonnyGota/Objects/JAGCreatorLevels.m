@@ -434,7 +434,7 @@
 
 
         scene.level.frequenciaRelampago = 10.0;
-        CGSize tamanho = CGSizeMake(scene.level.tileSize, scene.level.tileSize);
+        CGSize tamanho = CGSizeMake(scene.level.tileSize*1.2, scene.level.tileSize*1.2);
         
         //Gotinha
         

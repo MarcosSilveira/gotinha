@@ -50,7 +50,7 @@
                 
                 [self.physicsBody applyImpulse:CGVectorMake(0,_multi)];
 
-//                [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesBack timePerFrame:0.1f]]withKey:@"walkingBack"];
+                [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesBack timePerFrame:0.1f]]withKey:@"walkingBack"];
                 self.sprite.xScale = 1.0;
                 
                 
@@ -68,7 +68,7 @@
             case 3:
                 
                 [self.physicsBody applyImpulse:CGVectorMake(- _multi,0)];
-//                [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesSide timePerFrame:0.1f]]withKey:@"walkingSide"];
+                [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesSide timePerFrame:0.1f]]withKey:@"walkingSide"];
                 self.sprite.xScale = -1.0;
 
                 
@@ -77,7 +77,7 @@
             case 4:
                 
                 [self.physicsBody applyImpulse:CGVectorMake(_multi,0)];
-//                [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesSide timePerFrame:0.1f]]withKey:@"walkingSide"];
+                [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesSide timePerFrame:0.1f]]withKey:@"walkingSide"];
                 self.sprite.xScale = 1.0;
 
                 

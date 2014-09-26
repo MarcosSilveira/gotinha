@@ -64,7 +64,7 @@
     self.qtGotinhas=2;
     
     //Musicas
-//    self.musandar=[Musica alloc] in
+
     
     return self;
 }
