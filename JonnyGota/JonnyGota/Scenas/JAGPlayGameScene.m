@@ -449,6 +449,7 @@
 //                    self.scene.paused = NO;
                     [button1 removeFromParent];
                     [button2 removeFromParent];
+                    [message removeFromParent];
                     [GObackground removeFromParent];
                     
                     self.gota.physicsBody.velocity=CGVectorMake(0, 0);
