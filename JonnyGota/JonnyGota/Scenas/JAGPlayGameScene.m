@@ -620,11 +620,13 @@
 -(void)didBeginContact:(SKPhysicsContact *)contact{
     if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ENEMY)){
         JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
+        inimigo.sentido=5;
         [self receberDano:inimigo.dano];
     }
     
     if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == ENEMY)){
         JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
+        inimigo.sentido=5;
         [self receberDano:inimigo.dano];
     }
     

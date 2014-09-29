@@ -44,6 +44,7 @@
     self.physicsBody.friction = 0;
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.sprite.size.width/1.5, self.sprite.size.height/1.5)];
     //self.zPosition = 1;
+    self.physicsBody.restitution=0;
     self.physicsBody.categoryBitMask = GOTA;
     self.physicsBody.collisionBitMask = ATTACK | ENEMY |ITEM |PORTA | CHUVA | CHAVE |PAREDE;
     self.physicsBody.contactTestBitMask = ATTACK | ENEMY | CONTROLE_TOQUE |ITEM | CHUVA |CHAVE | FONTE_DA_JUVENTUDE | PAREDE | TRAP;

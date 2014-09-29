@@ -25,7 +25,7 @@
 + (NSNumber *)numberOfLevels:(int)mundo{
     switch (mundo) {
         case 1:
-            return @3;
+            return @4;
             break;
             
         default:
@@ -254,7 +254,7 @@
 }
 
 
-+ (void)initializeLevel01ofWorld01onScene:(JAGPlayGameScene *)scene
++ (void)initializeLevel99ofWorld01onScene:(JAGPlayGameScene *)scene
 {
     
     //[self configure:scene withBackgroundColor:[UIColor whiteColor]];
@@ -419,7 +419,7 @@
 
 
 
-+ (void)initializeLevel02ofWorld01onScene:(JAGPlayGameScene *)scene
++ (void)initializeLevel01ofWorld01onScene:(JAGPlayGameScene *)scene
 {
 //    JSTileMap *map;
 //    TMXLayer *tile;
@@ -500,7 +500,7 @@
     }
 }
 
-+ (void)initializeLevel03ofWorld01onScene:(JAGPlayGameScene *)scene
++ (void)initializeLevel02ofWorld01onScene:(JAGPlayGameScene *)scene
 {
    
     JSTileMap* tiledMap = [JSTileMap mapNamed:@"map2.tmx"];
@@ -542,13 +542,13 @@
         JAGFogoEnemy *fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(17, 13)] withSize:tamanho];
         fogo.dano=10;
         
-//        [fogo activateIa];
-//        
-//        NSMutableArray *paths = [[NSMutableArray alloc] init];
-//        [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y+100)]];
-//        [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y)]];
-//        
-//        fogo.arrPointsPath = paths;
+        [fogo activateIa];
+        
+        NSMutableArray *paths = [[NSMutableArray alloc] init];
+        [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y+100)]];
+        [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y)]];
+        
+        fogo.arrPointsPath = paths;
         
         
         
@@ -594,6 +594,88 @@
         
     }
 }
+
++ (void)initializeLevel03ofWorld01onScene:(JAGPlayGameScene *)scene
+{
+    //    JSTileMap *map;
+    //    TMXLayer *tile;
+    //    TMXLayer *bg;
+    
+    JSTileMap* tiledMap = [JSTileMap mapNamed:@"map4.tmx"];
+    if (tiledMap){
+        
+        scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
+        scene.level.tileSize = 64;
+        
+        
+        
+        scene.level.frequenciaRelampago = 10.0;
+        CGSize tamanho = CGSizeMake(scene.level.tileSize*1.2, scene.level.tileSize*1.2);
+        
+        //Gotinha
+        
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tamanho];
+        
+        tiledMap.position = CGPointMake(0, 0);
+        [scene configInit];
+        
+        
+        
+        
+        //Mapa
+        [scene.cropNode addChild:tiledMap];
+        
+        [scene.cropNode addChild:[self createPhiscsBodytoLayer:tiledMap]];
+        
+        
+        //Mascara
+        
+        [scene createMask:100 withPoint:(scene.gota.position)];
+        
+        
+        
+        
+        
+        
+        
+        
+        //Add objetos
+        
+        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(18, 18)]];
+        
+        [scene.cropNode addChild:scene.level.chuva];
+        
+        //Add Monstros
+        
+        
+        
+        //Portas
+        
+        
+        
+        //Config de hud e fase
+        scene.hud = [[JAGHud alloc] initWithTempo:300 withVida:3 saude:scene.gota.aguaRestante withWindowSize:scene.frame.size];
+        
+        scene.gota.vida = 15;
+        scene.hud.gota  = scene.gota;
+        
+        [scene.cropNode addChild:scene.gota];
+        
+        
+        
+        
+        [scene addChild: scene.cropNode];
+        
+        [scene addChild:scene.hud];
+        
+        [scene.hud startTimer];
+        
+        [scene configStart:8];
+        
+        
+    }
+}
+
 
 
 
