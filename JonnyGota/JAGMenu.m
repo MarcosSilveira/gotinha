@@ -51,11 +51,11 @@
     logo.position = CGPointMake(self.size.width/2, self.size.height/2);
     
     botaoPlay = [[SKSpriteNode alloc] initWithTexture:botaoPlayText];
-    botaoPlay.size = CGSizeMake(self.frame.size.width *.25, self.frame.size.height *.16);
+    botaoPlay.size = CGSizeMake(self.frame.size.width *.28, self.frame.size.height *.16);
     botaoPlay.position = CGPointMake(self.size.width/2, self.size.height/2.8);
     
     botaoStore = [[SKSpriteNode alloc] initWithTexture:botaoStoreText];
-    botaoStore.size = CGSizeMake(self.frame.size.width*.25, self.frame.size.height*.15);
+    botaoStore.size = CGSizeMake(self.frame.size.width*.28, self.frame.size.height*.15);
     botaoStore.position = CGPointMake(self.size.width/2, self.size.height/5.1);
     
     [self addChild:fundo];

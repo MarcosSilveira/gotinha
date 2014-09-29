@@ -113,6 +113,7 @@
         GObackground.zPosition = 200;
         message.zPosition = 201;
     }
+        
     GONaTela = YES;
 }
 
@@ -310,11 +311,10 @@
         if ([nodeAux.name isEqualToString:@"pauseBT"]) {
             NSLog(@"pause detected");
             if (!GONaTela) {
-                
+
+                pauseDetected = !pauseDetected;
             
-            pauseDetected = !pauseDetected;
-            
-            self.scene.view.paused = !self.scene.view.paused;
+                self.scene.view.paused = !self.scene.view.paused;
                 [self.cropNode removeAllActions];}
         }
         toqueInicio = [touch locationInNode:self];
@@ -360,7 +360,10 @@
 
     
 }
-
+-(void)deallocSound{
+    [relampago soltar];
+    [self.level.chuva.chuva soltar];
+}
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
     for (UITouch *touch in touches) {
@@ -372,6 +375,37 @@
         
         pararMovimentoCONTROLx.position = [touch locationInNode:_cropNode];
         pararMovimentoCONTROLy.position = [touch locationInNode:_cropNode];
+
+        //menu gameover
+        SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
+        
+        if ([node.name isEqualToString:@"button1"]) {
+            NSLog(@"bt1 gameover");
+            
+            self.scene.view.paused=NO;
+            GONaTela = NO;
+            //                    self.scene.paused = NO;
+            [button1 removeFromParent];
+            [button2 removeFromParent];
+            [message removeFromParent];
+            [GObackground removeFromParent];
+            
+            self.gota.physicsBody.velocity=CGVectorMake(0, 0);
+            
+            [self.gota changePosition:self.posicaoInicial];
+        }
+        else if([node.name isEqualToString:@"button2"]){
+            NSLog(@"bt2 gameover");
+            [self deallocSound];
+            self.scene.view.paused = NO;
+            GONaTela = NO;
+            JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
+            
+            SKTransition *trans = [SKTransition fadeWithDuration:1.0];
+            
+            [self.scene.view presentScene:scene transition:trans];
+            
+        }
 
         if (toque_moveu && tocou_gota && !frenetico) {
 //            [_cropNode addChild:[_gota dividir]];
@@ -436,35 +470,7 @@
                 
 
             
-                //menu gameover
-                SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
-
-                if ([node.name isEqualToString:@"button1"]) {
-                    NSLog(@"bt1 gameover");
-                    
-                    self.scene.view.paused=NO;
-                    GONaTela = NO;
-//                    self.scene.paused = NO;
-                    [button1 removeFromParent];
-                    [button2 removeFromParent];
-                    [message removeFromParent];
-                    [GObackground removeFromParent];
-                    
-                    self.gota.physicsBody.velocity=CGVectorMake(0, 0);
-                    
-                    [self.gota changePosition:self.posicaoInicial];
-                }
-                else if([node.name isEqualToString:@"button2"]){
-                    NSLog(@"bt2 gameover");
-                    self.scene.view.paused = NO;
-                    GONaTela = NO;
-                    JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
-                    
-                    SKTransition *trans = [SKTransition fadeWithDuration:1.0];
-
-                    [self.scene.view presentScene:scene transition:trans];
-                }
-                //Logica da movimentacao
+                                //Logica da movimentacao
                 //PathFinder
                 //
                 
@@ -829,8 +835,7 @@
         NSNumber *nextlevel=[NSNumber numberWithInt:([self.currentLevel intValue] + 1)];
         
         if ([[JAGCreatorLevels numberOfLevels:1] intValue]>=[nextlevel intValue]) {
-            [relampago soltar];
-            [self.level.chuva.chuva soltar];
+            [self deallocSound];
             
             SKScene *scene = [[JAGPlayGameScene alloc] initWithSize:self.frame.size level:nextlevel andWorld:@1];
             [[NSUserDefaults standardUserDefaults]setInteger:[nextlevel integerValue] forKey:@"faseAtual"];

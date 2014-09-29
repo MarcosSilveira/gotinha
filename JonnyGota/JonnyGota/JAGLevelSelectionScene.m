@@ -52,7 +52,7 @@
         else{ nodo=[[SKSpriteNode alloc]initWithImageNamed:nome];
             
             nodo.size = CGSizeMake(self.frame.size.width*.1, self.frame.size.height*.16);
-            nodo.name = [NSString stringWithFormat:@"%d",i+1];
+            nodo.name = [NSString stringWithFormat:@"%d",i];
             nodo.zPosition = 200;
         }
         posX = posX+somaX;
