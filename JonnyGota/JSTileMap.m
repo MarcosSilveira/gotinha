@@ -652,6 +652,146 @@
 	return [JSTileMap mapNamed:mapName withBaseZPosition:0.0f andZOrderModifier:-20.0f];
 }
 
+//Tentativa de arrumar o size
++ (JSTileMap*)mapNamed:(NSString*)mapName withTileSize:(CGFloat) size
+{
+    // zOrder offset.  Make this bigger if you want more space between layers.
+    // higher numbers act further away.
+    return [JSTileMap mapNamed:mapName withBaseZPosition:0.0f andZOrderModifier:-20.0f];
+}
+
++ (JSTileMap*)mapNamed:(NSString*)mapName withBaseZPosition:(CGFloat)baseZPosition andZOrderModifier:(CGFloat)zOrderModifier withSize:(CGFloat)size
+{
+    // create the map
+    JSTileMap* map = [[JSTileMap alloc] init];
+    
+    // get the TMX map filename
+    NSString* name = mapName;
+    NSString* extension = nil;
+    
+    // split the extension off if there is one passed
+    if ([mapName rangeOfString:@"."].location != NSNotFound)
+    {
+        name = [mapName stringByDeletingPathExtension];
+        extension = [mapName pathExtension];
+    }
+    
+    // load the TMX map from disk
+    NSString* path = [[NSBundle mainBundle] pathForResource:name ofType:extension];
+    NSData* mapData = [NSData dataWithContentsOfFile:path];
+    
+    // set the filename
+    map.filename = path;
+    
+    // parse the map
+    NSXMLParser* parser = [[NSXMLParser alloc] initWithData:mapData];
+    parser.delegate = map;
+    parser.shouldProcessNamespaces = NO;
+    parser.shouldReportNamespacePrefixes = NO;
+    parser.shouldResolveExternalEntities = NO;
+    BOOL parsed = [parser parse];
+    if (!parsed)
+    {
+        NSLog(@"Error parsing map! \n%@", [parser parserError]);
+        return nil;
+    }
+    
+    // set zPosition range
+    if (baseZPosition < (baseZPosition + (zOrderModifier * (map.zOrderCount + 1))))
+    {
+        map->_minZPositioning = baseZPosition;
+        map->_maxZPositioning = baseZPosition + (zOrderModifier * (map.zOrderCount + 1));
+    }
+    else
+    {
+        map->_maxZPositioning = baseZPosition;
+        map->_minZPositioning = baseZPosition + (zOrderModifier * (map.zOrderCount + 1));
+    }
+    
+    // now actually using the data begins.
+    
+    // add layers
+    for( TMXLayerInfo *layerInfo in map.layers )
+    {
+        if( layerInfo.visible )
+        {
+            TMXLayer *child = [TMXLayer layerWithTilesetInfo:map.tilesets layerInfo:layerInfo mapInfo:map];
+            child.zPosition = baseZPosition + ((map.zOrderCount - layerInfo.zOrderCount) * zOrderModifier);
+#ifdef DEBUG
+            NSLog(@"Layer %@ has zPosition %f", layerInfo.name, child.zPosition);
+#endif
+            [map addChild:child];
+        }
+    }
+    
+    // add tile objects
+    for (TMXObjectGroup* objectGroup in map.objectGroups)
+    {
+#ifdef DEBUG
+        NSLog(@"Object Group %@ has zPosition %f", objectGroup.groupName, (baseZPosition + (map.zOrderCount - objectGroup.zOrderCount) * zOrderModifier));
+#endif
+        
+        for (NSDictionary* obj in objectGroup.objects)
+        {
+            NSString* num = obj[@"gid"];
+            if (num && [num intValue])
+            {
+                TMXTilesetInfo* tileset = [map tilesetInfoForGid:[num intValue]];
+                if (tileset)	// add a tile object if it is apropriate.
+                {
+                    CGFloat x = [obj[@"x"] floatValue];
+                    CGFloat y = [obj[@"y"] floatValue];
+                    CGPoint pt;
+                    
+                    if (map.orientation == OrientationStyle_Isometric)
+                    {
+                        //#warning these appear to be incorrect for iso maps when used for tile objects!  Unsure why the math is different between objects and regular tiles.
+                        CGPoint coords = [map screenCoordToPosition:CGPointMake(x, y)];
+                        pt = CGPointMake((map.tileSize.width / 2.0) * (map.tileSize.width + coords.x - coords.y - 1),
+                                         (map.tileSize.height / 2.0) * (((map.tileSize.height * 2) - coords.x - coords.y) - 2));
+                        
+                        //  NOTE:
+                        //	iso zPositioning may not work as expected for maps with irregular tile sizes.  For larger tiles (i.e. a box in front of some floor
+                        //	tiles) We would need each layer to have their tiles ordered lower at the bottom coords and higher at the top coords WITHIN THE LAYER, in
+                        //	addition to the layers being offset as described below. this could potentially be a lot larger than 20 as a default and may take some
+                        //	thinking to fix.
+                    }
+                    else
+                    {
+                        pt = CGPointMake(x + (map.tileSize.width / 2.0), y + (map.tileSize.height / 2.0));
+                    }
+                    SKTexture* texture = [tileset textureForGid:[num intValue] - tileset.firstGid + 1];
+                    SKSpriteNode* sprite = [SKSpriteNode spriteNodeWithTexture:texture];
+                    sprite.position = pt;
+                    sprite.zPosition = baseZPosition + ((map.zOrderCount - objectGroup.zOrderCount) * zOrderModifier);
+                    sprite.name = obj[@"name"];
+                    [map addChild:sprite];
+                    
+                    //#warning This needs to be optimized into tilemap layers like our regular layers above for performance reasons.
+                    // this could be problematic...  what if a single object group had a bunch of tiles from different tilemaps?  Would this cause zOrder problems if we're adding them all to tilemap layers?
+                }
+            }
+        }
+    }
+    
+    // add image layers
+    for (TMXImageLayer* imageLayer in map.imageLayers)
+    {
+        SKSpriteNode* image = [SKSpriteNode spriteNodeWithImageNamed:imageLayer.imageSource];
+        image.position = CGPointMake(image.size.width / 2.0, image.size.height / 2.0);
+        image.zPosition = baseZPosition + ((map.zOrderCount - imageLayer.zOrderCount) * zOrderModifier);
+        [map addChild:image];
+#ifdef DEBUG
+        NSLog(@"IMAGE Layer %@ has zPosition %f", imageLayer.name, image.zPosition);
+#endif
+        
+        //#warning the positioning is off here, seems to be bottom-left instead of top-left.  Might be off on the rest of the sprites too...?
+    }
+    
+    return map;
+}
+
+
 
 + (JSTileMap*)mapNamed:(NSString*)mapName withBaseZPosition:(CGFloat)baseZPosition andZOrderModifier:(CGFloat)zOrderModifier
 {

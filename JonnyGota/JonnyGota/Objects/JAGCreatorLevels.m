@@ -73,6 +73,7 @@
     NSMutableArray *nodes=[[NSMutableArray alloc] init];
     
     
+    float scale;
     //Ler os pontos
     
     
@@ -443,7 +444,7 @@
         tiledMap.position = CGPointMake(0, 0);
         [scene configInit];
         
-        
+       
 
         
         //Mapa
@@ -508,7 +509,9 @@
         
         scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
         scene.level.tileSize = 64;
-        
+//        
+//        [tiledMap setXScale:0.8];
+//        [tiledMap setYScale:0.8];
         
         
         scene.level.frequenciaRelampago = 10.0;
