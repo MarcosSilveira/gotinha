@@ -9,6 +9,7 @@
 #import "JAGMenu.h"
 #import "JAGPlayGameScene.h"
 #import "JAGStoreScene.h"
+#import "JAGLevelSelectionScene.h"
 
 @implementation JAGMenu
 {
@@ -71,7 +72,7 @@
         
         if ([botaoPlay containsPoint:location]) {
             
-            SKScene *scene = [[JAGPlayGameScene alloc] initWithSize:self.frame.size level:@2 andWorld:@1];
+            SKScene *scene = [[JAGLevelSelectionScene alloc] initWithSize:self.frame.size];
             
             SKTransition *trans = [SKTransition fadeWithDuration:1.0];
             [self.scene.view presentScene:scene transition:trans];

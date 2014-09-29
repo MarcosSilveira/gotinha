@@ -77,8 +77,6 @@
     [self fadeMask];
     self.cropNode.alpha = 0.8f;
     GONaTela = NO;
-    [self presentGameOver:0];
-
 
     return self;
 }
@@ -833,7 +831,7 @@
             [self.level.chuva.chuva soltar];
             
             SKScene *scene = [[JAGPlayGameScene alloc] initWithSize:self.frame.size level:nextlevel andWorld:@1];
-            
+            [[NSUserDefaults standardUserDefaults]setInteger:[nextlevel integerValue] forKey:@"faseAtual"];
             
             SKTransition *trans = [SKTransition fadeWithDuration:1.0];
             [self.scene.view presentScene:scene transition:trans];
