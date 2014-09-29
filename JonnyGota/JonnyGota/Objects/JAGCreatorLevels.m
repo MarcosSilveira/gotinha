@@ -254,7 +254,7 @@
 }
 
 
-+ (void)initializeLevel01ofWorld01onScene:(JAGPlayGameScene *)scene
++ (void)initializeLevel99ofWorld01onScene:(JAGPlayGameScene *)scene
 {
     
     //[self configure:scene withBackgroundColor:[UIColor whiteColor]];
@@ -419,7 +419,7 @@
 
 
 
-+ (void)initializeLevel02ofWorld01onScene:(JAGPlayGameScene *)scene
++ (void)initializeLevel01ofWorld01onScene:(JAGPlayGameScene *)scene
 {
 //    JSTileMap *map;
 //    TMXLayer *tile;
@@ -500,7 +500,7 @@
     }
 }
 
-+ (void)initializeLevel03ofWorld01onScene:(JAGPlayGameScene *)scene
++ (void)initializeLevel02ofWorld01onScene:(JAGPlayGameScene *)scene
 {
    
     JSTileMap* tiledMap = [JSTileMap mapNamed:@"map2.tmx"];
@@ -595,7 +595,7 @@
     }
 }
 
-+ (void)initializeLevel04ofWorld01onScene:(JAGPlayGameScene *)scene
++ (void)initializeLevel03ofWorld01onScene:(JAGPlayGameScene *)scene
 {
     //    JSTileMap *map;
     //    TMXLayer *tile;
