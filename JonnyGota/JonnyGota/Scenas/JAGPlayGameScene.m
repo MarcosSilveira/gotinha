@@ -1049,18 +1049,20 @@
 
 #pragma mark - Receber Dano
 -(void)receberDano:(int) dano{
-    self.gota.vida-=dano;
-    if(self.gota.vida<=0){
-        
-        self.gota.vida=15;
-        self.hud.vidaRestante--;
-        [self presentGameOver:0];
-        
-      
-//        [self.gota changePosition:_posicaoInicial];
-//        [self presentGameOver:1];
-        self.scene.view.paused=YES;
+    if(self.gota.escondida==NO || dano==1){
+        self.gota.vida-=dano;
+        if(self.gota.vida<=0){
+            
+            self.gota.vida=15;
+            self.hud.vidaRestante--;
+            [self presentGameOver:0];
+            
+            
+            //        [self.gota changePosition:_posicaoInicial];
+            //        [self presentGameOver:1];
+            self.scene.view.paused=YES;
         }
+    }
 }
 
 #pragma mark - Configuração/Inicialização
