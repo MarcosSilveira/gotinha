@@ -22,10 +22,12 @@
 
 @implementation JAGCreatorLevels
 
+static int tamanho;
+
 + (NSNumber *)numberOfLevels:(int)mundo{
     switch (mundo) {
         case 1:
-            return @4;
+            return @3;
             break;
             
         default:
@@ -92,11 +94,11 @@
                 //Preapara o array de pontos
                 JAGPreparePoints *ponto=[[JAGPreparePoints alloc] init];
                 
-                ponto.ponto=CGPointMake(tileMap.tileSize.width*a+tileMap.tileSize.width/2,  (tileMap.tileSize.height*(tileMap.mapSize.height-b-1)+tileMap.tileSize.height/2));
+                 ponto.ponto=CGPointMake(tileMap.tileSize.width*a+tileMap.tileSize.width/2,  (tileMap.tileSize.height*(tileMap.mapSize.height-b-1)+tileMap.tileSize.height/2));
                 
                 ponto.usado=NO;
                 
-                if (![ponto procurarProximo:nodes withTileSize:tileMap.tileSize.height]) {
+                if (![ponto procurarProximo:nodes withTileSize:tamanho]) {
                     [nodes addObject:ponto];
                 };
                 
@@ -118,6 +120,7 @@
             
             CGMutablePathRef ponti=CGPathCreateMutable();
             
+//            SKPhysicsBody *temp=[self fazColunas:ponto withPath:ponti withtileSize:CGSizeMake(tamanho, tamanho) withArray:nodesPhy];
             SKPhysicsBody *temp=[self fazColunas:ponto withPath:ponti withtileSize:tileMap.tileSize withArray:nodesPhy];
             
             if(temp!=nil){
@@ -129,6 +132,8 @@
         if (ponto.usado==false){
             CGMutablePathRef ponti=CGPathCreateMutable();
             
+//            SKPhysicsBody *temp=[self fazlinhas:ponto withPath:ponti withtileSize:CGSizeMake(tamanho, tamanho) withArray:nodesPhy];
+
             SKPhysicsBody *temp=[self fazlinhas:ponto withPath:ponti withtileSize:tileMap.tileSize withArray:nodesPhy];
             if(temp!=nil){
                 [nodesPhy addObject:temp];
@@ -429,12 +434,22 @@
     if (tiledMap){
         
         scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
-        scene.level.tileSize = 64;
         
+        tamanho=scene.frame.size.width*0.1;
+        
+        scene.level.tileSize=tamanho;
+        
+        float scale=tamanho /tiledMap.tileSize.width;
+        
+        [tiledMap setScale:scale];
+        
+        [tiledMap setTileSize:CGSizeMake(tamanho, tamanho)];
 
 
         scene.level.frequenciaRelampago = 10.0;
         CGSize tamanho = CGSizeMake(scene.level.tileSize*1.2, scene.level.tileSize*1.2);
+        
+        
         
         //Gotinha
         
@@ -443,7 +458,7 @@
         tiledMap.position = CGPointMake(0, 0);
         [scene configInit];
         
-        
+       
 
         
         //Mapa
@@ -506,13 +521,23 @@
     JSTileMap* tiledMap = [JSTileMap mapNamed:@"map2.tmx"];
     if (tiledMap){
         
-        scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
-        scene.level.tileSize = 64;
         
+        tamanho=64;
+        scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
+        
+        tamanho=scene.frame.size.width*0.1;
+        
+        scene.level.tileSize=tamanho;
+        
+        float scale=tamanho /tiledMap.tileSize.width;
+        
+        [tiledMap setScale:scale];
+        
+        [tiledMap setTileSize:CGSizeMake(tamanho, tamanho)];
         
         
         scene.level.frequenciaRelampago = 10.0;
-        CGSize tamanho = CGSizeMake(scene.level.tileSize, scene.level.tileSize);
+        CGSize tamanho = CGSizeMake(scene.level.tileSize*1.2, scene.level.tileSize*1.2);
         
         //Gotinha
         
@@ -604,8 +629,18 @@
     JSTileMap* tiledMap = [JSTileMap mapNamed:@"map4.tmx"];
     if (tiledMap){
         
+        
+        
         scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
-        scene.level.tileSize = 64;
+        tamanho=scene.frame.size.width*0.1;
+        
+        scene.level.tileSize=tamanho;
+        
+        float scale=tamanho /tiledMap.tileSize.width;
+        
+        [tiledMap setScale:scale];
+        
+        [tiledMap setTileSize:CGSizeMake(tamanho, tamanho)];
         
         
         
