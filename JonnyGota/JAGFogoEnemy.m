@@ -16,8 +16,8 @@
     //texture config
     self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
     self.atlas = [SKTextureAtlas atlasNamed:@"enemies.atlas"];
-    self.sprite.texture = [self.atlas textureNamed:@"fogo_idle.png"];
-    self.idleTexture = [self.atlas textureNamed:@"fogo_idle.png"];
+    self.sprite.texture = [SKTexture textureWithImageNamed:@"fogo_parado.png"];
+    self.idleTexture =  [SKTexture textureWithImageNamed:@"fogo_parado.png"];
     
     for (int i=1; i<=8; i++) {
         NSString *textureName = [NSString stringWithFormat:@"fogo_correndo_lado%d@2x.png", i];
@@ -29,7 +29,7 @@
 
 
     //physics config
-    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
+    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.sprite.texture.size.width/2, self.sprite.texture.size.height/2)];
     self.physicsBody.categoryBitMask = ENEMY;
     self.physicsBody.collisionBitMask = GOTA|PORTA|PAREDE;
     self.physicsBody.contactTestBitMask = GOTA;
