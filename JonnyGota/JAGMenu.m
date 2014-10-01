@@ -78,7 +78,8 @@
             [self.scene.view presentScene:scene transition:trans];
         }
         else if([botaoStore containsPoint:location]){
-            NSLog(@"Chamar Store");
+            SKScene *scene = [[JAGStoreScene alloc]initWithSize:self.frame.size];
+            [self.scene.view presentScene:scene transition:[SKTransition fadeWithDuration:1.0]];
         }
     }
 }
