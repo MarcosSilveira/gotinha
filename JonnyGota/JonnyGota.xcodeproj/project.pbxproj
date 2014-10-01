@@ -56,6 +56,11 @@
 		0B97E39B19CCA5C20052ECF5 /* granada.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0B97E39A19CCA5C20052ECF5 /* granada.caf */; };
 		0BB7E84919AE403700C36889 /* JAGPerdaGota.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB7E84819AE403700C36889 /* JAGPerdaGota.m */; };
 		0BB81679199BBDA800490104 /* JAGWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB81678199BBDA800490104 /* JAGWall.m */; };
+		0BCC65FC19DC88B1004C517F /* Barroco.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65F419DC88B1004C517F /* Barroco.ttf */; };
+		0BCC65FF19DC88B1004C517F /* VAGRoundedStd-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65F819DC88B1004C517F /* VAGRoundedStd-Black.otf */; };
+		0BCC660019DC88B1004C517F /* VAGRoundedStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65F919DC88B1004C517F /* VAGRoundedStd-Bold.otf */; };
+		0BCC660119DC88B1004C517F /* VAGRoundedStd-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65FA19DC88B1004C517F /* VAGRoundedStd-Light.otf */; };
+		0BCC660219DC88B1004C517F /* VAGRoundedStd-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65FB19DC88B1004C517F /* VAGRoundedStd-Thin.otf */; };
 		8D11652519CC60E200F441E9 /* poca.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D11652419CC60E200F441E9 /* poca.png */; };
 		8D11652719CC666500F441E9 /* armadilha.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D11652619CC666500F441E9 /* armadilha.png */; };
 		8D11652919CC82F900F441E9 /* trovao.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8D11652819CC82F900F441E9 /* trovao.wav */; };
@@ -196,6 +201,11 @@
 		0BB7E84819AE403700C36889 /* JAGPerdaGota.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGPerdaGota.m; path = JonnyGota/Models/JAGPerdaGota.m; sourceTree = "<group>"; };
 		0BB81677199BBDA800490104 /* JAGWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGWall.h; path = JonnyGota/Models/JAGWall.h; sourceTree = "<group>"; };
 		0BB81678199BBDA800490104 /* JAGWall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGWall.m; path = JonnyGota/Models/JAGWall.m; sourceTree = "<group>"; };
+		0BCC65F419DC88B1004C517F /* Barroco.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Barroco.ttf; sourceTree = "<group>"; };
+		0BCC65F819DC88B1004C517F /* VAGRoundedStd-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAGRoundedStd-Black.otf"; sourceTree = "<group>"; };
+		0BCC65F919DC88B1004C517F /* VAGRoundedStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAGRoundedStd-Bold.otf"; sourceTree = "<group>"; };
+		0BCC65FA19DC88B1004C517F /* VAGRoundedStd-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAGRoundedStd-Light.otf"; sourceTree = "<group>"; };
+		0BCC65FB19DC88B1004C517F /* VAGRoundedStd-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAGRoundedStd-Thin.otf"; sourceTree = "<group>"; };
 		8D11652419CC60E200F441E9 /* poca.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poca.png; sourceTree = "<group>"; };
 		8D11652619CC666500F441E9 /* armadilha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = armadilha.png; sourceTree = "<group>"; };
 		8D11652819CC82F900F441E9 /* trovao.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = trovao.wav; sourceTree = "<group>"; };
@@ -346,6 +356,7 @@
 		0B3A04431991164A00C7C39E = {
 			isa = PBXGroup;
 			children = (
+				0BCC65F219DC8846004C517F /* Fonts */,
 				0B97E39919CC982C0052ECF5 /* Musicas */,
 				0B15AACB19D09A2C00ED6110 /* tilemaps */,
 				8DF47BDB19B4EB8C0021AE2D /* list.png */,
@@ -541,6 +552,34 @@
 			name = Musicas;
 			sourceTree = "<group>";
 		};
+		0BCC65F219DC8846004C517F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0BCC65F319DC88B1004C517F /* Barroco */,
+				0BCC65F619DC88B1004C517F /* vag */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		0BCC65F319DC88B1004C517F /* Barroco */ = {
+			isa = PBXGroup;
+			children = (
+				0BCC65F419DC88B1004C517F /* Barroco.ttf */,
+			);
+			path = Barroco;
+			sourceTree = "<group>";
+		};
+		0BCC65F619DC88B1004C517F /* vag */ = {
+			isa = PBXGroup;
+			children = (
+				0BCC65F819DC88B1004C517F /* VAGRoundedStd-Black.otf */,
+				0BCC65F919DC88B1004C517F /* VAGRoundedStd-Bold.otf */,
+				0BCC65FA19DC88B1004C517F /* VAGRoundedStd-Light.otf */,
+				0BCC65FB19DC88B1004C517F /* VAGRoundedStd-Thin.otf */,
+			);
+			path = vag;
+			sourceTree = "<group>";
+		};
 		8D24972119C9EC86005D5602 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
@@ -676,6 +715,7 @@
 				0B15AADE19D09B0500ED6110 /* map9.tmx in Resources */,
 				B1E9587B19B77718002302D7 /* Raio.sks in Resources */,
 				8D8DC57E19D2EC2F00E75949 /* vida8.png in Resources */,
+				0BCC660019DC88B1004C517F /* VAGRoundedStd-Bold.otf in Resources */,
 				8D7E78E019D1FE2200126F42 /* clock.png in Resources */,
 				8D7E78DC19D1F2E900126F42 /* hud_back.png in Resources */,
 				8D1B20FB19DC4A58007B9B9F /* price199.png in Resources */,
@@ -684,6 +724,7 @@
 				8D11652919CC82F900F441E9 /* trovao.wav in Resources */,
 				0B97E39819CC981D0052ECF5 /* rain.caf in Resources */,
 				0B3A045C1991164A00C7C39E /* InfoPlist.strings in Resources */,
+				0BCC660119DC88B1004C517F /* VAGRoundedStd-Light.otf in Resources */,
 				B1D9C13319DC86E3005ED4A1 /* levelX.png in Resources */,
 				8D8DC57D19D2EC2F00E75949 /* vida7.png in Resources */,
 				0B3A046F1991164A00C7C39E /* Images.xcassets in Resources */,
@@ -707,8 +748,10 @@
 				0B15AAD719D09B0500ED6110 /* map1.tmx in Resources */,
 				8DF47BE019B4EB8C0021AE2D /* restart.png in Resources */,
 				8D8DC57619D2EC2F00E75949 /* vida0.png in Resources */,
+				0BCC660219DC88B1004C517F /* VAGRoundedStd-Thin.otf in Resources */,
 				8D8DC57819D2EC2F00E75949 /* vida2.png in Resources */,
 				8D35976919D86559009B6083 /* fase_semSombra4.png in Resources */,
+				0BCC65FF19DC88B1004C517F /* VAGRoundedStd-Black.otf in Resources */,
 				8D8DC57919D2EC2F00E75949 /* vida3.png in Resources */,
 				8DF47BDF19B4EB8C0021AE2D /* jogar.png in Resources */,
 				8D1B20F919DC46E7007B9B9F /* vidas5.png in Resources */,
@@ -719,6 +762,7 @@
 				8D8DC57B19D2EC2F00E75949 /* vida5.png in Resources */,
 				8DF47BDE19B4EB8C0021AE2D /* list.png in Resources */,
 				8D6B5A4719CB496A00127198 /* enemies.atlas in Resources */,
+				0BCC65FC19DC88B1004C517F /* Barroco.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

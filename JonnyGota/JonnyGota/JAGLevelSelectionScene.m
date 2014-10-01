@@ -49,9 +49,31 @@
             nodo.name = @"fase_trancada";
             
         }
-        else{ nodo=[[SKSpriteNode alloc]initWithImageNamed:nome];
+        else{
+//            nodo=[[SKSpriteNode alloc]initWithImageNamed:nome];
+            
+            nodo=[[SKSpriteNode alloc] initWithImageNamed:@"levelX"];
+            
+            SKLabelNode *labelNum=[[SKLabelNode alloc] initWithFontNamed:@"VAGRoundedStd-thin"];
+            
+            
+            //Setar um font size baseada na tela
+            labelNum.fontSize=24;
+            
+            labelNum.text=[NSString stringWithFormat:@"%d",i];
+            
+            
+            [nodo addChild:labelNum];
+            
             
             nodo.size = CGSizeMake(self.frame.size.width*.1, self.frame.size.height*.16);
+            
+            labelNum.position=CGPointMake(-nodo.size.width/8, -5);
+            
+
+        
+            
+
             nodo.name = [NSString stringWithFormat:@"%d",i];
             nodo.zPosition = 200;
         }
