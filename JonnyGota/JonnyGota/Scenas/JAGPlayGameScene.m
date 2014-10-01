@@ -456,11 +456,11 @@
             
            
             
-            if ([_gota verificaToque:toqueFinal]){
+            if ([_gota verificaToque:toqueFinal] && [_gota verificaToque:toqueInicio]){
                 NSLog(@"Escondeu");
 
                 [_gota esconder];
-                NSLog(@"escondeu");
+               
                 [self removeActionForKey:@"moveGota"];
                             } else {
                 
