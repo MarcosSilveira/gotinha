@@ -451,6 +451,21 @@ static int tamanho;
         
         
         
+        // Tutorial
+        
+        SKSpriteNode *tutorialView = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(128, 64)];
+        tutorialView.position = CGPointMake(scene.size.width/1.15, scene.size.height/1.4);
+        tutorialView.alpha = .5;
+        
+        SKLabelNode *tutorialLabel = [[SKLabelNode alloc] initWithFontNamed:@"Courier"];
+        tutorialLabel.position = CGPointMake(0, 0);
+        tutorialLabel.fontSize = 13.0;
+        tutorialLabel.text = @"testando 123";
+        
+        [tutorialView addChild:tutorialLabel];
+        [scene addChild:tutorialView];
+        
+        
         //Gotinha
         
         scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tamanho];
@@ -510,8 +525,6 @@ static int tamanho;
         [scene.hud startTimer];
 
         [scene configStart:8];
-        
-        
     }
 }
 
