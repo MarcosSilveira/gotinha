@@ -464,7 +464,7 @@ static int tamanho;
         
         [tutorialView addChild:tutorialLabel];
         [scene addChild:tutorialView];
-        
+         
         
         //Gotinha
         
