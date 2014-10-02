@@ -258,6 +258,63 @@
     return nil;
 }
 
++(void)configTileMap:(JAGPlayGameScene *)scene
+           withTtile:(JSTileMap*) tiledMap{
+    scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
+    
+    int tamanhot=scene.frame.size.width*0.1;
+    
+    scene.level.tileSize=tamanhot;
+    
+    float scale=tamanhot /tiledMap.tileSize.width;
+    
+    [tiledMap setScale:scale];
+    
+    [tiledMap setTileSize:CGSizeMake(tamanhot, tamanhot)];
+    
+    
+    scene.level.frequenciaRelampago = 10.0;
+    //    CGSize tamanho = CGSizeMake(scene.level.tileSize*1.2, scene.level.tileSize*1.2);
+}
+
++(void)configHud:(JAGPlayGameScene *)scene
+{
+    scene.hud = [[JAGHud alloc] initWithTempo:300 withVida:3 saude:scene.gota.aguaRestante withWindowSize:scene.frame.size];
+    
+    scene.gota.vida = 15;
+    scene.hud.gota  = scene.gota;
+    
+    [scene.cropNode addChild:scene.gota];
+    
+    
+    
+    
+    [scene addChild: scene.cropNode];
+    
+    [scene addChild:scene.hud];
+    
+    [scene.hud startTimer];
+    
+    [scene configStart:8];
+}
+
++(void)configMap:(JAGPlayGameScene *)scene
+       withTtile:(JSTileMap*) tiledMap{
+    tiledMap.position = CGPointMake(0, 0);
+    [scene configInit];
+    
+    //Mapa
+    [scene.cropNode addChild:tiledMap];
+    
+    [scene.cropNode addChild:[self createPhiscsBodytoLayer:tiledMap]];
+    
+    
+    //Mascara
+    
+    [scene createMask:100 withPoint:(scene.gota.position)];
+}
+
+
 
 + (void)initializeLevel99ofWorld01onScene:(JAGPlayGameScene *)scene
 {
@@ -456,27 +513,9 @@
         
         scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
 
-        tiledMap.position = CGPointMake(0, 0);
-        [scene configInit];
         
-       
-
-        
-        //Mapa
-        [scene.cropNode addChild:tiledMap];
-        
-        [scene.cropNode addChild:[self createPhiscsBodytoLayer:tiledMap]];
-
-        
-        //Mascara
-        
-        [scene createMask:100 withPoint:(scene.gota.position)];
-        
-        
-        
-        
-        
-        
+        //Config Map
+        [JAGCreatorLevels configMap:scene withTtile:tiledMap];
         
         
         //Add objetos
@@ -494,23 +533,7 @@
         
 
         //Config de hud e fase
-        scene.hud = [[JAGHud alloc] initWithTempo:300 withVida:3 saude:scene.gota.aguaRestante withWindowSize:scene.frame.size];
-        
-        scene.gota.vida = 15;
-        scene.hud.gota  = scene.gota;
-        
-        [scene.cropNode addChild:scene.gota];
-        
-       
-
-        
-        [scene addChild: scene.cropNode];
-        
-        [scene addChild:scene.hud];
-        
-        [scene.hud startTimer];
-
-        [scene configStart:8];
+        [JAGCreatorLevels configHud:scene];
     }
 }
 
@@ -525,23 +548,10 @@
         
         scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(8, 3)] withSize:tiledMap.tileSize];
         
-        tiledMap.position = CGPointMake(0, 0);
-        
-        //Muito importante
-        [scene configInit];
-        
-        
         
         
         //Mapa
-        [scene.cropNode addChild:tiledMap];
-        
-        [scene.cropNode addChild:[self createPhiscsBodytoLayer:tiledMap]];
-        
-        
-        //Mascara
-        
-        [scene createMask:100 withPoint:(scene.gota.position)];
+        [JAGCreatorLevels configMap:scene withTtile:tiledMap];
         
         
         //Add Monstros
@@ -580,24 +590,7 @@
         [scene.cropNode addChild:fogo];
         
         //Config de hud e faze
-        scene.hud = [[JAGHud alloc] initWithTempo:300 withVida:3 saude:scene.gota.aguaRestante withWindowSize:scene.frame.size];
-        
-        scene.gota.vida = 15;
-        scene.hud.gota  = scene.gota;
-        
-        [scene.cropNode addChild:scene.gota];
-        
-        
-        
-        
-        [scene addChild: scene.cropNode];
-        
-        [scene addChild:scene.hud];
-        
-        [scene.hud startTimer];
-        
-        [scene configStart:8];
-        
+        [JAGCreatorLevels configHud:scene];
         
     }
 }
@@ -619,25 +612,11 @@
         
         scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
         
-        tiledMap.position = CGPointMake(0, 0);
-        [scene configInit];
         
         
         
-        
-        //Mapa
-        [scene.cropNode addChild:tiledMap];
-        
-        [scene.cropNode addChild:[self createPhiscsBodytoLayer:tiledMap]];
-        
-        
-        //Mascara
-        
-        [scene createMask:100 withPoint:(scene.gota.position)];
-        
-        
-        
-        
+         //Config Map
+        [JAGCreatorLevels configMap:scene withTtile:tiledMap];
         
         
         
@@ -657,46 +636,11 @@
         
         
         //Config de hud e fase
-        scene.hud = [[JAGHud alloc] initWithTempo:300 withVida:3 saude:scene.gota.aguaRestante withWindowSize:scene.frame.size];
-        
-        scene.gota.vida = 15;
-        scene.hud.gota  = scene.gota;
-        
-        [scene.cropNode addChild:scene.gota];
-        
-        
-        
-        
-        [scene addChild: scene.cropNode];
-        
-        [scene addChild:scene.hud];
-        
-        [scene.hud startTimer];
-        
-        [scene configStart:8];
-        
+        [JAGCreatorLevels configHud:scene];
         
     }
 }
 
-+(void)configTileMap:(JAGPlayGameScene *)scene
-           withTtile:(JSTileMap*) tiledMap{
-    scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
-    
-    int tamanhot=scene.frame.size.width*0.1;
-    
-    scene.level.tileSize=tamanhot;
-    
-    float scale=tamanhot /tiledMap.tileSize.width;
-    
-    [tiledMap setScale:scale];
-    
-    [tiledMap setTileSize:CGSizeMake(tamanhot, tamanhot)];
-    
-    
-    scene.level.frequenciaRelampago = 10.0;
-    CGSize tamanho = CGSizeMake(scene.level.tileSize*1.2, scene.level.tileSize*1.2);
-}
 
 
 @end
