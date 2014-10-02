@@ -54,7 +54,7 @@
             
             nodo=[[SKSpriteNode alloc] initWithImageNamed:@"levelX"];
             
-            SKLabelNode *labelNum=[[SKLabelNode alloc] initWithFontNamed:@"VAGRoundedStd-thin"];
+            SKLabelNode *labelNum=[[SKLabelNode alloc] initWithFontNamed:@"VAGRoundedStd-Thin"];
             
             
             //Setar um font size baseada na tela
