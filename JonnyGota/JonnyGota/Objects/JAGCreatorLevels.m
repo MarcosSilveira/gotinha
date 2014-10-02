@@ -95,7 +95,7 @@
                 //Preapara o array de pontos
                 JAGPreparePoints *ponto=[[JAGPreparePoints alloc] init];
                 
-                 ponto.ponto=CGPointMake(tileMap.tileSize.width*a+tileMap.tileSize.width/2,  (tileMap.tileSize.height*(tileMap.mapSize.height-b-1)+tileMap.tileSize.height/2));
+                ponto.ponto=CGPointMake(tileMap.tileSize.width*a+tileMap.tileSize.width/2,  (tileMap.tileSize.height*(tileMap.mapSize.height-b-1)+tileMap.tileSize.height/2));
                 
                 ponto.usado=NO;
                 
@@ -121,7 +121,7 @@
             
             CGMutablePathRef ponti=CGPathCreateMutable();
             
-//            SKPhysicsBody *temp=[self fazColunas:ponto withPath:ponti withtileSize:CGSizeMake(tamanho, tamanho) withArray:nodesPhy];
+            //            SKPhysicsBody *temp=[self fazColunas:ponto withPath:ponti withtileSize:CGSizeMake(tamanho, tamanho) withArray:nodesPhy];
             SKPhysicsBody *temp=[self fazColunas:ponto withPath:ponti withtileSize:tileMap.tileSize withArray:nodesPhy];
             
             if(temp!=nil){
@@ -133,8 +133,8 @@
         if (ponto.usado==false){
             CGMutablePathRef ponti=CGPathCreateMutable();
             
-//            SKPhysicsBody *temp=[self fazlinhas:ponto withPath:ponti withtileSize:CGSizeMake(tamanho, tamanho) withArray:nodesPhy];
-
+            //            SKPhysicsBody *temp=[self fazlinhas:ponto withPath:ponti withtileSize:CGSizeMake(tamanho, tamanho) withArray:nodesPhy];
+            
             SKPhysicsBody *temp=[self fazlinhas:ponto withPath:ponti withtileSize:tileMap.tileSize withArray:nodesPhy];
             if(temp!=nil){
                 [nodesPhy addObject:temp];
@@ -344,14 +344,14 @@
     [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y)]];
     
     
-
+    
     fogo.arrPointsPath = paths;
     
     //Trovao
     
     JAGTrovaoEnemy *trovao = [[JAGTrovaoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 10)] withSize:tamanho];
     trovao.dano = 10;
-   [trovao moveTelep:[scene.level calculateTile:CGPointMake(2, 3)]];
+    [trovao moveTelep:[scene.level calculateTile:CGPointMake(2, 3)]];
     
     NSMutableArray *patht = [[NSMutableArray alloc] init];
     [patht addObject:[NSValue valueWithCGPoint:CGPointMake(trovao.position.x, trovao.position.y+100)]];
@@ -442,24 +442,24 @@
     [scene.cropNode addChild:obj];
     
     [scene.cropNode addChild:scene.gota];
-
+    
     
     //JAGPerdaFogo *perda_fogo = [[JAGPerdaFogo alloc] initWithPosition:fogo.position withTimeLife:10];
     SKAction *diminuirSaude = [SKAction sequence:@[[SKAction waitForDuration:5],
                                                    [SKAction runBlock:^{
         JAGPerdaFogo *perda_fogo = [[JAGPerdaFogo alloc] initWithPosition:fogo.position withTimeLife:10];
-//        JAGSparkRaio *spark = [[JAGSparkRaio alloc] initWithPosition:trovao.position withTimeLife:10];
+        //        JAGSparkRaio *spark = [[JAGSparkRaio alloc] initWithPosition:trovao.position withTimeLife:10];
         
         [scene.cropNode addChild:perda_fogo.emitter];
-//        [scene.cropNode addChild:spark.emitter];
+        //        [scene.cropNode addChild:spark.emitter];
         
         SKAction *destruir = [SKAction sequence:@[[SKAction waitForDuration:5],
                                                   [SKAction runBlock:^{
             
             [perda_fogo.emitter removeFromParent];
-//            [spark.emitter removeFromParent];
-//            NSLog(@"pos %@", [NSValue valueWithCGPoint:trovao.position]);
-//            [trovao moveTelep:[scene.level calculateTile:CGPointMake(2, 3)]];
+            //            [spark.emitter removeFromParent];
+            //            NSLog(@"pos %@", [NSValue valueWithCGPoint:trovao.position]);
+            //            [trovao moveTelep:[scene.level calculateTile:CGPointMake(2, 3)]];
             
         }]]];
         
@@ -480,43 +480,59 @@
     // JAGHud *hud = [JAGHud alloc]
 }
 
-
++ (void)tutorial:(JAGPlayGameScene *) scene {
+    
+    SKSpriteNode *tutorialView = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(128, 128)];
+    tutorialView.position = CGPointMake(scene.size.width/1.15, scene.size.height/1.4);
+    tutorialView.alpha = .5;
+    
+    DSMultilineLabelNode *nodeLabel = [DSMultilineLabelNode labelNodeWithFontNamed:@"Courier"];
+    nodeLabel.fontSize = 12.0;    
+    nodeLabel.text = @"Funcione ";
+    
+    nodeLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+    
+    SKAction *changeLabel = [SKAction sequence:@[[SKAction runBlock:^{
+        nodeLabel.text = @"Barcos, clica em alguma direção para a Gotinha poder andar... Na boa";
+        nodeLabel.paragraphWidth = 100;
+    }],
+                                                 [SKAction waitForDuration:10.0],
+                                                 [SKAction runBlock:^{
+        nodeLabel.text = @"Barcos, seguinte... Clica na Gotinha para ela virar uma poça, tenta ai vai";
+        nodeLabel.paragraphWidth = 100;
+    }],
+                                                 [SKAction waitForDuration:10.0],
+                                                 [SKAction runBlock:^{
+        nodeLabel.text = @"Agora meu caro amigo Barcos... Clica na Gotinha e arrasta ela.. Vê o qq acontece...";
+        nodeLabel.paragraphWidth = 100;
+    }],
+                                                 [SKAction waitForDuration:10.0],
+                                                 [SKAction runBlock:^{
+        nodeLabel.text = @"Boa Barcos! Pode andar por esse mundo a fora e encontrar a tua família! Vai q dá!";
+        nodeLabel.paragraphWidth = 100;
+    }]]];
+    
+    [scene runAction:changeLabel];
+    
+    [tutorialView addChild:nodeLabel];
+    [scene addChild:tutorialView];
+}
 
 + (void)initializeLevel01ofWorld01onScene:(JAGPlayGameScene *)scene
 {
-//    JSTileMap *map;
-//    TMXLayer *tile;
-//    TMXLayer *bg;
+    //    JSTileMap *map;
+    //    TMXLayer *tile;
+    //    TMXLayer *bg;
     
     JSTileMap* tiledMap = [JSTileMap mapNamed:@"map1.tmx"];
     if (tiledMap){
         
         [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
         
-        
-        
-        // Tutorial
-        
-        DSMultilineLabelNode *nodeLabel = [DSMultilineLabelNode labelNodeWithFontNamed:@"Courier"];
-        nodeLabel.text = @"Barcos, clica em alguma direção para a Gotinha poder andar... Na boa";
-
-        nodeLabel.fontSize = 12.0;
-        nodeLabel.paragraphWidth = 100;
-        
-        nodeLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
-        
-        SKSpriteNode *tutorialView = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(128, 128)];
-        tutorialView.position = CGPointMake(scene.size.width/1.15, scene.size.height/1.4);
-        tutorialView.alpha = .5;
-        
-        [tutorialView addChild:nodeLabel];
-        [scene addChild:tutorialView];
-         
-        
         //Gotinha
         
         scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
-
+        
         
         //Config Map
         [JAGCreatorLevels configMap:scene withTtile:tiledMap];
@@ -533,21 +549,24 @@
         
         
         //Portas
-
         
-
+        
+        
         //Config de hud e fase
         [JAGCreatorLevels configHud:scene];
+        
+        // Tutorial
+        [JAGCreatorLevels tutorial: scene];
     }
 }
 
 + (void)initializeLevel02ofWorld01onScene:(JAGPlayGameScene *)scene
 {
-   
+    
     JSTileMap* tiledMap = [JSTileMap mapNamed:@"map2.tmx"];
     if (tiledMap){
         
-         [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
+        [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
         //Gotinha
         
         scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(8, 3)] withSize:tiledMap.tileSize];
@@ -619,7 +638,7 @@
         
         
         
-         //Config Map
+        //Config Map
         [JAGCreatorLevels configMap:scene withTtile:tiledMap];
         
         
