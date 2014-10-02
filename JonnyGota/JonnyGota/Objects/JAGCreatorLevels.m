@@ -22,7 +22,7 @@
 
 @implementation JAGCreatorLevels
 
-static int tamanho;
+
 
 + (NSNumber *)numberOfLevels:(int)mundo{
     switch (mundo) {
@@ -98,7 +98,7 @@ static int tamanho;
                 
                 ponto.usado=NO;
                 
-                if (![ponto procurarProximo:nodes withTileSize:tamanho]) {
+                if (![ponto procurarProximo:nodes withTileSize:tileMap.tileSize.width]) {
                     [nodes addObject:ponto];
                 };
                 
@@ -433,21 +433,7 @@ static int tamanho;
     JSTileMap* tiledMap = [JSTileMap mapNamed:@"map1.tmx"];
     if (tiledMap){
         
-        scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
-        
-        tamanho=scene.frame.size.width*0.1;
-        
-        scene.level.tileSize=tamanho;
-        
-        float scale=tamanho /tiledMap.tileSize.width;
-        
-        [tiledMap setScale:scale];
-        
-        [tiledMap setTileSize:CGSizeMake(tamanho, tamanho)];
-
-
-        scene.level.frequenciaRelampago = 10.0;
-        CGSize tamanho = CGSizeMake(scene.level.tileSize*1.2, scene.level.tileSize*1.2);
+        [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
         
         
         
@@ -468,7 +454,7 @@ static int tamanho;
         
         //Gotinha
         
-        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tamanho];
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
 
         tiledMap.position = CGPointMake(0, 0);
         [scene configInit];
@@ -534,27 +520,10 @@ static int tamanho;
     JSTileMap* tiledMap = [JSTileMap mapNamed:@"map2.tmx"];
     if (tiledMap){
         
-        
-        tamanho=64;
-        scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
-        
-        tamanho=scene.frame.size.width*0.1;
-        
-        scene.level.tileSize=tamanho;
-        
-        float scale=tamanho /tiledMap.tileSize.width;
-        
-        [tiledMap setScale:scale];
-        
-        [tiledMap setTileSize:CGSizeMake(tamanho, tamanho)];
-        
-        
-        scene.level.frequenciaRelampago = 10.0;
-        CGSize tamanho = CGSizeMake(scene.level.tileSize*1.2, scene.level.tileSize*1.2);
-        
+         [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
         //Gotinha
         
-        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(8, 3)] withSize:tamanho];
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(8, 3)] withSize:tiledMap.tileSize];
         
         tiledMap.position = CGPointMake(0, 0);
         
@@ -577,7 +546,7 @@ static int tamanho;
         
         //Add Monstros
         
-        JAGFogoEnemy *fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(17, 13)] withSize:tamanho];
+        JAGFogoEnemy *fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(17, 13)] withSize:tiledMap.tileSize];
         fogo.dano=10;
         
         [fogo activateIa];
@@ -643,26 +612,12 @@ static int tamanho;
     if (tiledMap){
         
         
+        [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
         
-        scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
-        tamanho=scene.frame.size.width*0.1;
-        
-        scene.level.tileSize=tamanho;
-        
-        float scale=tamanho /tiledMap.tileSize.width;
-        
-        [tiledMap setScale:scale];
-        
-        [tiledMap setTileSize:CGSizeMake(tamanho, tamanho)];
-        
-        
-        
-        scene.level.frequenciaRelampago = 10.0;
-        CGSize tamanho = CGSizeMake(scene.level.tileSize*1.2, scene.level.tileSize*1.2);
         
         //Gotinha
         
-        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tamanho];
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
         
         tiledMap.position = CGPointMake(0, 0);
         [scene configInit];
@@ -724,7 +679,24 @@ static int tamanho;
     }
 }
 
-
++(void)configTileMap:(JAGPlayGameScene *)scene
+           withTtile:(JSTileMap*) tiledMap{
+    scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
+    
+    int tamanhot=scene.frame.size.width*0.1;
+    
+    scene.level.tileSize=tamanhot;
+    
+    float scale=tamanhot /tiledMap.tileSize.width;
+    
+    [tiledMap setScale:scale];
+    
+    [tiledMap setTileSize:CGSizeMake(tamanhot, tamanhot)];
+    
+    
+    scene.level.frequenciaRelampago = 10.0;
+    CGSize tamanho = CGSizeMake(scene.level.tileSize*1.2, scene.level.tileSize*1.2);
+}
 
 
 @end
