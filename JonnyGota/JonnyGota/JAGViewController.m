@@ -32,7 +32,6 @@
     // Present the scene \\
     
     [skView presentScene:sceneMenu];
-    
 }
 
 - (BOOL)shouldAutorotate
