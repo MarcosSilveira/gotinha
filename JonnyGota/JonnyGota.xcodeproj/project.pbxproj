@@ -114,6 +114,7 @@
 		B157BDA819A267E400ACA4C1 /* JAGObjeto.m in Sources */ = {isa = PBXBuildFile; fileRef = B157BDA719A267E400ACA4C1 /* JAGObjeto.m */; };
 		B157BDB619AD14A700ACA4C1 /* JAGMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B157BDB519AD14A700ACA4C1 /* JAGMenu.m */; };
 		B1D9C13319DC86E3005ED4A1 /* levelX.png in Resources */ = {isa = PBXBuildFile; fileRef = B1D9C13219DC86E3005ED4A1 /* levelX.png */; };
+		B1D9C13619DDC26E005ED4A1 /* DSMultilineLabelNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D9C13519DDC26E005ED4A1 /* DSMultilineLabelNode.m */; };
 		B1E9587B19B77718002302D7 /* Raio.sks in Resources */ = {isa = PBXBuildFile; fileRef = B1E9587A19B77718002302D7 /* Raio.sks */; };
 		B1E9587E19B7783C002302D7 /* JAGSparkRaio.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E9587D19B7783C002302D7 /* JAGSparkRaio.m */; };
 /* End PBXBuildFile section */
@@ -274,6 +275,8 @@
 		B157BDB419AD14A700ACA4C1 /* JAGMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGMenu.h; path = ../JAGMenu.h; sourceTree = "<group>"; };
 		B157BDB519AD14A700ACA4C1 /* JAGMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGMenu.m; path = ../JAGMenu.m; sourceTree = "<group>"; };
 		B1D9C13219DC86E3005ED4A1 /* levelX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = levelX.png; sourceTree = "<group>"; };
+		B1D9C13419DDC26E005ED4A1 /* DSMultilineLabelNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSMultilineLabelNode.h; sourceTree = "<group>"; };
+		B1D9C13519DDC26E005ED4A1 /* DSMultilineLabelNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSMultilineLabelNode.m; sourceTree = "<group>"; };
 		B1E9587A19B77718002302D7 /* Raio.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Raio.sks; sourceTree = "<group>"; };
 		B1E9587C19B7783C002302D7 /* JAGSparkRaio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGSparkRaio.h; sourceTree = "<group>"; };
 		B1E9587D19B7783C002302D7 /* JAGSparkRaio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGSparkRaio.m; sourceTree = "<group>"; };
@@ -555,6 +558,8 @@
 		0BCC65F219DC8846004C517F /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				B1D9C13419DDC26E005ED4A1 /* DSMultilineLabelNode.h */,
+				B1D9C13519DDC26E005ED4A1 /* DSMultilineLabelNode.m */,
 				0BCC65F319DC88B1004C517F /* Barroco */,
 				0BCC65F619DC88B1004C517F /* vag */,
 			);
@@ -786,6 +791,7 @@
 				0B2C5258199A9F2A0065BB09 /* JAGChuva.m in Sources */,
 				0B3A045E1991164A00C7C39E /* main.m in Sources */,
 				0B9229C319C3206C00009EC4 /* LFCGzipUtility.m in Sources */,
+				B1D9C13619DDC26E005ED4A1 /* DSMultilineLabelNode.m in Sources */,
 				0B9229C619C3208900009EC4 /* JSTileMap.m in Sources */,
 				8D16279B1992942C00AD9F12 /* JAGTAreiaEnemy.m in Sources */,
 				8DF47BE319B635F30021AE2D /* JAGTrap.m in Sources */,
