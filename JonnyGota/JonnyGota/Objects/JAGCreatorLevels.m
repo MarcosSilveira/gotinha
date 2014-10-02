@@ -19,6 +19,7 @@
 #import "JAGTrap.h"
 #import "JSTileMap.h"
 #import "JAGPreparePoints.h"
+#import "DSMultilineLabelNode.h"
 
 @implementation JAGCreatorLevels
 
@@ -496,16 +497,19 @@
         
         // Tutorial
         
-        SKSpriteNode *tutorialView = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(128, 64)];
+        DSMultilineLabelNode *nodeLabel = [DSMultilineLabelNode labelNodeWithFontNamed:@"Courier"];
+        nodeLabel.text = @"Barcos, clica em alguma direção para a Gotinha poder andar... Na boa";
+
+        nodeLabel.fontSize = 12.0;
+        nodeLabel.paragraphWidth = 100;
+        
+        nodeLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+        
+        SKSpriteNode *tutorialView = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(128, 128)];
         tutorialView.position = CGPointMake(scene.size.width/1.15, scene.size.height/1.4);
         tutorialView.alpha = .5;
         
-        SKLabelNode *tutorialLabel = [[SKLabelNode alloc] initWithFontNamed:@"Courier"];
-        tutorialLabel.position = CGPointMake(0, 0);
-        tutorialLabel.fontSize = 13.0;
-        tutorialLabel.text = @"testando 123";
-        
-        [tutorialView addChild:tutorialLabel];
+        [tutorialView addChild:nodeLabel];
         [scene addChild:tutorialView];
          
         
