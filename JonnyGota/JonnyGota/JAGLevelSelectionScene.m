@@ -55,7 +55,7 @@
 
 -(void)recuperaVida{
         if (vidas_restantes<5 && !vidas_carregando) {
-        stopDate = [NSDate dateWithTimeIntervalSinceNow:30];
+        stopDate = [NSDate dateWithTimeIntervalSinceNow:2];
         NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
         [outputFormatter setDateFormat:@"HH:mm:ss"];
         stopDate_string= [outputFormatter stringFromDate:stopDate];
@@ -141,7 +141,7 @@
             
             
             //Setar um font size baseada na tela
-            labelNum.fontSize=self.frame.size.height*0.05;
+            labelNum.fontSize=self.frame.size.height*0.1;
             
             labelNum.text=[NSString stringWithFormat:@"%d",i];
             
@@ -151,7 +151,7 @@
             
             nodo.size = CGSizeMake(self.frame.size.width*.1, self.frame.size.height*.16);
             
-            labelNum.position=CGPointMake(-nodo.size.width*0.05, self.frame.size.height*0);
+            labelNum.position=CGPointMake(-nodo.size.width*0.03, self.frame.size.height*-0.04);
             
             nodo.name = [NSString stringWithFormat:@"%d",i];
             nodo.zPosition = 200;
