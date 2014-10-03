@@ -486,29 +486,29 @@
     tutorialView.position = CGPointMake(scene.size.width/1.15, scene.size.height/1.4);
     tutorialView.alpha = .5;
     
-    DSMultilineLabelNode *nodeLabel = [DSMultilineLabelNode labelNodeWithFontNamed:@"Courier"];
+    DSMultilineLabelNode *nodeLabel = [DSMultilineLabelNode labelNodeWithFontNamed:@"VAGRoundedStd-Thin"];
     nodeLabel.fontSize = 12.0;    
     nodeLabel.text = @"Funcione ";
     
     nodeLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
     
     SKAction *changeLabel = [SKAction sequence:@[[SKAction runBlock:^{
-        nodeLabel.text = @"Barcos, clica em alguma direção para a Gotinha poder andar... Na boa";
+        nodeLabel.text = @"Olá Gotinha! Seja bem-vinda! Que tal se mexer um pouco? Clique em alguma direção para que você possa andar.";
         nodeLabel.paragraphWidth = 100;
     }],
-                                                 [SKAction waitForDuration:10.0],
+                                                 [SKAction waitForDuration:13.0],
                                                  [SKAction runBlock:^{
-        nodeLabel.text = @"Barcos, seguinte... Clica na Gotinha para ela virar uma poça, tenta ai vai";
+        nodeLabel.text = @"Muito bem! Agora que sabe se mexer, quem sabe você dá um pequeno toque em sí própria, vamos ver o que acontece";
         nodeLabel.paragraphWidth = 100;
     }],
-                                                 [SKAction waitForDuration:10.0],
+                                                 [SKAction waitForDuration:13.0],
                                                  [SKAction runBlock:^{
-        nodeLabel.text = @"Agora meu caro amigo Barcos... Clica na Gotinha e arrasta ela.. Vê o qq acontece...";
+        nodeLabel.text = @"Isso aí! O que você acha sobre poder se dividir? Clique e arraste o dedo sobre sí mesma. ";
         nodeLabel.paragraphWidth = 100;
     }],
-                                                 [SKAction waitForDuration:10.0],
+                                                 [SKAction waitForDuration:13.0],
                                                  [SKAction runBlock:^{
-        nodeLabel.text = @"Boa Barcos! Pode andar por esse mundo a fora e encontrar a tua família! Vai q dá!";
+        nodeLabel.text = @"Agora sim! Você sabe muito bem controlar uma Gota, ande por essa casa e tente achar a sua família.";
         nodeLabel.paragraphWidth = 100;
     }]]];
     
