@@ -52,7 +52,7 @@
         else{
 //            nodo=[[SKSpriteNode alloc]initWithImageNamed:nome];
             
-            nodo=[[SKSpriteNode alloc] initWithImageNamed:@"levelX"];
+            nodo=[[SKSpriteNode alloc] initWithImageNamed:@"lvlX"];
             
             SKLabelNode *labelNum=[[SKLabelNode alloc] initWithFontNamed:@"VAGRoundedStd-Thin"];
             
@@ -68,7 +68,7 @@
             
             nodo.size = CGSizeMake(self.frame.size.width*.1, self.frame.size.height*.16);
             
-            labelNum.position=CGPointMake(-nodo.size.width/8, -5);
+            labelNum.position=CGPointMake(-nodo.size.width/20, -7);
             
 
         
