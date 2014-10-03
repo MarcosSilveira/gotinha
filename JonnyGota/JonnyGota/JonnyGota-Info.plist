@@ -6,6 +6,7 @@
 	<array>
 		<string>VAGRoundedStd-Thin.otf</string>
 		<string>VAGRoundedStd-Light.otf</string>
+		<string>VAGRoundedStd-Bold.otf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
