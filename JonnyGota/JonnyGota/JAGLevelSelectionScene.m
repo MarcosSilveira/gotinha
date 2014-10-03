@@ -135,7 +135,7 @@
         else{
             //            nodo=[[SKSpriteNode alloc]initWithImageNamed:nome];
             
-            nodo=[[SKSpriteNode alloc] initWithImageNamed:@"levelX"];
+            nodo=[[SKSpriteNode alloc] initWithImageNamed:@"lvlX"];
             
             SKLabelNode *labelNum=[[SKLabelNode alloc] initWithFontNamed:@"VAGRoundedStd-Bold"];
             
