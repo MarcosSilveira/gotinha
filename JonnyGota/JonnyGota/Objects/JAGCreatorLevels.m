@@ -27,7 +27,7 @@
 + (NSNumber *)numberOfLevels:(int)mundo{
     switch (mundo) {
         case 1:
-            return @3;
+            return @4;
             break;
             
         default:
@@ -381,6 +381,7 @@
     JAGFonte *fonte = [[JAGFonte alloc] initWithPosition:[scene.level calculateTile:CGPointMake(6, 13)] withSprite:fonteSprite];
     [scene.cropNode addChild:porta];
     [scene.cropNode addChild:fonte];
+    
     [porta vincularBotao:presao];
     
     [scene.portas addObject:porta];
@@ -601,7 +602,119 @@
     //    TMXLayer *tile;
     //    TMXLayer *bg;
     
+    JSTileMap* tiledMap = [JSTileMap mapNamed:@"map3.tmx"];
+    if (tiledMap){
+        
+        
+        [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
+        
+        
+        //Gotinha
+        
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 1)] withSize:tiledMap.tileSize];
+        
+        
+        
+        
+         //Config Map
+        [JAGCreatorLevels configMap:scene withTtile:tiledMap];
+        
+        
+        
+        
+        //Add objetos
+        
+        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(2, 18)]];
+        
+        [scene.cropNode addChild:scene.level.chuva];
+        
+        //Add Monstros
+        
+        
+        
+        //Portas
+        
+        
+        
+        //Config de hud e fase
+        [JAGCreatorLevels configHud:scene];
+        
+    }
+}
+
++ (void)initializeLevel04ofWorld01onScene:(JAGPlayGameScene *)scene
+{
+    //    JSTileMap *map;
+    //    TMXLayer *tile;
+    //    TMXLayer *bg;
+    
     JSTileMap* tiledMap = [JSTileMap mapNamed:@"map4.tmx"];
+    if (tiledMap){
+        
+        
+        [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
+        
+        
+        //Gotinha
+        
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
+        
+        
+        //Colocar Portas
+
+        //Botao 17/12
+        
+        JAGPressao *presao = [[JAGPressao alloc] initWithPosition:[scene.level calculateTile:CGPointMake(17, 12)] withTipo:3 withSize:tiledMap.tileSize];
+        
+        
+        
+        
+        //Porta 16/9
+        
+        SKSpriteNode *spritePor = [[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size:CGSizeMake(scene.level.tileSize, scene.level.tileSize)];
+
+        
+        JAGPorta *porta = [[JAGPorta alloc] initWithPosition:[scene.level calculateTile:CGPointMake(16, 9)] withSprite:spritePor];
+        
+        [porta vincularBotao:presao];
+        
+        [scene.portas addObject:porta];
+        
+        //Config Map Antes de colocar na scene
+        [JAGCreatorLevels configMap:scene withTtile:tiledMap];
+        
+
+        [scene.cropNode addChild:presao];
+        [scene.cropNode addChild:porta];
+        
+        
+        //Add objetos
+        
+        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(18, 18)]];
+        
+        [scene.cropNode addChild:scene.level.chuva];
+        
+        //Add Monstros
+        
+        
+        
+        //Portas
+        
+        
+        
+        //Config de hud e fase
+        [JAGCreatorLevels configHud:scene];
+        
+    }
+}
+
++ (void)initializeLevel05ofWorld01onScene:(JAGPlayGameScene *)scene
+{
+    //    JSTileMap *map;
+    //    TMXLayer *tile;
+    //    TMXLayer *bg;
+    
+    JSTileMap* tiledMap = [JSTileMap mapNamed:@"map5.tmx"];
     if (tiledMap){
         
         
@@ -615,7 +728,7 @@
         
         
         
-         //Config Map
+        //Config Map
         [JAGCreatorLevels configMap:scene withTtile:tiledMap];
         
         
@@ -640,6 +753,239 @@
         
     }
 }
+
++ (void)initializeLevel06ofWorld01onScene:(JAGPlayGameScene *)scene
+{
+    //    JSTileMap *map;
+    //    TMXLayer *tile;
+    //    TMXLayer *bg;
+    
+    JSTileMap* tiledMap = [JSTileMap mapNamed:@"map6.tmx"];
+    if (tiledMap){
+        
+    
+        [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
+        
+        
+        //Gotinha
+        
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
+        
+        
+        
+        
+        //Config Map
+        [JAGCreatorLevels configMap:scene withTtile:tiledMap];
+        
+        
+        
+        
+        //Add objetos
+        
+        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(18, 18)]];
+        
+        [scene.cropNode addChild:scene.level.chuva];
+        
+        //Add Monstros
+        
+        
+        
+        //Portas
+        
+        
+        
+        //Config de hud e fase
+        [JAGCreatorLevels configHud:scene];
+        
+    }
+}
+
++ (void)initializeLevel07ofWorld01onScene:(JAGPlayGameScene *)scene
+{
+    //    JSTileMap *map;
+    //    TMXLayer *tile;
+    //    TMXLayer *bg;
+    
+    JSTileMap* tiledMap = [JSTileMap mapNamed:@"map7.tmx"];
+    if (tiledMap){
+        
+        
+        [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
+        
+        
+        //Gotinha
+        
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
+        
+        
+        
+        
+        //Config Map
+        [JAGCreatorLevels configMap:scene withTtile:tiledMap];
+        
+        
+        
+        
+        //Add objetos
+        
+        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(18, 18)]];
+        
+        [scene.cropNode addChild:scene.level.chuva];
+        
+        //Add Monstros
+        
+        
+        
+        //Portas
+        
+        
+        
+        //Config de hud e fase
+        [JAGCreatorLevels configHud:scene];
+        
+    }
+}
+
++ (void)initializeLevel08ofWorld01onScene:(JAGPlayGameScene *)scene
+{
+    //    JSTileMap *map;
+    //    TMXLayer *tile;
+    //    TMXLayer *bg;
+    
+    JSTileMap* tiledMap = [JSTileMap mapNamed:@"map8.tmx"];
+    if (tiledMap){
+        
+        
+        [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
+        
+        
+        //Gotinha
+        
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
+        
+        
+        
+        
+        //Config Map
+        [JAGCreatorLevels configMap:scene withTtile:tiledMap];
+        
+        
+        
+        
+        //Add objetos
+        
+        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(18, 18)]];
+        
+        [scene.cropNode addChild:scene.level.chuva];
+        
+        //Add Monstros
+        
+        
+        
+        //Portas
+        
+        
+        
+        //Config de hud e fase
+        [JAGCreatorLevels configHud:scene];
+        
+    }
+}
+
++ (void)initializeLevel09ofWorld01onScene:(JAGPlayGameScene *)scene
+{
+    //    JSTileMap *map;
+    //    TMXLayer *tile;
+    //    TMXLayer *bg;
+    
+    JSTileMap* tiledMap = [JSTileMap mapNamed:@"map9.tmx"];
+    if (tiledMap){
+        
+        
+        [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
+        
+        
+        //Gotinha
+        
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
+        
+        
+        
+        
+        //Config Map
+        [JAGCreatorLevels configMap:scene withTtile:tiledMap];
+        
+        
+        
+        
+        //Add objetos
+        
+        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(18, 18)]];
+        
+        [scene.cropNode addChild:scene.level.chuva];
+        
+        //Add Monstros
+        
+        
+        
+        //Portas
+        
+        
+        
+        //Config de hud e fase
+        [JAGCreatorLevels configHud:scene];
+        
+    }
+}
+
++ (void)initializeLevel10ofWorld01onScene:(JAGPlayGameScene *)scene
+{
+    //    JSTileMap *map;
+    //    TMXLayer *tile;
+    //    TMXLayer *bg;
+    
+    JSTileMap* tiledMap = [JSTileMap mapNamed:@"map10.tmx"];
+    if (tiledMap){
+        
+        
+        [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
+        
+        
+        //Gotinha
+        
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
+        
+        
+        
+        
+        //Config Map
+        [JAGCreatorLevels configMap:scene withTtile:tiledMap];
+        
+        
+        
+        
+        //Add objetos
+        
+        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(18, 18)]];
+        
+        [scene.cropNode addChild:scene.level.chuva];
+        
+        //Add Monstros
+        
+        
+        
+        //Portas
+        
+        
+        
+        //Config de hud e fase
+        [JAGCreatorLevels configHud:scene];
+        
+    }
+}
+
+
+
 
 
 
