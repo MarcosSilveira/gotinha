@@ -88,7 +88,6 @@
 		8D4A4F4119AFA99300255468 /* Vapor.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8D4A4F3F19AFA99300255468 /* Vapor.sks */; };
 		8D4A4F4219AFA99300255468 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D4A4F4019AFA99300255468 /* spark.png */; };
 		8D560AA719D59BE8004586B6 /* JAGStoreScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D560AA619D59BE8004586B6 /* JAGStoreScene.m */; };
-		8D57C3B619DDBFF300982F09 /* heart_sem_sombra.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D57C3B519DDBFF300982F09 /* heart_sem_sombra.png */; };
 		8D6B5A4719CB496A00127198 /* enemies.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8D6B5A4619CB496A00127198 /* enemies.atlas */; };
 		8D7E78DC19D1F2E900126F42 /* hud_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E78DB19D1F2E900126F42 /* hud_back.png */; };
 		8D7E78DE19D1FB5900126F42 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E78DD19D1FB5900126F42 /* heart.png */; };
@@ -116,6 +115,7 @@
 		B157BDB619AD14A700ACA4C1 /* JAGMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B157BDB519AD14A700ACA4C1 /* JAGMenu.m */; };
 		B1D9C13619DDC26E005ED4A1 /* DSMultilineLabelNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D9C13519DDC26E005ED4A1 /* DSMultilineLabelNode.m */; };
 		B1D9C13819DEE644005ED4A1 /* lvlX.png in Resources */ = {isa = PBXBuildFile; fileRef = B1D9C13719DEE644005ED4A1 /* lvlX.png */; };
+		B1D9C13A19DF041B005ED4A1 /* heart_sem_sombra.png in Resources */ = {isa = PBXBuildFile; fileRef = B1D9C13919DF041B005ED4A1 /* heart_sem_sombra.png */; };
 		B1E9587B19B77718002302D7 /* Raio.sks in Resources */ = {isa = PBXBuildFile; fileRef = B1E9587A19B77718002302D7 /* Raio.sks */; };
 		B1E9587E19B7783C002302D7 /* JAGSparkRaio.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E9587D19B7783C002302D7 /* JAGSparkRaio.m */; };
 /* End PBXBuildFile section */
@@ -245,7 +245,6 @@
 		8D4A4F4019AFA99300255468 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		8D560AA519D59BE8004586B6 /* JAGStoreScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGStoreScene.h; sourceTree = "<group>"; };
 		8D560AA619D59BE8004586B6 /* JAGStoreScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGStoreScene.m; sourceTree = "<group>"; };
-		8D57C3B519DDBFF300982F09 /* heart_sem_sombra.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_sem_sombra.png; sourceTree = "<group>"; };
 		8D6B5A4619CB496A00127198 /* enemies.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = enemies.atlas; sourceTree = "<group>"; };
 		8D7E78DB19D1F2E900126F42 /* hud_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hud_back.png; sourceTree = "<group>"; };
 		8D7E78DD19D1FB5900126F42 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
@@ -279,6 +278,7 @@
 		B1D9C13419DDC26E005ED4A1 /* DSMultilineLabelNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSMultilineLabelNode.h; sourceTree = "<group>"; };
 		B1D9C13519DDC26E005ED4A1 /* DSMultilineLabelNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSMultilineLabelNode.m; sourceTree = "<group>"; };
 		B1D9C13719DEE644005ED4A1 /* lvlX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lvlX.png; sourceTree = "<group>"; };
+		B1D9C13919DF041B005ED4A1 /* heart_sem_sombra.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_sem_sombra.png; sourceTree = "<group>"; };
 		B1E9587A19B77718002302D7 /* Raio.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Raio.sks; sourceTree = "<group>"; };
 		B1E9587C19B7783C002302D7 /* JAGSparkRaio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGSparkRaio.h; sourceTree = "<group>"; };
 		B1E9587D19B7783C002302D7 /* JAGSparkRaio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGSparkRaio.m; sourceTree = "<group>"; };
@@ -597,7 +597,7 @@
 		8D4A4F3119A2843100255468 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				8D57C3B519DDBFF300982F09 /* heart_sem_sombra.png */,
+				B1D9C13919DF041B005ED4A1 /* heart_sem_sombra.png */,
 				8D1B20F819DC46E7007B9B9F /* vidas5.png */,
 				8D94D7C119DB4182002872F4 /* fogo_parado.png */,
 				8D35976019D86559009B6083 /* fase_semSombra1.png */,
@@ -711,7 +711,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D57C3B619DDBFF300982F09 /* heart_sem_sombra.png in Resources */,
+				B1D9C13A19DF041B005ED4A1 /* heart_sem_sombra.png in Resources */,
 				0B15AACA19D09A2100ED6110 /* map2.tmx in Resources */,
 				8DF47BD419B0B4EE0021AE2D /* spark.png in Resources */,
 				8D35976A19D86559009B6083 /* fase_semSombra5.png in Resources */,
