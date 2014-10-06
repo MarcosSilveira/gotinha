@@ -47,7 +47,7 @@
     self.physicsBody.restitution=0;
     self.physicsBody.categoryBitMask = GOTA;
     self.physicsBody.collisionBitMask = ATTACK | ENEMY |ITEM |PORTA | CHUVA | CHAVE |PAREDE;
-    self.physicsBody.contactTestBitMask = ATTACK | ENEMY | CONTROLE_TOQUE |ITEM | CHUVA |CHAVE | FONTE_DA_JUVENTUDE | PAREDE | TRAP;
+    self.physicsBody.contactTestBitMask = ATTACK | ENEMY | CONTROLE_TOQUE |ITEM | CHUVA |CHAVE | FONTE_DA_JUVENTUDE | PAREDE | TRAP|DIVIDIDA;
     [self configPhysics];  //herdado de character
     self.physicsBody.usesPreciseCollisionDetection=NO;
 
