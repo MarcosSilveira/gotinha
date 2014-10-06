@@ -23,7 +23,7 @@
 
 -(void)didMoveToView:(SKView *)view{
     
-    background = [[SKSpriteNode alloc]initWithImageNamed:@"loja_BG"];
+    background = [[SKSpriteNode alloc]initWithImageNamed:@"Loja_BG"];
     background.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
     background.size = self.frame.size;
     background.zPosition = 0;
