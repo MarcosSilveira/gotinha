@@ -849,6 +849,23 @@
          */
     }
     
+    if(((contact.bodyA.categoryBitMask==GOTA) && (contact.bodyB.categoryBitMask==DIVIDIDA))||
+        ((contact.bodyB.categoryBitMask==GOTA) && (contact.bodyA.categoryBitMask==DIVIDIDA))){
+        if(contact.bodyA.categoryBitMask==DIVIDIDA){
+            JAGGotaDividida *dividida=(JAGGotaDividida *)contact.bodyA.node;
+            if(dividida.pronto){
+                [dividida removeFromParent];
+            }
+                       
+        }else{
+            JAGGotaDividida *dividida=(JAGGotaDividida *)contact.bodyB.node;
+            
+            if(dividida.pronto){
+                [dividida removeFromParent];
+            }
+        }
+    }
+    
     
 //    //Melhorar Ia do monstro
 //    if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ENEMY)){

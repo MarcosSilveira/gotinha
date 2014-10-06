@@ -10,6 +10,8 @@
 
 @interface JAGGotaDividida : JAGCharacter
 
+@property bool pronto;
+
 -(id)initWithPosition:(CGPoint) position
              withSize:(CGSize) size;
 -(BOOL)verificaToque:(CGPoint) ponto;
