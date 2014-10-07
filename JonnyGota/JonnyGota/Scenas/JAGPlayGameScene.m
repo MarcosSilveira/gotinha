@@ -407,17 +407,21 @@
             
         }
 
+        //Dividir
         if (toque_moveu && tocou_gota && !frenetico) {
 //            [_cropNode addChild:[_gota dividir]];
             JAGGotaDividida* gota2;
             if (!_gota.escondida){
                 gota2=[_gota dividir];
+                [self.characteres addObject:gota2];
                 [_cropNode addChild:gota2];}
 
 //            [_cropNode addChild:[_gota dividirwithSentido:[self verificaSentido:toqueFinal with:_gota.position]]];
-            
-            
             int mul=2;
+            if(self.gota.sprite.size.width>60){
+               mul=8;
+            }
+            
             
             switch ([self verificaSentido:toqueFinal with:_gota.position]) {
                 case 1:
@@ -452,6 +456,8 @@
             [self runAction:liberaDivisao];
            
             toque_moveu = NO;
+            
+            
         } else {
             
            
@@ -694,7 +700,7 @@
         if([contact.bodyA.node.name isEqualToString:@"pressao"]){
             JAGPressao *pre=(JAGPressao *)contact.bodyA.node;
             
-            [pre pisar];
+            [pre pressionar:true];
             
             if(pre.tipo==2){
                 //Reseta o tempo
@@ -726,7 +732,7 @@
         if([contact.bodyA.node.name isEqualToString:@"pressao"]){
             JAGPressao *pre=(JAGPressao *)contact.bodyA.node;
             
-            [pre pisar];
+            [pre pressionar:true];
             
             if(pre.tipo==2){
                 //Reseta o tempo
@@ -893,7 +899,7 @@
                 _despresionar =[SKAction sequence:@[[SKAction waitForDuration:4],
                                                     [SKAction runBlock:^{
                     if(![pre pisado:_characteres]){
-                        [pre pisar];
+                        [pre pressionar:false];
                     }
                     
                     for (int i=0; i<_portas.count; i++) {
@@ -960,7 +966,7 @@
             }
             if(pre.tipo==3){
                 //Libera
-                [pre pisar];
+               [pre pressionar:true];
                 
                 for (int i=0; i<_portas.count; i++) {
                     JAGPorta *porta=_portas[i];

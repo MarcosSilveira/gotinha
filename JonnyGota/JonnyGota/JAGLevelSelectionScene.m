@@ -94,7 +94,7 @@
     }
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     JAGPlayGameScene *jogo;
     for (UITouch *touch in touches) {
         SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
@@ -139,11 +139,13 @@
             
             SKLabelNode *labelNum=[[SKLabelNode alloc] initWithFontNamed:@"VAGRoundedStd-Bold"];
             
-            
+           
             //Setar um font size baseada na tela
             labelNum.fontSize=self.frame.size.height*0.1;
             
             labelNum.text=[NSString stringWithFormat:@"%d",i];
+            
+            labelNum.name=[NSString stringWithFormat:@"%d",i];
             
             
             [nodo addChild:labelNum];

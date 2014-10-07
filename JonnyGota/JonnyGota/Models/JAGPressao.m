@@ -48,11 +48,14 @@
 
 -(void)pisar{
     if(!_pressionado){
+        
         _pressionado=true;
         }else{
+
         _pressionado=false;
     }
-    [self animar:!_pressionado];
+    
+        [self animar:!_pressionado];
    }
 
 
@@ -80,8 +83,8 @@
             }else{
             _pressionado=false;
         }
+         [self animar:!_pressionado];
     }
-    [self animar:_pressionado];
 }
 
 -(void)animar:(BOOL)anima{
