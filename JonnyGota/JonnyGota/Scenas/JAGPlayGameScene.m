@@ -144,8 +144,8 @@
     circleMask.fillColor = [SKColor clearColor];
     
     circleMask.position = CGPointMake(ponto.x-_gota.sprite.size.width,ponto.y-_gota.sprite.size.height);
-    area.alpha = 0.5;
-    circleMask.alpha = 0.5;
+    area.alpha = 0.9;
+    circleMask.alpha = 0.9;
     
   //  _cropNode.alpha = 0.5;
     area.zPosition = _cropNode.zPosition+1;
