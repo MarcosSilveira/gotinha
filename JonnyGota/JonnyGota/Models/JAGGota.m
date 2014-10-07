@@ -59,7 +59,13 @@
     _emContatoFonte = NO;
     _comChave = NO;
     _aguaRestante = 10;
-    self.multi = size.width/3;
+    
+    if (size.width>100) {
+        self.multi = (size.width)/2;
+
+    }else{
+        self.multi = (size.width)/4;
+    }
     
     self.gotinhas=[[NSMutableArray alloc] init];
     self.qtGotinhas=2;
@@ -122,6 +128,8 @@
         temp.physicsBody=nil;
         [temp removeFromParent];
         [self.gotinhas removeObject:temp];
+        
+        temp=nil;
     }
 
 
