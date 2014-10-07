@@ -31,10 +31,10 @@
         [[NSUserDefaults standardUserDefaults]setFloat:0 forKey:@"tempo_para_vida"];
     }
     
-    
+    vidas_restantes = [[NSUserDefaults standardUserDefaults]integerForKey:@"vidas_restantes"];
     vidas_sprite = [[SKSpriteNode alloc] initWithImageNamed:@"heart_sem_sombra.png"];
-    vidas_sprite.position = CGPointMake(self.frame.size.width*0.8, self.frame.size.height*0.9);
-    vidas_sprite.size = CGSizeMake(vidas_sprite.texture.size.width/1.5, vidas_sprite.texture.size.height/1.5);
+    vidas_sprite.position = CGPointMake(self.frame.size.width*0.8, self.frame.size.height*0.89);
+    vidas_sprite.size = CGSizeMake(self.frame.size.width*0.06, self.frame.size.height*0.075);
     background = [[SKSpriteNode alloc]initWithImageNamed:@"levelSelectBG"];
     background.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
     background.size = self.frame.size;
@@ -83,6 +83,7 @@
         NSLog(@"diferenca: %f",timeDifference);
         if (timeDifference>=0) {
             vidas_restantes++;
+            [[NSUserDefaults standardUserDefaults]setInteger:vidas_restantes forKey:@"vidas_restantes"];
             vidas_carregando = NO;
         }
         
