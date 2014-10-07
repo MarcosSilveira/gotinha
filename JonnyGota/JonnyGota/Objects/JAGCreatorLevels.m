@@ -287,9 +287,6 @@
     
     [scene.cropNode addChild:scene.gota];
     
-    
-    
-    
     [scene addChild: scene.cropNode];
     
     [scene addChild:scene.hud];
@@ -532,7 +529,7 @@
         
         //Gotinha
         
-        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:CGSizeMake(tiledMap.tileSize.width*1.5, tiledMap.tileSize.height*1.5)];
         
         
         //Config Map
@@ -570,7 +567,7 @@
         [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
         //Gotinha
         
-        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(8, 3)] withSize:tiledMap.tileSize];
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(8, 3)] withSize:CGSizeMake(tiledMap.tileSize.width*1.5, tiledMap.tileSize.height*1.5)];
         
         
         
@@ -613,7 +610,7 @@
         //Add no crop
         [scene.cropNode addChild:fogo];
         
-        //Config de hud e faze
+        //Config de hud e fase
         [JAGCreatorLevels configHud:scene];
         
     }
@@ -680,7 +677,7 @@
         
         //Gotinha
         
-        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:CGSizeMake(tiledMap.tileSize.width*1.5, tiledMap.tileSize.height*1.5)];
         
         
         //Colocar Portas
