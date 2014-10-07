@@ -39,7 +39,7 @@
     background.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
     background.size = self.frame.size;
     background.zPosition = 0;
-    vidas_quantidade = [[SKLabelNode alloc]initWithFontNamed:@"barroco"];
+    vidas_quantidade = [[SKLabelNode alloc]initWithFontNamed:@"VAGRoundedStd-Bold"];
     vidas_quantidade.text = [NSString stringWithFormat:@" X %d",vidas_restantes];
     vidas_quantidade.position = CGPointMake(self.frame.size.width*0.87, self.frame.size.height*0.86);
     vidas_quantidade.fontSize = self.frame.size.width*0.05;
