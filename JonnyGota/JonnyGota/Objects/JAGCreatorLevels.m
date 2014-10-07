@@ -267,11 +267,14 @@
     
     scene.level.tileSize=tamanhot;
     
+    
     float scale=tamanhot /tiledMap.tileSize.width;
     
     [tiledMap setScale:scale];
     
     [tiledMap setTileSize:CGSizeMake(tamanhot, tamanhot)];
+    
+   
     
     
     scene.level.frequenciaRelampago = 10.0;
@@ -306,6 +309,8 @@
     
     [scene.cropNode addChild:[self createPhiscsBodytoLayer:tiledMap]];
     
+    
+   
     
     //Mascara
     
@@ -532,11 +537,16 @@
         scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:CGSizeMake(tiledMap.tileSize.width*1.5, tiledMap.tileSize.height*1.5)];
         
         
+        
+        
         //Config Map
         [JAGCreatorLevels configMap:scene withTtile:tiledMap];
         
         
-        //Add objetos
+        NSLog(@"Multi ? %d tile Size %f",scene.gota.multi,tiledMap.tileSize.width);
+
+//        scene.gota.multi=14;
+                //Add objetos
         
         scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(3, 20)]];
         
@@ -567,12 +577,14 @@
         [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
         //Gotinha
         
-        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(8, 3)] withSize:CGSizeMake(tiledMap.tileSize.width*1.5, tiledMap.tileSize.height*1.5)];
         
         
         
         //Mapa
         [JAGCreatorLevels configMap:scene withTtile:tiledMap];
+        
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(8, 3)] withSize:tiledMap.tileSize];
+
         
         
         //Add Monstros
