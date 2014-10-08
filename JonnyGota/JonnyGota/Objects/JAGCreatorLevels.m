@@ -313,8 +313,8 @@
    
     
     //Mascara
-    
-    [scene createMask:100 withPoint:(scene.gota.position)];
+
+    [scene createMask:scene.frame.size.height*0.33 withPoint:(scene.gota.position)];
 }
 
 
@@ -396,7 +396,7 @@
     
     //[scene.cropNode addChild:scene.gota];
     
-    [scene createMask:100 withPoint:(scene.gota.position)];
+    [scene createMask:scene.frame.size.height*0.33 withPoint:(scene.gota.position)];
     
     
     //Box limite
