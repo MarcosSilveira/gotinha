@@ -11,7 +11,9 @@
 
 @implementation JAGPorta
 
--(instancetype)initWithPosition:(CGPoint)ponto withSprite:(SKSpriteNode *)imagem{
+-(instancetype)initWithPosition:(CGPoint)ponto
+                     withSprite:(SKSpriteNode *)imagem
+                       withTipo:(int) tipo{
     self=[super init];
     
     _sprite=imagem;
@@ -20,6 +22,7 @@
     
     self.position=ponto;
     
+    self.tipo=tipo;
     
     self.name=@"porta";
 
@@ -38,7 +41,7 @@
     
     self.physicsBody.dynamic=NO;
     
-    self.physicsBody.restitution=0.015;
+    self.physicsBody.restitution=0.0;
     
     
     self.physicsBody.categoryBitMask = PORTA;
@@ -60,6 +63,8 @@
     
     if (temp) {
         //Se aberta animar
+        
+    }else{
         
     }
     _aberta=temp;

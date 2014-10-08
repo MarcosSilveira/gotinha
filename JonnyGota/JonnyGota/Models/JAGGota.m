@@ -121,16 +121,16 @@
     
     [self.gotinhas addObject:gota2];
     
-    if (self.gotinhas.count>self.qtGotinhas) {
-        JAGGotaDividida *temp=(JAGGotaDividida *)self.gotinhas[0];
-        
-        [temp removeAllActions];
-        temp.physicsBody=nil;
-        [temp removeFromParent];
-        [self.gotinhas removeObject:temp];
-        
-        temp=nil;
-    }
+//    if (self.gotinhas.count>self.qtGotinhas) {
+//        JAGGotaDividida *temp=(JAGGotaDividida *)self.gotinhas[0];
+//        
+//        [temp removeAllActions];
+//        temp.physicsBody=nil;
+//        [temp removeFromParent];
+//        [self.gotinhas removeObject:temp];
+//        
+//        temp=nil;
+//    }
 
 
     

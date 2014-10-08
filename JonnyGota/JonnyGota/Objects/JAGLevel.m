@@ -28,6 +28,8 @@
     
     _itens=[[NSMutableDictionary alloc] init];
     
+    _botoes=[[NSMutableArray alloc] init];
+    
     [self loadtile];
     
     return self;
