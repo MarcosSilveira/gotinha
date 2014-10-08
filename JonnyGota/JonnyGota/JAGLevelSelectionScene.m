@@ -25,16 +25,12 @@
 }
 
 -(void)didMoveToView:(SKView *)view{
-    
-    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"vidas_restantes"]==nil){
-        [[NSUserDefaults standardUserDefaults]setInteger:5 forKey:@"vidas_restantes"];
-        [[NSUserDefaults standardUserDefaults]setFloat:0 forKey:@"tempo_para_vida"];
-    }
+    [self verificaDefaults];
     
     
     vidas_sprite = [[SKSpriteNode alloc] initWithImageNamed:@"heart_sem_sombra.png"];
-    vidas_sprite.position = CGPointMake(self.frame.size.width*0.8, self.frame.size.height*0.9);
-    vidas_sprite.size = CGSizeMake(vidas_sprite.texture.size.width/1.5, vidas_sprite.texture.size.height/1.5);
+    vidas_sprite.position = CGPointMake(self.frame.size.width*0.8, self.frame.size.height*0.89);
+    vidas_sprite.size = CGSizeMake(self.frame.size.width*0.06, self.frame.size.height*0.075);
     background = [[SKSpriteNode alloc]initWithImageNamed:@"levelSelectBG"];
     background.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
     background.size = self.frame.size;
@@ -52,10 +48,50 @@
     
 
 }
-
+-(void)verificaDefaults{
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"vidas_restantes"]==nil){
+        [[NSUserDefaults standardUserDefaults]setInteger:5 forKey:@"vidas_restantes"];
+        [[NSUserDefaults standardUserDefaults]setFloat:0 forKey:@"tempo_para_vida"];
+    }
+    vidas_restantes = [[NSUserDefaults standardUserDefaults]integerForKey:@"vidas_restantes"];
+    if(vidas_restantes<5){
+        NSDate *dataSalva = [[NSUserDefaults standardUserDefaults]objectForKey:@"tempo_para_vida"];
+        NSDate *now = [NSDate date];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"HH:mm:ss"];
+        NSString *after_string = [dateFormatter stringFromDate:now];
+        NSString *data_salva_string = [dateFormatter stringFromDate:dataSalva];
+        [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"pt_BR_POSIX"]];
+        [dateFormatter setDateFormat:@"HH:mm:ss"];
+        
+        NSDate* firstDate = [dateFormatter dateFromString:data_salva_string];
+        NSDate* secondDate = [dateFormatter dateFromString:after_string];
+        
+        NSTimeInterval timeDifference = [secondDate timeIntervalSinceDate:firstDate];
+        
+        if (timeDifference>=0) {
+            vidas_restantes++;
+            if(timeDifference>=30){
+                vidas_restantes++;
+                if (timeDifference>=90) {
+                    vidas_restantes++;
+                    if (timeDifference>=120) {
+                        vidas_restantes++;
+                    }
+                }
+            }
+        
+            
+            NSLog(@"Diferença apos ligar: %f",timeDifference);
+        }
+    }
+    
+}
 -(void)recuperaVida{
         if (vidas_restantes<5 && !vidas_carregando) {
-        stopDate = [NSDate dateWithTimeIntervalSinceNow:2];
+        stopDate = [NSDate dateWithTimeIntervalSinceNow:30];
+        [[NSUserDefaults standardUserDefaults] setObject:stopDate forKey:@"tempo_para_vida"];
         NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
         [outputFormatter setDateFormat:@"HH:mm:ss"];
         stopDate_string= [outputFormatter stringFromDate:stopDate];
@@ -81,8 +117,11 @@
         }
 
         NSLog(@"diferenca: %f",timeDifference);
+        [[NSUserDefaults standardUserDefaults]setObject:stopDate forKey:@"tempo_para_vida"];
+        [[NSUserDefaults standardUserDefaults]setFloat:timeDifference forKey:@"ultimo_tempo"];
         if (timeDifference>=0) {
             vidas_restantes++;
+            [[NSUserDefaults standardUserDefaults]setInteger:vidas_restantes forKey:@"vidas_restantes"];
             vidas_carregando = NO;
         }
         
