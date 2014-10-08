@@ -694,12 +694,11 @@
 
         //Botao 17/12
         
-        NSLog(@"Tile size %d, 17 * ",scene.level.tileSize);
         
         JAGPressao *presao = [[JAGPressao alloc] initWithPosition:[scene.level calculateTile:CGPointMake(17, 12)] withTipo:3 withSize:tiledMap.tileSize];
         
         
-        
+        NSLog(@"Tile size %d, position x:%f position y:%f",scene.level.tileSize,presao.position.x,presao.position.y);
         
         //Porta 16/9
         
