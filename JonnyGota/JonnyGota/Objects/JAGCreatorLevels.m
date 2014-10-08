@@ -268,7 +268,7 @@
     scene.level.tileSize=tamanhot;
     
     
-    float scale=tamanhot /tiledMap.tileSize.width;
+    float scale=tamanhot /(tiledMap.tileSize.width);
     
     [tiledMap setScale:scale];
     
@@ -376,7 +376,7 @@
     
     SKSpriteNode *spritePor = [[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size:CGSizeMake(scene.level.tileSize, scene.level.tileSize)];
     
-    JAGPorta *porta = [[JAGPorta alloc] initWithPosition:[scene.level calculateTile:CGPointMake(9, 17)] withSprite:spritePor];
+    JAGPorta *porta = [[JAGPorta alloc] initWithPosition:[scene.level calculateTile:CGPointMake(9, 17)] withSprite:spritePor withTipo:3];
     
     //Fonte
     
@@ -534,9 +534,7 @@
         
         //Gotinha
         
-        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:CGSizeMake(tiledMap.tileSize.width*1.5, tiledMap.tileSize.height*1.5)];
-        
-        
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
         
         
         //Config Map
@@ -689,12 +687,14 @@
         
         //Gotinha
         
-        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:CGSizeMake(tiledMap.tileSize.width*1.5, tiledMap.tileSize.height*1.5)];
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
         
         
         //Colocar Portas
 
         //Botao 17/12
+        
+        NSLog(@"Tile size %d, 17 * ",scene.level.tileSize);
         
         JAGPressao *presao = [[JAGPressao alloc] initWithPosition:[scene.level calculateTile:CGPointMake(17, 12)] withTipo:3 withSize:tiledMap.tileSize];
         
@@ -706,11 +706,17 @@
         SKSpriteNode *spritePor = [[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size:CGSizeMake(scene.level.tileSize, scene.level.tileSize)];
 
         
-        JAGPorta *porta = [[JAGPorta alloc] initWithPosition:[scene.level calculateTile:CGPointMake(16, 9)] withSprite:spritePor];
+        JAGPorta *porta = [[JAGPorta alloc] initWithPosition:[scene.level calculateTile:CGPointMake(16, 9)] withSprite:spritePor withTipo:1];
         
         [porta vincularBotao:presao];
         
+        [scene.level.botoes addObject:presao];
+        
+        scene.portas=[[NSMutableArray alloc] init];
+        
         [scene.portas addObject:porta];
+        
+       
         
         //Config Map Antes de colocar na scene
         [JAGCreatorLevels configMap:scene withTtile:tiledMap];

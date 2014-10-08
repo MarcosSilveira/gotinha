@@ -20,6 +20,8 @@
 
 @property (nonatomic) NSMutableDictionary *itens;
 
+@property (nonatomic) NSMutableArray *botoes;
+
 @property (nonatomic) int width;
 
 @property (nonatomic) int height;
