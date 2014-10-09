@@ -487,7 +487,7 @@
     
     SKSpriteNode *tutorialView = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(128, 128)];
     tutorialView.position = CGPointMake(scene.size.width/1.15, scene.size.height/1.4);
-    tutorialView.alpha = .5;
+    tutorialView.alpha = .7;
     tutorialView.zPosition = 201;
     DSMultilineLabelNode *nodeLabel = [DSMultilineLabelNode labelNodeWithFontNamed:@"VAGRoundedStd-Thin"];
     nodeLabel.fontSize = 12.0;    
