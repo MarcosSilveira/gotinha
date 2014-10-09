@@ -487,7 +487,7 @@
 
 + (void)tutorial:(JAGPlayGameScene *) scene {
     
-    SKSpriteNode *tutorialView = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(128, 128)];
+    SKSpriteNode *tutorialView = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(scene.size.width*.3, scene.size.height*.3)];
     tutorialView.position = CGPointMake(scene.size.width/1.15, scene.size.height/1.4);
     tutorialView.alpha = .7;
     tutorialView.zPosition = 201;
