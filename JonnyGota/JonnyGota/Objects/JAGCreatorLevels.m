@@ -499,22 +499,22 @@
     
     SKAction *changeLabel = [SKAction sequence:@[[SKAction runBlock:^{
         nodeLabel.text = @"Olá Gotinha! Seja bem-vinda! Que tal se mexer um pouco? Clique em alguma direção para que você possa andar.";
-        nodeLabel.paragraphWidth = 100;
+        nodeLabel.paragraphWidth = tutorialView.size.width*.9;
     }],
                                                  [SKAction waitForDuration:13.0],
                                                  [SKAction runBlock:^{
         nodeLabel.text = @"Muito bem! Agora que sabe se mexer, quem sabe você dá um pequeno toque em sí própria, vamos ver o que acontece";
-        nodeLabel.paragraphWidth = 100;
+        nodeLabel.paragraphWidth = tutorialView.size.width*.9;
     }],
                                                  [SKAction waitForDuration:13.0],
                                                  [SKAction runBlock:^{
         nodeLabel.text = @"Isso aí! O que você acha sobre poder se dividir? Clique e arraste o dedo sobre sí mesma. ";
-        nodeLabel.paragraphWidth = 100;
+        nodeLabel.paragraphWidth = tutorialView.size.width*.9;
     }],
                                                  [SKAction waitForDuration:13.0],
                                                  [SKAction runBlock:^{
         nodeLabel.text = @"Agora sim! Você sabe muito bem controlar uma Gota, ande por essa casa e tente achar a sua família.";
-        nodeLabel.paragraphWidth = 100;
+        nodeLabel.paragraphWidth = tutorialView.size.width*.9;
     }]]];
     
     [scene runAction:changeLabel];
