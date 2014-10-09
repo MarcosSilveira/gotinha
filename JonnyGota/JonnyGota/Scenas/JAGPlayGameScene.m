@@ -418,7 +418,7 @@
                 
                 if (self.gota.gotinhas.count>self.gota.qtGotinhas) {
                     JAGGotaDividida *temp=(JAGGotaDividida *)self.gota.gotinhas[0];
-                    [self removeGotinha:temp];
+                    [self removeGotinha:temp withBotao:true];
                 }
                 [self.characteres addObject:gota2];
                 [_cropNode addChild:gota2];}
@@ -877,14 +877,17 @@
         if(contact.bodyA.categoryBitMask==DIVIDIDA){
             JAGGotaDividida *dividida=(JAGGotaDividida *)contact.bodyA.node;
             if(dividida.pronto){
-                [self removeGotinha:dividida];
+                [self removeGotinha:dividida withBotao:false];
+                
+                
             }
                        
         }else{
             JAGGotaDividida *dividida=(JAGGotaDividida *)contact.bodyB.node;
             
             if(dividida.pronto){
-                [self removeGotinha:dividida];
+                [dividida removeFromParent];
+                [self removeGotinha:dividida withBotao:false];
             }
         }
     }
@@ -1231,7 +1234,7 @@
 
 }
 
--(void)removeGotinha:(JAGGotaDividida *)temp{
+-(void)removeGotinha:(JAGGotaDividida *)temp withBotao:(bool) aplicar{
     [temp removeAllActions];
     temp.physicsBody=nil;
     [temp removeFromParent];
@@ -1243,9 +1246,12 @@
     
     temp=nil;
     
-    for (int i=0; i<self.level.botoes.count; i++) {
-        JAGPressao *pre=(JAGPressao *)self.level.botoes[i];
-        [self validaPressao:pre];
+    if (aplicar) {
+        for (int i=0; i<self.level.botoes.count; i++) {
+            JAGPressao *pre=(JAGPressao *)self.level.botoes[i];
+            [self validaPressao:pre];
+        }
+        
     }
 
 }
