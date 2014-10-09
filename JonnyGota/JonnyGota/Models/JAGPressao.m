@@ -17,7 +17,9 @@
                        withSize:(CGSize) tamanho{
     self=[super init];
     
-    _sprite=[[SKSpriteNode alloc] initWithColor:[SKColor cyanColor] size:tamanho];
+
+    
+    _sprite=[[SKSpriteNode alloc] initWithImageNamed:@"botao1.png"];
     
     self.physicsBody=[SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
     
@@ -88,16 +90,15 @@
 }
 
 -(void)animar:(BOOL)anima{
-    SKAction *actionChangeSprite;
     if(!anima){
-               actionChangeSprite = [SKAction colorizeWithColor:[SKColor whiteColor] colorBlendFactor:1.0 duration:0.0];
+        [self.sprite setTexture:[SKTexture textureWithImageNamed:@"botao2"]];
         
     }else{
       
-        actionChangeSprite = [SKAction colorizeWithColor:[SKColor cyanColor] colorBlendFactor:1.0 duration:0.0];
-        
+       
+         [self.sprite setTexture:[SKTexture textureWithImageNamed:@"botao1"]];
     }
-    [self.sprite runAction:actionChangeSprite];
+//    [self.sprite runAction:actionChangeSprite];
 
 }
 
