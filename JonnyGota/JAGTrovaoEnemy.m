@@ -43,7 +43,9 @@
     [self configPhysics];
     [self addChild:self.sprite];
     
-    self.visaoRanged = 150;
+    self.visao=size.width*1.8;
+    
+    self.visaoRanged = size.width*2.3;
     self.position = position;
     self.delayAttack = 5;
     
