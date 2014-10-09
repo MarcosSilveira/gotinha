@@ -53,6 +53,9 @@
 
 -(CGPoint)calculateTile:(CGPoint) pontoMatriz;
 
+
+-(CGPoint)calculateTileHalf:(CGPoint)pontoMatriz;
+
 -(CGSize)sizeTile;
 
 @property NSArray *tilesFromAtlas;
