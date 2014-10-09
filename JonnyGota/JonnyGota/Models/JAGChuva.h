@@ -19,7 +19,7 @@
 @property (nonatomic) Musica *chuva;
 @property (nonatomic) Musica *chuvaOposto;
 
--(instancetype)initWithPosition:(CGPoint) ponto;
+-(instancetype)initWithPosition:(CGPoint) ponto withSize:(CGSize)size;
 
 -(void)update:(JAGGota *)gota;
 
