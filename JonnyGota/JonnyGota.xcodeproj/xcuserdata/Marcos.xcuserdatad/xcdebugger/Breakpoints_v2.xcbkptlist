@@ -137,13 +137,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JonnyGota/Objects/JAGHud.m"
-            timestampString = "433432069.884401"
+            filePath = "JonnyGota/JAGLevelSelectionScene.m"
+            timestampString = "434639219.951124"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
-            landmarkName = "-update"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "-recuperaVida"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JonnyGota/JAGLevelSelectionScene.m"
-            timestampString = "434403114.891587"
+            timestampString = "434639918.52736"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "-verificaDefaults"
             landmarkType = "5">
          </BreakpointContent>

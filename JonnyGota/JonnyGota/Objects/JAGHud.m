@@ -8,7 +8,16 @@
 
 #import "JAGHud.h"
 
-@implementation JAGHud
+@implementation JAGHud{
+    int vidas_diferenca_tempo_depois;
+    int vidas_diferenca_tempo_antes;
+    int vidas_restantes;
+    bool vidas_carregando;
+    bool sincronizado;
+    NSDate * stopDate;
+    NSString *stopDate_string;
+    
+}
 
 -(instancetype)initWithTempo:(int)tempo withVida:(int)vida saude:(float)saude withWindowSize:(CGSize)size{
     self= [super init];
@@ -19,7 +28,8 @@
         textura = [SKTexture textureWithImageNamed:textureName];
         _saude_sprites[i] = textura;
     }
-    
+
+    [self verificaDefaults];
     
     textura =[SKTexture textureWithImageNamed:@"hud_back.png"];
     
@@ -50,7 +60,7 @@
     _pauseBT.position = CGPointMake(size.width*0.11, size.height*0.96);
     _pauseBT.name = @"pauseBT";
     _tempoRestante=tempo;
-    _vidaRestante=vida;
+//    _vidaRestante=vida;
     
     NSString *fonte=@"AvenirNext-Bold";
     
@@ -82,6 +92,7 @@
 }
 
 -(void)update{
+    [self recuperaVida];
     _tempo.text=[NSString stringWithFormat:@"%ds",_tempoRestante];
     
     _vidas.text=[NSString stringWithFormat:@" x %d",_vidaRestante];
@@ -100,7 +111,7 @@
         
         
     }
- 
+
    else if (_gota.vida<=2) _life.texture = _saude_sprites[1];
     
    else if (_gota.vida<=3) _life.texture = _saude_sprites[2];
@@ -147,4 +158,93 @@
     SKAction *runs=[SKAction repeatAction:timer count:self.tempoRestante];
     [self runAction:runs];
 }
+
+
+-(void)verificaDefaults{
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"vidas_restantes"]==nil){
+        [[NSUserDefaults standardUserDefaults]setInteger:5 forKey:@"vidas_restantes"];
+        [[NSUserDefaults standardUserDefaults]setFloat:0 forKey:@"tempo_para_vida"];
+    }
+    _vidaRestante = [[NSUserDefaults standardUserDefaults]integerForKey:@"vidas_restantes"];
+    if(_vidaRestante<5){
+        NSDate *dataSalva = [[NSUserDefaults standardUserDefaults]objectForKey:@"tempo_para_vida"];
+        NSDate *now = [NSDate date];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"HH:mm:ss"];
+        NSString *after_string = [dateFormatter stringFromDate:now];
+        NSString *data_salva_string = [dateFormatter stringFromDate:dataSalva];
+        [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"pt_BR_POSIX"]];
+        [dateFormatter setDateFormat:@"HH:mm:ss"];
+        
+        NSDate* firstDate = [dateFormatter dateFromString:data_salva_string];
+        NSDate* secondDate = [dateFormatter dateFromString:after_string];
+        
+        NSTimeInterval timeDifference = [secondDate timeIntervalSinceDate:firstDate];
+        
+        if (timeDifference>=0) {
+            _vidaRestante++;
+            if(timeDifference>=30){
+                _vidaRestante++;
+                if (timeDifference>=90) {
+                    _vidaRestante++;
+                    if (timeDifference>=120) {
+                        _vidaRestante++;
+                    }
+                }
+            }
+            
+            
+            NSLog(@"Diferença apos ligar: %f",timeDifference);
+        }
+    }
+    
+}
+
+-(void)recuperaVida{
+    if (_vidaRestante<5 && !vidas_carregando) {
+        stopDate = [NSDate dateWithTimeIntervalSinceNow:30];
+        [[NSUserDefaults standardUserDefaults] setObject:stopDate forKey:@"tempo_para_vida"];
+        NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
+        [outputFormatter setDateFormat:@"HH:mm:ss"];
+        stopDate_string= [outputFormatter stringFromDate:stopDate];
+        vidas_carregando = !vidas_carregando;
+    }
+    
+    if (_vidaRestante<5 && vidas_carregando) {
+        NSDate *after = [NSDate date];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"HH:mm:ss"];
+        NSString *after_string = [dateFormatter stringFromDate:after];
+        [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"pt_BR_POSIX"]];
+        [dateFormatter setDateFormat:@"HH:mm:ss"];
+        
+        NSDate* firstDate = [dateFormatter dateFromString:stopDate_string];
+        NSDate* secondDate = [dateFormatter dateFromString:after_string];
+        
+        NSTimeInterval timeDifference = [secondDate timeIntervalSinceDate:firstDate];
+        if (!sincronizado) {
+            vidas_diferenca_tempo_antes = timeDifference;
+            sincronizado = YES;
+        }
+        
+        NSLog(@"diferenca: %f",timeDifference);
+        [[NSUserDefaults standardUserDefaults]setObject:stopDate forKey:@"tempo_para_vida"];
+        [[NSUserDefaults standardUserDefaults]setFloat:timeDifference forKey:@"ultimo_tempo"];
+        if (timeDifference>=0) {
+            vidas_restantes++;
+            [[NSUserDefaults standardUserDefaults]setInteger:vidas_restantes forKey:@"vidas_restantes"];
+            vidas_carregando = NO;
+        }
+        
+        if (vidas_restantes>=5) {
+            vidas_carregando = NO;
+        }
+        
+        
+    }
+}
+
+
 @end
