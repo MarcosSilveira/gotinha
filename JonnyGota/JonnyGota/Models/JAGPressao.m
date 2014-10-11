@@ -21,6 +21,8 @@
     
     _sprite=[[SKSpriteNode alloc] initWithImageNamed:@"botao1.png"];
     
+    _sprite.size=tamanho;
+    
     self.physicsBody=[SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
     
     self.physicsBody.dynamic=NO;

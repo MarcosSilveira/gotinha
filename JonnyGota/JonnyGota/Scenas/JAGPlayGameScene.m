@@ -80,6 +80,7 @@
 
     return self;
 }
+
 -(void)presentGameOver:(int)withOP{
     /* Configuração e apresentação da popup de game over
      OP é utilizado para definir a situação atual, em cada caso, os botões da popup serão
@@ -89,6 +90,7 @@
      -Fim de fase perdendo com vida restante
      -Fim de fase perdendo sem vida restante */
     if (withOP == 0) {
+        
         
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
         GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
@@ -144,8 +146,6 @@
     circleMask.fillColor = [SKColor clearColor];
     
     circleMask.position = CGPointMake(ponto.x-_gota.sprite.size.width,ponto.y-_gota.sprite.size.height);
-    area.alpha = 0.9;
-    circleMask.alpha = 0.9;
     
   //  _cropNode.alpha = 0.5;
     area.zPosition = _cropNode.zPosition+1;
@@ -155,7 +155,27 @@
 
 }
 
--(void)fadeMask{
+-(SKShapeNode *)createCircleToMask:(int) radius
+                         {
+    
+    SKShapeNode *circleNew=[[SKShapeNode alloc ]init];
+    
+    CGMutablePathRef circle = CGPathCreateMutable();
+    CGPathAddArc(circle, NULL, 0, 0, 1, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
+    
+    circleNew.path = circle;
+    circleNew.lineWidth = radius*2.5; // replace 100 with DOUBLE the desired radius of the circle
+    circleNew.name = @"circleMask";
+    circleNew.userInteractionEnabled = NO;
+    circleNew.fillColor = [SKColor clearColor];
+    
+    circleNew.position = CGPointMake(_gota.position.x-_gota.sprite.size.width,_gota.position.y-_gota.sprite.size.height);
+   
+   
+    return circleNew;
+}
+
+-(void)fadeMask2{
     double frequencia = _level.frequenciaRelampago;
     NSTimeInterval tempo = frequencia;
     SKAction *controle = [SKAction sequence:@[[SKAction waitForDuration:tempo],
@@ -166,13 +186,26 @@
                                                           [SKAction runBlock:^{
             //        [circleMask runAction:fadeIn];
             //        [circleMask removeFromParent];
-            [_cropNode setMaskNode:nil];
+//            [_cropNode setMaskNode:nil];
+            SKShapeNode *novaVisao=[self createCircleToMask:self.frame.size.width/2];
             
-            SKAction *retornaMascara=[SKAction sequence:@[[SKAction waitForDuration:0.05],
+            
+            [area addChild:novaVisao];
+            
+            SKAction *newaction = [SKAction fadeAlphaTo:0 duration:0.5];
+            
+            
+            
+            [novaVisao runAction:newaction];
+            
+            
+            SKAction *retornaMascara=[SKAction sequence:@[[SKAction waitForDuration:1.5],
                                                                [SKAction runBlock:^{
                 //            [circleMask runAction:fadeOut];
                 //            [area addChild:circleMask];
-                [_cropNode setMaskNode:area];
+//                [_cropNode setMaskNode:area];
+                [novaVisao removeFromParent];
+                
                 
             }]]];
             
@@ -187,6 +220,27 @@
 
     
 }
+
+-(void)fadeMask{
+    double frequencia = _level.frequenciaRelampago;
+    NSTimeInterval tempo = frequencia;
+    SKAction *controle = [SKAction sequence:@[[SKAction waitForDuration:tempo],
+                                              [SKAction runBlock:^{
+        [relampago play];
+              //Criar novo campo de visão.
+        
+        SKAction *scaler=[SKAction sequence:@[[SKAction scaleBy:2 duration:0],[SKAction scaleBy:0.5 duration:1.5]]];
+        [circleMask runAction:scaler];
+        
+        
+        }]]] ;
+    
+    controle=[SKAction repeatActionForever:controle];
+    [self runAction:controle];
+    
+    
+}
+
 
 #pragma mark - Ações
 //-(void)divideGota{
@@ -254,6 +308,46 @@
             tipo = 2;
     }
 
+    return tipo;
+}
+
+-(int)verificaSentido2: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto {
+    //  toqueFinal = pontoReferencia;
+    int tipo;
+    
+    float difx = pontoObjeto.x - pontoReferencia.x;
+    
+    //float dify=toqueFinals.y-toqueFinal.y;
+    
+    float dify = pontoObjeto.y - pontoReferencia.y;
+    
+    BOOL negx = false;;
+    
+    bool negy = false;
+    
+    
+    if(difx < 0){
+        negx = true;
+        difx *= -1;
+    }
+    if(dify < 0){
+        negy = true;
+        dify *= -1;
+    }
+    
+    if (difx > dify+50) {
+        if(negx)
+            tipo = 4;
+        else
+            tipo = 3;
+    }
+    else{
+        if(negy)
+            tipo = 1;
+        else
+            tipo = 2;
+    }
+    
     return tipo;
 }
 
@@ -418,7 +512,7 @@
                 
                 if (self.gota.gotinhas.count>self.gota.qtGotinhas) {
                     JAGGotaDividida *temp=(JAGGotaDividida *)self.gota.gotinhas[0];
-                    [self removeGotinha:temp];
+                    [self removeGotinha:temp withBotao:true];
                 }
                 [self.characteres addObject:gota2];
                 [_cropNode addChild:gota2];}
@@ -516,7 +610,7 @@
         }
         else if (!pauseDetected) {
             
-        int temp=[self verificaSentido:toqueFinal with:_gota.position];
+        int temp=[self verificaSentido2:toqueFinal with:_gota.position];
             
 
             
@@ -627,7 +721,6 @@
     
     queue = dispatch_queue_create("actionEnemys",
                                   NULL);
-
 
     dispatch_async(queue, ^{
         [self actionsEnemys];
@@ -877,14 +970,17 @@
         if(contact.bodyA.categoryBitMask==DIVIDIDA){
             JAGGotaDividida *dividida=(JAGGotaDividida *)contact.bodyA.node;
             if(dividida.pronto){
-                [self removeGotinha:dividida];
+                [self removeGotinha:dividida withBotao:false];
+                
+                
             }
                        
         }else{
             JAGGotaDividida *dividida=(JAGGotaDividida *)contact.bodyB.node;
             
             if(dividida.pronto){
-                [self removeGotinha:dividida];
+                [dividida removeFromParent];
+                [self removeGotinha:dividida withBotao:false];
             }
         }
     }
@@ -1023,10 +1119,7 @@
             self.gota.vida=15;
             self.hud.vidaRestante--;
             [self presentGameOver:0];
-            
-            
-            //        [self.gota changePosition:_posicaoInicial];
-            //        [self presentGameOver:1];
+        
             self.scene.view.paused=YES;
         }
     }
@@ -1228,10 +1321,9 @@
         JAGPorta *porta=_portas[i];
         [porta verificarBotoes];
     }
-
 }
 
--(void)removeGotinha:(JAGGotaDividida *)temp{
+-(void)removeGotinha:(JAGGotaDividida *)temp withBotao:(bool) aplicar{
     [temp removeAllActions];
     temp.physicsBody=nil;
     [temp removeFromParent];
@@ -1243,12 +1335,16 @@
     
     temp=nil;
     
-    for (int i=0; i<self.level.botoes.count; i++) {
-        JAGPressao *pre=(JAGPressao *)self.level.botoes[i];
-        [self validaPressao:pre];
+    if (aplicar) {
+        for (int i=0; i<self.level.botoes.count; i++) {
+            JAGPressao *pre=(JAGPressao *)self.level.botoes[i];
+            [self validaPressao:pre];
+        }
+        
     }
 
 }
+
 
 
 
