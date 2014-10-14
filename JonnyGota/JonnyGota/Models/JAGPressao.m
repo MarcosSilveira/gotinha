@@ -30,6 +30,8 @@
     self.physicsBody.categoryBitMask = PRESSAO;
     self.physicsBody.collisionBitMask = GOTA|ENEMY;
     self.physicsBody.contactTestBitMask = GOTA |ENEMY;
+    
+//    self.sprite.colorBlendFactor=1.10;
 
     self.name=@"pressao";
     

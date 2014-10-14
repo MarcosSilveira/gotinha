@@ -28,7 +28,7 @@
 + (NSNumber *)numberOfLevels:(int)mundo{
     switch (mundo) {
         case 1:
-            return @4;
+            return @6;
             break;
             
         default:
@@ -760,7 +760,7 @@
         
         //Gotinha
         
-        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(13, 18)] withSize:tiledMap.tileSize];
         
         
         
@@ -770,10 +770,52 @@
         
         
         
+        JAGFogoEnemy *fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(6, 10)] withSize:tiledMap.tileSize];
+        fogo.dano=10;
+        
+        [fogo activateIa];
+        
+        NSMutableArray *paths = [[NSMutableArray alloc] init];
+        [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y-100)]];
+        [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y)]];
+        
+        fogo.arrPointsPath = paths;
+        
+        
+        [scene.inimigos addObject:fogo];
+
+        
+        JAGPressao *presao = [[JAGPressao alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(4, 2)] withTipo:1 withSize:tiledMap.tileSize];
+        
+        
+        
+        
+        SKSpriteNode *spritePor = [[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size:CGSizeMake(scene.level.tileSize, scene.level.tileSize)];
+        
+        
+        JAGPorta *porta = [[JAGPorta alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(10, 6)] withSprite:spritePor withTipo:1];
+        
+        [porta vincularBotao:presao];
+        
+        [scene.level.botoes addObject:presao];
+        
+        scene.portas=[[NSMutableArray alloc] init];
+        
+        [scene.portas addObject:porta];
+
+
+        
         
         //Add objetos
         
-        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(18, 18)] withSize:tiledMap.tileSize];
+        
+        
+        [scene.cropNode addChild:fogo];
+        
+        [scene.cropNode addChild:presao];
+        [scene.cropNode addChild:porta];
+        
+        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(17, 18)] withSize:tiledMap.tileSize];
         
         [scene.cropNode addChild:scene.level.chuva];
         
@@ -806,9 +848,10 @@
         
         //Gotinha
         
-        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(9, 2)] withSize:tiledMap.tileSize];
         
-        
+        scene.portas=[[NSMutableArray alloc] init];
+
         
         
         //Config Map
@@ -816,10 +859,66 @@
         
         
         
+        JAGPressao *presao = [[JAGPressao alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(1, 2)] withTipo:1 withSize:tiledMap.tileSize];
+        
+        JAGPressao *presao2 = [[JAGPressao alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(18, 1)] withTipo:1 withSize:tiledMap.tileSize];
+        
+        JAGPressao *presao3 = [[JAGPressao alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(18, 18)] withTipo:3 withSize:tiledMap.tileSize];
+
+        
+         [scene.level.botoes addObject:presao];
+        
+         [scene.level.botoes addObject:presao2];
+        
+         [scene.level.botoes addObject:presao3];
+        
+        
+        
+        SKSpriteNode *spritePor = [[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size:CGSizeMake(scene.level.tileSize, scene.level.tileSize)];
+        
+        
+        JAGPorta *porta = [[JAGPorta alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(9, 13)] withSprite:spritePor withTipo:1];
+        
+        [porta vincularBotao:presao];
+        
+        [porta vincularBotao:presao2];
+        
+        [porta vincularBotao:presao3];
+        
+        
+        
+        [scene.portas addObject:porta];
+        
+        
+        SKSpriteNode *spritePor2 = [[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size:CGSizeMake(scene.level.tileSize, scene.level.tileSize)];
+
+        
+        JAGPorta *porta2 = [[JAGPorta alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(10, 13)] withSprite:spritePor2 withTipo:1];
+        
+        
+        [porta2 vincularBotao:presao];
+        
+        [porta2 vincularBotao:presao2];
+        
+        [porta2 vincularBotao:presao3];
+        
+        
+        [scene.portas addObject:porta2];
+
+
+        
+        
         
         //Add objetos
         
-        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(18, 18)] withSize:tiledMap.tileSize];
+        [scene.cropNode addChild:presao];
+        [scene.cropNode addChild:presao2];
+        [scene.cropNode addChild:presao3];
+        [scene.cropNode addChild:porta];
+        [scene.cropNode addChild:porta2];
+        
+        
+        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(10, 16)] withSize:tiledMap.tileSize];
         
         [scene.cropNode addChild:scene.level.chuva];
         
