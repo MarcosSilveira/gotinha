@@ -28,6 +28,7 @@
 		0B15AADF19D09B0500ED6110 /* map10.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0B15AAD619D09B0500ED6110 /* map10.tmx */; };
 		0B2C5255199A99A30065BB09 /* JAGLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C5254199A99A30065BB09 /* JAGLevel.m */; };
 		0B2C5258199A9F2A0065BB09 /* JAGChuva.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C5257199A9F2A0065BB09 /* JAGChuva.m */; };
+		0B31B44719ED9F04006761EA /* mapTeste.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0B31B44619ED9F04006761EA /* mapTeste.tmx */; };
 		0B3A04501991164A00C7C39E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3A044F1991164A00C7C39E /* Foundation.framework */; };
 		0B3A04521991164A00C7C39E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3A04511991164A00C7C39E /* CoreGraphics.framework */; };
 		0B3A04541991164A00C7C39E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3A04531991164A00C7C39E /* UIKit.framework */; };
@@ -164,6 +165,7 @@
 		0B2C5254199A99A30065BB09 /* JAGLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGLevel.m; path = JonnyGota/Objects/JAGLevel.m; sourceTree = "<group>"; };
 		0B2C5256199A9F2A0065BB09 /* JAGChuva.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGChuva.h; path = JonnyGota/Models/JAGChuva.h; sourceTree = "<group>"; };
 		0B2C5257199A9F2A0065BB09 /* JAGChuva.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGChuva.m; path = JonnyGota/Models/JAGChuva.m; sourceTree = "<group>"; };
+		0B31B44619ED9F04006761EA /* mapTeste.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = mapTeste.tmx; sourceTree = "<group>"; };
 		0B3A044C1991164A00C7C39E /* JonnyGota.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JonnyGota.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B3A044F1991164A00C7C39E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0B3A04511991164A00C7C39E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -401,6 +403,7 @@
 				0B15AAD419D09B0500ED6110 /* map8.tmx */,
 				0B15AAD519D09B0500ED6110 /* map9.tmx */,
 				0B15AAD619D09B0500ED6110 /* map10.tmx */,
+				0B31B44619ED9F04006761EA /* mapTeste.tmx */,
 				0B15AACC19D09AE100ED6110 /* TileSet.png */,
 			);
 			name = tilemaps;
@@ -795,6 +798,7 @@
 				8D11652919CC82F900F441E9 /* trovao.wav in Resources */,
 				0B97E39819CC981D0052ECF5 /* rain.caf in Resources */,
 				0B3A045C1991164A00C7C39E /* InfoPlist.strings in Resources */,
+				0B31B44719ED9F04006761EA /* mapTeste.tmx in Resources */,
 				0BCC660119DC88B1004C517F /* VAGRoundedStd-Light.otf in Resources */,
 				8D8DC57D19D2EC2F00E75949 /* vida7.png in Resources */,
 				0B3A046F1991164A00C7C39E /* Images.xcassets in Resources */,
