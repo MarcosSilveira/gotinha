@@ -1053,7 +1053,7 @@
         SKSpriteNode *spritePor = [[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size:CGSizeMake(scene.level.tileSize, scene.level.tileSize)];
         
         
-        JAGPorta *porta = [[JAGPorta alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(13, 13)] withSprite:spritePor withTipo:1];
+        JAGPorta *porta = [[JAGPorta alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(13, 14)] withSprite:spritePor withTipo:1];
         
         [porta vincularBotao:presao];
         
@@ -1069,7 +1069,7 @@
         SKSpriteNode *spritePor2 = [[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size:CGSizeMake(scene.level.tileSize, scene.level.tileSize)];
         
         
-        JAGPorta *porta2 = [[JAGPorta alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(14, 13)] withSprite:spritePor2 withTipo:1];
+        JAGPorta *porta2 = [[JAGPorta alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(14, 14)] withSprite:spritePor2 withTipo:1];
         
         
         [porta2 vincularBotao:presao];
