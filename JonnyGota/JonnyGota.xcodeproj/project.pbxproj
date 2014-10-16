@@ -104,6 +104,7 @@
 		8D94D7C219DB4182002872F4 /* fogo_parado.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D94D7C119DB4182002872F4 /* fogo_parado.png */; };
 		8DC0B80519D5D0420044E800 /* JAGLevelSelectionScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC0B80419D5D0420044E800 /* JAGLevelSelectionScene.m */; };
 		8DC0B80F19D61D290044E800 /* fase_trancada.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DC0B80E19D61D290044E800 /* fase_trancada.png */; };
+		8DDDDBEB19E83DB800A6BA44 /* fadeMask.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DDDDBEA19E83DB800A6BA44 /* fadeMask.png */; };
 		8DF47BD019B0AF1D0021AE2D /* JAGPerdaFogo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF47BCF19B0AF1D0021AE2D /* JAGPerdaFogo.m */; };
 		8DF47BD319B0B4EE0021AE2D /* Fogo.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8DF47BD119B0B4EE0021AE2D /* Fogo.sks */; };
 		8DF47BD419B0B4EE0021AE2D /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF47BD219B0B4EE0021AE2D /* spark.png */; };
@@ -262,6 +263,7 @@
 		8DC0B80319D5D0420044E800 /* JAGLevelSelectionScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGLevelSelectionScene.h; sourceTree = "<group>"; };
 		8DC0B80419D5D0420044E800 /* JAGLevelSelectionScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGLevelSelectionScene.m; sourceTree = "<group>"; };
 		8DC0B80E19D61D290044E800 /* fase_trancada.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fase_trancada.png; sourceTree = "<group>"; };
+		8DDDDBEA19E83DB800A6BA44 /* fadeMask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fadeMask.png; sourceTree = "<group>"; };
 		8DF47BCE19B0AF1D0021AE2D /* JAGPerdaFogo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGPerdaFogo.h; sourceTree = "<group>"; };
 		8DF47BCF19B0AF1D0021AE2D /* JAGPerdaFogo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGPerdaFogo.m; sourceTree = "<group>"; };
 		8DF47BD119B0B4EE0021AE2D /* Fogo.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Fogo.sks; path = JonnyGota/Fogo.sks; sourceTree = "<group>"; };
@@ -621,6 +623,7 @@
 		8D4A4F3119A2843100255468 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8DDDDBEA19E83DB800A6BA44 /* fadeMask.png */,
 				B1D9C13919DF041B005ED4A1 /* heart_sem_sombra.png */,
 				8D1B20F819DC46E7007B9B9F /* vidas5.png */,
 				8D94D7C119DB4182002872F4 /* fogo_parado.png */,
@@ -778,6 +781,7 @@
 				0B97E39B19CCA5C20052ECF5 /* granada.caf in Resources */,
 				8D8DC57C19D2EC2F00E75949 /* vida6.png in Resources */,
 				B1D9C13819DEE644005ED4A1 /* lvlX.png in Resources */,
+				8DDDDBEB19E83DB800A6BA44 /* fadeMask.png in Resources */,
 				0B15AAD719D09B0500ED6110 /* map1.tmx in Resources */,
 				8DF47BE019B4EB8C0021AE2D /* restart.png in Resources */,
 				8D8DC57619D2EC2F00E75949 /* vida0.png in Resources */,
