@@ -1029,7 +1029,7 @@
         
         scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 18)] withSize:tiledMap.tileSize];
         
-        
+        scene.portas=[[NSMutableArray alloc] init];
         
         
         //Config Map
@@ -1139,7 +1139,7 @@
     //    TMXLayer *tile;
     //    TMXLayer *bg;
     
-    JSTileMap* tiledMap = [JSTileMap mapNamed:@"mapTeste.tmx"];
+    JSTileMap* tiledMap = [JSTileMap mapNamed:@"map09.tmx"];
     if (tiledMap){
         
         

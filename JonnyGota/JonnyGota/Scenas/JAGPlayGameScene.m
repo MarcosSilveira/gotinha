@@ -75,7 +75,7 @@
         [self configuraParadaGota];
     }
     [self fadeMask];
-    self.cropNode.alpha = 0.8f;
+    self.cropNode.alpha = 0.9f;
     GONaTela = NO;
 
     return self;
@@ -86,7 +86,7 @@
      OP é utilizado para definir a situação atual, em cada caso, os botões da popup serão
      mostrados de formas diferentes e serão atribuidos a ações diferentes.
      A situações podem ser:
-     -Fim de fase ganhando
+     -Fim de fase ganhando -1
      -Fim de fase perdendo com vida restante
      -Fim de fase perdendo sem vida restante */
     if (withOP == 0) {
@@ -100,8 +100,8 @@
         button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
         button2.size =CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.2);
-        button1.name = @"button1";
-        button2.name = @"button2";
+        button1.name = @"reiniciar fase";
+        button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
         message.fontSize = self.frame.size.height*0.1;
         message.text = @"Fim de jogo!";
@@ -115,7 +115,32 @@
         GObackground.zPosition = 200;
         message.zPosition = 201;
     }
+    if (withOP == 1) {
         
+        GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
+        GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
+        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"proxima_fase"];
+        button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
+        button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
+        button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
+        button2.size =CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
+        button2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.2);
+        button1.name = @"proxima fase";
+        button2.name = @"menu inicial";
+        message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
+        message.fontSize = self.frame.size.height*0.07;
+        message.text = @"Parabéns! Você avançou para a próxima fase!";
+        message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
+        [self.scene addChild:GObackground];
+        [self.scene addChild:message];
+        [self.scene addChild:button1];
+        [self.scene addChild:button2];
+        button1.zPosition = 201;
+        button2.zPosition = 201;
+        GObackground.zPosition = 200;
+        message.zPosition = 201;
+    }
+
     GONaTela = YES;
 }
 
@@ -138,17 +163,21 @@
     
     CGMutablePathRef circle = CGPathCreateMutable();
     CGPathAddArc(circle, NULL, 0, 0, 1, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
-    
     circleMask.path = circle;
     circleMask.lineWidth = radius*2.5; // replace 100 with DOUBLE the desired radius of the circle
     circleMask.name = @"circleMask";
     circleMask.userInteractionEnabled = NO;
     circleMask.fillColor = [SKColor clearColor];
-    
     circleMask.position = CGPointMake(ponto.x-_gota.sprite.size.width,ponto.y-_gota.sprite.size.height);
-    
-  //  _cropNode.alpha = 0.5;
+    area.alpha = 0.9;
+    circleMask.alpha = 0.5;
+
+
+    fadeMask = [[SKSpriteNode alloc]initWithImageNamed:@"fadeMask.png"];
+//    fadeMask.size = CGSizeMake(self.frame.size.width/2, self.frame.size.height/2);
+    fadeMask.position = CGPointMake(self.frame.size.height/2, self.frame.size.width/2);
     area.zPosition = _cropNode.zPosition+1;
+    [_cropNode addChild:fadeMask];
     [area addChild:circleMask];
     //area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
     [_cropNode setMaskNode:area];
@@ -175,37 +204,25 @@
     return circleNew;
 }
 
+
 -(void)fadeMask2{
     double frequencia = _level.frequenciaRelampago;
     NSTimeInterval tempo = frequencia;
     SKAction *controle = [SKAction sequence:@[[SKAction waitForDuration:tempo],
                                               [SKAction runBlock:^{
         [relampago play];
-//        [self.scene runAction:[SKAction playSoundFileNamed:@"trovao.wav" waitForCompletion:NO]];
+        //        [self.scene runAction:[SKAction playSoundFileNamed:@"trovao.wav" waitForCompletion:NO]];
         SKAction *retiraMascara=[SKAction sequence:@[[SKAction waitForDuration:0.1],
-                                                          [SKAction runBlock:^{
+                                                     [SKAction runBlock:^{
             //        [circleMask runAction:fadeIn];
             //        [circleMask removeFromParent];
-//            [_cropNode setMaskNode:nil];
-            SKShapeNode *novaVisao=[self createCircleToMask:self.frame.size.width/2];
+            [_cropNode setMaskNode:nil];
             
-            
-            [area addChild:novaVisao];
-            
-            SKAction *newaction = [SKAction fadeAlphaTo:0 duration:0.5];
-            
-            
-            
-            [novaVisao runAction:newaction];
-            
-            
-            SKAction *retornaMascara=[SKAction sequence:@[[SKAction waitForDuration:1.5],
-                                                               [SKAction runBlock:^{
+            SKAction *retornaMascara=[SKAction sequence:@[[SKAction waitForDuration:0.05],
+                                                          [SKAction runBlock:^{
                 //            [circleMask runAction:fadeOut];
                 //            [area addChild:circleMask];
-//                [_cropNode setMaskNode:area];
-                [novaVisao removeFromParent];
-                
+                [_cropNode setMaskNode:area];
                 
             }]]];
             
@@ -217,9 +234,12 @@
     }]]];
     SKAction *repeater=[SKAction repeatActionForever:controle];
     [self runAction:repeater];
-
+    
     
 }
+
+
+
 
 -(void)fadeMask{
     double frequencia = _level.frequenciaRelampago;
@@ -473,7 +493,7 @@
         //menu gameover
         SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
         
-        if ([node.name isEqualToString:@"button1"]) {
+        if ([node.name isEqualToString:@"reiniciar fase"]) {
             NSLog(@"bt1 gameover");
             
             self.scene.view.paused=NO;
@@ -488,13 +508,29 @@
             
             [self.gota changePosition:self.posicaoInicial];
         }
-        else if([node.name isEqualToString:@"button2"]){
+        else if([node.name isEqualToString:@"menu inicial"]){
             NSLog(@"bt2 gameover");
             [self deallocSound];
             self.scene.view.paused = NO;
             GONaTela = NO;
             JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
+            [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
+            SKTransition *trans = [SKTransition fadeWithDuration:1.0];
             
+            [self.scene.view presentScene:scene transition:trans];
+            
+        }
+        else if([node.name isEqualToString:@"proxima fase"]){
+            [self nextLevel];
+            
+        }
+        else if([node.name isEqualToString:@"loja"]){
+            NSLog(@"bt2 gameover");
+            [self deallocSound];
+            self.scene.view.paused = NO;
+            GONaTela = NO;
+            JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
+            [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
             SKTransition *trans = [SKTransition fadeWithDuration:1.0];
             
             [self.scene.view presentScene:scene transition:trans];
@@ -699,7 +735,7 @@
     
     //circleMask.position = CGPointMake(_gota.position.x-height*0.2, _gota.position.y-width*0.29);
     
-    //area.position = CGPointMake(_gota.position.x,_gota.position.y);
+    ///area.position = CGPointMake(_gota.position.x,_gota.position.y);
     
     circleMask.position=CGPointMake(_gota.position.x,_gota.position.y);
 
@@ -714,7 +750,23 @@
         self.scene.view.paused = YES;
     }
 }
+-(void)nextLevel{
+    NSNumber *nextlevel=[NSNumber numberWithInt:([self.currentLevel intValue] + 1)];
 
+    if ([[JAGCreatorLevels numberOfLevels:1] intValue]>=[nextlevel intValue]) {
+        [self deallocSound];
+        _gota = nil;
+        
+        SKScene *scene = [[JAGPlayGameScene alloc] initWithSize:self.frame.size level:nextlevel andWorld:@1];
+        [[NSUserDefaults standardUserDefaults]setInteger:[nextlevel integerValue] forKey:@"faseAtual"];
+        
+        SKTransition *trans = [SKTransition fadeWithDuration:1.0];
+        [self.scene.view presentScene:scene transition:trans];
+        
+    }
+//    [self.gota changePosition:self.posicaoInicial];
+
+}
 #pragma mark - PrepareMove
 -(void)prepareMove{
     dispatch_queue_t queue;
@@ -947,22 +999,13 @@
     if(((contact.bodyA.categoryBitMask == CHUVA) && (contact.bodyB.categoryBitMask == GOTA))||
        ((contact.bodyB.categoryBitMask == CHUVA) && (contact.bodyA.categoryBitMask == GOTA))){
         //Ir para o proximo nivel
-        
         NSNumber *nextlevel=[NSNumber numberWithInt:([self.currentLevel intValue] + 1)];
         
-        if ([[JAGCreatorLevels numberOfLevels:1] intValue]>=[nextlevel intValue]) {
-            [self deallocSound];
-            
-            SKScene *scene = [[JAGPlayGameScene alloc] initWithSize:self.frame.size level:nextlevel andWorld:@1];
+        if ([[JAGCreatorLevels numberOfLevels:1] intValue]>=[nextlevel intValue]) 
             [[NSUserDefaults standardUserDefaults]setInteger:[nextlevel integerValue] forKey:@"faseAtual"];
-            
-            SKTransition *trans = [SKTransition fadeWithDuration:1.0];
-            [self.scene.view presentScene:scene transition:trans];
-
-        }
-        /*
-         
-         */
+        [self presentGameOver:1];
+    
+   
     }
     
     if(((contact.bodyA.categoryBitMask==GOTA) && (contact.bodyB.categoryBitMask==DIVIDIDA))||
@@ -1132,6 +1175,7 @@
     self.cropNode.position = CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
                                          -(_gota.position.y)+CGRectGetMidY(self.frame));
 //    }
+    fadeMask.position = CGPointMake(self.gota.position.x, self.gota.position.y);
 }
 -(void)configStart:(int) time{
     _posicaoInicial=self.gota.position;
@@ -1142,12 +1186,16 @@
                                                 [SKAction runBlock:^{
         [self receberDano:1];
         //Criar uma gotinha
-        JAGPerdaGota *gotinha=[[JAGPerdaGota alloc] initWithPosition:self.gota.position withTimeLife:10];
+        
+      //  self.sprite.texture = [SKTexture textureWithImageNamed:@"poca.png"];
+
+        JAGPerdaGota *gotinha=[[JAGPerdaGota alloc] initWithPosition:self.gota.position withTimeLife:10 withSize:self.level.tileSize];
         
         [area addChild:[gotinha areavisao:50]];
 
         [self.cropNode addChild:gotinha];
-        [self.cropNode addChild:gotinha.emitter];
+        [self.cropNode addChild:gotinha.sprite];
+//        [self.cropNode addChild:gotinha.emitter];
         //Aumentar a area
         
                                                 }]]];
