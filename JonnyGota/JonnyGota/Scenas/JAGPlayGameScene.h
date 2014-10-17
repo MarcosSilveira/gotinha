@@ -25,7 +25,7 @@
     SKNode *myWorld;
     SKNode *camera;
     SKTextureAtlas *atlas;
-    
+    SKSpriteNode *fadeMask;
     //----Game over screen----
     
     SKSpriteNode *GObackground;
