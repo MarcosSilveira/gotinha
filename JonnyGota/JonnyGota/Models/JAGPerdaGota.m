@@ -75,7 +75,7 @@
 
 
 -(SKShapeNode*)areavisao:(int)raio{
-    
+    //Area
     _circleMask = [[SKShapeNode alloc ]init];
     
     CGMutablePathRef circle = CGPathCreateMutable();
