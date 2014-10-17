@@ -517,7 +517,7 @@
         nodeLabel.paragraphWidth = tutorialView.size.width*.9;
     }]]];
     
-    [scene runAction:changeLabel];
+    [scene runAction:changeLabel withKey:@"trocarLabel"];
     
     [tutorialView addChild:nodeLabel];
     [scene addChild:tutorialView];

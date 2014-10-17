@@ -139,6 +139,8 @@
         button2.zPosition = 201;
         GObackground.zPosition = 200;
         message.zPosition = 201;
+        
+        self.paused = YES;
     }
 
     GONaTela = YES;
@@ -751,6 +753,9 @@
     }
 }
 -(void)nextLevel{
+   
+    self.paused = NO;
+    
     NSNumber *nextlevel=[NSNumber numberWithInt:([self.currentLevel intValue] + 1)];
 
     if ([[JAGCreatorLevels numberOfLevels:1] intValue]>=[nextlevel intValue]) {
@@ -762,7 +767,7 @@
         
         SKTransition *trans = [SKTransition fadeWithDuration:1.0];
         [self.scene.view presentScene:scene transition:trans];
-        
+
     }
 //    [self.gota changePosition:self.posicaoInicial];
 
