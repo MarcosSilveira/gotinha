@@ -1142,12 +1142,16 @@
                                                 [SKAction runBlock:^{
         [self receberDano:1];
         //Criar uma gotinha
-        JAGPerdaGota *gotinha=[[JAGPerdaGota alloc] initWithPosition:self.gota.position withTimeLife:10];
+        
+      //  self.sprite.texture = [SKTexture textureWithImageNamed:@"poca.png"];
+
+        JAGPerdaGota *gotinha=[[JAGPerdaGota alloc] initWithPosition:self.gota.position withTimeLife:10 withSize:self.level.tileSize];
         
         [area addChild:[gotinha areavisao:50]];
 
         [self.cropNode addChild:gotinha];
-        [self.cropNode addChild:gotinha.emitter];
+        [self.cropNode addChild:gotinha.sprite];
+//        [self.cropNode addChild:gotinha.emitter];
         //Aumentar a area
         
                                                 }]]];

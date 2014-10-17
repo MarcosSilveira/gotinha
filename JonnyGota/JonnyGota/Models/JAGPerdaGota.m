@@ -22,8 +22,8 @@
 
     
     self.name = @"perdida";
-    
-    
+
+    self.sprite.position=ponto;
     self.position = ponto;
     
     
@@ -39,6 +39,40 @@
     
     return self;
 }
+
+-(instancetype)initWithPosition:(CGPoint)ponto withTimeLife:(int)time withSize:(int) tamanho{
+    self = [super init];
+    
+    
+    
+    self.name = @"perdida";
+    
+    
+    self.sprite= [[SKSpriteNode alloc] initWithTexture:[SKTexture textureWithImageNamed:@"poca.png"]];
+    
+    self.sprite.size=CGSizeMake(tamanho/2, tamanho/2);
+    
+    self.sprite.position=ponto;
+    
+    self.zPosition=10;
+    self.sprite.zPosition=10;
+
+    self.position = ponto;
+    
+    
+    SKAction *destruir=[SKAction sequence:@[[SKAction waitForDuration:time],
+                                            [SKAction runBlock:^{
+        [self destruirSprite];
+        
+    }]]];
+    
+    // NSLog(@"Minha position x: %f  y: %f",self.position.x,self.position.y);
+    
+    [self runAction:destruir];
+    
+    return self;
+}
+
 
 -(SKShapeNode*)areavisao:(int)raio{
     
@@ -59,9 +93,16 @@
 
 -(void)destruir{
     [_circleMask removeFromParent];
+    [self.sprite removeFromParent];
     [_emitter removeFromParent];
     [self removeFromParent];
+}
 
+-(void)destruirSprite{
+    [_circleMask removeFromParent];
+    [self.sprite removeFromParent];
+    [self removeFromParent];
+    
 }
 
 @end

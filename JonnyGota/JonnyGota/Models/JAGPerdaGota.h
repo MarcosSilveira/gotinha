@@ -21,7 +21,8 @@
 @property (nonatomic)SKEmitterNode *emitter;
 
 -(instancetype)initWithPosition:(CGPoint)ponto
-                   withTimeLife:(int)time;
+                   withTimeLife:(int)time
+                       withSize:(int) tamanho;
 
 -(void)destruir;
 
