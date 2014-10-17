@@ -11,15 +11,18 @@
 
 @implementation JAGChuva
 
--(instancetype)initWithPosition:(CGPoint)ponto{
+-(instancetype)initWithPosition:(CGPoint)ponto withSize:(CGSize)size{
     
     self = [super init];
     
+    size=CGSizeMake(size.width*2, size.width*1.5);
+    
     self.nuvemText = [SKTexture textureWithImageNamed:@"nuvem"];
     self.sprite = [[SKSpriteNode alloc] initWithTexture:self.nuvemText];
+    self.sprite.size=size;
     self.name = @"chuva";
     
-    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.sprite.size];
+    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:size];
     //self.zPosition = 1;
     self.physicsBody.categoryBitMask = CHUVA;
     self.physicsBody.collisionBitMask = GOTA;

@@ -80,6 +80,7 @@
 
     return self;
 }
+
 -(void)presentGameOver:(int)withOP{
     /* Configuração e apresentação da popup de game over
      OP é utilizado para definir a situação atual, em cada caso, os botões da popup serão
@@ -89,6 +90,7 @@
      -Fim de fase perdendo com vida restante
      -Fim de fase perdendo sem vida restante */
     if (withOP == 0) {
+        
         
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
         GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
@@ -182,21 +184,42 @@
 
 }
 
--(void)fadeMask{
+-(SKShapeNode *)createCircleToMask:(int) radius
+                         {
+    
+    SKShapeNode *circleNew=[[SKShapeNode alloc ]init];
+    
+    CGMutablePathRef circle = CGPathCreateMutable();
+    CGPathAddArc(circle, NULL, 0, 0, 1, 0, M_PI*2, YES); // replace 50 with HALF the desired radius of the circle
+    
+    circleNew.path = circle;
+    circleNew.lineWidth = radius*2.5; // replace 100 with DOUBLE the desired radius of the circle
+    circleNew.name = @"circleMask";
+    circleNew.userInteractionEnabled = NO;
+    circleNew.fillColor = [SKColor clearColor];
+    
+    circleNew.position = CGPointMake(_gota.position.x-_gota.sprite.size.width,_gota.position.y-_gota.sprite.size.height);
+   
+   
+    return circleNew;
+}
+
+
+-(void)fadeMask2{
     double frequencia = _level.frequenciaRelampago;
     NSTimeInterval tempo = frequencia;
     SKAction *controle = [SKAction sequence:@[[SKAction waitForDuration:tempo],
                                               [SKAction runBlock:^{
         [relampago play];
-//        [self.scene runAction:[SKAction playSoundFileNamed:@"trovao.wav" waitForCompletion:NO]];
+        //        [self.scene runAction:[SKAction playSoundFileNamed:@"trovao.wav" waitForCompletion:NO]];
         SKAction *retiraMascara=[SKAction sequence:@[[SKAction waitForDuration:0.1],
-                                                          [SKAction runBlock:^{
+                                                     [SKAction runBlock:^{
             //        [circleMask runAction:fadeIn];
             //        [circleMask removeFromParent];
             [_cropNode setMaskNode:nil];
             
             SKAction *retornaMascara=[SKAction sequence:@[[SKAction waitForDuration:0.05],
-                                                               [SKAction runBlock:^{
+                                                          [SKAction runBlock:^{
                 //            [circleMask runAction:fadeOut];
                 //            [area addChild:circleMask];
                 [_cropNode setMaskNode:area];
@@ -211,9 +234,33 @@
     }]]];
     SKAction *repeater=[SKAction repeatActionForever:controle];
     [self runAction:repeater];
-
+    
     
 }
+
+
+
+
+-(void)fadeMask{
+    double frequencia = _level.frequenciaRelampago;
+    NSTimeInterval tempo = frequencia;
+    SKAction *controle = [SKAction sequence:@[[SKAction waitForDuration:tempo],
+                                              [SKAction runBlock:^{
+        [relampago play];
+              //Criar novo campo de visão.
+        
+        SKAction *scaler=[SKAction sequence:@[[SKAction scaleBy:2 duration:0],[SKAction scaleBy:0.5 duration:1.5]]];
+        [circleMask runAction:scaler];
+        
+        
+        }]]] ;
+    
+    controle=[SKAction repeatActionForever:controle];
+    [self runAction:controle];
+    
+    
+}
+
 
 #pragma mark - Ações
 //-(void)divideGota{
@@ -281,6 +328,46 @@
             tipo = 2;
     }
 
+    return tipo;
+}
+
+-(int)verificaSentido2: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto {
+    //  toqueFinal = pontoReferencia;
+    int tipo;
+    
+    float difx = pontoObjeto.x - pontoReferencia.x;
+    
+    //float dify=toqueFinals.y-toqueFinal.y;
+    
+    float dify = pontoObjeto.y - pontoReferencia.y;
+    
+    BOOL negx = false;;
+    
+    bool negy = false;
+    
+    
+    if(difx < 0){
+        negx = true;
+        difx *= -1;
+    }
+    if(dify < 0){
+        negy = true;
+        dify *= -1;
+    }
+    
+    if (difx > dify+50) {
+        if(negx)
+            tipo = 4;
+        else
+            tipo = 3;
+    }
+    else{
+        if(negy)
+            tipo = 1;
+        else
+            tipo = 2;
+    }
+    
     return tipo;
 }
 
@@ -461,7 +548,7 @@
                 
                 if (self.gota.gotinhas.count>self.gota.qtGotinhas) {
                     JAGGotaDividida *temp=(JAGGotaDividida *)self.gota.gotinhas[0];
-                    [self removeGotinha:temp];
+                    [self removeGotinha:temp withBotao:true];
                 }
                 [self.characteres addObject:gota2];
                 [_cropNode addChild:gota2];}
@@ -559,7 +646,7 @@
         }
         else if (!pauseDetected) {
             
-        int temp=[self verificaSentido:toqueFinal with:_gota.position];
+        int temp=[self verificaSentido2:toqueFinal with:_gota.position];
             
 
             
@@ -648,7 +735,7 @@
     
     //circleMask.position = CGPointMake(_gota.position.x-height*0.2, _gota.position.y-width*0.29);
     
-    //area.position = CGPointMake(_gota.position.x,_gota.position.y);
+    ///area.position = CGPointMake(_gota.position.x,_gota.position.y);
     
     circleMask.position=CGPointMake(_gota.position.x,_gota.position.y);
 
@@ -665,9 +752,10 @@
 }
 -(void)nextLevel{
     NSNumber *nextlevel=[NSNumber numberWithInt:([self.currentLevel intValue] + 1)];
-    
+
     if ([[JAGCreatorLevels numberOfLevels:1] intValue]>=[nextlevel intValue]) {
         [self deallocSound];
+        _gota = nil;
         
         SKScene *scene = [[JAGPlayGameScene alloc] initWithSize:self.frame.size level:nextlevel andWorld:@1];
         [[NSUserDefaults standardUserDefaults]setInteger:[nextlevel integerValue] forKey:@"faseAtual"];
@@ -676,6 +764,7 @@
         [self.scene.view presentScene:scene transition:trans];
         
     }
+//    [self.gota changePosition:self.posicaoInicial];
 
 }
 #pragma mark - PrepareMove
@@ -684,7 +773,6 @@
     
     queue = dispatch_queue_create("actionEnemys",
                                   NULL);
-
 
     dispatch_async(queue, ^{
         [self actionsEnemys];
@@ -911,6 +999,10 @@
     if(((contact.bodyA.categoryBitMask == CHUVA) && (contact.bodyB.categoryBitMask == GOTA))||
        ((contact.bodyB.categoryBitMask == CHUVA) && (contact.bodyA.categoryBitMask == GOTA))){
         //Ir para o proximo nivel
+        NSNumber *nextlevel=[NSNumber numberWithInt:([self.currentLevel intValue] + 1)];
+        
+        if ([[JAGCreatorLevels numberOfLevels:1] intValue]>=[nextlevel intValue]) 
+            [[NSUserDefaults standardUserDefaults]setInteger:[nextlevel integerValue] forKey:@"faseAtual"];
         [self presentGameOver:1];
     
    
@@ -921,14 +1013,17 @@
         if(contact.bodyA.categoryBitMask==DIVIDIDA){
             JAGGotaDividida *dividida=(JAGGotaDividida *)contact.bodyA.node;
             if(dividida.pronto){
-                [self removeGotinha:dividida];
+                [self removeGotinha:dividida withBotao:false];
+                
+                
             }
                        
         }else{
             JAGGotaDividida *dividida=(JAGGotaDividida *)contact.bodyB.node;
             
             if(dividida.pronto){
-                [self removeGotinha:dividida];
+                [dividida removeFromParent];
+                [self removeGotinha:dividida withBotao:false];
             }
         }
     }
@@ -1067,10 +1162,7 @@
             self.gota.vida=15;
             self.hud.vidaRestante--;
             [self presentGameOver:0];
-            
-            
-            //        [self.gota changePosition:_posicaoInicial];
-            //        [self presentGameOver:1];
+        
             self.scene.view.paused=YES;
         }
     }
@@ -1273,10 +1365,9 @@
         JAGPorta *porta=_portas[i];
         [porta verificarBotoes];
     }
-
 }
 
--(void)removeGotinha:(JAGGotaDividida *)temp{
+-(void)removeGotinha:(JAGGotaDividida *)temp withBotao:(bool) aplicar{
     [temp removeAllActions];
     temp.physicsBody=nil;
     [temp removeFromParent];
@@ -1288,12 +1379,16 @@
     
     temp=nil;
     
-    for (int i=0; i<self.level.botoes.count; i++) {
-        JAGPressao *pre=(JAGPressao *)self.level.botoes[i];
-        [self validaPressao:pre];
+    if (aplicar) {
+        for (int i=0; i<self.level.botoes.count; i++) {
+            JAGPressao *pre=(JAGPressao *)self.level.botoes[i];
+            [self validaPressao:pre];
+        }
+        
     }
 
 }
+
 
 
 

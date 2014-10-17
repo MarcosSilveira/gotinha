@@ -41,11 +41,13 @@
         self.multi = (size.width)/6;
         
     }else{
-        self.multi = (size.width)/8;
+        self.multi = (size.width)/10;
     }
     self.name=@"fogo";
     [self addChild:self.sprite];
     self.position = position;
+    
+    self.visao=size.width*1.8;
     return self;
 }
 

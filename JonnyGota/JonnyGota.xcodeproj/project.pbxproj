@@ -28,6 +28,7 @@
 		0B15AADF19D09B0500ED6110 /* map10.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0B15AAD619D09B0500ED6110 /* map10.tmx */; };
 		0B2C5255199A99A30065BB09 /* JAGLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C5254199A99A30065BB09 /* JAGLevel.m */; };
 		0B2C5258199A9F2A0065BB09 /* JAGChuva.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C5257199A9F2A0065BB09 /* JAGChuva.m */; };
+		0B31B44719ED9F04006761EA /* mapTeste.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0B31B44619ED9F04006761EA /* mapTeste.tmx */; };
 		0B3A04501991164A00C7C39E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3A044F1991164A00C7C39E /* Foundation.framework */; };
 		0B3A04521991164A00C7C39E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3A04511991164A00C7C39E /* CoreGraphics.framework */; };
 		0B3A04541991164A00C7C39E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3A04531991164A00C7C39E /* UIKit.framework */; };
@@ -49,6 +50,8 @@
 		0B3A0497199117C000C7C39E /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3A0496199117C000C7C39E /* OpenAL.framework */; };
 		0B3A049A1991184700C7C39E /* JAGCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3A04991991184700C7C39E /* JAGCharacter.m */; };
 		0B8600F619AFA40B00615FA6 /* JAGAttack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8600F519AFA40B00615FA6 /* JAGAttack.m */; };
+		0B88D26219E70E1F00351527 /* botao1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B88D26019E70E1F00351527 /* botao1.png */; };
+		0B88D26319E70E1F00351527 /* botao2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B88D26119E70E1F00351527 /* botao2.png */; };
 		0B9229BC19C31FEA00009EC4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9229BB19C31FEA00009EC4 /* libz.dylib */; };
 		0B9229C319C3206C00009EC4 /* LFCGzipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9229C219C3206C00009EC4 /* LFCGzipUtility.m */; };
 		0B9229C619C3208900009EC4 /* JSTileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9229C519C3208900009EC4 /* JSTileMap.m */; };
@@ -163,6 +166,7 @@
 		0B2C5254199A99A30065BB09 /* JAGLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGLevel.m; path = JonnyGota/Objects/JAGLevel.m; sourceTree = "<group>"; };
 		0B2C5256199A9F2A0065BB09 /* JAGChuva.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGChuva.h; path = JonnyGota/Models/JAGChuva.h; sourceTree = "<group>"; };
 		0B2C5257199A9F2A0065BB09 /* JAGChuva.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGChuva.m; path = JonnyGota/Models/JAGChuva.m; sourceTree = "<group>"; };
+		0B31B44619ED9F04006761EA /* mapTeste.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = mapTeste.tmx; sourceTree = "<group>"; };
 		0B3A044C1991164A00C7C39E /* JonnyGota.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JonnyGota.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B3A044F1991164A00C7C39E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0B3A04511991164A00C7C39E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -193,6 +197,8 @@
 		0B3A04991991184700C7C39E /* JAGCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGCharacter.m; path = JonnyGota/Models/JAGCharacter.m; sourceTree = "<group>"; };
 		0B8600F419AFA40B00615FA6 /* JAGAttack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGAttack.h; path = JonnyGota/Actions/JAGAttack.h; sourceTree = "<group>"; };
 		0B8600F519AFA40B00615FA6 /* JAGAttack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGAttack.m; path = JonnyGota/Actions/JAGAttack.m; sourceTree = "<group>"; };
+		0B88D26019E70E1F00351527 /* botao1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = botao1.png; sourceTree = "<group>"; };
+		0B88D26119E70E1F00351527 /* botao2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = botao2.png; sourceTree = "<group>"; };
 		0B9229BB19C31FEA00009EC4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		0B9229C119C3206C00009EC4 /* LFCGzipUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFCGzipUtility.h; sourceTree = "<group>"; };
 		0B9229C219C3206C00009EC4 /* LFCGzipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFCGzipUtility.m; sourceTree = "<group>"; };
@@ -399,6 +405,7 @@
 				0B15AAD419D09B0500ED6110 /* map8.tmx */,
 				0B15AAD519D09B0500ED6110 /* map9.tmx */,
 				0B15AAD619D09B0500ED6110 /* map10.tmx */,
+				0B31B44619ED9F04006761EA /* mapTeste.tmx */,
 				0B15AACC19D09AE100ED6110 /* TileSet.png */,
 			);
 			name = tilemaps;
@@ -562,6 +569,55 @@
 			name = Actions;
 			sourceTree = "<group>";
 		};
+		0B88D25C19E70DBA00351527 /* Botao */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Botao;
+			sourceTree = "<group>";
+		};
+		0B88D25D19E70DCB00351527 /* fases */ = {
+			isa = PBXGroup;
+			children = (
+				8D35976019D86559009B6083 /* fase_semSombra1.png */,
+				8D35976119D86559009B6083 /* fase_semSombra2.png */,
+				8D35976219D86559009B6083 /* fase_semSombra3.png */,
+				8D35976319D86559009B6083 /* fase_semSombra4.png */,
+				8D35976419D86559009B6083 /* fase_semSombra5.png */,
+				8D35975E19D85957009B6083 /* travada_semSombra.png */,
+				8DC0B80E19D61D290044E800 /* fase_trancada.png */,
+			);
+			name = fases;
+			sourceTree = "<group>";
+		};
+		0B88D25E19E70DD700351527 /* vidas */ = {
+			isa = PBXGroup;
+			children = (
+				8D1B210019DC4F5E007B9B9F /* vidas10.png */,
+				8D8DC56D19D2EC2F00E75949 /* vida0.png */,
+				8D8DC56E19D2EC2F00E75949 /* vida1.png */,
+				8D8DC56F19D2EC2F00E75949 /* vida2.png */,
+				8D8DC57019D2EC2F00E75949 /* vida3.png */,
+				8D8DC57119D2EC2F00E75949 /* vida4.png */,
+				8D8DC57219D2EC2F00E75949 /* vida5.png */,
+				8D8DC57319D2EC2F00E75949 /* vida6.png */,
+				8D8DC57419D2EC2F00E75949 /* vida7.png */,
+				8D8DC57519D2EC2F00E75949 /* vida8.png */,
+			);
+			name = vidas;
+			sourceTree = "<group>";
+		};
+		0B88D25F19E70DE300351527 /* Hud */ = {
+			isa = PBXGroup;
+			children = (
+				0B88D25E19E70DD700351527 /* vidas */,
+				8D7E78DF19D1FE2200126F42 /* clock.png */,
+				8D7E78DD19D1FB5900126F42 /* heart.png */,
+				8D7E78DB19D1F2E900126F42 /* hud_back.png */,
+			);
+			name = Hud;
+			sourceTree = "<group>";
+		};
 		0B9229BD19C3200D00009EC4 /* TileMap */ = {
 			isa = PBXGroup;
 			children = (
@@ -624,35 +680,20 @@
 			isa = PBXGroup;
 			children = (
 				8DDDDBEA19E83DB800A6BA44 /* fadeMask.png */,
+				0B88D26019E70E1F00351527 /* botao1.png */,
+				0B88D26119E70E1F00351527 /* botao2.png */,
+				0B88D25C19E70DBA00351527 /* Botao */,
 				B1D9C13919DF041B005ED4A1 /* heart_sem_sombra.png */,
 				8D1B20F819DC46E7007B9B9F /* vidas5.png */,
 				8D94D7C119DB4182002872F4 /* fogo_parado.png */,
-				8D35976019D86559009B6083 /* fase_semSombra1.png */,
-				8D35976119D86559009B6083 /* fase_semSombra2.png */,
-				8D35976219D86559009B6083 /* fase_semSombra3.png */,
-				8D35976319D86559009B6083 /* fase_semSombra4.png */,
-				8D35976419D86559009B6083 /* fase_semSombra5.png */,
-				8D35975E19D85957009B6083 /* travada_semSombra.png */,
-				8DC0B80E19D61D290044E800 /* fase_trancada.png */,
-				8D8DC56D19D2EC2F00E75949 /* vida0.png */,
-				8D8DC56E19D2EC2F00E75949 /* vida1.png */,
-				8D8DC56F19D2EC2F00E75949 /* vida2.png */,
-				8D8DC57019D2EC2F00E75949 /* vida3.png */,
-				8D8DC57119D2EC2F00E75949 /* vida4.png */,
-				8D8DC57219D2EC2F00E75949 /* vida5.png */,
-				8D8DC57319D2EC2F00E75949 /* vida6.png */,
-				8D8DC57419D2EC2F00E75949 /* vida7.png */,
-				8D8DC57519D2EC2F00E75949 /* vida8.png */,
-				8D7E78DF19D1FE2200126F42 /* clock.png */,
-				8D7E78DD19D1FB5900126F42 /* heart.png */,
-				8D7E78DB19D1F2E900126F42 /* hud_back.png */,
+				0B88D25D19E70DCB00351527 /* fases */,
+				0B88D25F19E70DE300351527 /* Hud */,
 				8D11652619CC666500F441E9 /* armadilha.png */,
 				8D11652419CC60E200F441E9 /* poca.png */,
 				8D1B20FA19DC4A58007B9B9F /* price199.png */,
 				8D1B20FC19DC4AFF007B9B9F /* price099.png */,
 				8D1B20FE19DC4CD1007B9B9F /* bt_bg.png */,
 				B1D9C13719DEE644005ED4A1 /* lvlX.png */,
-				8D1B210019DC4F5E007B9B9F /* vidas10.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -760,10 +801,12 @@
 				8D11652919CC82F900F441E9 /* trovao.wav in Resources */,
 				0B97E39819CC981D0052ECF5 /* rain.caf in Resources */,
 				0B3A045C1991164A00C7C39E /* InfoPlist.strings in Resources */,
+				0B31B44719ED9F04006761EA /* mapTeste.tmx in Resources */,
 				0BCC660119DC88B1004C517F /* VAGRoundedStd-Light.otf in Resources */,
 				8D8DC57D19D2EC2F00E75949 /* vida7.png in Resources */,
 				0B3A046F1991164A00C7C39E /* Images.xcassets in Resources */,
 				0B15AADA19D09B0500ED6110 /* map5.tmx in Resources */,
+				0B88D26219E70E1F00351527 /* botao1.png in Resources */,
 				0B15AACD19D09AE100ED6110 /* TileSet.png in Resources */,
 				0B3A04651991164A00C7C39E /* Main.storyboard in Resources */,
 				0B15AADB19D09B0500ED6110 /* map6.tmx in Resources */,
@@ -779,6 +822,7 @@
 				8DF47BD319B0B4EE0021AE2D /* Fogo.sks in Resources */,
 				8D11652519CC60E200F441E9 /* poca.png in Resources */,
 				0B97E39B19CCA5C20052ECF5 /* granada.caf in Resources */,
+				0B88D26319E70E1F00351527 /* botao2.png in Resources */,
 				8D8DC57C19D2EC2F00E75949 /* vida6.png in Resources */,
 				B1D9C13819DEE644005ED4A1 /* lvlX.png in Resources */,
 				8DDDDBEB19E83DB800A6BA44 /* fadeMask.png in Resources */,

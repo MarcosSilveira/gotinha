@@ -33,6 +33,8 @@
 @property int lastPointToGo;
 
 @property (nonatomic) BOOL activeIa;
+@property (nonatomic) BOOL activeFix;
+
 
 @property BOOL inColissao;
 

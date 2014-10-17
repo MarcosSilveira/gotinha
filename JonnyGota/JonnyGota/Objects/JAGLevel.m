@@ -177,6 +177,10 @@
     return CGPointMake(pontoMatriz.x*_tileSize,_tileSize*pontoMatriz.y);
 }
 
+-(CGPoint)calculateTileHalf:(CGPoint)pontoMatriz{
+    return CGPointMake(pontoMatriz.x*_tileSize+_tileSize/2,(_tileSize*pontoMatriz.y)+_tileSize/2);
+}
+
 -(CGSize)sizeTile{
     return CGSizeMake(_tileSize, _tileSize);
 }
@@ -217,10 +221,10 @@
             
             
             
-            NSLog(@"finals x:%f  y:%f  width: %f",xFinal ,yFinal,_tilefull.size.width);
+         //   NSLog(@"finals x:%f  y:%f  width: %f",xFinal ,yFinal,_tilefull.size.width);
             
             img=[SKTexture textureWithRect:CGRectMake(0,0.25,0.335, 0.25) inTexture:_tilefull];
-            NSLog(@"img: %@",img);
+         //   NSLog(@"img: %@",img);
             
             return img;
         }

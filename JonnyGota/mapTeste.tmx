@@ -8,9 +8,14 @@
    eJwTYmBgEBrFo3gUj+JRPIpJxAAnqBwh
   </data>
  </layer>
+ <layer name="Tile2" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYWBg4KYSZgNidgbqAfZR82hiHgsDarwxMGDGIynmgcT4kDADGh+Xn/CZhw+MmoffPC4G/PmUh0TzeBlQ4xMd85NoHrlg1DzKzSOUNkjBoHQEAJI/BHA=
+  </data>
+ </layer>
  <layer name="Tile" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJytlIEKwyAMRK+0tHNu7v//dg0zEKLROHIQUHt9Ro0eAHJQnHdcGCuJtvYm1b8cvBLAs+Z44rcu1uOObcLL1ZfR6t3JV/c1r3R8lvS/q+uN4h3or1/69gWela8c532i2NCeG9eobMvY6zfN570f1ZknP8kb+SiXVyCP8v4YPE899+a15Klni+etA+9947FzkVfQnjcp1bGkvDOeJfaN7vU/vJmH37SIoDr9Ap9HBag=
+   eJxjYWBg4KYSZgNidgbqAfZR82hiHgsDarwxMGDGIynmgcT4kDADGh+Xn/CZhw+MmoffPC4G/PmUh0TzeBlQ4xMd85NoHrlg1DzKzSOUNkjBoHQEAJI/BHA=
   </data>
  </layer>
 </map>
