@@ -331,45 +331,6 @@
     return tipo;
 }
 
--(int)verificaSentido2: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto {
-    //  toqueFinal = pontoReferencia;
-    int tipo;
-    
-    float difx = pontoObjeto.x - pontoReferencia.x;
-    
-    //float dify=toqueFinals.y-toqueFinal.y;
-    
-    float dify = pontoObjeto.y - pontoReferencia.y;
-    
-    BOOL negx = false;;
-    
-    bool negy = false;
-    
-    
-    if(difx < 0){
-        negx = true;
-        difx *= -1;
-    }
-    if(dify < 0){
-        negy = true;
-        dify *= -1;
-    }
-    
-    if (difx > dify+50) {
-        if(negx)
-            tipo = 4;
-        else
-            tipo = 3;
-    }
-    else{
-        if(negy)
-            tipo = 1;
-        else
-            tipo = 2;
-    }
-    
-    return tipo;
-}
 
 -(void) followPlayer {
     
@@ -646,7 +607,7 @@
         }
         else if (!pauseDetected) {
             
-        int temp=[self verificaSentido2:toqueFinal with:_gota.position];
+        int temp=[self verificaSentido:toqueFinal with:_gota.position];
             
 
             
