@@ -31,6 +31,7 @@
     
     _activeIa=NO;
     
+    _activeFix=NO;
     
     
     return self;
@@ -63,43 +64,49 @@
                 //self.andandoIa = true;
                 
                 
-                SKAction *sequenceTemp;
-                
-                for(int i = self.arrPointsFixes.count - 1.0; i >= 0; i--) {
+                if (self.activeFix) {
                     
-                    CGPoint ponto = [(NSValue *)[self.arrPointsFixes objectAtIndex:i] CGPointValue];
+                    SKAction *sequenceTemp;
                     
-                    if(i == self.arrPointsFixes.count - 1) {
-                        sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:0.5],
-                                                            [SKAction waitForDuration:0.1],
-                                                            [SKAction runBlock:^{
-                            [self.arrPointsFixes removeObjectAtIndex:i];
-                        }]]];
+                    for(int i = self.arrPointsFixes.count - 1.0; i >= 0; i--) {
                         
-                    } else {
-                        sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:0.5],
-                                                            [SKAction waitForDuration:0.1],
-                                                            [SKAction runBlock:^{
-                            [self.arrPointsFixes removeObjectAtIndex:i];
-                        }]]];
+                        CGPoint ponto = [(NSValue *)[self.arrPointsFixes objectAtIndex:i] CGPointValue];
+                        
+                        if(i == self.arrPointsFixes.count - 1) {
+                            sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:0.5],
+                                                                [SKAction waitForDuration:0.1],
+                                                                [SKAction runBlock:^{
+                                [self.arrPointsFixes removeObjectAtIndex:i];
+                            }]]];
+                            
+                        } else {
+                            sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:0.5],
+                                                                [SKAction waitForDuration:0.1],
+                                                                [SKAction runBlock:^{
+                                [self.arrPointsFixes removeObjectAtIndex:i];
+                            }]]];
+                        }
+                        
+                        
                     }
+                    [self createPathto];
+                    _movePath = [SKAction sequence:@[sequenceTemp,_movePath]];
                     
                     
+                    _movePath = [SKAction sequence:@[_movePath,[SKAction runBlock:^{
+                        self.andandoIa = false;
+                        self.lastPointToGo=0;
+                    }]]];
+                    
+                    
+                    
+                    [self runAction:_movePath withKey:@"move"];
                 }
-                [self createPathto];
-                _movePath = [SKAction sequence:@[sequenceTemp,_movePath]];
                 
-                
-                _movePath = [SKAction sequence:@[_movePath,[SKAction runBlock:^{
-                    self.andandoIa = false;
-                    self.lastPointToGo=0;
-                }]]];
-                
-                
-                
-                [self runAction:_movePath withKey:@"move"];
             }
         }
+    }else{
+        self.physicsBody.velocity=CGVectorMake(0, 0);
     }
 }
 
@@ -155,8 +162,12 @@
             if(tempSentido != self.sentido) {
                 self.sentido = tempSentido;
                 [self mover:(jogador.position) withInterval:2 withType:self.sentido];
-                [self addPointFIxes];
-            }
+                
+                if (self.activeFix) {
+                    [self addPointFIxes];
+
+                }
+        }
         }else{
             //                tempSentido=[self verificaSentidoColisao:jogador.position withPontoObjeto:self.position withSentido:self.sentido];
             //                if (tempSentido!=self.sentidoCol) {
@@ -169,6 +180,11 @@
         
         
     } else {
+        if (self.seguindo==true&& self.activeFix==NO&& self.activeIa==YES) {
+            self.activeIa=NO;
+            [self removeActionForKey:@"move"];
+
+        }
         
         self.seguindo = false;
         self.sentido  = 0;
