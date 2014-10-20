@@ -71,6 +71,8 @@
     self.qtGotinhas=2;
     
     //Musicas
+    
+    self.zPosition=500;
 
     
     return self;

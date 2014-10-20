@@ -1153,9 +1153,11 @@
         JAGPerdaGota *gotinha=[[JAGPerdaGota alloc] initWithPosition:self.gota.position withTimeLife:10 withSize:self.level.tileSize];
         
         [area addChild:[gotinha areavisao:50]];
-
+        gotinha.sprite.zPosition=15;
+         gotinha.zPosition=15;
         [self.cropNode addChild:gotinha];
         [self.cropNode addChild:gotinha.sprite];
+        
 //        [self.cropNode addChild:gotinha.emitter];
         //Aumentar a area
         
