@@ -731,9 +731,9 @@
         
         SKTransition *trans = [SKTransition fadeWithDuration:1.0];
         [self.scene.view presentScene:scene transition:trans];
-
+        frenetico=YES;
     }else{
-        self.paused = YES;
+//        self.paused = YES;
     }
 //    [self.gota changePosition:self.posicaoInicial];
 

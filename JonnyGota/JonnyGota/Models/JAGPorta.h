@@ -21,9 +21,16 @@
 
 @property (nonatomic)int tipo;
 
+@property (nonatomic) SKTextureAtlas *atlas;
+
+@property (nonatomic) int direction;
+
+@property (nonatomic) NSMutableArray *animation;
+
 -(instancetype)initWithPosition:(CGPoint) ponto
-                     withSprite:(SKSpriteNode *) imagem
-                       withTipo:(int) tipo;
+                  withDirection:(int)direction
+                       withTipo:(int) tipo
+                       withSize:(CGSize) size;
 
 -(void)abrir:(BOOL)aberto;
 
