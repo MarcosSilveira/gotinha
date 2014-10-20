@@ -21,6 +21,7 @@
     bool sincronizado;
     NSDate * stopDate;
     NSString *stopDate_string;
+    SKSpriteNode *backBT;
     
 }
 
@@ -39,6 +40,11 @@
     vidas_quantidade.text = [NSString stringWithFormat:@" X %d",vidas_restantes];
     vidas_quantidade.position = CGPointMake(self.frame.size.width*0.87, self.frame.size.height*0.86);
     vidas_quantidade.fontSize = self.frame.size.width*0.05;
+    backBT =[[SKSpriteNode alloc]initWithImageNamed:@"back_bt"];
+    backBT.position = CGPointMake(self.frame.size.width*0.1, self.frame.size.height*0.9);
+    backBT.size = CGSizeMake(backBT.texture.size.width/2, backBT.texture.size.height/2);
+    backBT.zPosition = 2;
+    [self.scene addChild:backBT];
     [self organizaBotoes];
     
 }

@@ -205,7 +205,7 @@
 }
 
 
--(void)fadeMask2{
+-(void)fadeMask{
     double frequencia = _level.frequenciaRelampago;
     NSTimeInterval tempo = frequencia;
     SKAction *controle = [SKAction sequence:@[[SKAction waitForDuration:tempo],
@@ -217,12 +217,14 @@
             //        [circleMask runAction:fadeIn];
             //        [circleMask removeFromParent];
             [_cropNode setMaskNode:nil];
+            fadeMask.alpha = 0;
             
             SKAction *retornaMascara=[SKAction sequence:@[[SKAction waitForDuration:0.05],
                                                           [SKAction runBlock:^{
                 //            [circleMask runAction:fadeOut];
                 //            [area addChild:circleMask];
                 [_cropNode setMaskNode:area];
+                fadeMask.alpha = 1;
                 
             }]]];
             
@@ -241,7 +243,7 @@
 
 
 
--(void)fadeMask{
+-(void)expandMask{
     double frequencia = _level.frequenciaRelampago;
     NSTimeInterval tempo = frequencia;
     SKAction *controle = [SKAction sequence:@[[SKAction waitForDuration:tempo],
