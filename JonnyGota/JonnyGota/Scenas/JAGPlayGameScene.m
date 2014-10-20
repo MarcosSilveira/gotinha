@@ -359,7 +359,7 @@
             SKAction *attacks=[SKAction sequence:@[[SKAction waitForDuration:1],
                                                    [SKAction runBlock:^{
                 //Cria o attack
-                [self.cropNode addChild:ata];
+                [self.camadaPersonagens addChild:ata];
                 fogo.andandoIa = false;
                 fogo.sentido=0;
                 
@@ -516,7 +516,7 @@
                     [self removeGotinha:temp withBotao:true];
                 }
                 [self.characteres addObject:gota2];
-                [_cropNode addChild:gota2];}
+                [self.camadaItens addChild:gota2];}
 
 //            [_cropNode addChild:[_gota dividirwithSentido:[self verificaSentido:toqueFinal with:_gota.position]]];
             int mul=2;
@@ -716,21 +716,24 @@
     }
 }
 -(void)nextLevel{
-   
-    self.paused = NO;
+   self.paused = NO;
     
     NSNumber *nextlevel=[NSNumber numberWithInt:([self.currentLevel intValue] + 1)];
 
     if ([[JAGCreatorLevels numberOfLevels:1] intValue]>=[nextlevel intValue]) {
+        //Precisa desalocar os objetos tbm?
+        
         [self deallocSound];
         _gota = nil;
         
         SKScene *scene = [[JAGPlayGameScene alloc] initWithSize:self.frame.size level:nextlevel andWorld:@1];
-        [[NSUserDefaults standardUserDefaults]setInteger:[nextlevel integerValue] forKey:@"faseAtual"];
+        
         
         SKTransition *trans = [SKTransition fadeWithDuration:1.0];
         [self.scene.view presentScene:scene transition:trans];
 
+    }else{
+        self.paused = YES;
     }
 //    [self.gota changePosition:self.posicaoInicial];
 
@@ -918,7 +921,7 @@
         //
     }
     if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == CONTROLE_TOQUE)){
-        NSLog(@"touch control hit");
+//        NSLog(@"touch control hit");
         [_gota.sprite removeAllActions];
         _gota.sprite.texture = _gota.idleTexture;
         _gota.physicsBody.velocity = CGVectorMake(0, 0);
@@ -927,7 +930,7 @@
     }
     
     if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == CONTROLE_TOQUE)){
-        NSLog(@"touch control hit");
+//        NSLog(@"touch control hit");
         [_gota.sprite removeAllActions];
         _gota.sprite.texture = _gota.idleTexture;
         _gota.physicsBody.velocity = CGVectorMake(0, 0);
@@ -969,8 +972,11 @@
         //Ir para o proximo nivel
         NSNumber *nextlevel=[NSNumber numberWithInt:([self.currentLevel intValue] + 1)];
         
-        if ([[JAGCreatorLevels numberOfLevels:1] intValue]>=[nextlevel intValue]) 
+       NSInteger faseAtual = [[NSUserDefaults standardUserDefaults] integerForKey:@"faseAtual"];
+        
+        if ([[JAGCreatorLevels numberOfLevels:1] intValue]>=[nextlevel intValue]&& [nextlevel intValue]>faseAtual)
             [[NSUserDefaults standardUserDefaults]setInteger:[nextlevel integerValue] forKey:@"faseAtual"];
+        
         [self presentGameOver:1];
     
    
@@ -1160,12 +1166,10 @@
         JAGPerdaGota *gotinha=[[JAGPerdaGota alloc] initWithPosition:self.gota.position withTimeLife:10 withSize:self.level.tileSize];
         
         [area addChild:[gotinha areavisao:50]];
-        gotinha.sprite.zPosition=15;
-         gotinha.zPosition=15;
-        [self.cropNode addChild:gotinha];
-        [self.cropNode addChild:gotinha.sprite];
-        
-//        [self.cropNode addChild:gotinha.emitter];
+       
+        [self.camadaItens addChild:gotinha];
+        [self.camadaItens addChild:gotinha.sprite];
+//
         //Aumentar a area
         
                                                 }]]];

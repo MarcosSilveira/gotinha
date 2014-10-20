@@ -207,7 +207,7 @@
             }
             
             
-            NSLog(@"Diferença apos ligar: %f",timeDifference);
+//            NSLog(@"Diferença apos ligar: %f",timeDifference);
         }
     }
     
@@ -241,7 +241,7 @@
             sincronizado = YES;
         }
         
-        NSLog(@"diferenca: %f",timeDifference);
+//        NSLog(@"diferenca: %f",timeDifference);
         [[NSUserDefaults standardUserDefaults]setObject:stopDate forKey:@"tempo_para_vida"];
         [[NSUserDefaults standardUserDefaults]setFloat:timeDifference forKey:@"ultimo_tempo"];
         if (timeDifference>=0) {

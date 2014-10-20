@@ -278,6 +278,10 @@
     
     
     scene.level.frequenciaRelampago = 10.0;
+    
+    scene.camadaPersonagens=[[SKNode alloc] init];
+    
+    scene.camadaItens=[[SKNode alloc] init];
     //    CGSize tamanho = CGSizeMake(scene.level.tileSize*1.2, scene.level.tileSize*1.2);
 }
 
@@ -288,7 +292,18 @@
     scene.gota.vida = 15;
     scene.hud.gota  = scene.gota;
     
-    [scene.cropNode addChild:scene.gota];
+   
+    
+    
+    //Preparar camadas
+    
+    [scene.cropNode addChild:scene.camadaItens];
+    
+    [scene.cropNode addChild:scene.camadaPersonagens];
+    
+    
+    [scene.camadaPersonagens addChild:scene.gota];
+//    [scene.cropNode addChild:scene.gota];
     
     [scene addChild: scene.cropNode];
     
@@ -622,7 +637,7 @@
         
         
         //Add no crop
-        [scene.cropNode addChild:fogo];
+        [scene.camadaPersonagens addChild:fogo];
         
         //Config de hud e fase
         [JAGCreatorLevels configHud:scene];
@@ -723,8 +738,8 @@
         [JAGCreatorLevels configMap:scene withTtile:tiledMap];
         
 
-        [scene.cropNode addChild:presao];
-        [scene.cropNode addChild:porta];
+        [scene.camadaItens addChild:presao];
+        [scene.camadaItens addChild:porta];
         
         
         //Add objetos
@@ -813,10 +828,10 @@
         
         
         
-        [scene.cropNode addChild:fogo];
+        [scene.camadaPersonagens addChild:fogo];
         
-        [scene.cropNode addChild:presao];
-        [scene.cropNode addChild:porta];
+        [scene.camadaItens addChild:presao];
+        [scene.camadaItens addChild:porta];
         
         scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(17, 18)] withSize:tiledMap.tileSize];
         
@@ -929,13 +944,13 @@
         
         //Add objetos
         
-        [scene.cropNode addChild:presao];
-        [scene.cropNode addChild:presao2];
-        [scene.cropNode addChild:presao3];
-        [scene.cropNode addChild:porta];
-        [scene.cropNode addChild:porta2];
+        [scene.camadaItens addChild:presao];
+        [scene.camadaItens addChild:presao2];
+        [scene.camadaItens addChild:presao3];
+        [scene.camadaItens addChild:porta];
+        [scene.camadaItens addChild:porta2];
         
-        [scene.cropNode addChild:fogo];
+        [scene.camadaPersonagens addChild:fogo];
         
         
         scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(10, 16)] withSize:tiledMap.tileSize];
@@ -992,7 +1007,7 @@
         
         //Add objetos
         
-        [scene.cropNode addChild:fogo];
+        [scene.camadaPersonagens addChild:fogo];
         
         scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(18, 18)] withSize:tiledMap.tileSize];
         
@@ -1103,13 +1118,13 @@
         
         //Add objetos
         
-        [scene.cropNode addChild:presao];
-        [scene.cropNode addChild:presao2];
-        [scene.cropNode addChild:presao3];
-        [scene.cropNode addChild:porta];
-        [scene.cropNode addChild:porta2];
+        [scene.camadaItens addChild:presao];
+        [scene.camadaItens addChild:presao2];
+        [scene.camadaItens addChild:presao3];
+        [scene.camadaItens addChild:porta];
+        [scene.camadaItens addChild:porta2];
         
-        [scene.cropNode addChild:fogo];
+        [scene.camadaPersonagens addChild:fogo];
 
         
         
@@ -1209,11 +1224,11 @@
         [scene.portas addObject:porta2];
 
         
-        [scene.cropNode addChild:presao];
-        [scene.cropNode addChild:presao2];
-        [scene.cropNode addChild:presao3];
-        [scene.cropNode addChild:porta];
-        [scene.cropNode addChild:porta2];
+        [scene.camadaItens addChild:presao];
+        [scene.camadaItens addChild:presao2];
+        [scene.camadaItens addChild:presao3];
+        [scene.camadaItens addChild:porta];
+        [scene.camadaItens addChild:porta2];
         
 //        [scene.cropNode addChild:fogo];
 
@@ -1284,7 +1299,7 @@
         [scene.inimigos addObject:fogo];
         
         
-        [scene.cropNode addChild:fogo];
+        [scene.camadaPersonagens addChild:fogo];
 
         //Portas
         
