@@ -36,6 +36,7 @@
 @property (nonatomic) SKSpriteNode *heart;
 @property (nonatomic) SKSpriteNode *clock;
 @property (nonatomic) SKSpriteNode *life;
+@property (nonatomic) SKSpriteNode *red;
 
 -(instancetype)initWithTempo:(int) tempo
                     withVida:(int) vida

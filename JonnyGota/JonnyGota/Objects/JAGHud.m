@@ -50,12 +50,15 @@
     _clock.position = CGPointMake(size.width*0.42, size.height*0.956);
     _clock.size = CGSizeMake(size.width*.05, size.height*.068);
     
+
+    
     _life = [[SKSpriteNode alloc]init];
     _life.texture = _saude_sprites[0];
     _life.position = CGPointMake(size.width*0.88, size.height*0.955);
     _life.size = CGSizeMake(size.width*.15, size.height*.05);
-
-    
+    _red = [[SKSpriteNode alloc]initWithColor:[UIColor redColor] size:CGSizeMake(_life.size.width*0.9, _life.size.height*0.95)];
+    _red.position = _life.position;
+    _red.alpha = 0.2f;
     _pauseBT = [[SKSpriteNode alloc] initWithColor:[UIColor purpleColor] size:CGSizeMake(20, 20)];
     _pauseBT.position = CGPointMake(size.width*0.11, size.height*0.96);
     _pauseBT.name = @"pauseBT";
@@ -87,10 +90,19 @@
     [self addChild:_tempo];
     [self addChild:_saude];
     [self addChild:_pauseBT];
+    [self addChild:_red];
     self.zPosition = 100;
+    
+//    [self performSelectorInBackground:@selector(actionFade) withObject:nil];
     return self;
 }
+-(void)actionFade{
+    [_red runAction: [SKAction repeatActionForever:[SKAction runBlock:^{
+        [_red runAction:[SKAction fadeAlphaTo:0.4f duration:2]];
+        [_red runAction:[SKAction fadeAlphaTo:0.0f duration:2]];
+    }]]];
 
+}
 -(void)update{
     [self recuperaVida];
     _tempo.text=[NSString stringWithFormat:@"%ds",_tempoRestante];
