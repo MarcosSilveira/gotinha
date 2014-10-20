@@ -139,6 +139,8 @@
         button2.zPosition = 201;
         GObackground.zPosition = 200;
         message.zPosition = 201;
+        
+        self.paused = YES;
     }
 
     GONaTela = YES;
@@ -333,45 +335,6 @@
     return tipo;
 }
 
--(int)verificaSentido2: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto {
-    //  toqueFinal = pontoReferencia;
-    int tipo;
-    
-    float difx = pontoObjeto.x - pontoReferencia.x;
-    
-    //float dify=toqueFinals.y-toqueFinal.y;
-    
-    float dify = pontoObjeto.y - pontoReferencia.y;
-    
-    BOOL negx = false;;
-    
-    bool negy = false;
-    
-    
-    if(difx < 0){
-        negx = true;
-        difx *= -1;
-    }
-    if(dify < 0){
-        negy = true;
-        dify *= -1;
-    }
-    
-    if (difx > dify+50) {
-        if(negx)
-            tipo = 4;
-        else
-            tipo = 3;
-    }
-    else{
-        if(negy)
-            tipo = 1;
-        else
-            tipo = 2;
-    }
-    
-    return tipo;
-}
 
 -(void) followPlayer {
     
@@ -648,7 +611,7 @@
         }
         else if (!pauseDetected) {
             
-        int temp=[self verificaSentido2:toqueFinal with:_gota.position];
+        int temp=[self verificaSentido:toqueFinal with:_gota.position];
             
 
             
@@ -753,6 +716,9 @@
     }
 }
 -(void)nextLevel{
+   
+    self.paused = NO;
+    
     NSNumber *nextlevel=[NSNumber numberWithInt:([self.currentLevel intValue] + 1)];
 
     if ([[JAGCreatorLevels numberOfLevels:1] intValue]>=[nextlevel intValue]) {
@@ -764,7 +730,7 @@
         
         SKTransition *trans = [SKTransition fadeWithDuration:1.0];
         [self.scene.view presentScene:scene transition:trans];
-        
+
     }
 //    [self.gota changePosition:self.posicaoInicial];
 
@@ -1188,12 +1154,16 @@
                                                 [SKAction runBlock:^{
         [self receberDano:1];
         //Criar uma gotinha
-        JAGPerdaGota *gotinha=[[JAGPerdaGota alloc] initWithPosition:self.gota.position withTimeLife:10];
+        
+      //  self.sprite.texture = [SKTexture textureWithImageNamed:@"poca.png"];
+
+        JAGPerdaGota *gotinha=[[JAGPerdaGota alloc] initWithPosition:self.gota.position withTimeLife:10 withSize:self.level.tileSize];
         
         [area addChild:[gotinha areavisao:50]];
 
         [self.cropNode addChild:gotinha];
-        [self.cropNode addChild:gotinha.emitter];
+        [self.cropNode addChild:gotinha.sprite];
+//        [self.cropNode addChild:gotinha.emitter];
         //Aumentar a area
         
                                                 }]]];
