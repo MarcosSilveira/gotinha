@@ -1158,7 +1158,8 @@
       //  self.sprite.texture = [SKTexture textureWithImageNamed:@"poca.png"];
 
         JAGPerdaGota *gotinha=[[JAGPerdaGota alloc] initWithPosition:self.gota.position withTimeLife:10 withSize:self.level.tileSize];
-        
+        gotinha.zPosition = -1;
+        _gota.zPosition = 1;
         [area addChild:[gotinha areavisao:50]];
 
         [self.cropNode addChild:gotinha];
