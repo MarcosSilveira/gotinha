@@ -12,12 +12,14 @@
 @implementation JAGPorta
 
 -(instancetype)initWithPosition:(CGPoint)ponto
-                     withSprite:(SKSpriteNode *)imagem
-                       withTipo:(int) tipo{
+                  withDirection:(int)direction
+                       withTipo:(int) tipo
+                       withSize:(CGSize) size{
     self=[super init];
     
-    _sprite=imagem;
+    self.animation=[[NSMutableArray alloc] init];
     
+    [self defineSprite:direction withSize:size];
     [self addChild:_sprite];
     
     self.position=ponto;
@@ -29,6 +31,8 @@
     [self configPhysicsBody];
     
     _aberta=FALSE;
+    
+    self.direction=direction;
 
     
     _pressoes=[[NSMutableArray alloc] init];
@@ -79,9 +83,13 @@
         if(aberto){
             _aberta=true;
             self.physicsBody=nil;
+            [self animarAbrir];
+            //Animar
         }else{
             _aberta=false;
             [self configPhysicsBody];
+            
+            
         }
     }
    
@@ -97,6 +105,50 @@
         //Fechar
         return false;
     }
+    
+}
+
+-(void)defineSprite:(int) dire withSize:(CGSize) size{
+    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
+    self.atlas  = [SKTextureAtlas atlasNamed:@"porta.atlas"];
+    
+    for (int i=1; i<=5; i++) {
+        NSString *textureName = [NSString stringWithFormat:@"porta000%d.png", i];
+        [self.animation addObject:[self.atlas textureNamed:textureName]];
+    }
+
+    //1 Cima e baixo 3 esquerda 4 direita
+    if (dire==1) {
+        self.sprite.texture = [self.atlas textureNamed:@"porta0001.png"];
+        
+        
+    }else if (dire==3){
+        //Rotacionar
+        self.sprite.texture = [self.atlas textureNamed:@"porta0001.png"];
+        self.sprite.xScale=-1.0;
+    }else{
+        self.sprite.texture = [self.atlas textureNamed:@"porta0001.png"];
+    }
+}
+
+-(void)animarAbrir{
+    if (self.direction==1) {
+        self.sprite.texture = [self.atlas textureNamed:@"porta0001.png"];
+        [self.sprite runAction:[SKAction animateWithTextures:self.animation timePerFrame:0.1f]];
+//        [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.animation timePerFrame:0.1f]]withKey:@"walkingBack"];
+
+    }else if (self.direction==3){
+        //Rotacionar
+        
+        //Do fim pro inicio aqui
+        self.sprite.texture = [self.atlas textureNamed:@"porta0001.png"];
+        self.sprite.xScale=-1.0;
+    }else{
+        self.sprite.texture = [self.atlas textureNamed:@"porta0001.png"];
+    }
+}
+
+-(void)animarFechar{
     
 }
 

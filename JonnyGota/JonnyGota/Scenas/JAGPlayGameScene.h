@@ -55,6 +55,10 @@
 
 @property (nonatomic) CGPoint posicaoInicial;
 
+@property (nonatomic) SKNode *camadaPersonagens;
+
+@property (nonatomic) SKNode *camadaItens;
+
 -(void)divideGota;
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto;
 - (id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world;

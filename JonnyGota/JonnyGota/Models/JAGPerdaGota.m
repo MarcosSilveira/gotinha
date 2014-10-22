@@ -102,7 +102,6 @@
     [_circleMask removeFromParent];
     [self.sprite removeFromParent];
     [self removeFromParent];
-    
 }
 
 @end
