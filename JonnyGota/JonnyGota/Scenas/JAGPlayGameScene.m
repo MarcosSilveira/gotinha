@@ -675,8 +675,8 @@
 
 
 -(void)update:(NSTimeInterval)currentTime {
-   CGVector zero= CGVectorMake(0, 0);
-    if(_gota.physicsBody.velocity.dx == zero.dx && _gota.physicsBody.velocity.dy == zero.dy && _gota.sprite.texture != _gota.idleTexture)
+  
+    if(_gota.physicsBody.velocity.dx == 0 && _gota.physicsBody.velocity.dy == 0 && _gota.sprite.texture != _gota.idleTexture)
     {        [_gota.sprite removeAllActions];
         if (!_gota.escondida)
             _gota.sprite.texture = _gota.idleTexture;}
@@ -702,7 +702,7 @@
     
     ///area.position = CGPointMake(_gota.position.x,_gota.position.y);
     
-    circleMask.position=CGPointMake(_gota.position.x,_gota.position.y);
+    
 
 
     [self.level.chuva update:self.gota];
@@ -726,13 +726,17 @@
         [self deallocSound];
         _gota = nil;
         
-        SKScene *scene = [[JAGPlayGameScene alloc] initWithSize:self.frame.size level:nextlevel andWorld:@1];
+        JAGPlayGameScene *scene = [[JAGPlayGameScene alloc] initWithSize:self.frame.size level:nextlevel andWorld:@1];
         
+        scene.paused=YES;
+
         
         SKTransition *trans = [SKTransition fadeWithDuration:1.0];
         [self.scene.view presentScene:scene transition:trans];
         frenetico=YES;
-    }else{
+       
+        
+            }else{
 //        self.paused = YES;
     }
 //    [self.gota changePosition:self.posicaoInicial];
@@ -1150,6 +1154,8 @@
                                          -(_gota.position.y)+CGRectGetMidY(self.frame));
 //    }
     fadeMask.position = CGPointMake(self.gota.position.x, self.gota.position.y);
+    
+    circleMask.position=CGPointMake(_gota.position.x,_gota.position.y);
 }
 -(void)configStart:(int) time{
     _posicaoInicial=self.gota.position;
@@ -1185,14 +1191,14 @@
     }
     
     
-    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"granada" ofType:@"caf"];
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"Raio1" ofType:@"caf"];
     NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
     
     relampago=[[Musica alloc] init];
     
     [relampago carregar:fileUrl withEffects:false];
     
-    [relampago changeVolume:0.6];
+    [relampago changeVolume:0.3];
 
     self.posicaoInicial=self.gota.position;
 }

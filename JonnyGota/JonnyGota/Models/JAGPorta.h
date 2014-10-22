@@ -21,14 +21,14 @@
 
 @property (nonatomic)int tipo;
 
-@property (nonatomic) SKTextureAtlas *atlas;
-
 @property (nonatomic) int direction;
 
-@property (nonatomic) NSMutableArray *animation;
+@property (nonatomic) BOOL reverse;
+
 
 -(instancetype)initWithPosition:(CGPoint) ponto
                   withDirection:(int)direction
+                    withReverse:(BOOL) reverse
                        withTipo:(int) tipo
                        withSize:(CGSize) size;
 
