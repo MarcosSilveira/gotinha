@@ -297,6 +297,8 @@
     [scene.hud startTimer];
     
     [scene configStart:8];
+    
+    [scene.gota addPhysics];
 }
 
 +(void)configMap:(JAGPlayGameScene *)scene
@@ -697,7 +699,8 @@
         
         
         
-        JAGPressao *presao = [[JAGPressao alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(17, 12)] withTipo:3 withSize:tiledMap.tileSize];
+        JAGPressao *presao = [[JAGPressao alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(13, 18)] withTipo:3 withSize:tiledMap.tileSize];
+        
         
         
        
@@ -709,11 +712,15 @@
         
         [porta vincularBotao:presao];
         
+        [porta2 vincularBotao:presao];
+        
         [scene.level.botoes addObject:presao];
         
         scene.portas=[[NSMutableArray alloc] init];
         
         [scene.portas addObject:porta];
+        
+        [scene.portas addObject:porta2];
         
        
         

@@ -37,6 +37,6 @@
 -(JAGGotaDividida*)dividirwithSentido:(int) sentido;
 -(void)esconder;
 
-
+-(void)addPhysics;
 
 @end

@@ -11,6 +11,12 @@
 
 @implementation JAGPorta
 
+static NSMutableArray *animation;
+
+static NSMutableArray *animationReverse;
+
+static SKTextureAtlas *atlas;
+
 -(instancetype)initWithPosition:(CGPoint)ponto
                      withSprite:(SKSpriteNode *)imagem
                        withTipo:(int) tipo{
@@ -23,6 +29,7 @@
     self.position=ponto;
     
     self.tipo=tipo;
+    
     
     self.name=@"porta";
 

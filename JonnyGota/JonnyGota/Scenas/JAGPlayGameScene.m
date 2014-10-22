@@ -580,8 +580,8 @@
 
 
 -(void)update:(NSTimeInterval)currentTime {
-   CGVector zero= CGVectorMake(0, 0);
-    if(_gota.physicsBody.velocity.dx == zero.dx && _gota.physicsBody.velocity.dy == zero.dy && _gota.sprite.texture != _gota.idleTexture)
+  
+    if(_gota.physicsBody.velocity.dx == 0 && _gota.physicsBody.velocity.dy == 0 && _gota.sprite.texture != _gota.idleTexture)
     {        [_gota.sprite removeAllActions];
         if (!_gota.escondida)
             _gota.sprite.texture = _gota.idleTexture;}
@@ -607,7 +607,7 @@
     
     //area.position = CGPointMake(_gota.position.x,_gota.position.y);
     
-    circleMask.position=CGPointMake(_gota.position.x,_gota.position.y);
+    
 
 
     [self.level.chuva update:self.gota];
@@ -1070,14 +1070,14 @@
     }
     
     
-    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"granada" ofType:@"caf"];
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"Raio1" ofType:@"caf"];
     NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
     
     relampago=[[Musica alloc] init];
     
     [relampago carregar:fileUrl withEffects:false];
     
-    [relampago changeVolume:0.6];
+    [relampago changeVolume:0.3];
 
     self.posicaoInicial=self.gota.position;
 }

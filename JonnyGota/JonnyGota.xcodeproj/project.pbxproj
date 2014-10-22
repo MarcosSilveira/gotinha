@@ -54,6 +54,9 @@
 		0B9229C619C3208900009EC4 /* JSTileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9229C519C3208900009EC4 /* JSTileMap.m */; };
 		0B97E39819CC981D0052ECF5 /* rain.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0B97E39719CC981D0052ECF5 /* rain.caf */; };
 		0B97E39B19CCA5C20052ECF5 /* granada.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0B97E39A19CCA5C20052ECF5 /* granada.caf */; };
+		0BB20B6C19F82257004EBC4A /* AMB.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BB20B6919F82257004EBC4A /* AMB.caf */; };
+		0BB20B6D19F82257004EBC4A /* DropGeneric1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BB20B6A19F82257004EBC4A /* DropGeneric1.caf */; };
+		0BB20B6E19F82257004EBC4A /* Raio1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BB20B6B19F82257004EBC4A /* Raio1.caf */; };
 		0BB7E84919AE403700C36889 /* JAGPerdaGota.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB7E84819AE403700C36889 /* JAGPerdaGota.m */; };
 		0BB81679199BBDA800490104 /* JAGWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB81678199BBDA800490104 /* JAGWall.m */; };
 		0BCC65FC19DC88B1004C517F /* Barroco.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65F419DC88B1004C517F /* Barroco.ttf */; };
@@ -199,6 +202,9 @@
 		0B9229C519C3208900009EC4 /* JSTileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTileMap.m; sourceTree = "<group>"; };
 		0B97E39719CC981D0052ECF5 /* rain.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rain.caf; sourceTree = "<group>"; };
 		0B97E39A19CCA5C20052ECF5 /* granada.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = granada.caf; sourceTree = "<group>"; };
+		0BB20B6919F82257004EBC4A /* AMB.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AMB.caf; sourceTree = "<group>"; };
+		0BB20B6A19F82257004EBC4A /* DropGeneric1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DropGeneric1.caf; sourceTree = "<group>"; };
+		0BB20B6B19F82257004EBC4A /* Raio1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Raio1.caf; sourceTree = "<group>"; };
 		0BB7E84719AE403700C36889 /* JAGPerdaGota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGPerdaGota.h; path = JonnyGota/Models/JAGPerdaGota.h; sourceTree = "<group>"; };
 		0BB7E84819AE403700C36889 /* JAGPerdaGota.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGPerdaGota.m; path = JonnyGota/Models/JAGPerdaGota.m; sourceTree = "<group>"; };
 		0BB81677199BBDA800490104 /* JAGWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGWall.h; path = JonnyGota/Models/JAGWall.h; sourceTree = "<group>"; };
@@ -738,8 +744,10 @@
 				B1D9C13A19DF041B005ED4A1 /* heart_sem_sombra.png in Resources */,
 				0B15AACA19D09A2100ED6110 /* map2.tmx in Resources */,
 				8DF47BD419B0B4EE0021AE2D /* spark.png in Resources */,
+				0BB20B6E19F82257004EBC4A /* Raio1.caf in Resources */,
 				8D35976A19D86559009B6083 /* fase_semSombra5.png in Resources */,
 				8D4A4F4119AFA99300255468 /* Vapor.sks in Resources */,
+				0BB20B6C19F82257004EBC4A /* AMB.caf in Resources */,
 				8D1B20FD19DC4AFF007B9B9F /* price099.png in Resources */,
 				8D4A4F4219AFA99300255468 /* spark.png in Resources */,
 				0B15AADD19D09B0500ED6110 /* map8.tmx in Resources */,
@@ -759,6 +767,7 @@
 				0B3A045C1991164A00C7C39E /* InfoPlist.strings in Resources */,
 				0BCC660119DC88B1004C517F /* VAGRoundedStd-Light.otf in Resources */,
 				8D8DC57D19D2EC2F00E75949 /* vida7.png in Resources */,
+				0BB20B6D19F82257004EBC4A /* DropGeneric1.caf in Resources */,
 				0B3A046F1991164A00C7C39E /* Images.xcassets in Resources */,
 				0B15AADA19D09B0500ED6110 /* map5.tmx in Resources */,
 				0B15AACD19D09AE100ED6110 /* TileSet.png in Resources */,
