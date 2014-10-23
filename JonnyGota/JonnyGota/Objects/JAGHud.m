@@ -59,7 +59,8 @@
     _red = [[SKSpriteNode alloc]initWithColor:[UIColor redColor] size:CGSizeMake(_life.size.width*0.9, _life.size.height*0.95)];
     _red.position = _life.position;
     _red.alpha = 0.2f;
-    _pauseBT = [[SKSpriteNode alloc] initWithColor:[UIColor purpleColor] size:CGSizeMake(20, 20)];
+    _pauseBT = [[SKSpriteNode alloc] initWithImageNamed:@"pauseBT.png"];
+    _pauseBT.size=CGSizeMake(size.width*.08, size.height*.072);
     _pauseBT.position = CGPointMake(size.width*0.11, size.height*0.96);
     _pauseBT.name = @"pauseBT";
     _tempoRestante=tempo;
