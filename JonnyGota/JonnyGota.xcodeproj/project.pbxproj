@@ -53,6 +53,7 @@
 		0B88D26219E70E1F00351527 /* botao1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B88D26019E70E1F00351527 /* botao1.png */; };
 		0B88D26319E70E1F00351527 /* botao2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B88D26119E70E1F00351527 /* botao2.png */; };
 		0B89188319F959CD00DAB31F /* pauseBT.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B89188219F959CD00DAB31F /* pauseBT.png */; };
+		0B89188519F962C700DAB31F /* chuva.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0B89188419F962C700DAB31F /* chuva.caf */; };
 		0B9229BC19C31FEA00009EC4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9229BB19C31FEA00009EC4 /* libz.dylib */; };
 		0B9229C319C3206C00009EC4 /* LFCGzipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9229C219C3206C00009EC4 /* LFCGzipUtility.m */; };
 		0B9229C619C3208900009EC4 /* JSTileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9229C519C3208900009EC4 /* JSTileMap.m */; };
@@ -207,6 +208,7 @@
 		0B88D26019E70E1F00351527 /* botao1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = botao1.png; sourceTree = "<group>"; };
 		0B88D26119E70E1F00351527 /* botao2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = botao2.png; sourceTree = "<group>"; };
 		0B89188219F959CD00DAB31F /* pauseBT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pauseBT.png; sourceTree = "<group>"; };
+		0B89188419F962C700DAB31F /* chuva.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = chuva.caf; sourceTree = "<group>"; };
 		0B9229BB19C31FEA00009EC4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		0B9229C119C3206C00009EC4 /* LFCGzipUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFCGzipUtility.h; sourceTree = "<group>"; };
 		0B9229C219C3206C00009EC4 /* LFCGzipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFCGzipUtility.m; sourceTree = "<group>"; };
@@ -648,6 +650,7 @@
 		0B97E39919CC982C0052ECF5 /* Musicas */ = {
 			isa = PBXGroup;
 			children = (
+				0B89188419F962C700DAB31F /* chuva.caf */,
 				0BB20B6919F82257004EBC4A /* AMB.caf */,
 				0BB20B6A19F82257004EBC4A /* DropGeneric1.caf */,
 				0BB20B6B19F82257004EBC4A /* Raio1.caf */,
@@ -804,6 +807,7 @@
 				8D300AEF19F2A23100856141 /* store.png in Resources */,
 				0B15AACA19D09A2100ED6110 /* map2.tmx in Resources */,
 				8DF47BD419B0B4EE0021AE2D /* spark.png in Resources */,
+				0B89188519F962C700DAB31F /* chuva.caf in Resources */,
 				0BB20B6E19F82257004EBC4A /* Raio1.caf in Resources */,
 				8D35976A19D86559009B6083 /* fase_semSombra5.png in Resources */,
 				8D4A4F4119AFA99300255468 /* Vapor.sks in Resources */,

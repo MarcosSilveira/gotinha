@@ -1198,7 +1198,7 @@
     
     [relampago carregar:fileUrl withEffects:false];
     
-    [relampago changeVolume:0.3];
+    [relampago changeVolume:1.0];
 
     self.posicaoInicial=self.gota.position;
 }
