@@ -738,6 +738,15 @@
         
             }else{
 //        self.paused = YES;
+                
+                [self deallocSound];
+                self.scene.view.paused = NO;
+                GONaTela = NO;
+                JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
+                [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
+                SKTransition *trans = [SKTransition fadeWithDuration:1.0];
+                
+                [self.scene.view presentScene:scene transition:trans];
     }
 //    [self.gota changePosition:self.posicaoInicial];
 
