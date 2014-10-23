@@ -51,7 +51,7 @@
                 [self.physicsBody applyImpulse:CGVectorMake(0,_multi)];
 
                 [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesBack timePerFrame:0.1f]]withKey:@"walkingBack"];
-                self.sprite.xScale = 1.0;
+//                self.sprite.xScale = 1.0;
                 
                 
                 break;
@@ -60,7 +60,7 @@
                 
                 [self.physicsBody applyImpulse:CGVectorMake(0, - _multi)];
                 [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesFront timePerFrame:0.1f]]withKey:@"walkingFront"];
-                self.sprite.xScale = 1.0;
+//                self.sprite.xScale = 1.0;
 
                 
                 break;
