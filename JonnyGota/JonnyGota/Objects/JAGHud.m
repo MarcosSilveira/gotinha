@@ -59,8 +59,9 @@
     _red = [[SKSpriteNode alloc]initWithColor:[UIColor redColor] size:CGSizeMake(_life.size.width*0.9, _life.size.height*0.95)];
     _red.position = _life.position;
     _red.alpha = 0.2f;
-    _pauseBT = [[SKSpriteNode alloc] initWithColor:[UIColor purpleColor] size:CGSizeMake(20, 20)];
+    _pauseBT = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(size.width*.05, size.height*.08)];
     _pauseBT.position = CGPointMake(size.width*0.11, size.height*0.96);
+    _pauseBT.texture = [SKTexture textureWithImageNamed:@"pauseBT"];
     _pauseBT.name = @"pauseBT";
     _tempoRestante=tempo;
 //    _vidaRestante=vida;
@@ -90,7 +91,7 @@
     [self addChild:_tempo];
     [self addChild:_saude];
     [self addChild:_pauseBT];
-    [self addChild:_red];
+//    [self addChild:_red];
     self.zPosition = 100;
     
 //    [self performSelectorInBackground:@selector(actionFade) withObject:nil];

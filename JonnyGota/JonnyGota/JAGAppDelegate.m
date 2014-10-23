@@ -7,12 +7,14 @@
 //
 
 #import "JAGAppDelegate.h"
-
+#import <StoreKit/StoreKit.h>
 @implementation JAGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
     return YES;
 }
 							
@@ -43,5 +45,37 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+-(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions{
 
+    NSLog(@"Update on Transactions:");
+    for (SKPaymentTransaction *transaction in transactions) {
+        switch (transaction.transactionState) {
+                // Call the appropriate custom method for the transaction state.
+            case SKPaymentTransactionStatePurchasing:
+//                [self showTransactionAsInProgress:transaction deferred:NO];
+                NSLog(@"Purchasing");
+                break;
+            case SKPaymentTransactionStateDeferred:
+//                [self showTransactionAsInProgress:transaction deferred:YES];
+                NSLog(@"Deferred");
+                break;
+            case SKPaymentTransactionStateFailed:
+//                [self failedTransaction:transaction];
+                NSLog(@"Failed");
+                break;
+            case SKPaymentTransactionStatePurchased:
+//                [self completeTransaction:transaction];
+                NSLog(@"Purchased");
+                break;
+            case SKPaymentTransactionStateRestored:
+//                [self restoreTransaction:transaction];
+                NSLog(@"Restored");
+                break;
+            default:
+                // For debugging
+                NSLog(@"Unexpected transaction state %@", @(transaction.transactionState));
+                break;
+        }
+    }
+}
 @end

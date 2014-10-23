@@ -386,17 +386,7 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     for (UITouch *touch in touches) {
-        SKNode *nodeAux = [self nodeAtPoint:[touch locationInNode:self]];
-        if ([nodeAux.name isEqualToString:@"pauseBT"]) {
-            NSLog(@"pause detected");
-            if (!GONaTela) {
-
-                pauseDetected = !pauseDetected;
-            
-                self.scene.view.paused = !self.scene.view.paused;
-                [self.cropNode removeAllActions];}
-        }
-        toqueInicio = [touch locationInNode:self];
+                toqueInicio = [touch locationInNode:self];
         
         toqueInicio = CGPointMake(toqueInicio.x+(_gota.position.x)-CGRectGetMidX(self.frame),
                                  toqueInicio.y+(_gota.position.y)-CGRectGetMidY(self.frame));
@@ -446,7 +436,26 @@
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
     for (UITouch *touch in touches) {
-        
+        SKNode *nodeAux = [self nodeAtPoint:[touch locationInNode:self]];
+        if ([nodeAux.name isEqualToString:@"pauseBT"]) {
+            NSLog(@"pause detected");
+            if (!GONaTela) {
+                
+                pauseDetected = !pauseDetected;
+//                if (pauseDetected) {
+//                    SKLabelNode *message2 =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
+//                    message2.fontSize = self.frame.size.height*0.1;
+//                    message2.text = @"Game Paused";
+//                    message2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
+//                    [self.camadaPersonagens addChild:message2];
+//                    
+//                }
+                
+                self.scene.view.paused = !self.scene.view.paused;
+                [self.cropNode removeAllActions];
+            }
+        }
+
         toqueFinal = [touch locationInNode:self];
         toqueFinal = CGPointMake(toqueFinal.x+(_gota.position.x)-CGRectGetMidX(self.frame),
                                  toqueFinal.y+(_gota.position.y)-CGRectGetMidY(self.frame));
