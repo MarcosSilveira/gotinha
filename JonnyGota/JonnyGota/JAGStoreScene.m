@@ -18,10 +18,13 @@
     SKSpriteNode *priceItem2;
     SKSpriteNode *bt_bg;
     SKSpriteNode *bt_bg2;
+    SKLabelNode *message2;
+    BOOL primeiroProdutoOK;
     
 }
 
 -(void)didMoveToView:(SKView *)view{
+    primeiroProdutoOK = NO;
     _identifiers = [NSArray arrayWithObjects:@"Super_Gotinha_",@"10_vidas", nil];
     
     [self validateProductIdentifiers:_identifiers];
@@ -34,7 +37,11 @@
     backBT =[[SKSpriteNode alloc]initWithImageNamed:@"back_bt"];
     backBT.position = CGPointMake(self.frame.size.width*0.1, self.frame.size.height*0.9);
     backBT.size = CGSizeMake(backBT.texture.size.width/2, backBT.texture.size.height/2);
-    
+    message2 =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
+    message2.fontSize = self.frame.size.height*0.1;
+    message2.text = @"Carregando produtos...";
+    message2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
+
     //    item1 = [[SKSpriteNode alloc] initWithImageNamed:@"vidas5.png"];
     //    item1.size = CGSizeMake(item1.texture.size.width*0.7, item1.texture.size.height*0.7);
     //    item1.position = CGPointMake(self.frame.size.width*0.3, self.frame.size.height*0.58);
@@ -60,6 +67,7 @@
     
     [self addChild:background];
     [self addChild:backBT];
+    [self addChild:message2];
     //    [self addChild:bt_bg];
     //    [self addChild:bt_bg2];
     //    [self addChild:item1];
@@ -92,7 +100,7 @@
      didReceiveResponse:(SKProductsResponse *)response
 {
     self.products = response.products;
-    SKProduct *produtoTeste = self.products[0];
+
     for (NSString *invalidIdentifier in response.invalidProductIdentifiers) {
         // Handle any invalid product identifiers.
     }
@@ -114,7 +122,11 @@
     float somaX = self.frame.size.width*0.103;
     
     if (_products.count !=0) {
-        
+        if (!primeiroProdutoOK) {
+            [message2 removeFromParent];
+            primeiroProdutoOK = YES;
+        }
+
         
         for (int i=0; i<_products.count; i++) {
             SKSpriteNode *nodoItem;
