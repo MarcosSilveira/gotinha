@@ -997,7 +997,7 @@
         [JAGCreatorLevels configMap:scene withTtile:tiledMap];
         
         
-        JAGFogoEnemy *fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(7, 1)] withSize:tiledMap.tileSize];
+        JAGFogoEnemy *fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(7, 1)] withSize:tiledMap.tileSize];
         fogo.dano=10;
         
         
