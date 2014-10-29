@@ -274,6 +274,8 @@
     
     [tiledMap setTileSize:CGSizeMake(tamanhot, tamanhot)];
     
+    
+    
    
     
     
@@ -321,7 +323,10 @@
     tiledMap.position = CGPointMake(0, 0);
     [scene configInit];
     
+    
+    
     //Mapa
+    
     [scene.cropNode addChild:tiledMap];
     
     [scene.cropNode addChild:[self createPhiscsBodytoLayer:tiledMap]];

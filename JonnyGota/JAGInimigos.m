@@ -153,7 +153,7 @@
 -(void)follow:(JAGGota *) jogador{
     float distance = hypotf(self.position.x - jogador.position.x, self.position.y - jogador.position.y);
     
-    if (distance < self.visao && jogador.escondida==NO) {
+    if ((distance < self.visao) && (jogador.escondida==NO) && !jogador.escondida) {
         self.seguindo = true;
         self.andandoIa = false;
         int tempSentido;
