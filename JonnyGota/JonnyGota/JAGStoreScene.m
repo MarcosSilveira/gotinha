@@ -19,6 +19,8 @@
     SKSpriteNode *bt_bg;
     SKSpriteNode *bt_bg2;
     SKLabelNode *message2;
+    SKSpriteNode *recuperaBT;
+    SKReceiptRefreshRequest *request;
     BOOL primeiroProdutoOK;
     
 }
@@ -37,6 +39,11 @@
     backBT =[[SKSpriteNode alloc]initWithImageNamed:@"back_bt"];
     backBT.position = CGPointMake(self.frame.size.width*0.1, self.frame.size.height*0.9);
     backBT.size = CGSizeMake(backBT.texture.size.width/2, backBT.texture.size.height/2);
+    
+    recuperaBT = [[SKSpriteNode alloc]initWithImageNamed:@"restaurarCompras.png"];
+    recuperaBT.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.17);
+    recuperaBT.size = CGSizeMake(recuperaBT.texture.size.width/2.2, recuperaBT.texture.size.height/2.2);
+    
     message2 =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
     message2.fontSize = self.frame.size.height*0.08;
     message2.text = @"Carregando produtos...";
@@ -46,6 +53,7 @@
     [self addChild:background];
     [self addChild:backBT];
     [self addChild:message2];
+    [self addChild:recuperaBT];
 
 }
 
@@ -71,9 +79,20 @@
         
         if([auxNode2 containsPoint:[touch locationInNode:self]])
             [self requestingPayment:[self.scene childNodeWithName:@"Super_Gotinha_"].name];
+    
+        
+        if([recuperaBT containsPoint:[touch locationInNode:self]])
+            [self recuperaCompras];
+        
     }
-}
 
+}
+-(void)recuperaCompras{
+    request = [[SKReceiptRefreshRequest alloc] init];
+    request.delegate = self;
+    [request start];
+    
+}
 -(void)validateProductIdentifiers:(NSArray *)productIdentifiers
 {
     SKProductsRequest *productsRequest = [[SKProductsRequest alloc]
