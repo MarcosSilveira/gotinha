@@ -64,23 +64,21 @@ static Musica *andar;
     self.gotinhas=[[NSMutableArray alloc] init];
     self.qtGotinhas=2;
     
+    
     //Musicas
-    if (andar==nil) {
-        NSString* filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric1" ofType:@"caf"];
-        NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
-        
-        andar=[[Musica alloc] init];
-        
-        [andar inici];
-        
-        [andar carregar:fileUrl withEffects:false];
-        
-         self.andarM=[[JAGMusicAction alloc] initWithMusic:andar];
-        
-        }
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric1" ofType:@"caf"];
+    NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
     
+    andar=[[Musica alloc] init];
+    
+    [andar inici];
+    
+    [andar carregar:fileUrl withEffects:false];
+    
+    [andar changeVolume:0.4];
+    
+    self.andarM=[[JAGMusicAction alloc] initWithMusic:andar];
 
-    
     self.zPosition=500;
 
     

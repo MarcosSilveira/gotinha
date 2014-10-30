@@ -999,6 +999,8 @@
         
        NSInteger faseAtual = [[NSUserDefaults standardUserDefaults] integerForKey:@"faseAtual"];
         
+        [self.gota removeActionWithSound];
+        
         if ([[JAGCreatorLevels numberOfLevels:1] intValue]>=[nextlevel intValue]&& [nextlevel intValue]>faseAtual)
             [[NSUserDefaults standardUserDefaults]setInteger:[nextlevel integerValue] forKey:@"faseAtual"];
         

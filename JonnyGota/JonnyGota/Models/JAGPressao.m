@@ -18,8 +18,15 @@
     self=[super init];
     
 
-    
-    _sprite=[[SKSpriteNode alloc] initWithImageNamed:@"botao1.png"];
+
+    if (tipo==1) {
+         _sprite=[[SKSpriteNode alloc] initWithImageNamed:@"botao1.png"];
+    }else if (tipo==2){
+        _sprite=[[SKSpriteNode alloc] initWithImageNamed:@"botao2_1.png"];
+    }else if (tipo==3){
+        _sprite=[[SKSpriteNode alloc] initWithImageNamed:@"botao3_1.png"];
+    }
+   
     
     _sprite.size=tamanho;
     
@@ -95,12 +102,28 @@
 
 -(void)animar:(BOOL)anima{
     if(!anima){
-        [self.sprite setTexture:[SKTexture textureWithImageNamed:@"botao2"]];
+        
+        if (self.tipo==1) {
+            [self.sprite setTexture:[SKTexture textureWithImageNamed:@"botao2"]];
+        }else if (_tipo==2){
+            [self.sprite setTexture:[SKTexture textureWithImageNamed:@"botao2_2"]];
+        }else if (_tipo==3){
+            [self.sprite setTexture:[SKTexture textureWithImageNamed:@"botao3_2"]];
+
+        }
         
     }else{
       
        
-         [self.sprite setTexture:[SKTexture textureWithImageNamed:@"botao1"]];
+        if (self.tipo==1) {
+            [self.sprite setTexture:[SKTexture textureWithImageNamed:@"botao1"]];
+
+        }else if (_tipo==2){
+            [self.sprite setTexture:[SKTexture textureWithImageNamed:@"botao2_1"]];
+        }else if (_tipo==3){
+            [self.sprite setTexture:[SKTexture textureWithImageNamed:@"botao3_1"]];
+        }
+
     }
 //    [self.sprite runAction:actionChangeSprite];
 
