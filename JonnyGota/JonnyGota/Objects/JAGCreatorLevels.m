@@ -24,7 +24,7 @@
 @implementation JAGCreatorLevels
 
 
-
+#pragma mark - Methods
 + (NSNumber *)numberOfLevels:(int)mundo{
     switch (mundo) {
         case 1:
@@ -68,6 +68,8 @@
     
     [self performSelector:aSelector withObject:scene];
 }
+
+#pragma mark - Physics
 
 +(SKNode *)createPhiscsBodytoLayer:(JSTileMap*) tileMap{
     
@@ -259,6 +261,8 @@
     return nil;
 }
 
+#pragma mark - Configs
+
 +(void)configTileMap:(JAGPlayGameScene *)scene
            withTtile:(JSTileMap*) tiledMap{
     scene.level = [[JAGLevel alloc] initWithHeight:30 withWidth:30];
@@ -268,15 +272,14 @@
     scene.level.tileSize=tamanhot;
     
     
+    
+    
+    
     float scale=tamanhot /(tiledMap.tileSize.width);
     
     [tiledMap setScale:scale];
     
     [tiledMap setTileSize:CGSizeMake(tamanhot, tamanhot)];
-    
-    
-    
-   
     
     
     scene.level.frequenciaRelampago = 10.0;
@@ -341,7 +344,7 @@
     [scene createMask:tiledMap.tileSize.width*1.8 withPoint:(scene.gota.position)];
 }
 
-
+#pragma mark - Leveis
 
 + (void)initializeLevel99ofWorld01onScene:(JAGPlayGameScene *)scene
 {

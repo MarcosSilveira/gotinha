@@ -38,6 +38,8 @@
     Musica *relampago;
     bool frenetico;
     BOOL GONaTela;
+    
+    
 }
 
 #pragma mark - View Initialization
@@ -173,7 +175,8 @@
     circleMask.position = CGPointMake(ponto.x-_gota.sprite.size.width,ponto.y-_gota.sprite.size.height);
     area.alpha = 0.9;
     circleMask.alpha = 0.5;
-
+    
+    
 
     fadeMask = [[SKSpriteNode alloc]initWithImageNamed:@"fadeMask.png"];
 //    fadeMask.size = CGSizeMake(self.frame.size.width/2, self.frame.size.height/2);
@@ -183,6 +186,8 @@
     [area addChild:circleMask];
     //area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
     [_cropNode setMaskNode:area];
+    
+    
 
 }
 
@@ -707,7 +712,7 @@
     //[fogo IAcomInfo:_gota];
    
     
-    [self centerMapOnCharacter];
+   
     //depois de um tempo ou acao
     
     //circleMask.position = CGPointMake(_gota.position.x-height*0.2, _gota.position.y-width*0.29);
@@ -721,11 +726,17 @@
     
     [self prepareMove];
     
-    [self.hud update];
+    
+    
     
     if (self.hud.tempoRestante == 0) {
         self.scene.view.paused = YES;
     }
+}
+
+-(void)didFinishUpdate{
+    [self centerMapOnCharacter];
+    [self.hud update];
 }
 -(void)nextLevel{
    self.paused = NO;
@@ -1173,6 +1184,8 @@
 
 -(void)centerMapOnCharacter{
 //    if(self.gota.physicsBody.velocity.dx>0){
+    
+    
     self.cropNode.position = CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
                                          -(_gota.position.y)+CGRectGetMidY(self.frame));
 //    }
