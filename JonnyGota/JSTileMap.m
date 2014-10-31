@@ -139,7 +139,7 @@
 }
 
 
-#pragma mark -
+#pragma mark -Verificar
 
 
 +(id) layerWithTilesetInfo:(NSArray*)tilesets layerInfo:(TMXLayerInfo*)layerInfo mapInfo:(JSTileMap*)mapInfo
@@ -843,7 +843,7 @@
 	else
 	{
 		map->_maxZPositioning = baseZPosition+40;
-		map->_minZPositioning = baseZPosition + (zOrderModifier * (map.zOrderCount + 1));
+		map->_minZPositioning = baseZPosition+40 + (zOrderModifier * (map.zOrderCount + 1));
 	}
 	
 	// now actually using the data begins.
@@ -855,6 +855,16 @@
 		{
 			TMXLayer *child = [TMXLayer layerWithTilesetInfo:map.tilesets layerInfo:layerInfo mapInfo:map];
 			child.zPosition = baseZPosition + ((map.zOrderCount - layerInfo.zOrderCount) * zOrderModifier);
+            /*
+            if([layerInfo.name isEqualToString:@"BackGround"] ){
+                child.zPosition=1;
+            }
+            
+            if([layerInfo.name isEqualToString:@"Tile"] ){
+                child.zPosition=2;
+            }
+             */
+            
 #ifdef DEBUG
 			NSLog(@"Layer %@ has zPosition %f", layerInfo.name, child.zPosition);
 #endif
