@@ -273,8 +273,6 @@
     
     
     
-    
-    
     float scale=tamanhot /(tiledMap.tileSize.width);
     
     [tiledMap setScale:scale];
@@ -297,8 +295,8 @@
     scene.gota.vida = 15;
     scene.hud.gota  = scene.gota;
     
-   
-    
+  
+
     
     //Preparar camadas
     
@@ -326,7 +324,19 @@
     tiledMap.position = CGPointMake(0, 0);
     [scene configInit];
     
+    //Adicionar os Image Layers em um SKNode e adicionar no crop
     
+    /*
+    SKNode *layer=[[SKNode alloc] init];
+    
+    for (int i=0; i<tiledMap.sprites.count; i++) {
+        SKNode *layers=(SKNode *)tiledMap.sprites[i];
+        [layer addChild:layers];
+    }
+    
+    
+    [scene.cropNode addChild:layer];
+    */
     
     //Mapa
     

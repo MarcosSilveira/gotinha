@@ -240,6 +240,8 @@
 	for (SKNode* layerNode in layerNodes.allValues) {
 		if (layerNode.children.count > 0) {
 			[layer addChild:layerNode];
+            //Novidades
+//            [mapInfo.sprites addObject:layerNode];
 		}
 	}
 	
@@ -781,6 +783,9 @@
         image.position = CGPointMake(image.size.width / 2.0, image.size.height / 2.0);
         image.zPosition = baseZPosition + ((map.zOrderCount - imageLayer.zOrderCount) * zOrderModifier);
         [map addChild:image];
+        
+        //Novidades
+        [map.sprites addObject:image];
 #ifdef DEBUG
         NSLog(@"IMAGE Layer %@ has zPosition %f", imageLayer.name, image.zPosition);
 #endif
@@ -837,7 +842,7 @@
 	}
 	else
 	{
-		map->_maxZPositioning = baseZPosition;
+		map->_maxZPositioning = baseZPosition+40;
 		map->_minZPositioning = baseZPosition + (zOrderModifier * (map.zOrderCount + 1));
 	}
 	
@@ -914,6 +919,9 @@
 		image.position = CGPointMake(image.size.width / 2.0, image.size.height / 2.0);
 		image.zPosition = baseZPosition + ((map.zOrderCount - imageLayer.zOrderCount) * zOrderModifier);
 		[map addChild:image];
+        
+        //Novidades
+        [map.sprites addObject:image];
 #ifdef DEBUG
 		NSLog(@"IMAGE Layer %@ has zPosition %f", imageLayer.name, image.zPosition);
 #endif
@@ -998,6 +1006,7 @@
 		self.layers = [NSMutableArray array];
 		self.imageLayers = [NSMutableArray array];
 		self.objectGroups = [NSMutableArray array];
+        self.sprites=[[NSMutableArray alloc] init];
 		self.resources = nil;	// possible future resources path
     }
     return self;

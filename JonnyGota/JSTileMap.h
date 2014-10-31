@@ -190,4 +190,8 @@ typedef enum
 -(TMXTilesetInfo*)tilesetInfoForGid:(int)gID;
 -(NSDictionary*)propertiesForGid:(int)gID;
 
+//Minhas Alteraçoes
+
+@property NSMutableArray *sprites;
+
 @end
