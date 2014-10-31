@@ -9,6 +9,7 @@
 #import "JAGCharacter.h"
 #import "JAGGotaDividida.h"
 #import "Musica.h"
+#import "JAGMusicAction.h"
 
 @interface JAGGota : JAGCharacter
 
@@ -19,6 +20,9 @@
 @property BOOL emContatoFonte;
 @property float aguaRestante;
 @property BOOL parada;
+
+@property JAGMusicAction *andarM;
+
 
 @property (nonatomic) int sentido;
 
@@ -38,5 +42,7 @@
 -(void)esconder;
 
 -(void)addPhysics;
+
+-(void)removeActionWithSound;
 
 @end

@@ -7,8 +7,12 @@
 //
 
 #import "JAGGota.h"
+#import "Musica.h"
+#import "JAGMusicAction.h"
 
 @implementation JAGGota
+
+static Musica *andar;
 
 
 -(id)initWithPosition:(CGPoint)position withSize:(CGSize)size{
@@ -60,12 +64,30 @@
     self.gotinhas=[[NSMutableArray alloc] init];
     self.qtGotinhas=2;
     
-    //Musicas
     
+    //Musicas
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric1" ofType:@"caf"];
+    NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
+    
+    andar=[[Musica alloc] init];
+    
+    [andar inici];
+    
+    [andar carregar:fileUrl withEffects:false];
+    
+    [andar changeVolume:0.4];
+    
+    self.andarM=[[JAGMusicAction alloc] initWithMusic:andar];
+
     self.zPosition=500;
 
     
     return self;
+}
+
+-(void)removeActionWithSound{
+    [self.andarM stop];
+    [self.sprite removeAllActions];
 }
 
 -(void)addPhysics{
@@ -179,6 +201,75 @@
 
     return gota2;
 }
+
+-(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withType:(int)tipo {
+    
+    // tipo: 1 = Cima 2 = Baixo 3 = Esquerda 4 = Direita
+    
+    
+    // [self removeAllActions];
+    
+    self.physicsBody.velocity = CGVectorMake(0, 0);
+    
+   
+    
+    [self.andarM play];
+    
+    
+    
+    switch (tipo) {
+        case 1:
+            
+            [self.physicsBody applyImpulse:CGVectorMake(0,self.multi)];
+            
+            [self.sprite runAction:[SKAction repeatActionForever:
+                                    [SKAction sequence:@[[SKAction animateWithTextures:self.walkTexturesBack timePerFrame:0.1f]]]]withKey:@"walkingBack"];
+            //                self.sprite.xScale = 1.0;
+            
+            
+            break;
+            
+        case 2:
+            
+            [self.physicsBody applyImpulse:CGVectorMake(0, - self.multi)];
+            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesFront timePerFrame:0.1f]]withKey:@"walkingFront"];
+            //                self.sprite.xScale = 1.0;
+            
+            
+            break;
+            
+        case 3:
+            
+            [self.physicsBody applyImpulse:CGVectorMake(- self.multi,0)];
+            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesSide timePerFrame:0.1f]]withKey:@"walkingSide"];
+            self.sprite.xScale = -1.0;
+            
+            
+            break;
+            
+        case 4:
+            
+            [self.physicsBody applyImpulse:CGVectorMake(self.multi,0)];
+            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesSide timePerFrame:0.1f]]withKey:@"walkingSide"];
+            self.sprite.xScale = 1.0;
+            
+            
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+    
+    
+    //Mover em 2 passos para diagonal?
+    
+    
+    
+    
+}
+
 
 
 //-(void)mover:(CGPoint)ponto withInterval :(NSTimeInterval)time withTipe:(int)tipo{

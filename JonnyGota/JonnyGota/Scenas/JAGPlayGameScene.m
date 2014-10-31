@@ -728,15 +728,18 @@
 
 -(void)update:(NSTimeInterval)currentTime {
   
-    if(_gota.physicsBody.velocity.dx == 0 && _gota.physicsBody.velocity.dy == 0 && _gota.sprite.texture != _gota.idleTexture)
-    {        [_gota.sprite removeAllActions];
-        if (!_gota.escondida)
-            _gota.sprite.texture = _gota.idleTexture;}
+    if(_gota.physicsBody.velocity.dx == 0 && _gota.physicsBody.velocity.dy == 0 && _gota.sprite.texture != _gota.idleTexture && !_gota.escondida)
+    {
+        [self.gota removeActionWithSound];
+        
+        _gota.sprite.texture = _gota.idleTexture;
+        
+    }
     
     if (pauseDetected) {
         [_gota.physicsBody applyImpulse:CGVectorMake(0,0)];
     }
-   
+    
     if (_gota.comChave) {
 
 //        chave.position = CGPointMake(_gota.position.x*0.9, _gota.position.y*0.9);
@@ -986,8 +989,8 @@
         //
     }
     if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == CONTROLE_TOQUE)){
-//        NSLog(@"touch control hit");
-        [_gota.sprite removeAllActions];
+        //        NSLog(@"touch control hit");
+        [self.gota removeActionWithSound];
         _gota.sprite.texture = _gota.idleTexture;
         _gota.physicsBody.velocity = CGVectorMake(0, 0);
         
@@ -995,8 +998,8 @@
     }
     
     if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == CONTROLE_TOQUE)){
-//        NSLog(@"touch control hit");
-        [_gota.sprite removeAllActions];
+        //        NSLog(@"touch control hit");
+        [self.gota removeActionWithSound];
         _gota.sprite.texture = _gota.idleTexture;
         _gota.physicsBody.velocity = CGVectorMake(0, 0);
         self.gota.sentido=0;
@@ -1038,6 +1041,8 @@
         NSNumber *nextlevel=[NSNumber numberWithInt:([self.currentLevel intValue] + 1)];
         
        NSInteger faseAtual = [[NSUserDefaults standardUserDefaults] integerForKey:@"faseAtual"];
+        
+        [self.gota removeActionWithSound];
         
         if ([[JAGCreatorLevels numberOfLevels:1] intValue]>=[nextlevel intValue]&& [nextlevel intValue]>faseAtual)
             [[NSUserDefaults standardUserDefaults]setInteger:[nextlevel integerValue] forKey:@"faseAtual"];
