@@ -46,6 +46,13 @@
     self.physicsWorld.contactDelegate = (id)self;
     self.scaleMode = SKSceneScaleModeAspectFit;
     self.physicsWorld.gravity = CGVectorMake(0.0f, 0.0f);
+    _message2 =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
+    _message2.fontSize = self.frame.size.height*0.1;
+    _message2.text = @"Game Paused";
+    _message2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
+    _message2.alpha = 0;
+//    _message2.zPosition = 999;
+    [self.camadaPersonagens addChild:_message2];
     [self touchesEnded:nil withEvent:nil];
 
 
@@ -86,9 +93,9 @@
      OP é utilizado para definir a situação atual, em cada caso, os botões da popup serão
      mostrados de formas diferentes e serão atribuidos a ações diferentes.
      A situações podem ser:
-     -Fim de fase ganhando -1
-     -Fim de fase perdendo com vida restante
-     -Fim de fase perdendo sem vida restante */
+     -Fim de fase ganhando - 1
+     -Fim de fase perdendo com vida restante - 0
+     -Fim de fase perdendo sem vida restante - 2*/
     if (withOP == 0) {
         
         
@@ -140,10 +147,37 @@
         GObackground.zPosition = 200;
         message.zPosition = 201;
         
-        self.paused = YES;
+        
+        
+    }
+    if (withOP == 2) {
+        
+        GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
+        GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
+        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"store"];
+        button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
+        button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
+        button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
+        button2.size =CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
+        button2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.2);
+        button1.name = @"store";
+        button2.name = @"menu inicial";
+        message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
+        message.fontSize = self.frame.size.height*0.07;
+        message.text = @"Você não possui mais vidas ):";
+        message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
+        [self.scene addChild:GObackground];
+        [self.scene addChild:message];
+        [self.scene addChild:button1];
+        [self.scene addChild:button2];
+        button1.zPosition = 201;
+        button2.zPosition = 201;
+        GObackground.zPosition = 200;
+        message.zPosition = 201;
     }
 
     GONaTela = YES;
+    self.paused = YES;
 }
 
 
@@ -442,16 +476,25 @@
             if (!GONaTela) {
                 
                 pauseDetected = !pauseDetected;
-//                if (pauseDetected) {
-//                    SKLabelNode *message2 =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
-//                    message2.fontSize = self.frame.size.height*0.1;
-//                    message2.text = @"Game Paused";
-//                    message2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
-//                    [self.camadaPersonagens addChild:message2];
+                if (pauseDetected)
+                    _message2.alpha = 1;
+
+#pragma waring - Pause Defeituoso ):
+//                [self.cropNode runAction:[SKAction sequence:@[[SKAction waitForDuration:0.10],
+//                                                              [SKAction runBlock:^{
 //                    
-//                }
-                
+//
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                       
+//                        _message2.alpha = 1;
+//                        
+//                        self.scene.view.paused = !self.scene.view.paused;
+//                    });
+//                    
+//                }]]]];
                 self.scene.view.paused = !self.scene.view.paused;
+
+
                 [self.cropNode removeAllActions];
             }
         }
@@ -1153,13 +1196,17 @@
 -(void)receberDano:(int) dano{
     if(self.gota.escondida==NO || dano==1){
         self.gota.vida-=dano;
-        if(self.gota.vida<=0){
+        if( self.gota.vida <1 && self.hud.vidaRestante >1){
             
             self.gota.vida=15;
             self.hud.vidaRestante--;
             [self presentGameOver:0];
         
             self.scene.view.paused=YES;
+        }
+        else if(self.gota.vida<1 && self.hud.vidaRestante <=1){
+            self.hud.vidaRestante--;
+            [self presentGameOver:2];
         }
     }
 }

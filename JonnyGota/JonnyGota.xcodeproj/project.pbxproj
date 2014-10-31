@@ -33,7 +33,6 @@
 		0B3A04521991164A00C7C39E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3A04511991164A00C7C39E /* CoreGraphics.framework */; };
 		0B3A04541991164A00C7C39E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3A04531991164A00C7C39E /* UIKit.framework */; };
 		0B3A04561991164A00C7C39E /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3A04551991164A00C7C39E /* SpriteKit.framework */; };
-		0B3A045C1991164A00C7C39E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B3A045A1991164A00C7C39E /* InfoPlist.strings */; };
 		0B3A045E1991164A00C7C39E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3A045D1991164A00C7C39E /* main.m */; };
 		0B3A04621991164A00C7C39E /* JAGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3A04611991164A00C7C39E /* JAGAppDelegate.m */; };
 		0B3A04651991164A00C7C39E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B3A04631991164A00C7C39E /* Main.storyboard */; };
@@ -99,6 +98,7 @@
 		8D4A4F3E19ACFB2F00255468 /* JAGFonte.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A4F3D19ACFB2F00255468 /* JAGFonte.m */; };
 		8D4A4F4119AFA99300255468 /* Vapor.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8D4A4F3F19AFA99300255468 /* Vapor.sks */; };
 		8D560AA719D59BE8004586B6 /* JAGStoreScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D560AA619D59BE8004586B6 /* JAGStoreScene.m */; };
+		8D5793801A03C31E003FB065 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D5793821A03C31E003FB065 /* Localizable.strings */; };
 		8D6B5A4719CB496A00127198 /* enemies.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8D6B5A4619CB496A00127198 /* enemies.atlas */; };
 		8D7E78DC19D1F2E900126F42 /* hud_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E78DB19D1F2E900126F42 /* hud_back.png */; };
 		8D7E78DE19D1FB5900126F42 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D7E78DD19D1FB5900126F42 /* heart.png */; };
@@ -181,7 +181,6 @@
 		0B3A04531991164A00C7C39E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0B3A04551991164A00C7C39E /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		0B3A04591991164A00C7C39E /* JonnyGota-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JonnyGota-Info.plist"; sourceTree = "<group>"; };
-		0B3A045B1991164A00C7C39E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B3A045D1991164A00C7C39E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0B3A045F1991164A00C7C39E /* JonnyGota-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JonnyGota-Prefix.pch"; sourceTree = "<group>"; };
 		0B3A04601991164A00C7C39E /* JAGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JAGAppDelegate.h; sourceTree = "<group>"; };
@@ -268,6 +267,9 @@
 		8D4A4F3F19AFA99300255468 /* Vapor.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Vapor.sks; sourceTree = "<group>"; };
 		8D560AA519D59BE8004586B6 /* JAGStoreScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGStoreScene.h; sourceTree = "<group>"; };
 		8D560AA619D59BE8004586B6 /* JAGStoreScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGStoreScene.m; sourceTree = "<group>"; };
+		8D57937F1A03C30D003FB065 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
+		8D5793811A03C31E003FB065 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8D5793831A03C324003FB065 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8D6B5A4619CB496A00127198 /* enemies.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = enemies.atlas; sourceTree = "<group>"; };
 		8D7E78DB19D1F2E900126F42 /* hud_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hud_back.png; sourceTree = "<group>"; };
 		8D7E78DD19D1FB5900126F42 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
@@ -503,9 +505,9 @@
 			isa = PBXGroup;
 			children = (
 				0B3A04591991164A00C7C39E /* JonnyGota-Info.plist */,
-				0B3A045A1991164A00C7C39E /* InfoPlist.strings */,
 				0B3A045D1991164A00C7C39E /* main.m */,
 				0B3A045F1991164A00C7C39E /* JonnyGota-Prefix.pch */,
+				8D5793821A03C31E003FB065 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -774,7 +776,7 @@
 				ORGANIZATIONNAME = "Henrique Manfroi da Silveira";
 				TargetAttributes = {
 					0B3A044B1991164A00C7C39E = {
-						DevelopmentTeam = 64TH9999YT;
+						DevelopmentTeam = T5N5TT4E82;
 					};
 					0B3A04731991164A00C7C39E = {
 						DevelopmentTeam = VCE77X465D;
@@ -789,6 +791,7 @@
 			knownRegions = (
 				en,
 				Base,
+				pt,
 			);
 			mainGroup = 0B3A04431991164A00C7C39E;
 			productRefGroup = 0B3A044D1991164A00C7C39E /* Products */;
@@ -829,7 +832,6 @@
 				0BB39B761A00110800984420 /* map3.png in Resources */,
 				8D11652919CC82F900F441E9 /* trovao.wav in Resources */,
 				0B97E39819CC981D0052ECF5 /* rain.caf in Resources */,
-				0B3A045C1991164A00C7C39E /* InfoPlist.strings in Resources */,
 				0B31B44719ED9F04006761EA /* mapTeste.tmx in Resources */,
 				0BB39B7319FFFACD00984420 /* store.png in Resources */,
 				0BCC660119DC88B1004C517F /* VAGRoundedStd-Light.otf in Resources */,
@@ -867,6 +869,7 @@
 				8D8DC57819D2EC2F00E75949 /* vida2.png in Resources */,
 				8D35976919D86559009B6083 /* fase_semSombra4.png in Resources */,
 				0BCC65FF19DC88B1004C517F /* VAGRoundedStd-Black.otf in Resources */,
+				8D5793801A03C31E003FB065 /* Localizable.strings in Resources */,
 				8D8DC57919D2EC2F00E75949 /* vida3.png in Resources */,
 				8DF47BDF19B4EB8C0021AE2D /* jogar.png in Resources */,
 				8D1B20F919DC46E7007B9B9F /* vidas5.png in Resources */,
@@ -957,18 +960,11 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		0B3A045A1991164A00C7C39E /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0B3A045B1991164A00C7C39E /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		0B3A04631991164A00C7C39E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				0B3A04641991164A00C7C39E /* Base */,
+				8D57937F1A03C30D003FB065 /* pt */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -979,6 +975,15 @@
 				0B3A047F1991164A00C7C39E /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8D5793821A03C31E003FB065 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8D5793811A03C31E003FB065 /* en */,
+				8D5793831A03C324003FB065 /* pt */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

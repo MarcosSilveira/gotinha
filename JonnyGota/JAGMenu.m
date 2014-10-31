@@ -62,6 +62,7 @@
     [self addChild:logo];
     [self addChild:botaoPlay];
     [self addChild:botaoStore];
+    NSLog(@"%@", NSLocalizedString(@"TESTE", nil));
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
