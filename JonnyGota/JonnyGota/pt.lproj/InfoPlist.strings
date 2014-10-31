@@ -1,0 +1,12 @@
+/* Localized versions of Info.plist keys */
+/*
+------------------------------------------------
+Formato utilizado: "<VIEW>_<DESCRIÇÃO>_<STATUS>" = "<String>";
+Linguagem: PORTUGUÊS
+------------------------------------------------
+
+*/
+
+"ERRO" = "Erro";
+
+"TESTE"= "testando localizable in portuguese";
