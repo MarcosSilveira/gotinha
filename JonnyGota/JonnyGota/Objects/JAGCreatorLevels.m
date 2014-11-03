@@ -145,7 +145,7 @@
     
     
     SKNode *nodofinal=[[SKNode alloc] init];
-    nodofinal.physicsBody=[SKPhysicsBody bodyWithBodies:nodesPhy];
+//    nodofinal.physicsBody=[SKPhysicsBody bodyWithBodies:nodesPhy];
     nodofinal.physicsBody.dynamic=NO;
     nodofinal.physicsBody.restitution=0;
     

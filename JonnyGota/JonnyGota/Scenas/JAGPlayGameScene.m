@@ -210,7 +210,7 @@
 
 
     fadeMask = [[SKSpriteNode alloc]initWithImageNamed:@"fadeMask.png"];
-//    fadeMask.size = CGSizeMake(self.frame.size.width/2, self.frame.size.height/2);
+    fadeMask.size = CGSizeMake(self.frame.size.width*.9, self.frame.size.height*.9);
     fadeMask.position = CGPointMake(self.frame.size.height/2, self.frame.size.width/2);
     area.zPosition = _cropNode.zPosition+1;
     [_cropNode addChild:fadeMask];

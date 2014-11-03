@@ -6,5 +6,12 @@
   Copyright (c) 2014 Henrique Manfroi da Silveira. All rights reserved.
 */
 
+/*
+ ------------------------------------------------
+ Formato utilizado: "<VIEW>_<DESCRIÇÃO>_<STATUS>" = "<String>";
+ Linguagem: PORTUGUÊS
+ ------------------------------------------------
+ 
+ */
 
 "TESTE" = "TESTEEE";
