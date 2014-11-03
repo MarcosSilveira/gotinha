@@ -43,7 +43,7 @@
     [self configPhysics];
 
     if (size.width>100) {
-        self.multi = (size.width)/6;
+        self.multi = (size.width)/8;
         
     }else{
         self.multi = (size.width)/10;

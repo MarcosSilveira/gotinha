@@ -139,7 +139,7 @@
 }
 
 
-#pragma mark -
+#pragma mark -Verificar
 
 
 +(id) layerWithTilesetInfo:(NSArray*)tilesets layerInfo:(TMXLayerInfo*)layerInfo mapInfo:(JSTileMap*)mapInfo
@@ -218,7 +218,8 @@
 					if(flipX)
 						sprite.xScale *= -1;
 				}
-				
+                
+                				
 				// add sprite to correct node for this tileset
 				SKNode* layerNode = layerNodes[tilesetInfo.name];
 				if (!layerNode) {
@@ -239,7 +240,11 @@
 	// add nodes for any tilesets that were used in this layer
 	for (SKNode* layerNode in layerNodes.allValues) {
 		if (layerNode.children.count > 0) {
+            
+            
 			[layer addChild:layerNode];
+            //Novidades
+//            [mapInfo.sprites addObject:layerNode];
 		}
 	}
 	
@@ -781,6 +786,9 @@
         image.position = CGPointMake(image.size.width / 2.0, image.size.height / 2.0);
         image.zPosition = baseZPosition + ((map.zOrderCount - imageLayer.zOrderCount) * zOrderModifier);
         [map addChild:image];
+        
+        //Novidades
+        [map.sprites addObject:image];
 #ifdef DEBUG
         NSLog(@"IMAGE Layer %@ has zPosition %f", imageLayer.name, image.zPosition);
 #endif
@@ -837,8 +845,8 @@
 	}
 	else
 	{
-		map->_maxZPositioning = baseZPosition;
-		map->_minZPositioning = baseZPosition + (zOrderModifier * (map.zOrderCount + 1));
+		map->_maxZPositioning = baseZPosition+40;
+		map->_minZPositioning = baseZPosition+40 + (zOrderModifier * (map.zOrderCount + 1));
 	}
 	
 	// now actually using the data begins.
@@ -850,6 +858,16 @@
 		{
 			TMXLayer *child = [TMXLayer layerWithTilesetInfo:map.tilesets layerInfo:layerInfo mapInfo:map];
 			child.zPosition = baseZPosition + ((map.zOrderCount - layerInfo.zOrderCount) * zOrderModifier);
+            /*
+            if([layerInfo.name isEqualToString:@"BackGround"] ){
+                child.zPosition=1;
+            }
+            
+            if([layerInfo.name isEqualToString:@"Tile"] ){
+                child.zPosition=2;
+            }
+             */
+            
 #ifdef DEBUG
 			NSLog(@"Layer %@ has zPosition %f", layerInfo.name, child.zPosition);
 #endif
@@ -914,6 +932,9 @@
 		image.position = CGPointMake(image.size.width / 2.0, image.size.height / 2.0);
 		image.zPosition = baseZPosition + ((map.zOrderCount - imageLayer.zOrderCount) * zOrderModifier);
 		[map addChild:image];
+        
+        //Novidades
+        [map.sprites addObject:image];
 #ifdef DEBUG
 		NSLog(@"IMAGE Layer %@ has zPosition %f", imageLayer.name, image.zPosition);
 #endif
@@ -998,6 +1019,7 @@
 		self.layers = [NSMutableArray array];
 		self.imageLayers = [NSMutableArray array];
 		self.objectGroups = [NSMutableArray array];
+        self.sprites=[[NSMutableArray alloc] init];
 		self.resources = nil;	// possible future resources path
     }
     return self;

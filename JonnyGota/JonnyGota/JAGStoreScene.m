@@ -38,7 +38,8 @@
     
     backBT =[[SKSpriteNode alloc]initWithImageNamed:@"back_bt"];
     backBT.position = CGPointMake(self.frame.size.width*0.1, self.frame.size.height*0.9);
-    backBT.size = CGSizeMake(backBT.texture.size.width/2, backBT.texture.size.height/2);
+    backBT.size = CGSizeMake(self.frame.size.width*0.08, self.frame.size.width*0.08);
+
     
     recuperaBT = [[SKSpriteNode alloc]initWithImageNamed:@"restaurarCompras.png"];
     recuperaBT.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.17);
