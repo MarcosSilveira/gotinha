@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="20" height="20" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="TileSet" tilewidth="64" tileheight="64">
-  <image source="TileSet.png" width="192" height="384"/>
+  <image source="TileSetTeste.png" width="192" height="448"/>
  </tileset>
- <layer name="BackGround" width="20" height="20">
-  <data encoding="base64" compression="zlib">
-   eJwTYmBgEBrFo3gUj+JRPIpJxAAnqBwh
-  </data>
- </layer>
+ <imagelayer name="BackImage">
+     <image source="map3.png"/>
+ </imagelayer>
  <layer name="Tile" width="20" height="20">
   <data encoding="base64" compression="zlib">
    eJzdlOEKgCAMhBdFaZbv/7gZMbB1zWb2p4P7oeK3cYwNRBQaeUye6Cx51u7R37/wXHJHR04teDEzawb8pzykVfDf8qRqec7Ay3MPlx96TcSLhLOv5Wna++0Jz04NT/Yu+7fySmJeKX8rr5Q/Ur6jJE/T3axxfW/kecP7FzzeES28JG9YRQUD

@@ -12,11 +12,12 @@
 		0B024D0F1991257400AE9588 /* JAGInimigos.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B024D0E1991257400AE9588 /* JAGInimigos.m */; };
 		0B024D12199150D300AE9588 /* JAGHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B024D11199150D300AE9588 /* JAGHud.m */; };
 		0B0699101A03EAD0000F954B /* restaurarCompras.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0B06990F1A03EAD0000F954B /* restaurarCompras.jpg */; };
+		0B0699151A03F1BE000F954B /* map12.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0B0699121A03F1BE000F954B /* map12.tmx */; };
+		0B0699161A03F1BE000F954B /* TileSetTeste.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B0699131A03F1BE000F954B /* TileSetTeste.png */; };
 		0B12A3F219C8974E00210DDA /* JAGPreparePoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B12A3F119C8974E00210DDA /* JAGPreparePoints.m */; };
 		0B13EDFB19A2530F006CC185 /* JAGCreatorLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B13EDFA19A2530F006CC185 /* JAGCreatorLevels.m */; };
 		0B15087D19A4F891007D70F1 /* JAGPressao.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B15087C19A4F891007D70F1 /* JAGPressao.m */; };
 		0B15088019A51374007D70F1 /* JAGPorta.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B15087F19A51374007D70F1 /* JAGPorta.m */; };
-		0B15AACA19D09A2100ED6110 /* map2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0B15AAC919D09A2100ED6110 /* map2.tmx */; };
 		0B15AACD19D09AE100ED6110 /* TileSet.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B15AACC19D09AE100ED6110 /* TileSet.png */; };
 		0B15AAD719D09B0500ED6110 /* map1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0B15AACE19D09B0500ED6110 /* map1.tmx */; };
 		0B15AAD819D09B0500ED6110 /* map3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0B15AACF19D09B0500ED6110 /* map3.tmx */; };
@@ -65,8 +66,11 @@
 		0BB20B6C19F82257004EBC4A /* AMB.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BB20B6919F82257004EBC4A /* AMB.caf */; };
 		0BB20B6D19F82257004EBC4A /* DropGeneric1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BB20B6A19F82257004EBC4A /* DropGeneric1.caf */; };
 		0BB20B6E19F82257004EBC4A /* Raio1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BB20B6B19F82257004EBC4A /* Raio1.caf */; };
+		0BB29DDF1A064BBF008E7502 /* map2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0BB29DDE1A064BBF008E7502 /* map2.tmx */; };
 		0BB39B7319FFFACD00984420 /* store.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB39B7219FFFACD00984420 /* store.png */; };
 		0BB39B761A00110800984420 /* map3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB39B751A00110800984420 /* map3.png */; };
+		0BB6C0B11A079CDC0045AB3A /* map11.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0BB6C0B01A079CDC0045AB3A /* map11.tmx */; };
+		0BB6C0B31A079D200045AB3A /* mapaBack11.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB6C0B21A079D200045AB3A /* mapaBack11.png */; };
 		0BB7E84919AE403700C36889 /* JAGPerdaGota.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB7E84819AE403700C36889 /* JAGPerdaGota.m */; };
 		0BB81679199BBDA800490104 /* JAGWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB81678199BBDA800490104 /* JAGWall.m */; };
 		0BBD455D1A013F0700538ED1 /* JAGMusicAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD455C1A013F0700538ED1 /* JAGMusicAction.m */; };
@@ -155,6 +159,8 @@
 		0B024D10199150D300AE9588 /* JAGHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGHud.h; path = JonnyGota/Objects/JAGHud.h; sourceTree = "<group>"; };
 		0B024D11199150D300AE9588 /* JAGHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGHud.m; path = JonnyGota/Objects/JAGHud.m; sourceTree = "<group>"; };
 		0B06990F1A03EAD0000F954B /* restaurarCompras.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = restaurarCompras.jpg; sourceTree = "<group>"; };
+		0B0699121A03F1BE000F954B /* map12.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map12.tmx; sourceTree = "<group>"; };
+		0B0699131A03F1BE000F954B /* TileSetTeste.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileSetTeste.png; sourceTree = "<group>"; };
 		0B12A3F019C8974E00210DDA /* JAGPreparePoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGPreparePoints.h; path = walls/JAGPreparePoints.h; sourceTree = "<group>"; };
 		0B12A3F119C8974E00210DDA /* JAGPreparePoints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGPreparePoints.m; path = walls/JAGPreparePoints.m; sourceTree = "<group>"; };
 		0B13EDF919A2530F006CC185 /* JAGCreatorLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGCreatorLevels.h; path = JonnyGota/Objects/JAGCreatorLevels.h; sourceTree = "<group>"; };
@@ -163,7 +169,6 @@
 		0B15087C19A4F891007D70F1 /* JAGPressao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGPressao.m; path = JonnyGota/Models/JAGPressao.m; sourceTree = "<group>"; };
 		0B15087E19A51374007D70F1 /* JAGPorta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGPorta.h; path = JonnyGota/Models/JAGPorta.h; sourceTree = "<group>"; };
 		0B15087F19A51374007D70F1 /* JAGPorta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGPorta.m; path = JonnyGota/Models/JAGPorta.m; sourceTree = "<group>"; };
-		0B15AAC919D09A2100ED6110 /* map2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map2.tmx; sourceTree = "<group>"; };
 		0B15AACC19D09AE100ED6110 /* TileSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileSet.png; sourceTree = "<group>"; };
 		0B15AACE19D09B0500ED6110 /* map1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map1.tmx; sourceTree = "<group>"; };
 		0B15AACF19D09B0500ED6110 /* map3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map3.tmx; sourceTree = "<group>"; };
@@ -226,8 +231,11 @@
 		0BB20B6919F82257004EBC4A /* AMB.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AMB.caf; sourceTree = "<group>"; };
 		0BB20B6A19F82257004EBC4A /* DropGeneric1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DropGeneric1.caf; sourceTree = "<group>"; };
 		0BB20B6B19F82257004EBC4A /* Raio1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Raio1.caf; sourceTree = "<group>"; };
+		0BB29DDE1A064BBF008E7502 /* map2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map2.tmx; sourceTree = "<group>"; };
 		0BB39B7219FFFACD00984420 /* store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = store.png; path = JonnyGota/Images.xcassets/store.imageset/store.png; sourceTree = "<group>"; };
 		0BB39B751A00110800984420 /* map3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map3.png; sourceTree = "<group>"; };
+		0BB6C0B01A079CDC0045AB3A /* map11.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map11.tmx; sourceTree = "<group>"; };
+		0BB6C0B21A079D200045AB3A /* mapaBack11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapaBack11.png; sourceTree = "<group>"; };
 		0BB7E84719AE403700C36889 /* JAGPerdaGota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGPerdaGota.h; path = JonnyGota/Models/JAGPerdaGota.h; sourceTree = "<group>"; };
 		0BB7E84819AE403700C36889 /* JAGPerdaGota.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGPerdaGota.m; path = JonnyGota/Models/JAGPerdaGota.m; sourceTree = "<group>"; };
 		0BB81677199BBDA800490104 /* JAGWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGWall.h; path = JonnyGota/Models/JAGWall.h; sourceTree = "<group>"; };
@@ -422,7 +430,7 @@
 			children = (
 				0BB39B741A0010C800984420 /* Backgrounds */,
 				0B15AACE19D09B0500ED6110 /* map1.tmx */,
-				0B15AAC919D09A2100ED6110 /* map2.tmx */,
+				0BB29DDE1A064BBF008E7502 /* map2.tmx */,
 				0B15AACF19D09B0500ED6110 /* map3.tmx */,
 				0B15AAD019D09B0500ED6110 /* map4.tmx */,
 				0B15AAD119D09B0500ED6110 /* map5.tmx */,
@@ -431,6 +439,8 @@
 				0B15AAD419D09B0500ED6110 /* map8.tmx */,
 				0B15AAD519D09B0500ED6110 /* map9.tmx */,
 				0B15AAD619D09B0500ED6110 /* map10.tmx */,
+				0BB6C0B01A079CDC0045AB3A /* map11.tmx */,
+				0B0699121A03F1BE000F954B /* map12.tmx */,
 				0B31B44619ED9F04006761EA /* mapTeste.tmx */,
 				0B15AACC19D09AE100ED6110 /* TileSet.png */,
 			);
@@ -675,6 +685,8 @@
 		0BB39B741A0010C800984420 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				0BB6C0B21A079D200045AB3A /* mapaBack11.png */,
+				0B0699131A03F1BE000F954B /* TileSetTeste.png */,
 				0BB39B751A00110800984420 /* map3.png */,
 			);
 			name = Backgrounds;
@@ -822,8 +834,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BB6C0B31A079D200045AB3A /* mapaBack11.png in Resources */,
 				B1D9C13A19DF041B005ED4A1 /* heart_sem_sombra.png in Resources */,
-				0B15AACA19D09A2100ED6110 /* map2.tmx in Resources */,
 				0B89188519F962C700DAB31F /* chuva.caf in Resources */,
 				0BB20B6E19F82257004EBC4A /* Raio1.caf in Resources */,
 				8D35976A19D86559009B6083 /* fase_semSombra5.png in Resources */,
@@ -838,10 +850,12 @@
 				8D8DC57E19D2EC2F00E75949 /* vida8.png in Resources */,
 				0BCC660019DC88B1004C517F /* VAGRoundedStd-Bold.otf in Resources */,
 				8D7E78E019D1FE2200126F42 /* clock.png in Resources */,
+				0B0699161A03F1BE000F954B /* TileSetTeste.png in Resources */,
 				8D7E78DC19D1F2E900126F42 /* hud_back.png in Resources */,
 				8D1B20FB19DC4A58007B9B9F /* price199.png in Resources */,
 				8D4A4F3519A3D0E300255468 /* gotinha.atlas in Resources */,
 				8D94D7C219DB4182002872F4 /* fogo_parado.png in Resources */,
+				0BB6C0B11A079CDC0045AB3A /* map11.tmx in Resources */,
 				0BB39B761A00110800984420 /* map3.png in Resources */,
 				8D11652919CC82F900F441E9 /* trovao.wav in Resources */,
 				0B97E39819CC981D0052ECF5 /* rain.caf in Resources */,
@@ -851,6 +865,7 @@
 				8D8DC57D19D2EC2F00E75949 /* vida7.png in Resources */,
 				0BB20B6D19F82257004EBC4A /* DropGeneric1.caf in Resources */,
 				0B3A046F1991164A00C7C39E /* Images.xcassets in Resources */,
+				0BB29DDF1A064BBF008E7502 /* map2.tmx in Resources */,
 				0B15AADA19D09B0500ED6110 /* map5.tmx in Resources */,
 				0B88D26219E70E1F00351527 /* botao1.png in Resources */,
 				0B15AACD19D09AE100ED6110 /* TileSet.png in Resources */,
@@ -876,6 +891,7 @@
 				8D300AF119F2A25000856141 /* loja_BG.png in Resources */,
 				B1D9C13819DEE644005ED4A1 /* lvlX.png in Resources */,
 				8DDDDBEB19E83DB800A6BA44 /* fadeMask.png in Resources */,
+				0B0699151A03F1BE000F954B /* map12.tmx in Resources */,
 				0B15AAD719D09B0500ED6110 /* map1.tmx in Resources */,
 				8DF47BE019B4EB8C0021AE2D /* restart.png in Resources */,
 				0BB14C3A1A028987001F27FB /* botao3_1.png in Resources */,

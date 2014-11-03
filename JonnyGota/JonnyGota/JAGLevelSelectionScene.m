@@ -43,7 +43,7 @@
     vidas_quantidade.fontSize = self.frame.size.width*0.05;
     backBT =[[SKSpriteNode alloc]initWithImageNamed:@"back_bt"];
     backBT.position = CGPointMake(self.frame.size.width*0.1, self.frame.size.height*0.9);
-    backBT.size = CGSizeMake(backBT.texture.size.width/2, backBT.texture.size.height/2);
+    backBT.size = CGSizeMake(self.frame.size.width*0.08, self.frame.size.width*0.08);
     backBT.zPosition = 2;
     backBT.name = @"backBT";
     [self.scene addChild:backBT];

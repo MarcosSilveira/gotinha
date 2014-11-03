@@ -28,7 +28,7 @@
 + (NSNumber *)numberOfLevels:(int)mundo{
     switch (mundo) {
         case 1:
-            return @10;
+            return @11;
             break;
             
         default:
@@ -326,21 +326,33 @@
     
     //Adicionar os Image Layers em um SKNode e adicionar no crop
     
-    /*
+/*
     SKNode *layer=[[SKNode alloc] init];
     
     for (int i=0; i<tiledMap.sprites.count; i++) {
-        SKNode *layers=(SKNode *)tiledMap.sprites[i];
-        [layer addChild:layers];
-    }
+         SKNode *layers=(SKNode *)tiledMap.sprites[i];
+        if (i==0) {
+            SKSpriteNode *back=[[SKSpriteNode alloc] initWithImageNamed:@"map3.png"];
+            back.position=layers.position;
+            [layer addChild:back];
+        }else{
+            [layer addChild:layers];
+
+        }
+       
+        }
     
     
     [scene.cropNode addChild:layer];
-    */
+ */
+    
+//    SKSpriteNode *back=[[SKSpriteNode alloc] initWithImageNamed:@"map3.png"];
+    
+//    back
     
     //Mapa
     
-    [scene.cropNode addChild:tiledMap];
+   [scene.cropNode addChild:tiledMap];
     
     [scene.cropNode addChild:[self createPhiscsBodytoLayer:tiledMap]];
     
@@ -1320,7 +1332,7 @@
     //    TMXLayer *tile;
     //    TMXLayer *bg;
     
-    JSTileMap* tiledMap = [JSTileMap mapNamed:@"map10.tmx"];
+    JSTileMap* tiledMap = [JSTileMap mapNamed:@"map11.tmx"];
     if (tiledMap){
         
         
@@ -1329,7 +1341,7 @@
         
         //Gotinha
         
-        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(12, 8)] withSize:tiledMap.tileSize];
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(18, 18)] withSize:tiledMap.tileSize];
         
         
         
@@ -1342,7 +1354,7 @@
         
         //Add objetos
         
-        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 18)] withSize:tiledMap.tileSize];
+        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(15, 1)] withSize:tiledMap.tileSize];
         
         [scene.cropNode addChild:scene.level.chuva];
         
@@ -1357,6 +1369,50 @@
     }
 }
 
++ (void)initializeLevel012ofWorld01onScene:(JAGPlayGameScene *)scene
+{
+    //    JSTileMap *map;
+    //    TMXLayer *tile;
+    //    TMXLayer *bg;
+    
+    JSTileMap* tiledMap = [JSTileMap mapNamed:@"map1.tmx"];
+    if (tiledMap){
+        
+        [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
+        
+        //Gotinha
+        
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
+        
+        
+        //Config Map
+        [JAGCreatorLevels configMap:scene withTtile:tiledMap];
+        
+        
+        NSLog(@"Multi ? %d tile Size %f",scene.gota.multi,tiledMap.tileSize.width);
+        
+        //        scene.gota.multi=14;
+        //Add objetos
+        
+        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(3, 20)] withSize:tiledMap.tileSize];
+        
+        [scene.cropNode addChild:scene.level.chuva];
+        
+        //Add Monstros
+        
+        
+        
+        //Portas
+        
+        
+        
+        //Config de hud e fase
+        [JAGCreatorLevels configHud:scene];
+        
+        // Tutorial
+        [JAGCreatorLevels tutorial: scene];
+    }
+}
 
 
 

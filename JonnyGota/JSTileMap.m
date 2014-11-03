@@ -218,7 +218,8 @@
 					if(flipX)
 						sprite.xScale *= -1;
 				}
-				
+                
+                				
 				// add sprite to correct node for this tileset
 				SKNode* layerNode = layerNodes[tilesetInfo.name];
 				if (!layerNode) {
@@ -239,6 +240,8 @@
 	// add nodes for any tilesets that were used in this layer
 	for (SKNode* layerNode in layerNodes.allValues) {
 		if (layerNode.children.count > 0) {
+            
+            
 			[layer addChild:layerNode];
             //Novidades
 //            [mapInfo.sprites addObject:layerNode];
