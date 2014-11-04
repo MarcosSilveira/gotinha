@@ -20,7 +20,6 @@ static Musica *andar;
     self = [super init];
     self.name = @"gota";
     self.position = position;
-    self.zPosition=10;
     
     //textures load
     self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
@@ -55,10 +54,10 @@ static Musica *andar;
     _aguaRestante = 10;
     
     if (size.width>100) {
-        self.multi = (size.width)/2;
+        self.multi = (size.width)/1.9;
 
     }else{
-        self.multi = (size.width)/4;
+        self.multi = (size.width)/5;
     }
     
     self.gotinhas=[[NSMutableArray alloc] init];
@@ -75,7 +74,7 @@ static Musica *andar;
     
     [andar carregar:fileUrl withEffects:false];
     
-    [andar changeVolume:0.4];
+    [andar changeVolume:0.2];
     
     self.andarM=[[JAGMusicAction alloc] initWithMusic:andar];
 

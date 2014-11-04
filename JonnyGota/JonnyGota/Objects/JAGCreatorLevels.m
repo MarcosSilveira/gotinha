@@ -23,6 +23,8 @@
 
 @implementation JAGCreatorLevels
 
+NSMutableArray *nodesPhy;
+
 
 #pragma mark - Methods
 + (NSNumber *)numberOfLevels:(int)mundo{
@@ -112,7 +114,7 @@
     
     
     //Cria o physhics body
-    NSMutableArray *nodesPhy=[[NSMutableArray alloc] init];
+    nodesPhy=[[NSMutableArray alloc] init];
     
     for (int i=nodes.count-1; i>0;i--) {
         JAGPreparePoints *ponto=(JAGPreparePoints *)nodes[i];
@@ -144,9 +146,12 @@
         }
     }
     
-    
+    if ([[UIDevice currentDevice].systemVersion floatValue]<7.1) {
+        return nil;
+    }
     
     SKNode *nodofinal=[[SKNode alloc] init];
+    
     nodofinal.physicsBody=[SKPhysicsBody bodyWithBodies:nodesPhy];
     nodofinal.physicsBody.dynamic=NO;
     nodofinal.physicsBody.restitution=0;
@@ -354,8 +359,27 @@
     
    [scene.cropNode addChild:tiledMap];
     
-    [scene.cropNode addChild:[self createPhiscsBodytoLayer:tiledMap]];
-    
+    if ([[UIDevice currentDevice].systemVersion floatValue]<7.1) {
+        [self createPhiscsBodytoLayer:tiledMap];
+        for (int i=0;i<nodesPhy.count;i++){
+            
+            SKNode *anySpriteNode=[[SKNode alloc] init];
+            anySpriteNode.physicsBody=nodesPhy[i];
+            
+            [scene.cropNode addChild:anySpriteNode];
+            
+            anySpriteNode.physicsBody.dynamic=NO;
+            anySpriteNode.physicsBody.restitution=0;
+            
+            anySpriteNode.physicsBody.categoryBitMask = PAREDE;
+            anySpriteNode.physicsBody.collisionBitMask = ATTACK;
+            anySpriteNode.name = @"wall";
+
+        }
+        
+    }else{
+        [scene.cropNode addChild:[self createPhiscsBodytoLayer:tiledMap]];
+    }
     
    
     
