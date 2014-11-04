@@ -213,7 +213,7 @@
     
 
     fadeMask = [[SKSpriteNode alloc]initWithImageNamed:@"fadeMask.png"];
-//    fadeMask.size = CGSizeMake(self.frame.size.width/2, self.frame.size.height/2);
+    fadeMask.size = CGSizeMake(self.frame.size.width*.9, self.frame.size.height*.9);
     fadeMask.position = CGPointMake(self.frame.size.height/2, self.frame.size.width/2);
     area.zPosition = _cropNode.zPosition+1;
     [_cropNode addChild:fadeMask];
@@ -719,7 +719,11 @@
 
 
 -(void)update:(NSTimeInterval)currentTime {
-  
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0) {
+        [self centerMapOnCharacter];
+        [self.hud update];
+        }
+
     if(_gota.physicsBody.velocity.dx == 0 && _gota.physicsBody.velocity.dy == 0 && _gota.sprite.texture != _gota.idleTexture && !_gota.escondida)
     {
         [self.gota removeActionWithSound];
@@ -765,8 +769,10 @@
 }
 
 -(void)didFinishUpdate{
-    [self centerMapOnCharacter];
-    [self.hud update];
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        [self centerMapOnCharacter];
+        [self.hud update];
+    }
 }
 -(void)nextLevel{
    self.paused = NO;
