@@ -431,6 +431,58 @@
                                  toqueInicio.y+(_gota.position.y)-CGRectGetMidY(self.frame));
         tocou_gota  = [_gota verificaToque:toqueInicio];
         
+        
+        //menu gameover
+        SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
+
+        
+        if ([node.name isEqualToString:@"reiniciar fase"]) {
+            NSLog(@"bt1 gameover");
+            
+            self.scene.view.paused=NO;
+            GONaTela = NO;
+            //                    self.scene.paused = NO;
+            [button1 removeFromParent];
+            [button2 removeFromParent];
+            [message removeFromParent];
+            [GObackground removeFromParent];
+            
+            self.gota.physicsBody.velocity=CGVectorMake(0, 0);
+            
+            [self.gota changePosition:self.posicaoInicial];
+            tocou_gota=false;
+        }
+        else if([node.name isEqualToString:@"menu inicial"]){
+            NSLog(@"bt2 gameover");
+            [self deallocSound];
+            self.scene.view.paused = NO;
+            GONaTela = NO;
+            JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
+            [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
+            SKTransition *trans = [SKTransition fadeWithDuration:1.0];
+            
+            [self.scene.view presentScene:scene transition:trans];
+            
+            
+        }
+        else if([node.name isEqualToString:@"proxima fase"]){
+            [self nextLevel];
+            
+        }
+        else if([node.name isEqualToString:@"loja"]){
+            NSLog(@"bt2 gameover");
+            [self deallocSound];
+            self.scene.view.paused = NO;
+            GONaTela = NO;
+            JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
+            [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
+            SKTransition *trans = [SKTransition fadeWithDuration:1.0];
+            
+            [self.scene.view presentScene:scene transition:trans];
+            
+        }
+
+        
         if(!tocou_gota){
             [self logicaMove:touch];
             SKAction *move=[SKAction sequence:@[[SKAction waitForDuration:0.1],[SKAction runBlock:^{
@@ -499,53 +551,8 @@
         pararMovimentoCONTROLx.position = [touch locationInNode:_cropNode];
         pararMovimentoCONTROLy.position = [touch locationInNode:_cropNode];
 
-        //menu gameover
-        SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
         
-        if ([node.name isEqualToString:@"reiniciar fase"]) {
-            NSLog(@"bt1 gameover");
-            
-            self.scene.view.paused=NO;
-            GONaTela = NO;
-            //                    self.scene.paused = NO;
-            [button1 removeFromParent];
-            [button2 removeFromParent];
-            [message removeFromParent];
-            [GObackground removeFromParent];
-            
-            self.gota.physicsBody.velocity=CGVectorMake(0, 0);
-            
-            [self.gota changePosition:self.posicaoInicial];
-        }
-        else if([node.name isEqualToString:@"menu inicial"]){
-            NSLog(@"bt2 gameover");
-            [self deallocSound];
-            self.scene.view.paused = NO;
-            GONaTela = NO;
-            JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
-            [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
-            SKTransition *trans = [SKTransition fadeWithDuration:1.0];
-            
-            [self.scene.view presentScene:scene transition:trans];
-            
-        }
-        else if([node.name isEqualToString:@"proxima fase"]){
-            [self nextLevel];
-            
-        }
-        else if([node.name isEqualToString:@"loja"]){
-            NSLog(@"bt2 gameover");
-            [self deallocSound];
-            self.scene.view.paused = NO;
-            GONaTela = NO;
-            JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
-            [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
-            SKTransition *trans = [SKTransition fadeWithDuration:1.0];
-            
-            [self.scene.view presentScene:scene transition:trans];
-            
-        }
-
+        
         //Dividir
 //        && (difToq>valueto ||difToq<valueto)
         if (toque_moveu && tocou_gota && !frenetico ) {
