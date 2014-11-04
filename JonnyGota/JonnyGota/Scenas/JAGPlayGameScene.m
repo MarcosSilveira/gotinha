@@ -474,7 +474,7 @@
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    int valueto=self.gota.sprite.size.width;
+//    int valueto=self.gota.sprite.size.width;
     
     for (UITouch *touch in touches) {
         SKNode *nodeAux = [self nodeAtPoint:[touch locationInNode:self]];
@@ -547,7 +547,8 @@
         }
 
         //Dividir
-        if (toque_moveu && tocou_gota && !frenetico && (difToq>valueto ||difToq<valueto)) {
+//        && (difToq>valueto ||difToq<valueto)
+        if (toque_moveu && tocou_gota && !frenetico ) {
 //            [_cropNode addChild:[_gota dividir]];
             JAGGotaDividida* gota2;
             if (!_gota.escondida){
