@@ -732,7 +732,11 @@
 
 
 -(void)update:(NSTimeInterval)currentTime {
-  
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0) {
+        [self centerMapOnCharacter];
+        [self.hud update];
+        }
+
     if(_gota.physicsBody.velocity.dx == 0 && _gota.physicsBody.velocity.dy == 0 && _gota.sprite.texture != _gota.idleTexture && !_gota.escondida)
     {
         [self.gota removeActionWithSound];
@@ -778,8 +782,10 @@
 }
 
 -(void)didFinishUpdate{
-    [self centerMapOnCharacter];
-    [self.hud update];
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        [self centerMapOnCharacter];
+        [self.hud update];
+    }
 }
 -(void)nextLevel{
    self.paused = NO;

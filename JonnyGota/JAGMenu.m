@@ -40,7 +40,7 @@
     botaoPlayText = [SKTexture textureWithImageNamed:@"play"];
     logoText      = [SKTexture textureWithImageNamed:@"logo"];
     bg            = [ SKTexture textureWithImageNamed:@"menu"];
-    botaoStoreText    = [SKTexture textureWithImageNamed:@"store"];
+    botaoStoreText    = [SKTexture textureWithImageNamed:@"storeBT"];
     
     fundo = [[SKSpriteNode alloc] initWithTexture:bg];
     [fundo setSize: CGSizeMake(self.size.width, self.size.height)];
@@ -51,7 +51,7 @@
     logo.position = CGPointMake(self.size.width/2, self.size.height/2);
     
     botaoPlay = [[SKSpriteNode alloc] initWithTexture:botaoPlayText];
-    botaoPlay.size = CGSizeMake(self.frame.size.width *.28, self.frame.size.height *.16);
+    botaoPlay.size = CGSizeMake(self.frame.size.width *.28, self.frame.size.height *.15);
     botaoPlay.position = CGPointMake(self.size.width/2, self.size.height/2.8);
     
     botaoStore = [[SKSpriteNode alloc] initWithTexture:botaoStoreText];
