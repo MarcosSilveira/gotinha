@@ -43,10 +43,10 @@
     [self configPhysics];
 
     if (size.width>100) {
-        self.multi = (size.width)/8;
+        self.multi = (size.width)/10;
         
     }else{
-        self.multi = (size.width)/10;
+        self.multi = (size.width)/20;
     }
     self.name=@"fogo";
     [self addChild:self.sprite];

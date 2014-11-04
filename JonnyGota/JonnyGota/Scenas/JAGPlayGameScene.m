@@ -474,33 +474,18 @@
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
+    int valueto=self.gota.sprite.size.width;
+    
     for (UITouch *touch in touches) {
         SKNode *nodeAux = [self nodeAtPoint:[touch locationInNode:self]];
         if ([nodeAux.name isEqualToString:@"pauseBT"]) {
             NSLog(@"pause detected");
             if (!GONaTela) {
                 
-                pauseDetected = !pauseDetected;
-                if (pauseDetected)
-                    _message2.alpha = 1;
+                [self.gota removeActionWithSound];
+                
+                [self presentGameOver:2];
 
-#pragma waring - Pause Defeituoso ):
-//                [self.cropNode runAction:[SKAction sequence:@[[SKAction waitForDuration:0.10],
-//                                                              [SKAction runBlock:^{
-//                    
-//
-//                    dispatch_async(dispatch_get_main_queue(), ^{
-//                       
-//                        _message2.alpha = 1;
-//                        
-//                        self.scene.view.paused = !self.scene.view.paused;
-//                    });
-//                    
-//                }]]]];
-                self.scene.view.paused = !self.scene.view.paused;
-
-
-                [self.cropNode removeAllActions];
             }
         }
 
@@ -508,6 +493,8 @@
         toqueFinal = CGPointMake(toqueFinal.x+(_gota.position.x)-CGRectGetMidX(self.frame),
                                  toqueFinal.y+(_gota.position.y)-CGRectGetMidY(self.frame));
 
+        
+        float difToq=sqrt(pow(toqueInicio.x-toqueFinal.x,2)+pow(toqueInicio.y-toqueFinal.y,2));
         
         pararMovimentoCONTROLx.position = [touch locationInNode:_cropNode];
         pararMovimentoCONTROLy.position = [touch locationInNode:_cropNode];
@@ -560,7 +547,7 @@
         }
 
         //Dividir
-        if (toque_moveu && tocou_gota && !frenetico) {
+        if (toque_moveu && tocou_gota && !frenetico && (difToq>valueto ||difToq<valueto)) {
 //            [_cropNode addChild:[_gota dividir]];
             JAGGotaDividida* gota2;
             if (!_gota.escondida){
@@ -618,11 +605,10 @@
             
             
         } else {
-            
+//            || ((difToq>1&& difToq>valueto)||(difToq<0 && difToq>valueto))
            
             
-            if ([_gota verificaToque:toqueFinal] && [_gota verificaToque:toqueInicio]){
-                NSLog(@"Escondeu");
+            if (([_gota verificaToque:toqueFinal] && [_gota verificaToque:toqueInicio]) ){
 
                 [_gota esconder];
                
