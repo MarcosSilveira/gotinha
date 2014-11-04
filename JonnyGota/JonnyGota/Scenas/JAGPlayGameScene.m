@@ -156,7 +156,7 @@
         
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
         GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
-        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"store"];
+        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"storeBT"];
         button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
         button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
