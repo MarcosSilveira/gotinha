@@ -154,6 +154,8 @@
     }
     if (withOP == 2) {
         
+        //Trocar Button 1 para resume
+        
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
         GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
         button1 = [[SKSpriteNode alloc] initWithImageNamed:@"storeBT"];
@@ -162,11 +164,11 @@
         button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
         button2.size =CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.2);
-        button1.name = @"store";
+        button1.name = @"resume";
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
         message.fontSize = self.frame.size.height*0.07;
-        message.text = @"Você não possui mais vidas ):";
+        message.text = @"Pause";
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
         [self.scene addChild:GObackground];
         [self.scene addChild:message];
@@ -617,19 +619,19 @@
            
             
             if (([_gota verificaToque:toqueFinal] && [_gota verificaToque:toqueInicio]) ){
-
+                
                 [_gota esconder];
-               
+                
                 [self removeActionForKey:@"moveGota"];
-                            } else {
+            } else {
                 
                 [self logicaMove:touch];
                 
                 [self removeActionForKey:@"moveGota"];
                 
-
-            
-                                //Logica da movimentacao
+                
+                
+                //Logica da movimentacao
                 //PathFinder
                 //
                 
@@ -643,7 +645,26 @@
                 //Tempo de pressao
                 
                 
+            } if([nodeAux.name isEqualToString:@"resume"]){
+                NSLog(@"bt 1 Resume");
+                
+                GONaTela = NO;
+                //                    self.scene.paused = NO;
+                [button1 removeFromParent];
+                [button2 removeFromParent];
+                [message removeFromParent];
+                [GObackground removeFromParent];
+                
+                
+                
+                tocou_gota=false;
+                
+                self.scene.view.paused=NO;
+                
+                self.scene.paused = NO;
+
             }
+
             
         }
     }
