@@ -113,7 +113,7 @@
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
         message.fontSize = self.frame.size.height*0.1;
-        message.text = @"Fim de jogo!";
+        message.text = NSLocalizedString(@"PLAY_GAMEOVER_FIM", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
         [self.scene addChild:GObackground];
         [self.scene addChild:message];
@@ -128,7 +128,7 @@
         
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
         GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
-        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"proxima_fase"];
+        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"proxima_fase_bt"];
         button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
         button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
@@ -138,7 +138,7 @@
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
         message.fontSize = self.frame.size.height*0.07;
-        message.text = @"Parabéns! Você avançou para a próxima fase!";
+        message.text = NSLocalizedString(@"PLAY_GAMEOVER_NEXT", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
         [self.scene addChild:GObackground];
         [self.scene addChild:message];
@@ -166,7 +166,7 @@
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
         message.fontSize = self.frame.size.height*0.07;
-        message.text = @"Você não possui mais vidas ):";
+        message.text=NSLocalizedString(@"PLAY_GAMEOVER_SEM_VIDAS", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
         [self.scene addChild:GObackground];
         [self.scene addChild:message];

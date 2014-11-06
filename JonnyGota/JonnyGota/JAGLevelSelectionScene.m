@@ -77,7 +77,7 @@
         NSDate* secondDate = [dateFormatter dateFromString:after_string];
         
         NSTimeInterval timeDifference = [secondDate timeIntervalSinceDate:firstDate];
-        
+        NSLog(@"%f", timeDifference);
         if (timeDifference>=0) {
             vidas_restantes++;
             if(timeDifference>=30){

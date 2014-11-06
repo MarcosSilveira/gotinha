@@ -47,7 +47,7 @@
     
     message2 =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
     message2.fontSize = self.frame.size.height*0.08;
-    message2.text = @"Carregando produtos...";
+    message2.text =NSLocalizedString(@"STORE_CARREGANDO_PRODUTOS", nil);
     message2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
 
     
