@@ -72,6 +72,7 @@
 		0BB7E84919AE403700C36889 /* JAGPerdaGota.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB7E84819AE403700C36889 /* JAGPerdaGota.m */; };
 		0BB81679199BBDA800490104 /* JAGWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB81678199BBDA800490104 /* JAGWall.m */; };
 		0BBD455D1A013F0700538ED1 /* JAGMusicAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD455C1A013F0700538ED1 /* JAGMusicAction.m */; };
+		0BBD80581A0A8A1F00275131 /* JAGVida.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD80571A0A8A1F00275131 /* JAGVida.m */; };
 		0BCC65FC19DC88B1004C517F /* Barroco.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65F419DC88B1004C517F /* Barroco.ttf */; };
 		0BCC65FF19DC88B1004C517F /* VAGRoundedStd-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65F819DC88B1004C517F /* VAGRoundedStd-Black.otf */; };
 		0BCC660019DC88B1004C517F /* VAGRoundedStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65F919DC88B1004C517F /* VAGRoundedStd-Bold.otf */; };
@@ -252,6 +253,8 @@
 		0BBD455B1A013F0700538ED1 /* JAGMusicAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGMusicAction.h; path = JonnyGota/Actions/JAGMusicAction.h; sourceTree = "<group>"; };
 		0BBD455C1A013F0700538ED1 /* JAGMusicAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGMusicAction.m; path = JonnyGota/Actions/JAGMusicAction.m; sourceTree = "<group>"; };
 		0BBD455E1A01435200538ED1 /* DropGeneric1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DropGeneric1.caf; sourceTree = "<group>"; };
+		0BBD80561A0A8A1F00275131 /* JAGVida.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGVida.h; sourceTree = "<group>"; };
+		0BBD80571A0A8A1F00275131 /* JAGVida.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGVida.m; sourceTree = "<group>"; };
 		0BCC65F419DC88B1004C517F /* Barroco.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Barroco.ttf; sourceTree = "<group>"; };
 		0BCC65F819DC88B1004C517F /* VAGRoundedStd-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAGRoundedStd-Black.otf"; sourceTree = "<group>"; };
 		0BCC65F919DC88B1004C517F /* VAGRoundedStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAGRoundedStd-Bold.otf"; sourceTree = "<group>"; };
@@ -631,6 +634,8 @@
 				0B8600F519AFA40B00615FA6 /* JAGAttack.m */,
 				0BBD455B1A013F0700538ED1 /* JAGMusicAction.h */,
 				0BBD455C1A013F0700538ED1 /* JAGMusicAction.m */,
+				0BBD80561A0A8A1F00275131 /* JAGVida.h */,
+				0BBD80571A0A8A1F00275131 /* JAGVida.m */,
 			);
 			name = Actions;
 			sourceTree = "<group>";
@@ -1043,6 +1048,7 @@
 				0B3A046B1991164A00C7C39E /* JAGMyScene.m in Sources */,
 				0B12A3F219C8974E00210DDA /* JAGPreparePoints.m in Sources */,
 				0B024D0F1991257400AE9588 /* JAGInimigos.m in Sources */,
+				0BBD80581A0A8A1F00275131 /* JAGVida.m in Sources */,
 				0B15088019A51374007D70F1 /* JAGPorta.m in Sources */,
 				0B3A04681991164A00C7C39E /* JAGViewController.m in Sources */,
 				8DF47BD019B0AF1D0021AE2D /* JAGPerdaFogo.m in Sources */,

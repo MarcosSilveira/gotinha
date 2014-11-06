@@ -154,6 +154,8 @@
     }
     if (withOP == 2) {
         
+        //Trocar Button 1 para resume
+        
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
         GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
         button1 = [[SKSpriteNode alloc] initWithImageNamed:@"storeBT"];
@@ -162,7 +164,7 @@
         button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
         button2.size =CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.2);
-        button1.name = @"store";
+        button1.name = @"resume";
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
         message.fontSize = self.frame.size.height*0.07;
@@ -431,6 +433,58 @@
                                  toqueInicio.y+(_gota.position.y)-CGRectGetMidY(self.frame));
         tocou_gota  = [_gota verificaToque:toqueInicio];
         
+        
+        //menu gameover
+        SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
+
+        
+        if ([node.name isEqualToString:@"reiniciar fase"]) {
+            NSLog(@"bt1 gameover");
+            
+            self.scene.view.paused=NO;
+            GONaTela = NO;
+            //                    self.scene.paused = NO;
+            [button1 removeFromParent];
+            [button2 removeFromParent];
+            [message removeFromParent];
+            [GObackground removeFromParent];
+            
+            self.gota.physicsBody.velocity=CGVectorMake(0, 0);
+            
+            [self.gota changePosition:self.posicaoInicial];
+            tocou_gota=false;
+        }
+        else if([node.name isEqualToString:@"menu inicial"]){
+            NSLog(@"bt2 gameover");
+            [self deallocSound];
+            self.scene.view.paused = NO;
+            GONaTela = NO;
+            JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
+            [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
+            SKTransition *trans = [SKTransition fadeWithDuration:1.0];
+            
+            [self.scene.view presentScene:scene transition:trans];
+            
+            
+        }
+        else if([node.name isEqualToString:@"proxima fase"]){
+            [self nextLevel];
+            
+        }
+        else if([node.name isEqualToString:@"loja"]){
+            NSLog(@"bt2 gameover");
+            [self deallocSound];
+            self.scene.view.paused = NO;
+            GONaTela = NO;
+            JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
+            [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
+            SKTransition *trans = [SKTransition fadeWithDuration:1.0];
+            
+            [self.scene.view presentScene:scene transition:trans];
+            
+        }
+
+        
         if(!tocou_gota){
             [self logicaMove:touch];
             SKAction *move=[SKAction sequence:@[[SKAction waitForDuration:0.1],[SKAction runBlock:^{
@@ -499,53 +553,8 @@
         pararMovimentoCONTROLx.position = [touch locationInNode:_cropNode];
         pararMovimentoCONTROLy.position = [touch locationInNode:_cropNode];
 
-        //menu gameover
-        SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
         
-        if ([node.name isEqualToString:@"reiniciar fase"]) {
-            NSLog(@"bt1 gameover");
-            
-            self.scene.view.paused=NO;
-            GONaTela = NO;
-            //                    self.scene.paused = NO;
-            [button1 removeFromParent];
-            [button2 removeFromParent];
-            [message removeFromParent];
-            [GObackground removeFromParent];
-            
-            self.gota.physicsBody.velocity=CGVectorMake(0, 0);
-            
-            [self.gota changePosition:self.posicaoInicial];
-        }
-        else if([node.name isEqualToString:@"menu inicial"]){
-            NSLog(@"bt2 gameover");
-            [self deallocSound];
-            self.scene.view.paused = NO;
-            GONaTela = NO;
-            JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
-            [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
-            SKTransition *trans = [SKTransition fadeWithDuration:1.0];
-            
-            [self.scene.view presentScene:scene transition:trans];
-            
-        }
-        else if([node.name isEqualToString:@"proxima fase"]){
-            [self nextLevel];
-            
-        }
-        else if([node.name isEqualToString:@"loja"]){
-            NSLog(@"bt2 gameover");
-            [self deallocSound];
-            self.scene.view.paused = NO;
-            GONaTela = NO;
-            JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
-            [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
-            SKTransition *trans = [SKTransition fadeWithDuration:1.0];
-            
-            [self.scene.view presentScene:scene transition:trans];
-            
-        }
-
+        
         //Dividir
 //        && (difToq>valueto ||difToq<valueto)
         if (toque_moveu && tocou_gota && !frenetico ) {
@@ -610,19 +619,19 @@
            
             
             if (([_gota verificaToque:toqueFinal] && [_gota verificaToque:toqueInicio]) ){
-
+                
                 [_gota esconder];
-               
+                
                 [self removeActionForKey:@"moveGota"];
-                            } else {
+            } else {
                 
                 [self logicaMove:touch];
                 
                 [self removeActionForKey:@"moveGota"];
                 
-
-            
-                                //Logica da movimentacao
+                
+                
+                //Logica da movimentacao
                 //PathFinder
                 //
                 
@@ -636,7 +645,26 @@
                 //Tempo de pressao
                 
                 
+            } if([nodeAux.name isEqualToString:@"resume"]){
+                NSLog(@"bt 1 Resume");
+                
+                GONaTela = NO;
+                //                    self.scene.paused = NO;
+                [button1 removeFromParent];
+                [button2 removeFromParent];
+                [message removeFromParent];
+                [GObackground removeFromParent];
+                
+                
+                
+                tocou_gota=false;
+                
+                self.scene.view.paused=NO;
+                
+                self.scene.paused = NO;
+
             }
+
             
         }
     }
