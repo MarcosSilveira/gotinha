@@ -12,6 +12,7 @@
 
 @interface JAGStoreScene : SKScene<SKRequestDelegate,SKProductsRequestDelegate>
 @property NSArray *products;
-@property NSArray *identifiers;
+@property NSMutableArray *identifiers;
 -(void)validateProductIdentifiers:(NSArray *)productIdentifiers;
+-(void)recuperaCompras;
 @end

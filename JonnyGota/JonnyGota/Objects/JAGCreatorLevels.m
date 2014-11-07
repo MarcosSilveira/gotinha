@@ -569,17 +569,17 @@ NSMutableArray *nodesPhy;
     nodeLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
     
     SKAction *changeLabel = [SKAction sequence:@[[SKAction runBlock:^{
-        nodeLabel.text = @"Olá Gotinha! Seja bem-vinda! Que tal se mexer um pouco? Clique em alguma direção para que você possa andar.";
+        nodeLabel.text = NSLocalizedString(@"PLAY_TUTORIAL_FRASE1", nil);
         nodeLabel.paragraphWidth = tutorialView.size.width*.9;
     }],
                                                  [SKAction waitForDuration:13.0],
                                                  [SKAction runBlock:^{
-        nodeLabel.text = @"Muito bem! Agora que sabe se mexer, quem sabe você dá um pequeno toque em sí própria, vamos ver o que acontece";
+        nodeLabel.text = NSLocalizedString(@"PLAY_TUTORIAL_FRASE2", nil);
         nodeLabel.paragraphWidth = tutorialView.size.width*.9;
     }],
                                                  [SKAction waitForDuration:13.0],
                                                  [SKAction runBlock:^{
-        nodeLabel.text = @"Isso aí! O que você acha sobre poder se dividir? Clique e arraste o dedo sobre sí mesma. ";
+        nodeLabel.text = NSLocalizedString(@"PLAY_TUTORIAL_FRASE3", nil);
         nodeLabel.paragraphWidth = tutorialView.size.width*.9;
     }],
                                                  [SKAction waitForDuration:13.0],

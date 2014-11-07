@@ -115,7 +115,7 @@
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
         message.fontSize = self.frame.size.height*0.1;
-        message.text = @"Fim de jogo!";
+        message.text = NSLocalizedString(@"PLAY_GAMEOVER_FIM", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
         [self.scene addChild:GObackground];
         [self.scene addChild:message];
@@ -130,7 +130,7 @@
         
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
         GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
-        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"proxima_fase"];
+        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"proxima_fase_bt"];
         button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
         button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
@@ -140,7 +140,7 @@
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
         message.fontSize = self.frame.size.height*0.07;
-        message.text = @"Parabéns! Você avançou para a próxima fase!";
+        message.text = NSLocalizedString(@"PLAY_GAMEOVER_NEXT", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
         [self.scene addChild:GObackground];
         [self.scene addChild:message];
@@ -170,7 +170,34 @@
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
         message.fontSize = self.frame.size.height*0.07;
-        message.text = @"Pause";
+        message.text=NSLocalizedString(@"PLAY_GAMEOVER_SEM_VIDAS", nil);
+        message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
+        [self.scene addChild:GObackground];
+        [self.scene addChild:message];
+        [self.scene addChild:button1];
+        [self.scene addChild:button2];
+        button1.zPosition = 201;
+        button2.zPosition = 201;
+        GObackground.zPosition = 200;
+        message.zPosition = 201;
+    }
+    if (withOP == 3) {
+        
+        //Trocar Button 1 para resume
+        
+        GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
+        GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
+        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"storeBT"];
+        button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
+        button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
+        button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
+        button2.size =CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
+        button2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.2);
+        button1.name = @"resume";
+        button2.name = @"menu inicial";
+        message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
+        message.fontSize = self.frame.size.height*0.07;
+        message.text=NSLocalizedString(@"PLAY_GAMEOVER_PAUSE", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
         [self.scene addChild:GObackground];
         [self.scene addChild:message];
