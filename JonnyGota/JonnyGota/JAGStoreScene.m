@@ -27,7 +27,7 @@
 
 -(void)didMoveToView:(SKView *)view{
     primeiroProdutoOK = NO;
-    _identifiers = [NSArray arrayWithObjects:@"Super_Gotinha_",@"10_vidas", nil];
+    _identifiers = [NSMutableArray arrayWithObjects:@"Super_Gotinha_",@"10_vidas", nil];
     
     [self validateProductIdentifiers:_identifiers];
     
@@ -44,6 +44,7 @@
     recuperaBT = [[SKSpriteNode alloc]initWithImageNamed:@"restaurarCompras.png"];
     recuperaBT.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.17);
     recuperaBT.size = CGSizeMake(recuperaBT.texture.size.width/2.2, recuperaBT.texture.size.height/2.2);
+    recuperaBT.name = @"recuperaBT";
     
     message2 =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
     message2.fontSize = self.frame.size.height*0.08;
@@ -65,6 +66,9 @@
     for (UITouch *touch in touches) {
         auxNode = [self nodeAtPoint:[touch locationInNode:self]];
         
+        if ([recuperaBT containsPoint:[touch locationInNode:self]]) {
+            [self recuperaCompras];
+        }
 
         if ([backBT containsPoint:[touch locationInNode:self]]) {
             menu = [[JAGMenu alloc]initWithSize:self.frame.size];
@@ -89,9 +93,19 @@
 
 }
 -(void)recuperaCompras{
-    request = [[SKReceiptRefreshRequest alloc] init];
-    request.delegate = self;
-    [request start];
+//    SKPaymentQueue *queue = [[SKPaymentQueue alloc]init];
+    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+//    SKPaymentTransaction *transactionAux = queue.transactions[0];
+//    NSMutableArray *productIDsToRestore = _identifiers;
+//    SKPaymentTransaction *transaction = transactionAux;
+//    
+//    if ([productIDsToRestore containsObject:transaction.transactionIdentifier]) {
+//        // Re-download the Apple-hosted content, then finish the transaction
+//        // and remove the product identifier from the array of product IDs.
+//    } else {
+//        [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+//    }
+
     
 }
 -(void)validateProductIdentifiers:(NSArray *)productIdentifiers
