@@ -86,6 +86,8 @@
     [self fadeMask];
     self.cropNode.alpha = 0.9f;
     GONaTela = NO;
+    
+    vida=[JAGVida sharedManager];
 
     return self;
 }
@@ -1233,16 +1235,27 @@
 -(void)receberDano:(int) dano{
     if(self.gota.escondida==NO || dano==1){
         self.gota.vida-=dano;
-        if( self.gota.vida <1 && self.hud.vidaRestante >1){
+        if( self.gota.vida <1 && vida.vidas >1){
             
             self.gota.vida=15;
-            self.hud.vidaRestante--;
+            
+            vida.vidas--;
+            
+            [[NSUserDefaults standardUserDefaults] setInteger:vida.vidas forKey:@"Vida"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+//            self.hud.vidaRestante--;
             [self presentGameOver:0];
         
             self.scene.view.paused=YES;
         }
-        else if(self.gota.vida<1 && self.hud.vidaRestante <=1){
-            self.hud.vidaRestante--;
+        else if(self.gota.vida<1 && vida.vidas <=1){            
+            vida.vidas--;
+            
+            [[NSUserDefaults standardUserDefaults] setInteger:vida.vidas forKey:@"Vida"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+
+//            self.hud.vidaRestante--;
             [self presentGameOver:2];
         }
     }

@@ -12,6 +12,7 @@
 #import "JAGHud.h"
 #import "JAGFogoEnemy.h"
 #import "JAGPorta.h"
+#import "JAGVida.h"
 
 
 @interface JAGPlayGameScene : SKScene<SKPhysicsContactDelegate, UIGestureRecognizerDelegate>
@@ -33,7 +34,8 @@
     SKSpriteNode *button2;
     SKSpriteNode *button3;
     SKLabelNode *message;
-
+    
+    JAGVida *vida;
 }
 
 @property (nonatomic) NSNumber *currentLevel;

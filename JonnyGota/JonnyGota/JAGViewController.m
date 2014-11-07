@@ -11,6 +11,7 @@
 #import "JAGLevel.h"
 #import "JAGCreatorLevels.h"
 #import "JAGMenu.h"
+#import "JAGVida.h"
 
 @implementation JAGViewController
 
@@ -30,6 +31,10 @@
     sceneMenu.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene \\
+    
+    JAGVida *vida=[JAGVida sharedManager];
+    
+    [vida fazerConsultas:0];
     
     [skView presentScene:sceneMenu];
 }

@@ -12,9 +12,12 @@
 #import "JAGVida.h"
 
 #define MAXLife 5
-#define TIMEMinutos 30
+#define TIMEMinutos 1
 
 @implementation JAGVida
+
+static JAGVida *sharedMyManager;
+
 
 -(void)consultar{
     
@@ -30,17 +33,9 @@
         //Date Time de agora
         NSDate *now = [NSDate date];
         
-//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//        [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
-//        NSString *after_string = [dateFormatter stringFromDate:after];
-////        [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"pt_BR_POSIX"]];
-//        [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
-        
-       
-        
         if (savedDate!=nil) {
             //Calcular a diferenca
-            NSTimeInterval timeDifference = [savedDate timeIntervalSinceDate:now];
+            NSTimeInterval timeDifference = [now timeIntervalSinceDate:savedDate];
             
             
             
@@ -50,19 +45,41 @@
             //        NSLog(@"diferenca: %f",timeDifference);
             
             //Se for maior salva
-            if (minutes>TIMEMinutos) {
-                self.vidas++;
+            if (minutes>=TIMEMinutos) {
+                if (minutes<TIMEMinutos*5 &&self.vidas+minutes/TIMEMinutos<=MAXLife) {
+                    self.vidas=self.vidas+(1*(minutes/TIMEMinutos));
+                    
+                }else{
+                    self.vidas=MAXLife;
+                }
+                
+                 NSLog(@"Salvando as Life tudo vidas:%d",self.vidas);
+                
+                
+                [[NSUserDefaults standardUserDefaults] setInteger:self.vidas forKey:@"Vida"];
                 [[NSUserDefaults standardUserDefaults]setObject:now forKey:@"savedDate"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
             }
 
         }else{
+            
             self.vidas=MAXLife;
+            
+            //Salve
+            
+            NSLog(@"Iniciando as Lifes tudo");
+            [[NSUserDefaults standardUserDefaults] setInteger:self.vidas forKey:@"Vida"];
             [[NSUserDefaults standardUserDefaults]setObject:now forKey:@"savedDate"];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
         
+    }else{
+        
+        NSDate *now = [NSDate date];
+        
+        [[NSUserDefaults standardUserDefaults]setObject:now forKey:@"savedDate"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
 
 }
@@ -80,7 +97,9 @@
                                          target:self
                                        selector:@selector(consultar)
                                        userInfo:nil
-                                        repeats:NO];
+                                        repeats:YES];
+        
+        
         
         self.inprogress=YES;
     }
@@ -88,17 +107,17 @@
 }
 
 + (id)sharedManager {
-    static JAGVida *sharedMyManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    if (sharedMyManager==nil) {
         sharedMyManager = [[self alloc] init];
-    });
+    }
     return sharedMyManager;
 }
 
 - (id)init {
     if (self = [super init]) {
-        self.vida = [[JAGVida alloc] init];
+//      self.vida = [[JAGVida alloc] init];
+        
+        self.vidas = [[NSUserDefaults standardUserDefaults] integerForKey:@"Vida"];
         self.inprogress=NO;
     }
     return self;

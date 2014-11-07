@@ -8,6 +8,8 @@
 
 #import "JAGHud.h"
 
+#import "JAGVida.h"
+
 @implementation JAGHud{
     int vidas_diferenca_tempo_depois;
     int vidas_diferenca_tempo_antes;
@@ -17,6 +19,7 @@
     NSDate * stopDate;
     NSString *stopDate_string;
     
+    JAGVida *vidasC;
 }
 
 -(instancetype)initWithTempo:(int)tempo withVida:(int)vida saude:(float)saude withWindowSize:(CGSize)size{
@@ -29,7 +32,8 @@
         _saude_sprites[i] = textura;
     }
 
-    [self verificaDefaults];
+    vidasC=[JAGVida sharedManager];
+//    [self verificaDefaults];
     
     textura =[SKTexture textureWithImageNamed:@"hud_back.png"];
     
@@ -108,7 +112,7 @@
     [self recuperaVida];
     _tempo.text=[NSString stringWithFormat:@"%ds",_tempoRestante];
     
-    _vidas.text=[NSString stringWithFormat:@" x %d",_vidaRestante];
+    _vidas.text=[NSString stringWithFormat:@" x %ld",(long)vidasC.vidas];
     
     _saude.text=[NSString stringWithFormat:@"saúde: " ];
     if (_gota.vida<=1){ _life.texture = _saude_sprites[0];
