@@ -12,7 +12,7 @@
 #import "JAGVida.h"
 
 #define MAXLife 5
-#define TIMEMinutos 1
+#define TIMEMinutos 30
 
 @implementation JAGVida
 
