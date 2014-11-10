@@ -23,6 +23,7 @@ static Musica *andar;
     
     //textures load
     self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
+
     self.atlas  = [SKTextureAtlas atlasNamed:@"gotinha.atlas"];
     self.sprite.texture = [self.atlas textureNamed:@"gotinha_correndo_frente1@2x.png"];
     self.sprite.zPosition=10;
@@ -43,7 +44,7 @@ static Musica *andar;
     }
     [self addChild:self.sprite];
 
-   
+    self.sprite.size=size;
 
     
     //variaveis de controle
@@ -54,10 +55,10 @@ static Musica *andar;
     _aguaRestante = 10;
     
     if (size.width>100) {
-        self.multi = (size.width)/1.9;
+        self.multi = (size.width)/2.2;
 
     }else{
-        self.multi = (size.width)/5;
+        self.multi = (size.width)/6;
     }
     
     self.gotinhas=[[NSMutableArray alloc] init];
@@ -92,7 +93,7 @@ static Musica *andar;
 -(void)addPhysics{
     //physics body config
     self.physicsBody.friction = 0;
-    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.sprite.size.width/1.5, self.sprite.size.height/1.5)];
+    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.sprite.size.width*0.6, self.sprite.size.height*0.6)];
     //self.zPosition = 1;
     self.physicsBody.restitution=0;
     self.physicsBody.categoryBitMask = GOTA;

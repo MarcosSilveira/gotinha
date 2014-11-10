@@ -1369,11 +1369,62 @@ NSMutableArray *nodesPhy;
         
         
         
-        
         //Config Map
         [JAGCreatorLevels configMap:scene withTtile:tiledMap];
         
         
+        scene.portas=[[NSMutableArray alloc] init];
+
+        
+        JAGPressao *presao = [[JAGPressao alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(18, 2)] withTipo:1 withSize:tiledMap.tileSize];
+        
+        JAGPressao *presao2 = [[JAGPressao alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(4, 4)] withTipo:3 withSize:tiledMap.tileSize];
+        
+        JAGPressao *presao3 = [[JAGPressao alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(10, 4)] withTipo:2 withSize:tiledMap.tileSize];
+        
+        
+        
+        [scene.level.botoes addObject:presao];
+        
+        [scene.level.botoes addObject:presao2];
+
+        [scene.level.botoes addObject:presao3];
+
+        
+        
+        JAGPorta *porta = [[JAGPorta alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(8,2)] withDirection:1  withReverse:YES withTipo:1 withSize:tiledMap.tileSize];
+        
+        [porta vincularBotao:presao];
+        
+        [porta vincularBotao:presao2];
+
+        [porta vincularBotao:presao3];
+
+        
+        
+        
+        [scene.portas addObject:porta];
+        
+        [scene.camadaItens addChild:presao];
+        [scene.camadaItens addChild:presao2];
+        [scene.camadaItens addChild:presao3];
+
+        [scene.camadaItens addChild:porta];
+
+
+        
+        
+        JAGFogoEnemy *fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 11)] withSize:tiledMap.tileSize];
+        fogo.dano=10;
+        
+        fogo.visao=tiledMap.tileSize.width*2;
+        
+        
+        [scene.inimigos addObject:fogo];
+        
+        
+        [scene.camadaPersonagens addChild:fogo];
+
         
         
         //Add objetos
