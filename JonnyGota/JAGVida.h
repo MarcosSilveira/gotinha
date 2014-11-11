@@ -18,6 +18,8 @@
 
 @property bool inprogress;
 
+@property bool gamePad;
+
 @property (nonatomic, retain) JAGVida *vida;
 
 -(void)consultar;

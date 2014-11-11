@@ -30,7 +30,7 @@ NSMutableArray *nodesPhy;
 + (NSNumber *)numberOfLevels:(int)mundo{
     switch (mundo) {
         case 1:
-            return @11;
+            return @12;
             break;
             
         default:
@@ -322,6 +322,8 @@ NSMutableArray *nodesPhy;
     [scene configStart:8];
     
     [scene.gota addPhysics];
+    
+//    [scene createButtons];
 }
 
 +(void)configMap:(JAGPlayGameScene *)scene
@@ -388,7 +390,11 @@ NSMutableArray *nodesPhy;
     
 
     [scene createMask:tiledMap.tileSize.width*1.8 withPoint:(scene.gota.position)];
+    
+//    [self createButtons:scene];
 }
+
+
 
 #pragma mark - Leveis
 
@@ -1444,32 +1450,33 @@ NSMutableArray *nodesPhy;
     }
 }
 
-+ (void)initializeLevel012ofWorld01onScene:(JAGPlayGameScene *)scene
++ (void)initializeLevel12ofWorld01onScene:(JAGPlayGameScene *)scene
 {
     //    JSTileMap *map;
     //    TMXLayer *tile;
     //    TMXLayer *bg;
     
-    JSTileMap* tiledMap = [JSTileMap mapNamed:@"map1.tmx"];
+    JSTileMap* tiledMap = [JSTileMap mapNamed:@"map12.tmx"];
     if (tiledMap){
         
         [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
         
+        //Colacar uma fonte nessa fazer
+        
         //Gotinha
         
-        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(4, 3)] withSize:tiledMap.tileSize];
+        scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(8, 24)] withSize:tiledMap.tileSize];
         
         
         //Config Map
         [JAGCreatorLevels configMap:scene withTtile:tiledMap];
         
         
-        NSLog(@"Multi ? %d tile Size %f",scene.gota.multi,tiledMap.tileSize.width);
-        
+      
         //        scene.gota.multi=14;
         //Add objetos
         
-        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(3, 20)] withSize:tiledMap.tileSize];
+        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(6, 23)] withSize:tiledMap.tileSize];
         
         [scene.cropNode addChild:scene.level.chuva];
         
@@ -1479,6 +1486,82 @@ NSMutableArray *nodesPhy;
         
         //Portas
         
+         scene.portas=[[NSMutableArray alloc] init];
+        
+        JAGPressao *presao = [[JAGPressao alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(7, 18)] withTipo:1 withSize:tiledMap.tileSize];
+        
+        JAGPressao *presao2 = [[JAGPressao alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(16, 16)] withTipo:3 withSize:tiledMap.tileSize];
+        
+        //Porta 2
+        
+        JAGPressao *presao3 = [[JAGPressao alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(1, 2)] withTipo:3 withSize:tiledMap.tileSize];
+
+        JAGPressao *presao4 = [[JAGPressao alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(6, 10)] withTipo:3 withSize:tiledMap.tileSize];
+
+        JAGPressao *presao5 = [[JAGPressao alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(4, 10)] withTipo:1 withSize:tiledMap.tileSize];
+
+        
+        
+        
+        
+        [scene.level.botoes addObject:presao];
+        
+        [scene.level.botoes addObject:presao2];
+        
+        [scene.level.botoes addObject:presao3];
+        
+        [scene.level.botoes addObject:presao4];
+        
+        [scene.level.botoes addObject:presao5];
+        
+        
+        
+        JAGPorta *porta = [[JAGPorta alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(18,15)] withDirection:1  withReverse:NO withTipo:1 withSize:tiledMap.tileSize];
+
+        
+        
+        [porta vincularBotao:presao];
+        
+        [porta vincularBotao:presao2];
+        
+        
+        JAGPorta *porta2 = [[JAGPorta alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(5,20)] withDirection:2  withReverse:NO withTipo:1 withSize:tiledMap.tileSize];
+
+        [porta2 vincularBotao:presao3];
+        
+        [porta2 vincularBotao:presao4];
+
+        [porta2 vincularBotao:presao5];
+
+        
+        
+        [scene.portas addObject:porta];
+        
+        [scene.portas addObject:porta2];
+        
+        [scene.camadaItens addChild:presao];
+        [scene.camadaItens addChild:presao2];
+        [scene.camadaItens addChild:presao3];
+        [scene.camadaItens addChild:presao4];
+        [scene.camadaItens addChild:presao5];
+        
+        [scene.camadaItens addChild:porta];
+
+        [scene.camadaItens addChild:porta2];
+
+        
+        
+        
+        JAGFogoEnemy *fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(10, 16)] withSize:tiledMap.tileSize];
+        fogo.dano=10;
+        
+        fogo.visao=tiledMap.tileSize.width*2;
+        
+        
+        [scene.inimigos addObject:fogo];
+        
+        
+        [scene.camadaPersonagens addChild:fogo];
         
         
         //Config de hud e fase

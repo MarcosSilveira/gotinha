@@ -39,7 +39,7 @@
     bool frenetico;
     BOOL GONaTela;
     
-    
+   
 }
 
 #pragma mark - View Initialization
@@ -75,6 +75,8 @@
             self.currentLevel = @(1);
             self.currentWorld = @(1);
         }
+        
+        vida=[JAGVida sharedManager];
         [JAGCreatorLevels initializeLevel:self.currentLevel ofWorld:self.currentWorld onScene:self];
         
         tocou_gota = false;
@@ -87,9 +89,73 @@
     self.cropNode.alpha = 0.9f;
     GONaTela = NO;
     
-    vida=[JAGVida sharedManager];
-
+    
+    
+    //Criar Buttons
+    [self createButtons];
+    
     return self;
+}
+
+-(void)createButtons{
+    if (vida.gamePad ) {
+        CGSize tamanho=CGSizeMake(self.frame.size.width*0.09, self.frame.size.height*0.1);
+        
+        //    tamanho=CGSizeMake(60, 60);
+        
+        self.buttonDown=[[SKSpriteNode alloc] initWithImageNamed:@"arrowGamePad"];
+        
+        self.buttonDown.size=tamanho;
+        
+        self.buttonDown.zPosition=150;
+        
+        self.buttonDown.position=CGPointMake(self.frame.size.width*0.15, self.frame.size.height*0.05);
+        
+        
+        self.buttonUp=[[SKSpriteNode alloc] initWithImageNamed:@"arrowGamePad"];
+        
+        self.buttonUp.size=tamanho;
+        
+        self.buttonUp.yScale=-1;
+        
+        self.buttonUp.zPosition=150;
+        
+        self.buttonUp.position=CGPointMake(self.frame.size.width*0.15, self.frame.size.height*0.25);
+        
+
+        self.buttonLeft=[[SKSpriteNode alloc] initWithImageNamed:@"arrowGamePad"];
+        
+        self.buttonLeft.size=tamanho;
+        
+        self.buttonLeft.zRotation = M_PI*(-0.5);
+        
+        self.buttonLeft.zPosition=150;
+        
+        self.buttonLeft.position=CGPointMake(self.frame.size.width*0.08, self.frame.size.height*0.15);
+        
+        
+        self.buttonRight=[[SKSpriteNode alloc] initWithImageNamed:@"arrowGamePad"];
+        
+        self.buttonRight.size=tamanho;
+        
+        self.buttonRight.zRotation = M_PI*(0.5);
+        
+        self.buttonRight.zPosition=150;
+        
+        
+        self.buttonRight.position=CGPointMake(self.frame.size.width*0.22, self.frame.size.height*0.15);
+
+        
+        
+        [self addChild:self.buttonDown];
+        
+        [self addChild:self.buttonUp];
+        
+        [self addChild:self.buttonLeft];
+        
+        [self addChild:self.buttonRight];
+    }
+    
 }
 
 -(void)presentGameOver:(int)withOP{
@@ -362,7 +428,6 @@
     controleXnaTela = NO;
     controleYnaTela = NO;
 
-    
 }
 
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto {
@@ -456,7 +521,7 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     for (UITouch *touch in touches) {
-                toqueInicio = [touch locationInNode:self];
+        toqueInicio = [touch locationInNode:self];
         
         toqueInicio = CGPointMake(toqueInicio.x+(_gota.position.x)-CGRectGetMidX(self.frame),
                                  toqueInicio.y+(_gota.position.y)-CGRectGetMidY(self.frame));
@@ -513,8 +578,19 @@
             
         }
 
-        
-        if(!tocou_gota){
+        if (vida.gamePad) {
+            [self gamepad:touch];
+            
+//            SKAction *move=[SKAction sequence:@[[SKAction waitForDuration:0.1],[SKAction runBlock:^{
+//                [self gamepad:touch];
+//            }]]];
+//            
+//            move=[SKAction repeatActionForever:move];
+//            
+//            [self runAction:move withKey:@"moveGota"];
+            
+            
+        }else if(!tocou_gota){
             [self logicaMove:touch];
             SKAction *move=[SKAction sequence:@[[SKAction waitForDuration:0.1],[SKAction runBlock:^{
                 [self logicaMove:touch];
@@ -525,6 +601,7 @@
             [self runAction:move withKey:@"moveGota"];
             
         }
+        
     }
 }
 
@@ -654,9 +731,15 @@
                 [self removeActionForKey:@"moveGota"];
             } else {
                 
-                [self logicaMove:touch];
-                
-                [self removeActionForKey:@"moveGota"];
+                if (!vida.gamePad) {
+                    [self logicaMove:touch];
+                    
+                    [self removeActionForKey:@"moveGota"];
+                }else{
+                    [self gamepad:touch];
+                    
+                    [self removeActionForKey:@"moveGota"];
+                }
                 
                 
                 
@@ -1346,6 +1429,8 @@
     [relampago changeVolume:1.0];
 
     self.posicaoInicial=self.gota.position;
+    
+//     [self createButtons];
 }
 
 -(void)configInit:(SKSpriteNode *)background{
@@ -1519,6 +1604,41 @@
 }
 
 
+-(void)gamepad:(UITouch *) touch{
+    
+    CGPoint pontoToque;
+    
+    pontoToque = [touch locationInNode:self];
+//    pontoToque= CGPointMake(pontoToque.x+(_gota.position.x)-CGRectGetMidX(self.frame),
+//                             pontoToque.y+(_gota.position.y)-CGRectGetMidY(self.frame));
+    
+     
+    if (![_gota verificaToque:pontoToque]) {
+        if ([self verificaToque:pontoToque withSprite:self.buttonUp]) {
+            [self.gota mover:pontoToque withInterval:0 withType:1];
+        }else if([self verificaToque:pontoToque withSprite:self.buttonDown]){
+            [self.gota mover:pontoToque withInterval:0 withType:2];
+        }else if([self verificaToque:pontoToque withSprite:self.buttonLeft]){
+            [self.gota mover:pontoToque withInterval:0 withType:3];
+        }else if([self verificaToque:pontoToque withSprite:self.buttonRight]){
+            [self.gota mover:pontoToque withInterval:0 withType:4];
+        }
+    }
+}
+-(BOOL)verificaToque:(CGPoint) ponto
+          withSprite:(SKSpriteNode *)sprite{
+    if((ponto.x >= (sprite.position.x - sprite.size.width/2)) && (ponto.x < (sprite.position.x+sprite.size.width/2))){
+        if((ponto.y >= (sprite.position.y - sprite.size.height/2)) && (ponto.y < (sprite.position.y+sprite.size.height/2))){
+            
+            return true;
+        }
+    }
+    
+    //NSLog(@"Ponto x:%f  y:%f Calc x: %f ",ponto.x,ponto.y,self.position.x+self.sprite.size.width);
+    //NSLog(@"Positions x: %f  y: %f  calc y: %f",self.position.x,self.position.y,self.position.y+self.sprite.size.height);
+    
+    return false;
+}
 
 
 @end

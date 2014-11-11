@@ -3,11 +3,6 @@
  <tileset firstgid="1" name="TileSet" tilewidth="64" tileheight="64">
   <image source="TileSetTeste.png" width="192" height="384"/>
  </tileset>
- <layer name="BackGround" width="20" height="20" visible="0">
-  <data encoding="base64" compression="zlib">
-   eJxjYmBgYBrFo3gUj+JRPIpJxADRBwMh
-  </data>
- </layer>
  <imagelayer name="BackImage">
   <image source="mapaBack11.png"/>
  </imagelayer>

@@ -118,6 +118,7 @@ static JAGVida *sharedMyManager;
 //      self.vida = [[JAGVida alloc] init];
         
         self.vidas = [[NSUserDefaults standardUserDefaults] integerForKey:@"Vida"];
+        self.gamePad=YES;
         self.inprogress=NO;
     }
     return self;

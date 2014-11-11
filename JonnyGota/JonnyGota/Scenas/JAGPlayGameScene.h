@@ -59,6 +59,14 @@
 
 @property (nonatomic) SKNode *camadaPersonagens;
 
+@property (nonatomic) SKSpriteNode *buttonDown;
+
+@property (nonatomic) SKSpriteNode *buttonUp;
+
+@property (nonatomic) SKSpriteNode *buttonLeft;
+
+@property (nonatomic) SKSpriteNode *buttonRight;
+
 @property (nonatomic) SKNode *camadaItens;
 @property (nonatomic) SKLabelNode *message2;
 -(void)divideGota;
@@ -82,5 +90,7 @@
 -(void)configInit;
 
 -(void)presentGameOver:(int)withOP;
+
+-(void)createButtons;
 
 @end

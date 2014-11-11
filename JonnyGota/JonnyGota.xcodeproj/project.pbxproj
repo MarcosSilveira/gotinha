@@ -73,6 +73,7 @@
 		0BB81679199BBDA800490104 /* JAGWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB81678199BBDA800490104 /* JAGWall.m */; };
 		0BBD455D1A013F0700538ED1 /* JAGMusicAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD455C1A013F0700538ED1 /* JAGMusicAction.m */; };
 		0BBD80581A0A8A1F00275131 /* JAGVida.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD80571A0A8A1F00275131 /* JAGVida.m */; };
+		0BC0D3AA1A126222003B8526 /* arrowGamePad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC0D3A91A126222003B8526 /* arrowGamePad.png */; };
 		0BCC65FC19DC88B1004C517F /* Barroco.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65F419DC88B1004C517F /* Barroco.ttf */; };
 		0BCC65FF19DC88B1004C517F /* VAGRoundedStd-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65F819DC88B1004C517F /* VAGRoundedStd-Black.otf */; };
 		0BCC660019DC88B1004C517F /* VAGRoundedStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65F919DC88B1004C517F /* VAGRoundedStd-Bold.otf */; };
@@ -255,6 +256,7 @@
 		0BBD455E1A01435200538ED1 /* DropGeneric1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DropGeneric1.caf; sourceTree = "<group>"; };
 		0BBD80561A0A8A1F00275131 /* JAGVida.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGVida.h; sourceTree = "<group>"; };
 		0BBD80571A0A8A1F00275131 /* JAGVida.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGVida.m; sourceTree = "<group>"; };
+		0BC0D3A91A126222003B8526 /* arrowGamePad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowGamePad.png; sourceTree = "<group>"; };
 		0BCC65F419DC88B1004C517F /* Barroco.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Barroco.ttf; sourceTree = "<group>"; };
 		0BCC65F819DC88B1004C517F /* VAGRoundedStd-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAGRoundedStd-Black.otf"; sourceTree = "<group>"; };
 		0BCC65F919DC88B1004C517F /* VAGRoundedStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAGRoundedStd-Bold.otf"; sourceTree = "<group>"; };
@@ -691,6 +693,7 @@
 				8D7E78DF19D1FE2200126F42 /* clock.png */,
 				8D7E78DD19D1FB5900126F42 /* heart.png */,
 				8D7E78DB19D1F2E900126F42 /* hud_back.png */,
+				0BC0D3A91A126222003B8526 /* arrowGamePad.png */,
 			);
 			name = Hud;
 			sourceTree = "<group>";
@@ -958,6 +961,7 @@
 				8D050F181A09384200D36D30 /* menuInicial.png in Resources */,
 				0B15AADA19D09B0500ED6110 /* map5.tmx in Resources */,
 				0B88D26219E70E1F00351527 /* botao1.png in Resources */,
+				0BC0D3AA1A126222003B8526 /* arrowGamePad.png in Resources */,
 				8D60E1B91A07E678000A5129 /* storeBT.png in Resources */,
 				0B15AACD19D09AE100ED6110 /* TileSet.png in Resources */,
 				0B3A04651991164A00C7C39E /* Main.storyboard in Resources */,
