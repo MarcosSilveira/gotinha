@@ -56,9 +56,10 @@
 //    _message2.zPosition = 999;
     [self.camadaPersonagens addChild:_message2];
     [self touchesEnded:nil withEvent:nil];
-
-
 }
+
+
+
 -(id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world{
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
@@ -99,13 +100,15 @@
 
 -(void)createButtons{
     if (vida.gamePad ) {
-        CGSize tamanho=CGSizeMake(self.frame.size.width*0.09, self.frame.size.height*0.1);
+        CGSize tamanhoU=CGSizeMake(self.frame.size.width*0.08, self.frame.size.height*0.11);
+        
+        CGSize tamanhoL=CGSizeMake(self.frame.size.width*0.08, self.frame.size.height*0.1);
         
         //    tamanho=CGSizeMake(60, 60);
         
         self.buttonDown=[[SKSpriteNode alloc] initWithImageNamed:@"arrowGamePad"];
         
-        self.buttonDown.size=tamanho;
+        self.buttonDown.size=tamanhoU;
         
         self.buttonDown.zPosition=150;
         
@@ -114,7 +117,7 @@
         
         self.buttonUp=[[SKSpriteNode alloc] initWithImageNamed:@"arrowGamePad"];
         
-        self.buttonUp.size=tamanho;
+        self.buttonUp.size=tamanhoU;
         
         self.buttonUp.yScale=-1;
         
@@ -125,7 +128,7 @@
 
         self.buttonLeft=[[SKSpriteNode alloc] initWithImageNamed:@"arrowGamePad"];
         
-        self.buttonLeft.size=tamanho;
+        self.buttonLeft.size=tamanhoL;
         
         self.buttonLeft.zRotation = M_PI*(-0.5);
         
@@ -136,7 +139,7 @@
         
         self.buttonRight=[[SKSpriteNode alloc] initWithImageNamed:@"arrowGamePad"];
         
-        self.buttonRight.size=tamanho;
+        self.buttonRight.size=tamanhoL;
         
         self.buttonRight.zRotation = M_PI*(0.5);
         
@@ -348,6 +351,9 @@
     NSTimeInterval tempo = frequencia;
     SKAction *controle = [SKAction sequence:@[[SKAction waitForDuration:tempo],
                                               [SKAction runBlock:^{
+        if (!self.inTutorial) {
+            
+        
         [relampago play];
         //        [self.scene runAction:[SKAction playSoundFileNamed:@"trovao.wav" waitForCompletion:NO]];
         SKAction *retiraMascara=[SKAction sequence:@[[SKAction waitForDuration:0.1],
@@ -371,6 +377,7 @@
         }]]];
         SKAction *repeater2 = [SKAction repeatAction:retiraMascara count:4];
         [self runAction:repeater2];
+        }
     }]]];
     SKAction *repeater=[SKAction repeatActionForever:controle];
     [self runAction:repeater];
@@ -521,87 +528,89 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     for (UITouch *touch in touches) {
-        toqueInicio = [touch locationInNode:self];
         
-        toqueInicio = CGPointMake(toqueInicio.x+(_gota.position.x)-CGRectGetMidX(self.frame),
-                                 toqueInicio.y+(_gota.position.y)-CGRectGetMidY(self.frame));
-        tocou_gota  = [_gota verificaToque:toqueInicio];
-        
-        
-        //menu gameover
-        SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
-
-        
-        if ([node.name isEqualToString:@"reiniciar fase"]) {
-            NSLog(@"bt1 gameover");
+        if(!self.inTutorial){
+            toqueInicio = [touch locationInNode:self];
             
-            self.scene.view.paused=NO;
-            GONaTela = NO;
-            //                    self.scene.paused = NO;
-            [button1 removeFromParent];
-            [button2 removeFromParent];
-            [message removeFromParent];
-            [GObackground removeFromParent];
-            
-            self.gota.physicsBody.velocity=CGVectorMake(0, 0);
-            
-            [self.gota changePosition:self.posicaoInicial];
-            tocou_gota=false;
-        }
-        else if([node.name isEqualToString:@"menu inicial"]){
-            NSLog(@"bt2 gameover");
-            [self deallocSound];
-            self.scene.view.paused = NO;
-            GONaTela = NO;
-            JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
-            [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
-            SKTransition *trans = [SKTransition fadeWithDuration:1.0];
-            
-            [self.scene.view presentScene:scene transition:trans];
+            toqueInicio = CGPointMake(toqueInicio.x+(_gota.position.x)-CGRectGetMidX(self.frame),
+                                      toqueInicio.y+(_gota.position.y)-CGRectGetMidY(self.frame));
+            tocou_gota  = [_gota verificaToque:toqueInicio];
             
             
-        }
-        else if([node.name isEqualToString:@"proxima fase"]){
-            [self nextLevel];
-            
-        }
-        else if([node.name isEqualToString:@"loja"]){
-            NSLog(@"bt2 gameover");
-            [self deallocSound];
-            self.scene.view.paused = NO;
-            GONaTela = NO;
-            JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
-            [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
-            SKTransition *trans = [SKTransition fadeWithDuration:1.0];
-            
-            [self.scene.view presentScene:scene transition:trans];
-            
-        }
-
-        if (vida.gamePad) {
-            [self gamepad:touch];
-            
-//            SKAction *move=[SKAction sequence:@[[SKAction waitForDuration:0.1],[SKAction runBlock:^{
-//                [self gamepad:touch];
-//            }]]];
-//            
-//            move=[SKAction repeatActionForever:move];
-//            
-//            [self runAction:move withKey:@"moveGota"];
+            //menu gameover
+            SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
             
             
-        }else if(!tocou_gota){
-            [self logicaMove:touch];
-            SKAction *move=[SKAction sequence:@[[SKAction waitForDuration:0.1],[SKAction runBlock:^{
+            if ([node.name isEqualToString:@"reiniciar fase"]) {
+                NSLog(@"bt1 gameover");
+                
+                self.scene.view.paused=NO;
+                GONaTela = NO;
+                //                    self.scene.paused = NO;
+                [button1 removeFromParent];
+                [button2 removeFromParent];
+                [message removeFromParent];
+                [GObackground removeFromParent];
+                
+                self.gota.physicsBody.velocity=CGVectorMake(0, 0);
+                
+                [self.gota changePosition:self.posicaoInicial];
+                tocou_gota=false;
+            }
+            else if([node.name isEqualToString:@"menu inicial"]){
+                NSLog(@"bt2 gameover");
+                [self deallocSound];
+                self.scene.view.paused = NO;
+                GONaTela = NO;
+                JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
+                [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
+                SKTransition *trans = [SKTransition fadeWithDuration:1.0];
+                
+                [self.scene.view presentScene:scene transition:trans];
+                
+                
+            }
+            else if([node.name isEqualToString:@"proxima fase"]){
+                [self nextLevel];
+                
+            }
+            else if([node.name isEqualToString:@"loja"]){
+                NSLog(@"bt2 gameover");
+                [self deallocSound];
+                self.scene.view.paused = NO;
+                GONaTela = NO;
+                JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
+                [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
+                SKTransition *trans = [SKTransition fadeWithDuration:1.0];
+                
+                [self.scene.view presentScene:scene transition:trans];
+                
+            }
+            
+            if (vida.gamePad) {
+                [self gamepad:touch];
+                
+                SKAction *move=[SKAction sequence:@[[SKAction waitForDuration:0.1],[SKAction runBlock:^{
+                    [self gamepad:touch];
+                }]]];
+                
+                move=[SKAction repeatActionForever:move];
+                
+                [self runAction:move withKey:@"moveGota"];
+                
+                
+            }else if(!tocou_gota){
                 [self logicaMove:touch];
-            }]]];
-            
-            move=[SKAction repeatActionForever:move];
-            
-            [self runAction:move withKey:@"moveGota"];
-            
+                SKAction *move=[SKAction sequence:@[[SKAction waitForDuration:0.1],[SKAction runBlock:^{
+                    [self logicaMove:touch];
+                }]]];
+                
+                move=[SKAction repeatActionForever:move];
+                
+                [self runAction:move withKey:@"moveGota"];
+                
+            }
         }
-        
     }
 }
 
@@ -634,153 +643,168 @@
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
-//    int valueto=self.gota.sprite.size.width;
+    //    int valueto=self.gota.sprite.size.width;
     
     for (UITouch *touch in touches) {
         SKNode *nodeAux = [self nodeAtPoint:[touch locationInNode:self]];
-        if ([nodeAux.name isEqualToString:@"pauseBT"]) {
-            NSLog(@"pause detected");
-            if (!GONaTela) {
-                
-                [self.gota removeActionWithSound];
-                
-                [self presentGameOver:2];
-
-            }
-        }
-
-        toqueFinal = [touch locationInNode:self];
-        toqueFinal = CGPointMake(toqueFinal.x+(_gota.position.x)-CGRectGetMidX(self.frame),
-                                 toqueFinal.y+(_gota.position.y)-CGRectGetMidY(self.frame));
-
         
-        float difToq=sqrt(pow(toqueInicio.x-toqueFinal.x,2)+pow(toqueInicio.y-toqueFinal.y,2));
-        
-        pararMovimentoCONTROLx.position = [touch locationInNode:_cropNode];
-        pararMovimentoCONTROLy.position = [touch locationInNode:_cropNode];
-
-        
-        
-        //Dividir
-//        && (difToq>valueto ||difToq<valueto)
-        if (toque_moveu && tocou_gota && !frenetico ) {
-//            [_cropNode addChild:[_gota dividir]];
-            JAGGotaDividida* gota2;
-            if (!_gota.escondida){
-                
-                gota2=[_gota dividir];
-                
-                
-                if (self.gota.gotinhas.count>self.gota.qtGotinhas) {
-                    JAGGotaDividida *temp=(JAGGotaDividida *)self.gota.gotinhas[0];
-                    [self removeGotinha:temp withBotao:true];
+        if(!self.inTutorial){
+            if ([nodeAux.name isEqualToString:@"pauseBT"]) {
+                NSLog(@"pause detected");
+                if (!GONaTela) {
+                    
+                    [self.gota removeActionWithSound];
+                    
+                    [self presentGameOver:2];
+                    
                 }
-                [self.characteres addObject:gota2];
-                [self.camadaItens addChild:gota2];}
-
-//            [_cropNode addChild:[_gota dividirwithSentido:[self verificaSentido:toqueFinal with:_gota.position]]];
-            int mul=2;
-            if(self.gota.sprite.size.width>60){
-               mul=8;
             }
             
-            
-            switch ([self verificaSentido:toqueFinal with:_gota.position]) {
-                case 1:
-                    
-                    [gota2.physicsBody applyImpulse:CGVectorMake(0,mul)];
-                    break;
-                    
-                case 2:
-                    
-                    [gota2.physicsBody applyImpulse:CGVectorMake(0, - mul)];
-                    break;
-                    
-                case 3:
-                    
-                    [gota2.physicsBody applyImpulse:CGVectorMake(-mul,0)];
-                    break;
-                    
-                case 4:
-                    
-                    [gota2.physicsBody applyImpulse:CGVectorMake(mul,0)];
-                    break;
-                    
-                default:
-                    break;
-            }
-            frenetico=true;
-
-            SKAction *liberaDivisao=[SKAction sequence:@[[SKAction waitForDuration:3], [SKAction runBlock:^{
-                frenetico=false;
-            }]]];
-            
-            [self runAction:liberaDivisao];
-           
-            toque_moveu = NO;
+            toqueFinal = [touch locationInNode:self];
+            toqueFinal = CGPointMake(toqueFinal.x+(_gota.position.x)-CGRectGetMidX(self.frame),
+                                     toqueFinal.y+(_gota.position.y)-CGRectGetMidY(self.frame));
             
             
-        } else {
-//            || ((difToq>1&& difToq>valueto)||(difToq<0 && difToq>valueto))
-           
+//            float difToq=sqrt(pow(toqueInicio.x-toqueFinal.x,2)+pow(toqueInicio.y-toqueFinal.y,2));
             
-            if (([_gota verificaToque:toqueFinal] && [_gota verificaToque:toqueInicio]) ){
+            pararMovimentoCONTROLx.position = [touch locationInNode:_cropNode];
+            pararMovimentoCONTROLy.position = [touch locationInNode:_cropNode];
+            
+            
+            
+            //Dividir
+            //        && (difToq>valueto ||difToq<valueto)
+            if (toque_moveu && tocou_gota && !frenetico ) {
+                //            [_cropNode addChild:[_gota dividir]];
+                JAGGotaDividida* gota2;
+                if (!_gota.escondida){
+                    
+                    gota2=[_gota dividir];
+                    
+                    
+                    if (self.gota.gotinhas.count>self.gota.qtGotinhas) {
+                        JAGGotaDividida *temp=(JAGGotaDividida *)self.gota.gotinhas[0];
+                        [self removeGotinha:temp withBotao:true];
+                    }
+                    [self.characteres addObject:gota2];
+                    [self.camadaItens addChild:gota2];}
                 
-                [_gota esconder];
+                //            [_cropNode addChild:[_gota dividirwithSentido:[self verificaSentido:toqueFinal with:_gota.position]]];
+                int mul=2;
+                if(self.gota.sprite.size.width>60){
+                    mul=8;
+                }
                 
-                [self removeActionForKey:@"moveGota"];
+                
+                switch ([self verificaSentido:toqueFinal with:_gota.position]) {
+                    case 1:
+                        
+                        [gota2.physicsBody applyImpulse:CGVectorMake(0,mul)];
+                        break;
+                        
+                    case 2:
+                        
+                        [gota2.physicsBody applyImpulse:CGVectorMake(0, - mul)];
+                        break;
+                        
+                    case 3:
+                        
+                        [gota2.physicsBody applyImpulse:CGVectorMake(-mul,0)];
+                        break;
+                        
+                    case 4:
+                        
+                        [gota2.physicsBody applyImpulse:CGVectorMake(mul,0)];
+                        break;
+                        
+                    default:
+                        break;
+                }
+                frenetico=true;
+                
+                SKAction *liberaDivisao=[SKAction sequence:@[[SKAction waitForDuration:3], [SKAction runBlock:^{
+                    frenetico=false;
+                }]]];
+                
+                [self runAction:liberaDivisao];
+                
+                toque_moveu = NO;
+                
+                
             } else {
+                //            || ((difToq>1&& difToq>valueto)||(difToq<0 && difToq>valueto))
                 
-                if (!vida.gamePad) {
-                    [self logicaMove:touch];
+                
+                if (([_gota verificaToque:toqueFinal] && [_gota verificaToque:toqueInicio]) ){
+                    
+                    [_gota esconder];
                     
                     [self removeActionForKey:@"moveGota"];
-                }else{
-                    [self gamepad:touch];
+                } else {
                     
-                    [self removeActionForKey:@"moveGota"];
+                    if (!vida.gamePad) {
+                        [self logicaMove:touch];
+                        
+                        [self removeActionForKey:@"moveGota"];
+                    }else{
+                        
+                        
+                        [self removeActionForKey:@"moveGota"];
+                        
+                        self.gota.sentido=0;
+                        
+                        self.gota.physicsBody.velocity=CGVectorMake(0, 0);
+                    }
+                    
+                    
+                    
+                    //Logica da movimentacao
+                    //PathFinder
+                    //
+                    
+                    
+                    //logica da divisao
+                    //Condicaos de diferenca dos pontos
+                    
+                    
+                    
+                    //Logica do invisivel
+                    //Tempo de pressao
+                    
+                    
+                } if([nodeAux.name isEqualToString:@"resume"]){
+                    NSLog(@"bt 1 Resume");
+                    
+                    GONaTela = NO;
+                    //                    self.scene.paused = NO;
+                    [button1 removeFromParent];
+                    [button2 removeFromParent];
+                    [message removeFromParent];
+                    [GObackground removeFromParent];
+                    
+                    
+                    
+                    tocou_gota=false;
+                    
+                    self.scene.view.paused=NO;
+                    
+                    self.scene.paused = NO;
+                    
                 }
                 
                 
-                
-                //Logica da movimentacao
-                //PathFinder
-                //
-                
-                
-                //logica da divisao
-                //Condicaos de diferenca dos pontos
-                
-                
-                
-                //Logica do invisivel
-                //Tempo de pressao
-                
-                
-            } if([nodeAux.name isEqualToString:@"resume"]){
-                NSLog(@"bt 1 Resume");
-                
-                GONaTela = NO;
-                //                    self.scene.paused = NO;
-                [button1 removeFromParent];
-                [button2 removeFromParent];
-                [message removeFromParent];
-                [GObackground removeFromParent];
-                
-                
-                
-                tocou_gota=false;
-                
-                self.scene.view.paused=NO;
-                
-                self.scene.paused = NO;
-
             }
-
+        }else{
+            //No tutorial
+            
+            if ([self.tutorial validadeTouch:touch]) {
+                self.paused=NO;
+                self.inTutorial=NO;
+            };
             
         }
     }
-
+    
 }
 
 -(void)logicaMove:(UITouch *) touch{
@@ -856,6 +880,8 @@
     }
     
 }
+
+
 
 
 -(void)update:(NSTimeInterval)currentTime {
@@ -1391,6 +1417,10 @@
     
     SKAction *diminuirSaude=[SKAction sequence:@[[SKAction waitForDuration:time],
                                                 [SKAction runBlock:^{
+        
+        if (!self.inTutorial) {
+            
+        
         [self receberDano:1];
         //Criar uma gotinha
         
@@ -1405,6 +1435,7 @@
         [self.camadaItens addChild:gotinha.sprite];
 //
         //Aumentar a area
+        }
         
                                                 }]]];
     SKAction *loop=[SKAction repeatActionForever:diminuirSaude];
@@ -1614,14 +1645,18 @@
     
      
     if (![_gota verificaToque:pontoToque]) {
-        if ([self verificaToque:pontoToque withSprite:self.buttonUp]) {
+        if ([self verificaToque:pontoToque withSprite:self.buttonUp]&&self.gota.sentido!=1) {
             [self.gota mover:pontoToque withInterval:0 withType:1];
-        }else if([self verificaToque:pontoToque withSprite:self.buttonDown]){
+            self.gota.sentido=1;
+        }else if([self verificaToque:pontoToque withSprite:self.buttonDown]&&self.gota.sentido!=2){
             [self.gota mover:pontoToque withInterval:0 withType:2];
-        }else if([self verificaToque:pontoToque withSprite:self.buttonLeft]){
+            self.gota.sentido=2;
+        }else if([self verificaToque:pontoToque withSprite:self.buttonLeft]&&self.gota.sentido!=3){
             [self.gota mover:pontoToque withInterval:0 withType:3];
-        }else if([self verificaToque:pontoToque withSprite:self.buttonRight]){
+            self.gota.sentido=3;
+        }else if([self verificaToque:pontoToque withSprite:self.buttonRight]&&self.gota.sentido!=4){
             [self.gota mover:pontoToque withInterval:0 withType:4];
+            self.gota.sentido=4;
         }
     }
 }

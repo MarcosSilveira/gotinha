@@ -13,6 +13,7 @@
 #import "JAGFogoEnemy.h"
 #import "JAGPorta.h"
 #import "JAGVida.h"
+#import "JAGTutorial.h"
 
 
 @interface JAGPlayGameScene : SKScene<SKPhysicsContactDelegate, UIGestureRecognizerDelegate>
@@ -69,6 +70,11 @@
 
 @property (nonatomic) SKNode *camadaItens;
 @property (nonatomic) SKLabelNode *message2;
+
+@property (nonatomic) bool inTutorial;
+
+@property (nonatomic) JAGTutorial *tutorial;
+
 -(void)divideGota;
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto;
 - (id)initWithSize:(CGSize)size level:(NSNumber *)level andWorld:(NSNumber *)world;

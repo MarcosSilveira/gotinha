@@ -20,6 +20,8 @@
 #import "JSTileMap.h"
 #import "JAGPreparePoints.h"
 #import "DSMultilineLabelNode.h"
+#import "JAGCompTutorial.h"
+#import "JAGTutorial.h"
 
 @implementation JAGCreatorLevels
 
@@ -609,6 +611,43 @@ NSMutableArray *nodesPhy;
     JSTileMap* tiledMap = [JSTileMap mapNamed:@"map1.tmx"];
     if (tiledMap){
         
+        //Criar o tutorial
+        
+        NSMutableArray *tutorial=[[NSMutableArray alloc] init];
+
+        
+        JAGCompTutorial *temp=[[JAGCompTutorial alloc] init];
+        
+        temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL_FRASE1", nil);
+        
+        temp.image=[[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(100, 100)];
+        
+        
+        [tutorial addObject:temp];
+        
+        temp=[[JAGCompTutorial alloc] init];
+        
+        temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL_FRASE2", nil);
+        
+        temp.image=[[SKSpriteNode alloc] initWithColor:[UIColor yellowColor] size:CGSizeMake(100, 100)];
+        
+        
+        [tutorial addObject:temp];
+        
+        temp=[[JAGCompTutorial alloc] init];
+        
+        temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL_FRASE3", nil);
+        
+        temp.image=[[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(100, 100)];
+        
+        
+        [tutorial addObject:temp];
+        
+        JAGTutorial *tuto=[[JAGTutorial alloc] initWithComponents:tutorial withSizeFrame:scene.frame.size];
+        
+        
+        
+        
         [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
         
         //Gotinha
@@ -641,7 +680,13 @@ NSMutableArray *nodesPhy;
         [JAGCreatorLevels configHud:scene];
         
         // Tutorial
-        [JAGCreatorLevels tutorial: scene];
+//        [JAGCreatorLevels tutorial: scene];
+        
+        scene.tutorial=tuto;
+        scene.inTutorial=YES;
+        scene.paused=YES;
+        [scene addChild:tuto];
+        
     }
 }
 
