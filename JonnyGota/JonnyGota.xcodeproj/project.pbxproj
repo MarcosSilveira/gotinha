@@ -81,6 +81,15 @@
 		0BCC660019DC88B1004C517F /* VAGRoundedStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65F919DC88B1004C517F /* VAGRoundedStd-Bold.otf */; };
 		0BCC660119DC88B1004C517F /* VAGRoundedStd-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65FA19DC88B1004C517F /* VAGRoundedStd-Light.otf */; };
 		0BCC660219DC88B1004C517F /* VAGRoundedStd-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65FB19DC88B1004C517F /* VAGRoundedStd-Thin.otf */; };
+		0BE89C0D1A151A9200E1FCBF /* map13.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0BE89C081A151A9200E1FCBF /* map13.tmx */; };
+		0BE89C0E1A151A9200E1FCBF /* map14.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0BE89C091A151A9200E1FCBF /* map14.tmx */; };
+		0BE89C0F1A151A9200E1FCBF /* map15.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0BE89C0A1A151A9200E1FCBF /* map15.tmx */; };
+		0BE89C111A151A9200E1FCBF /* map18.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0BE89C0C1A151A9200E1FCBF /* map18.tmx */; };
+		0BE89C151A151AB100E1FCBF /* map13.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BE89C121A151AB100E1FCBF /* map13.png */; };
+		0BE89C161A151AB100E1FCBF /* map15.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BE89C131A151AB100E1FCBF /* map15.png */; };
+		0BE89C171A151AB100E1FCBF /* map18.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BE89C141A151AB100E1FCBF /* map18.png */; };
+		0BE89C191A1521A500E1FCBF /* map16.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0BE89C181A1521A500E1FCBF /* map16.tmx */; };
+		0BE89C1B1A1521BD00E1FCBF /* map16.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BE89C1A1A1521BD00E1FCBF /* map16.png */; };
 		8D050F181A09384200D36D30 /* menuInicial.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D050F1A1A09384200D36D30 /* menuInicial.png */; };
 		8D050F1E1A09389E00D36D30 /* menuInicial.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D050F201A09389E00D36D30 /* menuInicial.png */; };
 		8D11652519CC60E200F441E9 /* poca.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D11652419CC60E200F441E9 /* poca.png */; };
@@ -268,6 +277,15 @@
 		0BCC65F919DC88B1004C517F /* VAGRoundedStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAGRoundedStd-Bold.otf"; sourceTree = "<group>"; };
 		0BCC65FA19DC88B1004C517F /* VAGRoundedStd-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAGRoundedStd-Light.otf"; sourceTree = "<group>"; };
 		0BCC65FB19DC88B1004C517F /* VAGRoundedStd-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAGRoundedStd-Thin.otf"; sourceTree = "<group>"; };
+		0BE89C081A151A9200E1FCBF /* map13.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map13.tmx; sourceTree = "<group>"; };
+		0BE89C091A151A9200E1FCBF /* map14.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map14.tmx; sourceTree = "<group>"; };
+		0BE89C0A1A151A9200E1FCBF /* map15.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map15.tmx; sourceTree = "<group>"; };
+		0BE89C0C1A151A9200E1FCBF /* map18.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map18.tmx; sourceTree = "<group>"; };
+		0BE89C121A151AB100E1FCBF /* map13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map13.png; sourceTree = "<group>"; };
+		0BE89C131A151AB100E1FCBF /* map15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map15.png; sourceTree = "<group>"; };
+		0BE89C141A151AB100E1FCBF /* map18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map18.png; sourceTree = "<group>"; };
+		0BE89C181A1521A500E1FCBF /* map16.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map16.tmx; sourceTree = "<group>"; };
+		0BE89C1A1A1521BD00E1FCBF /* map16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map16.png; sourceTree = "<group>"; };
 		8D050F191A09384200D36D30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Base; path = Base.lproj/menuInicial.png; sourceTree = "<group>"; };
 		8D050F1B1A09384400D36D30 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/menuInicial.png; sourceTree = "<group>"; };
 		8D050F1F1A09389E00D36D30 /* pt */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pt; path = pt.lproj/menuInicial.png; sourceTree = "<group>"; };
@@ -484,6 +502,11 @@
 				0B15AAD619D09B0500ED6110 /* map10.tmx */,
 				0BB6C0B01A079CDC0045AB3A /* map11.tmx */,
 				0B0699121A03F1BE000F954B /* map12.tmx */,
+				0BE89C081A151A9200E1FCBF /* map13.tmx */,
+				0BE89C091A151A9200E1FCBF /* map14.tmx */,
+				0BE89C0A1A151A9200E1FCBF /* map15.tmx */,
+				0BE89C181A1521A500E1FCBF /* map16.tmx */,
+				0BE89C0C1A151A9200E1FCBF /* map18.tmx */,
 				0B31B44619ED9F04006761EA /* mapTeste.tmx */,
 				0B15AACC19D09AE100ED6110 /* TileSet.png */,
 			);
@@ -729,6 +752,10 @@
 		0BB39B741A0010C800984420 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				0BE89C1A1A1521BD00E1FCBF /* map16.png */,
+				0BE89C121A151AB100E1FCBF /* map13.png */,
+				0BE89C131A151AB100E1FCBF /* map15.png */,
+				0BE89C141A151AB100E1FCBF /* map18.png */,
 				0BB6C0B21A079D200045AB3A /* mapaBack11.png */,
 				0B0699131A03F1BE000F954B /* TileSetTeste.png */,
 				0BB39B751A00110800984420 /* map3.png */,
@@ -940,6 +967,7 @@
 				0B89188519F962C700DAB31F /* chuva.caf in Resources */,
 				0BB20B6E19F82257004EBC4A /* Raio1.caf in Resources */,
 				8D050F1E1A09389E00D36D30 /* menuInicial.png in Resources */,
+				0BE89C151A151AB100E1FCBF /* map13.png in Resources */,
 				8D35976A19D86559009B6083 /* fase_semSombra5.png in Resources */,
 				8D4A4F4119AFA99300255468 /* Vapor.sks in Resources */,
 				0BB20B6C19F82257004EBC4A /* AMB.caf in Resources */,
@@ -949,8 +977,10 @@
 				8D8DC57A19D2EC2F00E75949 /* vida4.png in Resources */,
 				0B15AADE19D09B0500ED6110 /* map9.tmx in Resources */,
 				B1E9587B19B77718002302D7 /* Raio.sks in Resources */,
+				0BE89C0D1A151A9200E1FCBF /* map13.tmx in Resources */,
 				8D60E2011A07F513000A5129 /* Localizable.strings in Resources */,
 				8D60E1C41A07E72C000A5129 /* comprarVidas.png in Resources */,
+				0BE89C191A1521A500E1FCBF /* map16.tmx in Resources */,
 				8D8DC57E19D2EC2F00E75949 /* vida8.png in Resources */,
 				0BCC660019DC88B1004C517F /* VAGRoundedStd-Bold.otf in Resources */,
 				8D7E78E019D1FE2200126F42 /* clock.png in Resources */,
@@ -960,6 +990,7 @@
 				8D1B20FB19DC4A58007B9B9F /* price199.png in Resources */,
 				8D60E1A71A07E5E2000A5129 /* proxima_fase_bt.png in Resources */,
 				8D4A4F3519A3D0E300255468 /* gotinha.atlas in Resources */,
+				0BE89C171A151AB100E1FCBF /* map18.png in Resources */,
 				8D94D7C219DB4182002872F4 /* fogo_parado.png in Resources */,
 				0BB6C0B11A079CDC0045AB3A /* map11.tmx in Resources */,
 				8D60E1DE1A07EF16000A5129 /* nuvem.png in Resources */,
@@ -972,6 +1003,7 @@
 				8D8DC57D19D2EC2F00E75949 /* vida7.png in Resources */,
 				8D60E1CF1A07E759000A5129 /* play.png in Resources */,
 				8D60E1F81A07F22B000A5129 /* loja_BG.png in Resources */,
+				0BE89C1B1A1521BD00E1FCBF /* map16.png in Resources */,
 				8D60E1D51A07E777000A5129 /* play.png in Resources */,
 				0BB20B6D19F82257004EBC4A /* DropGeneric1.caf in Resources */,
 				0B3A046F1991164A00C7C39E /* Images.xcassets in Resources */,
@@ -988,13 +1020,16 @@
 				0B15AAD819D09B0500ED6110 /* map3.tmx in Resources */,
 				8D60E1921A07E327000A5129 /* restaurarCompras.png in Resources */,
 				8D35976819D86559009B6083 /* fase_semSombra3.png in Resources */,
+				0BE89C0E1A151A9200E1FCBF /* map14.tmx in Resources */,
 				8D11652719CC666500F441E9 /* armadilha.png in Resources */,
 				8D7E78DE19D1FB5900126F42 /* heart.png in Resources */,
 				0B15AADF19D09B0500ED6110 /* map10.tmx in Resources */,
+				0BE89C161A151AB100E1FCBF /* map15.png in Resources */,
 				8DC0B80F19D61D290044E800 /* fase_trancada.png in Resources */,
 				0B89188319F959CD00DAB31F /* pauseBT.png in Resources */,
 				8D60E1EC1A07F0E7000A5129 /* levelSelectBG.png in Resources */,
 				8D1B20FF19DC4CD1007B9B9F /* bt_bg.png in Resources */,
+				0BE89C0F1A151A9200E1FCBF /* map15.tmx in Resources */,
 				8D8DC57719D2EC2F00E75949 /* vida1.png in Resources */,
 				8DF47BD319B0B4EE0021AE2D /* Fogo.sks in Resources */,
 				8D60E18D1A07E2F8000A5129 /* restaurarCompras.jpg in Resources */,
@@ -1018,6 +1053,7 @@
 				8D60E1E11A07EF94000A5129 /* storeBT.png in Resources */,
 				8D35975F19D85957009B6083 /* travada_semSombra.png in Resources */,
 				0B15AAD919D09B0500ED6110 /* map4.tmx in Resources */,
+				0BE89C111A151A9200E1FCBF /* map18.tmx in Resources */,
 				0BB14C381A028987001F27FB /* botao2_1.png in Resources */,
 				8D35976719D86559009B6083 /* fase_semSombra2.png in Resources */,
 				8D1B210119DC4F5E007B9B9F /* vidas10.png in Resources */,
