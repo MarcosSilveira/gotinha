@@ -134,7 +134,7 @@
         
         self.buttonLeft.zPosition=150;
         
-        self.buttonLeft.position=CGPointMake(self.frame.size.width*0.07, self.frame.size.height*0.18);
+        self.buttonLeft.position=CGPointMake(self.frame.size.width*0.075, self.frame.size.height*0.18);
         
         
         self.buttonRight=[[SKSpriteNode alloc] initWithImageNamed:@"arrowGamePad"];
@@ -146,7 +146,7 @@
         self.buttonRight.zPosition=150;
         
         
-        self.buttonRight.position=CGPointMake(self.frame.size.width*0.23, self.frame.size.height*0.18);
+        self.buttonRight.position=CGPointMake(self.frame.size.width*0.225, self.frame.size.height*0.18);
 
         
         
