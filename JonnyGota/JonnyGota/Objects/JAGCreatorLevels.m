@@ -620,7 +620,9 @@ NSMutableArray *nodesPhy;
         
         temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL_FRASE1", nil);
         
-        temp.image=[[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(100, 100)];
+        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto1"];
+        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
+//        [[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(100, 100)];
         
         
         [tutorial addObject:temp];
@@ -629,8 +631,8 @@ NSMutableArray *nodesPhy;
         
         temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL_FRASE2", nil);
         
-        temp.image=[[SKSpriteNode alloc] initWithColor:[UIColor yellowColor] size:CGSizeMake(100, 100)];
-        
+        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto2"];
+        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
         
         [tutorial addObject:temp];
         
@@ -638,7 +640,8 @@ NSMutableArray *nodesPhy;
         
         temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL_FRASE3", nil);
         
-        temp.image=[[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(100, 100)];
+        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto1"];
+        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
         
         
         [tutorial addObject:temp];

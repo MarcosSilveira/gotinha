@@ -156,6 +156,11 @@
 		8DF47BE319B635F30021AE2D /* JAGTrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF47BE219B635F30021AE2D /* JAGTrap.m */; };
 		B157BDA819A267E400ACA4C1 /* JAGObjeto.m in Sources */ = {isa = PBXBuildFile; fileRef = B157BDA719A267E400ACA4C1 /* JAGObjeto.m */; };
 		B157BDB619AD14A700ACA4C1 /* JAGMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B157BDB519AD14A700ACA4C1 /* JAGMenu.m */; };
+		B18414AC1A1675420056D9DA /* backTuto.png in Resources */ = {isa = PBXBuildFile; fileRef = B18414AB1A1675420056D9DA /* backTuto.png */; };
+		B18414B11A1675530056D9DA /* tuto1.png in Resources */ = {isa = PBXBuildFile; fileRef = B18414AD1A1675530056D9DA /* tuto1.png */; };
+		B18414B21A1675530056D9DA /* tuto2.png in Resources */ = {isa = PBXBuildFile; fileRef = B18414AE1A1675530056D9DA /* tuto2.png */; };
+		B18414B31A1675530056D9DA /* tuto3.png in Resources */ = {isa = PBXBuildFile; fileRef = B18414AF1A1675530056D9DA /* tuto3.png */; };
+		B18414B41A1675530056D9DA /* tuto4.png in Resources */ = {isa = PBXBuildFile; fileRef = B18414B01A1675530056D9DA /* tuto4.png */; };
 		B1D9C13619DDC26E005ED4A1 /* DSMultilineLabelNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D9C13519DDC26E005ED4A1 /* DSMultilineLabelNode.m */; };
 		B1D9C13819DEE644005ED4A1 /* lvlX.png in Resources */ = {isa = PBXBuildFile; fileRef = B1D9C13719DEE644005ED4A1 /* lvlX.png */; };
 		B1D9C13A19DF041B005ED4A1 /* heart_sem_sombra.png in Resources */ = {isa = PBXBuildFile; fileRef = B1D9C13919DF041B005ED4A1 /* heart_sem_sombra.png */; };
@@ -377,6 +382,11 @@
 		B157BDA719A267E400ACA4C1 /* JAGObjeto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGObjeto.m; sourceTree = "<group>"; };
 		B157BDB419AD14A700ACA4C1 /* JAGMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGMenu.h; path = ../JAGMenu.h; sourceTree = "<group>"; };
 		B157BDB519AD14A700ACA4C1 /* JAGMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGMenu.m; path = ../JAGMenu.m; sourceTree = "<group>"; };
+		B18414AB1A1675420056D9DA /* backTuto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backTuto.png; sourceTree = "<group>"; };
+		B18414AD1A1675530056D9DA /* tuto1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tuto1.png; sourceTree = "<group>"; };
+		B18414AE1A1675530056D9DA /* tuto2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tuto2.png; sourceTree = "<group>"; };
+		B18414AF1A1675530056D9DA /* tuto3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tuto3.png; sourceTree = "<group>"; };
+		B18414B01A1675530056D9DA /* tuto4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tuto4.png; sourceTree = "<group>"; };
 		B1D9C13419DDC26E005ED4A1 /* DSMultilineLabelNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSMultilineLabelNode.h; sourceTree = "<group>"; };
 		B1D9C13519DDC26E005ED4A1 /* DSMultilineLabelNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSMultilineLabelNode.m; sourceTree = "<group>"; };
 		B1D9C13719DEE644005ED4A1 /* lvlX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lvlX.png; sourceTree = "<group>"; };
@@ -814,6 +824,7 @@
 		8D4A4F3119A2843100255468 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B18414AA1A1674A90056D9DA /* Tutorial */,
 				8D60E1FE1A07F353000A5129 /* Other things */,
 				8D60E1961A07E403000A5129 /* Localizable */,
 				0B88D25C19E70DBA00351527 /* Button */,
@@ -880,6 +891,18 @@
 			name = "Other things";
 			sourceTree = "<group>";
 		};
+		B18414AA1A1674A90056D9DA /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				B18414AD1A1675530056D9DA /* tuto1.png */,
+				B18414AE1A1675530056D9DA /* tuto2.png */,
+				B18414AF1A1675530056D9DA /* tuto3.png */,
+				B18414B01A1675530056D9DA /* tuto4.png */,
+				B18414AB1A1675420056D9DA /* backTuto.png */,
+			);
+			name = Tutorial;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -929,7 +952,7 @@
 				ORGANIZATIONNAME = "Henrique Manfroi da Silveira";
 				TargetAttributes = {
 					0B3A044B1991164A00C7C39E = {
-						DevelopmentTeam = 64TH9999YT;
+						DevelopmentTeam = VCE77X465D;
 					};
 					0B3A04731991164A00C7C39E = {
 						DevelopmentTeam = VCE77X465D;
@@ -989,10 +1012,12 @@
 				8D7E78DC19D1F2E900126F42 /* hud_back.png in Resources */,
 				8D1B20FB19DC4A58007B9B9F /* price199.png in Resources */,
 				8D60E1A71A07E5E2000A5129 /* proxima_fase_bt.png in Resources */,
+				B18414B31A1675530056D9DA /* tuto3.png in Resources */,
 				8D4A4F3519A3D0E300255468 /* gotinha.atlas in Resources */,
 				0BE89C171A151AB100E1FCBF /* map18.png in Resources */,
 				8D94D7C219DB4182002872F4 /* fogo_parado.png in Resources */,
 				0BB6C0B11A079CDC0045AB3A /* map11.tmx in Resources */,
+				B18414B41A1675530056D9DA /* tuto4.png in Resources */,
 				8D60E1DE1A07EF16000A5129 /* nuvem.png in Resources */,
 				0BB39B761A00110800984420 /* map3.png in Resources */,
 				8D11652919CC82F900F441E9 /* trovao.wav in Resources */,
@@ -1027,6 +1052,7 @@
 				0BE89C161A151AB100E1FCBF /* map15.png in Resources */,
 				8DC0B80F19D61D290044E800 /* fase_trancada.png in Resources */,
 				0B89188319F959CD00DAB31F /* pauseBT.png in Resources */,
+				B18414B21A1675530056D9DA /* tuto2.png in Resources */,
 				8D60E1EC1A07F0E7000A5129 /* levelSelectBG.png in Resources */,
 				8D1B20FF19DC4CD1007B9B9F /* bt_bg.png in Resources */,
 				0BE89C0F1A151A9200E1FCBF /* map15.tmx in Resources */,
@@ -1035,6 +1061,7 @@
 				8D60E18D1A07E2F8000A5129 /* restaurarCompras.jpg in Resources */,
 				8D11652519CC60E200F441E9 /* poca.png in Resources */,
 				0B88D26319E70E1F00351527 /* botao2.png in Resources */,
+				B18414AC1A1675420056D9DA /* backTuto.png in Resources */,
 				0BB14C391A028987001F27FB /* botao2_2.png in Resources */,
 				8D8DC57C19D2EC2F00E75949 /* vida6.png in Resources */,
 				B1D9C13819DEE644005ED4A1 /* lvlX.png in Resources */,
@@ -1050,6 +1077,7 @@
 				8D60E1E91A07F0CF000A5129 /* loja_BG.png in Resources */,
 				8D8DC57919D2EC2F00E75949 /* vida3.png in Resources */,
 				8D1B20F919DC46E7007B9B9F /* vidas5.png in Resources */,
+				B18414B11A1675530056D9DA /* tuto1.png in Resources */,
 				8D60E1E11A07EF94000A5129 /* storeBT.png in Resources */,
 				8D35975F19D85957009B6083 /* travada_semSombra.png in Resources */,
 				0B15AAD919D09B0500ED6110 /* map4.tmx in Resources */,
