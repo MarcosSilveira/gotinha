@@ -36,7 +36,7 @@
     background.size = self.frame.size;
     background.zPosition = 0;
     
-    backBT =[[SKSpriteNode alloc]initWithImageNamed:@"back_bt"];
+    backBT =[[SKSpriteNode alloc]initWithImageNamed:@"btBack"];
     backBT.position = CGPointMake(self.frame.size.width*0.1, self.frame.size.height*0.9);
     backBT.size = CGSizeMake(self.frame.size.width*0.08, self.frame.size.width*0.08);
 

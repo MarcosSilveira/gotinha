@@ -19,20 +19,16 @@
     //Preparar todos o resto
     
 
-    self.prevButton=[[SKSpriteNode alloc] initWithImageNamed:@"back_bt"];
+    self.prevButton=[[SKSpriteNode alloc] initWithImageNamed:@"btBack"];
     
     //Positions
     
     self.prevButton.position=CGPointMake(frame.width*0.2, frame.height*0.2);
-    
     self.prevButton.size=CGSizeMake(frame.width*0.1, frame.height*0.1);
+    self.prevButton.zRotation = M_PI*1;
     
-    self.nextButton=[[SKSpriteNode alloc] initWithImageNamed:@"back_bt"];
-    
-    self.nextButton.zRotation = M_PI*(1);
-    
+    self.nextButton=[[SKSpriteNode alloc] initWithImageNamed:@"btBack"];
     self.nextButton.position=CGPointMake(frame.width*0.8, frame.height*0.2);;
-    
     self.nextButton.size=CGSizeMake(frame.width*0.1, frame.height*0.1);
     
     self.indice=0;

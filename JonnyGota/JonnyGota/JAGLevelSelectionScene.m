@@ -48,11 +48,12 @@
 
     vidas_quantidade.position = CGPointMake(self.frame.size.width*0.87, self.frame.size.height*0.86);
     vidas_quantidade.fontSize = self.frame.size.width*0.05;
-    backBT =[[SKSpriteNode alloc]initWithImageNamed:@"back_bt"];
+    backBT =[[SKSpriteNode alloc]initWithImageNamed:@"btBack"];
+    backBT.zRotation = M_PI*1;
     backBT.position = CGPointMake(self.frame.size.width*0.1, self.frame.size.height*0.9);
     backBT.size = CGSizeMake(self.frame.size.width*0.08, self.frame.size.width*0.08);
     backBT.zPosition = 2;
-    backBT.name = @"backBT";
+    backBT.name = @"btBack";
     [self.scene addChild:backBT];
     [self organizaBotoes];
     
