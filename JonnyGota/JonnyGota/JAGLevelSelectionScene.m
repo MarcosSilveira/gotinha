@@ -155,7 +155,7 @@
     JAGPlayGameScene *jogo;
     for (UITouch *touch in touches) {
         SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
-        if ([node.name isEqualToString:@"backBT"]) {
+        if ([node.name isEqualToString:@"btBack"]) {
             JAGMenu* menu = [[JAGMenu alloc]initWithSize:self.frame.size];
             [self.scene.view presentScene:menu transition:[SKTransition fadeWithDuration:1]];
         }
