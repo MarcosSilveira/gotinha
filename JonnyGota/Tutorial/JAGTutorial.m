@@ -25,7 +25,7 @@
     
     self.prevButton.position=CGPointMake(frame.width*0.2, frame.height*0.2);
     self.prevButton.size=CGSizeMake(frame.width*0.1, frame.height*0.1);
-    self.prevButton.zRotation = M_PI*1;
+    self.prevButton.zRotation = M_PI;
     
     self.nextButton=[[SKSpriteNode alloc] initWithImageNamed:@"btBack"];
     self.nextButton.position=CGPointMake(frame.width*0.8, frame.height*0.2);;
