@@ -25,6 +25,8 @@
     NSString *stopDate_string;
     SKSpriteNode *backBT;
     JAGVida *vida;
+    SKSpriteNode *gamepad;
+    SKSpriteNode *check;
 }
 
 -(void)didMoveToView:(SKView *)view{
@@ -54,9 +56,42 @@
     backBT.size = CGSizeMake(self.frame.size.width*0.08, self.frame.size.width*0.08);
     backBT.zPosition = 2;
     backBT.name = @"btBack";
+    gamepad=[[SKSpriteNode alloc] initWithImageNamed:@"gamePad"];
+    
+    gamepad.size=CGSizeMake(self.frame.size.width*0.15, self.frame.size.height*0.2);
+    
+    gamepad.position=CGPointMake(self.frame.size.width*0.1, self.frame.size.height*0.5);
+    
+    gamepad.name=@"gamePad";
+    
+    
     [self.scene addChild:backBT];
     [self organizaBotoes];
     
+    [self addChild:gamepad];
+    
+    [self addCheck];
+}
+
+-(void)addCheck{
+    if (check!=nil) {
+        [check removeFromParent];
+    }
+    
+    if (vida.gamePad) {
+        check=[[SKSpriteNode alloc] initWithImageNamed:@"check"];
+    }else{
+        check=[[SKSpriteNode alloc] initWithImageNamed:@"noCheck"];
+    }
+    
+    check.size=CGSizeMake(self.frame.size.width*0.09, self.frame.size.height*0.15);
+    
+    check.position=CGPointMake(self.frame.size.width*0.1, self.frame.size.height*0.35);
+    
+    check.name=@"check";
+    
+    [self addChild:check];
+
 }
 -(void)update:(NSTimeInterval)currentTime{
 //    [self recuperaVida];
@@ -163,12 +198,20 @@
             int fase = [node.name intValue];
             NSNumber *faseA = [NSNumber numberWithInt:fase];
             
-//            if (fase!=0 && vidas_restantes>0) {
-             if (fase!=0 && vida.vidas>0) {
+            //            if (fase!=0 && vidas_restantes>0) {
+            if (fase!=0 && vida.vidas>0) {
                 jogo = [[JAGPlayGameScene alloc]initWithSize:self.frame.size level:faseA andWorld:@1];
-                [self.scene.view presentScene:jogo transition:[SKTransition fadeWithDuration:1]];}}
+                [self.scene.view presentScene:jogo transition:[SKTransition fadeWithDuration:1]];
+            }
+        }
+        
+        if ([node.name isEqualToString:@"gamePad"]||[node.name isEqualToString:@"check"]) {
+            vida.gamePad=!vida.gamePad;
+            [self addCheck];
+        }
     }
     
+
 }
 
 
