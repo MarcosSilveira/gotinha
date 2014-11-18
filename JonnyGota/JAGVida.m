@@ -106,6 +106,15 @@ static JAGVida *sharedMyManager;
     
 }
 
+-(void)changeGamepad{
+    self.gamePad=!self.gamePad;
+    
+    //Salvar no User defaults
+    
+    [[NSUserDefaults standardUserDefaults] setBool:self.gamePad forKey:@"gamePad"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 + (id)sharedManager {
     if (sharedMyManager==nil) {
         sharedMyManager = [[self alloc] init];
@@ -118,7 +127,8 @@ static JAGVida *sharedMyManager;
 //      self.vida = [[JAGVida alloc] init];
         
         self.vidas = [[NSUserDefaults standardUserDefaults] integerForKey:@"Vida"];
-        self.gamePad=YES;
+        
+        self.gamePad=[[NSUserDefaults standardUserDefaults] boolForKey:@"gamePad"]; 
         self.inprogress=NO;
     }
     return self;

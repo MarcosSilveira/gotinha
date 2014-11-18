@@ -2050,7 +2050,70 @@ NSMutableArray *nodesPhy;
         //        scene.gota.multi=14;
         //Add objetos
         
-        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(17, 2)] withSize:tiledMap.tileSize];
+        scene.portas=[[NSMutableArray alloc] init];
+        
+        JAGPressao *presao = [[JAGPressao alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(11, 1)] withTipo:1 withSize:tiledMap.tileSize];
+        
+        JAGPressao *presao2 = [[JAGPressao alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(14, 3)] withTipo:3 withSize:tiledMap.tileSize];
+        
+        
+        
+        JAGPressao *presao3 = [[JAGPressao alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(7, 3)] withTipo:3 withSize:tiledMap.tileSize];
+        
+        
+        
+        [scene.level.botoes addObject:presao];
+        
+        [scene.level.botoes addObject:presao2];
+        
+        [scene.level.botoes addObject:presao3];
+        
+        
+        
+        JAGPorta *porta = [[JAGPorta alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(16,4)] withDirection:1  withReverse:YES withTipo:1 withSize:tiledMap.tileSize];
+        
+        
+        
+        
+        [porta vincularBotao:presao];
+        
+        [porta vincularBotao:presao2];
+        
+        [porta vincularBotao:presao3];
+        
+        
+        
+        [scene.portas addObject:porta];
+        
+        
+        
+        [scene.camadaItens addChild:presao];
+        [scene.camadaItens addChild:presao2];
+        [scene.camadaItens addChild:presao3];
+        
+        [scene.camadaPersonagens addChild:porta];
+        
+        
+        JAGFogoEnemy *fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 18)] withSize:tiledMap.tileSize];
+        fogo.dano=10;
+        
+        [fogo activateIa];
+        
+        fogo.activeFix=YES;
+        
+        NSMutableArray *paths = [[NSMutableArray alloc] init];
+        [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y- (tiledMap.tileSize.height*7))]];
+        
+        [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y)]];
+        
+        fogo.arrPointsPath = paths;
+        
+        [scene.camadaPersonagens addChild:fogo];
+        
+        [scene.inimigos addObject:fogo];
+
+        
+        scene.level.chuva=[[JAGChuva alloc] initWithPosition:[scene.level calculateTile:CGPointMake(18, 2)] withSize:tiledMap.tileSize];
         
         [scene.cropNode addChild:scene.level.chuva];
         

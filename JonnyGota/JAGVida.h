@@ -28,4 +28,6 @@
 
 + (id)sharedManager;
 
+-(void)changeGamepad;
+
 @end

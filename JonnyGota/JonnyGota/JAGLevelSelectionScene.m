@@ -60,7 +60,7 @@
     
     gamepad.size=CGSizeMake(self.frame.size.width*0.15, self.frame.size.height*0.2);
     
-    gamepad.position=CGPointMake(self.frame.size.width*0.1, self.frame.size.height*0.5);
+    gamepad.position=CGPointMake(self.frame.size.width*0.1, self.frame.size.height*0.58);
     
     gamepad.name=@"gamePad";
     
@@ -86,7 +86,7 @@
     
     check.size=CGSizeMake(self.frame.size.width*0.09, self.frame.size.height*0.15);
     
-    check.position=CGPointMake(self.frame.size.width*0.1, self.frame.size.height*0.35);
+    check.position=CGPointMake(self.frame.size.width*0.1, self.frame.size.height*0.38);
     
     check.name=@"check";
     
@@ -206,7 +206,7 @@
         }
         
         if ([node.name isEqualToString:@"gamePad"]||[node.name isEqualToString:@"check"]) {
-            vida.gamePad=!vida.gamePad;
+            [vida changeGamepad];
             [self addCheck];
         }
     }
