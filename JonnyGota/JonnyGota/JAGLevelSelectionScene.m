@@ -171,6 +171,8 @@
 }
 
 
+
+
 -(void)organizaBotoes{
     
     NSNumber *fases =  [JAGCreatorLevels numberOfLevels:1];

@@ -123,19 +123,19 @@
         CGPoint ponto = [(NSValue *)[self.arrPointsPath objectAtIndex:i] CGPointValue];
         
         if(sequenceTemp==nil){
-            sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:1],
+            sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:2],
                                                 [SKAction runBlock:^{
                 self.lastPointToGo=i+1;
                           }],
-                                                [SKAction waitForDuration:1.3]]];
+                                                [SKAction waitForDuration:4.0]]];
         } else {
-            sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:1],
+            sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:2],
                                                 [SKAction runBlock:^{
                 self.lastPointToGo=i+1;
                 
             }],
                                                 
-                                                [SKAction waitForDuration:1.3]]];
+                                                [SKAction waitForDuration:4.0]]];
         }
         
     }
