@@ -48,11 +48,12 @@
 
     vidas_quantidade.position = CGPointMake(self.frame.size.width*0.87, self.frame.size.height*0.86);
     vidas_quantidade.fontSize = self.frame.size.width*0.05;
-    backBT =[[SKSpriteNode alloc]initWithImageNamed:@"back_bt"];
+    backBT =[[SKSpriteNode alloc]initWithImageNamed:@"btBack"];
+    backBT.zRotation = M_PI;
     backBT.position = CGPointMake(self.frame.size.width*0.1, self.frame.size.height*0.9);
     backBT.size = CGSizeMake(self.frame.size.width*0.08, self.frame.size.width*0.08);
     backBT.zPosition = 2;
-    backBT.name = @"backBT";
+    backBT.name = @"btBack";
     [self.scene addChild:backBT];
     [self organizaBotoes];
     
@@ -154,7 +155,7 @@
     JAGPlayGameScene *jogo;
     for (UITouch *touch in touches) {
         SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
-        if ([node.name isEqualToString:@"backBT"]) {
+        if ([node.name isEqualToString:@"btBack"]) {
             JAGMenu* menu = [[JAGMenu alloc]initWithSize:self.frame.size];
             [self.scene.view presentScene:menu transition:[SKTransition fadeWithDuration:1]];
         }
