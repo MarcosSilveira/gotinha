@@ -100,9 +100,20 @@
 
 -(void)createButtons{
     if (vida.gamePad ) {
-        CGSize tamanhoU=CGSizeMake(self.frame.size.width*0.09, self.frame.size.height*0.15);
+        CGSize tamanhoU;
         
-        CGSize tamanhoL=CGSizeMake(self.frame.size.width*0.09, self.frame.size.height*0.15);
+        CGSize tamanhoL;
+        if(self.gota.sprite.size.height>100){
+            tamanhoU=CGSizeMake(self.frame.size.width*0.06, self.frame.size.height*0.10);
+            tamanhoL=CGSizeMake(self.frame.size.width*0.06, self.frame.size.height*0.10);
+        }else{
+            tamanhoU=CGSizeMake(self.frame.size.width*0.09, self.frame.size.height*0.15);
+            tamanhoL=CGSizeMake(self.frame.size.width*0.09, self.frame.size.height*0.15);
+        }
+        
+//        tamanhoU=CGSizeMake(51.12, 48);
+        
+//        tamanhoL=CGSizeMake(51.12, 48);
         
         //    tamanho=CGSizeMake(60, 60);
         
@@ -112,7 +123,8 @@
         
         self.buttonDown.zPosition=150;
         
-        self.buttonDown.position=CGPointMake(self.frame.size.width*0.15, self.frame.size.height*0.08);
+       
+//        self.buttonDown.position=CGPointMake(85.20, 25.6);
         
         
         self.buttonUp=[[SKSpriteNode alloc] initWithImageNamed:@"arrowGamePad"];
@@ -123,7 +135,9 @@
         
         self.buttonUp.zPosition=150;
         
-        self.buttonUp.position=CGPointMake(self.frame.size.width*0.15, self.frame.size.height*0.28);
+        
+        
+//        self.buttonUp.position=CGPointMake(84.20,89.60);
         
 
         self.buttonLeft=[[SKSpriteNode alloc] initWithImageNamed:@"arrowGamePad"];
@@ -134,7 +148,9 @@
         
         self.buttonLeft.zPosition=150;
         
-        self.buttonLeft.position=CGPointMake(self.frame.size.width*0.075, self.frame.size.height*0.18);
+        
+        
+//        self.buttonLeft.position=CGPointMake(42.60,57.60);
         
         
         self.buttonRight=[[SKSpriteNode alloc] initWithImageNamed:@"arrowGamePad"];
@@ -146,8 +162,26 @@
         self.buttonRight.zPosition=150;
         
         
-        self.buttonRight.position=CGPointMake(self.frame.size.width*0.225, self.frame.size.height*0.18);
+       
 
+//        self.buttonRight.position=CGPointMake(127.8,57.60);
+         if(self.gota.sprite.size.height>100){
+             self.buttonDown.position=CGPointMake(self.frame.size.width*0.12, self.frame.size.height*0.06);
+             
+             self.buttonUp.position=CGPointMake(self.frame.size.width*0.12, self.frame.size.height*0.20);
+             
+             self.buttonLeft.position=CGPointMake(self.frame.size.width*0.062, self.frame.size.height*0.13);
+             
+             self.buttonRight.position=CGPointMake(self.frame.size.width*0.178, self.frame.size.height*0.13);
+         }else{
+              self.buttonDown.position=CGPointMake(self.frame.size.width*0.15, self.frame.size.height*0.08);
+             
+            self.buttonUp.position=CGPointMake(self.frame.size.width*0.15, self.frame.size.height*0.28);
+             
+             self.buttonLeft.position=CGPointMake(self.frame.size.width*0.075, self.frame.size.height*0.18);
+             
+              self.buttonRight.position=CGPointMake(self.frame.size.width*0.225, self.frame.size.height*0.18);
+         }
         
         
         [self addChild:self.buttonDown];

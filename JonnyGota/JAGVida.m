@@ -125,11 +125,26 @@ static JAGVida *sharedMyManager;
 - (id)init {
     if (self = [super init]) {
 //      self.vida = [[JAGVida alloc] init];
+//        if ([NSUS]) {[[NSUserDefaults standardUserDefaults]setInteger:[nextlevel integerValue] forKey:@"faseAtual"];
+//        }
+        
         
         self.vidas = [[NSUserDefaults standardUserDefaults] integerForKey:@"Vida"];
         
         self.gamePad=[[NSUserDefaults standardUserDefaults] boolForKey:@"gamePad"]; 
         self.inprogress=NO;
+        
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"savedDate"]==nil) {
+            self.vidas=5;
+            
+            self.gamePad=YES;
+            
+            [[NSUserDefaults standardUserDefaults] setBool:self.gamePad forKey:@"gamePad"];
+            
+            [[NSUserDefaults standardUserDefaults] setInteger:self.vidas forKey:@"Vida"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+
+        }
     }
     return self;
 }
