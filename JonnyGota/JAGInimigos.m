@@ -73,14 +73,23 @@
                         CGPoint ponto = [(NSValue *)[self.arrPointsFixes objectAtIndex:i] CGPointValue];
                         
                         if(i == self.arrPointsFixes.count - 1) {
-                            sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:0.5],
+                            sequenceTemp = [SKAction sequence:@[ [SKAction runBlock:^{
+                                [self correrAnimado:[self validaLado:self.position withNext:ponto]];
+                            }],
+
+                                                                [SKAction moveTo:ponto duration:0.5],
                                                                 [SKAction waitForDuration:0.1],
                                                                 [SKAction runBlock:^{
                                 [self.arrPointsFixes removeObjectAtIndex:i];
                             }]]];
                             
                         } else {
-                            sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:0.5],
+                            sequenceTemp = [SKAction sequence:@[sequenceTemp,
+                                                                [SKAction runBlock:^{
+                                [self correrAnimado:[self validaLado:self.position withNext:ponto]];
+                            }],
+
+                                                                [SKAction moveTo:ponto duration:0.5],
                                                                 [SKAction waitForDuration:0.1],
                                                                 [SKAction runBlock:^{
                                 [self.arrPointsFixes removeObjectAtIndex:i];
@@ -123,15 +132,26 @@
         CGPoint ponto = [(NSValue *)[self.arrPointsPath objectAtIndex:i] CGPointValue];
         
         if(sequenceTemp==nil){
-            sequenceTemp = [SKAction sequence:@[[SKAction moveTo:ponto duration:2],
+            sequenceTemp = [SKAction sequence:@[
+                                                [SKAction runBlock:^{
+                [self correrAnimado:[self validaLado:self.position withNext:ponto]];
+            }],
+                                                [SKAction moveTo:ponto duration:2],
                                                 [SKAction runBlock:^{
                 self.lastPointToGo=i+1;
+                //Trocar pro idle
+                self.sprite.texture= self.idleTexture;
                           }],
                                                 [SKAction waitForDuration:4.0]]];
         } else {
-            sequenceTemp = [SKAction sequence:@[sequenceTemp,[SKAction moveTo:ponto duration:2],
+            sequenceTemp = [SKAction sequence:@[sequenceTemp, [SKAction runBlock:^{
+                [self correrAnimado:[self validaLado:self.position withNext:ponto]];
+            }],
+
+                                                [SKAction moveTo:ponto duration:2],
                                                 [SKAction runBlock:^{
                 self.lastPointToGo=i+1;
+                 self.sprite.texture= self.idleTexture;
                 
             }],
                                                 
@@ -148,6 +168,80 @@
     //_movePath = [SKAction repeatActionForever:sequenceTemp];
     
     _movePath = sequenceTemp;
+}
+
+-(int)validaLado:(CGPoint)now
+        withNext:(CGPoint)next{
+    
+    
+    // tipo: 1 = Cima 2 = Baixo 3 = Esquerda 4 = Direita
+    
+    if(now.y>next.y){
+      
+        return 2;
+    }
+    
+    if(now.y<next.y){
+     
+        return 1;
+    }
+
+    if(now.x<next.x){
+   
+        return 4;
+    }
+    if(now.x>next.x){
+              return 3;
+    }
+    
+    
+    
+    return 0;
+}
+
+-(void)correrAnimado:(int) tipo{
+    // tipo: 1 = Cima 2 = Baixo 3 = Esquerda 4 = Direita
+    
+    
+    // [self removeAllActions];
+    
+    self.physicsBody.velocity = CGVectorMake(0, 0);
+    
+    switch (tipo) {
+        case 1:
+            
+            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesBack timePerFrame:0.1f]]withKey:@"walkingBack"];
+            //                self.sprite.xScale = 1.0;
+  
+            break;
+            
+        case 2:
+            
+            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesFront timePerFrame:0.1f]]withKey:@"walkingFront"];
+            //                self.sprite.xScale = 1.0;
+            
+            
+            break;
+            
+        case 3:
+            
+            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesSide timePerFrame:0.1f]]withKey:@"walkingSide"];
+            self.sprite.xScale = -1.0;
+            
+            
+            break;
+            
+        case 4:
+            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesSide timePerFrame:0.1f]]withKey:@"walkingSide"];
+            self.sprite.xScale = 1.0;
+            
+            
+            break;
+            
+        default:
+            break;
+    }
+
 }
 
 -(void)follow:(JAGGota *) jogador{

@@ -198,6 +198,8 @@
             int fase = [node.name intValue];
             NSNumber *faseA = [NSNumber numberWithInt:fase];
             
+            
+//             [node runAction:[SKAction scaleBy:2.0 duration:0.1]];
             //            if (fase!=0 && vidas_restantes>0) {
             if (fase!=0 && vida.vidas>0) {
                 jogo = [[JAGPlayGameScene alloc]initWithSize:self.frame.size level:faseA andWorld:@1];
