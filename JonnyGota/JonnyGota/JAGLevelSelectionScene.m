@@ -27,12 +27,12 @@
     JAGVida *vida;
     SKSpriteNode *gamepad;
     SKSpriteNode *check;
+    
+    SKNode *sele;
 }
 
 -(void)didMoveToView:(SKView *)view{
-    [self verificaDefaults];
-    
-//    vida=[[JAGVida alloc] init];
+
     
     vida=[JAGVida sharedManager];
     
@@ -94,96 +94,35 @@
 
 }
 -(void)update:(NSTimeInterval)currentTime{
-//    [self recuperaVida];
-    
-    
-//    vidas_quantidade.text = [NSString stringWithFormat:@" x %d",vidas_restantes];
     vidas_quantidade.text = [NSString stringWithFormat:@" X %ld",(long)vida.vidas];
 
 }
--(void)verificaDefaults{
-//    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"vidas_restantes"]==nil){
-//        [[NSUserDefaults standardUserDefaults]setInteger:5 forKey:@"vidas_restantes"];
-//        [[NSUserDefaults standardUserDefaults]setFloat:0 forKey:@"tempo_para_vida"];
-//    }
-//    vidas_restantes = [[NSUserDefaults standardUserDefaults]integerForKey:@"vidas_restantes"];
-//    if(vidas_restantes<5){
-//        NSDate *dataSalva = [[NSUserDefaults standardUserDefaults]objectForKey:@"tempo_para_vida"];
-//        NSDate *now = [NSDate date];
-//        
-//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//        [dateFormatter setDateFormat:@"HH:mm:ss"];
-//        NSString *after_string = [dateFormatter stringFromDate:now];
-//        NSString *data_salva_string = [dateFormatter stringFromDate:dataSalva];
-//        [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"pt_BR_POSIX"]];
-//        [dateFormatter setDateFormat:@"HH:mm:ss"];
-//        
-//        NSDate* firstDate = [dateFormatter dateFromString:data_salva_string];
-//        NSDate* secondDate = [dateFormatter dateFromString:after_string];
-//        
-//        NSTimeInterval timeDifference = [secondDate timeIntervalSinceDate:firstDate];
-//        
-//        if (timeDifference>=0) {
-//            vidas_restantes++;
-//            if(timeDifference>=30){
-//                vidas_restantes++;
-//                if (timeDifference>=90) {
-//                    vidas_restantes++;
-//                    if (timeDifference>=120) {
-//                        vidas_restantes++;
-//                    }
-//                }
-//            }
-//        
-//            
-////            NSLog(@"Diferença apos ligar: %f",timeDifference);
+
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+   
+//    for (UITouch *touch in touches) {
+//        SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
+//       
+//        if ([node.name isEqualToString:@"btBack"]) {
+//             [node runAction:[SKAction scaleBy:2.0 duration:0.1]];
+//            sele=node;
 //        }
+//         if (![node.name isEqualToString:@"fase_trancada"]) {
+//             int fase = [node.name intValue];
+//             if (fase>0) {
+//                 [node runAction:[SKAction scaleBy:2.0 duration:0.1]];
+//
+//             }
+//        }
+//         if ([node.name isEqualToString:@"fase_trancada"]) {
+//             [node runAction:[SKAction scaleBy:2.0 duration:0.1]];
+//         }
 //    }
-    
 }
--(void)recuperaVida{
-//        if (vidas_restantes<5 && !vidas_carregando) {
-//        stopDate = [NSDate dateWithTimeIntervalSinceNow:30];
-//        [[NSUserDefaults standardUserDefaults] setObject:stopDate forKey:@"tempo_para_vida"];
-//        NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
-//        [outputFormatter setDateFormat:@"HH:mm:ss"];
-//        stopDate_string= [outputFormatter stringFromDate:stopDate];
-//        vidas_carregando = !vidas_carregando;
-//    }
-//    
-//    if (vidas_restantes<5 && vidas_carregando) {
-//        NSDate *after = [NSDate date];
-//        
-//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//        [dateFormatter setDateFormat:@"HH:mm:ss"];
-//        NSString *after_string = [dateFormatter stringFromDate:after];
-//        [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"pt_BR_POSIX"]];
-//        [dateFormatter setDateFormat:@"HH:mm:ss"];
-//        
-//        NSDate* firstDate = [dateFormatter dateFromString:stopDate_string];
-//        NSDate* secondDate = [dateFormatter dateFromString:after_string];
-//        
-//        NSTimeInterval timeDifference = [secondDate timeIntervalSinceDate:firstDate];
-//        if (!sincronizado) {
-//            vidas_diferenca_tempo_antes = timeDifference;
-//            sincronizado = YES;
-//        }
-//
-////        NSLog(@"diferenca: %f",timeDifference);
-//        [[NSUserDefaults standardUserDefaults]setObject:stopDate forKey:@"tempo_para_vida"];
-//        [[NSUserDefaults standardUserDefaults]setFloat:timeDifference forKey:@"ultimo_tempo"];
-//        if (timeDifference>=0) {
-//            vidas_restantes++;
-//            [[NSUserDefaults standardUserDefaults]setInteger:vidas_restantes forKey:@"vidas_restantes"];
-//            vidas_carregando = NO;
-//        }
-//        
-//        if (vidas_restantes>=5) {
-//            vidas_carregando = NO;
-//        }
-//
-//
-//    }
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -191,17 +130,20 @@
     for (UITouch *touch in touches) {
         SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
         if ([node.name isEqualToString:@"btBack"]) {
+//              [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
             JAGMenu* menu = [[JAGMenu alloc]initWithSize:self.frame.size];
             [self.scene.view presentScene:menu transition:[SKTransition fadeWithDuration:1]];
         }
         if (![node.name isEqualToString:@"fase_trancada"]) {
+            
             int fase = [node.name intValue];
             NSNumber *faseA = [NSNumber numberWithInt:fase];
             
             
-//             [node runAction:[SKAction scaleBy:2.0 duration:0.1]];
+            
             //            if (fase!=0 && vidas_restantes>0) {
             if (fase!=0 && vida.vidas>0) {
+//                [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
                 jogo = [[JAGPlayGameScene alloc]initWithSize:self.frame.size level:faseA andWorld:@1];
                 [self.scene.view presentScene:jogo transition:[SKTransition fadeWithDuration:1]];
             }
@@ -211,6 +153,10 @@
             [vida changeGamepad];
             [self addCheck];
         }
+        
+//        if ([node.name isEqualToString:@"fase_trancada"]) {
+//            [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
+//        }
     }
     
 
