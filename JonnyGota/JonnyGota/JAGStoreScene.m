@@ -73,7 +73,16 @@
 
         if ([backBT containsPoint:[touch locationInNode:self]]) {
             menu = [[JAGMenu alloc]initWithSize:self.frame.size];
-            [self.scene.view presentScene:menu transition:[SKTransition fadeWithDuration:1]];
+//            [self.scene.view presentScene:menu transition:[SKTransition fadeWithDuration:1]];
+            
+            SKAction *transi=[SKAction sequence:@[[SKAction runBlock:^{
+                [backBT runAction:[SKAction scaleBy:1.5 duration:0.8]];
+            }],[SKAction waitForDuration:0.1],
+                                                  [SKAction runBlock:^{
+                [self.scene.view presentScene:menu transition:[SKTransition fadeWithDuration:1]];
+            }]]];
+            [self runAction:transi];
+
         }
         
         auxNode2 = [self.scene childNodeWithName:@"10_vidas"];

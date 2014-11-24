@@ -129,6 +129,24 @@ static Musica *colide;
     return self;
 }
 
+-(void)transicaoButton:(SKNode *) node
+             withScene:(SKScene *) scene{
+    SKAction *transi=[SKAction sequence:@[[SKAction runBlock:^{
+        [node runAction:[SKAction scaleBy:1.5 duration:0.8]];
+    }],[SKAction waitForDuration:0.1],
+                                          [SKAction runBlock:^{
+        [self.scene.view presentScene:scene transition:[SKTransition fadeWithDuration:1]];
+    }]]];
+    [self runAction:transi];
+}
+
+-(void)animationButton:(SKNode *)node{
+    SKAction *transi=[SKAction sequence:@[[SKAction runBlock:^{
+        [node runAction:[SKAction scaleBy:1.5 duration:0.8]];
+    }],[SKAction waitForDuration:1.1]]];
+    [self runAction:transi];
+}
+
 -(void)createButtons{
     if (vida.gamePad ) {
         CGSize tamanhoU;
@@ -609,6 +627,8 @@ static Musica *colide;
             if ([node.name isEqualToString:@"reiniciar fase"]) {
                 NSLog(@"bt1 gameover");
                 
+                [self animationButton:node];
+                
                 self.scene.view.paused=NO;
                 GONaTela = NO;
                 //                    self.scene.paused = NO;
@@ -629,6 +649,7 @@ static Musica *colide;
                 GONaTela = NO;
                 JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
                 [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
+                
                 SKTransition *trans = [SKTransition fadeWithDuration:1.0];
                 
                 [self.scene.view presentScene:scene transition:trans];
@@ -636,6 +657,7 @@ static Musica *colide;
                 
             }
             else if([node.name isEqualToString:@"proxima fase"]){
+                [self animationButton:node];
                 [self nextLevel];
                 
             }
@@ -646,6 +668,8 @@ static Musica *colide;
                 GONaTela = NO;
                 JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
                 [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
+                
+                [self transicaoButton:node withScene:scene];
                 SKTransition *trans = [SKTransition fadeWithDuration:1.0];
                 
                 [self.scene.view presentScene:scene transition:trans];
@@ -839,6 +863,8 @@ static Musica *colide;
                     
                 } if([nodeAux.name isEqualToString:@"resume"]){
                     NSLog(@"bt 1 Resume");
+                    
+                    [self animationButton:nodeAux];
                     
                     GONaTela = NO;
                     //                    self.scene.paused = NO;
