@@ -39,8 +39,16 @@
     bool frenetico;
     BOOL GONaTela;
     
+    
+    
+    
    
 }
+
+static Musica   *divide;
+static Musica   *poca;
+
+static Musica *colide;
 
 #pragma mark - View Initialization
 -(void)didMoveToView:(SKView *)view{
@@ -94,6 +102,29 @@
     
     //Criar Buttons
     [self createButtons];
+    
+    if (divide==nil) {
+//        NSString* filePath = [[NSBundle mainBundle] pathForResource:@"Raio1" ofType:@"caf"];
+//        NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
+//        
+//        divide=[[Musica alloc] init];
+//        
+//        [divide carregar:fileUrl withEffects:false];
+//        
+//        [divide changeVolume:0.75];
+//        
+//        
+//        filePath = [[NSBundle mainBundle] pathForResource:@"Raio1" ofType:@"caf"];
+//        fileUrl = [NSURL fileURLWithPath:filePath];
+//        
+//        poca=[[Musica alloc] init];
+//        
+//        [poca carregar:fileUrl withEffects:false];
+//        
+//        [poca changeVolume:0.75];
+    }
+    
+   
     
     return self;
 }

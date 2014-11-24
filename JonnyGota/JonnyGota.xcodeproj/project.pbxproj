@@ -58,6 +58,7 @@
 		0B9229C319C3206C00009EC4 /* LFCGzipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9229C219C3206C00009EC4 /* LFCGzipUtility.m */; };
 		0B9229C619C3208900009EC4 /* JSTileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9229C519C3208900009EC4 /* JSTileMap.m */; };
 		0B97E39819CC981D0052ECF5 /* rain.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0B97E39719CC981D0052ECF5 /* rain.caf */; };
+		0BA3BCB31A239854003933C2 /* map12.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA3BCB21A239854003933C2 /* map12.png */; };
 		0BB14C381A028987001F27FB /* botao2_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB14C341A028987001F27FB /* botao2_1.png */; };
 		0BB14C391A028987001F27FB /* botao2_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB14C351A028987001F27FB /* botao2_2.png */; };
 		0BB14C3A1A028987001F27FB /* botao3_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB14C361A028987001F27FB /* botao3_1.png */; };
@@ -254,6 +255,7 @@
 		0B9229C419C3208900009EC4 /* JSTileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTileMap.h; sourceTree = "<group>"; };
 		0B9229C519C3208900009EC4 /* JSTileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTileMap.m; sourceTree = "<group>"; };
 		0B97E39719CC981D0052ECF5 /* rain.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rain.caf; sourceTree = "<group>"; };
+		0BA3BCB21A239854003933C2 /* map12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map12.png; sourceTree = "<group>"; };
 		0BB14C341A028987001F27FB /* botao2_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = botao2_1.png; sourceTree = "<group>"; };
 		0BB14C351A028987001F27FB /* botao2_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = botao2_2.png; sourceTree = "<group>"; };
 		0BB14C361A028987001F27FB /* botao3_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = botao3_1.png; sourceTree = "<group>"; };
@@ -768,6 +770,7 @@
 		0BB39B741A0010C800984420 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				0BA3BCB21A239854003933C2 /* map12.png */,
 				0BE89C1A1A1521BD00E1FCBF /* map16.png */,
 				0BE89C121A151AB100E1FCBF /* map13.png */,
 				0BE89C131A151AB100E1FCBF /* map15.png */,
@@ -1104,6 +1107,7 @@
 				0BE89C111A151A9200E1FCBF /* map18.tmx in Resources */,
 				0BB14C381A028987001F27FB /* botao2_1.png in Resources */,
 				8D35976719D86559009B6083 /* fase_semSombra2.png in Resources */,
+				0BA3BCB31A239854003933C2 /* map12.png in Resources */,
 				8D1B210119DC4F5E007B9B9F /* vidas10.png in Resources */,
 				8D8DC57B19D2EC2F00E75949 /* vida5.png in Resources */,
 				8D60E1C91A07E744000A5129 /* comprarVidas.png in Resources */,

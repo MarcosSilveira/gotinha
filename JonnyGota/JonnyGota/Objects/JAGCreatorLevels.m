@@ -1584,7 +1584,7 @@ NSMutableArray *nodesPhy;
         [porta vincularBotao:presao2];
         
         
-        JAGPorta *porta2 = [[JAGPorta alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(5,20)] withDirection:2  withReverse:NO withTipo:1 withSize:tiledMap.tileSize];
+        JAGPorta *porta2 = [[JAGPorta alloc] initWithPosition:[scene.level calculateTileHalf:CGPointMake(5,19)] withDirection:2  withReverse:NO withTipo:1 withSize:tiledMap.tileSize];
 
         [porta2 vincularBotao:presao3];
         

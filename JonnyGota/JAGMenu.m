@@ -73,12 +73,15 @@
         
         if ([botaoPlay containsPoint:location]) {
             
+            [botaoPlay runAction:[SKAction scaleBy:1.5 duration:0.0]];
+            
             SKScene *scene = [[JAGLevelSelectionScene alloc] initWithSize:self.frame.size];
             
             SKTransition *trans = [SKTransition fadeWithDuration:1.0];
             [self.scene.view presentScene:scene transition:trans];
         }
         else if([botaoStore containsPoint:location]){
+            [botaoStore runAction:[SKAction scaleBy:1.5 duration:0.0]];
             SKScene *scene = [[JAGStoreScene alloc]initWithSize:self.frame.size];
             [self.scene.view presentScene:scene transition:[SKTransition fadeWithDuration:1.0]];
         }

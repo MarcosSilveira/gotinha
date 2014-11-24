@@ -101,9 +101,9 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
    
-//    for (UITouch *touch in touches) {
-//        SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
-//       
+    for (UITouch *touch in touches) {
+        SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
+//
 //        if ([node.name isEqualToString:@"btBack"]) {
 //             [node runAction:[SKAction scaleBy:2.0 duration:0.1]];
 //            sele=node;
@@ -118,7 +118,11 @@
 //         if ([node.name isEqualToString:@"fase_trancada"]) {
 //             [node runAction:[SKAction scaleBy:2.0 duration:0.1]];
 //         }
-//    }
+        
+//        node.alpha=0.5;
+    }
+    
+    
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -129,6 +133,7 @@
     JAGPlayGameScene *jogo;
     for (UITouch *touch in touches) {
         SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
+//        node.alpha=1.0;
         if ([node.name isEqualToString:@"btBack"]) {
 //              [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
             JAGMenu* menu = [[JAGMenu alloc]initWithSize:self.frame.size];
