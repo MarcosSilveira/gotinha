@@ -139,6 +139,8 @@
                                                 [SKAction moveTo:ponto duration:2],
                                                 [SKAction runBlock:^{
                 self.lastPointToGo=i+1;
+                
+                [self.sprite removeActionForKey:@"walking"];
                 //Trocar pro idle
                 self.sprite.texture= self.idleTexture;
                           }],
@@ -151,6 +153,7 @@
                                                 [SKAction moveTo:ponto duration:2],
                                                 [SKAction runBlock:^{
                 self.lastPointToGo=i+1;
+                [self.sprite removeActionForKey:@"walking"];
                  self.sprite.texture= self.idleTexture;
                 
             }],
@@ -210,14 +213,14 @@
     switch (tipo) {
         case 1:
             
-            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesBack timePerFrame:0.1f]]withKey:@"walkingBack"];
+            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesBack timePerFrame:0.1f]] withKey:@"walking"];
             //                self.sprite.xScale = 1.0;
   
             break;
             
         case 2:
             
-            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesFront timePerFrame:0.1f]]withKey:@"walkingFront"];
+            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesFront timePerFrame:0.1f]] withKey:@"walking"];
             //                self.sprite.xScale = 1.0;
             
             
@@ -225,14 +228,14 @@
             
         case 3:
             
-            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesSide timePerFrame:0.1f]]withKey:@"walkingSide"];
+            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesSide timePerFrame:0.1f]] withKey:@"walking"];
             self.sprite.xScale = -1.0;
             
             
             break;
             
         case 4:
-            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesSide timePerFrame:0.1f]]withKey:@"walkingSide"];
+            [self.sprite runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.walkTexturesSide timePerFrame:0.1f]] withKey:@"walking"];
             self.sprite.xScale = 1.0;
             
             
