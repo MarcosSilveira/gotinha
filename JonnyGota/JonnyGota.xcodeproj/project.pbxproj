@@ -80,6 +80,10 @@
 		0BC084A41A1BAD5E00E39441 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC084A21A1BAD5E00E39441 /* check.png */; };
 		0BC084A51A1BAD5E00E39441 /* noCheck in Resources */ = {isa = PBXBuildFile; fileRef = 0BC084A31A1BAD5E00E39441 /* noCheck */; };
 		0BC0D3AA1A126222003B8526 /* arrowGamePad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC0D3A91A126222003B8526 /* arrowGamePad.png */; };
+		0BC2FD7B1A24CCFC009D00DC /* DropGeneric2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BC2FD771A24CCFC009D00DC /* DropGeneric2.caf */; };
+		0BC2FD7C1A24CCFC009D00DC /* DropGeneric3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BC2FD781A24CCFC009D00DC /* DropGeneric3.caf */; };
+		0BC2FD7D1A24CCFC009D00DC /* DropGeneric4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BC2FD791A24CCFC009D00DC /* DropGeneric4.caf */; };
+		0BC2FD7E1A24CCFC009D00DC /* DropGeneric5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BC2FD7A1A24CCFC009D00DC /* DropGeneric5.caf */; };
 		0BCC65FC19DC88B1004C517F /* Barroco.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65F419DC88B1004C517F /* Barroco.ttf */; };
 		0BCC65FF19DC88B1004C517F /* VAGRoundedStd-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65F819DC88B1004C517F /* VAGRoundedStd-Black.otf */; };
 		0BCC660019DC88B1004C517F /* VAGRoundedStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65F919DC88B1004C517F /* VAGRoundedStd-Bold.otf */; };
@@ -285,6 +289,10 @@
 		0BC084A21A1BAD5E00E39441 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		0BC084A31A1BAD5E00E39441 /* noCheck */ = {isa = PBXFileReference; lastKnownFileType = file; path = noCheck; sourceTree = "<group>"; };
 		0BC0D3A91A126222003B8526 /* arrowGamePad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowGamePad.png; sourceTree = "<group>"; };
+		0BC2FD771A24CCFC009D00DC /* DropGeneric2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DropGeneric2.caf; sourceTree = "<group>"; };
+		0BC2FD781A24CCFC009D00DC /* DropGeneric3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DropGeneric3.caf; sourceTree = "<group>"; };
+		0BC2FD791A24CCFC009D00DC /* DropGeneric4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DropGeneric4.caf; sourceTree = "<group>"; };
+		0BC2FD7A1A24CCFC009D00DC /* DropGeneric5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DropGeneric5.caf; sourceTree = "<group>"; };
 		0BCC65F419DC88B1004C517F /* Barroco.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Barroco.ttf; sourceTree = "<group>"; };
 		0BCC65F819DC88B1004C517F /* VAGRoundedStd-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAGRoundedStd-Black.otf"; sourceTree = "<group>"; };
 		0BCC65F919DC88B1004C517F /* VAGRoundedStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAGRoundedStd-Bold.otf"; sourceTree = "<group>"; };
@@ -761,6 +769,10 @@
 		0B97E39919CC982C0052ECF5 /* Musicas */ = {
 			isa = PBXGroup;
 			children = (
+				0BC2FD771A24CCFC009D00DC /* DropGeneric2.caf */,
+				0BC2FD781A24CCFC009D00DC /* DropGeneric3.caf */,
+				0BC2FD791A24CCFC009D00DC /* DropGeneric4.caf */,
+				0BC2FD7A1A24CCFC009D00DC /* DropGeneric5.caf */,
 				0BBD455E1A01435200538ED1 /* DropGeneric1.caf */,
 				0B97E39719CC981D0052ECF5 /* rain.caf */,
 			);
@@ -1026,6 +1038,7 @@
 				0BE89C191A1521A500E1FCBF /* map16.tmx in Resources */,
 				8D8DC57E19D2EC2F00E75949 /* vida8.png in Resources */,
 				0BCC660019DC88B1004C517F /* VAGRoundedStd-Bold.otf in Resources */,
+				0BC2FD7E1A24CCFC009D00DC /* DropGeneric5.caf in Resources */,
 				8D7E78E019D1FE2200126F42 /* clock.png in Resources */,
 				8D60E1B01A07E644000A5129 /* proxima_fase_bt.png in Resources */,
 				0B0699161A03F1BE000F954B /* TileSetTeste.png in Resources */,
@@ -1035,6 +1048,7 @@
 				B18414B31A1675530056D9DA /* tuto3.png in Resources */,
 				8D4A4F3519A3D0E300255468 /* gotinha.atlas in Resources */,
 				0BE89C171A151AB100E1FCBF /* map18.png in Resources */,
+				0BC2FD7D1A24CCFC009D00DC /* DropGeneric4.caf in Resources */,
 				8D94D7C219DB4182002872F4 /* fogo_parado.png in Resources */,
 				0BB6C0B11A079CDC0045AB3A /* map11.tmx in Resources */,
 				B18414B41A1675530056D9DA /* tuto4.png in Resources */,
@@ -1097,9 +1111,11 @@
 				0BC084A41A1BAD5E00E39441 /* check.png in Resources */,
 				8D35976919D86559009B6083 /* fase_semSombra4.png in Resources */,
 				0BCC65FF19DC88B1004C517F /* VAGRoundedStd-Black.otf in Resources */,
+				0BC2FD7B1A24CCFC009D00DC /* DropGeneric2.caf in Resources */,
 				8D60E1E91A07F0CF000A5129 /* loja_BG.png in Resources */,
 				8D8DC57919D2EC2F00E75949 /* vida3.png in Resources */,
 				8D1B20F919DC46E7007B9B9F /* vidas5.png in Resources */,
+				0BC2FD7C1A24CCFC009D00DC /* DropGeneric3.caf in Resources */,
 				B18414B11A1675530056D9DA /* tuto1.png in Resources */,
 				8D60E1E11A07EF94000A5129 /* storeBT.png in Resources */,
 				8D35975F19D85957009B6083 /* travada_semSombra.png in Resources */,

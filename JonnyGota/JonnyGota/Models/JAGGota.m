@@ -69,6 +69,7 @@ static Musica *andar;
     NSString* filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric1" ofType:@"caf"];
     NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
     
+    
     andar=[[Musica alloc] init];
     
     [andar inici];
@@ -77,8 +78,10 @@ static Musica *andar;
     
     [andar changeVolume:0.2];
     
+    
+    
     self.andarM=[[JAGMusicAction alloc] initWithMusic:andar];
-
+    
     self.zPosition=500;
 
     

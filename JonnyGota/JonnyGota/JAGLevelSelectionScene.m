@@ -99,31 +99,6 @@
 }
 
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-   
-    for (UITouch *touch in touches) {
-        SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
-//
-//        if ([node.name isEqualToString:@"btBack"]) {
-//             [node runAction:[SKAction scaleBy:2.0 duration:0.1]];
-//            sele=node;
-//        }
-//         if (![node.name isEqualToString:@"fase_trancada"]) {
-//             int fase = [node.name intValue];
-//             if (fase>0) {
-//                 [node runAction:[SKAction scaleBy:2.0 duration:0.1]];
-//
-//             }
-//        }
-//         if ([node.name isEqualToString:@"fase_trancada"]) {
-//             [node runAction:[SKAction scaleBy:2.0 duration:0.1]];
-//         }
-        
-//        node.alpha=0.5;
-    }
-    
-    
-}
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     
@@ -137,7 +112,15 @@
         if ([node.name isEqualToString:@"btBack"]) {
 //              [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
             JAGMenu* menu = [[JAGMenu alloc]initWithSize:self.frame.size];
-            [self.scene.view presentScene:menu transition:[SKTransition fadeWithDuration:1]];
+//            [self.scene.view presentScene:menu transition:[SKTransition fadeWithDuration:1]];
+            
+            SKAction *transi=[SKAction sequence:@[[SKAction runBlock:^{
+                [node runAction:[SKAction scaleBy:1.5 duration:0.8]];
+            }],[SKAction waitForDuration:0.1],
+                                                  [SKAction runBlock:^{
+                [self.scene.view presentScene:menu transition:[SKTransition fadeWithDuration:1]];
+            }]]];
+            [self runAction:transi];
         }
         if (![node.name isEqualToString:@"fase_trancada"]) {
             
@@ -151,6 +134,9 @@
 //                [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
                 jogo = [[JAGPlayGameScene alloc]initWithSize:self.frame.size level:faseA andWorld:@1];
                 [self.scene.view presentScene:jogo transition:[SKTransition fadeWithDuration:1]];
+                
+                
+
             }
         }
         
@@ -207,6 +193,8 @@
             labelNum.text=[NSString stringWithFormat:@"%d",i];
             
             labelNum.name=[NSString stringWithFormat:@"%d",i];
+            
+            
             
             
             [nodo addChild:labelNum];
