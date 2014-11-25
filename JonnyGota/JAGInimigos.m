@@ -256,6 +256,7 @@
         int tempSentido;
         if(!self.inColisao){
             tempSentido = [self verificaSentido:jogador.position with:self.position];
+            
             if(tempSentido != self.sentido) {
                 self.sentido = tempSentido;
                 [self mover:(jogador.position) withInterval:2 withType:self.sentido];
@@ -280,13 +281,25 @@
         if (self.seguindo==true&& self.activeFix==NO&& self.activeIa==YES) {
             self.activeIa=NO;
             [self removeActionForKey:@"move"];
+            [self.sprite removeActionForKey:@"walking"];
+            self.sprite.texture= self.idleTexture;
 
         }
         
+        
+        
+
         self.seguindo = false;
         self.sentido  = 0;
         self.sentidoCol=0;
         [self IAcomInfo];
+        
+        if (self.seguindo==false && self.activeFix==NO && self.activeIa==NO) {
+            
+            [self.sprite removeAllActions];
+            self.sprite.texture= self.idleTexture;
+            
+        }
     }
 }
 
