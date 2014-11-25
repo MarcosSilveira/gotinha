@@ -393,19 +393,14 @@ static Musica *colide;
     area.alpha = 0.9;
     circleMask.alpha = 0.5;
     
-    
-
     fadeMask = [[SKSpriteNode alloc]initWithImageNamed:@"fadeMask.png"];
-    fadeMask.size = CGSizeMake(self.frame.size.width*.9, self.frame.size.height*.9);
+    fadeMask.size = CGSizeMake(self.frame.size.width, self.frame.size.height);
     fadeMask.position = CGPointMake(self.frame.size.height/2, self.frame.size.width/2);
     area.zPosition = _cropNode.zPosition+1;
     [_cropNode addChild:fadeMask];
     [area addChild:circleMask];
     //area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
     [_cropNode setMaskNode:area];
-    
-    
-
 }
 
 -(SKShapeNode *)createCircleToMask:(int) radius
