@@ -103,26 +103,26 @@ static Musica *colide;
     //Criar Buttons
     [self createButtons];
     
-    if (divide==nil) {
-//        NSString* filePath = [[NSBundle mainBundle] pathForResource:@"Raio1" ofType:@"caf"];
-//        NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
-//        
-//        divide=[[Musica alloc] init];
-//        
-//        [divide carregar:fileUrl withEffects:false];
-//        
-//        [divide changeVolume:0.75];
-//        
-//        
-//        filePath = [[NSBundle mainBundle] pathForResource:@"Raio1" ofType:@"caf"];
-//        fileUrl = [NSURL fileURLWithPath:filePath];
-//        
-//        poca=[[Musica alloc] init];
-//        
-//        [poca carregar:fileUrl withEffects:false];
-//        
-//        [poca changeVolume:0.75];
-    }
+   
+        NSString* filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric5" ofType:@"caf"];
+        NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
+        
+        divide=[[Musica alloc] init];
+        
+        [divide carregar:fileUrl withEffects:false];
+        
+        [divide changeVolume:0.75];
+        
+        
+        filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric3" ofType:@"caf"];
+        fileUrl = [NSURL fileURLWithPath:filePath];
+        
+        poca=[[Musica alloc] init];
+        
+        [poca carregar:fileUrl withEffects:false];
+        
+        
+    
     
    
     
@@ -819,6 +819,8 @@ static Musica *colide;
                 
                 toque_moveu = NO;
                 
+                [divide play];
+                
                 
             } else {
                 //            || ((difToq>1&& difToq>valueto)||(difToq<0 && difToq>valueto))
@@ -827,6 +829,8 @@ static Musica *colide;
                 if (([_gota verificaToque:toqueFinal] && [_gota verificaToque:toqueInicio]) ){
                     
                     [_gota esconder];
+                    
+                    [poca play];
                     
                     [self removeActionForKey:@"moveGota"];
                 } else {
@@ -984,9 +988,7 @@ static Musica *colide;
     if(_gota.physicsBody.velocity.dx == 0 && _gota.physicsBody.velocity.dy == 0 && _gota.sprite.texture != _gota.idleTexture && !_gota.escondida)
     {
         [self.gota removeActionWithSound];
-        
         _gota.sprite.texture = _gota.idleTexture;
-        
     }
     
     if (pauseDetected) {
@@ -994,7 +996,6 @@ static Musica *colide;
     }
     
     if (_gota.comChave) {
-
 //        chave.position = CGPointMake(_gota.position.x*0.9, _gota.position.y*0.9);
         SKPhysicsJointPin *jointKey = [SKPhysicsJointPin jointWithBodyA:_gota.physicsBody bodyB:chave.physicsBody anchor:_gota.position];
         [self.scene.physicsWorld addJoint:jointKey];
@@ -1735,7 +1736,7 @@ static Musica *colide;
 //                             pontoToque.y+(_gota.position.y)-CGRectGetMidY(self.frame));
     
      
-    if (![_gota verificaToque:pontoToque]) {
+    if (![_gota verificaToque:pontoToque]&& self.gota.escondida==NO) {
         if ([self verificaToque:pontoToque withSprite:self.buttonUp]&&self.gota.sentido!=1) {
             [self.gota mover:pontoToque withInterval:0 withType:1];
             self.gota.sentido=1;
