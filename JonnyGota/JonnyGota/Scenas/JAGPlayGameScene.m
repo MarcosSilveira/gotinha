@@ -126,10 +126,12 @@ static Musica *colide;
 
 -(void)transicaoButton:(SKNode *) node
              withScene:(SKScene *) scene{
+    self.paused=NO;
     SKAction *transi=[SKAction sequence:@[[SKAction runBlock:^{
         [node runAction:[SKAction scaleBy:1.5 duration:0.8]];
     }],[SKAction waitForDuration:0.1],
                                           [SKAction runBlock:^{
+        
         [self.scene.view presentScene:scene transition:[SKTransition fadeWithDuration:1]];
     }]]];
     [self runAction:transi];
@@ -138,7 +140,8 @@ static Musica *colide;
 -(void)animationButton:(SKNode *)node{
     SKAction *transi=[SKAction sequence:@[[SKAction runBlock:^{
         [node runAction:[SKAction scaleBy:1.5 duration:0.8]];
-    }],[SKAction waitForDuration:1.1]]];
+        
+    }]]];
     [self runAction:transi];
 }
 
@@ -619,6 +622,8 @@ static Musica *colide;
                 
                 [self animationButton:node];
                 
+                
+                
                 self.scene.view.paused=NO;
                 GONaTela = NO;
                 //                    self.scene.paused = NO;
@@ -640,9 +645,9 @@ static Musica *colide;
                 JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
                 [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
                 
-                SKTransition *trans = [SKTransition fadeWithDuration:1.0];
+                [self transicaoButton:node withScene:scene];
                 
-                [self.scene.view presentScene:scene transition:trans];
+//                [self.scene.view presentScene:scene transition:trans];
                 
                 
             }
@@ -660,9 +665,9 @@ static Musica *colide;
                 [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
                 
                 [self transicaoButton:node withScene:scene];
-                SKTransition *trans = [SKTransition fadeWithDuration:1.0];
-                
-                [self.scene.view presentScene:scene transition:trans];
+//                SKTransition *trans = [SKTransition fadeWithDuration:1.0];
+//                
+//                [self.scene.view presentScene:scene transition:trans];
                 
             }
             

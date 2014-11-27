@@ -11,5 +11,5 @@
 
 @interface JAGLevelSelectionScene : SKScene
 -(void)organizaBotoes;
--(void)recuperaVida;
+
 @end

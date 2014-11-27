@@ -37,7 +37,7 @@
     vida=[JAGVida sharedManager];
     
     
-    vidas_sprite = [[SKSpriteNode alloc] initWithImageNamed:@"heart_sem_sombra.png"];
+    vidas_sprite = [[SKSpriteNode alloc] initWithImageNamed:@"heart.png"];
     vidas_sprite.position = CGPointMake(self.frame.size.width*0.8, self.frame.size.height*0.89);
     vidas_sprite.size = CGSizeMake(self.frame.size.width*0.06, self.frame.size.height*0.075);
     background = [[SKSpriteNode alloc]initWithImageNamed:@"levelSelectBG"];
@@ -137,6 +137,14 @@
                 
                 
 
+            }else{
+                if(vida.vidas<=0){
+                    SKAction *seq=[SKAction sequence:@[[SKAction scaleBy:2.0 duration:0.4],[SKAction rotateByAngle:0.3 duration:0.4], [SKAction waitForDuration:1.0],[SKAction rotateByAngle:-0.3 duration:0.4],[SKAction scaleBy:0.5 duration:0.4]]];
+                    
+                    [vidas_sprite runAction:seq];
+                    
+                    [vidas_quantidade runAction:seq];
+                }
             }
         }
         
