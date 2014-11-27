@@ -38,11 +38,6 @@
     Musica *relampago;
     bool frenetico;
     BOOL GONaTela;
-    
-    
-    
-    
-   
 }
 
 static Musica   *divide;
