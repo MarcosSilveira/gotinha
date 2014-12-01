@@ -114,7 +114,7 @@
             JAGMenu* menu = [[JAGMenu alloc]initWithSize:self.frame.size];
 //            [self.scene.view presentScene:menu transition:[SKTransition fadeWithDuration:1]];
             
-            SKAction *transi=[SKAction sequence:@[[SKAction runBlock:^{
+            SKAction *transi=[SKAction sequence:@[[SKAction playSoundFileNamed:@"botaoUp1.wav" waitForCompletion:NO],[SKAction runBlock:^{
                 [node runAction:[SKAction scaleBy:1.5 duration:0.8]];
             }],[SKAction waitForDuration:0.1],
                                                   [SKAction runBlock:^{
@@ -133,13 +133,15 @@
             if (fase!=0 && vida.vidas>0) {
 //                [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
                 jogo = [[JAGPlayGameScene alloc]initWithSize:self.frame.size level:faseA andWorld:@1];
+                [self runAction:[SKAction playSoundFileNamed:@"botaoUp1.wav" waitForCompletion:YES]];
+                
                 [self.scene.view presentScene:jogo transition:[SKTransition fadeWithDuration:1]];
                 
                 
 
             }else{
                 if(vida.vidas<=0){
-                    SKAction *seq=[SKAction sequence:@[[SKAction scaleBy:2.0 duration:0.4],[SKAction rotateByAngle:0.3 duration:0.4], [SKAction waitForDuration:1.0],[SKAction rotateByAngle:-0.3 duration:0.4],[SKAction scaleBy:0.5 duration:0.4]]];
+                    SKAction *seq=[SKAction sequence:@[[SKAction playSoundFileNamed:@"botaoUp1.wav" waitForCompletion:NO],[SKAction scaleBy:2.0 duration:0.4],[SKAction rotateByAngle:0.3 duration:0.4], [SKAction waitForDuration:1.0],[SKAction rotateByAngle:-0.3 duration:0.4],[SKAction scaleBy:0.5 duration:0.4]]];
                     
                     [vidas_sprite runAction:seq];
                     

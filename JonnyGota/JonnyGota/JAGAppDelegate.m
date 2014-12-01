@@ -8,6 +8,7 @@
 
 #import "JAGAppDelegate.h"
 #import <StoreKit/StoreKit.h>
+#import "JAGVida.h"
 @implementation JAGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -38,7 +39,11 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    JAGVida *vida=[JAGVida sharedManager];
+    [vida consultar];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

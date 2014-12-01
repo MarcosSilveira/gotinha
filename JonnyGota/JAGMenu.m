@@ -79,7 +79,10 @@
             
             SKTransition *trans = [SKTransition fadeWithDuration:1.0];
             
-            SKAction *transi=[SKAction sequence:@[[SKAction runBlock:^{
+            
+            
+            SKAction *transi=[SKAction sequence:@[[SKAction playSoundFileNamed:@"botaoUp1.wav" waitForCompletion:NO],
+                                                  [SKAction runBlock:^{
                 [botaoPlay runAction:[SKAction scaleBy:1.5 duration:0.8]];
             }],[SKAction waitForDuration:0.1],
                                                   [SKAction runBlock:^{
@@ -96,7 +99,8 @@
             
              SKTransition *trans = [SKTransition fadeWithDuration:1.0];
             
-            SKAction *transi=[SKAction sequence:@[[SKAction runBlock:^{
+            SKAction *transi=[SKAction sequence:@[[SKAction playSoundFileNamed:@"botaoUp1.wav" waitForCompletion:NO],
+                                                  [SKAction runBlock:^{
                 [botaoStore runAction:[SKAction scaleBy:1.5 duration:0.8]];
             }],[SKAction waitForDuration:0.1],
                                                   [SKAction runBlock:^{

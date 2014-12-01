@@ -33,6 +33,8 @@ static JAGVida *sharedMyManager;
         //Date Time de agora
         NSDate *now = [NSDate date];
         
+        
+        
         if (savedDate!=nil) {
             //Calcular a diferenca
             NSTimeInterval timeDifference = [now timeIntervalSinceDate:savedDate];
@@ -98,13 +100,12 @@ static JAGVida *sharedMyManager;
                                        selector:@selector(consultar)
                                        userInfo:nil
                                         repeats:YES];
-        
-        
-        
         self.inprogress=YES;
     }
     
 }
+
+
 
 -(void)changeGamepad{
     self.gamePad=!self.gamePad;

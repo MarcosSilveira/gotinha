@@ -111,7 +111,7 @@ static Musica *colide;
         
         [divide carregar:fileUrl withEffects:false];
         
-        [divide changeVolume:0.75];
+        [divide changeVolume:0.9];
         
         
         filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric3" ofType:@"caf"];

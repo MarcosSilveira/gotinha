@@ -84,6 +84,10 @@
 		0BC2FD7C1A24CCFC009D00DC /* DropGeneric3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BC2FD781A24CCFC009D00DC /* DropGeneric3.caf */; };
 		0BC2FD7D1A24CCFC009D00DC /* DropGeneric4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BC2FD791A24CCFC009D00DC /* DropGeneric4.caf */; };
 		0BC2FD7E1A24CCFC009D00DC /* DropGeneric5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BC2FD7A1A24CCFC009D00DC /* DropGeneric5.caf */; };
+		0BC3E8E71A2CD75400DAB156 /* botaoUp1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0BC3E8E61A2CD75400DAB156 /* botaoUp1.wav */; };
+		0BC3E8EB1A2CDB5600DAB156 /* BOTAO UI 2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0BC3E8E81A2CDB5600DAB156 /* BOTAO UI 2.wav */; };
+		0BC3E8EC1A2CDB5600DAB156 /* BOTAO UI 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0BC3E8E91A2CDB5600DAB156 /* BOTAO UI 3.wav */; };
+		0BC3E8ED1A2CDB5600DAB156 /* BOTAO UI 4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0BC3E8EA1A2CDB5600DAB156 /* BOTAO UI 4.wav */; };
 		0BCC65FC19DC88B1004C517F /* Barroco.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65F419DC88B1004C517F /* Barroco.ttf */; };
 		0BCC65FF19DC88B1004C517F /* VAGRoundedStd-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65F819DC88B1004C517F /* VAGRoundedStd-Black.otf */; };
 		0BCC660019DC88B1004C517F /* VAGRoundedStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BCC65F919DC88B1004C517F /* VAGRoundedStd-Bold.otf */; };
@@ -293,6 +297,10 @@
 		0BC2FD781A24CCFC009D00DC /* DropGeneric3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DropGeneric3.caf; sourceTree = "<group>"; };
 		0BC2FD791A24CCFC009D00DC /* DropGeneric4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DropGeneric4.caf; sourceTree = "<group>"; };
 		0BC2FD7A1A24CCFC009D00DC /* DropGeneric5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DropGeneric5.caf; sourceTree = "<group>"; };
+		0BC3E8E61A2CD75400DAB156 /* botaoUp1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = botaoUp1.wav; sourceTree = "<group>"; };
+		0BC3E8E81A2CDB5600DAB156 /* BOTAO UI 2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BOTAO UI 2.wav"; sourceTree = "<group>"; };
+		0BC3E8E91A2CDB5600DAB156 /* BOTAO UI 3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BOTAO UI 3.wav"; sourceTree = "<group>"; };
+		0BC3E8EA1A2CDB5600DAB156 /* BOTAO UI 4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BOTAO UI 4.wav"; sourceTree = "<group>"; };
 		0BCC65F419DC88B1004C517F /* Barroco.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Barroco.ttf; sourceTree = "<group>"; };
 		0BCC65F819DC88B1004C517F /* VAGRoundedStd-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAGRoundedStd-Black.otf"; sourceTree = "<group>"; };
 		0BCC65F919DC88B1004C517F /* VAGRoundedStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAGRoundedStd-Bold.otf"; sourceTree = "<group>"; };
@@ -769,6 +777,7 @@
 		0B97E39919CC982C0052ECF5 /* Musicas */ = {
 			isa = PBXGroup;
 			children = (
+				0BC3E8E51A2CD72D00DAB156 /* Botoes */,
 				0BC2FD771A24CCFC009D00DC /* DropGeneric2.caf */,
 				0BC2FD781A24CCFC009D00DC /* DropGeneric3.caf */,
 				0BC2FD791A24CCFC009D00DC /* DropGeneric4.caf */,
@@ -813,6 +822,17 @@
 				0BC084A01A1BA8F300E39441 /* gamePad.png */,
 			);
 			name = GamepadConfig;
+			sourceTree = "<group>";
+		};
+		0BC3E8E51A2CD72D00DAB156 /* Botoes */ = {
+			isa = PBXGroup;
+			children = (
+				0BC3E8E81A2CDB5600DAB156 /* BOTAO UI 2.wav */,
+				0BC3E8E91A2CDB5600DAB156 /* BOTAO UI 3.wav */,
+				0BC3E8EA1A2CDB5600DAB156 /* BOTAO UI 4.wav */,
+				0BC3E8E61A2CD75400DAB156 /* botaoUp1.wav */,
+			);
+			name = Botoes;
 			sourceTree = "<group>";
 		};
 		0BCC65F219DC8846004C517F /* Fonts */ = {
@@ -1035,6 +1055,7 @@
 				0BE89C0D1A151A9200E1FCBF /* map13.tmx in Resources */,
 				8D60E2011A07F513000A5129 /* Localizable.strings in Resources */,
 				8D60E1C41A07E72C000A5129 /* comprarVidas.png in Resources */,
+				0BC3E8ED1A2CDB5600DAB156 /* BOTAO UI 4.wav in Resources */,
 				0BE89C191A1521A500E1FCBF /* map16.tmx in Resources */,
 				8D8DC57E19D2EC2F00E75949 /* vida8.png in Resources */,
 				0BCC660019DC88B1004C517F /* VAGRoundedStd-Bold.otf in Resources */,
@@ -1045,8 +1066,10 @@
 				8D7E78DC19D1F2E900126F42 /* hud_back.png in Resources */,
 				8D1B20FB19DC4A58007B9B9F /* price199.png in Resources */,
 				8D60E1A71A07E5E2000A5129 /* proxima_fase_bt.png in Resources */,
+				0BC3E8EC1A2CDB5600DAB156 /* BOTAO UI 3.wav in Resources */,
 				B18414B31A1675530056D9DA /* tuto3.png in Resources */,
 				8D4A4F3519A3D0E300255468 /* gotinha.atlas in Resources */,
+				0BC3E8EB1A2CDB5600DAB156 /* BOTAO UI 2.wav in Resources */,
 				0BE89C171A151AB100E1FCBF /* map18.png in Resources */,
 				0BC2FD7D1A24CCFC009D00DC /* DropGeneric4.caf in Resources */,
 				8D94D7C219DB4182002872F4 /* fogo_parado.png in Resources */,
@@ -1101,6 +1124,7 @@
 				8D8DC57C19D2EC2F00E75949 /* vida6.png in Resources */,
 				B1D9C13819DEE644005ED4A1 /* lvlX.png in Resources */,
 				8DDDDBEB19E83DB800A6BA44 /* fadeMask.png in Resources */,
+				0BC3E8E71A2CD75400DAB156 /* botaoUp1.wav in Resources */,
 				0B0699151A03F1BE000F954B /* map12.tmx in Resources */,
 				0B15AAD719D09B0500ED6110 /* map1.tmx in Resources */,
 				0BB14C3A1A028987001F27FB /* botao3_1.png in Resources */,
