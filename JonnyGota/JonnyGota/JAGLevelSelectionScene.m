@@ -28,6 +28,8 @@
     SKSpriteNode *gamepad;
     SKSpriteNode *check;
     
+    SKLabelNode *timerLeft;
+    
     SKNode *sele;
 }
 
@@ -63,6 +65,8 @@
     gamepad.position=CGPointMake(self.frame.size.width*0.1, self.frame.size.height*0.58);
     
     gamepad.name=@"gamePad";
+    
+    
     
     
     [self.scene addChild:backBT];
@@ -141,6 +145,23 @@
 
             }else{
                 if(vida.vidas<=0){
+                    //Adicionar tempo nesse bloco
+                    
+                    if(timerLeft==nil){
+                        timerLeft=[[SKLabelNode alloc]initWithFontNamed:@"VAGRoundedStd-Bold"];
+                        
+                        timerLeft.text = [NSString stringWithFormat:@" %d m",[vida consultarTempoParaVida]];
+                        
+                        timerLeft.position = CGPointMake(self.frame.size.width*0.87, self.frame.size.height*0.76);
+                        timerLeft.fontSize = self.frame.size.width*0.045;
+                        
+                        [self addChild:timerLeft];
+                    }else{
+                        timerLeft.text = [NSString stringWithFormat:@" %d m",[vida consultarTempoParaVida]];
+                    }
+                    
+                    [self removeAllActions];
+                    
                     SKAction *seq=[SKAction sequence:@[[SKAction playSoundFileNamed:@"botaoUp1.wav" waitForCompletion:NO],[SKAction scaleBy:2.0 duration:0.4],[SKAction rotateByAngle:0.3 duration:0.4], [SKAction waitForDuration:1.0],[SKAction rotateByAngle:-0.3 duration:0.4],[SKAction scaleBy:0.5 duration:0.4]]];
                     
                     [vidas_sprite runAction:seq];

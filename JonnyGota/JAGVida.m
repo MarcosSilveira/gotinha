@@ -106,6 +106,36 @@ static JAGVida *sharedMyManager;
 }
 
 
+-(int)consultarTempoParaVida{
+    NSDate *savedDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"savedDate"];
+    
+    
+    //Date Time de agora
+    NSDate *now = [NSDate date];
+    
+    
+    
+    if (savedDate!=nil) {
+        //Calcular a diferenca
+        NSTimeInterval timeDifference = [now timeIntervalSinceDate:savedDate];
+        
+        
+        
+        //Calula minutos
+        
+        int minutes = floor(timeDifference/60);
+        //        NSLog(@"diferenca: %f",timeDifference);
+        
+        //Se for maior salva
+        if (minutes<30 && minutes>0) {
+            return 30-minutes;
+        }
+    }
+    
+    
+    return 0;
+}
+
 
 -(void)changeGamepad{
     self.gamePad=!self.gamePad;
@@ -146,6 +176,8 @@ static JAGVida *sharedMyManager;
             [[NSUserDefaults standardUserDefaults] synchronize];
 
         }
+        self.vidas=0;
+
     }
     return self;
 }

@@ -16,24 +16,12 @@
     return self;
 }
 
--(void) criarObj:(CGPoint)posi comTipo:(NSInteger)tipo eSprite:(SKSpriteNode *) sprite {
-
-    sprite = [[SKSpriteNode alloc] initWithColor:[SKColor lightGrayColor] size:CGSizeMake(20, 20)];
-    sprite.position = posi;
-    _sprite = sprite;
-    
-    [self addChild:_sprite];
-    
-    _sprite.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(_sprite.frame.size.width, _sprite.frame.size.height)];
-    _sprite.physicsBody.categoryBitMask = ITEM;
-    
-    self.physicsBody.categoryBitMask = ITEM;
-    self.physicsBody.collisionBitMask = GOTA;
+-(void) criarObj:(CGPoint)posi comTipo:(NSInteger)tipo withTamanho:(CGSize) tamnaho {
 
     
-    _sprite.physicsBody.dynamic=NO;
     
-    _sprite.physicsBody.restitution=0;
+    
+    
     
     _tipo=tipo;
     switch (tipo) {
@@ -42,7 +30,9 @@
             break;
             
         case 2:
+            _sprite=[[SKSpriteNode alloc] initWithImageNamed:@"clock.png"];
             _sprite.name = @"cronometro";
+
             break;
             
         case 3:
@@ -52,6 +42,24 @@
         default:
             break;
     }
+    
+    _sprite.size=CGSizeMake(tamnaho.width*0.4, tamnaho.height*0.4);
+    
+    _sprite.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(_sprite.frame.size.width, _sprite.frame.size.height)];
+    _sprite.physicsBody.categoryBitMask = ITEM;
+    
+    self.physicsBody.categoryBitMask = ITEM;
+    self.physicsBody.collisionBitMask = GOTA;
+    
+    
+    _sprite.physicsBody.dynamic=NO;
+    
+    _sprite.physicsBody.restitution=0;
+    
+    [self addChild:_sprite];
+    
+    self.position=posi;
+
 }
 
 -(void) habilidade:(JAGPlayGameScene *)scene{

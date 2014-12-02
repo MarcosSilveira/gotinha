@@ -23,4 +23,6 @@
 
 -(void)update:(JAGGota *)gota;
 
+-(void)soltar;
+
 @end

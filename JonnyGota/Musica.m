@@ -159,6 +159,7 @@ static ALCcontext* openContext;
 }
 
 -(void)soltar{
+     alSourceStop(_outputSource);
      alDeleteSources(1, &_outputSource);
      alDeleteBuffers(1, &_outputBuffer);
      alcDestroyContext(openContext);

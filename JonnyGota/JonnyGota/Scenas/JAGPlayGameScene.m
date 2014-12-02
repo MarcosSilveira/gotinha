@@ -723,8 +723,10 @@ static Musica *colide;
 }
 -(void)deallocSound{
     [relampago soltar];
-    [self.level.chuva.chuva soltar];
+    [self.level.chuva soltar];
+    
 }
+
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
     //    int valueto=self.gota.sprite.size.width;
@@ -1031,6 +1033,8 @@ static Musica *colide;
    self.paused = NO;
     
     NSNumber *nextlevel=[NSNumber numberWithInt:([self.currentLevel intValue] + 1)];
+    
+    [self deallocSound];
 
     if ([[JAGCreatorLevels numberOfLevels:1] intValue]>=[nextlevel intValue]) {
         //Precisa desalocar os objetos tbm?
@@ -1051,7 +1055,7 @@ static Musica *colide;
             }else{
 //        self.paused = YES;
                 
-                [self deallocSound];
+//                [self deallocSound];
                 self.scene.view.paused = NO;
                 GONaTela = NO;
                 JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
@@ -1131,11 +1135,15 @@ static Musica *colide;
         //
         if([contact.bodyA.node.name isEqualToString:@"cronometro"]){
             JAGObjeto *obj=(JAGObjeto *)contact.bodyA.node.parent;
+            
+            
+            [self runAction:[SKAction playSoundFileNamed:@"maisTempo.wav" waitForCompletion:YES]];
             [obj habilidade:self];
             self.gota.sentido=0;
             [obj removeFromParent];
         }else{
             JAGObjeto *obj=(JAGObjeto *)contact.bodyB.node.parent;
+            [self runAction:[SKAction playSoundFileNamed:@"maisTempo.wav" waitForCompletion:YES]];
             [obj habilidade:self];
             self.gota.sentido=0;
             [obj removeFromParent];

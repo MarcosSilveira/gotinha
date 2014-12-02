@@ -30,4 +30,6 @@
 
 -(void)changeGamepad;
 
+-(int)consultarTempoParaVida;
+
 @end

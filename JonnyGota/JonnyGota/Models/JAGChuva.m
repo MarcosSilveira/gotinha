@@ -86,4 +86,9 @@
 //    NSLog(@"update gota");
 }
 
+-(void)soltar{
+    [self.chuva soltar];
+    [self.chuvaOposto soltar];
+}
+
 @end
