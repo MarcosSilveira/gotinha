@@ -17,12 +17,10 @@
     SKSpriteNode *priceItem1;
     SKSpriteNode *priceItem2;
     SKSpriteNode *bt_bg;
-    SKSpriteNode *bt_bg2;
     SKLabelNode *message2;
     SKSpriteNode *recuperaBT;
     SKReceiptRefreshRequest *request;
     BOOL primeiroProdutoOK;
-    
 }
 
 -(void)didMoveToView:(SKView *)view{
@@ -182,7 +180,7 @@
                 nodoItem.size = CGSizeMake(nodoItem.texture.size.width*0.7, nodoItem.texture.size.height*0.7);
                 nodoPreco.size = CGSizeMake(self.frame.size.width*0.15, self.frame.size.height*0.15);
                 bt_bg = [[SKSpriteNode alloc]initWithImageNamed:@"bt_bg.png"];
-                bt_bg.position = CGPointMake(nodoItem.position.x, nodoItem.position.y*0.9);
+                bt_bg.position = CGPointMake(nodoItem.position.x, nodoItem.position.y*0.85);
                 bt_bg.size = CGSizeMake(nodoPreco.size.width*1.1, nodoPreco.size.height*2);
                 bt_bg.zPosition = 0;
                 bt_bg.name = produto.productIdentifier;
@@ -199,7 +197,7 @@
 //                nodoItem.size = CGSizeMake(nodoItem.texture.size.width*0.7, nodoItem.texture.size.height*0.7);
                 nodoPreco.size = CGSizeMake(self.frame.size.width*0.15, self.frame.size.height*0.15);
                 bt_bg = [[SKSpriteNode alloc]initWithImageNamed:@"bt_bg.png"];
-                bt_bg.position = CGPointMake(nodoItem.position.x, nodoItem.position.y*0.9);
+                bt_bg.position = CGPointMake(nodoItem.position.x, nodoItem.position.y*0.85);
                 bt_bg.size = CGSizeMake(nodoPreco.size.width*1.1, nodoPreco.size.height*2);
                 bt_bg.zPosition = 0;
                 bt_bg.name = produto.productIdentifier;
