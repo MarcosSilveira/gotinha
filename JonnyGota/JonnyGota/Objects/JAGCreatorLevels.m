@@ -1995,7 +1995,7 @@ NSMutableArray *nodesPhy;
         fogo.activeFix=YES;
         
         NSMutableArray *paths = [[NSMutableArray alloc] init];
-        [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x+(tiledMap.tileSize.width*4), fogo.position.y+(tiledMap.tileSize.width*0.25))]];
+        [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x+(tiledMap.tileSize.width*4), fogo.position.y)]];
         
         [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y)]];
         
