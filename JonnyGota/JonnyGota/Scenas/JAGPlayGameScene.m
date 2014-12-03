@@ -1567,7 +1567,7 @@ static Musica *colide;
     
     
     NSString* filePath2 = [[NSBundle mainBundle] pathForResource:@"Raio1" ofType:@"caf"];
-    NSURL* fileUrl2 = [NSURL fileURLWithPath:filePath];
+    NSURL* fileUrl2 = [NSURL fileURLWithPath:filePath2];
     
     relampago=[[Musica alloc] init];
     
