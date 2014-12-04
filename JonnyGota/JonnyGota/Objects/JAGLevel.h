@@ -47,8 +47,8 @@
 
 
 -(void)createWalls:(CGPoint) ponto
-       withHeight:(int) altura
-        withWidth:(int) largura
+        withHeight:(int) altura
+         withWidth:(int) largura
          withScene:(SKScene *)scene;
 
 -(CGPoint)calculateTile:(CGPoint) pontoMatriz;

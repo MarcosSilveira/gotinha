@@ -55,7 +55,7 @@ static JAGVida *sharedMyManager;
                     self.vidas=MAXLife;
                 }
                 
-                 NSLog(@"Salvando as Life tudo vidas:%d",self.vidas);
+                NSLog(@"Salvando as Life tudo vidas:%d",self.vidas);
                 
                 
                 [[NSUserDefaults standardUserDefaults] setInteger:self.vidas forKey:@"Vida"];
@@ -63,7 +63,7 @@ static JAGVida *sharedMyManager;
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
             }
-
+            
         }else{
             
             self.vidas=MAXLife;
@@ -83,7 +83,7 @@ static JAGVida *sharedMyManager;
         [[NSUserDefaults standardUserDefaults]setObject:now forKey:@"savedDate"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
-
+    
 }
 
 -(void)fazerConsultas:(int)time{
@@ -155,14 +155,14 @@ static JAGVida *sharedMyManager;
 
 - (id)init {
     if (self = [super init]) {
-//      self.vida = [[JAGVida alloc] init];
-//        if ([NSUS]) {[[NSUserDefaults standardUserDefaults]setInteger:[nextlevel integerValue] forKey:@"faseAtual"];
-//        }
+        //      self.vida = [[JAGVida alloc] init];
+        //        if ([NSUS]) {[[NSUserDefaults standardUserDefaults]setInteger:[nextlevel integerValue] forKey:@"faseAtual"];
+        //        }
         
         
         self.vidas = [[NSUserDefaults standardUserDefaults] integerForKey:@"Vida"];
         
-        self.gamePad=[[NSUserDefaults standardUserDefaults] boolForKey:@"gamePad"]; 
+        self.gamePad=[[NSUserDefaults standardUserDefaults] boolForKey:@"gamePad"];
         self.inprogress=NO;
         
         if ([[NSUserDefaults standardUserDefaults] objectForKey:@"savedDate"]==nil) {
@@ -174,10 +174,10 @@ static JAGVida *sharedMyManager;
             
             [[NSUserDefaults standardUserDefaults] setInteger:self.vidas forKey:@"Vida"];
             [[NSUserDefaults standardUserDefaults] synchronize];
-
+            
         }
-//        self.vidas=1;
-
+        self.vidas=0;
+        
     }
     return self;
 }
