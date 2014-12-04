@@ -36,6 +36,7 @@
     BOOL pauseDetected;     //jogo pausado?
     JAGChave* chave;        //item chave
     Musica *relampago;
+    Musica *generate;
     bool frenetico;
     BOOL GONaTela;
 }
@@ -719,6 +720,7 @@ static Musica *colide;
     
 }
 -(void)deallocSound{
+    [generate soltar];
     [relampago soltar];
     [self.level.chuva soltar];
     
@@ -1484,7 +1486,12 @@ static Musica *colide;
             [[NSUserDefaults standardUserDefaults] synchronize];
 
 //            self.hud.vidaRestante--;
-            [self presentGameOver:2];
+            if (vida.vidas==0) {
+                [self presentGameOver:3];
+            }else{
+                [self presentGameOver:2];
+            }
+            
         }
     }
 }
@@ -1507,29 +1514,43 @@ static Musica *colide;
     
     self.cropNode.zPosition=50;
     
+    //Carregar o som da gotinha perdendo hp
+    
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric2" ofType:@"caf"];
+    NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
+    
+    generate=[[Musica alloc] init];
+    
+    [generate carregar:fileUrl withEffects:false];
+    
+    [generate changeVolume:0.7];
+
+    
+    
     SKAction *diminuirSaude=[SKAction sequence:@[[SKAction waitForDuration:time],
-                                                [SKAction runBlock:^{
+                                                 [SKAction runBlock:^{
         
         if (!self.inTutorial) {
             
-        
-        [self receberDano:1];
-        //Criar uma gotinha
-        
-      //  self.sprite.texture = [SKTexture textureWithImageNamed:@"poca.png"];
-
-        JAGPerdaGota *gotinha=[[JAGPerdaGota alloc] initWithPosition:self.gota.position withTimeLife:10 withSize:self.level.tileSize];
-        gotinha.zPosition = -1;
-        _gota.zPosition = 1;
-        [area addChild:[gotinha areavisao:50]];
-       
-        [self.camadaItens addChild:gotinha];
-        [self.camadaItens addChild:gotinha.sprite];
-//
-        //Aumentar a area
+            [generate play];
+            
+            [self receberDano:1];
+            //Criar uma gotinha
+            
+            //  self.sprite.texture = [SKTexture textureWithImageNamed:@"poca.png"];
+            
+            JAGPerdaGota *gotinha=[[JAGPerdaGota alloc] initWithPosition:self.gota.position withTimeLife:10 withSize:self.level.tileSize];
+            gotinha.zPosition = -1;
+            _gota.zPosition = 1;
+            [area addChild:[gotinha areavisao:50]];
+            
+            [self.camadaItens addChild:gotinha];
+            [self.camadaItens addChild:gotinha.sprite];
+            //
+            //Aumentar a area
         }
         
-                                                }]]];
+    }]]];
     SKAction *loop=[SKAction repeatActionForever:diminuirSaude];
     
     [self runAction:loop];
@@ -1542,12 +1563,12 @@ static Musica *colide;
     }
     
     
-    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"Raio1" ofType:@"caf"];
-    NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
+    NSString* filePath2 = [[NSBundle mainBundle] pathForResource:@"Raio1" ofType:@"caf"];
+    NSURL* fileUrl2 = [NSURL fileURLWithPath:filePath2];
     
     relampago=[[Musica alloc] init];
     
-    [relampago carregar:fileUrl withEffects:false];
+    [relampago carregar:fileUrl2 withEffects:false];
     
     [relampago changeVolume:1.0];
 
