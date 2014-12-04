@@ -375,7 +375,7 @@ static Musica *colide;
 #pragma mark - Máscara
 -(void)createMask:(int) radius
         withPoint:(CGPoint) ponto {
-//    UIColor *areaColor = [[UIColor alloc]initWithRed:1 green:1 blue:1 alpha:0.5];
+//    SKColor *areaColor = [[SKColor alloc]initWithRed:1 green:1 blue:1 alpha:0.5];
 //    area = [[SKSpriteNode alloc] initWithColor:areaColor size:self.frame.size];
     area = [[SKNode alloc]init];
     circleMask = [[SKShapeNode alloc ]init];
@@ -461,9 +461,6 @@ static Musica *colide;
     
 }
 
-
-
-
 -(void)expandMask{
     double frequencia = _level.frequenciaRelampago;
     NSTimeInterval tempo = frequencia;
@@ -494,8 +491,8 @@ static Musica *colide;
 
 -(void) configuraParadaGota {
     
-    pararMovimentoCONTROLx = [[SKSpriteNode alloc]initWithColor:([UIColor clearColor]) size:(CGSizeMake(5, height)) ];
-    pararMovimentoCONTROLy = [[SKSpriteNode alloc]initWithColor:([UIColor clearColor]) size:(CGSizeMake(width, 5)) ];
+    pararMovimentoCONTROLx = [[SKSpriteNode alloc]initWithColor:([SKColor clearColor]) size:(CGSizeMake(5, height)) ];
+    pararMovimentoCONTROLy = [[SKSpriteNode alloc]initWithColor:([SKColor clearColor]) size:(CGSizeMake(width, 5)) ];
     pararMovimentoCONTROLx.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:pararMovimentoCONTROLx.size];
     pararMovimentoCONTROLy.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:pararMovimentoCONTROLy.size];
     pararMovimentoCONTROLx.physicsBody.dynamic = NO;

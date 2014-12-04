@@ -17,7 +17,7 @@
 
 -(id)initWithPosition:(CGPoint)position withSize:(CGSize)size{
     self = [super init];
-    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
+    self.sprite = [[SKSpriteNode alloc] initWithColor:[SKColor clearColor] size:size];
     self.atlas = [SKTextureAtlas atlasNamed:@"enemies.atlas"];
     self.sprite.texture = [self.atlas textureNamed:@"fogo_idle.png"];
     self.idleTexture = [self.atlas textureNamed:@"fogo_idle.png"];
@@ -58,7 +58,7 @@
 
 
 -(JAGAttack *)createAttackRanged: (CGVector)withImpulse{
-    SKSpriteNode *trovao = [[SKSpriteNode alloc] initWithColor:[UIColor yellowColor] size:CGSizeMake(15, 15)];
+    SKSpriteNode *trovao = [[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size:CGSizeMake(15, 15)];
     JAGAttack *attack = [[JAGAttack alloc] initWithPosition:self.position withImpulse:withImpulse withDano:3 withSprite:trovao];
     
     return attack;

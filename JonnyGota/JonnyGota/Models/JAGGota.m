@@ -22,7 +22,7 @@ static Musica *andar;
     self.position = position;
     
     //textures load
-    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
+    self.sprite = [[SKSpriteNode alloc] initWithColor:[SKColor clearColor] size:size];
 
     self.atlas  = [SKTextureAtlas atlasNamed:@"gotinha.atlas"];
     self.sprite.texture = [self.atlas textureNamed:@"gotinha_correndo_frente1@2x.png"];
@@ -162,9 +162,6 @@ static Musica *andar;
 //        
 //        temp=nil;
 //    }
-
-
-    
     
     return gota2;
 }

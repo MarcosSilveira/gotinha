@@ -60,10 +60,10 @@
     _life.texture = _saude_sprites[0];
     _life.position = CGPointMake(size.width*0.88, size.height*0.955);
     _life.size = CGSizeMake(size.width*.15, size.height*.05);
-    _red = [[SKSpriteNode alloc]initWithColor:[UIColor redColor] size:CGSizeMake(_life.size.width*0.9, _life.size.height*0.95)];
+    _red = [[SKSpriteNode alloc]initWithColor:[SKColor redColor] size:CGSizeMake(_life.size.width*0.9, _life.size.height*0.95)];
     _red.position = _life.position;
     _red.alpha = 0.2f;
-    _pauseBT = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(size.width*.07, size.height*.1)];
+    _pauseBT = [[SKSpriteNode alloc] initWithColor:[SKColor clearColor] size:CGSizeMake(size.width*.07, size.height*.1)];
     _pauseBT.position = CGPointMake(size.width*0.11, size.height*0.96);
     _pauseBT.texture = [SKTexture textureWithImageNamed:@"pauseBT"];
     _pauseBT.name = @"pauseBT";
@@ -116,7 +116,7 @@
     
     _saude.text=[NSString stringWithFormat:@"saúde: " ];
     if (_gota.vida<=1){ _life.texture = _saude_sprites[0];
-        SKSpriteNode *red = [[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:_life.size];
+        SKSpriteNode *red = [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:_life.size];
         red.position = _life.position;
         red.alpha = 0.9;
 //        [self addChild:red];
@@ -142,7 +142,7 @@
    else if (_gota.vida<=11)_life.texture = _saude_sprites[6];
    
    else if (_gota.vida<=13){_life.texture = _saude_sprites[7];
-       SKSpriteNode *red = [[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:_life.size];
+       SKSpriteNode *red = [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:_life.size];
        red.position = _life.position;
        red.alpha = 0.9;
 //       [self addChild:red];

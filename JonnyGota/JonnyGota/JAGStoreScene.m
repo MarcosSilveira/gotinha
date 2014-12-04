@@ -191,7 +191,7 @@
             else if([produto.productIdentifier isEqualToString:@"Super_Gotinha_"]){
                 NSLog(@"Super gotinha retornou da loja");
                 nodoPreco = [[SKSpriteNode alloc]initWithImageNamed:@"price099.png"];
-                nodoItem = [[SKSpriteNode alloc]initWithColor:[UIColor yellowColor] size:CGSizeMake(30,30)];
+                nodoItem = [[SKSpriteNode alloc]initWithColor:[SKColor yellowColor] size:CGSizeMake(30,30)];
                 nodoItem.position = CGPointMake(posX, posY);
                 nodoPreco.position = CGPointMake(nodoItem.position.x, nodoItem.position.y*0.8);
 //                nodoItem.size = CGSizeMake(nodoItem.texture.size.width*0.7, nodoItem.texture.size.height*0.7);
