@@ -77,7 +77,6 @@
 		0BB7E84919AE403700C36889 /* JAGPerdaGota.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB7E84819AE403700C36889 /* JAGPerdaGota.m */; };
 		0BB81679199BBDA800490104 /* JAGWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB81678199BBDA800490104 /* JAGWall.m */; };
 		0BBC41391A2E1B1600AB890B /* maisTempo.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0BBC41381A2E1B1600AB890B /* maisTempo.wav */; };
-		0BBC41451A2F825C00AB890B /* AMBL.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BBC41431A2F825C00AB890B /* AMBL.caf */; };
 		0BBC41461A2F825C00AB890B /* AMBR.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BBC41441A2F825C00AB890B /* AMBR.caf */; };
 		0BBD2CFF1A13B002000931D5 /* JAGCompTutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD2CFE1A13B002000931D5 /* JAGCompTutorial.m */; };
 		0BBD2D021A13B0A3000931D5 /* JAGTutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD2D011A13B0A3000931D5 /* JAGTutorial.m */; };
@@ -1185,7 +1184,7 @@
 				ORGANIZATIONNAME = "Henrique Manfroi da Silveira";
 				TargetAttributes = {
 					0B3A044B1991164A00C7C39E = {
-						DevelopmentTeam = T5N5TT4E82;
+						DevelopmentTeam = 64TH9999YT;
 					};
 					0B3A04731991164A00C7C39E = {
 						DevelopmentTeam = VCE77X465D;
