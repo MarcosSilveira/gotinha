@@ -517,13 +517,11 @@ NSMutableArray *nodesPhy;
     
     [scene.hud startTimer];
     
+    JAGObjeto *obj = [[JAGObjeto alloc] init];
+    SKSpriteNode *cron = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(scene.level.tileSize-1, scene.level.tileSize-1)];
+    [obj criarObj:[scene.level calculateTile:CGPointMake(9, 3)] comTipo:2 eSprite:cron];
     
-    //Cronometro antigo
-//    JAGObjeto *obj = [[JAGObjeto alloc] init];
-//    SKSpriteNode *cron = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(scene.level.tileSize-1, scene.level.tileSize-1)];
-//    [obj criarObj:[scene.level calculateTile:CGPointMake(9, 3)] comTipo:2 eSprite:cron];
-    
-//    [scene.cropNode addChild:obj];
+    [scene.cropNode addChild:obj];
     
     [scene.cropNode addChild:scene.gota];
     
@@ -1993,7 +1991,7 @@ NSMutableArray *nodesPhy;
         fogo.activeFix=YES;
         
         NSMutableArray *paths = [[NSMutableArray alloc] init];
-        [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x+(tiledMap.tileSize.width*4), fogo.position.y)]];
+        [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x+(tiledMap.tileSize.width*4), fogo.position.y+(tiledMap.tileSize.width*0.25))]];
         
         [paths addObject:[NSValue valueWithCGPoint:CGPointMake(fogo.position.x, fogo.position.y)]];
         
@@ -2092,15 +2090,6 @@ NSMutableArray *nodesPhy;
         [scene.camadaItens addChild:presao3];
         
         [scene.camadaPersonagens addChild:porta];
-        
-        //Cronometro
-        
-        JAGObjeto *obj = [[JAGObjeto alloc] init];
-        
-//        SKSpriteNode *cron = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(scene.level.tileSize-1, scene.level.tileSize-1)];
-        [obj criarObj:[scene.level calculateTileHalf:CGPointMake(4, 3)] comTipo:2 withTamanho:CGSizeMake(scene.level.tileSize-1, scene.level.tileSize-1)];
-        
-        [scene.camadaItens addChild:obj];
         
         
         JAGFogoEnemy *fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 18)] withSize:tiledMap.tileSize];

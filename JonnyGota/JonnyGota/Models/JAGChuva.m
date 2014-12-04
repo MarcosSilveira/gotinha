@@ -27,7 +27,7 @@
     self.physicsBody.categoryBitMask = CHUVA;
     self.physicsBody.collisionBitMask = GOTA;
     self.physicsBody.contactTestBitMask = GOTA;
-
+    
     self.chuva = [[Musica alloc] init];
     
     [self.chuva inici];
@@ -48,7 +48,6 @@
     self.chuvaOposto = [[Musica alloc] init];
     
     [self.chuvaOposto inici];
-
     
     [self.chuvaOposto carregar:fileUrl2 withEffects:true];
     
@@ -56,14 +55,14 @@
     
     
     
-//    [self.chuva updateListener:posx withY:posy withZ:0.0f];
+    //    [self.chuva updateListener:posx withY:posy withZ:0.0f];
     
-//    [self.chuva configureEffects:ponto.x withY:ponto.y withZ:0.0f];
+    //    [self.chuva configureEffects:ponto.x withY:ponto.y withZ:0.0f];
     
     [self.chuva playInLoop];
-
+    
     [self.chuvaOposto playInLoop];
-
+    
     [self addChild:self.sprite];
     
     self.physicsBody.dynamic=NO;
@@ -76,7 +75,7 @@
 }
 
 -(void)update:(JAGGota *)gota{
-//    [self.chuva updateListener:gota.position.x withY:gota.position.y withZ:0.0f];
+    //    [self.chuva updateListener:gota.position.x withY:gota.position.y withZ:0.0f];
     
     float posx=self.position.x-gota.position.x;
     
@@ -86,7 +85,7 @@
     
     [self.chuva configureEffects:posx withY:posy withZ:0.0f];
     [self.chuvaOposto configureEffects:posxOpos withY:posy withZ:0.0f];
-//    NSLog(@"update gota");
+    //    NSLog(@"update gota");
 }
 
 -(void)soltar{

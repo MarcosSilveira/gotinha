@@ -17,10 +17,12 @@
     SKSpriteNode *priceItem1;
     SKSpriteNode *priceItem2;
     SKSpriteNode *bt_bg;
+    SKSpriteNode *bt_bg2;
     SKLabelNode *message2;
     SKSpriteNode *recuperaBT;
     SKReceiptRefreshRequest *request;
     BOOL primeiroProdutoOK;
+    
 }
 
 -(void)didMoveToView:(SKView *)view{
@@ -38,24 +40,24 @@
     backBT.position = CGPointMake(self.frame.size.width*0.1, self.frame.size.height*0.9);
     backBT.size = CGSizeMake(self.frame.size.width*0.08, self.frame.size.width*0.08);
     backBT.zRotation = M_PI;
-
+    
     
     recuperaBT = [[SKSpriteNode alloc]initWithImageNamed:@"restaurarCompras.png"];
     recuperaBT.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.17);
-    recuperaBT.size = CGSizeMake(recuperaBT.texture.size.width/2.2, recuperaBT.texture.size.height/2.2);
+    recuperaBT.size = CGSizeMake(recuperaBT.texture.size.width*.5, recuperaBT.texture.size.height*.5);
     recuperaBT.name = @"recuperaBT";
     
     message2 =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
     message2.fontSize = self.frame.size.height*0.08;
     message2.text =NSLocalizedString(@"STORE_CARREGANDO_PRODUTOS", nil);
     message2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
-
+    
     
     [self addChild:background];
     [self addChild:backBT];
     [self addChild:message2];
     [self addChild:recuperaBT];
-
+    
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -68,20 +70,19 @@
         if ([recuperaBT containsPoint:[touch locationInNode:self]]) {
             [self recuperaCompras];
         }
-
+        
         if ([backBT containsPoint:[touch locationInNode:self]]) {
             menu = [[JAGMenu alloc]initWithSize:self.frame.size];
-//            [self.scene.view presentScene:menu transition:[SKTransition fadeWithDuration:1]];
+            //            [self.scene.view presentScene:menu transition:[SKTransition fadeWithDuration:1]];
             
-            SKAction *transi=[SKAction sequence:@[[SKAction playSoundFileNamed:@"botaoUp1.wav" waitForCompletion:NO],
-                                                  [SKAction runBlock:^{
+            SKAction *transi=[SKAction sequence:@[[SKAction runBlock:^{
                 [backBT runAction:[SKAction scaleBy:1.5 duration:0.8]];
             }],[SKAction waitForDuration:0.1],
                                                   [SKAction runBlock:^{
                 [self.scene.view presentScene:menu transition:[SKTransition fadeWithDuration:1]];
             }]]];
             [self runAction:transi];
-
+            
         }
         
         auxNode2 = [self.scene childNodeWithName:@"10_vidas"];
@@ -93,28 +94,28 @@
         
         if([auxNode2 containsPoint:[touch locationInNode:self]])
             [self requestingPayment:[self.scene childNodeWithName:@"Super_Gotinha_"].name];
-    
+        
         
         if([recuperaBT containsPoint:[touch locationInNode:self]])
             [self recuperaCompras];
         
     }
-
+    
 }
 -(void)recuperaCompras{
-//    SKPaymentQueue *queue = [[SKPaymentQueue alloc]init];
+    //    SKPaymentQueue *queue = [[SKPaymentQueue alloc]init];
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
-//    SKPaymentTransaction *transactionAux = queue.transactions[0];
-//    NSMutableArray *productIDsToRestore = _identifiers;
-//    SKPaymentTransaction *transaction = transactionAux;
-//    
-//    if ([productIDsToRestore containsObject:transaction.transactionIdentifier]) {
-//        // Re-download the Apple-hosted content, then finish the transaction
-//        // and remove the product identifier from the array of product IDs.
-//    } else {
-//        [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-//    }
-
+    //    SKPaymentTransaction *transactionAux = queue.transactions[0];
+    //    NSMutableArray *productIDsToRestore = _identifiers;
+    //    SKPaymentTransaction *transaction = transactionAux;
+    //
+    //    if ([productIDsToRestore containsObject:transaction.transactionIdentifier]) {
+    //        // Re-download the Apple-hosted content, then finish the transaction
+    //        // and remove the product identifier from the array of product IDs.
+    //    } else {
+    //        [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+    //    }
+    
     
 }
 -(void)validateProductIdentifiers:(NSArray *)productIdentifiers
@@ -130,7 +131,7 @@
      didReceiveResponse:(SKProductsResponse *)response
 {
     self.products = response.products;
-
+    
     for (NSString *invalidIdentifier in response.invalidProductIdentifiers) {
         // Handle any invalid product identifiers.
     }
@@ -146,9 +147,9 @@
         
     }
     if (product!= nil) {
-    SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:product];
-    payment.quantity = 1;
-    [[SKPaymentQueue defaultQueue] addPayment:payment];
+        SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:product];
+        payment.quantity = 1;
+        [[SKPaymentQueue defaultQueue] addPayment:payment];
     }
 }
 
@@ -164,7 +165,7 @@
             [message2 removeFromParent];
             primeiroProdutoOK = YES;
         }
-
+        
         
         for (int i=0; i<_products.count; i++) {
             SKSpriteNode *nodoItem;
@@ -177,10 +178,10 @@
                 nodoItem = [[SKSpriteNode alloc]initWithImageNamed:@"vidas10.png"];
                 nodoItem.position = CGPointMake(posX, posY);
                 nodoPreco.position = CGPointMake(nodoItem.position.x, nodoItem.position.y*0.8);
-                nodoItem.size = CGSizeMake(nodoItem.texture.size.width*0.7, nodoItem.texture.size.height*0.7);
+                nodoItem.size = CGSizeMake(nodoItem.texture.size.width*.7, nodoItem.texture.size.height*.7);
                 nodoPreco.size = CGSizeMake(self.frame.size.width*0.15, self.frame.size.height*0.15);
                 bt_bg = [[SKSpriteNode alloc]initWithImageNamed:@"bt_bg.png"];
-                bt_bg.position = CGPointMake(nodoItem.position.x, nodoItem.position.y*0.85);
+                bt_bg.position = CGPointMake(nodoItem.position.x, nodoItem.position.y*0.9);
                 bt_bg.size = CGSizeMake(nodoPreco.size.width*1.1, nodoPreco.size.height*2);
                 bt_bg.zPosition = 0;
                 bt_bg.name = produto.productIdentifier;
@@ -190,26 +191,28 @@
             }
             else if([produto.productIdentifier isEqualToString:@"Super_Gotinha_"]){
                 NSLog(@"Super gotinha retornou da loja");
+                SKTextureAtlas* atlas  = [SKTextureAtlas atlasNamed:@"super_gotinha.atlas"];
+                
                 nodoPreco = [[SKSpriteNode alloc]initWithImageNamed:@"price099.png"];
                 nodoItem = [[SKSpriteNode alloc]initWithColor:[SKColor yellowColor] size:CGSizeMake(30,30)];
                 nodoItem.position = CGPointMake(posX, posY);
-                nodoPreco.position = CGPointMake(nodoItem.position.x, nodoItem.position.y*0.8);
-//                nodoItem.size = CGSizeMake(nodoItem.texture.size.width*0.7, nodoItem.texture.size.height*0.7);
+                nodoPreco.position = CGPointMake(nodoItem.position.x*.98, nodoItem.position.y*0.8);
+                //                nodoItem.size = CGSizeMake(nodoItem.texture.size.width*0.7, nodoItem.texture.size.height*0.7);
                 nodoPreco.size = CGSizeMake(self.frame.size.width*0.15, self.frame.size.height*0.15);
                 bt_bg = [[SKSpriteNode alloc]initWithImageNamed:@"bt_bg.png"];
-                bt_bg.position = CGPointMake(nodoItem.position.x, nodoItem.position.y*0.85);
+                bt_bg.position = CGPointMake(nodoItem.position.x*0.98, nodoItem.position.y*0.9);
                 bt_bg.size = CGSizeMake(nodoPreco.size.width*1.1, nodoPreco.size.height*2);
                 bt_bg.zPosition = 0;
                 bt_bg.name = produto.productIdentifier;
                 [self.scene addChild:nodoItem];
                 [self.scene addChild:nodoPreco];
                 [self.scene addChild:bt_bg];
-
+                
             }
             posX = posX+somaX;
             
             //posY = posY*1.2;
-
+            
             nodoItem.zPosition = 1;
             nodoPreco.zPosition = 1;
             
