@@ -144,7 +144,9 @@
                 
                 
             }else{
-                if(vida.vidas<=0){
+                int fase = [node.name intValue];
+
+                if(fase!=0 && vida.vidas<=0){
                     //Adicionar tempo nesse bloco
                     
                     if(timerLeft==nil){

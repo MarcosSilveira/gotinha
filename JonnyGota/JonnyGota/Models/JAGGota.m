@@ -66,7 +66,7 @@ static Musica *andar;
     
     
     //Musicas
-    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric1" ofType:@"caf"];
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"passo1" ofType:@"caf"];
     NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
     
     
@@ -91,6 +91,10 @@ static Musica *andar;
 -(void)removeActionWithSound{
     [self.andarM stop];
     [self.sprite removeAllActions];
+}
+
+-(void)playAndar{
+    
 }
 
 -(void)addPhysics{

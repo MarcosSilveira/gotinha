@@ -13,7 +13,11 @@
 
 @property Musica *musica;
 
+@property NSMutableArray *Musicas;
+
 @property BOOL paused;
+
+
 
 -(instancetype)initWithMusic:(Musica *)music;
 
@@ -22,5 +26,8 @@
 -(void)play;
 
 -(void)stop;
+
+-(void)addNewMusica:(Musica *)musica;
+
 
 @end
