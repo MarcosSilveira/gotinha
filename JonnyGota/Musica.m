@@ -133,6 +133,8 @@ static ALCcontext* openContext;
         audioData = NULL;
     }
     
+    
+    
     alDistanceModel(AL_LINEAR_DISTANCE);
     
     alSourcei(_outputSource, AL_BUFFER, _outputBuffer);
