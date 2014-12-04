@@ -176,7 +176,7 @@ static JAGVida *sharedMyManager;
             [[NSUserDefaults standardUserDefaults] synchronize];
             
         }
-        self.vidas=0;
+        self.vidas=5;
         
     }
     return self;
