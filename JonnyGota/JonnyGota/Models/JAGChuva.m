@@ -35,8 +35,7 @@
     NSString* filePath = [[NSBundle mainBundle] pathForResource:@"AMBL" ofType:@"caf"];
     NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
     
-    
-    
+
     [self.chuva carregar:fileUrl withEffects:true];
     
     [self.chuva changeVolume:1];
@@ -49,7 +48,6 @@
     self.chuvaOposto = [[Musica alloc] init];
     
     [self.chuvaOposto inici];
-    
     
     [self.chuvaOposto carregar:fileUrl2 withEffects:true];
     
