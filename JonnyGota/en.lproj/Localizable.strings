@@ -26,4 +26,5 @@
 "PLAY_TUTORIAL_FRASE1"= "Hello Little Drop! You are welcome! What about moving a little bit? Touch some directions so you can walk.";
 "PLAY_TUTORIAL_FRASE2" = "Well done! Now you know how to move, what about a liitle touch in yourself? Let's see what happens";
 "PLAY_TUTORIAL_FRASE3" = "That's it! What do you think about splitting yourself? Touch and drag your finger over yourself";
-
+"PLAY_GAMEOVER_PAUSE" = "Game Paused.";
+"HUD_SAUDE" = "Health:";

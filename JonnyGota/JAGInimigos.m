@@ -42,7 +42,7 @@
 }
 
 
-#pragma mark -IA
+
 // IN PROGRESS ...
 -(void)IAcomInfo{ // Inteligencia Artificial GENERICA
     
@@ -74,13 +74,7 @@
                         
                         if(i == self.arrPointsFixes.count - 1) {
                             sequenceTemp = [SKAction sequence:@[ [SKAction runBlock:^{
-                                if (i==0) {
-                                    [self correrAnimado:[self validaLado:self.position withNext:ponto]];
-                                }else{
-                                    CGPoint pontoAnt = [(NSValue *)[self.arrPointsFixes objectAtIndex:i-1] CGPointValue];
-                                    [self correrAnimado:[self validaLado:pontoAnt withNext:ponto]];
-                                }
-                                
+                                [self correrAnimado:[self validaLado:self.position withNext:ponto]];
                             }],
 
                                                                 [SKAction moveTo:ponto duration:0.5],
@@ -105,7 +99,6 @@
                         
                     }
                     [self createPathto];
-                    
                     _movePath = [SKAction sequence:@[sequenceTemp,_movePath]];
                     
                     
@@ -254,33 +247,6 @@
 
 }
 
-
--(void)addPointFIxes{
-    
-    
-    if([self addPointOk]){
-        [self.arrPointsFixes addObject:[NSValue valueWithCGPoint:self.position]];
-        //        NSLog(@"Counts. %d",self.arrPointsFixes.count);
-    }
-    [self removeActionForKey:@"move"];
-}
-
--(bool)addPointOk{
-    if (self.arrPointsFixes.count>0) {
-        
-        CGPoint ponto = [(NSValue *)[self.arrPointsFixes objectAtIndex:self.arrPointsFixes.count-1] CGPointValue];
-        
-        if(self.position.x==ponto.x&&self.position.y==ponto.y){
-            return false;
-        }
-    }
-    
-    return true;
-}
-
-
-
-#pragma mark -Follow
 -(void)follow:(JAGGota *) jogador{
     float distance = hypotf(self.position.x - jogador.position.x, self.position.y - jogador.position.y);
     
@@ -288,9 +254,6 @@
         self.seguindo = true;
         self.andandoIa = false;
         int tempSentido;
-        [self removeActionForKey:@"move"];
-        [self.sprite removeActionForKey:@"walking"];
-
         if(!self.inColisao){
             tempSentido = [self verificaSentido:jogador.position with:self.position];
             
@@ -300,6 +263,7 @@
                 
                 if (self.activeFix) {
                     [self addPointFIxes];
+
                 }
         }
         }else{
@@ -321,6 +285,9 @@
             self.sprite.texture= self.idleTexture;
 
         }
+        
+        
+        
 
         self.seguindo = false;
         self.sentido  = 0;
@@ -328,7 +295,7 @@
         [self IAcomInfo];
         
         if (self.seguindo==false && self.activeFix==NO && self.activeIa==NO) {
-            [self removeActionForKey:@"move"];
+            
             [self.sprite removeAllActions];
             self.sprite.texture= self.idleTexture;
             
@@ -343,6 +310,29 @@
         [self mover:(jogador.position) withInterval:2 withType:self.sentidoCol];
         [self addPointFIxes];
     }
+}
+
+-(void)addPointFIxes{
+    
+    
+    if([self addPointOk]){
+        [self.arrPointsFixes addObject:[NSValue valueWithCGPoint:self.position]];
+//        NSLog(@"Counts. %d",self.arrPointsFixes.count);
+    }
+    [self removeActionForKey:@"move"];
+}
+
+-(bool)addPointOk{
+    if (self.arrPointsFixes.count>0) {
+        
+        CGPoint ponto = [(NSValue *)[self.arrPointsFixes objectAtIndex:self.arrPointsFixes.count-1] CGPointValue]; 
+       
+        if(self.position.x==ponto.x&&self.position.y==ponto.y){
+            return false;
+        }
+    }
+    
+    return true;
 }
 
 -(JAGAttack *)attackRanged:(JAGGota *)jogador{

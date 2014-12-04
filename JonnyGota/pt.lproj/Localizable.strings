@@ -23,3 +23,5 @@
 "PLAY_TUTORIAL_FRASE1"= "Olá Gotinha! Seja bem-vinda! Que tal se mexer um pouco? Clique em alguma direção para que você possa andar.";
 "PLAY_TUTORIAL_FRASE2" = "Muito bem! Agora que sabe se mexer, quem sabe você dá um pequeno toque em sí própria? Vamos ver o que acontece";
 "PLAY_TUTORIAL_FRASE3" = "Isso aí! O que você acha sobre poder se dividir? Clique e arraste o dedo sobre sí mesma.";
+"PLAY_GAMEOVER_PAUSE" = "Jogo Pausado.";
+"HUD_SAUDE" = "Saúde:";

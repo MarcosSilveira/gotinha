@@ -63,6 +63,7 @@
     [self addChild:botaoPlay];
     [self addChild:botaoStore];
     NSLog(@"%@", NSLocalizedString(@"TESTE", nil));
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"hideAd" object:nil userInfo:nil];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -89,15 +90,16 @@
                 [self.scene.view presentScene:scene transition:trans];
             }]]];
             [self runAction:transi];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"showAd" object:nil];
             
             
-                    }
+        }
         else if([botaoStore containsPoint:location]){
-//            [botaoStore runAction:[SKAction scaleBy:1.5 duration:0.5]];
+            //            [botaoStore runAction:[SKAction scaleBy:1.5 duration:0.5]];
             SKScene *scene = [[JAGStoreScene alloc]initWithSize:self.frame.size];
-//            [self.scene.view presentScene:scene transition:[SKTransition fadeWithDuration:1.0]];
+            //            [self.scene.view presentScene:scene transition:[SKTransition fadeWithDuration:1.0]];
             
-             SKTransition *trans = [SKTransition fadeWithDuration:1.0];
+            SKTransition *trans = [SKTransition fadeWithDuration:1.0];
             
             SKAction *transi=[SKAction sequence:@[[SKAction playSoundFileNamed:@"botaoUp1.wav" waitForCompletion:NO],
                                                   [SKAction runBlock:^{

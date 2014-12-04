@@ -82,10 +82,9 @@
     _tempo.fontSize = size.height*0.05;
     _tempo.position=CGPointMake(size.width*0.5, size.height*0.94);
     
-    _saude=[[SKLabelNode alloc]initWithFontNamed:fonte];
-    _saude.text=[NSString stringWithFormat:@"saúde: %ld", (long)_gota.vida];
-    _saude.fontSize = size.height*0.05;
-    _saude.position=CGPointMake(size.width*0.73, size.height*0.94);
+    _saude=[[SKSpriteNode alloc] initWithImageNamed:@"saude.png"];
+    _saude.size = CGSizeMake(_saude.texture.size.width/2, _saude.texture.size.height/2);
+    _saude.position=CGPointMake(size.width*0.73, size.height*0.96);
     
     [self addChild:_back];
     [self addChild:_heart];
@@ -113,8 +112,7 @@
     _tempo.text=[NSString stringWithFormat:@"%ds",_tempoRestante];
     
     _vidas.text=[NSString stringWithFormat:@" x %ld",(long)vidasC.vidas];
-    
-    _saude.text=[NSString stringWithFormat:@"saúde: " ];
+//    _saude.text=[NSString stringWithFormat:@"saúde: " ];
     if (_gota.vida<=1){ _life.texture = _saude_sprites[0];
         SKSpriteNode *red = [[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:_life.size];
         red.position = _life.position;

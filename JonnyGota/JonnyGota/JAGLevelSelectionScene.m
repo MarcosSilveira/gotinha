@@ -34,7 +34,7 @@
 }
 
 -(void)didMoveToView:(SKView *)view{
-
+    
     
     vida=[JAGVida sharedManager];
     
@@ -47,9 +47,9 @@
     background.size = self.frame.size;
     background.zPosition = 0;
     vidas_quantidade = [[SKLabelNode alloc]initWithFontNamed:@"VAGRoundedStd-Bold"];
-//    vidas_quantidade.text = [NSString stringWithFormat:@" X %d",vidas_restantes];
+    //    vidas_quantidade.text = [NSString stringWithFormat:@" X %d",vidas_restantes];
     vidas_quantidade.text = [NSString stringWithFormat:@" X %ld",(long)vida.vidas];
-
+    
     vidas_quantidade.position = CGPointMake(self.frame.size.width*0.87, self.frame.size.height*0.86);
     vidas_quantidade.fontSize = self.frame.size.width*0.05;
     backBT =[[SKSpriteNode alloc]initWithImageNamed:@"btBack"];
@@ -95,11 +95,11 @@
     check.name=@"check";
     
     [self addChild:check];
-
+    
 }
 -(void)update:(NSTimeInterval)currentTime{
     vidas_quantidade.text = [NSString stringWithFormat:@" X %ld",(long)vida.vidas];
-
+    
 }
 
 
@@ -112,11 +112,11 @@
     JAGPlayGameScene *jogo;
     for (UITouch *touch in touches) {
         SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
-//        node.alpha=1.0;
+        //        node.alpha=1.0;
         if ([node.name isEqualToString:@"btBack"]) {
-//              [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
+            //              [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
             JAGMenu* menu = [[JAGMenu alloc]initWithSize:self.frame.size];
-//            [self.scene.view presentScene:menu transition:[SKTransition fadeWithDuration:1]];
+            //            [self.scene.view presentScene:menu transition:[SKTransition fadeWithDuration:1]];
             
             SKAction *transi=[SKAction sequence:@[[SKAction playSoundFileNamed:@"botaoUp1.wav" waitForCompletion:NO],[SKAction runBlock:^{
                 [node runAction:[SKAction scaleBy:1.5 duration:0.8]];
@@ -135,14 +135,14 @@
             
             //            if (fase!=0 && vidas_restantes>0) {
             if (fase!=0 && vida.vidas>0) {
-//                [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
+                //                [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
                 jogo = [[JAGPlayGameScene alloc]initWithSize:self.frame.size level:faseA andWorld:@1];
                 [self runAction:[SKAction playSoundFileNamed:@"botaoUp1.wav" waitForCompletion:YES]];
                 
                 [self.scene.view presentScene:jogo transition:[SKTransition fadeWithDuration:1]];
                 
                 
-
+                
             }else{
                 if(vida.vidas<=0){
                     //Adicionar tempo nesse bloco
@@ -150,14 +150,14 @@
                     if(timerLeft==nil){
                         timerLeft=[[SKLabelNode alloc]initWithFontNamed:@"VAGRoundedStd-Bold"];
                         
-                        timerLeft.text = [NSString stringWithFormat:@" %d m",[vida consultarTempoParaVida]];
+                        timerLeft.text = [NSString stringWithFormat:@" %d min",[vida consultarTempoParaVida]];
                         
                         timerLeft.position = CGPointMake(self.frame.size.width*0.87, self.frame.size.height*0.76);
                         timerLeft.fontSize = self.frame.size.width*0.045;
                         
                         [self addChild:timerLeft];
                     }else{
-                        timerLeft.text = [NSString stringWithFormat:@" %d m",[vida consultarTempoParaVida]];
+                        timerLeft.text = [NSString stringWithFormat:@" %d min",[vida consultarTempoParaVida]];
                     }
                     
                     [self removeAllActions];
@@ -176,12 +176,12 @@
             [self addCheck];
         }
         
-//        if ([node.name isEqualToString:@"fase_trancada"]) {
-//            [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
-//        }
+        //        if ([node.name isEqualToString:@"fase_trancada"]) {
+        //            [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
+        //        }
     }
     
-
+    
 }
 
 
@@ -217,7 +217,7 @@
             
             SKLabelNode *labelNum=[[SKLabelNode alloc] initWithFontNamed:@"VAGRoundedStd-Bold"];
             
-           
+            
             //Setar um font size baseada na tela
             labelNum.fontSize=self.frame.size.height*0.1;
             

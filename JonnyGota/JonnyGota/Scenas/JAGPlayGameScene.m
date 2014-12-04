@@ -56,7 +56,7 @@ static Musica *colide;
     _message2.text = @"Game Paused";
     _message2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
     _message2.alpha = 0;
-//    _message2.zPosition = 999;
+    //    _message2.zPosition = 999;
     [self.camadaPersonagens addChild:_message2];
     [self touchesEnded:nil withEvent:nil];
 }
@@ -84,7 +84,7 @@ static Musica *colide;
         [JAGCreatorLevels initializeLevel:self.currentLevel ofWorld:self.currentWorld onScene:self];
         
         tocou_gota = false;
-       
+        
         width = self.scene.size.width;
         height = self.scene.size.height;
         [self configuraParadaGota];
@@ -98,28 +98,28 @@ static Musica *colide;
     //Criar Buttons
     [self createButtons];
     
-   
-        NSString* filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric5" ofType:@"caf"];
-        NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
-        
-        divide=[[Musica alloc] init];
-        
-        [divide carregar:fileUrl withEffects:false];
-        
-        [divide changeVolume:0.9];
-        
-        
-        filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric3" ofType:@"caf"];
-        fileUrl = [NSURL fileURLWithPath:filePath];
-        
-        poca=[[Musica alloc] init];
-        
-        [poca carregar:fileUrl withEffects:false];
-        
-        
+    
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric5" ofType:@"caf"];
+    NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
+    
+    divide=[[Musica alloc] init];
+    
+    [divide carregar:fileUrl withEffects:false];
+    
+    [divide changeVolume:0.9];
     
     
-   
+    filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric3" ofType:@"caf"];
+    fileUrl = [NSURL fileURLWithPath:filePath];
+    
+    poca=[[Musica alloc] init];
+    
+    [poca carregar:fileUrl withEffects:false];
+    
+    
+    
+    
+    
     
     return self;
 }
@@ -158,9 +158,9 @@ static Musica *colide;
             tamanhoL=CGSizeMake(self.frame.size.width*0.09, self.frame.size.height*0.15);
         }
         
-//        tamanhoU=CGSizeMake(51.12, 48);
+        //        tamanhoU=CGSizeMake(51.12, 48);
         
-//        tamanhoL=CGSizeMake(51.12, 48);
+        //        tamanhoL=CGSizeMake(51.12, 48);
         
         //    tamanho=CGSizeMake(60, 60);
         
@@ -170,8 +170,8 @@ static Musica *colide;
         
         self.buttonDown.zPosition=150;
         
-       
-//        self.buttonDown.position=CGPointMake(85.20, 25.6);
+        
+        //        self.buttonDown.position=CGPointMake(85.20, 25.6);
         
         
         self.buttonUp=[[SKSpriteNode alloc] initWithImageNamed:@"arrowGamePad"];
@@ -184,9 +184,9 @@ static Musica *colide;
         
         
         
-//        self.buttonUp.position=CGPointMake(84.20,89.60);
+        //        self.buttonUp.position=CGPointMake(84.20,89.60);
         
-
+        
         self.buttonLeft=[[SKSpriteNode alloc] initWithImageNamed:@"arrowGamePad"];
         
         self.buttonLeft.size=tamanhoL;
@@ -197,7 +197,7 @@ static Musica *colide;
         
         
         
-//        self.buttonLeft.position=CGPointMake(42.60,57.60);
+        //        self.buttonLeft.position=CGPointMake(42.60,57.60);
         
         
         self.buttonRight=[[SKSpriteNode alloc] initWithImageNamed:@"arrowGamePad"];
@@ -209,26 +209,26 @@ static Musica *colide;
         self.buttonRight.zPosition=150;
         
         
-       
-
-//        self.buttonRight.position=CGPointMake(127.8,57.60);
-         if(self.gota.sprite.size.height>100){
-             self.buttonDown.position=CGPointMake(self.frame.size.width*0.12, self.frame.size.height*0.06);
-             
-             self.buttonUp.position=CGPointMake(self.frame.size.width*0.12, self.frame.size.height*0.20);
-             
-             self.buttonLeft.position=CGPointMake(self.frame.size.width*0.062, self.frame.size.height*0.13);
-             
-             self.buttonRight.position=CGPointMake(self.frame.size.width*0.178, self.frame.size.height*0.13);
-         }else{
-              self.buttonDown.position=CGPointMake(self.frame.size.width*0.15, self.frame.size.height*0.08);
-             
+        
+        
+        //        self.buttonRight.position=CGPointMake(127.8,57.60);
+        if(self.gota.sprite.size.height>100){
+            self.buttonDown.position=CGPointMake(self.frame.size.width*0.12, self.frame.size.height*0.06);
+            
+            self.buttonUp.position=CGPointMake(self.frame.size.width*0.12, self.frame.size.height*0.20);
+            
+            self.buttonLeft.position=CGPointMake(self.frame.size.width*0.062, self.frame.size.height*0.13);
+            
+            self.buttonRight.position=CGPointMake(self.frame.size.width*0.178, self.frame.size.height*0.13);
+        }else{
+            self.buttonDown.position=CGPointMake(self.frame.size.width*0.15, self.frame.size.height*0.08);
+            
             self.buttonUp.position=CGPointMake(self.frame.size.width*0.15, self.frame.size.height*0.28);
-             
-             self.buttonLeft.position=CGPointMake(self.frame.size.width*0.075, self.frame.size.height*0.18);
-             
-              self.buttonRight.position=CGPointMake(self.frame.size.width*0.225, self.frame.size.height*0.18);
-         }
+            
+            self.buttonLeft.position=CGPointMake(self.frame.size.width*0.075, self.frame.size.height*0.18);
+            
+            self.buttonRight.position=CGPointMake(self.frame.size.width*0.225, self.frame.size.height*0.18);
+        }
         
         
         [self addChild:self.buttonDown];
@@ -310,13 +310,13 @@ static Musica *colide;
         
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
         GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
-        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"storeBT"];
+        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"storeBT "];
         button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
         button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
         button2.size =CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.2);
-        button1.name = @"resume";
+        button1.name = @"store";
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
         message.fontSize = self.frame.size.height*0.07;
@@ -337,13 +337,13 @@ static Musica *colide;
         
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
         GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
-        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"storeBT"];
+        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"resumir"];
         button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
         button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
         button2.size =CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.2);
-        button1.name = @"resume";
+        button1.name = @"resumir";
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
         message.fontSize = self.frame.size.height*0.07;
@@ -358,7 +358,7 @@ static Musica *colide;
         GObackground.zPosition = 200;
         message.zPosition = 201;
     }
-
+    
     GONaTela = YES;
     self.paused = YES;
 }
@@ -368,15 +368,15 @@ static Musica *colide;
 //-(void)gotaReduzVida{
 //    if(!_gota.emContatoFonte){}
 //    else _gota.vida ++;
-//    
+//
 //}
 
 
 #pragma mark - Máscara
 -(void)createMask:(int) radius
         withPoint:(CGPoint) ponto {
-//    UIColor *areaColor = [[UIColor alloc]initWithRed:1 green:1 blue:1 alpha:0.5];
-//    area = [[SKSpriteNode alloc] initWithColor:areaColor size:self.frame.size];
+    //    UIColor *areaColor = [[UIColor alloc]initWithRed:1 green:1 blue:1 alpha:0.5];
+    //    area = [[SKSpriteNode alloc] initWithColor:areaColor size:self.frame.size];
     area = [[SKNode alloc]init];
     circleMask = [[SKShapeNode alloc ]init];
     
@@ -402,7 +402,7 @@ static Musica *colide;
 }
 
 -(SKShapeNode *)createCircleToMask:(int) radius
-                         {
+{
     
     SKShapeNode *circleNew=[[SKShapeNode alloc ]init];
     
@@ -416,8 +416,8 @@ static Musica *colide;
     circleNew.fillColor = [SKColor clearColor];
     
     circleNew.position = CGPointMake(_gota.position.x-_gota.sprite.size.width,_gota.position.y-_gota.sprite.size.height);
-   
-   
+    
+    
     return circleNew;
 }
 
@@ -429,30 +429,30 @@ static Musica *colide;
                                               [SKAction runBlock:^{
         if (!self.inTutorial) {
             
-        
-        [relampago play];
-        //        [self.scene runAction:[SKAction playSoundFileNamed:@"trovao.wav" waitForCompletion:NO]];
-        SKAction *retiraMascara=[SKAction sequence:@[[SKAction waitForDuration:0.1],
-                                                     [SKAction runBlock:^{
-            //        [circleMask runAction:fadeIn];
-            //        [circleMask removeFromParent];
-            [_cropNode setMaskNode:nil];
-            fadeMask.alpha = 0;
             
-            SKAction *retornaMascara=[SKAction sequence:@[[SKAction waitForDuration:0.05],
-                                                          [SKAction runBlock:^{
-                //            [circleMask runAction:fadeOut];
-                //            [area addChild:circleMask];
-                [_cropNode setMaskNode:area];
-                fadeMask.alpha = 1;
+            [relampago play];
+            //        [self.scene runAction:[SKAction playSoundFileNamed:@"trovao.wav" waitForCompletion:NO]];
+            SKAction *retiraMascara=[SKAction sequence:@[[SKAction waitForDuration:0.1],
+                                                         [SKAction runBlock:^{
+                //        [circleMask runAction:fadeIn];
+                //        [circleMask removeFromParent];
+                [_cropNode setMaskNode:nil];
+                fadeMask.alpha = 0;
+                
+                SKAction *retornaMascara=[SKAction sequence:@[[SKAction waitForDuration:0.05],
+                                                              [SKAction runBlock:^{
+                    //            [circleMask runAction:fadeOut];
+                    //            [area addChild:circleMask];
+                    [_cropNode setMaskNode:area];
+                    fadeMask.alpha = 1;
+                    
+                }]]];
+                
+                [self runAction:retornaMascara];
                 
             }]]];
-            
-            [self runAction:retornaMascara];
-            
-        }]]];
-        SKAction *repeater2 = [SKAction repeatAction:retiraMascara count:4];
-        [self runAction:repeater2];
+            SKAction *repeater2 = [SKAction repeatAction:retiraMascara count:4];
+            [self runAction:repeater2];
         }
     }]]];
     SKAction *repeater=[SKAction repeatActionForever:controle];
@@ -470,13 +470,13 @@ static Musica *colide;
     SKAction *controle = [SKAction sequence:@[[SKAction waitForDuration:tempo],
                                               [SKAction runBlock:^{
         [relampago play];
-              //Criar novo campo de visão.
+        //Criar novo campo de visão.
         
         SKAction *scaler=[SKAction sequence:@[[SKAction scaleBy:2 duration:0],[SKAction scaleBy:0.5 duration:1.5]]];
         [circleMask runAction:scaler];
         
         
-        }]]] ;
+    }]]] ;
     
     controle=[SKAction repeatActionForever:controle];
     [self runAction:controle];
@@ -510,13 +510,13 @@ static Musica *colide;
     pararMovimentoCONTROLy.name = @"controle_toque_y";
     controleXnaTela = NO;
     controleYnaTela = NO;
-
+    
 }
 
 -(int)verificaSentido: (CGPoint)pontoReferencia with:(CGPoint)pontoObjeto {
     //  toqueFinal = pontoReferencia;
     int tipo;
-
+    
     float difx = pontoObjeto.x - pontoReferencia.x;
     
     //float dify=toqueFinals.y-toqueFinal.y;
@@ -527,7 +527,7 @@ static Musica *colide;
     
     bool negy = false;
     
-        
+    
     if(difx < 0){
         negx = true;
         difx *= -1;
@@ -549,7 +549,7 @@ static Musica *colide;
         else
             tipo = 2;
     }
-
+    
     return tipo;
 }
 
@@ -584,7 +584,7 @@ static Musica *colide;
             }],
                                                    [SKAction waitForDuration:1]]];
             
-
+            
             [self runAction:attacks];
             
         }else{
@@ -647,7 +647,7 @@ static Musica *colide;
                 
                 [self transicaoButton:node withScene:scene];
                 
-//                [self.scene.view presentScene:scene transition:trans];
+                //                [self.scene.view presentScene:scene transition:trans];
                 
                 
             }
@@ -665,9 +665,9 @@ static Musica *colide;
                 [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
                 
                 [self transicaoButton:node withScene:scene];
-//                SKTransition *trans = [SKTransition fadeWithDuration:1.0];
-//                
-//                [self.scene.view presentScene:scene transition:trans];
+                //                SKTransition *trans = [SKTransition fadeWithDuration:1.0];
+                //
+                //                [self.scene.view presentScene:scene transition:trans];
                 
             }
             
@@ -703,7 +703,7 @@ static Musica *colide;
     CGPoint location = [touch locationInView:self.view];
     CGPoint prevLocation = [touch previousLocationInView:self.view];
     
-   // location=CGPointMake(location.x-(_gota.position.x)+CGRectGetMidX(self.frame),
+    // location=CGPointMake(location.x-(_gota.position.x)+CGRectGetMidX(self.frame),
     //                     location.y-(_gota.position.y)+CGRectGetMidY(self.frame));
     
     if (location.x - prevLocation.x > 0) {
@@ -718,7 +718,7 @@ static Musica *colide;
     } else {
         //finger touch went downwards
     }
-
+    
     
 }
 -(void)deallocSound{
@@ -741,7 +741,7 @@ static Musica *colide;
                     
                     [self.gota removeActionWithSound];
                     
-                    [self presentGameOver:2];
+                    [self presentGameOver:3];
                     
                 }
             }
@@ -751,7 +751,7 @@ static Musica *colide;
                                      toqueFinal.y+(_gota.position.y)-CGRectGetMidY(self.frame));
             
             
-//            float difToq=sqrt(pow(toqueInicio.x-toqueFinal.x,2)+pow(toqueInicio.y-toqueFinal.y,2));
+            //            float difToq=sqrt(pow(toqueInicio.x-toqueFinal.x,2)+pow(toqueInicio.y-toqueFinal.y,2));
             
             pararMovimentoCONTROLx.position = [touch locationInNode:_cropNode];
             pararMovimentoCONTROLy.position = [touch locationInNode:_cropNode];
@@ -901,7 +901,7 @@ static Musica *colide;
 
 -(void)logicaMove:(UITouch *) touch{
     if (!_gota.escondida) {
-
+        
         toqueFinal = [touch locationInNode:self];
         toqueFinal = CGPointMake(toqueFinal.x+(_gota.position.x)-CGRectGetMidX(self.frame),
                                  toqueFinal.y+(_gota.position.y)-CGRectGetMidY(self.frame));
@@ -911,60 +911,60 @@ static Musica *colide;
         }
         else if (!pauseDetected) {
             
-        int temp=[self verificaSentido:toqueFinal with:_gota.position];
+            int temp=[self verificaSentido:toqueFinal with:_gota.position];
             
-
+            
             
             if (_gota.sentido != temp) {
-            self.gota.sentido=temp;                
-            
-            switch (self.gota.sentido) {
-                case 1:
-                    
-                    [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:1 ];
-                    
-                    if (controleXnaTela){
-                        [pararMovimentoCONTROLx removeFromParent];
-                        controleXnaTela = NO;}
-                    if (!controleYnaTela) {
-                        [_cropNode addChild:pararMovimentoCONTROLy];
-                        controleYnaTela = YES;}
-                    
-                    break;
-                case 2:
-                    
-                    [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:2 ];
-                    
-                    if (controleXnaTela){
-                        [pararMovimentoCONTROLx removeFromParent];
-                        controleXnaTela = NO;}
-                    if (!controleYnaTela) {
-                        [_cropNode addChild:pararMovimentoCONTROLy];
-                        controleYnaTela = YES;}
-                    break;
-                case 3:
-                    [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:3 ];
-                    
-                    if (controleYnaTela){
-                        [pararMovimentoCONTROLy removeFromParent];
-                        controleYnaTela = NO;}
-                    if (!controleXnaTela) {
-                        [_cropNode addChild:pararMovimentoCONTROLx];
-                        controleXnaTela = YES;}
-                    break;
-                case 4:
-                    
-                    [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:4 ];
-                    
-                    
-                    if (controleYnaTela){
-                        [pararMovimentoCONTROLy removeFromParent];
-                        controleYnaTela = NO;}
-                    if (!controleXnaTela) {
-                        [_cropNode addChild:pararMovimentoCONTROLx];
-                        controleXnaTela = YES;}
-                    break;
-            }
+                self.gota.sentido=temp;
+                
+                switch (self.gota.sentido) {
+                    case 1:
+                        
+                        [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:1 ];
+                        
+                        if (controleXnaTela){
+                            [pararMovimentoCONTROLx removeFromParent];
+                            controleXnaTela = NO;}
+                        if (!controleYnaTela) {
+                            [_cropNode addChild:pararMovimentoCONTROLy];
+                            controleYnaTela = YES;}
+                        
+                        break;
+                    case 2:
+                        
+                        [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:2 ];
+                        
+                        if (controleXnaTela){
+                            [pararMovimentoCONTROLx removeFromParent];
+                            controleXnaTela = NO;}
+                        if (!controleYnaTela) {
+                            [_cropNode addChild:pararMovimentoCONTROLy];
+                            controleYnaTela = YES;}
+                        break;
+                    case 3:
+                        [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:3 ];
+                        
+                        if (controleYnaTela){
+                            [pararMovimentoCONTROLy removeFromParent];
+                            controleYnaTela = NO;}
+                        if (!controleXnaTela) {
+                            [_cropNode addChild:pararMovimentoCONTROLx];
+                            controleXnaTela = YES;}
+                        break;
+                    case 4:
+                        
+                        [_gota mover:[touch locationInNode:self] withInterval:1.0 withType:4 ];
+                        
+                        
+                        if (controleYnaTela){
+                            [pararMovimentoCONTROLy removeFromParent];
+                            controleYnaTela = NO;}
+                        if (!controleXnaTela) {
+                            [_cropNode addChild:pararMovimentoCONTROLx];
+                            controleXnaTela = YES;}
+                        break;
+                }
                 
             }
             
@@ -980,8 +980,8 @@ static Musica *colide;
     if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0) {
         [self centerMapOnCharacter];
         [self.hud update];
-        }
-
+    }
+    
     if(_gota.physicsBody.velocity.dx == 0 && _gota.physicsBody.velocity.dy == 0 && _gota.sprite.texture != _gota.idleTexture && !_gota.escondida)
     {
         [self.gota removeActionWithSound];
@@ -993,15 +993,15 @@ static Musica *colide;
     }
     
     if (_gota.comChave) {
-//        chave.position = CGPointMake(_gota.position.x*0.9, _gota.position.y*0.9);
+        //        chave.position = CGPointMake(_gota.position.x*0.9, _gota.position.y*0.9);
         SKPhysicsJointPin *jointKey = [SKPhysicsJointPin jointWithBodyA:_gota.physicsBody bodyB:chave.physicsBody anchor:_gota.position];
         [self.scene.physicsWorld addJoint:jointKey];
     }
     
     //[fogo IAcomInfo:_gota];
-   
     
-   
+    
+    
     //depois de um tempo ou acao
     
     //circleMask.position = CGPointMake(_gota.position.x-height*0.2, _gota.position.y-width*0.29);
@@ -1009,8 +1009,8 @@ static Musica *colide;
     ///area.position = CGPointMake(_gota.position.x,_gota.position.y);
     
     
-
-
+    
+    
     [self.level.chuva update:self.gota];
     
     [self prepareMove];
@@ -1030,12 +1030,12 @@ static Musica *colide;
     }
 }
 -(void)nextLevel{
-   self.paused = NO;
+    self.paused = NO;
     
     NSNumber *nextlevel=[NSNumber numberWithInt:([self.currentLevel intValue] + 1)];
     
     [self deallocSound];
-
+    
     if ([[JAGCreatorLevels numberOfLevels:1] intValue]>=[nextlevel intValue]) {
         //Precisa desalocar os objetos tbm?
         
@@ -1045,27 +1045,27 @@ static Musica *colide;
         JAGPlayGameScene *scene = [[JAGPlayGameScene alloc] initWithSize:self.frame.size level:nextlevel andWorld:@1];
         
         scene.paused=YES;
-
+        
         
         SKTransition *trans = [SKTransition fadeWithDuration:1.0];
         [self.scene.view presentScene:scene transition:trans];
         frenetico=YES;
-       
         
-            }else{
-//        self.paused = YES;
-                
-//                [self deallocSound];
-                self.scene.view.paused = NO;
-                GONaTela = NO;
-                JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
-                [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
-                SKTransition *trans = [SKTransition fadeWithDuration:1.0];
-                
-                [self.scene.view presentScene:scene transition:trans];
+        
+    }else{
+        //        self.paused = YES;
+        
+        //                [self deallocSound];
+        self.scene.view.paused = NO;
+        GONaTela = NO;
+        JAGMenu *scene = [[JAGMenu alloc] initWithSize:self.scene.frame.size];
+        [[NSUserDefaults standardUserDefaults]setInteger:_hud.vidaRestante forKey:@"vidas_restantes"];
+        SKTransition *trans = [SKTransition fadeWithDuration:1.0];
+        
+        [self.scene.view presentScene:scene transition:trans];
     }
-//    [self.gota changePosition:self.posicaoInicial];
-
+    //    [self.gota changePosition:self.posicaoInicial];
+    
 }
 #pragma mark - PrepareMove
 -(void)prepareMove{
@@ -1073,7 +1073,7 @@ static Musica *colide;
     
     queue = dispatch_queue_create("actionEnemys",
                                   NULL);
-
+    
     dispatch_async(queue, ^{
         [self actionsEnemys];
     });
@@ -1097,24 +1097,24 @@ static Musica *colide;
     if((contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == TRAP)){
         JAGTrap *trap=(JAGTrap *)contact.bodyB.node;
         if (trap.tipo!=0)
-        [trap capturouAGota:_gota];
+            [trap capturouAGota:_gota];
         else [self receberDano:5];
     }
     
     if((contact.bodyB.categoryBitMask == GOTA) && (contact.bodyA.categoryBitMask == TRAP)){
-         JAGTrap *trap=(JAGTrap *)contact.bodyA.node;
+        JAGTrap *trap=(JAGTrap *)contact.bodyA.node;
         if (trap.tipo!=0)
-        [trap capturouAGota:_gota];
+            [trap capturouAGota:_gota];
         else [self receberDano:5];
     }
     
-
-
+    
+    
     //Colisao com a parede
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"wall"]) ||
        ([contact.bodyA.node.name isEqualToString:@"wall"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
-
-
+        
+        
     }
     
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"chave"]) ||
@@ -1162,21 +1162,21 @@ static Musica *colide;
                 //Reseta o tempo
             }
             
-                for (int i=0; i<_portas.count; i++) {
-                    JAGPorta *porta=_portas[i];
-                    [porta verificarBotoes];
-                }
+            for (int i=0; i<_portas.count; i++) {
+                JAGPorta *porta=_portas[i];
+                [porta verificarBotoes];
+            }
             
-           
+            
             //[obj removeFromParent];
         }else{
             JAGPressao *obj=(JAGPressao *)contact.bodyB.node;
             [obj pisar];
             
-                for (int i=0; i<_portas.count; i++) {
-                    JAGPorta *porta=_portas[i];
-                    [porta verificarBotoes];
-                }
+            for (int i=0; i<_portas.count; i++) {
+                JAGPorta *porta=_portas[i];
+                [porta verificarBotoes];
+            }
             
             //[obj removeFromParent];
         }
@@ -1197,9 +1197,9 @@ static Musica *colide;
             for (int i=0; i<_portas.count; i++) {
                 JAGPorta *porta=_portas[i];
                 if (porta.tipo!=2) {
-                     [porta verificarBotoes];
+                    [porta verificarBotoes];
                 }
-               
+                
             }
             
             
@@ -1216,7 +1216,7 @@ static Musica *colide;
             //[obj removeFromParent];
         }
     }
-
+    
     
     if(([contact.bodyA.node.name isEqualToString:@"gota"] && [contact.bodyB.node.name isEqualToString:@"porta"]) ||
        ([contact.bodyA.node.name isEqualToString:@"porta"] && [contact.bodyB.node.name isEqualToString:@"gota"]) ) {
@@ -1268,9 +1268,9 @@ static Musica *colide;
         _gota.sprite.texture = _gota.idleTexture;
         _gota.physicsBody.velocity = CGVectorMake(0, 0);
         self.gota.sentido=0;
-
+        
     }
-
+    
     //Colissao do Attack
     
     if(( (contact.bodyA.categoryBitMask == GOTA) && (contact.bodyB.categoryBitMask == ATTACK)) ||
@@ -1285,7 +1285,7 @@ static Musica *colide;
             attack=(JAGAttack *)contact.bodyB.node;
             [self receberDano:attack.dano];
             [attack removeFromParent];
-
+            
         }
     }
     if(((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ATTACK))||
@@ -1305,7 +1305,7 @@ static Musica *colide;
         //Ir para o proximo nivel
         NSNumber *nextlevel=[NSNumber numberWithInt:([self.currentLevel intValue] + 1)];
         
-       NSInteger faseAtual = [[NSUserDefaults standardUserDefaults] integerForKey:@"faseAtual"];
+        NSInteger faseAtual = [[NSUserDefaults standardUserDefaults] integerForKey:@"faseAtual"];
         
         [self.gota removeActionWithSound];
         
@@ -1313,12 +1313,12 @@ static Musica *colide;
             [[NSUserDefaults standardUserDefaults]setInteger:[nextlevel integerValue] forKey:@"faseAtual"];
         
         [self presentGameOver:1];
-    
-   
+        
+        
     }
     
     if(((contact.bodyA.categoryBitMask==GOTA) && (contact.bodyB.categoryBitMask==DIVIDIDA))||
-        ((contact.bodyB.categoryBitMask==GOTA) && (contact.bodyA.categoryBitMask==DIVIDIDA))){
+       ((contact.bodyB.categoryBitMask==GOTA) && (contact.bodyA.categoryBitMask==DIVIDIDA))){
         if(contact.bodyA.categoryBitMask==DIVIDIDA){
             JAGGotaDividida *dividida=(JAGGotaDividida *)contact.bodyA.node;
             if(dividida.pronto){
@@ -1326,7 +1326,7 @@ static Musica *colide;
                 
                 
             }
-                       
+            
         }else{
             JAGGotaDividida *dividida=(JAGGotaDividida *)contact.bodyB.node;
             
@@ -1338,16 +1338,16 @@ static Musica *colide;
     }
     
     
-//    //Melhorar Ia do monstro
-//    if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ENEMY)){
-//        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
-//        inimigo.inColisao=true;
-//    }
-//    
-//    if((contact.bodyB.categoryBitMask == PAREDE) && (contact.bodyA.categoryBitMask == ENEMY)){
-//        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
-//        inimigo.inColisao=true;
-//    }
+    //    //Melhorar Ia do monstro
+    //    if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ENEMY)){
+    //        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
+    //        inimigo.inColisao=true;
+    //    }
+    //
+    //    if((contact.bodyB.categoryBitMask == PAREDE) && (contact.bodyA.categoryBitMask == ENEMY)){
+    //        JAGInimigos *inimigo=(JAGInimigos *)contact.bodyA.node;
+    //        inimigo.inColisao=true;
+    //    }
 }
 
 -(void)didEndContact:(SKPhysicsContact *)contact{
@@ -1362,7 +1362,7 @@ static Musica *colide;
             [self validaPressao:pre];
             //[obj removeFromParent];
         }else{
-//            JAGPressao *obj = (JAGPressao *)contact.bodyB.node;
+            //            JAGPressao *obj = (JAGPressao *)contact.bodyB.node;
             
             
             for (int i=0; i<_portas.count; i++) {
@@ -1394,7 +1394,7 @@ static Musica *colide;
             //[obj removeFromParent];
         }
     }
-
+    
     
     if((contact.bodyA.categoryBitMask == PRESSAO) && (contact.bodyB.categoryBitMask == ENEMY)){
         JAGPressao *pre=(JAGPressao *)contact.bodyA.node;
@@ -1425,7 +1425,7 @@ static Musica *colide;
                 }
                 
             }
-
+            
         }
     }
     
@@ -1437,8 +1437,8 @@ static Musica *colide;
         chave = (JAGChave *)contact.bodyB.node;
         _gota.comChave = YES;
     }
-
-
+    
+    
     
     if((contact.bodyA.categoryBitMask == PAREDE) && (contact.bodyB.categoryBitMask == ENEMY)){
         JAGInimigos *inimigo=(JAGInimigos *)contact.bodyB.node;
@@ -1475,18 +1475,18 @@ static Musica *colide;
             [[NSUserDefaults standardUserDefaults] setInteger:vida.vidas forKey:@"Vida"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
-//            self.hud.vidaRestante--;
+            //            self.hud.vidaRestante--;
             [self presentGameOver:0];
-        
+            
             self.scene.view.paused=YES;
         }
-        else if(self.gota.vida<1 && vida.vidas <=1){            
+        else if(self.gota.vida<1 && vida.vidas <=1){
             vida.vidas--;
             
             [[NSUserDefaults standardUserDefaults] setInteger:vida.vidas forKey:@"Vida"];
             [[NSUserDefaults standardUserDefaults] synchronize];
-
-//            self.hud.vidaRestante--;
+            
+            //            self.hud.vidaRestante--;
             [self presentGameOver:2];
         }
     }
@@ -1495,12 +1495,12 @@ static Musica *colide;
 #pragma mark - Configuração/Inicialização
 
 -(void)centerMapOnCharacter{
-//    if(self.gota.physicsBody.velocity.dx>0){
+    //    if(self.gota.physicsBody.velocity.dx>0){
     
     
     self.cropNode.position = CGPointMake(-(_gota.position.x)+CGRectGetMidX(self.frame),
                                          -(_gota.position.y)+CGRectGetMidY(self.frame));
-//    }
+    //    }
     fadeMask.position = CGPointMake(self.gota.position.x, self.gota.position.y);
     
     circleMask.position=CGPointMake(_gota.position.x,_gota.position.y);
@@ -1511,35 +1511,35 @@ static Musica *colide;
     self.cropNode.zPosition=50;
     
     SKAction *diminuirSaude=[SKAction sequence:@[[SKAction waitForDuration:time],
-                                                [SKAction runBlock:^{
+                                                 [SKAction runBlock:^{
         
         if (!self.inTutorial) {
             
-        
-        [self receberDano:1];
-        //Criar uma gotinha
-        
-      //  self.sprite.texture = [SKTexture textureWithImageNamed:@"poca.png"];
-
-        JAGPerdaGota *gotinha=[[JAGPerdaGota alloc] initWithPosition:self.gota.position withTimeLife:10 withSize:self.level.tileSize];
-        gotinha.zPosition = -1;
-        _gota.zPosition = 1;
-        [area addChild:[gotinha areavisao:50]];
-       
-        [self.camadaItens addChild:gotinha];
-        [self.camadaItens addChild:gotinha.sprite];
-//
-        //Aumentar a area
+            
+            [self receberDano:1];
+            //Criar uma gotinha
+            
+            //  self.sprite.texture = [SKTexture textureWithImageNamed:@"poca.png"];
+            
+            JAGPerdaGota *gotinha=[[JAGPerdaGota alloc] initWithPosition:self.gota.position withTimeLife:10 withSize:self.level.tileSize];
+            gotinha.zPosition = -1;
+            _gota.zPosition = 1;
+            [area addChild:[gotinha areavisao:50]];
+            
+            [self.camadaItens addChild:gotinha];
+            [self.camadaItens addChild:gotinha.sprite];
+            //
+            //Aumentar a area
         }
         
-                                                }]]];
+    }]]];
     SKAction *loop=[SKAction repeatActionForever:diminuirSaude];
     
     [self runAction:loop];
     
     for (int i=0;i<_inimigos.count;i++){
         
-                JAGInimigos *inimigo = (JAGInimigos *)_inimigos[i];
+        JAGInimigos *inimigo = (JAGInimigos *)_inimigos[i];
         
         [inimigo IAcomInfo];
     }
@@ -1553,10 +1553,10 @@ static Musica *colide;
     [relampago carregar:fileUrl withEffects:false];
     
     [relampago changeVolume:1.0];
-
+    
     self.posicaoInicial=self.gota.position;
     
-//     [self createButtons];
+    //     [self createButtons];
 }
 
 -(void)configInit:(SKSpriteNode *)background{
@@ -1569,7 +1569,7 @@ static Musica *colide;
 
 -(void)configInit{
     self.cropNode = [[SKCropNode alloc] init];
-//    [self.cropNode addChild:background];
+    //    [self.cropNode addChild:background];
     
     self.characteres=[[NSMutableArray alloc] init];
     self.inimigos=[[NSMutableArray alloc] init];
@@ -1580,8 +1580,8 @@ static Musica *colide;
     JAGPerdaFogo *perda_fogo = [[JAGPerdaFogo alloc] initWithPosition:inimigo.position withTimeLife:10];
     SKAction *diminuirSaude=[SKAction sequence:@[[SKAction waitForDuration:5],
                                                  [SKAction runBlock:^{
-
-    
+        
+        
         [self.cropNode addChild:perda_fogo.emitter];
         
         
@@ -1589,7 +1589,7 @@ static Musica *colide;
     SKAction *loop=[SKAction repeatActionForever:diminuirSaude];
     
     [self runAction:loop];
-
+    
 }
 #pragma mark - Arquivos
 -(void)loadingWorld{
@@ -1631,7 +1631,7 @@ static Musica *colide;
                 JAGFogoEnemy *inimigo=[[JAGFogoEnemy alloc] initWithPosition:CGPointMake([[enemy objectForKey:@"positionX"] floatValue], [[enemy objectForKey:@"positionY"] floatValue]) withSize:tamanho];
                 [self rastroInimigo:inimigo];
                 [_cropNode addChild:inimigo];
-
+                
             }
         }
         
@@ -1726,7 +1726,7 @@ static Musica *colide;
         }
         
     }
-
+    
 }
 
 
@@ -1735,10 +1735,10 @@ static Musica *colide;
     CGPoint pontoToque;
     
     pontoToque = [touch locationInNode:self];
-//    pontoToque= CGPointMake(pontoToque.x+(_gota.position.x)-CGRectGetMidX(self.frame),
-//                             pontoToque.y+(_gota.position.y)-CGRectGetMidY(self.frame));
+    //    pontoToque= CGPointMake(pontoToque.x+(_gota.position.x)-CGRectGetMidX(self.frame),
+    //                             pontoToque.y+(_gota.position.y)-CGRectGetMidY(self.frame));
     
-     
+    
     if (![_gota verificaToque:pontoToque]&& self.gota.escondida==NO) {
         if ([self verificaToque:pontoToque withSprite:self.buttonUp]&&self.gota.sentido!=1) {
             [self.gota mover:pontoToque withInterval:0 withType:1];

@@ -22,7 +22,7 @@
 
 @property (nonatomic) SKLabelNode *tempo;
 
-@property (nonatomic) SKLabelNode *saude;
+@property (nonatomic) SKSpriteNode *saude;
 
 @property (nonatomic) JAGGota *gota;
 
