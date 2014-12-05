@@ -10,6 +10,7 @@
 #import "JAGPlayGameScene.h"
 #import "JAGStoreScene.h"
 #import "JAGLevelSelectionScene.h"
+#import "Musica.h"
 
 @implementation JAGMenu
 {
@@ -23,6 +24,8 @@
     SKTexture *logoText;
     SKTexture *bg;
     SKTexture *botaoStoreText;
+    
+    Musica *trilha;
 }
 
 -(id)initWithSize:(CGSize)size {
@@ -36,6 +39,17 @@
 }
 
 -(void) configuraMenu {
+    
+    NSString *filePath2 = [[NSBundle mainBundle] pathForResource:@"trilhaGotinhaMenu" ofType:@"caf"];
+    NSURL *fileUrl2 = [NSURL fileURLWithPath:filePath2];
+    
+    trilha = [[Musica alloc] init];
+    [trilha inici];
+    
+    [trilha carregar:fileUrl2 withEffects:false];
+    [trilha changeVolume: 1.0];
+    
+    [trilha play];
     
     botaoPlayText = [SKTexture textureWithImageNamed:@"play"];
     logoText      = [SKTexture textureWithImageNamed:@"logo"];
@@ -66,6 +80,11 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:@"hideAd" object:nil userInfo:nil];
 }
 
+-(void) deallocSound
+{
+    [trilha soltar];
+}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     for (UITouch *touch in touches) {
@@ -74,15 +93,13 @@
         
         if ([botaoPlay containsPoint:location]) {
             
-            
+            [self deallocSound];
             
             SKScene *scene = [[JAGLevelSelectionScene alloc] initWithSize:self.frame.size];
             
             SKTransition *trans = [SKTransition fadeWithDuration:1.0];
             
-            
-            
-            SKAction *transi=[SKAction sequence:@[[SKAction playSoundFileNamed:@"botaoUp1.wav" waitForCompletion:NO],
+            SKAction *transi=[SKAction sequence:@[[SKAction playSoundFileNamed:@"btUp1.wav" waitForCompletion:NO],
                                                   [SKAction runBlock:^{
                 [botaoPlay runAction:[SKAction scaleBy:1.5 duration:0.8]];
             }],[SKAction waitForDuration:0.1],
@@ -96,12 +113,15 @@
         }
         else if([botaoStore containsPoint:location]){
             //            [botaoStore runAction:[SKAction scaleBy:1.5 duration:0.5]];
+            
+            [self deallocSound];
+            
             SKScene *scene = [[JAGStoreScene alloc]initWithSize:self.frame.size];
             //            [self.scene.view presentScene:scene transition:[SKTransition fadeWithDuration:1.0]];
             
             SKTransition *trans = [SKTransition fadeWithDuration:1.0];
             
-            SKAction *transi=[SKAction sequence:@[[SKAction playSoundFileNamed:@"botaoUp1.wav" waitForCompletion:NO],
+            SKAction *transi=[SKAction sequence:@[[SKAction playSoundFileNamed:@"btUp1.wav" waitForCompletion:NO],
                                                   [SKAction runBlock:^{
                 [botaoStore runAction:[SKAction scaleBy:1.5 duration:0.8]];
             }],[SKAction waitForDuration:0.1],

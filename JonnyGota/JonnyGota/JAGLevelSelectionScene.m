@@ -99,16 +99,14 @@
 }
 -(void)update:(NSTimeInterval)currentTime{
     vidas_quantidade.text = [NSString stringWithFormat:@" X %ld",(long)vida.vidas];
-    
 }
-
-
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    
     JAGPlayGameScene *jogo;
     for (UITouch *touch in touches) {
         SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
@@ -118,7 +116,7 @@
             JAGMenu* menu = [[JAGMenu alloc]initWithSize:self.frame.size];
             //            [self.scene.view presentScene:menu transition:[SKTransition fadeWithDuration:1]];
             
-            SKAction *transi=[SKAction sequence:@[[SKAction playSoundFileNamed:@"botaoUp1.wav" waitForCompletion:NO],[SKAction runBlock:^{
+            SKAction *transi=[SKAction sequence:@[[SKAction playSoundFileNamed:@"btUp1.wav" waitForCompletion:NO],[SKAction runBlock:^{
                 [node runAction:[SKAction scaleBy:1.5 duration:0.8]];
             }],[SKAction waitForDuration:0.1],
                                                   [SKAction runBlock:^{
@@ -137,7 +135,7 @@
             if (fase!=0 && vida.vidas>0) {
                 //                [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
                 jogo = [[JAGPlayGameScene alloc]initWithSize:self.frame.size level:faseA andWorld:@1];
-                [self runAction:[SKAction playSoundFileNamed:@"botaoUp1.wav" waitForCompletion:YES]];
+                [self runAction:[SKAction playSoundFileNamed:@"btUp1.wav" waitForCompletion:YES]];
                 
                 [self.scene.view presentScene:jogo transition:[SKTransition fadeWithDuration:1]];
                 
@@ -164,7 +162,7 @@
                     
                     [self removeAllActions];
                     
-                    SKAction *seq=[SKAction sequence:@[[SKAction playSoundFileNamed:@"botaoUp1.wav" waitForCompletion:NO],[SKAction scaleBy:2.0 duration:0.4],[SKAction rotateByAngle:0.3 duration:0.4], [SKAction waitForDuration:1.0],[SKAction rotateByAngle:-0.3 duration:0.4],[SKAction scaleBy:0.5 duration:0.4]]];
+                    SKAction *seq=[SKAction sequence:@[[SKAction playSoundFileNamed:@"btUp1.wav" waitForCompletion:NO],[SKAction scaleBy:2.0 duration:0.4],[SKAction rotateByAngle:0.3 duration:0.4], [SKAction waitForDuration:1.0],[SKAction rotateByAngle:-0.3 duration:0.4],[SKAction scaleBy:0.5 duration:0.4]]];
                     
                     [vidas_sprite runAction:seq];
                     
@@ -182,12 +180,7 @@
         //            [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
         //        }
     }
-    
-    
 }
-
-
-
 
 -(void)organizaBotoes{
     
@@ -222,13 +215,8 @@
             
             //Setar um font size baseada na tela
             labelNum.fontSize=self.frame.size.height*0.1;
-            
             labelNum.text=[NSString stringWithFormat:@"%d",i];
-            
             labelNum.name=[NSString stringWithFormat:@"%d",i];
-            
-            
-            
             
             [nodo addChild:labelNum];
             
@@ -256,25 +244,5 @@
     [self.scene addChild:vidas_sprite];
     [self.scene addChild:vidas_quantidade];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end
