@@ -12,7 +12,7 @@
 
 -(id)initWithPosition:(CGPoint)position withSize:(CGSize)size{
     self = [super init];
-    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
+    self.sprite = [[SKSpriteNode alloc] initWithColor:[SKColor clearColor] size:size];
     
     self.physicsBody.friction = 0;
     

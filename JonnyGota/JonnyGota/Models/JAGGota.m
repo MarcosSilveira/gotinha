@@ -191,9 +191,6 @@ static Musica *andar;
 //        
 //        temp=nil;
 //    }
-
-
-    
     
     return gota2;
 }

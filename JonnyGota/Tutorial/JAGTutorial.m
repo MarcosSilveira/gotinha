@@ -51,7 +51,7 @@
     
     SKSpriteNode *background=[[SKSpriteNode alloc] initWithImageNamed:@"backTuto"];
     background.size=CGSizeMake(frame.width*0.8, frame.height*0.75);
-//    [[SKSpriteNode alloc] initWithColor:[UIColor greenColor] size:CGSizeMake(frame.width*0.8, frame.height*0.75)];
+//    [[SKSpriteNode alloc] initWithColor:[SKColor greenColor] size:CGSizeMake(frame.width*0.8, frame.height*0.75)];
     
     background.position=CGPointMake(frame.width*0.5, frame.height*0.5);
     
