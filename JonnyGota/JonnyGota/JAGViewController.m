@@ -50,7 +50,7 @@
                                                 name:@"hideAd"
                                               object:nil];
 
-//    [self configAd];
+    [self configAd];
 }
 
 - (BOOL)shouldAutorotate
@@ -81,6 +81,11 @@
 
 }
 -(void)callAd{
+    GADRequest *request = [GADRequest request];
+    // Requests test ads on devices you specify. Your test device ID is printed to the console when
+    // an ad request is made.
+    request.testDevices = @[ GAD_SIMULATOR_ID, @"MY_TEST_DEVICE_ID" ];
+    [_teste loadRequest:request];
     _teste.hidden = NO;
     
 }

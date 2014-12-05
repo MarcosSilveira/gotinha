@@ -251,12 +251,13 @@ static Musica *colide;
      -Fim de fase ganhando - 1
      -Fim de fase perdendo com vida restante - 0
      -Fim de fase perdendo sem vida restante - 2*/
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"showAd" object:nil userInfo:nil];
     if (withOP == 0) {
         
         
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
         GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
-        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"comprarVidas"];
+        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"restart_BT"];
         button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
         button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
@@ -265,7 +266,7 @@ static Musica *colide;
         button1.name = @"reiniciar fase";
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
-        message.fontSize = self.frame.size.height*0.1;
+        message.fontSize = self.frame.size.height*0.05;
         message.text = NSLocalizedString(@"PLAY_GAMEOVER_FIM", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
         [self.scene addChild:GObackground];
@@ -290,7 +291,7 @@ static Musica *colide;
         button1.name = @"proxima fase";
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
-        message.fontSize = self.frame.size.height*0.07;
+        message.fontSize = self.frame.size.height*0.05;
         message.text = NSLocalizedString(@"PLAY_GAMEOVER_NEXT", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
         [self.scene addChild:GObackground];
@@ -311,7 +312,7 @@ static Musica *colide;
         
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
         GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
-        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"storeBT "];
+        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"storeBT"];
         button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
         button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
@@ -320,7 +321,7 @@ static Musica *colide;
         button1.name = @"store";
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
-        message.fontSize = self.frame.size.height*0.07;
+        message.fontSize = self.frame.size.height*0.05;
         message.text=NSLocalizedString(@"PLAY_GAMEOVER_SEM_VIDAS", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
         [self.scene addChild:GObackground];
@@ -655,6 +656,7 @@ static Musica *colide;
             else if([node.name isEqualToString:@"proxima fase"]){
                 [self animationButton:node];
                 [self nextLevel];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"hideAd" object:nil userInfo:nil];
                 
             }
             else if([node.name isEqualToString:@"loja"]){
@@ -864,7 +866,7 @@ static Musica *colide;
                     //Tempo de pressao
                     
                     
-                } if([nodeAux.name isEqualToString:@"resume"]){
+                } if([nodeAux.name isEqualToString:@"resumir"]){
                     NSLog(@"bt 1 Resume");
                     
                     [self animationButton:nodeAux];
@@ -875,6 +877,7 @@ static Musica *colide;
                     [button2 removeFromParent];
                     [message removeFromParent];
                     [GObackground removeFromParent];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"hideAd" object:nil userInfo:nil];
                     
                     
                     

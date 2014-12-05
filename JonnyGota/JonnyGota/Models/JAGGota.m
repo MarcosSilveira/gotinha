@@ -22,7 +22,7 @@ static Musica *andar;
     self.position = position;
     
     //textures load
-    if(![[NSUserDefaults standardUserDefaults]boolForKey:@"super gotinha"]){
+    if([[NSUserDefaults standardUserDefaults]boolForKey:@"super gotinha"]){
         self.atlas  = [SKTextureAtlas atlasNamed:@"gotinha.atlas"];
         self.sprite.texture = [self.atlas textureNamed:@"gotinha_correndo_frente1@2x.png"];
         self.sprite.zPosition=10;
