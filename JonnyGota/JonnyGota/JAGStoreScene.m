@@ -194,7 +194,9 @@
                 SKTextureAtlas* atlas  = [SKTextureAtlas atlasNamed:@"super_gotinha.atlas"];
                 
                 nodoPreco = [[SKSpriteNode alloc]initWithImageNamed:@"price099.png"];
-                nodoItem = [[SKSpriteNode alloc]initWithColor:[SKColor yellowColor] size:CGSizeMake(30,30)];
+                nodoItem = [[SKSpriteNode alloc]init];
+                nodoItem.texture = [atlas textureNamed:@"super_gotinha_frente1.png"];
+                nodoItem.size = CGSizeMake(self.frame.size.width*.15, self.frame.size.height*.2);
                 nodoItem.position = CGPointMake(posX, posY);
                 nodoPreco.position = CGPointMake(nodoItem.position.x*.98, nodoItem.position.y*0.8);
                 //                nodoItem.size = CGSizeMake(nodoItem.texture.size.width*0.7, nodoItem.texture.size.height*0.7);
