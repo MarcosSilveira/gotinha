@@ -24,25 +24,12 @@ static Musica *andar;
     //textures load
     self.sprite = [[SKSpriteNode alloc] initWithColor:[SKColor clearColor] size:size];
 
-    self.atlas  = [SKTextureAtlas atlasNamed:@"gotinha.atlas"];
-    self.sprite.texture = [self.atlas textureNamed:@"gotinha_correndo_frente1@2x.png"];
-    self.sprite.zPosition=10;
-    self.sprite.name = @"gota";
-    self.idleTexture = [self.atlas textureNamed:@"gotinha_correndo_frente1@2x.png"];
-    
-    for (int i=1; i<=9; i++) {
-        NSString *textureName = [NSString stringWithFormat:@"gotinha_correndo_frente%d@2x.png", i];
-        [self.walkTexturesFront addObject:[self.atlas textureNamed:textureName]];
     }
-    for (int i=1; i<=9; i++) {
-        NSString *textureName = [NSString stringWithFormat:@"gotinha_correndo_costa%d@2x.png", i];
-        [self.walkTexturesBack addObject:[self.atlas textureNamed:textureName]];
-    }
-    for (int i=1; i<=7; i++) {
-        NSString *textureName = [NSString stringWithFormat:@"gotinha_correndo_lado%d@2x.png", i];
-        [self.walkTexturesSide addObject:[self.atlas textureNamed:textureName]];
-    }
-    [self addChild:self.sprite];
+
+
+    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
+
+        [self addChild:self.sprite];
 
     self.sprite.size=size;
 
