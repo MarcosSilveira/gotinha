@@ -59,12 +59,12 @@
         switch (transaction.transactionState) {
                 // Call the appropriate custom method for the transaction state.
             case SKPaymentTransactionStatePurchasing:
-                [[SKPaymentQueue defaultQueue]finishTransaction:transaction];
+//                [[SKPaymentQueue defaultQueue]finishTransaction:transaction];
                 //                [self showTransactionAsInProgress:transaction deferred:NO];
                 NSLog(@"Purchasing");
                 break;
             case SKPaymentTransactionStateDeferred:
-                [[SKPaymentQueue defaultQueue]finishTransaction:transaction];
+//                [[SKPaymentQueue defaultQueue]finishTransaction:transaction];
                 //                [self showTransactionAsInProgress:transaction deferred:YES];
                 NSLog(@"Deferred");
                 break;
@@ -74,7 +74,7 @@
                 NSLog(@"Failed");
                 break;
             case SKPaymentTransactionStatePurchased:
-                [[SKPaymentQueue defaultQueue]finishTransaction:transaction];
+//                [[SKPaymentQueue defaultQueue]finishTransaction:transaction];
                 
                 //                [self completeTransaction:transaction];
                 NSLog(@"Purchased");
@@ -86,7 +86,7 @@
                 break;
             default:
                 // For debugging
-                [[SKPaymentQueue defaultQueue]finishTransaction:transaction];
+//                [[SKPaymentQueue defaultQueue]finishTransaction:transaction];
                 NSLog(@"Unexpected transaction state %@", @(transaction.transactionState));
                 break;
         }

@@ -137,6 +137,7 @@
             
             
             
+            
             //            if (fase!=0 && vidas_restantes>0) {
             if (fase!=0 && vida.vidas>0) {
                 //                [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
@@ -145,6 +146,7 @@
                 [self runAction:[managerSound playButton]];
                 
                 [self.scene.view presentScene:jogo transition:[SKTransition fadeWithDuration:1]];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"hideAd" object:nil userInfo:nil];
                 
                 
                 

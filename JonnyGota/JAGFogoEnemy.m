@@ -14,7 +14,7 @@
     self = [super init];
     
     //texture config
-    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
+    self.sprite = [[SKSpriteNode alloc] initWithColor:[SKColor clearColor] size:size];
     self.atlas = [SKTextureAtlas atlasNamed:@"enemies.atlas"];
     self.sprite.texture = [SKTexture textureWithImageNamed:@"fogo_correndo_frente1@2x.png"];
     self.idleTexture =  [SKTexture textureWithImageNamed:@"fogo_correndo_frente1@2x.png"];

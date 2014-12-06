@@ -127,7 +127,7 @@ static SKTextureAtlas *atlas;
 
 -(void)defineSprite:(int) dire withSize:(CGSize) size{
     
-    self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
+    self.sprite = [[SKSpriteNode alloc] initWithColor:[SKColor clearColor] size:size];
     
     //1 Cima e baixo 3 esquerda 4 direita
     if (dire==1) {

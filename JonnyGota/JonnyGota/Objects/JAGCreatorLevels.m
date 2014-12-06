@@ -118,7 +118,7 @@ NSMutableArray *nodesPhy;
     //Cria o physhics body
     nodesPhy=[[NSMutableArray alloc] init];
     
-    for (int i=nodes.count-1; i>0;i--) {
+    for (int i=nodes.count-1.0; i>0;i--) {
         JAGPreparePoints *ponto=(JAGPreparePoints *)nodes[i];
         
         
@@ -302,8 +302,6 @@ NSMutableArray *nodesPhy;
     scene.gota.vida = 15;
     scene.hud.gota  = scene.gota;
     
-  
-
     
     //Preparar camadas
     
@@ -391,7 +389,7 @@ NSMutableArray *nodesPhy;
     
     
 
-    [scene createMask:tiledMap.tileSize.width*1.8 withPoint:(scene.gota.position)];
+   // [scene createMask:tiledMap.tileSize.width*1.8 withPoint:(scene.gota.position)];
     
 //    [self createButtons:scene];
 }
@@ -403,7 +401,7 @@ NSMutableArray *nodesPhy;
 + (void)initializeLevel99ofWorld01onScene:(JAGPlayGameScene *)scene
 {
     
-    //[self configure:scene withBackgroundColor:[UIColor whiteColor]];
+    //[self configure:scene withBackgroundColor:[SKColor whiteColor]];
     SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithImageNamed:@"backgroundChuva"];
     
     scene.portas = [[NSMutableArray alloc] init];
@@ -461,7 +459,7 @@ NSMutableArray *nodesPhy;
     
     //Fonte
     
-    SKSpriteNode *fonteSprite = [[SKSpriteNode alloc]initWithColor:[UIColor blueColor] size:tamanho];
+    SKSpriteNode *fonteSprite = [[SKSpriteNode alloc]initWithColor:[SKColor blueColor] size:tamanho];
     JAGFonte *fonte = [[JAGFonte alloc] initWithPosition:[scene.level calculateTile:CGPointMake(6, 13)] withSprite:fonteSprite];
     [scene.cropNode addChild:porta];
     [scene.cropNode addChild:fonte];
@@ -488,11 +486,11 @@ NSMutableArray *nodesPhy;
     
     
     //Chave
-    SKSpriteNode *oi = [[SKSpriteNode alloc]initWithColor:[UIColor yellowColor] size:CGSizeMake(scene.frame.size.width*0.02, scene.frame.size.height*0.05)];
+    SKSpriteNode *oi = [[SKSpriteNode alloc]initWithColor:[SKColor yellowColor] size:CGSizeMake(scene.frame.size.width*0.02, scene.frame.size.height*0.05)];
     JAGChave *chave = [[JAGChave alloc] initWithPosition:[scene.level calculateTile:CGPointMake(5, 4)] withSprite:oi];
     
     //TRAP!
-    SKSpriteNode *oi2 = [[SKSpriteNode alloc]initWithColor:[UIColor yellowColor] size:tamanho];
+    SKSpriteNode *oi2 = [[SKSpriteNode alloc]initWithColor:[SKColor yellowColor] size:tamanho];
     JAGTrap *trap = [[JAGTrap alloc] initWithPosition:[scene.level calculateTile:CGPointMake(9, 10)] withSprite:oi2];
     trap.tipo = 1;
     //Box do Inimigo
@@ -623,7 +621,7 @@ NSMutableArray *nodesPhy;
         temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto1"];
         temp.image.size=CGSizeMake(scene.frame.size.width*4, scene.frame.size.height*0.6);
         NSLog(@"size X %f ",temp.image.size.width);
-//        [[SKSpriteNode alloc] initWithColor:[UIColor redColor] size:CGSizeMake(100, 100)];
+//        [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:CGSizeMake(100, 100)];
         
         
         [tutorial addObject:temp];

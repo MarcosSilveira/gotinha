@@ -262,12 +262,13 @@
      -Fim de fase ganhando - 1
      -Fim de fase perdendo com vida restante - 0
      -Fim de fase perdendo sem vida restante - 2*/
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"showAd" object:nil userInfo:nil];
     if (withOP == 0) {
         
         
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
         GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
-        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"comprarVidas"];
+        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"restart_BT"];
         button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
         button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
@@ -276,7 +277,7 @@
         button1.name = @"reiniciar fase";
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
-        message.fontSize = self.frame.size.height*0.1;
+        message.fontSize = self.frame.size.height*0.05;
         message.text = NSLocalizedString(@"PLAY_GAMEOVER_FIM", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
         [self.scene addChild:GObackground];
@@ -301,7 +302,7 @@
         button1.name = @"proxima fase";
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
-        message.fontSize = self.frame.size.height*0.07;
+        message.fontSize = self.frame.size.height*0.05;
         message.text = NSLocalizedString(@"PLAY_GAMEOVER_NEXT", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
         [self.scene addChild:GObackground];
@@ -322,7 +323,7 @@
         
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
         GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
-        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"storeBT "];
+        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"storeBT"];
         button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
         button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
@@ -331,7 +332,7 @@
         button1.name = @"store";
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
-        message.fontSize = self.frame.size.height*0.07;
+        message.fontSize = self.frame.size.height*0.05;
         message.text=NSLocalizedString(@"PLAY_GAMEOVER_SEM_VIDAS", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
         [self.scene addChild:GObackground];
@@ -387,8 +388,8 @@
 #pragma mark - Máscara
 -(void)createMask:(int) radius
         withPoint:(CGPoint) ponto {
-    //    UIColor *areaColor = [[UIColor alloc]initWithRed:1 green:1 blue:1 alpha:0.5];
-    //    area = [[SKSpriteNode alloc] initWithColor:areaColor size:self.frame.size];
+//    SKColor *areaColor = [[SKColor alloc]initWithRed:1 green:1 blue:1 alpha:0.5];
+//    area = [[SKSpriteNode alloc] initWithColor:areaColor size:self.frame.size];
     area = [[SKNode alloc]init];
     circleMask = [[SKShapeNode alloc ]init];
     
@@ -473,9 +474,6 @@
     
 }
 
-
-
-
 -(void)expandMask{
     double frequencia = _level.frequenciaRelampago;
     NSTimeInterval tempo = frequencia;
@@ -506,8 +504,8 @@
 
 -(void) configuraParadaGota {
     
-    pararMovimentoCONTROLx = [[SKSpriteNode alloc]initWithColor:([UIColor clearColor]) size:(CGSizeMake(5, height)) ];
-    pararMovimentoCONTROLy = [[SKSpriteNode alloc]initWithColor:([UIColor clearColor]) size:(CGSizeMake(width, 5)) ];
+    pararMovimentoCONTROLx = [[SKSpriteNode alloc]initWithColor:([SKColor clearColor]) size:(CGSizeMake(5, height)) ];
+    pararMovimentoCONTROLy = [[SKSpriteNode alloc]initWithColor:([SKColor clearColor]) size:(CGSizeMake(width, 5)) ];
     pararMovimentoCONTROLx.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:pararMovimentoCONTROLx.size];
     pararMovimentoCONTROLy.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:pararMovimentoCONTROLy.size];
     pararMovimentoCONTROLx.physicsBody.dynamic = NO;
@@ -666,6 +664,7 @@
             else if([node.name isEqualToString:@"proxima fase"]){
                 [self animationButton:node];
                 [self nextLevel];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"hideAd" object:nil userInfo:nil];
                 
             }
             else if([node.name isEqualToString:@"loja"]){
@@ -889,7 +888,7 @@
                     //Tempo de pressao
                     
                     
-                } if([nodeAux.name isEqualToString:@"resume"]){
+                } if([nodeAux.name isEqualToString:@"resumir"]){
                     NSLog(@"bt 1 Resume");
                     
                     [self animationButton:nodeAux];
@@ -900,6 +899,7 @@
                     [button2 removeFromParent];
                     [message removeFromParent];
                     [GObackground removeFromParent];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"hideAd" object:nil userInfo:nil];
                     
                     
                     

@@ -44,7 +44,7 @@
     
     recuperaBT = [[SKSpriteNode alloc]initWithImageNamed:@"restaurarCompras.png"];
     recuperaBT.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.17);
-    recuperaBT.size = CGSizeMake(recuperaBT.texture.size.width*.5, recuperaBT.texture.size.height*.5);
+    recuperaBT.size = CGSizeMake(self.frame.size.width*0.3, self.frame.size.height*0.17);
     recuperaBT.name = @"recuperaBT";
     
     message2 =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
@@ -103,20 +103,8 @@
     
 }
 -(void)recuperaCompras{
-    //    SKPaymentQueue *queue = [[SKPaymentQueue alloc]init];
+    
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
-    //    SKPaymentTransaction *transactionAux = queue.transactions[0];
-    //    NSMutableArray *productIDsToRestore = _identifiers;
-    //    SKPaymentTransaction *transaction = transactionAux;
-    //
-    //    if ([productIDsToRestore containsObject:transaction.transactionIdentifier]) {
-    //        // Re-download the Apple-hosted content, then finish the transaction
-    //        // and remove the product identifier from the array of product IDs.
-    //    } else {
-    //        [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-    //    }
-    
-    
 }
 -(void)validateProductIdentifiers:(NSArray *)productIdentifiers
 {
@@ -178,7 +166,7 @@
                 nodoItem = [[SKSpriteNode alloc]initWithImageNamed:@"vidas10.png"];
                 nodoItem.position = CGPointMake(posX, posY);
                 nodoPreco.position = CGPointMake(nodoItem.position.x, nodoItem.position.y*0.8);
-                nodoItem.size = CGSizeMake(nodoItem.texture.size.width*.7, nodoItem.texture.size.height*.7);
+                nodoItem.size = CGSizeMake(self.frame.size.width*0.13, self.frame.size.height*0.12);
                 nodoPreco.size = CGSizeMake(self.frame.size.width*0.15, self.frame.size.height*0.15);
                 bt_bg = [[SKSpriteNode alloc]initWithImageNamed:@"bt_bg.png"];
                 bt_bg.position = CGPointMake(nodoItem.position.x, nodoItem.position.y*0.9);
@@ -196,7 +184,7 @@
                 nodoPreco = [[SKSpriteNode alloc]initWithImageNamed:@"price099.png"];
                 nodoItem = [[SKSpriteNode alloc]init];
                 nodoItem.texture = [atlas textureNamed:@"super_gotinha_frente1.png"];
-                nodoItem.size = CGSizeMake(self.frame.size.width*0.2, self.frame.size.height*.2);
+                nodoItem.size = CGSizeMake(self.frame.size.width*.15, self.frame.size.height*.2);
                 nodoItem.position = CGPointMake(posX, posY);
                 nodoPreco.position = CGPointMake(nodoItem.position.x*.98, nodoItem.position.y*0.8);
                 //                nodoItem.size = CGSizeMake(nodoItem.texture.size.width*0.7, nodoItem.texture.size.height*0.7);

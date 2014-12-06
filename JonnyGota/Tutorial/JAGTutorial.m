@@ -36,9 +36,9 @@
     JAGCompTutorial *comp=(JAGCompTutorial *) self.compenentes[self.indice];
     
     
-    self.labelContent =[DSMultilineLabelNode labelNodeWithFontNamed:@"VAGRoundedStd-Thin"];
+    self.labelContent =[DSMultilineLabelNode labelNodeWithFontNamed:@"VAGRoundedStd-Bold"];
     
-    self.labelContent.fontSize = 14;
+    self.labelContent.fontSize = frame.height*0.05;
     self.labelContent.text = comp.mensagem;
     
     self.labelContent.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
@@ -51,7 +51,7 @@
     
     SKSpriteNode *background=[[SKSpriteNode alloc] initWithImageNamed:@"backTuto"];
     background.size=CGSizeMake(frame.width*0.8, frame.height*0.75);
-//    [[SKSpriteNode alloc] initWithColor:[UIColor greenColor] size:CGSizeMake(frame.width*0.8, frame.height*0.75)];
+//    [[SKSpriteNode alloc] initWithColor:[SKColor greenColor] size:CGSizeMake(frame.width*0.8, frame.height*0.75)];
     
     background.position=CGPointMake(frame.width*0.5, frame.height*0.5);
     
