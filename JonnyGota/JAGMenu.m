@@ -10,6 +10,7 @@
 #import "JAGPlayGameScene.h"
 #import "JAGStoreScene.h"
 #import "JAGLevelSelectionScene.h"
+#import "JAGManagerSound.h"
 
 @implementation JAGMenu
 {
@@ -23,6 +24,8 @@
     SKTexture *logoText;
     SKTexture *bg;
     SKTexture *botaoStoreText;
+    
+    JAGManagerSound *managerSound;
 }
 
 -(id)initWithSize:(CGSize)size {
@@ -31,6 +34,11 @@
     if (self) {
         
         [self configuraMenu];
+        
+        managerSound=[JAGManagerSound sharedManager];
+        
+        [managerSound addSound:@"trilha1" withEffects:NO withKey:@"trilha"];
+        [managerSound playInLoop:@"trilha"];
     }
     return self;
 }
@@ -82,7 +90,7 @@
             
             
             
-            SKAction *transi=[SKAction sequence:@[[SKAction playSoundFileNamed:@"botaoUp1.wav" waitForCompletion:NO],
+            SKAction *transi=[SKAction sequence:@[[managerSound playButton],
                                                   [SKAction runBlock:^{
                 [botaoPlay runAction:[SKAction scaleBy:1.5 duration:0.8]];
             }],[SKAction waitForDuration:0.1],
@@ -101,16 +109,38 @@
             
             SKTransition *trans = [SKTransition fadeWithDuration:1.0];
             
-            SKAction *transi=[SKAction sequence:@[[SKAction playSoundFileNamed:@"botaoUp1.wav" waitForCompletion:NO],
+//            SKAction *transi=[SKAction sequence:@[[SKAction playSoundFileNamed:@"botaoUp1.wav" waitForCompletion:NO],
+//                                                  [SKAction runBlock:^{
+//                [botaoStore runAction:[SKAction scaleBy:1.5 duration:0.8]];
+//            }],[SKAction waitForDuration:0.1],
+//                                                  [SKAction runBlock:^{
+//                [self.scene.view presentScene:scene transition:trans];
+//            }]]];
+            
+            SKAction *transi=[SKAction sequence:@[[managerSound playButton],
                                                   [SKAction runBlock:^{
                 [botaoStore runAction:[SKAction scaleBy:1.5 duration:0.8]];
             }],[SKAction waitForDuration:0.1],
                                                   [SKAction runBlock:^{
                 [self.scene.view presentScene:scene transition:trans];
             }]]];
+
             [self runAction:transi];
         }
     }
+}
+
+-(SKAction*)playButton{
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"botaoUI1" ofType:@"caf"];
+    NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
+    
+    [managerSound addSound:fileUrl withEffects:NO withKey:@"botao1"];
+    
+    SKAction *seq=[SKAction sequence:@[[SKAction runBlock:^{
+        [managerSound playSound:@"botao1"];
+    }],[SKAction waitForDuration:[managerSound duration:@"botao1"]]]];
+    
+    return seq;
 }
 
 @end

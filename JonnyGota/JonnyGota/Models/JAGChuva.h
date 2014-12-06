@@ -7,7 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-#import "Musica.h"
+#import "JAGManagerSound.h"
 #import "JAGGota.h"
 
 
@@ -16,13 +16,14 @@
 @property (nonatomic) SKSpriteNode *sprite;
 @property (strong, nonatomic) SKTexture *nuvemText;
 
-@property (nonatomic) Musica *chuva;
-@property (nonatomic) Musica *chuvaOposto;
+@property JAGManagerSound *managerSound;
 
 -(instancetype)initWithPosition:(CGPoint) ponto withSize:(CGSize)size;
 
 -(void)update:(JAGGota *)gota;
 
 -(void)soltar;
+
+-(void)loadSound;
 
 @end

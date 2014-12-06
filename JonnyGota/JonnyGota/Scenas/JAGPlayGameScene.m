@@ -16,6 +16,7 @@
 #import "JAGChave.h"
 #import "JAGTrap.h"
 #import "JAGMenu.h"
+#import "JAGManagerSound.h"
 #import <AVFoundation/AVFoundation.h>
 
 @implementation JAGPlayGameScene {
@@ -35,16 +36,12 @@
     BOOL controleYnaTela;   //controle para verificar se nodo de parada da gota y está na tela
     BOOL pauseDetected;     //jogo pausado?
     JAGChave* chave;        //item chave
-    Musica *relampago;
-    Musica *generate;
+
+    JAGManagerSound *managerSound;
     bool frenetico;
     BOOL GONaTela;
 }
 
-static Musica   *divide;
-static Musica   *poca;
-
-static Musica *colide;
 
 #pragma mark - View Initialization
 -(void)didMoveToView:(SKView *)view{
@@ -60,6 +57,11 @@ static Musica *colide;
     //    _message2.zPosition = 999;
     [self.camadaPersonagens addChild:_message2];
     [self touchesEnded:nil withEvent:nil];
+    
+    
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(realodingSound) name:@"reativarSom" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(killSound) name:@"desativarSom" object:nil];
 }
 
 
@@ -99,30 +101,39 @@ static Musica *colide;
     //Criar Buttons
     [self createButtons];
     
+    managerSound=[JAGManagerSound sharedManager];
     
-    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric5" ofType:@"caf"];
-    NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
-    
-    divide=[[Musica alloc] init];
-    
-    [divide carregar:fileUrl withEffects:false];
-    
-    [divide changeVolume:0.9];
-    
-    
-    filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric3" ofType:@"caf"];
-    fileUrl = [NSURL fileURLWithPath:filePath];
-    
-    poca=[[Musica alloc] init];
-    
-    [poca carregar:fileUrl withEffects:false];
-    
-    
-    
-    
+    [self loadSound];
     
     
     return self;
+}
+
+-(void)loadSound{
+    //Divide
+    [managerSound addSound:@"DropGeneric5" withEffects:false withKey:@"divide"];
+    
+    [managerSound changeVolume:@"divide" withSound:0.8];
+    
+    
+    //Poca
+    [managerSound addSound:@"DropGeneric3" withEffects:false withKey:@"poca"];
+    
+    //Relampago
+//    [managerSound addSound:<#(NSString *)#> withEffects:<#(BOOL)#> withKey:<#(NSString *)#>]
+}
+
+-(void)realodingSound{
+    
+//    [relampago reaload];
+
+//    [self.gota loadSound];
+//    
+//    [self.level.chuva loadSound];
+//    
+//    [self loadSound];
+    
+//    [self.level.chuva.chuva reaload];
 }
 
 -(void)transicaoButton:(SKNode *) node
@@ -430,8 +441,8 @@ static Musica *colide;
                                               [SKAction runBlock:^{
         if (!self.inTutorial) {
             
-            
-            [relampago play];
+            [managerSound playSound:@"relampago"];
+//            [relampago play];
             //        [self.scene runAction:[SKAction playSoundFileNamed:@"trovao.wav" waitForCompletion:NO]];
             SKAction *retiraMascara=[SKAction sequence:@[[SKAction waitForDuration:0.1],
                                                          [SKAction runBlock:^{
@@ -470,7 +481,7 @@ static Musica *colide;
     NSTimeInterval tempo = frequencia;
     SKAction *controle = [SKAction sequence:@[[SKAction waitForDuration:tempo],
                                               [SKAction runBlock:^{
-        [relampago play];
+        [managerSound playSound:@"relampago"];
         //Criar novo campo de visão.
         
         SKAction *scaler=[SKAction sequence:@[[SKAction scaleBy:2 duration:0],[SKAction scaleBy:0.5 duration:1.5]]];
@@ -723,10 +734,20 @@ static Musica *colide;
     
 }
 -(void)deallocSound{
-    [generate soltar];
-    [relampago soltar];
+
+    //Liberar Sons
+//    [generate soltar];
+//    [relampago soltar];
     [self.level.chuva soltar];
+    [self.gota soltar];
+}
+
+-(void)killSound{
     
+    [self deallocSound];
+    //Fechar a OpenAL
+    
+//    [relampago kill];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -818,7 +839,9 @@ static Musica *colide;
                 
                 toque_moveu = NO;
                 
-                [divide play];
+                [managerSound playSound:@"divide"];
+                
+//                [divide play];
                 
                 
             } else {
@@ -829,7 +852,9 @@ static Musica *colide;
                     
                     [_gota esconder];
                     
-                    [poca play];
+                    [managerSound playSound:@"poca"];
+                    
+//                    [poca play];
                     
                     [self removeActionForKey:@"moveGota"];
                 } else {
@@ -1138,7 +1163,7 @@ static Musica *colide;
         if([contact.bodyA.node.name isEqualToString:@"cronometro"]){
             JAGObjeto *obj=(JAGObjeto *)contact.bodyA.node.parent;
             
-            
+            //Alterar Action Talvez
             [self runAction:[SKAction playSoundFileNamed:@"maisTempo.wav" waitForCompletion:YES]];
             [obj habilidade:self];
             self.gota.sentido=0;
@@ -1514,14 +1539,10 @@ static Musica *colide;
     
     //Carregar o som da gotinha perdendo hp
     
-    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric2" ofType:@"caf"];
-    NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
+    [managerSound addSound:@"DropGeneric2" withEffects:false withKey:@"generate"];
     
-    generate=[[Musica alloc] init];
-    
-    [generate carregar:fileUrl withEffects:false];
-    
-    [generate changeVolume:0.7];
+    [managerSound changeVolume:@"generate" withSound:0.7];
+
 
     
     
@@ -1560,14 +1581,18 @@ static Musica *colide;
     }
     
     
-    NSString* filePath2 = [[NSBundle mainBundle] pathForResource:@"Raio1" ofType:@"caf"];
-    NSURL* fileUrl2 = [NSURL fileURLWithPath:filePath2];
+    [managerSound addSound:@"Raio1" withEffects:false withKey:@"relampago"];
     
-    relampago=[[Musica alloc] init];
     
-    [relampago carregar:fileUrl2 withEffects:false];
-    
-    [relampago changeVolume:1.0];
+//    
+//    NSString* filePath2 = [[NSBundle mainBundle] pathForResource:@"Raio1" ofType:@"caf"];
+//    NSURL* fileUrl2 = [NSURL fileURLWithPath:filePath2];
+//    
+//    relampago=[[Musica alloc] init];
+//    
+//    [relampago carregar:fileUrl2 withEffects:false];
+//    
+//    [relampago changeVolume:1.0];
     
     self.posicaoInicial=self.gota.position;
     

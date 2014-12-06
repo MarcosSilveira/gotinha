@@ -11,11 +11,21 @@
 
 @implementation JAGChuva
 
+float lastposx;
+
+float volumeNormal;
+
+float volumeOposto;
+
+float volumeAtual;
+
 -(instancetype)initWithPosition:(CGPoint)ponto withSize:(CGSize)size{
     
     self = [super init];
     
     size=CGSizeMake(size.width*2, size.width*1.5);
+    
+    
     
     self.nuvemText = [SKTexture textureWithImageNamed:@"nuvem"];
     self.sprite = [[SKSpriteNode alloc] initWithTexture:self.nuvemText];
@@ -28,40 +38,7 @@
     self.physicsBody.collisionBitMask = GOTA;
     self.physicsBody.contactTestBitMask = GOTA;
     
-    self.chuva = [[Musica alloc] init];
-    
-    [self.chuva inici];
-    
-    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"AMBL" ofType:@"caf"];
-    NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
-    
-
-    [self.chuva carregar:fileUrl withEffects:true];
-    
-    [self.chuva changeVolume:1];
-    
-    
-    NSString* filePath2 = [[NSBundle mainBundle] pathForResource:@"AMBR" ofType:@"caf"];
-    NSURL* fileUrl2 = [NSURL fileURLWithPath:filePath2];
-
-    
-    self.chuvaOposto = [[Musica alloc] init];
-    
-    [self.chuvaOposto inici];
-    
-    [self.chuvaOposto carregar:fileUrl2 withEffects:true];
-    
-    [self.chuvaOposto changeVolume:1];
-    
-    
-    
-    //    [self.chuva updateListener:posx withY:posy withZ:0.0f];
-    
-    //    [self.chuva configureEffects:ponto.x withY:ponto.y withZ:0.0f];
-    
-    [self.chuva playInLoop];
-    
-    [self.chuvaOposto playInLoop];
+    self.managerSound =[JAGManagerSound sharedManager];
     
     [self addChild:self.sprite];
     
@@ -71,7 +48,32 @@
     
     self.physicsBody.restitution = 0;
     
+    [self loadSound];
+    
     return self;
+}
+
+-(void)loadSound{
+    volumeNormal=1.0;
+    
+    volumeAtual=volumeNormal;
+    
+    volumeOposto=0.7;
+    
+    [self.managerSound addSound:@"AMBL" withEffects:true withKey:@"chuva"];
+    
+//    [self.managerSound carregar:@"AMBL" withEffects:true];
+    
+    [self.managerSound changeVolume:@"chuva" withSound:volumeNormal];
+    
+    [self.managerSound addSound:@"AMBL" withEffects:true withKey:@"chuvaOposto"];
+    
+    
+    [self.managerSound changeVolume:@"chuvaOposto" withSound:volumeOposto];
+
+    [self.managerSound playInLoop:@"chuva"];
+    
+    [self.managerSound playInLoop:@"chuvaOposto"];
 }
 
 -(void)update:(JAGGota *)gota{
@@ -83,14 +85,52 @@
     
     float posxOpos=posx*(-1);
     
-    [self.chuva configureEffects:posx withY:posy withZ:0.0f];
-    [self.chuvaOposto configureEffects:posxOpos withY:posy withZ:0.0f];
+    if (  ((lastposx>0&& posx<0)  ||  (lastposx<0 && posx>0)) && volumeAtual==volumeNormal) {
+        lastposx=posx;
+        
+        //Fazer Fade do volume
+        
+        volumeAtual=0.3;
+        
+        [self.managerSound changeVolume:@"chuva" withSound:volumeAtual];
+
+        
+        NSTimer *t=[NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(fadeVolume:) userInfo:nil repeats:YES];
+        
+        
+        [[NSRunLoop mainRunLoop] addTimer:t forMode:NSRunLoopCommonModes];
+    }else{
+        lastposx=posx;
+    }
+    
+    [self.managerSound configureListener:@"chuva" withX:posx withY:posy withZ:0.0];
+    [self.managerSound configureListener:@"chuvaOposto" withX:posxOpos withY:posy withZ:0.0];
+//     changeVolume:@"chuva" withSound:volumeAtual];
+//    
+//    [self.chuva configureEffects:posx withY:posy withZ:0.0f];
+//    [self.chuvaOposto configureEffects:posxOpos withY:posy withZ:0.0f];
+//    [self.chuvaOposto configureEffects:posx withY:posy withZ:0.0f];
+
     //    NSLog(@"update gota");
 }
 
+-(void)fadeVolume:(NSTimer *)timer{
+
+    volumeAtual+=0.12;
+    [self.managerSound changeVolume:@"chuva" withSound:volumeAtual];
+//    [self.chuva changeVolume:volumeAtual];
+    if (volumeAtual>=volumeNormal) {
+        volumeAtual=volumeNormal;
+        [timer invalidate];
+    }
+//    volumeAtual=volumeOposto
+}
+
 -(void)soltar{
-    [self.chuva soltar];
-    [self.chuvaOposto soltar];
+    [self.managerSound stopSound:@"chuva"];
+    [self.managerSound stopSound:@"chuvaOposto"];
+//    [self.chuva soltar];
+//    [self.chuvaOposto soltar];
 }
 
 @end

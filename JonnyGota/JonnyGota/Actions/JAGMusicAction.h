@@ -7,19 +7,17 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-#import "Musica.h"
+#import "JAGManagerSound.h"
 
 @interface JAGMusicAction : SKAction
 
-@property Musica *musica;
-
-@property NSMutableArray *Musicas;
+@property JAGManagerSound *managerSound;
 
 @property BOOL paused;
 
+@property SKNode *nodo;
 
-
--(instancetype)initWithMusic:(Musica *)music;
+-(instancetype)init;
 
 -(void)dealloc;
 
@@ -27,7 +25,7 @@
 
 -(void)stop;
 
--(void)addNewMusica:(Musica *)musica;
+-(void)soltar;
 
 
 @end
