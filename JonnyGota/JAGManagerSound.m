@@ -5,12 +5,15 @@
 //  Created by Henrique Manfroi da Silveira on 06/12/14.
 //  Copyright (c) 2014 Henrique Manfroi da Silveira. All rights reserved.
 //
-
+#define volumeStep 0.1
+#define timeFade 0.3
 #import "JAGManagerSound.h"
 
 @implementation JAGManagerSound
 
 static JAGManagerSound *sharedMyManager;
+
+float volume;
 
 static ALCdevice *openALDevice;
 static ALCcontext *openALContext;
@@ -77,7 +80,8 @@ static ALCcontext *openALContext;
             UInt64 fileSizeInBytes = 0;
             UInt32 propSize = sizeof(fileSizeInBytes);
             
-            OSStatus getSizeResult = AudioFileGetProperty(afid, kAudioFilePropertyAudioDataByteCount, &propSize, &fileSizeInBytes);
+//            OSStatus getSizeResult =
+            AudioFileGetProperty(afid, kAudioFilePropertyAudioDataByteCount, &propSize, &fileSizeInBytes);
             
             UInt32 bytesRead = (UInt32)fileSizeInBytes;
             
@@ -85,7 +89,8 @@ static ALCcontext *openALContext;
             
             
             
-            OSStatus readBytesResult = AudioFileReadBytes(afid, false, 0, &bytesRead, audioData);
+//            OSStatus readBytesResult =
+            AudioFileReadBytes(afid, false, 0, &bytesRead, audioData);
             
             
             AudioFileClose(afid);
@@ -125,12 +130,7 @@ static ALCcontext *openALContext;
     }
 }
 
--(void)stopSound:(NSString *)key{
-    ALuint outputSource = (ALuint)[[self.sound objectForKey:key] intValue];
-    
-    alSourceStop(outputSource);
-    [self.playing setValue:[NSNumber numberWithInt:0] forKey:key];
-}
+
 
 -(void)playSound:(NSString *)key{
     if ([[self.playing objectForKey:key] intValue]!=1) {
@@ -146,7 +146,7 @@ static ALCcontext *openALContext;
 
 -(void)changeVolume:(NSString *)key withSound:(float)vol{
     ALuint outputSource = (ALuint)[[self.sound objectForKey:key] intValue];
-    alSourcef(_outputSource, AL_GAIN, vol);
+    alSourcef(outputSource, AL_GAIN, vol);
 }
 
 -(void)configureListener:(NSString *)key withX:(float)x withY:(float)y withZ:(float)z{
@@ -214,6 +214,65 @@ static ALCcontext *openALContext;
     alcMakeContextCurrent(openALContext);
 }
 
+-(void)stopSound:(NSString *)key{
+    
+    //Fazer um fade
+    
+    //Ver se tem como pegar o gain da openAl
+    
+//    ALuint outputSource = (ALuint)[[self.sound objectForKey:key] intValue];
+//    
+//    ALint bufferID, bufferVolume;
+//    
+//    alGetSourcei(outputSource, AL_BUFFER, &bufferID);
+//
+//    
+//    alGetSourcef(outputSource, AL_GAIN, &volume);
+//    
+//    NSDictionary *info=[NSDictionary dictionaryWithObjectsAndKeys:key,@"key", nil];
+//    
+//    NSTimer *timer=[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(fadeVolume:) userInfo:
+//                    info repeats:YES];
+//    
+//    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    
+    
+    
+    //Sem fade
+    
+        ALuint outputSource = (ALuint)[[self.sound objectForKey:key] intValue];
+    
+        alSourceStop(outputSource);
+        [self.playing setValue:[NSNumber numberWithInt:0] forKey:key];
+}
+
+-(void)fadeVolume:(NSTimer *)timer{
+    
+//    float volume = [[[timer userInfo] objectForKey:@"volume"] floatValue];
+    
+    NSString *key=(NSString *)[[timer userInfo] objectForKey:@"key"];
+    
+    
+    
+    
+    //     withString:(NSString *)key
+    //     withVolueme:(float) volume
+    volume-=0.1;
+    
+    [self changeVolume:@"key" withSound:volume];
+    
+//    [[timer userInfo]setValue:[NSNumber numberWithFloat:volume] forKey:@"volume"];
+    //
+    //    [self changeVolume:key withSound:volume];
+    if (volume<=0) {
+        [timer invalidate];
+        //        [self.playing setValue:[NSNumber numberWithInt:0] forKey:key];
+        ALuint outputSource = (ALuint)[[self.sound objectForKey:key] intValue];
+        
+        alSourceStop(outputSource);
+        [self.playing setValue:[NSNumber numberWithInt:0] forKey:key];
+    }
+}
 
 
 -(SKAction*)playButton{
@@ -224,6 +283,18 @@ static ALCcontext *openALContext;
     SKAction *seq=[SKAction sequence:@[[SKAction runBlock:^{
         [self playSound:@"botao1"];
     }],[SKAction waitForDuration:[self duration:@"botao1"]]]];
+    
+    return seq;
+}
+
+-(SKAction*)CronometroSound{
+    [self addSound:@"maisTempo" withEffects:NO withKey:@"maisTempo"];
+    
+    
+    
+    SKAction *seq=[SKAction sequence:@[[SKAction runBlock:^{
+        [self playSound:@"maisTempo"];
+    }],[SKAction waitForDuration:[self duration:@"maisTempo"]]]];
     
     return seq;
 }

@@ -50,4 +50,8 @@
 
 -(SKAction*)playButton;
 
+-(SKAction*)CronometroSound;
+
+-(void)fadeVolume:(NSTimer *)timer;
+
 @end

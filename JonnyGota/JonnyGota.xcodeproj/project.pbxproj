@@ -49,6 +49,8 @@
 		0B3A0495199117B700C7C39E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3A0494199117B700C7C39E /* AudioToolbox.framework */; };
 		0B3A0497199117C000C7C39E /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3A0496199117C000C7C39E /* OpenAL.framework */; };
 		0B3A049A1991184700C7C39E /* JAGCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3A04991991184700C7C39E /* JAGCharacter.m */; };
+		0B4E65D11A34BD7F0061D6B2 /* maisTempo.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0B4E65CF1A34BD7F0061D6B2 /* maisTempo.caf */; };
+		0B4E65D21A34BD7F0061D6B2 /* recuperaVida.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0B4E65D01A34BD7F0061D6B2 /* recuperaVida.caf */; };
 		0B8600F619AFA40B00615FA6 /* JAGAttack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8600F519AFA40B00615FA6 /* JAGAttack.m */; };
 		0B88D26219E70E1F00351527 /* botao1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B88D26019E70E1F00351527 /* botao1.png */; };
 		0B88D26319E70E1F00351527 /* botao2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B88D26119E70E1F00351527 /* botao2.png */; };
@@ -73,7 +75,6 @@
 		0BB7E84919AE403700C36889 /* JAGPerdaGota.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB7E84819AE403700C36889 /* JAGPerdaGota.m */; };
 		0BB81679199BBDA800490104 /* JAGWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB81678199BBDA800490104 /* JAGWall.m */; };
 		0BBC41391A2E1B1600AB890B /* maisTempo.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0BBC41381A2E1B1600AB890B /* maisTempo.wav */; };
-		0BBC41461A2F825C00AB890B /* AMBR.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BBC41441A2F825C00AB890B /* AMBR.caf */; };
 		0BBCC3D51A3372B800D24537 /* JAGManagerSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBCC3D41A3372B800D24537 /* JAGManagerSound.m */; };
 		0BBCC3D71A337C8400D24537 /* trilha1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BBCC3D61A337C8400D24537 /* trilha1.caf */; };
 		0BBCC3D91A33800900D24537 /* botaoUI1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BBCC3D81A33800900D24537 /* botaoUI1.caf */; };
@@ -281,6 +282,8 @@
 		0B3A0496199117C000C7C39E /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		0B3A04981991184700C7C39E /* JAGCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGCharacter.h; path = JonnyGota/Models/JAGCharacter.h; sourceTree = "<group>"; };
 		0B3A04991991184700C7C39E /* JAGCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGCharacter.m; path = JonnyGota/Models/JAGCharacter.m; sourceTree = "<group>"; };
+		0B4E65CF1A34BD7F0061D6B2 /* maisTempo.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = maisTempo.caf; sourceTree = "<group>"; };
+		0B4E65D01A34BD7F0061D6B2 /* recuperaVida.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = recuperaVida.caf; sourceTree = "<group>"; };
 		0B8600F419AFA40B00615FA6 /* JAGAttack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGAttack.h; path = JonnyGota/Actions/JAGAttack.h; sourceTree = "<group>"; };
 		0B8600F519AFA40B00615FA6 /* JAGAttack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGAttack.m; path = JonnyGota/Actions/JAGAttack.m; sourceTree = "<group>"; };
 		0B88D26019E70E1F00351527 /* botao1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = botao1.png; sourceTree = "<group>"; };
@@ -666,10 +669,7 @@
 				0BCC65F219DC8846004C517F /* Fonts */,
 				0B97E39919CC982C0052ECF5 /* Musicas */,
 				0B15AACB19D09A2C00ED6110 /* tilemaps */,
-				B1E9587A19B77718002302D7 /* Raio.sks */,
-				8DF47BD119B0B4EE0021AE2D /* Fogo.sks */,
-				8D4A4F3F19AFA99300255468 /* Vapor.sks */,
-				8D11652819CC82F900F441E9 /* trovao.wav */,
+				0B4E65CE1A34BC780061D6B2 /* Particulas */,
 				8DD607AA1A2FE2F6009CBA1F /* super_gotinha.atlas */,
 				8D3AF79A19F55EF50071B23F /* porta.atlas */,
 				8D6B5A4619CB496A00127198 /* enemies.atlas */,
@@ -830,6 +830,16 @@
 			name = Actions;
 			sourceTree = "<group>";
 		};
+		0B4E65CE1A34BC780061D6B2 /* Particulas */ = {
+			isa = PBXGroup;
+			children = (
+				B1E9587A19B77718002302D7 /* Raio.sks */,
+				8DF47BD119B0B4EE0021AE2D /* Fogo.sks */,
+				8D4A4F3F19AFA99300255468 /* Vapor.sks */,
+			);
+			name = Particulas;
+			sourceTree = "<group>";
+		};
 		0B88D25C19E70DBA00351527 /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -901,6 +911,7 @@
 		0B97E39919CC982C0052ECF5 /* Musicas */ = {
 			isa = PBXGroup;
 			children = (
+				8D11652819CC82F900F441E9 /* trovao.wav */,
 				0B1952781A2F871B00E1461F /* Passos */,
 				0BBC413A1A2F7CE100AB890B /* Ambiente */,
 				0BBC41371A2E1AFD00AB890B /* Efects */,
@@ -934,6 +945,8 @@
 		0BBC41371A2E1AFD00AB890B /* Efects */ = {
 			isa = PBXGroup;
 			children = (
+				0B4E65CF1A34BD7F0061D6B2 /* maisTempo.caf */,
+				0B4E65D01A34BD7F0061D6B2 /* recuperaVida.caf */,
 				0BBC41381A2E1B1600AB890B /* maisTempo.wav */,
 			);
 			name = Efects;
@@ -1225,7 +1238,7 @@
 				ORGANIZATIONNAME = "Henrique Manfroi da Silveira";
 				TargetAttributes = {
 					0B3A044B1991164A00C7C39E = {
-						DevelopmentTeam = T5N5TT4E82;
+						DevelopmentTeam = 64TH9999YT;
 					};
 					0B3A04731991164A00C7C39E = {
 						DevelopmentTeam = VCE77X465D;
@@ -1277,6 +1290,7 @@
 				B1E9587B19B77718002302D7 /* Raio.sks in Resources */,
 				0BE89C0D1A151A9200E1FCBF /* map13.tmx in Resources */,
 				8D60E2011A07F513000A5129 /* Localizable.strings in Resources */,
+				0B4E65D21A34BD7F0061D6B2 /* recuperaVida.caf in Resources */,
 				8D60E1C41A07E72C000A5129 /* comprarVidas.png in Resources */,
 				0BC3E8ED1A2CDB5600DAB156 /* BOTAO UI 4.wav in Resources */,
 				0BBC41391A2E1B1600AB890B /* maisTempo.wav in Resources */,
@@ -1388,6 +1402,7 @@
 				8D35976719D86559009B6083 /* fase_semSombra2.png in Resources */,
 				0BA3BCB31A239854003933C2 /* map12.png in Resources */,
 				8D1B210119DC4F5E007B9B9F /* vidas10.png in Resources */,
+				0B4E65D11A34BD7F0061D6B2 /* maisTempo.caf in Resources */,
 				8D8DC57B19D2EC2F00E75949 /* vida5.png in Resources */,
 				8D60E1C91A07E744000A5129 /* comprarVidas.png in Resources */,
 				0BBCC3DB1A3394FE00D24537 /* AMBL.caf in Resources */,

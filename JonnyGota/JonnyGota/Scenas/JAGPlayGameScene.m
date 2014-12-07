@@ -1164,13 +1164,13 @@
             JAGObjeto *obj=(JAGObjeto *)contact.bodyA.node.parent;
             
             //Alterar Action Talvez
-            [self runAction:[SKAction playSoundFileNamed:@"maisTempo.wav" waitForCompletion:YES]];
+            [self runAction:[managerSound CronometroSound]];
             [obj habilidade:self];
             self.gota.sentido=0;
             [obj removeFromParent];
         }else{
             JAGObjeto *obj=(JAGObjeto *)contact.bodyB.node.parent;
-            [self runAction:[SKAction playSoundFileNamed:@"maisTempo.wav" waitForCompletion:YES]];
+            [self runAction:[managerSound CronometroSound]];
             [obj habilidade:self];
             self.gota.sentido=0;
             [obj removeFromParent];

@@ -396,7 +396,7 @@ NSMutableArray *nodesPhy;
 
 
 
-#pragma mark - Leveis
+#pragma mark - Leveis 1-10
 
 + (void)initializeLevel99ofWorld01onScene:(JAGPlayGameScene *)scene
 {
@@ -517,11 +517,11 @@ NSMutableArray *nodesPhy;
     
     [scene.hud startTimer];
     
-    JAGObjeto *obj = [[JAGObjeto alloc] init];
-    SKSpriteNode *cron = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(scene.level.tileSize-1, scene.level.tileSize-1)];
-    [obj criarObj:[scene.level calculateTile:CGPointMake(9, 3)] comTipo:2 eSprite:cron];
-    
-    [scene.cropNode addChild:obj];
+//    JAGObjeto *obj = [[JAGObjeto alloc] init];
+//    SKSpriteNode *cron = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(scene.level.tileSize-1, scene.level.tileSize-1)];
+//    [obj criarObj:[scene.level calculateTile:CGPointMake(9, 3)] comTipo:2 eSprite:cron];
+//    
+//    [scene.cropNode addChild:obj];
     
     [scene.cropNode addChild:scene.gota];
     
@@ -612,32 +612,39 @@ NSMutableArray *nodesPhy;
         //Criar o tutorial
         
         NSMutableArray *tutorial=[[NSMutableArray alloc] init];
-
+        JAGVida *vida;
+        vida=[JAGVida sharedManager];
         
-        JAGCompTutorial *temp=[[JAGCompTutorial alloc] init];
+        JAGCompTutorial *temp;
+        if (vida.gamePad) {
+            temp=[[JAGCompTutorial alloc] init];
+            
+            temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL1_FRASE1", nil);
+            
+            temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto1"];
+            temp.image.size=CGSizeMake(scene.frame.size.width*4, scene.frame.size.height*0.6);
+            NSLog(@"size X %f ",temp.image.size.width);
+            //        [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:CGSizeMake(100, 100)];
+            
+            
+            [tutorial addObject:temp];
+        }else{
+            temp=[[JAGCompTutorial alloc] init];
+            
+            temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL1_FRASE2", nil);
+            
+            temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto2"];
+            temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
+            
+            [tutorial addObject:temp];
+        }
         
-        temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL_FRASE1", nil);
-        
-        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto1"];
-        temp.image.size=CGSizeMake(scene.frame.size.width*4, scene.frame.size.height*0.6);
-        NSLog(@"size X %f ",temp.image.size.width);
-//        [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:CGSizeMake(100, 100)];
         
         
-        [tutorial addObject:temp];
         
         temp=[[JAGCompTutorial alloc] init];
         
-        temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL_FRASE2", nil);
-        
-        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto2"];
-        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
-        
-        [tutorial addObject:temp];
-        
-        temp=[[JAGCompTutorial alloc] init];
-        
-        temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL_FRASE3", nil);
+        temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL1_FRASE3", nil);
         
         temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto3"];
         temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
@@ -647,13 +654,14 @@ NSMutableArray *nodesPhy;
         
         temp=[[JAGCompTutorial alloc] init];
         
-        temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL_FRASE3", nil);
+        temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL1_FRASE4", nil);
         
         temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto4"];
         temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
         
         
         [tutorial addObject:temp];
+
         
         JAGTutorial *tuto=[[JAGTutorial alloc] initWithComponents:tutorial withSizeFrame:scene.frame.size];
         
@@ -670,8 +678,6 @@ NSMutableArray *nodesPhy;
         //Config Map
         [JAGCreatorLevels configMap:scene withTtile:tiledMap];
         
-        
-        NSLog(@"Multi ? %d tile Size %f",scene.gota.multi,tiledMap.tileSize.width);
 
 //        scene.gota.multi=14;
                 //Add objetos
@@ -711,6 +717,20 @@ NSMutableArray *nodesPhy;
         [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
         //Gotinha
         
+        //tutorial
+        
+         NSMutableArray *tutorial=[[NSMutableArray alloc] init];
+        JAGCompTutorial *temp;
+        temp=[[JAGCompTutorial alloc] init];
+        
+        temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL2_FRASE1", nil);
+        
+        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto1"];
+        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
+        
+        [tutorial addObject:temp];
+
+        JAGTutorial *tuto=[[JAGTutorial alloc] initWithComponents:tutorial withSizeFrame:scene.frame.size];
         
         
         
@@ -760,6 +780,11 @@ NSMutableArray *nodesPhy;
         
         //Config de hud e fase
         [JAGCreatorLevels configHud:scene];
+        
+        scene.tutorial=tuto;
+        scene.inTutorial=YES;
+        //add tutorial
+        [scene addChild:tuto];
         
     }
 }
@@ -818,6 +843,64 @@ NSMutableArray *nodesPhy;
     
     JSTileMap* tiledMap = [JSTileMap mapNamed:@"map4.tmx"];
     if (tiledMap){
+        
+        
+        //Tutorial
+        
+        NSMutableArray *tutorial=[[NSMutableArray alloc] init];
+        JAGCompTutorial *temp;
+        temp=[[JAGCompTutorial alloc] init];
+        
+        temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL3_FRASE1", nil);
+        
+        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto1"];
+        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
+        
+        [tutorial addObject:temp];
+        
+        temp=[[JAGCompTutorial alloc] init];
+        
+        temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL3_FRASE2", nil);
+        
+        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto2"];
+        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
+        
+        [tutorial addObject:temp];
+        
+        
+        temp=[[JAGCompTutorial alloc] init];
+        
+        temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL3_FRASE3", nil);
+        
+        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto3"];
+        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
+        
+        
+        [tutorial addObject:temp];
+
+
+        temp=[[JAGCompTutorial alloc] init];
+        
+        temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL3_FRASE4", nil);
+        
+        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto3"];
+        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
+        
+        [tutorial addObject:temp];
+        
+        
+        temp=[[JAGCompTutorial alloc] init];
+        
+        temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL3_FRASE5", nil);
+        
+        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto4"];
+        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
+        
+        
+        [tutorial addObject:temp];
+
+        
+        JAGTutorial *tuto=[[JAGTutorial alloc] initWithComponents:tutorial withSizeFrame:scene.frame.size];
         
         
         [JAGCreatorLevels configTileMap:scene withTtile:tiledMap];
@@ -881,6 +964,11 @@ NSMutableArray *nodesPhy;
         //Config de hud e fase
         [JAGCreatorLevels configHud:scene];
         
+        
+        [scene addChild:tuto];
+        
+        scene.tutorial=tuto;
+        scene.inTutorial=YES;
     }
 }
 
@@ -1412,6 +1500,7 @@ NSMutableArray *nodesPhy;
     }
 }
 
+#pragma mark - Leveis 11-20
 
 + (void)initializeLevel11ofWorld01onScene:(JAGPlayGameScene *)scene
 {
@@ -2090,6 +2179,15 @@ NSMutableArray *nodesPhy;
         [scene.camadaItens addChild:presao3];
         
         [scene.camadaPersonagens addChild:porta];
+        
+        //Cronometro
+        
+        JAGObjeto *obj = [[JAGObjeto alloc] init];
+        
+        //        SKSpriteNode *cron = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(scene.level.tileSize-1, scene.level.tileSize-1)];
+        [obj criarObj:[scene.level calculateTileHalf:CGPointMake(4, 3)] comTipo:2 withTamanho:CGSizeMake(scene.level.tileSize-1, scene.level.tileSize-1)];
+        
+        [scene.camadaItens addChild:obj];
         
         
         JAGFogoEnemy *fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(1, 18)] withSize:tiledMap.tileSize];
