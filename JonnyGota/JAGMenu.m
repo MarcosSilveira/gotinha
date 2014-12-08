@@ -37,7 +37,7 @@
         
         managerSound=[JAGManagerSound sharedManager];
         
-        [managerSound addSound:@"trilha1" withEffects:NO withKey:@"trilha"];
+        [managerSound addSound:@"trilhaGotinhaMenu" withEffects:NO withKey:@"trilha"];
         [managerSound playInLoop:@"trilha"];
         
         [managerSound changeVolume:@"trilha" withSound:0.7];
@@ -83,7 +83,6 @@
         CGPoint location = [touch locationInNode: self];
         
         if ([botaoPlay containsPoint:location]) {
-            
             
             
             SKScene *scene = [[JAGLevelSelectionScene alloc] initWithSize:self.frame.size];

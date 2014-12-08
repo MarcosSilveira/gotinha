@@ -2109,17 +2109,13 @@ NSMutableArray *nodesPhy;
     }
 }
 
-
-
-
-
 + (void)initializeLevel17ofWorld01onScene:(JAGPlayGameScene *)scene
 {
     //    JSTileMap *map;
     //    TMXLayer *tile;
     //    TMXLayer *bg;
     
-    JSTileMap* tiledMap = [JSTileMap mapNamed:@"map18.tmx"];
+    JSTileMap* tiledMap = [JSTileMap mapNamed:@"map17.tmx"];
     if (tiledMap){
         
         //Criar o tutorial

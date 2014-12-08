@@ -410,7 +410,7 @@
     area.zPosition = _cropNode.zPosition+1;
     [_cropNode addChild:fadeMask];
     [area addChild:circleMask];
-    //area.position=CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
+    area.position = CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
     [_cropNode setMaskNode:area];
 }
 
@@ -433,7 +433,6 @@
     
     return circleNew;
 }
-
 
 -(void)fadeMask{
     double frequencia = _level.frequenciaRelampago;
@@ -1537,7 +1536,7 @@
 -(void)configStart:(int) time{
     _posicaoInicial=self.gota.position;
     
-    self.cropNode.zPosition=50;
+    self.cropNode.zPosition = 50;
     
     //Carregar o som da gotinha perdendo hp
     

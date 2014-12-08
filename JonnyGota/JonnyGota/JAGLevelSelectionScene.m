@@ -103,16 +103,14 @@
 }
 -(void)update:(NSTimeInterval)currentTime{
     vidas_quantidade.text = [NSString stringWithFormat:@" X %ld",(long)vida.vidas];
-    
 }
-
-
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    
     JAGPlayGameScene *jogo;
     for (UITouch *touch in touches) {
         SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
@@ -189,12 +187,7 @@
         //            [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
         //        }
     }
-    
-    
 }
-
-
-
 
 -(void)organizaBotoes{
     
@@ -229,13 +222,8 @@
             
             //Setar um font size baseada na tela
             labelNum.fontSize=self.frame.size.height*0.1;
-            
             labelNum.text=[NSString stringWithFormat:@"%d",i];
-            
             labelNum.name=[NSString stringWithFormat:@"%d",i];
-            
-            
-            
             
             [nodo addChild:labelNum];
             
@@ -263,25 +251,5 @@
     [self.scene addChild:vidas_sprite];
     [self.scene addChild:vidas_quantidade];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

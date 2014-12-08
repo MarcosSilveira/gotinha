@@ -92,7 +92,7 @@
 		0BC2FD7C1A24CCFC009D00DC /* DropGeneric3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BC2FD781A24CCFC009D00DC /* DropGeneric3.caf */; };
 		0BC2FD7D1A24CCFC009D00DC /* DropGeneric4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BC2FD791A24CCFC009D00DC /* DropGeneric4.caf */; };
 		0BC2FD7E1A24CCFC009D00DC /* DropGeneric5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BC2FD7A1A24CCFC009D00DC /* DropGeneric5.caf */; };
-		0BC3E8E71A2CD75400DAB156 /* botaoUp1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0BC3E8E61A2CD75400DAB156 /* botaoUp1.wav */; };
+		0BC3E8E71A2CD75400DAB156 /* btUp1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0BC3E8E61A2CD75400DAB156 /* btUp1.wav */; };
 		0BC3E8EB1A2CDB5600DAB156 /* BOTAO UI 2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0BC3E8E81A2CDB5600DAB156 /* BOTAO UI 2.wav */; };
 		0BC3E8EC1A2CDB5600DAB156 /* BOTAO UI 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0BC3E8E91A2CDB5600DAB156 /* BOTAO UI 3.wav */; };
 		0BC3E8ED1A2CDB5600DAB156 /* BOTAO UI 4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0BC3E8EA1A2CDB5600DAB156 /* BOTAO UI 4.wav */; };
@@ -104,10 +104,8 @@
 		0BE89C0D1A151A9200E1FCBF /* map13.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0BE89C081A151A9200E1FCBF /* map13.tmx */; };
 		0BE89C0E1A151A9200E1FCBF /* map14.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0BE89C091A151A9200E1FCBF /* map14.tmx */; };
 		0BE89C0F1A151A9200E1FCBF /* map15.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0BE89C0A1A151A9200E1FCBF /* map15.tmx */; };
-		0BE89C111A151A9200E1FCBF /* map18.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0BE89C0C1A151A9200E1FCBF /* map18.tmx */; };
 		0BE89C151A151AB100E1FCBF /* map13.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BE89C121A151AB100E1FCBF /* map13.png */; };
 		0BE89C161A151AB100E1FCBF /* map15.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BE89C131A151AB100E1FCBF /* map15.png */; };
-		0BE89C171A151AB100E1FCBF /* map18.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BE89C141A151AB100E1FCBF /* map18.png */; };
 		0BE89C191A1521A500E1FCBF /* map16.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0BE89C181A1521A500E1FCBF /* map16.tmx */; };
 		0BE89C1B1A1521BD00E1FCBF /* map16.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BE89C1A1A1521BD00E1FCBF /* map16.png */; };
 		8D050F181A09384200D36D30 /* menuInicial.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D050F1A1A09384200D36D30 /* menuInicial.png */; };
@@ -185,7 +183,6 @@
 		8DD608011A30C5CE009CBA1F /* passo2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8DD607FD1A30C5CE009CBA1F /* passo2.caf */; };
 		8DD608021A30C5CE009CBA1F /* passo3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8DD607FE1A30C5CE009CBA1F /* passo3.caf */; };
 		8DD608031A30C5CE009CBA1F /* passo4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8DD607FF1A30C5CE009CBA1F /* passo4.caf */; };
-		8DD608061A30CF74009CBA1F /* saude.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DD608081A30CF74009CBA1F /* saude.png */; };
 		8DD6080C1A30CF8B009CBA1F /* saude.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DD6080E1A30CF8B009CBA1F /* saude.png */; };
 		8DD608111A30D039009CBA1F /* resumir.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DD608131A30D039009CBA1F /* resumir.png */; };
 		8DD608161A30D047009CBA1F /* resumir.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DD608181A30D047009CBA1F /* resumir.png */; };
@@ -205,6 +202,9 @@
 		B18414B31A1675530056D9DA /* tuto3.png in Resources */ = {isa = PBXBuildFile; fileRef = B18414AF1A1675530056D9DA /* tuto3.png */; };
 		B18414B41A1675530056D9DA /* tuto4.png in Resources */ = {isa = PBXBuildFile; fileRef = B18414B01A1675530056D9DA /* tuto4.png */; };
 		B18414B61A171CAE0056D9DA /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = B18414B51A171CAE0056D9DA /* heart.png */; };
+		B19711941A322C47005CE334 /* map17.png in Resources */ = {isa = PBXBuildFile; fileRef = B19711931A322C47005CE334 /* map17.png */; };
+		B19711961A322C57005CE334 /* map17.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B19711951A322C57005CE334 /* map17.tmx */; };
+		B19711991A323198005CE334 /* trilhaGotinhaMenu.caf in Resources */ = {isa = PBXBuildFile; fileRef = B19711981A323198005CE334 /* trilhaGotinhaMenu.caf */; };
 		B1D9C13619DDC26E005ED4A1 /* DSMultilineLabelNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D9C13519DDC26E005ED4A1 /* DSMultilineLabelNode.m */; };
 		B1D9C13819DEE644005ED4A1 /* lvlX.png in Resources */ = {isa = PBXBuildFile; fileRef = B1D9C13719DEE644005ED4A1 /* lvlX.png */; };
 		B1D9C13A19DF041B005ED4A1 /* heart_sem_sombra.png in Resources */ = {isa = PBXBuildFile; fileRef = B1D9C13919DF041B005ED4A1 /* heart_sem_sombra.png */; };
@@ -338,7 +338,7 @@
 		0BC2FD781A24CCFC009D00DC /* DropGeneric3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DropGeneric3.caf; sourceTree = "<group>"; };
 		0BC2FD791A24CCFC009D00DC /* DropGeneric4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DropGeneric4.caf; sourceTree = "<group>"; };
 		0BC2FD7A1A24CCFC009D00DC /* DropGeneric5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DropGeneric5.caf; sourceTree = "<group>"; };
-		0BC3E8E61A2CD75400DAB156 /* botaoUp1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = botaoUp1.wav; sourceTree = "<group>"; };
+		0BC3E8E61A2CD75400DAB156 /* btUp1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = btUp1.wav; sourceTree = "<group>"; };
 		0BC3E8E81A2CDB5600DAB156 /* BOTAO UI 2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BOTAO UI 2.wav"; sourceTree = "<group>"; };
 		0BC3E8E91A2CDB5600DAB156 /* BOTAO UI 3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BOTAO UI 3.wav"; sourceTree = "<group>"; };
 		0BC3E8EA1A2CDB5600DAB156 /* BOTAO UI 4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "BOTAO UI 4.wav"; sourceTree = "<group>"; };
@@ -350,10 +350,8 @@
 		0BE89C081A151A9200E1FCBF /* map13.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map13.tmx; sourceTree = "<group>"; };
 		0BE89C091A151A9200E1FCBF /* map14.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map14.tmx; sourceTree = "<group>"; };
 		0BE89C0A1A151A9200E1FCBF /* map15.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map15.tmx; sourceTree = "<group>"; };
-		0BE89C0C1A151A9200E1FCBF /* map18.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map18.tmx; sourceTree = "<group>"; };
 		0BE89C121A151AB100E1FCBF /* map13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map13.png; sourceTree = "<group>"; };
 		0BE89C131A151AB100E1FCBF /* map15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map15.png; sourceTree = "<group>"; };
-		0BE89C141A151AB100E1FCBF /* map18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map18.png; sourceTree = "<group>"; };
 		0BE89C181A1521A500E1FCBF /* map16.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map16.tmx; sourceTree = "<group>"; };
 		0BE89C1A1A1521BD00E1FCBF /* map16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map16.png; sourceTree = "<group>"; };
 		8D050F191A09384200D36D30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Base; path = Base.lproj/menuInicial.png; sourceTree = "<group>"; };
@@ -507,6 +505,9 @@
 		B18414AF1A1675530056D9DA /* tuto3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tuto3.png; sourceTree = "<group>"; };
 		B18414B01A1675530056D9DA /* tuto4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tuto4.png; sourceTree = "<group>"; };
 		B18414B51A171CAE0056D9DA /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
+		B19711931A322C47005CE334 /* map17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map17.png; sourceTree = "<group>"; };
+		B19711951A322C57005CE334 /* map17.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map17.tmx; sourceTree = "<group>"; };
+		B19711981A323198005CE334 /* trilhaGotinhaMenu.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = trilhaGotinhaMenu.caf; sourceTree = "<group>"; };
 		B1D9C13419DDC26E005ED4A1 /* DSMultilineLabelNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSMultilineLabelNode.h; sourceTree = "<group>"; };
 		B1D9C13519DDC26E005ED4A1 /* DSMultilineLabelNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSMultilineLabelNode.m; sourceTree = "<group>"; };
 		B1D9C13719DEE644005ED4A1 /* lvlX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lvlX.png; sourceTree = "<group>"; };
@@ -645,7 +646,7 @@
 				0BE89C091A151A9200E1FCBF /* map14.tmx */,
 				0BE89C0A1A151A9200E1FCBF /* map15.tmx */,
 				0BE89C181A1521A500E1FCBF /* map16.tmx */,
-				0BE89C0C1A151A9200E1FCBF /* map18.tmx */,
+				B19711951A322C57005CE334 /* map17.tmx */,
 				0B31B44619ED9F04006761EA /* mapTeste.tmx */,
 				0B15AACC19D09AE100ED6110 /* TileSet.png */,
 			);
@@ -912,7 +913,7 @@
 		0B97E39919CC982C0052ECF5 /* Musicas */ = {
 			isa = PBXGroup;
 			children = (
-				8D11652819CC82F900F441E9 /* trovao.wav */,
+				B19711971A322DE8005CE334 /* Trilha */,
 				0B1952781A2F871B00E1461F /* Passos */,
 				0BBC413A1A2F7CE100AB890B /* Ambiente */,
 				0BBC41371A2E1AFD00AB890B /* Efects */,
@@ -931,14 +932,14 @@
 		0BB39B741A0010C800984420 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				0BB39B751A00110800984420 /* map3.png */,
 				0BA3BCB21A239854003933C2 /* map12.png */,
-				0BE89C1A1A1521BD00E1FCBF /* map16.png */,
 				0BE89C121A151AB100E1FCBF /* map13.png */,
 				0BE89C131A151AB100E1FCBF /* map15.png */,
-				0BE89C141A151AB100E1FCBF /* map18.png */,
+				0BE89C1A1A1521BD00E1FCBF /* map16.png */,
+				B19711931A322C47005CE334 /* map17.png */,
 				0BB6C0B21A079D200045AB3A /* mapaBack11.png */,
 				0B0699131A03F1BE000F954B /* TileSetTeste.png */,
-				0BB39B751A00110800984420 /* map3.png */,
 			);
 			name = Backgrounds;
 			sourceTree = "<group>";
@@ -990,7 +991,7 @@
 				0BC3E8E81A2CDB5600DAB156 /* BOTAO UI 2.wav */,
 				0BC3E8E91A2CDB5600DAB156 /* BOTAO UI 3.wav */,
 				0BC3E8EA1A2CDB5600DAB156 /* BOTAO UI 4.wav */,
-				0BC3E8E61A2CD75400DAB156 /* botaoUp1.wav */,
+				0BC3E8E61A2CD75400DAB156 /* btUp1.wav */,
 			);
 			name = Botoes;
 			sourceTree = "<group>";
@@ -1190,6 +1191,14 @@
 			name = Tutorial;
 			sourceTree = "<group>";
 		};
+		B19711971A322DE8005CE334 /* Trilha */ = {
+			isa = PBXGroup;
+			children = (
+				B19711981A323198005CE334 /* trilhaGotinhaMenu.caf */,
+			);
+			name = Trilha;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1239,7 +1248,7 @@
 				ORGANIZATIONNAME = "Henrique Manfroi da Silveira";
 				TargetAttributes = {
 					0B3A044B1991164A00C7C39E = {
-						DevelopmentTeam = 64TH9999YT;
+						DevelopmentTeam = VCE77X465D;
 					};
 					0B3A04731991164A00C7C39E = {
 						DevelopmentTeam = VCE77X465D;
@@ -1274,11 +1283,13 @@
 			files = (
 				0BB6C0B31A079D200045AB3A /* mapaBack11.png in Resources */,
 				B1D9C13A19DF041B005ED4A1 /* heart_sem_sombra.png in Resources */,
+				B19711991A323198005CE334 /* trilhaGotinhaMenu.caf in Resources */,
 				0B89188519F962C700DAB31F /* chuva.caf in Resources */,
 				0BB20B6E19F82257004EBC4A /* Raio1.caf in Resources */,
 				8D050F1E1A09389E00D36D30 /* menuInicial.png in Resources */,
 				0BE89C151A151AB100E1FCBF /* map13.png in Resources */,
 				8D35976A19D86559009B6083 /* fase_semSombra5.png in Resources */,
+				B19711961A322C57005CE334 /* map17.tmx in Resources */,
 				8D4A4F4119AFA99300255468 /* Vapor.sks in Resources */,
 				8DD608021A30C5CE009CBA1F /* passo3.caf in Resources */,
 				0BB20B6C19F82257004EBC4A /* AMB.caf in Resources */,
@@ -1311,7 +1322,6 @@
 				B18414B31A1675530056D9DA /* tuto3.png in Resources */,
 				8D4A4F3519A3D0E300255468 /* gotinha.atlas in Resources */,
 				0BC3E8EB1A2CDB5600DAB156 /* BOTAO UI 2.wav in Resources */,
-				0BE89C171A151AB100E1FCBF /* map18.png in Resources */,
 				0BC2FD7D1A24CCFC009D00DC /* DropGeneric4.caf in Resources */,
 				8D94D7C219DB4182002872F4 /* fogo_parado.png in Resources */,
 				0BB6C0B11A079CDC0045AB3A /* map11.tmx in Resources */,
@@ -1359,6 +1369,7 @@
 				8DD608211A30D11F009CBA1F /* restart_BT.png in Resources */,
 				B18414B61A171CAE0056D9DA /* heart.png in Resources */,
 				8D60E1EC1A07F0E7000A5129 /* levelSelectBG.png in Resources */,
+				B19711941A322C47005CE334 /* map17.png in Resources */,
 				0BE89C0F1A151A9200E1FCBF /* map15.tmx in Resources */,
 				8D8DC57719D2EC2F00E75949 /* vida1.png in Resources */,
 				8DF47BD319B0B4EE0021AE2D /* Fogo.sks in Resources */,
@@ -1372,7 +1383,7 @@
 				8D8DC57C19D2EC2F00E75949 /* vida6.png in Resources */,
 				B1D9C13819DEE644005ED4A1 /* lvlX.png in Resources */,
 				8DDDDBEB19E83DB800A6BA44 /* fadeMask.png in Resources */,
-				0BC3E8E71A2CD75400DAB156 /* botaoUp1.wav in Resources */,
+				0BC3E8E71A2CD75400DAB156 /* btUp1.wav in Resources */,
 				0B0699151A03F1BE000F954B /* map12.tmx in Resources */,
 				0BBCC3D71A337C8400D24537 /* trilha1.caf in Resources */,
 				0B15AAD719D09B0500ED6110 /* map1.tmx in Resources */,
@@ -1399,8 +1410,6 @@
 				8DD607AB1A2FE2F6009CBA1F /* super_gotinha.atlas in Resources */,
 				8D35975F19D85957009B6083 /* travada_semSombra.png in Resources */,
 				0B15AAD919D09B0500ED6110 /* map4.tmx in Resources */,
-				8DD608061A30CF74009CBA1F /* saude.png in Resources */,
-				0BE89C111A151A9200E1FCBF /* map18.tmx in Resources */,
 				0BB14C381A028987001F27FB /* botao2_1.png in Resources */,
 				8D35976719D86559009B6083 /* fase_semSombra2.png in Resources */,
 				0BA3BCB31A239854003933C2 /* map12.png in Resources */,
