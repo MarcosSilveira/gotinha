@@ -46,7 +46,7 @@
     _heart = [[SKSpriteNode alloc] init];
     _heart.texture = textura;
     _heart.position = CGPointMake(size.width*0.23, size.height*0.965);
-    _heart.size = CGSizeMake(size.width*.05, size.height*.08);
+    _heart.size = CGSizeMake(size.width*.05, size.height*.075);
     
     textura = [SKTexture textureWithImageNamed:@"clock.png"];
     _clock = [[SKSpriteNode alloc] init];
@@ -83,7 +83,7 @@
     _tempo.position=CGPointMake(size.width*0.5, size.height*0.94);
     
     _saude=[[SKSpriteNode alloc] initWithImageNamed:@"saude.png"];
-    _saude.size = CGSizeMake(_saude.texture.size.width/2, _saude.texture.size.height/2);
+    _saude.size = CGSizeMake(_saude.texture.size.width, _saude.texture.size.height);
     _saude.position=CGPointMake(size.width*0.73, size.height*0.96);
     
     [self addChild:_back];

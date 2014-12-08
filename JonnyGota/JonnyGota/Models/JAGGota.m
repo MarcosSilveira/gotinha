@@ -7,12 +7,9 @@
 //
 
 #import "JAGGota.h"
-#import "Musica.h"
 #import "JAGMusicAction.h"
 
 @implementation JAGGota
-
-static Musica *andar;
 
 
 -(id)initWithPosition:(CGPoint)position withSize:(CGSize)size{
@@ -89,28 +86,18 @@ static Musica *andar;
     self.gotinhas=[[NSMutableArray alloc] init];
     self.qtGotinhas=2;
     
+    [self loadSound];
     
-    //Musicas
-    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"passo1" ofType:@"caf"];
-    NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
-    
-    
-    andar=[[Musica alloc] init];
-    
-    [andar inici];
-    
-    [andar carregar:fileUrl withEffects:false];
-    
-    [andar changeVolume:0.2];
-    
-    
-    
-    self.andarM=[[JAGMusicAction alloc] initWithMusic:andar];
     
     self.zPosition=500;
 
     
     return self;
+}
+
+-(void)loadSound{
+    //Musicas
+    self.andarM=[[JAGMusicAction alloc] init];
 }
 
 -(void)removeActionWithSound{
@@ -120,6 +107,10 @@ static Musica *andar;
 
 -(void)playAndar{
     
+}
+
+-(void)soltar{
+    [self.andarM soltar];
 }
 
 -(void)addPhysics{

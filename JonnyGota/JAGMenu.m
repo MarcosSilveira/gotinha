@@ -34,6 +34,11 @@
     if (self) {
         
         [self configuraMenu];
+        
+        managerSound=[JAGManagerSound sharedManager];
+        
+        [managerSound addSound:@"trilha1" withEffects:NO withKey:@"trilha"];
+        [managerSound playInLoop:@"trilha"];
     }
     return self;
 }
@@ -128,9 +133,23 @@
                                                   [SKAction runBlock:^{
                 [self.scene.view presentScene:scene transition:trans];
             }]]];
+
             [self runAction:transi];
         }
     }
+}
+
+-(SKAction*)playButton{
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"botaoUI1" ofType:@"caf"];
+    NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
+    
+    [managerSound addSound:fileUrl withEffects:NO withKey:@"botao1"];
+    
+    SKAction *seq=[SKAction sequence:@[[SKAction runBlock:^{
+        [managerSound playSound:@"botao1"];
+    }],[SKAction waitForDuration:[managerSound duration:@"botao1"]]]];
+    
+    return seq;
 }
 
 @end

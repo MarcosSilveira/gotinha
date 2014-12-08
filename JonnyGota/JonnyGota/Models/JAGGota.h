@@ -8,7 +8,6 @@
 
 #import "JAGCharacter.h"
 #import "JAGGotaDividida.h"
-#import "Musica.h"
 #import "JAGMusicAction.h"
 
 @interface JAGGota : JAGCharacter
@@ -44,5 +43,9 @@
 -(void)addPhysics;
 
 -(void)removeActionWithSound;
+
+-(void)loadSound;
+
+-(void)soltar;
 
 @end

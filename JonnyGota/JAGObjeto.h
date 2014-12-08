@@ -17,7 +17,7 @@
 
 @property (strong, nonatomic) SKSpriteNode *sprite;
 
--(void) criarObj:(CGPoint)posi comTipo:(NSInteger)tipo eSprite:(SKSpriteNode *) sprite;
+-(void) criarObj:(CGPoint)posi comTipo:(NSInteger)tipo withTamanho:(CGSize) tamnaho ;
 -(void) habilidade:(JAGPlayGameScene *)scene;
 
 @end

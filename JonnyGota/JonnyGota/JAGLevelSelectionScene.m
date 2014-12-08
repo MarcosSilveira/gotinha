@@ -11,6 +11,7 @@
 #import "JAGCreatorLevels.h"
 #import "JAGMenu.h"
 #import "JAGVida.h"
+#import "JAGManagerSound.h"
 
 @implementation JAGLevelSelectionScene{
     SKSpriteNode *background;
@@ -31,6 +32,7 @@
     SKLabelNode *timerLeft;
     
     SKNode *sele;
+    JAGManagerSound *managerSound;
 }
 
 -(void)didMoveToView:(SKView *)view{
@@ -75,6 +77,8 @@
     [self addChild:gamepad];
     
     [self addCheck];
+    
+    managerSound=[JAGManagerSound sharedManager];
 }
 
 -(void)addCheck{
@@ -131,13 +135,16 @@
             
             
             
+            
             //            if (fase!=0 && vidas_restantes>0) {
             if (fase!=0 && vida.vidas>0) {
                 //                [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
+                [managerSound stopSound:@"trilha"];
                 jogo = [[JAGPlayGameScene alloc]initWithSize:self.frame.size level:faseA andWorld:@1];
                 [self runAction:[SKAction playSoundFileNamed:@"btUp1.wav" waitForCompletion:YES]];
                 
                 [self.scene.view presentScene:jogo transition:[SKTransition fadeWithDuration:1]];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"hideAd" object:nil userInfo:nil];
                 
                 
                 

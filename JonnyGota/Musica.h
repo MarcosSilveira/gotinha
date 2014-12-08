@@ -52,4 +52,17 @@
                 withY:(float) y
                 withZ:(float) z;
 
+-(NSTimeInterval)duration;
+
+-(void)logs;
+
+-(void)kill;
+
+-(void)reaload;
+
+-(void)inative;
+
+-(void)reativar;
+
+
 @end

@@ -24,6 +24,8 @@ static ALCcontext* openContext;
             openDevice = alcOpenDevice(NULL);
             
         }
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reativar) name:@"reativarSom" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(inative) name:@"desativarSom" object:nil];
     }
     return self;
 }
@@ -38,6 +40,9 @@ static ALCcontext* openContext;
             
             openContext = cont;
         }
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reativar) name:@"reativarSom" object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(inative) name:@"desativarSom" object:nil];
+
     }
     return self;
 }
@@ -56,6 +61,7 @@ static ALCcontext* openContext;
 }
 
 -(void)carregar:(NSString *)url withEffects:(BOOL)efeito{
+    
     
     alGenSources(1, &_outputSource);
     
@@ -165,9 +171,9 @@ static ALCcontext* openContext;
      alDeleteBuffers(1, &_outputBuffer);
      alcDestroyContext(openContext);
      alcCloseDevice(openDevice);
-    
-    openContext=nil;
-    openDevice=nil;
+//
+//    openContext=nil;
+//    openDevice=nil;
 }
 
 
@@ -211,6 +217,50 @@ static ALCcontext* openContext;
 
 -(void)stop{
     alSourceStop(_outputSource);
+}
+
+-(void)kill{
+    alcMakeContextCurrent(NULL);
+}
+
+-(void)reaload{
+     alcMakeContextCurrent(openContext);
+}
+
+-(void)inative{
+//    if (openContext!=nil) {
+        alcMakeContextCurrent(NULL);
+
+//    }
+}
+
+-(void)reativar{
+    alcMakeContextCurrent(openContext);
+}
+
+-(NSTimeInterval)duration{
+//    OPDurationFromSourceId(ALuint sourceID);
+    ALint bufferID, bufferSize, frequency, bitsPerSample, channels;
+    alGetSourcei(_outputSource, AL_BUFFER, &bufferID);
+    alGetBufferi(bufferID, AL_SIZE, &bufferSize);
+    alGetBufferi(bufferID, AL_FREQUENCY, &frequency);
+    alGetBufferi(bufferID, AL_CHANNELS, &channels);
+    alGetBufferi(bufferID, AL_BITS, &bitsPerSample);
+    
+    NSTimeInterval result = ((double)bufferSize)/(frequency*channels*(bitsPerSample/8));
+    
+//    NSLog(@"duration in seconds %lf", result);
+    
+    return result;
+}
+
+-(void)logs{
+    NSLog(@"Musicas ");
+    
+    NSLog(@"Device %@",openDevice);
+    
+    NSLog(@"Contexr %@",openContext);
+    
 }
 
 -(void)playInLoop{

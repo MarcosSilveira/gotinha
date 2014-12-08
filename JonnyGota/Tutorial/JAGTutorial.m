@@ -36,9 +36,9 @@
     JAGCompTutorial *comp=(JAGCompTutorial *) self.compenentes[self.indice];
     
     
-    self.labelContent =[DSMultilineLabelNode labelNodeWithFontNamed:@"VAGRoundedStd-Thin"];
+    self.labelContent =[DSMultilineLabelNode labelNodeWithFontNamed:@"VAGRoundedStd-Bold"];
     
-    self.labelContent.fontSize = 14;
+    self.labelContent.fontSize = frame.height*0.05;
     self.labelContent.text = comp.mensagem;
     
     self.labelContent.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;

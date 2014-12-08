@@ -16,6 +16,7 @@
 #import "JAGChave.h"
 #import "JAGTrap.h"
 #import "JAGMenu.h"
+#import "JAGManagerSound.h"
 #import <AVFoundation/AVFoundation.h>
 
 @implementation JAGPlayGameScene {
@@ -35,16 +36,12 @@
     BOOL controleYnaTela;   //controle para verificar se nodo de parada da gota y está na tela
     BOOL pauseDetected;     //jogo pausado?
     JAGChave* chave;        //item chave
-    Musica *relampago;
-    Musica *generate;
+
+    JAGManagerSound *managerSound;
     bool frenetico;
     BOOL GONaTela;
 }
 
-static Musica   *divide;
-static Musica   *poca;
-
-static Musica *colide;
 
 #pragma mark - View Initialization
 -(void)didMoveToView:(SKView *)view{
@@ -60,6 +57,11 @@ static Musica *colide;
     //    _message2.zPosition = 999;
     [self.camadaPersonagens addChild:_message2];
     [self touchesEnded:nil withEvent:nil];
+    
+    
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(realodingSound) name:@"reativarSom" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(killSound) name:@"desativarSom" object:nil];
 }
 
 
@@ -99,30 +101,39 @@ static Musica *colide;
     //Criar Buttons
     [self createButtons];
     
+    managerSound=[JAGManagerSound sharedManager];
     
-    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric5" ofType:@"caf"];
-    NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
-    
-    divide=[[Musica alloc] init];
-    
-    [divide carregar:fileUrl withEffects:false];
-    
-    [divide changeVolume:0.9];
-    
-    
-    filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric3" ofType:@"caf"];
-    fileUrl = [NSURL fileURLWithPath:filePath];
-    
-    poca=[[Musica alloc] init];
-    
-    [poca carregar:fileUrl withEffects:false];
-    
-    
-    
-    
+    [self loadSound];
     
     
     return self;
+}
+
+-(void)loadSound{
+    //Divide
+    [managerSound addSound:@"DropGeneric5" withEffects:false withKey:@"divide"];
+    
+    [managerSound changeVolume:@"divide" withSound:0.8];
+    
+    
+    //Poca
+    [managerSound addSound:@"DropGeneric3" withEffects:false withKey:@"poca"];
+    
+    //Relampago
+//    [managerSound addSound:<#(NSString *)#> withEffects:<#(BOOL)#> withKey:<#(NSString *)#>]
+}
+
+-(void)realodingSound{
+    
+//    [relampago reaload];
+
+//    [self.gota loadSound];
+//    
+//    [self.level.chuva loadSound];
+//    
+//    [self loadSound];
+    
+//    [self.level.chuva.chuva reaload];
 }
 
 -(void)transicaoButton:(SKNode *) node
@@ -251,12 +262,13 @@ static Musica *colide;
      -Fim de fase ganhando - 1
      -Fim de fase perdendo com vida restante - 0
      -Fim de fase perdendo sem vida restante - 2*/
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"showAd" object:nil userInfo:nil];
     if (withOP == 0) {
         
         
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
         GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
-        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"comprarVidas"];
+        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"restart_BT"];
         button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
         button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
@@ -265,7 +277,7 @@ static Musica *colide;
         button1.name = @"reiniciar fase";
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
-        message.fontSize = self.frame.size.height*0.1;
+        message.fontSize = self.frame.size.height*0.05;
         message.text = NSLocalizedString(@"PLAY_GAMEOVER_FIM", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
         [self.scene addChild:GObackground];
@@ -290,7 +302,7 @@ static Musica *colide;
         button1.name = @"proxima fase";
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
-        message.fontSize = self.frame.size.height*0.07;
+        message.fontSize = self.frame.size.height*0.05;
         message.text = NSLocalizedString(@"PLAY_GAMEOVER_NEXT", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
         [self.scene addChild:GObackground];
@@ -311,7 +323,7 @@ static Musica *colide;
         
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
         GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
-        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"storeBT "];
+        button1 = [[SKSpriteNode alloc] initWithImageNamed:@"storeBT"];
         button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
         button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
@@ -320,7 +332,7 @@ static Musica *colide;
         button1.name = @"store";
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
-        message.fontSize = self.frame.size.height*0.07;
+        message.fontSize = self.frame.size.height*0.05;
         message.text=NSLocalizedString(@"PLAY_GAMEOVER_SEM_VIDAS", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
         [self.scene addChild:GObackground];
@@ -430,8 +442,8 @@ static Musica *colide;
                                               [SKAction runBlock:^{
         if (!self.inTutorial) {
             
-            
-            [relampago play];
+            [managerSound playSound:@"relampago"];
+//            [relampago play];
             //        [self.scene runAction:[SKAction playSoundFileNamed:@"trovao.wav" waitForCompletion:NO]];
             SKAction *retiraMascara=[SKAction sequence:@[[SKAction waitForDuration:0.1],
                                                          [SKAction runBlock:^{
@@ -467,7 +479,7 @@ static Musica *colide;
     NSTimeInterval tempo = frequencia;
     SKAction *controle = [SKAction sequence:@[[SKAction waitForDuration:tempo],
                                               [SKAction runBlock:^{
-        [relampago play];
+        [managerSound playSound:@"relampago"];
         //Criar novo campo de visão.
         
         SKAction *scaler=[SKAction sequence:@[[SKAction scaleBy:2 duration:0],[SKAction scaleBy:0.5 duration:1.5]]];
@@ -652,6 +664,7 @@ static Musica *colide;
             else if([node.name isEqualToString:@"proxima fase"]){
                 [self animationButton:node];
                 [self nextLevel];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"hideAd" object:nil userInfo:nil];
                 
             }
             else if([node.name isEqualToString:@"loja"]){
@@ -720,10 +733,20 @@ static Musica *colide;
     
 }
 -(void)deallocSound{
-    [generate soltar];
-    [relampago soltar];
+
+    //Liberar Sons
+//    [generate soltar];
+//    [relampago soltar];
     [self.level.chuva soltar];
+    [self.gota soltar];
+}
+
+-(void)killSound{
     
+    [self deallocSound];
+    //Fechar a OpenAL
+    
+//    [relampago kill];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -815,7 +838,9 @@ static Musica *colide;
                 
                 toque_moveu = NO;
                 
-                [divide play];
+                [managerSound playSound:@"divide"];
+                
+//                [divide play];
                 
                 
             } else {
@@ -826,7 +851,9 @@ static Musica *colide;
                     
                     [_gota esconder];
                     
-                    [poca play];
+                    [managerSound playSound:@"poca"];
+                    
+//                    [poca play];
                     
                     [self removeActionForKey:@"moveGota"];
                 } else {
@@ -861,7 +888,7 @@ static Musica *colide;
                     //Tempo de pressao
                     
                     
-                } if([nodeAux.name isEqualToString:@"resume"]){
+                } if([nodeAux.name isEqualToString:@"resumir"]){
                     NSLog(@"bt 1 Resume");
                     
                     [self animationButton:nodeAux];
@@ -872,6 +899,7 @@ static Musica *colide;
                     [button2 removeFromParent];
                     [message removeFromParent];
                     [GObackground removeFromParent];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"hideAd" object:nil userInfo:nil];
                     
                     
                     
@@ -1135,14 +1163,14 @@ static Musica *colide;
         if([contact.bodyA.node.name isEqualToString:@"cronometro"]){
             JAGObjeto *obj=(JAGObjeto *)contact.bodyA.node.parent;
             
-            
-            [self runAction:[SKAction playSoundFileNamed:@"maisTempo.wav" waitForCompletion:YES]];
+            //Alterar Action Talvez
+            [self runAction:[managerSound CronometroSound]];
             [obj habilidade:self];
             self.gota.sentido=0;
             [obj removeFromParent];
         }else{
             JAGObjeto *obj=(JAGObjeto *)contact.bodyB.node.parent;
-            [self runAction:[SKAction playSoundFileNamed:@"maisTempo.wav" waitForCompletion:YES]];
+            [self runAction:[managerSound CronometroSound]];
             [obj habilidade:self];
             self.gota.sentido=0;
             [obj removeFromParent];
@@ -1511,14 +1539,10 @@ static Musica *colide;
     
     //Carregar o som da gotinha perdendo hp
     
-    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"DropGeneric2" ofType:@"caf"];
-    NSURL* fileUrl = [NSURL fileURLWithPath:filePath];
+    [managerSound addSound:@"DropGeneric2" withEffects:false withKey:@"generate"];
     
-    generate=[[Musica alloc] init];
-    
-    [generate carregar:fileUrl withEffects:false];
-    
-    [generate changeVolume:0.7];
+    [managerSound changeVolume:@"generate" withSound:0.7];
+
 
     
     
@@ -1557,14 +1581,18 @@ static Musica *colide;
     }
     
     
-    NSString* filePath2 = [[NSBundle mainBundle] pathForResource:@"Raio1" ofType:@"caf"];
-    NSURL* fileUrl2 = [NSURL fileURLWithPath:filePath2];
+    [managerSound addSound:@"Raio1" withEffects:false withKey:@"relampago"];
     
-    relampago=[[Musica alloc] init];
     
-    [relampago carregar:fileUrl2 withEffects:false];
-    
-    [relampago changeVolume:1.0];
+//    
+//    NSString* filePath2 = [[NSBundle mainBundle] pathForResource:@"Raio1" ofType:@"caf"];
+//    NSURL* fileUrl2 = [NSURL fileURLWithPath:filePath2];
+//    
+//    relampago=[[Musica alloc] init];
+//    
+//    [relampago carregar:fileUrl2 withEffects:false];
+//    
+//    [relampago changeVolume:1.0];
     
     self.posicaoInicial=self.gota.position;
     

@@ -99,4 +99,8 @@
 
 -(void)createButtons;
 
+-(void)realodingSound;
+
+-(void)killSound;
+
 @end

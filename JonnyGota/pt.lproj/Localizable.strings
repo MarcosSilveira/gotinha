@@ -20,8 +20,24 @@
 "PLAY_GAMEOVER_FIM"  = "Fim de jogo!";
 "PLAY_GAMEOVER_NEXT" = "Parabéns! Você avançou para a próxima fase!";
 "PLAY_GAMEOVER_SEM_VIDAS" = "Você não possui mais vidas ):";
-"PLAY_TUTORIAL_FRASE1"= "Olá Gotinha! Seja bem-vinda! Que tal se mexer um pouco? Clique em alguma direção para que você possa andar.";
-"PLAY_TUTORIAL_FRASE2" = "Muito bem! Agora que sabe se mexer, quem sabe você dá um pequeno toque em sí própria? Vamos ver o que acontece";
-"PLAY_TUTORIAL_FRASE3" = "Isso aí! O que você acha sobre poder se dividir? Clique e arraste o dedo sobre sí mesma.";
+
+//Tutorial fase1
+"PLAY_TUTORIAL1_FRASE1"= "Toque ou mantenha pressionado nas setas para se movimentar.";
+"PLAY_TUTORIAL1_FRASE2" = "Toque ou mantenha pressionado para ir em direção ao local do toque.";
+"PLAY_TUTORIAL1_FRASE3" = "Toque em si e arraste para um lado e se divida para este lado.";
+"PLAY_TUTORIAL1_FRASE4" = "Toque em si mesmo para se esconder.";
+
+//Fase2
+"PLAY_TUTORIAL2_FRASE1"= "Inimigos podem te perseguir e te matar tenha cuidado. Infelizmente a gotinha não sabe lutar.";
+
+//Fase 4
+"PLAY_TUTORIAL3_FRASE1"= "Botões tem três tipo aperte eles para ativá-los.";
+"PLAY_TUTORIAL3_FRASE2" = "Botão marrom, depois de ativado se mantém";
+"PLAY_TUTORIAL3_FRASE3" = "Botão azul, fica ativo por um tempo.";
+"PLAY_TUTORIAL3_FRASE4" = "Botão Amarelo precisa ficar em si para ficar ativo.";
+"PLAY_TUTORIAL3_FRASE5" = "Portas serão abertas se todos os botões vinculados forem ativados.";
+
+
+
 "PLAY_GAMEOVER_PAUSE" = "Jogo Pausado.";
 "HUD_SAUDE" = "Saúde:";
