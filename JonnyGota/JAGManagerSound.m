@@ -6,14 +6,12 @@
 //  Copyright (c) 2014 Henrique Manfroi da Silveira. All rights reserved.
 //
 #define volumeStep 0.1
-#define timeFade 0.3
+#define timeFade 0.2
 #import "JAGManagerSound.h"
 
 @implementation JAGManagerSound
 
 static JAGManagerSound *sharedMyManager;
-
-float volume;
 
 static ALCdevice *openALDevice;
 static ALCcontext *openALContext;
@@ -220,30 +218,31 @@ static ALCcontext *openALContext;
     
     //Ver se tem como pegar o gain da openAl
     
-//    ALuint outputSource = (ALuint)[[self.sound objectForKey:key] intValue];
-//    
-//    ALint bufferID, bufferVolume;
-//    
-//    alGetSourcei(outputSource, AL_BUFFER, &bufferID);
-//
-//    
-//    alGetSourcef(outputSource, AL_GAIN, &volume);
-//    
-//    NSDictionary *info=[NSDictionary dictionaryWithObjectsAndKeys:key,@"key", nil];
-//    
-//    NSTimer *timer=[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(fadeVolume:) userInfo:
-//                    info repeats:YES];
-//    
-//    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    ALuint outputSource = (ALuint)[[self.sound objectForKey:key] intValue];
+    
+    ALint bufferID;
+    
+    float volume;
+    
+    alGetSourcei(outputSource, AL_BUFFER, &bufferID);
+
+    alGetSourcef(outputSource, AL_GAIN, &volume);
+    
+    NSDictionary *info=[NSDictionary dictionaryWithObjectsAndKeys:key,@"key",[NSNumber numberWithFloat:volume],@"volume", nil];
+    
+    NSTimer *timer=[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(fadeVolume:) userInfo:
+                    info repeats:NO];
+    
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     
     
     
     //Sem fade
-    
-        ALuint outputSource = (ALuint)[[self.sound objectForKey:key] intValue];
-    
-        alSourceStop(outputSource);
-        [self.playing setValue:[NSNumber numberWithInt:0] forKey:key];
+//    
+//        ALuint outputSource = (ALuint)[[self.sound objectForKey:key] intValue];
+//    
+//        alSourceStop(outputSource);
+//        [self.playing setValue:[NSNumber numberWithInt:0] forKey:key];
 }
 
 -(void)fadeVolume:(NSTimer *)timer{
@@ -252,27 +251,37 @@ static ALCcontext *openALContext;
     
     NSString *key=(NSString *)[[timer userInfo] objectForKey:@"key"];
     
+    NSNumber *num=(NSNumber *)[[timer userInfo] objectForKey:@"volume"];
     
-    
-    
+    float volumes=[num floatValue];
     //     withString:(NSString *)key
     //     withVolueme:(float) volume
-    volume-=0.1;
     
-    [self changeVolume:@"key" withSound:volume];
+    volumes-=volumeStep;
+    
+    [self changeVolume:key withSound:volumes];
     
 //    [[timer userInfo]setValue:[NSNumber numberWithFloat:volume] forKey:@"volume"];
     //
     //    [self changeVolume:key withSound:volume];
-    if (volume<=0) {
+    if (volumes<=0) {
         [timer invalidate];
         //        [self.playing setValue:[NSNumber numberWithInt:0] forKey:key];
         ALuint outputSource = (ALuint)[[self.sound objectForKey:key] intValue];
         
         alSourceStop(outputSource);
         [self.playing setValue:[NSNumber numberWithInt:0] forKey:key];
+    }else{
+        NSDictionary *info=[NSDictionary dictionaryWithObjectsAndKeys:key,@"key",[NSNumber numberWithFloat:volumes],@"volume", nil];
+        
+        NSTimer *timer=[NSTimer scheduledTimerWithTimeInterval:timeFade target:self selector:@selector(fadeVolume:) userInfo:
+                        info repeats:NO];
+        
+        [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     }
 }
+
+
 
 
 -(SKAction*)playButton{

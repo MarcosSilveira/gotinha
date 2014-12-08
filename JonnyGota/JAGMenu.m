@@ -39,6 +39,8 @@
         
         [managerSound addSound:@"trilha1" withEffects:NO withKey:@"trilha"];
         [managerSound playInLoop:@"trilha"];
+        
+        [managerSound changeVolume:@"trilha" withSound:0.7];
     }
     return self;
 }

@@ -56,11 +56,11 @@ NSTimer *ti;
 }
 
 -(void)soltar{
-//    for (int i=0; i<self.Musicas.count; i++) {
-//        Musica *temp=self.Musicas[i];
-//        [temp soltar];
-//
-//    }
+    
+    for (int i=1; i<Pass+1;i++) {
+        NSString *tem=[NSString stringWithFormat:@"passo%d",i];
+        [self.managerSound stopSound:tem];
+    }
 
 }
 

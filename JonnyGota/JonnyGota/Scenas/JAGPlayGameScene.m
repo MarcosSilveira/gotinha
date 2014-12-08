@@ -739,6 +739,8 @@
 //    [relampago soltar];
     [self.level.chuva soltar];
     [self.gota soltar];
+    
+    
 }
 
 -(void)killSound{
