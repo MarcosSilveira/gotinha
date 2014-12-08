@@ -32,9 +32,9 @@
 
 //Fase 4
 "PLAY_TUTORIAL3_FRASE1"= "Botões tem três tipo aperte eles para ativá-los.";
-"PLAY_TUTORIAL3_FRASE2" = "Botão marrom, depois de ativado se mantém";
-"PLAY_TUTORIAL3_FRASE3" = "Botão azul, fica ativo por um tempo.";
-"PLAY_TUTORIAL3_FRASE4" = "Botão Amarelo precisa ficar em si para ficar ativo.";
+"PLAY_TUTORIAL3_FRASE2" = "Botão Marrom, depois de ativado se mantém";
+"PLAY_TUTORIAL3_FRASE3" = "Botão Azul, fica ativo por um tempo.";
+"PLAY_TUTORIAL3_FRASE4" = "Botão Verde precisa ficar em si para ficar ativo.";
 "PLAY_TUTORIAL3_FRASE5" = "Portas serão abertas se todos os botões vinculados forem ativados.";
 
 

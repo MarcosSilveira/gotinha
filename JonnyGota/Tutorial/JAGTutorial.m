@@ -128,7 +128,7 @@
     
     self.imageContent.position=CGPointMake(self.frames.width*0.5, self.frames.height*0.4);
     
-    self.imageContent.size=CGSizeMake(self.frames.width*0.4, self.frames.height*0.3);
+   // self.imageContent.size=CGSizeMake(self.frames.width*0.4, self.frames.height*0.3);
     
     [self addChild:self.imageContent];
    

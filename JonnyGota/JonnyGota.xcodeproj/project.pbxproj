@@ -195,6 +195,13 @@
 		8DF47BE319B635F30021AE2D /* JAGTrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF47BE219B635F30021AE2D /* JAGTrap.m */; };
 		B157BDA819A267E400ACA4C1 /* JAGObjeto.m in Sources */ = {isa = PBXBuildFile; fileRef = B157BDA719A267E400ACA4C1 /* JAGObjeto.m */; };
 		B157BDB619AD14A700ACA4C1 /* JAGMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B157BDB519AD14A700ACA4C1 /* JAGMenu.m */; };
+		B17895521A361E4D005BF58C /* tuto5.png in Resources */ = {isa = PBXBuildFile; fileRef = B17895511A361E4D005BF58C /* tuto5.png */; };
+		B17895541A361ED2005BF58C /* fogoHQ.png in Resources */ = {isa = PBXBuildFile; fileRef = B17895531A361ED2005BF58C /* fogoHQ.png */; };
+		B178955C1A362614005BF58C /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = B17895581A362614005BF58C /* blue.png */; };
+		B178955D1A362614005BF58C /* brown.png in Resources */ = {isa = PBXBuildFile; fileRef = B17895591A362614005BF58C /* brown.png */; };
+		B178955E1A362614005BF58C /* buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = B178955A1A362614005BF58C /* buttons.png */; };
+		B178955F1A362614005BF58C /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = B178955B1A362614005BF58C /* green.png */; };
+		B17895611A362647005BF58C /* doors.png in Resources */ = {isa = PBXBuildFile; fileRef = B17895601A362647005BF58C /* doors.png */; };
 		B18414AC1A1675420056D9DA /* backTuto.png in Resources */ = {isa = PBXBuildFile; fileRef = B18414AB1A1675420056D9DA /* backTuto.png */; };
 		B18414B11A1675530056D9DA /* tuto1.png in Resources */ = {isa = PBXBuildFile; fileRef = B18414AD1A1675530056D9DA /* tuto1.png */; };
 		B18414B21A1675530056D9DA /* tuto2.png in Resources */ = {isa = PBXBuildFile; fileRef = B18414AE1A1675530056D9DA /* tuto2.png */; };
@@ -498,6 +505,13 @@
 		B157BDA719A267E400ACA4C1 /* JAGObjeto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGObjeto.m; sourceTree = "<group>"; };
 		B157BDB419AD14A700ACA4C1 /* JAGMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGMenu.h; path = ../JAGMenu.h; sourceTree = "<group>"; };
 		B157BDB519AD14A700ACA4C1 /* JAGMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGMenu.m; path = ../JAGMenu.m; sourceTree = "<group>"; };
+		B17895511A361E4D005BF58C /* tuto5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tuto5.png; sourceTree = "<group>"; };
+		B17895531A361ED2005BF58C /* fogoHQ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fogoHQ.png; sourceTree = "<group>"; };
+		B17895581A362614005BF58C /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue.png; sourceTree = "<group>"; };
+		B17895591A362614005BF58C /* brown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brown.png; sourceTree = "<group>"; };
+		B178955A1A362614005BF58C /* buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttons.png; sourceTree = "<group>"; };
+		B178955B1A362614005BF58C /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
+		B17895601A362647005BF58C /* doors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doors.png; sourceTree = "<group>"; };
 		B18414AB1A1675420056D9DA /* backTuto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backTuto.png; sourceTree = "<group>"; };
 		B18414AD1A1675530056D9DA /* tuto1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tuto1.png; sourceTree = "<group>"; };
 		B18414AE1A1675530056D9DA /* tuto2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tuto2.png; sourceTree = "<group>"; };
@@ -1178,13 +1192,44 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
-		B18414AA1A1674A90056D9DA /* Tutorial */ = {
+		B17895551A361ED9005BF58C /* Tutorial1 */ = {
 			isa = PBXGroup;
 			children = (
+				B17895511A361E4D005BF58C /* tuto5.png */,
 				B18414AD1A1675530056D9DA /* tuto1.png */,
 				B18414AE1A1675530056D9DA /* tuto2.png */,
 				B18414AF1A1675530056D9DA /* tuto3.png */,
 				B18414B01A1675530056D9DA /* tuto4.png */,
+			);
+			name = Tutorial1;
+			sourceTree = "<group>";
+		};
+		B17895561A361EE4005BF58C /* Tutorial2 */ = {
+			isa = PBXGroup;
+			children = (
+				B17895531A361ED2005BF58C /* fogoHQ.png */,
+			);
+			name = Tutorial2;
+			sourceTree = "<group>";
+		};
+		B17895571A3624D0005BF58C /* Tutorial4 */ = {
+			isa = PBXGroup;
+			children = (
+				B17895601A362647005BF58C /* doors.png */,
+				B17895581A362614005BF58C /* blue.png */,
+				B17895591A362614005BF58C /* brown.png */,
+				B178955A1A362614005BF58C /* buttons.png */,
+				B178955B1A362614005BF58C /* green.png */,
+			);
+			name = Tutorial4;
+			sourceTree = "<group>";
+		};
+		B18414AA1A1674A90056D9DA /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				B17895571A3624D0005BF58C /* Tutorial4 */,
+				B17895551A361ED9005BF58C /* Tutorial1 */,
+				B17895561A361EE4005BF58C /* Tutorial2 */,
 				B18414AB1A1675420056D9DA /* backTuto.png */,
 			);
 			name = Tutorial;
@@ -1289,6 +1334,7 @@
 				0BE89C151A151AB100E1FCBF /* map13.png in Resources */,
 				8D35976A19D86559009B6083 /* fase_semSombra5.png in Resources */,
 				B19711961A322C57005CE334 /* map17.tmx in Resources */,
+				B17895541A361ED2005BF58C /* fogoHQ.png in Resources */,
 				8D4A4F4119AFA99300255468 /* Vapor.sks in Resources */,
 				8DD608021A30C5CE009CBA1F /* passo3.caf in Resources */,
 				0BB20B6C19F82257004EBC4A /* AMB.caf in Resources */,
@@ -1314,6 +1360,7 @@
 				8D7E78E019D1FE2200126F42 /* clock.png in Resources */,
 				8D60E1B01A07E644000A5129 /* proxima_fase_bt.png in Resources */,
 				0B0699161A03F1BE000F954B /* TileSetTeste.png in Resources */,
+				B178955C1A362614005BF58C /* blue.png in Resources */,
 				8D7E78DC19D1F2E900126F42 /* hud_back.png in Resources */,
 				8D1B20FB19DC4A58007B9B9F /* price199.png in Resources */,
 				8D60E1A71A07E5E2000A5129 /* proxima_fase_bt.png in Resources */,
@@ -1326,6 +1373,7 @@
 				0BB6C0B11A079CDC0045AB3A /* map11.tmx in Resources */,
 				B18414B41A1675530056D9DA /* tuto4.png in Resources */,
 				8D60E1DE1A07EF16000A5129 /* nuvem.png in Resources */,
+				B178955D1A362614005BF58C /* brown.png in Resources */,
 				0BB39B761A00110800984420 /* map3.png in Resources */,
 				8DD608281A30D4A2009CBA1F /* bt_bg.png in Resources */,
 				8D11652919CC82F900F441E9 /* trovao.wav in Resources */,
@@ -1349,6 +1397,7 @@
 				0B88D26219E70E1F00351527 /* botao1.png in Resources */,
 				0BC0D3AA1A126222003B8526 /* arrowGamePad.png in Resources */,
 				8D60E1B91A07E678000A5129 /* storeBT.png in Resources */,
+				B17895611A362647005BF58C /* doors.png in Resources */,
 				0B15AACD19D09AE100ED6110 /* TileSet.png in Resources */,
 				0B3A04651991164A00C7C39E /* Main.storyboard in Resources */,
 				0B15AADB19D09B0500ED6110 /* map6.tmx in Resources */,
@@ -1370,6 +1419,8 @@
 				B19711941A322C47005CE334 /* map17.png in Resources */,
 				0BE89C0F1A151A9200E1FCBF /* map15.tmx in Resources */,
 				8D8DC57719D2EC2F00E75949 /* vida1.png in Resources */,
+				B178955F1A362614005BF58C /* green.png in Resources */,
+				B17895521A361E4D005BF58C /* tuto5.png in Resources */,
 				8DF47BD319B0B4EE0021AE2D /* Fogo.sks in Resources */,
 				8D60E18D1A07E2F8000A5129 /* restaurarCompras.jpg in Resources */,
 				8D11652519CC60E200F441E9 /* poca.png in Resources */,
@@ -1377,6 +1428,7 @@
 				0B88D26319E70E1F00351527 /* botao2.png in Resources */,
 				B18414AC1A1675420056D9DA /* backTuto.png in Resources */,
 				0BB14C391A028987001F27FB /* botao2_2.png in Resources */,
+				B178955E1A362614005BF58C /* buttons.png in Resources */,
 				0BC084A51A1BAD5E00E39441 /* noCheck in Resources */,
 				8D8DC57C19D2EC2F00E75949 /* vida6.png in Resources */,
 				B1D9C13819DEE644005ED4A1 /* lvlX.png in Resources */,
