@@ -120,7 +120,7 @@
             JAGMenu* menu = [[JAGMenu alloc]initWithSize:self.frame.size];
             //            [self.scene.view presentScene:menu transition:[SKTransition fadeWithDuration:1]];
             
-            SKAction *transi=[SKAction sequence:@[[SKAction playSoundFileNamed:@"btUp1.wav" waitForCompletion:NO],[SKAction runBlock:^{
+            SKAction *transi=[SKAction sequence:@[[managerSound playButton],[SKAction runBlock:^{
                 [node runAction:[SKAction scaleBy:1.5 duration:0.8]];
             }],[SKAction waitForDuration:0.1],
                                                   [SKAction runBlock:^{
@@ -141,7 +141,7 @@
                 //                [node runAction:[SKAction scaleBy:0.5 duration:0.1]];
                 [managerSound stopSound:@"trilha"];
                 jogo = [[JAGPlayGameScene alloc]initWithSize:self.frame.size level:faseA andWorld:@1];
-                [self runAction:[SKAction playSoundFileNamed:@"btUp1.wav" waitForCompletion:YES]];
+                [self runAction:[managerSound playButton]];
                 
                 [self.scene.view presentScene:jogo transition:[SKTransition fadeWithDuration:1]];
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"hideAd" object:nil userInfo:nil];
@@ -169,7 +169,7 @@
                     
                     [self removeAllActions];
                     
-                    SKAction *seq=[SKAction sequence:@[[SKAction playSoundFileNamed:@"btUp1.wav" waitForCompletion:NO],[SKAction scaleBy:2.0 duration:0.4],[SKAction rotateByAngle:0.3 duration:0.4], [SKAction waitForDuration:1.0],[SKAction rotateByAngle:-0.3 duration:0.4],[SKAction scaleBy:0.5 duration:0.4]]];
+                    SKAction *seq=[SKAction sequence:@[[managerSound playButton],[SKAction scaleBy:2.0 duration:0.4],[SKAction rotateByAngle:0.3 duration:0.4], [SKAction waitForDuration:1.0],[SKAction rotateByAngle:-0.3 duration:0.4],[SKAction scaleBy:0.5 duration:0.4]]];
                     
                     [vidas_sprite runAction:seq];
                     
