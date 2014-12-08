@@ -333,30 +333,6 @@ NSMutableArray *nodesPhy;
     
     //Adicionar os Image Layers em um SKNode e adicionar no crop
     
-/*
-    SKNode *layer=[[SKNode alloc] init];
-    
-    for (int i=0; i<tiledMap.sprites.count; i++) {
-         SKNode *layers=(SKNode *)tiledMap.sprites[i];
-        if (i==0) {
-            SKSpriteNode *back=[[SKSpriteNode alloc] initWithImageNamed:@"map3.png"];
-            back.position=layers.position;
-            [layer addChild:back];
-        }else{
-            [layer addChild:layers];
-
-        }
-       
-        }
-    
-    
-    [scene.cropNode addChild:layer];
- */
-    
-//    SKSpriteNode *back=[[SKSpriteNode alloc] initWithImageNamed:@"map3.png"];
-    
-//    back
-    
     //Mapa
     
    [scene.cropNode addChild:tiledMap];
@@ -389,7 +365,7 @@ NSMutableArray *nodesPhy;
     
     
 
-   // [scene createMask:tiledMap.tileSize.width*1.8 withPoint:(scene.gota.position)];
+    [scene createMask:tiledMap.tileSize.width*1.8 withPoint:(scene.gota.position)];
     
 //    [self createButtons:scene];
 }

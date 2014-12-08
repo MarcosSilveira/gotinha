@@ -60,6 +60,8 @@
 		0B9229C319C3206C00009EC4 /* LFCGzipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9229C219C3206C00009EC4 /* LFCGzipUtility.m */; };
 		0B9229C619C3208900009EC4 /* JSTileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9229C519C3208900009EC4 /* JSTileMap.m */; };
 		0B97E39819CC981D0052ECF5 /* rain.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0B97E39719CC981D0052ECF5 /* rain.caf */; };
+		0B9BA7921A35F9D7009B2F4D /* AMBLN.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0B9BA7901A35F9D7009B2F4D /* AMBLN.caf */; };
+		0B9BA7931A35F9D7009B2F4D /* AMBRN.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0B9BA7911A35F9D7009B2F4D /* AMBRN.caf */; };
 		0BA3BCB31A239854003933C2 /* map12.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA3BCB21A239854003933C2 /* map12.png */; };
 		0BB14C381A028987001F27FB /* botao2_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB14C341A028987001F27FB /* botao2_1.png */; };
 		0BB14C391A028987001F27FB /* botao2_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB14C351A028987001F27FB /* botao2_2.png */; };
@@ -78,7 +80,6 @@
 		0BBCC3D51A3372B800D24537 /* JAGManagerSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBCC3D41A3372B800D24537 /* JAGManagerSound.m */; };
 		0BBCC3D71A337C8400D24537 /* trilha1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BBCC3D61A337C8400D24537 /* trilha1.caf */; };
 		0BBCC3D91A33800900D24537 /* botaoUI1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BBCC3D81A33800900D24537 /* botaoUI1.caf */; };
-		0BBCC3DB1A3394FE00D24537 /* AMBL.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0BBCC3DA1A3394FE00D24537 /* AMBL.caf */; };
 		0BBD2CFF1A13B002000931D5 /* JAGCompTutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD2CFE1A13B002000931D5 /* JAGCompTutorial.m */; };
 		0BBD2D021A13B0A3000931D5 /* JAGTutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD2D011A13B0A3000931D5 /* JAGTutorial.m */; };
 		0BBD455D1A013F0700538ED1 /* JAGMusicAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD455C1A013F0700538ED1 /* JAGMusicAction.m */; };
@@ -303,6 +304,8 @@
 		0B9229C419C3208900009EC4 /* JSTileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTileMap.h; sourceTree = "<group>"; };
 		0B9229C519C3208900009EC4 /* JSTileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTileMap.m; sourceTree = "<group>"; };
 		0B97E39719CC981D0052ECF5 /* rain.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rain.caf; sourceTree = "<group>"; };
+		0B9BA7901A35F9D7009B2F4D /* AMBLN.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AMBLN.caf; sourceTree = "<group>"; };
+		0B9BA7911A35F9D7009B2F4D /* AMBRN.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AMBRN.caf; sourceTree = "<group>"; };
 		0BA3BCB21A239854003933C2 /* map12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map12.png; sourceTree = "<group>"; };
 		0BB14C341A028987001F27FB /* botao2_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = botao2_1.png; sourceTree = "<group>"; };
 		0BB14C351A028987001F27FB /* botao2_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = botao2_2.png; sourceTree = "<group>"; };
@@ -321,12 +324,10 @@
 		0BB81677199BBDA800490104 /* JAGWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGWall.h; path = JonnyGota/Models/JAGWall.h; sourceTree = "<group>"; };
 		0BB81678199BBDA800490104 /* JAGWall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGWall.m; path = JonnyGota/Models/JAGWall.m; sourceTree = "<group>"; };
 		0BBC41381A2E1B1600AB890B /* maisTempo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = maisTempo.wav; sourceTree = "<group>"; };
-		0BBC41441A2F825C00AB890B /* AMBR.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AMBR.caf; sourceTree = "<group>"; };
 		0BBCC3D31A3372B800D24537 /* JAGManagerSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGManagerSound.h; sourceTree = "<group>"; };
 		0BBCC3D41A3372B800D24537 /* JAGManagerSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGManagerSound.m; sourceTree = "<group>"; };
 		0BBCC3D61A337C8400D24537 /* trilha1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = trilha1.caf; sourceTree = "<group>"; };
 		0BBCC3D81A33800900D24537 /* botaoUI1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = botaoUI1.caf; sourceTree = "<group>"; };
-		0BBCC3DA1A3394FE00D24537 /* AMBL.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AMBL.caf; sourceTree = "<group>"; };
 		0BBD2CFD1A13B002000931D5 /* JAGCompTutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGCompTutorial.h; path = Tutorial/JAGCompTutorial.h; sourceTree = "<group>"; };
 		0BBD2CFE1A13B002000931D5 /* JAGCompTutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAGCompTutorial.m; path = Tutorial/JAGCompTutorial.m; sourceTree = "<group>"; };
 		0BBD2D001A13B0A3000931D5 /* JAGTutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAGTutorial.h; path = Tutorial/JAGTutorial.h; sourceTree = "<group>"; };
@@ -970,8 +971,8 @@
 		0BBC413A1A2F7CE100AB890B /* Ambiente */ = {
 			isa = PBXGroup;
 			children = (
-				0BBCC3DA1A3394FE00D24537 /* AMBL.caf */,
-				0BBC41441A2F825C00AB890B /* AMBR.caf */,
+				0B9BA7901A35F9D7009B2F4D /* AMBLN.caf */,
+				0B9BA7911A35F9D7009B2F4D /* AMBRN.caf */,
 			);
 			name = Ambiente;
 			sourceTree = "<group>";
@@ -1292,7 +1293,7 @@
 				ORGANIZATIONNAME = "Henrique Manfroi da Silveira";
 				TargetAttributes = {
 					0B3A044B1991164A00C7C39E = {
-						DevelopmentTeam = VCE77X465D;
+						DevelopmentTeam = 64TH9999YT;
 					};
 					0B3A04731991164A00C7C39E = {
 						DevelopmentTeam = VCE77X465D;
@@ -1407,6 +1408,7 @@
 				8D60E1921A07E327000A5129 /* restaurarCompras.png in Resources */,
 				8D35976819D86559009B6083 /* fase_semSombra3.png in Resources */,
 				0BE89C0E1A151A9200E1FCBF /* map14.tmx in Resources */,
+				0B9BA7931A35F9D7009B2F4D /* AMBRN.caf in Resources */,
 				8D11652719CC666500F441E9 /* armadilha.png in Resources */,
 				0B15AADF19D09B0500ED6110 /* map10.tmx in Resources */,
 				0BE89C161A151AB100E1FCBF /* map15.png in Resources */,
@@ -1453,6 +1455,7 @@
 				8D1B20F919DC46E7007B9B9F /* vidas5.png in Resources */,
 				8DD608161A30D047009CBA1F /* resumir.png in Resources */,
 				0BC2FD7C1A24CCFC009D00DC /* DropGeneric3.caf in Resources */,
+				0B9BA7921A35F9D7009B2F4D /* AMBLN.caf in Resources */,
 				B18414B11A1675530056D9DA /* tuto1.png in Resources */,
 				8DD608001A30C5CE009CBA1F /* passo1.caf in Resources */,
 				8D60E1E11A07EF94000A5129 /* storeBT.png in Resources */,
@@ -1466,7 +1469,6 @@
 				0B4E65D11A34BD7F0061D6B2 /* maisTempo.caf in Resources */,
 				8D8DC57B19D2EC2F00E75949 /* vida5.png in Resources */,
 				8D60E1C91A07E744000A5129 /* comprarVidas.png in Resources */,
-				0BBCC3DB1A3394FE00D24537 /* AMBL.caf in Resources */,
 				8D3AF79B19F55EF50071B23F /* porta.atlas in Resources */,
 				8D6B5A4719CB496A00127198 /* enemies.atlas in Resources */,
 				0BCC65FC19DC88B1004C517F /* Barroco.ttf in Resources */,

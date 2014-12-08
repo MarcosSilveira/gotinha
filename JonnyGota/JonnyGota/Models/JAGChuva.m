@@ -60,13 +60,13 @@ float volumeAtual;
     
     volumeOposto=0.7;
     
-    [self.managerSound addSound:@"AMBL" withEffects:true withKey:@"chuva"];
+    [self.managerSound addSound:@"AMBLN" withEffects:true withKey:@"chuva"];
     
 //    [self.managerSound carregar:@"AMBL" withEffects:true];
     
     [self.managerSound changeVolume:@"chuva" withSound:volumeNormal];
     
-    [self.managerSound addSound:@"AMBL" withEffects:true withKey:@"chuvaOposto"];
+    [self.managerSound addSound:@"AMBRN" withEffects:true withKey:@"chuvaOposto"];
     
     
     [self.managerSound changeVolume:@"chuvaOposto" withSound:volumeOposto];

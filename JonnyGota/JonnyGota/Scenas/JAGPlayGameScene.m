@@ -57,11 +57,6 @@
     //    _message2.zPosition = 999;
     [self.camadaPersonagens addChild:_message2];
     [self touchesEnded:nil withEvent:nil];
-    
-    
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(realodingSound) name:@"reativarSom" object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(killSound) name:@"desativarSom" object:nil];
 }
 
 
@@ -121,19 +116,6 @@
     
     //Relampago
 //    [managerSound addSound:<#(NSString *)#> withEffects:<#(BOOL)#> withKey:<#(NSString *)#>]
-}
-
--(void)realodingSound{
-    
-//    [relampago reaload];
-
-//    [self.gota loadSound];
-//    
-//    [self.level.chuva loadSound];
-//    
-//    [self loadSound];
-    
-//    [self.level.chuva.chuva reaload];
 }
 
 -(void)transicaoButton:(SKNode *) node
@@ -410,7 +392,7 @@
     area.zPosition = _cropNode.zPosition+1;
     [_cropNode addChild:fadeMask];
     [area addChild:circleMask];
-    area.position = CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
+//    area.position = CGPointMake(ponto.x,ponto.y-_gota.sprite.size.height);
     [_cropNode setMaskNode:area];
 }
 
@@ -734,10 +716,10 @@
 -(void)deallocSound{
 
     //Liberar Sons
-//    [generate soltar];
-//    [relampago soltar];
     [self.level.chuva soltar];
     [self.gota soltar];
+    
+    
 }
 
 -(void)killSound{
@@ -745,7 +727,7 @@
     [self deallocSound];
     //Fechar a OpenAL
     
-//    [relampago kill];
+
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
