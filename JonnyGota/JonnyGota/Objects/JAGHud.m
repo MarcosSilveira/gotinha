@@ -82,7 +82,7 @@
     _tempo.fontSize = size.height*0.05;
     _tempo.position=CGPointMake(size.width*0.5, size.height*0.94);
     
-    _saude=[[SKSpriteNode alloc] initWithImageNamed:@"saude.png"];
+    _saude = [[SKSpriteNode alloc] initWithImageNamed:@"saude.png"];
     _saude.size = CGSizeMake(_saude.texture.size.width, _saude.texture.size.height);
     _saude.position=CGPointMake(size.width*0.73, size.height*0.96);
     

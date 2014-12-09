@@ -34,7 +34,7 @@
 "PLAY_TUTORIAL2_FRASE1"= "Enemies may chase and kill you be careful. Unfortunately the droplet can not fight.";
 
 //Fase 4
-"PLAY_TUTORIAL3_FRASE1"= "Buttons have three type press them to activate them.";
+"PLAY_TUTORIAL3_FRASE1" = "Buttons have three types of activation.";
 "PLAY_TUTORIAL3_FRASE2" = "Brown button, then activated keeps";
 "PLAY_TUTORIAL3_FRASE3" = "Blue button, is active for a while.";
 "PLAY_TUTORIAL3_FRASE4" = "Green button needs to be itself to be active.";

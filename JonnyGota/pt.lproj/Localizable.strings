@@ -24,14 +24,14 @@
 //Tutorial fase1
 "PLAY_TUTORIAL1_FRASE1"= "Toque ou mantenha pressionado nas setas para se movimentar.";
 "PLAY_TUTORIAL1_FRASE2" = "Toque ou mantenha pressionado para ir em direção ao local do toque.";
-"PLAY_TUTORIAL1_FRASE3" = "Toque em si e arraste para um lado e se divida para este lado.";
-"PLAY_TUTORIAL1_FRASE4" = "Toque em si mesmo para se esconder.";
+"PLAY_TUTORIAL1_FRASE3" = "Toque na Gotinha e arraste para um lado e se divida para este lado.";
+"PLAY_TUTORIAL1_FRASE4" = "Toque na Gotinha para se esconder.";
 
 //Fase2
-"PLAY_TUTORIAL2_FRASE1"= "Inimigos podem te perseguir e te matar tenha cuidado. Infelizmente a gotinha não sabe lutar.";
+"PLAY_TUTORIAL2_FRASE1"= "Inimigos podem te perseguir e te matar tenha cuidado. Infelizmente a Gotinha não sabe lutar.";
 
 //Fase 4
-"PLAY_TUTORIAL3_FRASE1"= "Botões tem três tipo aperte eles para ativá-los.";
+"PLAY_TUTORIAL3_FRASE1" = "Botões tem três tipos de ativação.";
 "PLAY_TUTORIAL3_FRASE2" = "Botão Marrom, depois de ativado se mantém";
 "PLAY_TUTORIAL3_FRASE3" = "Botão Azul, fica ativo por um tempo.";
 "PLAY_TUTORIAL3_FRASE4" = "Botão Verde precisa ficar em si para ficar ativo.";
