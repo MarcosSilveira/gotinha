@@ -72,7 +72,7 @@
     
     NSString *fonte=@"AvenirNext-Bold";
     
-    _vidas=[[SKLabelNode alloc] initWithFontNamed:fonte];
+    _vidas = [[SKLabelNode alloc] initWithFontNamed:fonte];
     _vidas.fontSize = size.height*0.05;
     _vidas.position=CGPointMake(size.width*0.29, size.height*0.94);
     
@@ -80,11 +80,11 @@
     _tempo=[[SKLabelNode alloc] initWithFontNamed:fonte];
     _tempo.text=[NSString stringWithFormat:@"%ds",_tempoRestante];
     _tempo.fontSize = size.height*0.05;
-    _tempo.position=CGPointMake(size.width*0.5, size.height*0.94);
+    _tempo.position = CGPointMake(size.width*0.5, size.height*0.94);
     
     _saude = [[SKSpriteNode alloc] initWithImageNamed:@"saude.png"];
-    _saude.size = CGSizeMake(_saude.texture.size.width, _saude.texture.size.height);
-    _saude.position=CGPointMake(size.width*0.73, size.height*0.96);
+    _saude.size = CGSizeMake(size.width*.1, size.height*.07);
+    _saude.position = CGPointMake(size.width*0.73, size.height*0.96);
     
     [self addChild:_back];
     [self addChild:_heart];
