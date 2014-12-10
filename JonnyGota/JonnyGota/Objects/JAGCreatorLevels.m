@@ -2233,7 +2233,7 @@ NSMutableArray *nodesPhy;
         [scene.cropNode addChild:scene.level.chuva];
         
         //Add Monstros
-        JAGFogoEnemy *fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(13, 3)] withSize:tiledMap.tileSize];
+        JAGFogoEnemy *fogo = [[JAGFogoEnemy alloc] initWithPosition:[scene.level calculateTile:CGPointMake(14, 3)] withSize:tiledMap.tileSize];
         
         fogo.dano = 10;
         
