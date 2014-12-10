@@ -195,6 +195,7 @@
     if ([[NSUserDefaults standardUserDefaults]valueForKey:@"faseAtual"]== nil) {
         [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"faseAtual"];
     }
+    
     NSInteger faseAtual = [[NSUserDefaults standardUserDefaults] integerForKey:@"faseAtual"];
     float posXInicial = self.frame.size.width*0.2;
     float posYInicial = self.frame.size.height*0.68;

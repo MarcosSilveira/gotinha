@@ -3,17 +3,12 @@
  <tileset firstgid="1" name="TileSetTeste" tilewidth="64" tileheight="64">
   <image source="TileSetTeste.png" width="192" height="448"/>
  </tileset>
- <layer name="BackGround" width="20" height="20">
-  <data encoding="base64" compression="zlib">
-   eJwTZGBgEBzFo3gUj+JRPIpJxABCPRqR
-  </data>
- </layer>
  <imagelayer name="Back" width="0" height="0">
-  <image source="map17.png"/>
+     <image source="map19.png"/>
  </imagelayer>
  <layer name="Tile" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJytk+EKhDAMg/tDTj1l9/5veycsEEPa7cDBmJtt+pnVJSKOh+brN9e4jz38yM41ZqSH2mffL32/CZfqHRQ3w7knZxkfVvUI9RrlNMqB3kpnM3zZu0yP/VGPQnKc3jvuviuH82GT1flX1XZ1ENtID9/k9LCy5+oBewVtxHN/VZz8rHoVF3yFRyfFQs/1i/ZXVidjHfGBSz3i2sya8bmYjE/1WQ938ul73Av0tb+ZHbn/9J8bI//0v3csfF75N8tSxV8xuMcn5sX7BXcAB/U=
+   eJytlO0KwzAIRf1Ruu/s/d92G0w4O5ikLROEEM1Vr5olIm5/0vWtp+jLyHbp3OUbxqhkgQ/xmB/x2levsJ9xvsOHeA1KvJSH7Hl+yq/igng9e09Yh/FY21Y81mG8VtiIN+qz/bfMxFE8zkRyEPHbZ3MywnMezK/HyQgve7bCXsVJ8b4ZL3vGWWUc71CL+TwzL8fhu0o4f3vqNC/Gc9ytc+I8Xa933bw5pxme/cybuav2ae8/MLNVNR3Vzx/5Aj5SCEo=
   </data>
  </layer>
 </map>
