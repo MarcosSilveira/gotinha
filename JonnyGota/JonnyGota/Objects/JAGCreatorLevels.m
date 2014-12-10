@@ -1584,6 +1584,8 @@ NSMutableArray *nodesPhy;
         
         //Gotinha
         
+
+        
         scene.gota = [[JAGGota alloc] initWithPosition:[scene.level calculateTile:CGPointMake(8, 24)] withSize:tiledMap.tileSize];
         
         
@@ -1686,6 +1688,7 @@ NSMutableArray *nodesPhy;
         //Config de hud e fase
         [JAGCreatorLevels configHud:scene];
         
+        scene.hud.tempoRestante=360;
         // Tutorial
 //        [JAGCreatorLevels tutorial: scene];
     }

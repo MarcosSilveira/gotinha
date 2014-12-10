@@ -377,6 +377,34 @@
         GObackground.zPosition = 200;
         message.zPosition = 201;
     }
+    if (withOP == 4) {
+        
+        //Trocar Button 1 para resume
+        
+        GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
+        GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
+        GObackground.size = CGSizeMake(self.frame.size.width, self.frame.size.height);
+        
+        button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
+        button2.size =CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
+        button2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.2);
+        
+        button2.name = @"menu inicial";
+        message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
+        
+        message.fontSize = self.frame.size.height*0.07;
+        message.text=NSLocalizedString(@"PLAY_GAMEOVER_SEM_TEMPO", nil);
+        message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
+        
+        [self.scene addChild:GObackground];
+        [self.scene addChild:message];
+        [self.scene addChild:button2];
+       
+        button2.zPosition = 201;
+        GObackground.zPosition = 200;
+        message.zPosition = 201;
+    }
+
     
     GONaTela = YES;
     self.paused = YES;
@@ -1048,7 +1076,9 @@
     
     
     if (self.hud.tempoRestante == 0) {
-        self.scene.view.paused = YES;
+        //Chamar o game Over
+        [self presentGameOver:4];
+        self.hud.tempoRestante=-1;
     }
 }
 

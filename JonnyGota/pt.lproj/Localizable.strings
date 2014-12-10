@@ -20,6 +20,8 @@
 "PLAY_GAMEOVER_FIM"  = "Fim de jogo!";
 "PLAY_GAMEOVER_NEXT" = "Parabéns! Você avançou para a próxima fase!";
 "PLAY_GAMEOVER_SEM_VIDAS" = "Você não possui mais vidas ):";
+"PLAY_GAMEOVER_SEM_TEMPO" = "Você não consegui terminar a fase no tempo limite tente novamente";
+
 
 //Tutorial fase1
 "PLAY_TUTORIAL1_FRASE1"= "Toque ou mantenha pressionado nas setas para se movimentar.";
