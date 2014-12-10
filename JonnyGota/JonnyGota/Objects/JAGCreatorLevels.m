@@ -538,43 +538,43 @@ NSMutableArray *nodesPhy;
     // JAGHud *hud = [JAGHud alloc]
 }
 
-+ (void)tutorial:(JAGPlayGameScene *) scene {
-    
-    SKSpriteNode *tutorialView = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(scene.size.width*.25, scene.size.height*.3)];
-    tutorialView.position = CGPointMake(scene.size.width/1.15, scene.size.height/1.4);
-    tutorialView.alpha = .7;
-    tutorialView.zPosition = 201;
-    DSMultilineLabelNode *nodeLabel = [DSMultilineLabelNode labelNodeWithFontNamed:@"VAGRoundedStd-Thin"];
-    nodeLabel.fontSize = scene.frame.size.width*.02;
-    nodeLabel.text = @"Funcione ";
-    
-    nodeLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
-    
-    SKAction *changeLabel = [SKAction sequence:@[[SKAction runBlock:^{
-        nodeLabel.text = NSLocalizedString(@"PLAY_TUTORIAL_FRASE1", nil);
-        nodeLabel.paragraphWidth = tutorialView.size.width*.9;
-    }],
-                                                 [SKAction waitForDuration:13.0],
-                                                 [SKAction runBlock:^{
-        nodeLabel.text = NSLocalizedString(@"PLAY_TUTORIAL_FRASE2", nil);
-        nodeLabel.paragraphWidth = tutorialView.size.width*.9;
-    }],
-                                                 [SKAction waitForDuration:13.0],
-                                                 [SKAction runBlock:^{
-        nodeLabel.text = NSLocalizedString(@"PLAY_TUTORIAL_FRASE3", nil);
-        nodeLabel.paragraphWidth = tutorialView.size.width*.9;
-    }],
-                                                 [SKAction waitForDuration:13.0],
-                                                 [SKAction runBlock:^{
-        nodeLabel.text = @"Agora sim! Você sabe muito bem controlar uma Gota, ande por essa casa e tente achar a sua família.";
-        nodeLabel.paragraphWidth = tutorialView.size.width*.9;
-    }]]];
-    
-    [scene runAction:changeLabel withKey:@"trocarLabel"];
-    
-    [tutorialView addChild:nodeLabel];
-    [scene addChild:tutorialView];
-}
+//+ (void)tutorial:(JAGPlayGameScene *) scene {
+//    
+//    SKSpriteNode *tutorialView = [[SKSpriteNode alloc] initWithColor:[SKColor grayColor] size:CGSizeMake(scene.size.width*.25, scene.size.height*.3)];
+//    tutorialView.position = CGPointMake(scene.size.width/1.15, scene.size.height/1.4);
+//    tutorialView.alpha = .7;
+//    tutorialView.zPosition = 201;
+//    DSMultilineLabelNode *nodeLabel = [DSMultilineLabelNode labelNodeWithFontNamed:@"VAGRoundedStd-Thin"];
+//    nodeLabel.fontSize = scene.frame.size.width*.02;
+//    nodeLabel.text = @"Funcione ";
+//    
+//    nodeLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+//    
+//    SKAction *changeLabel = [SKAction sequence:@[[SKAction runBlock:^{
+//        nodeLabel.text = NSLocalizedString(@"PLAY_TUTORIAL_FRASE1", nil);
+//        nodeLabel.paragraphWidth = tutorialView.size.width*.9;
+//    }],
+//                                                 [SKAction waitForDuration:13.0],
+//                                                 [SKAction runBlock:^{
+//        nodeLabel.text = NSLocalizedString(@"PLAY_TUTORIAL_FRASE2", nil);
+//        nodeLabel.paragraphWidth = tutorialView.size.width*.9;
+//    }],
+//                                                 [SKAction waitForDuration:13.0],
+//                                                 [SKAction runBlock:^{
+//        nodeLabel.text = NSLocalizedString(@"PLAY_TUTORIAL_FRASE3", nil);
+//        nodeLabel.paragraphWidth = tutorialView.size.width*.9;
+//    }],
+//                                                 [SKAction waitForDuration:13.0],
+//                                                 [SKAction runBlock:^{
+//        nodeLabel.text = @"Agora sim! Você sabe muito bem controlar uma Gota, ande por essa casa e tente achar a sua família.";
+//        nodeLabel.paragraphWidth = tutorialView.size.width*.9;
+//    }]]];
+//    
+//    [scene runAction:changeLabel withKey:@"trocarLabel"];
+//    
+//    [tutorialView addChild:nodeLabel];
+//    [scene addChild:tutorialView];
+//}
 
 + (void)initializeLevel01ofWorld01onScene:(JAGPlayGameScene *)scene
 {
@@ -1690,7 +1690,7 @@ NSMutableArray *nodesPhy;
         [JAGCreatorLevels configHud:scene];
         
         // Tutorial
-        [JAGCreatorLevels tutorial: scene];
+//        [JAGCreatorLevels tutorial: scene];
     }
 }
 
