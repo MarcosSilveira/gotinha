@@ -598,7 +598,7 @@ NSMutableArray *nodesPhy;
             temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL1_FRASE1", nil);
             
             temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto1"];
-            temp.image.size=CGSizeMake(scene.frame.size.width*4, scene.frame.size.height*0.6);
+            temp.image.size=CGSizeMake(scene.frame.size.width*.4, scene.frame.size.height*.3);
             NSLog(@"size X %f ",temp.image.size.width);
             //        [[SKSpriteNode alloc] initWithColor:[SKColor redColor] size:CGSizeMake(100, 100)];
             
@@ -609,21 +609,18 @@ NSMutableArray *nodesPhy;
             
             temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL1_FRASE2", nil);
             
-            temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto2"];
-            temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
+            temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto5"];
+            temp.image.size=CGSizeMake(scene.frame.size.width*.4, scene.frame.size.height*.3);
             
             [tutorial addObject:temp];
         }
-        
-        
-        
         
         temp=[[JAGCompTutorial alloc] init];
         
         temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL1_FRASE3", nil);
         
         temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto3"];
-        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
+        temp.image.size=CGSizeMake(scene.frame.size.width*.4, scene.frame.size.height*.5);
         
         [tutorial addObject:temp];
         
@@ -632,8 +629,8 @@ NSMutableArray *nodesPhy;
         
         temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL1_FRASE4", nil);
         
-        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto4"];
-        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
+        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto2"];
+        temp.image.size=CGSizeMake(scene.frame.size.width*.4, scene.frame.size.height*.5);
         
         
         [tutorial addObject:temp];
@@ -701,9 +698,9 @@ NSMutableArray *nodesPhy;
         
         temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL2_FRASE1", nil);
         
-        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto1"];
-        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
-        
+        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"fogoHQ"];
+        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.3);
+    
         [tutorial addObject:temp];
 
         JAGTutorial *tuto=[[JAGTutorial alloc] initWithComponents:tutorial withSizeFrame:scene.frame.size];
@@ -829,8 +826,8 @@ NSMutableArray *nodesPhy;
         
         temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL3_FRASE1", nil);
         
-        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto1"];
-        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
+        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"buttons"];
+        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.3);
         
         [tutorial addObject:temp];
         
@@ -838,8 +835,8 @@ NSMutableArray *nodesPhy;
         
         temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL3_FRASE2", nil);
         
-        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto2"];
-        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
+        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"brown"];
+        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.3);
         
         [tutorial addObject:temp];
         
@@ -848,8 +845,8 @@ NSMutableArray *nodesPhy;
         
         temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL3_FRASE3", nil);
         
-        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto3"];
-        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
+        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"blue"];
+        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.3);
         
         
         [tutorial addObject:temp];
@@ -859,8 +856,8 @@ NSMutableArray *nodesPhy;
         
         temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL3_FRASE4", nil);
         
-        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto3"];
-        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
+        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"green"];
+        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.3);
         
         [tutorial addObject:temp];
         
@@ -869,8 +866,8 @@ NSMutableArray *nodesPhy;
         
         temp.mensagem=NSLocalizedString(@"PLAY_TUTORIAL3_FRASE5", nil);
         
-        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"tuto4"];
-        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.6);
+        temp.image=[[SKSpriteNode alloc] initWithImageNamed:@"doors"];
+        temp.image.size=CGSizeMake(scene.frame.size.width*0.4, scene.frame.size.height*0.3);
         
         
         [tutorial addObject:temp];

@@ -249,19 +249,25 @@
         
         
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
-        GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
+        GObackground.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+        GObackground.size = CGSizeMake(self.frame.size.width, self.frame.size.height);
+        
         button1 = [[SKSpriteNode alloc] initWithImageNamed:@"restart_BT"];
         button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
+        
         button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
         button2.size =CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.2);
+        
         button1.name = @"reiniciar fase";
         button2.name = @"menu inicial";
+        
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
         message.fontSize = self.frame.size.height*0.05;
         message.text = NSLocalizedString(@"PLAY_GAMEOVER_FIM", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
+        
         [self.scene addChild:GObackground];
         [self.scene addChild:message];
         [self.scene addChild:button1];
@@ -274,19 +280,25 @@
     if (withOP == 1) {
         
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
-        GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
+        GObackground.position = CGPointMake(self.frame.size.width*.5, self.frame.size.height*.5);
+        GObackground.size = CGSizeMake(self.frame.size.width, self.frame.size.height);
+
         button1 = [[SKSpriteNode alloc] initWithImageNamed:@"proxima_fase_bt"];
         button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
+        
         button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
         button2.size =CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.2);
+        
         button1.name = @"proxima fase";
         button2.name = @"menu inicial";
+        
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
         message.fontSize = self.frame.size.height*0.05;
         message.text = NSLocalizedString(@"PLAY_GAMEOVER_NEXT", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
+        
         [self.scene addChild:GObackground];
         [self.scene addChild:message];
         [self.scene addChild:button1];
@@ -305,18 +317,24 @@
         
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
         GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
+        GObackground.size = CGSizeMake(self.frame.size.width, self.frame.size.height);
+        
         button1 = [[SKSpriteNode alloc] initWithImageNamed:@"storeBT"];
         button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
+        
         button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
         button2.size =CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.2);
+        
         button1.name = @"store";
         button2.name = @"menu inicial";
+        
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
         message.fontSize = self.frame.size.height*0.05;
         message.text=NSLocalizedString(@"PLAY_GAMEOVER_SEM_VIDAS", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
+        
         [self.scene addChild:GObackground];
         [self.scene addChild:message];
         [self.scene addChild:button1];
@@ -332,18 +350,24 @@
         
         GObackground = [[SKSpriteNode alloc]initWithImageNamed:@"GOBackground"];
         GObackground.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
+        GObackground.size = CGSizeMake(self.frame.size.width, self.frame.size.height);
+        
         button1 = [[SKSpriteNode alloc] initWithImageNamed:@"resumir"];
         button1.size = CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button1.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.4);
+        
         button2 = [[SKSpriteNode alloc] initWithImageNamed:@"menuInicial"];
         button2.size =CGSizeMake(self.frame.size.width * .24, self.frame.size.height * .13);
         button2.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.2);
+        
         button1.name = @"resumir";
         button2.name = @"menu inicial";
         message =[[SKLabelNode alloc]initWithFontNamed:@"AvenirNext-Bold"];
+        
         message.fontSize = self.frame.size.height*0.07;
         message.text=NSLocalizedString(@"PLAY_GAMEOVER_PAUSE", nil);
         message.position = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.6);
+        
         [self.scene addChild:GObackground];
         [self.scene addChild:message];
         [self.scene addChild:button1];
@@ -607,15 +631,12 @@
             //menu gameover
             SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
             
-            
             if ([node.name isEqualToString:@"reiniciar fase"]) {
                 NSLog(@"bt1 gameover");
                 
                 [self animationButton:node];
                 
-                
-                
-                self.scene.view.paused=NO;
+                self.scene.view.paused = NO;
                 GONaTela = NO;
                 //                    self.scene.paused = NO;
                 [button1 removeFromParent];

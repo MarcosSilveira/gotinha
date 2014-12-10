@@ -65,8 +65,8 @@
     botaoPlay.position = CGPointMake(self.size.width/2, self.size.height/2.8);
     
     botaoStore = [[SKSpriteNode alloc] initWithTexture:botaoStoreText];
-    botaoStore.size = CGSizeMake(self.frame.size.width*.23, self.frame.size.height*.13);
-    botaoStore.position = CGPointMake(self.size.width/2, self.size.height/5.1);
+    botaoStore.size = CGSizeMake(self.frame.size.width*.24, self.frame.size.height*.15);
+    botaoStore.position = CGPointMake(self.size.width/2, self.size.height/5.5);
     
     [self addChild:fundo];
     [self addChild:logo];

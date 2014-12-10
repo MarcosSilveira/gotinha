@@ -25,19 +25,19 @@
 "PLAY_GAMEOVER_SEM_VIDAS" = "You have no more lives ):";
 
 //Fase 1
-"PLAY_TUTORIAL1_FRASE1"= "Tap or hold the arrows to move.";
+"PLAY_TUTORIAL1_FRASE1" = "Tap or hold the arrows to move.";
 "PLAY_TUTORIAL1_FRASE2" = "Tap or hold to go toward the touch location.";
 "PLAY_TUTORIAL1_FRASE3" = "Touch and drag him to one side and divide this way.";
-"PLAY_TUTORIAL1_FRASE4" = "Touch yourself to hide.";
+"PLAY_TUTORIAL1_FRASE4" = "Touch in Droplet to hide.";
 
 //Fase2
-"PLAY_TUTORIAL2_FRASE1"= "Enemies may chase and kill you be careful. Unfortunately the droplet can not fight.";
+"PLAY_TUTORIAL2_FRASE1" = "Enemies may chase and kill you be careful. Unfortunately the Droplet can not fight.";
 
 //Fase 4
-"PLAY_TUTORIAL3_FRASE1"= "Buttons have three type press them to activate them.";
+"PLAY_TUTORIAL3_FRASE1" = "Buttons have three types of activation.";
 "PLAY_TUTORIAL3_FRASE2" = "Brown button, then activated keeps";
 "PLAY_TUTORIAL3_FRASE3" = "Blue button, is active for a while.";
-"PLAY_TUTORIAL3_FRASE4" = "Yellow button needs to be itself to be active.";
+"PLAY_TUTORIAL3_FRASE4" = "Green button needs to be itself to be active.";
 "PLAY_TUTORIAL3_FRASE5" = "Doors will be open to all linked buttons are activated.";
 
 
