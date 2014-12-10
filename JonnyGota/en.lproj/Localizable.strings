@@ -23,6 +23,10 @@
 "PLAY_GAMEOVER_FIM"  = "Game Over!";
 "PLAY_GAMEOVER_NEXT" = "Congratulations! You have advanced to the next level!";
 "PLAY_GAMEOVER_SEM_VIDAS" = "You have no more lives ):";
+"PLAY_GAMEOVER_SEM_TEMPO" = "You could not finish the stage within the time limit try again";
+
+
+
 
 //Fase 1
 "PLAY_TUTORIAL1_FRASE1" = "Tap or hold the arrows to move.";
