@@ -83,6 +83,8 @@
 		0BBD2D021A13B0A3000931D5 /* JAGTutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD2D011A13B0A3000931D5 /* JAGTutorial.m */; };
 		0BBD455D1A013F0700538ED1 /* JAGMusicAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD455C1A013F0700538ED1 /* JAGMusicAction.m */; };
 		0BBD80581A0A8A1F00275131 /* JAGVida.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD80571A0A8A1F00275131 /* JAGVida.m */; };
+		0BBEDB451A38F640004638E2 /* map19.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0BBEDB441A38F640004638E2 /* map19.tmx */; };
+		0BBEDB471A38F6CF004638E2 /* map19.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BBEDB461A38F6CF004638E2 /* map19.png */; };
 		0BC084A11A1BA8F300E39441 /* gamePad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC084A01A1BA8F300E39441 /* gamePad.png */; };
 		0BC084A41A1BAD5E00E39441 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC084A21A1BAD5E00E39441 /* check.png */; };
 		0BC084A51A1BAD5E00E39441 /* noCheck in Resources */ = {isa = PBXBuildFile; fileRef = 0BC084A31A1BAD5E00E39441 /* noCheck */; };
@@ -181,8 +183,8 @@
 		8DF47BD019B0AF1D0021AE2D /* JAGPerdaFogo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF47BCF19B0AF1D0021AE2D /* JAGPerdaFogo.m */; };
 		8DF47BD319B0B4EE0021AE2D /* Fogo.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8DF47BD119B0B4EE0021AE2D /* Fogo.sks */; };
 		8DF47BE319B635F30021AE2D /* JAGTrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF47BE219B635F30021AE2D /* JAGTrap.m */; };
-		B108806B1A38B9AE0012F04F /* map19.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B108806A1A38B9AE0012F04F /* map19.tmx */; };
-		B108806D1A38B9C10012F04F /* map19.png in Resources */ = {isa = PBXBuildFile; fileRef = B108806C1A38B9C10012F04F /* map19.png */; };
+		B108806B1A38B9AE0012F04F /* map18.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B108806A1A38B9AE0012F04F /* map18.tmx */; };
+		B108806D1A38B9C10012F04F /* map18.png in Resources */ = {isa = PBXBuildFile; fileRef = B108806C1A38B9C10012F04F /* map18.png */; };
 		B14BB32B1A363DBE004646CB /* storeBT.png in Resources */ = {isa = PBXBuildFile; fileRef = B14BB32D1A363DBE004646CB /* storeBT.png */; };
 		B14BB3311A363DE4004646CB /* storeBT.png in Resources */ = {isa = PBXBuildFile; fileRef = B14BB32F1A363DE4004646CB /* storeBT.png */; };
 		B14BB3331A367594004646CB /* botao3_2.png in Resources */ = {isa = PBXBuildFile; fileRef = B14BB3321A367594004646CB /* botao3_2.png */; };
@@ -340,6 +342,8 @@
 		0BBD455E1A01435200538ED1 /* DropGeneric1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DropGeneric1.caf; sourceTree = "<group>"; };
 		0BBD80561A0A8A1F00275131 /* JAGVida.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGVida.h; sourceTree = "<group>"; };
 		0BBD80571A0A8A1F00275131 /* JAGVida.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGVida.m; sourceTree = "<group>"; };
+		0BBEDB441A38F640004638E2 /* map19.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map19.tmx; sourceTree = "<group>"; };
+		0BBEDB461A38F6CF004638E2 /* map19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map19.png; sourceTree = "<group>"; };
 		0BC084A01A1BA8F300E39441 /* gamePad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamePad.png; sourceTree = "<group>"; };
 		0BC084A21A1BAD5E00E39441 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		0BC084A31A1BAD5E00E39441 /* noCheck */ = {isa = PBXFileReference; lastKnownFileType = file; path = noCheck; sourceTree = "<group>"; };
@@ -490,8 +494,8 @@
 		8DF47BD119B0B4EE0021AE2D /* Fogo.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Fogo.sks; path = JonnyGota/Fogo.sks; sourceTree = "<group>"; };
 		8DF47BE119B635F30021AE2D /* JAGTrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGTrap.h; sourceTree = "<group>"; };
 		8DF47BE219B635F30021AE2D /* JAGTrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGTrap.m; sourceTree = "<group>"; };
-		B108806A1A38B9AE0012F04F /* map19.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map19.tmx; sourceTree = "<group>"; };
-		B108806C1A38B9C10012F04F /* map19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map19.png; sourceTree = "<group>"; };
+		B108806A1A38B9AE0012F04F /* map18.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map18.tmx; sourceTree = "<group>"; };
+		B108806C1A38B9C10012F04F /* map18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map18.png; sourceTree = "<group>"; };
 		B14BB32C1A363DBE004646CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Base; path = Base.lproj/storeBT.png; sourceTree = "<group>"; };
 		B14BB32E1A363DC0004646CB /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/storeBT.png; sourceTree = "<group>"; };
 		B14BB3301A363DE4004646CB /* pt */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pt; path = pt.lproj/storeBT.png; sourceTree = "<group>"; };
@@ -669,7 +673,8 @@
 				0BE89C0A1A151A9200E1FCBF /* map15.tmx */,
 				0BE89C181A1521A500E1FCBF /* map16.tmx */,
 				B19711951A322C57005CE334 /* map17.tmx */,
-				B108806A1A38B9AE0012F04F /* map19.tmx */,
+				B108806A1A38B9AE0012F04F /* map18.tmx */,
+				0BBEDB441A38F640004638E2 /* map19.tmx */,
 				0B31B44619ED9F04006761EA /* mapTeste.tmx */,
 				0B15AACC19D09AE100ED6110 /* TileSet.png */,
 			);
@@ -955,7 +960,8 @@
 		0BB39B741A0010C800984420 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
-				B108806C1A38B9C10012F04F /* map19.png */,
+				0BBEDB461A38F6CF004638E2 /* map19.png */,
+				B108806C1A38B9C10012F04F /* map18.png */,
 				0BB39B751A00110800984420 /* map3.png */,
 				0BA3BCB21A239854003933C2 /* map12.png */,
 				0BE89C121A151AB100E1FCBF /* map13.png */,
@@ -1304,7 +1310,7 @@
 				ORGANIZATIONNAME = "Henrique Manfroi da Silveira";
 				TargetAttributes = {
 					0B3A044B1991164A00C7C39E = {
-						DevelopmentTeam = VCE77X465D;
+						DevelopmentTeam = 64TH9999YT;
 					};
 					0B3A04731991164A00C7C39E = {
 						DevelopmentTeam = VCE77X465D;
@@ -1382,6 +1388,7 @@
 				8D4A4F3519A3D0E300255468 /* gotinha.atlas in Resources */,
 				0BC3E8EB1A2CDB5600DAB156 /* BOTAO UI 2.wav in Resources */,
 				0BC2FD7D1A24CCFC009D00DC /* DropGeneric4.caf in Resources */,
+				0BBEDB471A38F6CF004638E2 /* map19.png in Resources */,
 				B14BB3551A371BC7004646CB /* vidas5.png in Resources */,
 				0BB6C0B11A079CDC0045AB3A /* map11.tmx in Resources */,
 				B18414B41A1675530056D9DA /* tuto4.png in Resources */,
@@ -1405,7 +1412,7 @@
 				B14BB3541A371BC7004646CB /* price199.png in Resources */,
 				8D050F181A09384200D36D30 /* menuInicial.png in Resources */,
 				8DD608031A30C5CE009CBA1F /* passo4.caf in Resources */,
-				B108806D1A38B9C10012F04F /* map19.png in Resources */,
+				B108806D1A38B9C10012F04F /* map18.png in Resources */,
 				0B15AADA19D09B0500ED6110 /* map5.tmx in Resources */,
 				0B88D26219E70E1F00351527 /* botao1.png in Resources */,
 				0BC0D3AA1A126222003B8526 /* arrowGamePad.png in Resources */,
@@ -1414,6 +1421,7 @@
 				0B15AACD19D09AE100ED6110 /* TileSet.png in Resources */,
 				0B3A04651991164A00C7C39E /* Main.storyboard in Resources */,
 				B14BB3501A371BC7004646CB /* nuvem.png in Resources */,
+				0BBEDB451A38F640004638E2 /* map19.tmx in Resources */,
 				0B15AADB19D09B0500ED6110 /* map6.tmx in Resources */,
 				8DD6082B1A321337009CBA1F /* removeAds.png in Resources */,
 				8D35976619D86559009B6083 /* fase_semSombra1.png in Resources */,
@@ -1446,7 +1454,7 @@
 				B178955E1A362614005BF58C /* buttons.png in Resources */,
 				0BC084A51A1BAD5E00E39441 /* noCheck in Resources */,
 				8D8DC57C19D2EC2F00E75949 /* vida6.png in Resources */,
-				B108806B1A38B9AE0012F04F /* map19.tmx in Resources */,
+				B108806B1A38B9AE0012F04F /* map18.tmx in Resources */,
 				0BC3E8E71A2CD75400DAB156 /* btUp1.wav in Resources */,
 				0B0699151A03F1BE000F954B /* map12.tmx in Resources */,
 				0BBCC3D71A337C8400D24537 /* trilha1.caf in Resources */,
