@@ -222,6 +222,8 @@
 		B19711961A322C57005CE334 /* map17.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B19711951A322C57005CE334 /* map17.tmx */; };
 		B19711991A323198005CE334 /* trilhaGotinhaMenu.caf in Resources */ = {isa = PBXBuildFile; fileRef = B19711981A323198005CE334 /* trilhaGotinhaMenu.caf */; };
 		B1D9C13619DDC26E005ED4A1 /* DSMultilineLabelNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D9C13519DDC26E005ED4A1 /* DSMultilineLabelNode.m */; };
+		B1E72F2A1A3B519000EA9EE6 /* map20.png in Resources */ = {isa = PBXBuildFile; fileRef = B1E72F281A3B519000EA9EE6 /* map20.png */; };
+		B1E72F2B1A3B519000EA9EE6 /* map20.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B1E72F291A3B519000EA9EE6 /* map20.tmx */; };
 		B1E9587B19B77718002302D7 /* Raio.sks in Resources */ = {isa = PBXBuildFile; fileRef = B1E9587A19B77718002302D7 /* Raio.sks */; };
 		B1E9587E19B7783C002302D7 /* JAGSparkRaio.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E9587D19B7783C002302D7 /* JAGSparkRaio.m */; };
 /* End PBXBuildFile section */
@@ -538,6 +540,8 @@
 		B19711981A323198005CE334 /* trilhaGotinhaMenu.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = trilhaGotinhaMenu.caf; sourceTree = "<group>"; };
 		B1D9C13419DDC26E005ED4A1 /* DSMultilineLabelNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSMultilineLabelNode.h; sourceTree = "<group>"; };
 		B1D9C13519DDC26E005ED4A1 /* DSMultilineLabelNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSMultilineLabelNode.m; sourceTree = "<group>"; };
+		B1E72F281A3B519000EA9EE6 /* map20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map20.png; sourceTree = "<group>"; };
+		B1E72F291A3B519000EA9EE6 /* map20.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map20.tmx; sourceTree = "<group>"; };
 		B1E9587A19B77718002302D7 /* Raio.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Raio.sks; sourceTree = "<group>"; };
 		B1E9587C19B7783C002302D7 /* JAGSparkRaio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGSparkRaio.h; sourceTree = "<group>"; };
 		B1E9587D19B7783C002302D7 /* JAGSparkRaio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGSparkRaio.m; sourceTree = "<group>"; };
@@ -675,6 +679,7 @@
 				B19711951A322C57005CE334 /* map17.tmx */,
 				B108806A1A38B9AE0012F04F /* map18.tmx */,
 				0BBEDB441A38F640004638E2 /* map19.tmx */,
+				B1E72F291A3B519000EA9EE6 /* map20.tmx */,
 				0B31B44619ED9F04006761EA /* mapTeste.tmx */,
 				0B15AACC19D09AE100ED6110 /* TileSet.png */,
 			);
@@ -960,14 +965,15 @@
 		0BB39B741A0010C800984420 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
-				0BBEDB461A38F6CF004638E2 /* map19.png */,
-				B108806C1A38B9C10012F04F /* map18.png */,
 				0BB39B751A00110800984420 /* map3.png */,
 				0BA3BCB21A239854003933C2 /* map12.png */,
 				0BE89C121A151AB100E1FCBF /* map13.png */,
 				0BE89C131A151AB100E1FCBF /* map15.png */,
 				0BE89C1A1A1521BD00E1FCBF /* map16.png */,
 				B19711931A322C47005CE334 /* map17.png */,
+				B108806C1A38B9C10012F04F /* map18.png */,
+				0BBEDB461A38F6CF004638E2 /* map19.png */,
+				B1E72F281A3B519000EA9EE6 /* map20.png */,
 				0BB6C0B21A079D200045AB3A /* mapaBack11.png */,
 				0B0699131A03F1BE000F954B /* TileSetTeste.png */,
 			);
@@ -1310,7 +1316,7 @@
 				ORGANIZATIONNAME = "Henrique Manfroi da Silveira";
 				TargetAttributes = {
 					0B3A044B1991164A00C7C39E = {
-						DevelopmentTeam = 64TH9999YT;
+						DevelopmentTeam = VCE77X465D;
 					};
 					0B3A04731991164A00C7C39E = {
 						DevelopmentTeam = VCE77X465D;
@@ -1369,6 +1375,7 @@
 				8D60E1C41A07E72C000A5129 /* comprarVidas.png in Resources */,
 				B14BB32B1A363DBE004646CB /* storeBT.png in Resources */,
 				0BC3E8ED1A2CDB5600DAB156 /* BOTAO UI 4.wav in Resources */,
+				B1E72F2B1A3B519000EA9EE6 /* map20.tmx in Resources */,
 				0BBC41391A2E1B1600AB890B /* maisTempo.wav in Resources */,
 				0BE89C191A1521A500E1FCBF /* map16.tmx in Resources */,
 				8D8DC57E19D2EC2F00E75949 /* vida8.png in Resources */,
@@ -1405,6 +1412,7 @@
 				8D60E1F81A07F22B000A5129 /* loja_BG.png in Resources */,
 				0BE89C1B1A1521BD00E1FCBF /* map16.png in Resources */,
 				8D60E1D51A07E777000A5129 /* play.png in Resources */,
+				B1E72F2A1A3B519000EA9EE6 /* map20.png in Resources */,
 				0BB20B6D19F82257004EBC4A /* DropGeneric1.caf in Resources */,
 				0B3A046F1991164A00C7C39E /* Images.xcassets in Resources */,
 				0BB29DDF1A064BBF008E7502 /* map2.tmx in Resources */,

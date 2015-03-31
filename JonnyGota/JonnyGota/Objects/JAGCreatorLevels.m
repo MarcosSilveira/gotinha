@@ -32,7 +32,7 @@ NSMutableArray *nodesPhy;
 + (NSNumber *)numberOfLevels:(int)mundo{
     switch (mundo) {
         case 1:
-            return @19;
+            return @20;
             break;
             
         default:
@@ -2353,6 +2353,10 @@ NSMutableArray *nodesPhy;
     }
 }
 
++ (void)initializeLevel20ofWorld01onScene:(JAGPlayGameScene *)scene
+{
+    
+}
 
 //Faze Basica
 + (void)initializeLevel98ofWorld01onScene:(JAGPlayGameScene *)scene

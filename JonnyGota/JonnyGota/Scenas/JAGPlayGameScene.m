@@ -42,7 +42,6 @@
     BOOL GONaTela;
 }
 
-
 #pragma mark - View Initialization
 -(void)didMoveToView:(SKView *)view{
     
@@ -829,7 +828,7 @@
                 
                 //            [_cropNode addChild:[_gota dividirwithSentido:[self verificaSentido:toqueFinal with:_gota.position]]];
                 int mul=2;
-                if(self.gota.sprite.size.width>60){
+                if(self.gota.sprite.size.width>100){
                     mul=8;
                 }
                 

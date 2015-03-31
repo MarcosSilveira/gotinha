@@ -148,7 +148,6 @@
 
 -(JAGGotaDividida*) dividir {
     
-    
     SKAction *dividAction;
     
     if (_dividida) {

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="20" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="TileSetTeste" tilewidth="64" tileheight="64">
+  <image source="Mapas Gotinha/TileSetTeste.png" width="192" height="448"/>
+ </tileset>
+ <imagelayer name="Back" width="0" height="0">
+     <image source="map20.png"/>
+ </imagelayer>
+ <layer name="Tile" width="25" height="20">
+  <data encoding="base64" compression="zlib">
+   eJy1lM0OwzAIg32o2mU/3fu/7dYDmmvhkHWrJS4h4SNAMgG4nWjz2xZ81HBci1lv4lv/wNB7KAOy75KcmSm/jLGKOQb7szM9hioYmiOzVHG3+wAjq5XLUX0b+znAyGoVeWcMl/+Efe+y3DI+95pju/y5X8DYXHGvI4bGZoaqN1dRI15z88LxenIMPndFPnOVXK2yXj+wfxdxPvrk2FWtMrGP32f1xx1lBGeT/jchV6ve/TkWK5tdoK6Ve+cax+1VfzVXVaxW7PmlH98wYv7Psu0PegFZ5wlc
+  </data>
+ </layer>
+</map>
