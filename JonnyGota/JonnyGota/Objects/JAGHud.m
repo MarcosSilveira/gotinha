@@ -48,6 +48,7 @@
     
     _pauseBT = [[SKSpriteNode alloc] initWithColor:[UIColor purpleColor] size:CGSizeMake(20, 20)];
     _pauseBT.position = CGPointMake(size.width*0.11, size.height*0.96);
+    _pauseBT.texture = [SKTexture textureWithImageNamed:@"pauseBT"];
     _pauseBT.name = @"pauseBT";
     _tempoRestante=tempo;
     _vidaRestante=vida;
@@ -65,7 +66,7 @@
     _tempo.position=CGPointMake(size.width*0.5, size.height*0.94);
     
     _saude=[[SKLabelNode alloc]initWithFontNamed:fonte];
-    _saude.text=[NSString stringWithFormat:@"saúde: %d", _gota.vida];
+    _saude.text=[NSString stringWithFormat:@"saúde: %ld", (long)_gota.vida];
     _saude.fontSize = size.height*0.05;
     _saude.position=CGPointMake(size.width*0.73, size.height*0.94);
     

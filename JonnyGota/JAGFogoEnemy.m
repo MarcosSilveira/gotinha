@@ -16,16 +16,21 @@
     //texture config
     self.sprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:size];
     self.atlas = [SKTextureAtlas atlasNamed:@"enemies.atlas"];
-    self.sprite.texture = [SKTexture textureWithImageNamed:@"fogo_parado.png"];
-    self.idleTexture =  [SKTexture textureWithImageNamed:@"fogo_parado.png"];
+    self.sprite.texture = [SKTexture textureWithImageNamed:@"fogo_correndo_frente1@2x.png"];
+    self.idleTexture =  [SKTexture textureWithImageNamed:@"fogo_correndo_frente1@2x.png"];
     
-    for (int i=1; i<=8; i++) {
+    for (int i=1; i<=7; i++) {
         NSString *textureName = [NSString stringWithFormat:@"fogo_correndo_lado%d@2x.png", i];
         [self.walkTexturesSide addObject:[self.atlas textureNamed:textureName]];
+    }
+    for (int i=1; i<=9; i++) {
+        NSString *textureName = [NSString stringWithFormat:@"fogo_correndo_costas%d@2x.png", i];
         [self.walkTexturesBack addObject:[self.atlas textureNamed:textureName]];
+    }
+    for (int i=1; i<=7; i++) {
+        NSString *textureName = [NSString stringWithFormat:@"fogo_correndo_frente%d@2x.png", i];
         [self.walkTexturesFront addObject:[self.atlas textureNamed:textureName]];
     }
-
 
 
     //physics config

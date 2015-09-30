@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface JAGAppDelegate : UIResponder <UIApplicationDelegate>
+#import <StoreKit/StoreKit.h>
+@interface JAGAppDelegate : UIResponder <UIApplicationDelegate, SKPaymentTransactionObserver>
 
 @property (strong, nonatomic) UIWindow *window;
 

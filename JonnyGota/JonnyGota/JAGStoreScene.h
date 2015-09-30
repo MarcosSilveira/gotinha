@@ -7,7 +7,11 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import <StoreKit/StoreKit.h>
 
-@interface JAGStoreScene : SKScene
 
+@interface JAGStoreScene : SKScene<SKRequestDelegate,SKProductsRequestDelegate>
+@property NSArray *products;
+@property NSArray *identifiers;
+-(void)validateProductIdentifiers:(NSArray *)productIdentifiers;
 @end

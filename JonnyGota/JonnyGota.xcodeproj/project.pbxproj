@@ -104,6 +104,8 @@
 		8D8DC57C19D2EC2F00E75949 /* vida6.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D8DC57319D2EC2F00E75949 /* vida6.png */; };
 		8D8DC57D19D2EC2F00E75949 /* vida7.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D8DC57419D2EC2F00E75949 /* vida7.png */; };
 		8D8DC57E19D2EC2F00E75949 /* vida8.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D8DC57519D2EC2F00E75949 /* vida8.png */; };
+		8D92AF0719FA92E900A6ADA9 /* store.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D92AF0919FA92E900A6ADA9 /* store.png */; };
+		8D92AF1119FA943600A6ADA9 /* store.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D92AF1319FA943600A6ADA9 /* store.png */; };
 		8D94D7C219DB4182002872F4 /* fogo_parado.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D94D7C119DB4182002872F4 /* fogo_parado.png */; };
 		8DC0B80519D5D0420044E800 /* JAGLevelSelectionScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC0B80419D5D0420044E800 /* JAGLevelSelectionScene.m */; };
 		8DC0B80F19D61D290044E800 /* fase_trancada.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DC0B80E19D61D290044E800 /* fase_trancada.png */; };
@@ -264,6 +266,11 @@
 		8D8DC57319D2EC2F00E75949 /* vida6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vida6.png; sourceTree = "<group>"; };
 		8D8DC57419D2EC2F00E75949 /* vida7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vida7.png; sourceTree = "<group>"; };
 		8D8DC57519D2EC2F00E75949 /* vida8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vida8.png; sourceTree = "<group>"; };
+		8D92AF0419FA92C500A6ADA9 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
+		8D92AF0519FA92C500A6ADA9 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8D92AF0619FA92C500A6ADA9 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8D92AF0819FA92E900A6ADA9 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/store.png; sourceTree = "<group>"; };
+		8D92AF1219FA943600A6ADA9 /* pt */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pt; path = pt.lproj/store.png; sourceTree = "<group>"; };
 		8D94D7C119DB4182002872F4 /* fogo_parado.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fogo_parado.png; sourceTree = "<group>"; };
 		8DC0B80319D5D0420044E800 /* JAGLevelSelectionScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAGLevelSelectionScene.h; sourceTree = "<group>"; };
 		8DC0B80419D5D0420044E800 /* JAGLevelSelectionScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAGLevelSelectionScene.m; sourceTree = "<group>"; };
@@ -709,7 +716,7 @@
 				ORGANIZATIONNAME = "Henrique Manfroi da Silveira";
 				TargetAttributes = {
 					0B3A044B1991164A00C7C39E = {
-						DevelopmentTeam = 64TH9999YT;
+						DevelopmentTeam = T5N5TT4E82;
 					};
 					0B3A04731991164A00C7C39E = {
 						DevelopmentTeam = VCE77X465D;
@@ -724,6 +731,7 @@
 			knownRegions = (
 				en,
 				Base,
+				pt,
 			);
 			mainGroup = 0B3A04431991164A00C7C39E;
 			productRefGroup = 0B3A044D1991164A00C7C39E /* Products */;
@@ -744,10 +752,12 @@
 				B1D9C13A19DF041B005ED4A1 /* heart_sem_sombra.png in Resources */,
 				0B15AACA19D09A2100ED6110 /* map2.tmx in Resources */,
 				8DF47BD419B0B4EE0021AE2D /* spark.png in Resources */,
+				0B89188519F962C700DAB31F /* chuva.caf in Resources */,
 				0BB20B6E19F82257004EBC4A /* Raio1.caf in Resources */,
 				8D35976A19D86559009B6083 /* fase_semSombra5.png in Resources */,
 				8D4A4F4119AFA99300255468 /* Vapor.sks in Resources */,
 				0BB20B6C19F82257004EBC4A /* AMB.caf in Resources */,
+				8D92AF1119FA943600A6ADA9 /* store.png in Resources */,
 				8D1B20FD19DC4AFF007B9B9F /* price099.png in Resources */,
 				8D4A4F4219AFA99300255468 /* spark.png in Resources */,
 				0B15AADD19D09B0500ED6110 /* map8.tmx in Resources */,
@@ -780,6 +790,7 @@
 				8D7E78DE19D1FB5900126F42 /* heart.png in Resources */,
 				0B15AADF19D09B0500ED6110 /* map10.tmx in Resources */,
 				8DC0B80F19D61D290044E800 /* fase_trancada.png in Resources */,
+				0B89188319F959CD00DAB31F /* pauseBT.png in Resources */,
 				8D1B20FF19DC4CD1007B9B9F /* bt_bg.png in Resources */,
 				8D8DC57719D2EC2F00E75949 /* vida1.png in Resources */,
 				8DF47BD319B0B4EE0021AE2D /* Fogo.sks in Resources */,
@@ -887,6 +898,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				0B3A045B1991164A00C7C39E /* en */,
+				8D92AF0519FA92C500A6ADA9 /* pt */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -895,6 +907,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				0B3A04641991164A00C7C39E /* Base */,
+				8D92AF0419FA92C500A6ADA9 /* pt */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -903,8 +916,25 @@
 			isa = PBXVariantGroup;
 			children = (
 				0B3A047F1991164A00C7C39E /* en */,
+				8D92AF0619FA92C500A6ADA9 /* pt */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8D92AF0919FA92E900A6ADA9 /* store.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8D92AF0819FA92E900A6ADA9 /* en */,
+			);
+			name = store.png;
+			sourceTree = "<group>";
+		};
+		8D92AF1319FA943600A6ADA9 /* store.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8D92AF1219FA943600A6ADA9 /* pt */,
+			);
+			name = store.png;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -944,6 +974,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "da463679-1682-4fae-b680-14231a0a4db2";
 				SDKROOT = iphoneos;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 			};
@@ -976,6 +1007,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PROVISIONING_PROFILE = "da463679-1682-4fae-b680-14231a0a4db2";
 				SDKROOT = iphoneos;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				VALIDATE_PRODUCT = YES;

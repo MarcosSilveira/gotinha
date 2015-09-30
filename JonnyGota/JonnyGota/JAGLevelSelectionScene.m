@@ -9,6 +9,7 @@
 #import "JAGLevelSelectionScene.h"
 #import "JAGPlayGameScene.h"
 #import "JAGCreatorLevels.h"
+#import "JAGMenu.h"
 
 @implementation JAGLevelSelectionScene{
     SKSpriteNode *background;
@@ -137,7 +138,10 @@
     JAGPlayGameScene *jogo;
     for (UITouch *touch in touches) {
         SKNode *node = [self nodeAtPoint:[touch locationInNode:self]];
-        
+        if ([node.name isEqualToString:@"backBT"]) {
+            JAGMenu* menu = [[JAGMenu alloc]initWithSize:self.frame.size];
+            [self.scene.view presentScene:menu transition:[SKTransition fadeWithDuration:1]];
+        }
         if (![node.name isEqualToString:@"fase_trancada"]) {
             int fase = [node.name intValue];
             NSNumber *faseA = [NSNumber numberWithInt:fase];
@@ -145,6 +149,7 @@
                 jogo = [[JAGPlayGameScene alloc]initWithSize:self.frame.size level:faseA andWorld:@1];
                 [self.scene.view presentScene:jogo transition:[SKTransition fadeWithDuration:1]];}}
     }
+    
 }
 
 

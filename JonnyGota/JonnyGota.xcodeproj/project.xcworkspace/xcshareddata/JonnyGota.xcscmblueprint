@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "582BEA93FEF0C90D499D75CB6453D83218C26B48",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F84A0031-F70E-4F72-A3AE-8DFD156D25E6" : 0,
+    "582BEA93FEF0C90D499D75CB6453D83218C26B48" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "3068BC18-5EF9-4CF8-B902-31134E4BCA76",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F84A0031-F70E-4F72-A3AE-8DFD156D25E6" : "The Gota adventure!",
+    "582BEA93FEF0C90D499D75CB6453D83218C26B48" : "The%20Gota%20adventure!"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "JonnyGota",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "JonnyGota\/JonnyGota.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/MarcosSilveira\/gotinha.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "582BEA93FEF0C90D499D75CB6453D83218C26B48"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/MarcosSilveira\/gotinha.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F84A0031-F70E-4F72-A3AE-8DFD156D25E6"
+    }
+  ]
+}
